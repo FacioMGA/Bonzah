@@ -70,7 +70,7 @@ export type FacioPolicy = {
   documents: Array<{ id: string; filename: string; status: string }>;
 };
 export async function facioRequest<T>(
-  path: '/api/quote' | '/api/bind',
+  path: '/api/quote' | '/api/bind' | `/api/quote?channel=${'DIRECT' | 'DISTRIBUTION'}`,
   body?: unknown,
   key?: string,
 ): Promise<T> {

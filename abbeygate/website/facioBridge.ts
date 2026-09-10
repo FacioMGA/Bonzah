@@ -283,8 +283,8 @@ export function createFacioBridge(options: Options = {}) {
   router.get(
     '/quote',
     handle(async (req) => {
-      z.object({}).strict().parse(req.query);
-      const config = configuration(env);
+      const input = z.object({ channel }).strict().parse(req.query);
+      const config = configuration(env, input.channel === 'DIRECT' ? 'policy' : 'quote');
       const data = await upstream(
         config,
         `/programmes/${config.programId}/intake?binderId=${config.binderId}`,

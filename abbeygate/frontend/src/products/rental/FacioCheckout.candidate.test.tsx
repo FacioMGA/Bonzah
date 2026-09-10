@@ -31,20 +31,19 @@ afterEach(() => {
   request.mockReset();
 });
 async function mount(channel: 'DIRECT' | 'DISTRIBUTION') {
-  request
-    .mockResolvedValueOnce({ intake })
-    .mockResolvedValue({
-      quoteId: 'OFFLINE_TRANSPORT_QUOTE',
-      status: 'QUOTED',
-      bindable: true,
-      receipt: 'OFFLINE_TRANSPORT_RECEIPT',
-      currency: 'USD',
-      premiumCalculated: 131.84,
-    });
+  request.mockResolvedValueOnce({ intake }).mockResolvedValue({
+    quoteId: 'OFFLINE_TRANSPORT_QUOTE',
+    status: 'QUOTED',
+    bindable: true,
+    receipt: 'OFFLINE_TRANSPORT_RECEIPT',
+    currency: 'USD',
+    premiumCalculated: 131.84,
+  });
   const view = render(
     <FacioCheckout channel={channel} prefill={prefill} onBack={() => undefined} />,
   );
   await screen.findByRole('button', { name: 'Add driver' });
+  expect(request.mock.calls[0]).toEqual([`/api/quote?channel=${channel}`]);
   const control = (key: string) =>
     view.container.querySelector<HTMLInputElement | HTMLSelectElement>(`[name="${key}"]`)!;
   for (const [key, value] of Object.entries(candidateFormValues)) {

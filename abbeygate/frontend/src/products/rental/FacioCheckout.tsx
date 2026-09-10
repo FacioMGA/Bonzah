@@ -40,7 +40,7 @@ export function FacioCheckout({ channel, prefill, onBack }: Props) {
   useEffect(() => {
     let active = true;
     setError('');
-    void facioRequest<{ intake: FacioIntake }>('/api/quote')
+    void facioRequest<{ intake: FacioIntake }>(`/api/quote?channel=${channel}`)
       .then(({ intake: next }) => {
         if (!active) return;
         if (
@@ -66,7 +66,7 @@ export function FacioCheckout({ channel, prefill, onBack }: Props) {
     return () => {
       active = false;
     };
-  }, [attempt]);
+  }, [attempt, channel]);
   const change = (path: string[], value: unknown) => {
     setAnswers((current) => {
       let next = writeAnswer(current, path, value);

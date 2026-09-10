@@ -47,41 +47,73 @@ const send = (url: string, body: unknown, key = 'same-browser-attempt') =>
     body: JSON.stringify(body),
   });
 describe('Facio website boundary', () => {
-  it('reads only the published intake, without leaking its full definition or server key', async () => {
-    const upstream = vi.fn<typeof fetch>().mockResolvedValue(
-      reply({
-        title: 'Rental',
-        questionnaire: { sections: [] },
-        coverageOptions: [],
-        definition: { private: true },
-      }),
-    );
-    const base = await start(upstream);
-    const response = await fetch(`${base}/quote`);
-    const text = await response.text();
-    expect(JSON.parse(text).data).toEqual({
-      intake: { title: 'Rental', questionnaire: { sections: [] }, coverageOptions: [] },
-    });
-    expect(text).not.toContain('private');
-    expect(text).not.toContain(env.FACIO_POLICY_API_KEY);
-    expect(upstream.mock.calls[0][0]).toContain(
-      `/programmes/${env.FACIO_PROGRAM_ID}/intake?binderId=${env.FACIO_BINDER_ID}`,
-    );
-    expect(upstream.mock.calls[0][1]?.headers).toMatchObject({
-      Authorization: `Bearer ${env.FACIO_QUOTE_API_KEY}`,
-    });
-  });
+  it.each(['DIRECT', 'DISTRIBUTION'] as const)(
+    'reads %s intake with only its own configured credential',
+    async (channel) => {
+      const upstream = vi.fn<typeof fetch>().mockResolvedValue(
+        reply({
+          title: 'Rental',
+          questionnaire: { sections: [] },
+          coverageOptions: [],
+          definition: { private: true },
+        }),
+      );
+      const ownKey = channel === 'DIRECT' ? env.FACIO_POLICY_API_KEY : env.FACIO_QUOTE_API_KEY;
+      const configuration = {
+        ...env,
+        [channel === 'DIRECT' ? 'FACIO_QUOTE_API_KEY' : 'FACIO_POLICY_API_KEY']: undefined,
+      };
+      const base = await start(upstream, configuration);
+      const response = await fetch(`${base}/quote?channel=${channel}`);
+      expect(response.status).toBe(200);
+      const text = await response.text();
+      expect(JSON.parse(text).data).toEqual({
+        intake: { title: 'Rental', questionnaire: { sections: [] }, coverageOptions: [] },
+      });
+      expect(text).not.toContain('private');
+      expect(text).not.toContain(env.FACIO_POLICY_API_KEY);
+      expect(upstream.mock.calls[0][0]).toContain(
+        `/programmes/${env.FACIO_PROGRAM_ID}/intake?binderId=${env.FACIO_BINDER_ID}`,
+      );
+      expect(upstream.mock.calls[0][1]?.headers).toMatchObject({
+        Authorization: `Bearer ${ownKey}`,
+      });
+    },
+  );
   it('reaches the configuration gate without query metadata and still rejects unknown business queries', async () => {
     const upstream = vi.fn<typeof fetch>();
     const base = await start(upstream, {});
-    expect((await fetch(`${base}/quote`)).status).toBe(503);
-    for (const query of ['path=quote', 'programId=untrusted', 'binderId=untrusted']) {
+    expect((await fetch(`${base}/quote?channel=DIRECT`)).status).toBe(503);
+    expect((await fetch(`${base}/quote?channel=DISTRIBUTION`)).status).toBe(503);
+    expect((await fetch(`${base}/quote`)).status).toBe(400);
+    for (const query of [
+      'channel=DIRECT&path=quote',
+      'channel=DIRECT&programId=untrusted',
+      'channel=DIRECT&binderId=untrusted',
+      'channel=unknown',
+      'channel=DIRECT&channel=DISTRIBUTION',
+    ]) {
       const response = await fetch(`${base}/quote?${query}`);
       expect(response.status).toBe(400);
       expect((await response.json()).error.code).toBe('INVALID_REQUEST');
     }
     expect(upstream).not.toHaveBeenCalled();
   });
+  it.each(['DIRECT', 'DISTRIBUTION'] as const)(
+    'does not borrow the other credential when %s intake key is missing',
+    async (channel) => {
+      const upstream = vi.fn<typeof fetch>();
+      const configuration = {
+        ...env,
+        [channel === 'DIRECT' ? 'FACIO_POLICY_API_KEY' : 'FACIO_QUOTE_API_KEY']: undefined,
+      };
+      const base = await start(upstream, configuration);
+      const response = await fetch(`${base}/quote?channel=${channel}`);
+      expect(response.status).toBe(503);
+      expect((await response.json()).error.code).toBe('FACIO_NOT_CONFIGURED');
+      expect(upstream).not.toHaveBeenCalled();
+    },
+  );
   it('pins configuration and preserves all submitted answers and retry identity', async () => {
     const data = {
       quoteId: 'fde155dc-ff7d-4675-aa20-6f7d7d227772',
@@ -149,7 +181,9 @@ describe('Facio website boundary', () => {
       .fn<typeof fetch>()
       .mockRejectedValue(new Error('do not expose internal secrets'));
     const base = await start(upstream, {});
-    expect((await fetch(`${base}/quote`)).status).toBe(503);
+    expect((await fetch(`${base}/quote?channel=DIRECT`)).status).toBe(503);
+    expect((await fetch(`${base}/quote?channel=DISTRIBUTION`)).status).toBe(503);
+    expect((await fetch(`${base}/quote`)).status).toBe(400);
     expect(upstream).not.toHaveBeenCalled();
     const configured = await start(upstream);
     const result = await send(`${configured}/quote`, { channel: 'DIRECT', quoteData: {} });
