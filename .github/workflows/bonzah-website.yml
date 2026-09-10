@@ -1,0 +1,37 @@
+name: Bonzah website integration
+on:
+  pull_request:
+    paths:
+      - 'abbeygate/**'
+      - '.github/workflows/bonzah-website.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'abbeygate/**'
+      - '.github/workflows/bonzah-website.yml'
+permissions:
+  contents: read
+concurrency:
+  group: bonzah-website-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: abbeygate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: abbeygate/package-lock.json
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run build:validation && npm run build:products
+      - run: npx tsc --noEmit -p frontend/tsconfig.json
+      - run: npx tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --esModuleInterop --skipLibCheck website/facioBridge.ts api/index.ts
+      - run: npx vitest --config frontend/vitest.config.ts run tools/demo/__tests__/facioBridge.test.ts frontend/src/products/rental/rentalPrefill.test.ts frontend/src/products/rental/FacioCheckout.test.tsx frontend/src/products/rental/FacioCheckout.candidate.test.tsx
+      - run: npm run build:frontend
+      - run: npm run guard:docs-frontmatter && npm run guard:docs-single-source
