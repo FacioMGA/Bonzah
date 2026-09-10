@@ -16,7 +16,7 @@ Website business paths: GET/POST `/api/quote`; POST `/api/bind` (`review`, `comp
 - Deploy and verify the frozen generic machine checkout routes under `/api/v1/workspaces/:workspaceId/insurance`.
 - Publish the coordinator-approved native RENTAL programme copied/reviewed from Amit's configuration; use its NEW programme ID. Preserve the existing COMMERCIAL prototype/history.
 - Activate its binder-product authority and programme link. Preserve authored daily rates 14.99 / 4.99 / 8.99 / 3.99 in configuration.
-- Issue separate server-only credentials for this workspace: Summit quote/view only; Bonzah quote/view/edit/bind/issue/document permissions required by frozen checkout.
+- Issue separate server-only credentials for this workspace: Summit `policies.view`, `policies.create`; Bonzah those plus `policies.edit`, `policies.bind`, `policies.issue`, `documents.view`, `documents.generate`.
 - Both channels use the same programme/binder. Direct quotes and checkout must use the SAME full lifecycle credential. Never use a personal MCP token or partner-origin quote for Direct completion.
 
 ## Vercel environment (server-only; never use VITE_ prefixes)

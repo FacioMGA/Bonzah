@@ -31,7 +31,7 @@ jobs:
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npm run build:validation && npm run build:products
       - run: npx tsc --noEmit -p frontend/tsconfig.json
-      - run: npx tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --esModuleInterop --skipLibCheck website/facioBridge.ts
+      - run: npx tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --esModuleInterop --skipLibCheck website/facioBridge.ts api/index.ts
       - run: npx vitest --config frontend/vitest.config.ts run tools/demo/__tests__/facioBridge.test.ts frontend/src/products/rental/rentalPrefill.test.ts frontend/src/products/rental/FacioCheckout.test.tsx
       - run: npm run build:frontend
       - run: npm run guard:docs-frontmatter && npm run guard:docs-single-source

@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { createFacioBridge } from '../website/facioBridge.js';
-import { summitVehicles } from '../backend/products/rental/goldenFixtures.js';
+import { summitVehicles } from '../backend/products/rental/summitVehicles.js';
 
 const app = express();
 
