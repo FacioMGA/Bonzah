@@ -13,7 +13,7 @@ Website business paths: GET/POST `/api/quote`; POST `/api/bind` (`review`, `comp
 
 ## Platform prerequisites
 
-- Deploy and verify the frozen generic machine checkout routes under `/api/v1/workspaces/:workspaceId/insurance`.
+- Deploy and verify the generic checkout contract frozen at Facio Kernel `75d51b6a363ef1f2b54b35064cb24e05fb45fa64`, including its prerequisite release; API base is `/api/v1/workspaces/:workspaceId/insurance`.
 - Publish the coordinator-approved native RENTAL programme copied/reviewed from Amit's configuration; use its NEW programme ID. Preserve the existing COMMERCIAL prototype/history.
 - Activate its binder-product authority and programme link. Preserve authored daily rates 14.99 / 4.99 / 8.99 / 3.99 in configuration.
 - Issue separate server-only credentials for this workspace: Summit `policies.view`, `policies.create`; Bonzah those plus `policies.edit`, `policies.bind`, `policies.issue`, `documents.view`, `documents.generate`.
@@ -30,7 +30,7 @@ Website business paths: GET/POST `/api/quote`; POST `/api/bind` (`review`, `comp
 | `FACIO_QUOTE_API_KEY` | Scoped quote/view credential, entered privately in Vercel |
 | `FACIO_POLICY_API_KEY` | Scoped Direct lifecycle credential, entered privately in Vercel |
 | `FACIO_RECEIPT_KEY` | Random 32-byte key encoded as 64 hex characters; keep stable across redeploys |
-| `FACIO_CHECKOUT_ENABLED` | `false` until frozen contract/live proof; then `true` |
+| `FACIO_CHECKOUT_ENABLED` | `false` until compatible deployment and live proof; then `true` |
 
 Generate the receipt key directly into a restricted local file or password manager; never put credentials in Git, logs, URLs or chat.
 
