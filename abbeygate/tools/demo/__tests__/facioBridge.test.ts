@@ -48,16 +48,14 @@ const send = (url: string, body: unknown, key = 'same-browser-attempt') =>
   });
 describe('Facio website boundary', () => {
   it('reads only the published intake, without leaking its full definition or server key', async () => {
-    const upstream = vi
-      .fn<typeof fetch>()
-      .mockResolvedValue(
-        reply({
-          title: 'Rental',
-          questionnaire: { sections: [] },
-          coverageOptions: [],
-          definition: { private: true },
-        }),
-      );
+    const upstream = vi.fn<typeof fetch>().mockResolvedValue(
+      reply({
+        title: 'Rental',
+        questionnaire: { sections: [] },
+        coverageOptions: [],
+        definition: { private: true },
+      }),
+    );
     const base = await start(upstream);
     const response = await fetch(`${base}/quote`);
     const text = await response.text();
@@ -372,6 +370,35 @@ describe('Issued status and bound document transport', () => {
     });
     expect(upstream.mock.calls[1][1]?.headers).toMatchObject({
       Authorization: `Bearer ${env.FACIO_POLICY_API_KEY}`,
+    });
+  });
+});
+
+describe('Incomplete issuance recovery', () => {
+  it('keeps a BOUND-only result retryable instead of granting completed-policy access', async () => {
+    const upstream = vi
+      .fn<typeof fetch>()
+      .mockImplementation(async (url) =>
+        reply(
+          String(url).endsWith('/quotes')
+            ? quoteResult
+            : String(url).endsWith('/review')
+              ? offer
+              : { policyId: quoteId, status: 'BOUND', issuedAt: null },
+        ),
+      );
+    const base = await start(upstream, enabled);
+    const receipt = await quoteReceipt(base);
+    const review = (await (await send(`${base}/bind`, { action: 'review', receipt })).json()).data;
+    const result = await send(`${base}/bind`, {
+      action: 'complete',
+      receipt: review.receipt,
+      confirmed: true,
+    });
+    expect(result.status).toBe(409);
+    expect(await result.json()).toMatchObject({
+      success: false,
+      error: { code: 'ISSUANCE_NOT_CONFIRMED' },
     });
   });
 });

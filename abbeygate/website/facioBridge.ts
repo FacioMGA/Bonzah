@@ -247,43 +247,37 @@ export function createFacioBridge(options: Options = {}) {
         if (!res.headersSent) res.json({ success: true, data });
       } catch (error) {
         if (error instanceof z.ZodError) {
-          res
-            .status(400)
-            .json({
-              success: false,
-              error: {
-                code: 'INVALID_REQUEST',
-                message: 'Review the submitted fields.',
-                fieldErrors: error.issues.map((issue) => ({
-                  key: issue.path.join('.'),
-                  message: issue.message,
-                })),
-              },
-            });
+          res.status(400).json({
+            success: false,
+            error: {
+              code: 'INVALID_REQUEST',
+              message: 'Review the submitted fields.',
+              fieldErrors: error.issues.map((issue) => ({
+                key: issue.path.join('.'),
+                message: issue.message,
+              })),
+            },
+          });
           return;
         }
         if (error instanceof BridgeError) {
-          res
-            .status(error.status)
-            .json({
-              success: false,
-              error: {
-                code: error.code,
-                message: error.message,
-                ...(error.fields ? { fieldErrors: error.fields } : {}),
-              },
-            });
-          return;
-        }
-        res
-          .status(502)
-          .json({
+          res.status(error.status).json({
             success: false,
             error: {
-              code: 'FACIO_REQUEST_FAILED',
-              message: 'The Facio request could not be completed.',
+              code: error.code,
+              message: error.message,
+              ...(error.fields ? { fieldErrors: error.fields } : {}),
             },
           });
+          return;
+        }
+        res.status(502).json({
+          success: false,
+          error: {
+            code: 'FACIO_REQUEST_FAILED',
+            message: 'The Facio request could not be completed.',
+          },
+        });
       }
     };
   router.get(
@@ -514,6 +508,12 @@ export function createFacioBridge(options: Options = {}) {
         `${key}-complete`,
       );
       const state = await policyView(config, receipt.quoteId);
+      if (!state.issuedAt || !['ISSUED', 'ACTIVE'].includes(state.status))
+        throw new BridgeError(
+          409,
+          'ISSUANCE_NOT_CONFIRMED',
+          'Facio has not confirmed issuance. Retry this unchanged completion request.',
+        );
       return {
         ...state,
         receipt: seal(
