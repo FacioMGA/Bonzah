@@ -41,7 +41,7 @@ Generate the receipt key directly into a restricted local file or password manag
 3. Set the eight environment variables for the intended deployment environment. Disable checkout until all platform gates above pass.
 4. From repository root, run `vercel link --project bonzah-demos --scope TEAM_SLUG` with the actual owning team slug; inspect `.vercel/project.json` for the existing project.
 5. Run `vercel pull --yes --environment=production --scope TEAM_SLUG`, then `vercel build --prod`, then `vercel deploy --prebuilt --prod --scope TEAM_SLUG`.
-6. `abbeygate/vercel.json` builds validation/products before the frontend and sets a 180-second API duration. It routes both websites and `/api/*` to the single Express function.
+6. `abbeygate/vercel.json` builds validation/products before the frontend and sets a 180-second API duration. It maps the four API paths explicitly to the single Express function; do not use a named API wildcard, which Vercel injects into query parameters.
 
 Verify `/api/health` reports the intended build SHA and checkout flag after deployment; health alone is not acceptance.
 
@@ -56,5 +56,5 @@ Verify `/api/health` reports the intended build SHA and checkout flag after depl
 ## Local verification and recovery
 
 Run from `abbeygate`: `npm ci --ignore-scripts`, `npm run build:validation`, `npm run build:products`, `npm run build:frontend`, and `npx tsc --noEmit -p frontend/tsconfig.json`.
-Run focused tests: `npx vitest --config frontend/vitest.config.ts run tools/demo/__tests__/facioBridge.test.ts frontend/src/products/rental/rentalPrefill.test.ts frontend/src/products/rental/FacioCheckout.test.tsx frontend/src/products/rental/FacioCheckout.candidate.test.tsx`. Full native fixture SHA `ad4ec46383be6c499f00442b1ce311dcf4fb3be8a7536fc52f28852d58b7820a`: 22 tests; desktop/mobile offline form-to-canonical-adapter proof returned USD197.76/6 days with an additional driver and USD131.84/4 days without, all four coverages; this is not hosted acceptance.
+Run focused tests: `npx vitest --config frontend/vitest.config.ts run tools/demo/__tests__/facioBridge.test.ts frontend/src/products/rental/rentalPrefill.test.ts frontend/src/products/rental/FacioCheckout.test.tsx frontend/src/products/rental/FacioCheckout.candidate.test.tsx`. Full native fixture SHA `ad4ec46383be6c499f00442b1ce311dcf4fb3be8a7536fc52f28852d58b7820a`: 23 tests; desktop/mobile offline form-to-canonical-adapter proof returned USD197.76/6 days with an additional driver and USD131.84/4 days without, all four coverages; this is not hosted acceptance.
 If checkout fails, keep its reviewed state and retry unchanged. Do not substitute `/policies` BOUND-only success or create a second quote to hide the failure.

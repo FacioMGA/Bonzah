@@ -5,7 +5,19 @@
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
-      "source": "/api/:path*",
+      "source": "/api/health",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/api/quote",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/api/bind",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/api/public/bonzah/vehicles",
       "destination": "/api/index"
     },
     {

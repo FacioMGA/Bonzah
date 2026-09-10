@@ -71,6 +71,17 @@ describe('Facio website boundary', () => {
       Authorization: `Bearer ${env.FACIO_QUOTE_API_KEY}`,
     });
   });
+  it('reaches the configuration gate without query metadata and still rejects unknown business queries', async () => {
+    const upstream = vi.fn<typeof fetch>();
+    const base = await start(upstream, {});
+    expect((await fetch(`${base}/quote`)).status).toBe(503);
+    for (const query of ['path=quote', 'programId=untrusted', 'binderId=untrusted']) {
+      const response = await fetch(`${base}/quote?${query}`);
+      expect(response.status).toBe(400);
+      expect((await response.json()).error.code).toBe('INVALID_REQUEST');
+    }
+    expect(upstream).not.toHaveBeenCalled();
+  });
   it('pins configuration and preserves all submitted answers and retry identity', async () => {
     const data = {
       quoteId: 'fde155dc-ff7d-4675-aa20-6f7d7d227772',
