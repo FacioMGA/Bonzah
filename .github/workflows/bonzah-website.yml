@@ -5,7 +5,7 @@ on:
       - 'abbeygate/**'
       - '.github/workflows/bonzah-website.yml'
   push:
-    branches: [main, codex/bonzah-live-quote-bind]
+    branches: [main]
     paths:
       - 'abbeygate/**'
       - '.github/workflows/bonzah-website.yml'

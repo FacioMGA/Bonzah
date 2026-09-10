@@ -43,6 +43,8 @@ Generate the receipt key directly into a restricted local file or password manag
 5. Run `vercel pull --yes --environment=production --scope TEAM_SLUG`, then `vercel build --prod`, then `vercel deploy --prebuilt --prod --scope TEAM_SLUG`.
 6. `abbeygate/vercel.json` builds validation/products before the frontend and sets a 180-second API duration. It routes both websites and `/api/*` to the single Express function.
 
+Verify `/api/health` reports the intended build SHA and checkout flag after deployment; health alone is not acceptance.
+
 ## Acceptance before demo
 
 - `/api/quote` returns the actual published intake. Missing configuration must be 503, never a synthetic quote.
