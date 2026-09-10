@@ -51,6 +51,8 @@ export function rentalPrefill(trip: Trip): Record<string, unknown> {
     'return.country': 'US',
     'return.state': trip.pickupState,
     'return.location': trip.location,
+    'residence.country': 'US',
+    'residence.state': trip.residenceState,
     'proposer.address.country': 'US',
     'proposer.address.state': trip.residenceState,
     'policy.startDate': trip.start,

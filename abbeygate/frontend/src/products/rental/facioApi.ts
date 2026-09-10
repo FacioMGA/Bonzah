@@ -8,7 +8,14 @@ export type FacioField = {
   help?: string;
   body?: string;
   options?: Array<string | { value: string; label: string }>;
-  sourceCollection?: unknown;
+  sourceCollection?: {
+    key: string;
+    itemLabel: string;
+    minimumItems: number;
+    maximumItems: number;
+    fields: FacioField[];
+  };
+  exactTime?: { dateAnswerPath: string[]; timeZone?: string };
   requiredAtStages?: string[];
 };
 export type FacioCoverage = {

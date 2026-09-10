@@ -1,0 +1,1229 @@
+{
+  "success": true,
+  "data": {
+    "workspaceId": "OFFLINE_UNBOUND_WORKSPACE_ID",
+    "programId": "OFFLINE_UNBOUND_PROGRAMME_ID",
+    "binderId": "OFFLINE_UNBOUND_BINDER_ID",
+    "binderProductAuthorityId": "OFFLINE_UNBOUND_AUTHORITY_ID",
+    "productType": "RENTAL",
+    "definitionId": "OFFLINE_UNBOUND_DEFINITION_ID",
+    "definitionVersion": 1,
+    "currency": "USD",
+    "questionnaire": {
+      "sourceCompilerVersion": 4,
+      "engineContractVersion": 1,
+      "requiredness": {
+        "proposer.firstName": [
+          "quote",
+          "bind"
+        ],
+        "proposer.lastName": [
+          "quote",
+          "bind"
+        ],
+        "proposer.email": [
+          "quote",
+          "bind"
+        ],
+        "proposer.phone": [
+          "quote",
+          "bind"
+        ],
+        "proposer.address.line1": [
+          "quote",
+          "bind"
+        ],
+        "proposer.address.city": [
+          "quote",
+          "bind"
+        ],
+        "proposer.address.state": [
+          "quote",
+          "bind"
+        ],
+        "proposer.address.postalCode": [
+          "quote",
+          "bind"
+        ],
+        "proposer.address.country": [
+          "quote",
+          "bind"
+        ],
+        "driver.age": [
+          "quote",
+          "bind"
+        ],
+        "driver.licenceNumber": [
+          "quote",
+          "bind"
+        ],
+        "driver.licenceCountry": [
+          "quote",
+          "bind"
+        ],
+        "driver.licenceValid": [
+          "quote",
+          "bind"
+        ],
+        "driver.namedOnRentalAgreement": [
+          "quote",
+          "bind"
+        ],
+        "vehicle.make": [
+          "quote",
+          "bind"
+        ],
+        "vehicle.model": [
+          "quote",
+          "bind"
+        ],
+        "vehicle.class": [
+          "quote",
+          "bind"
+        ],
+        "vehicle.year": [
+          "quote",
+          "bind"
+        ],
+        "vehicle.value": [
+          "quote",
+          "bind"
+        ],
+        "pickup.country": [
+          "quote",
+          "bind"
+        ],
+        "pickup.state": [
+          "quote",
+          "bind"
+        ],
+        "pickup.location": [
+          "quote",
+          "bind"
+        ],
+        "return.country": [
+          "quote",
+          "bind"
+        ],
+        "return.state": [
+          "quote",
+          "bind"
+        ],
+        "return.location": [
+          "quote",
+          "bind"
+        ],
+        "rental.coverages": [
+          "quote",
+          "bind"
+        ],
+        "policy.startDate": [
+          "quote",
+          "bind"
+        ],
+        "policy.endDate": [
+          "quote",
+          "bind"
+        ],
+        "driver.fullName": [
+          "quote",
+          "bind"
+        ],
+        "driver.namedOnAgreement": [
+          "quote",
+          "bind"
+        ],
+        "driver.firstName": [
+          "quote",
+          "bind"
+        ],
+        "driver.lastName": [
+          "quote",
+          "bind"
+        ],
+        "residence.country": [
+          "quote",
+          "bind"
+        ],
+        "residence.state": [
+          "quote",
+          "bind"
+        ],
+        "vehicle.registration": [
+          "quote",
+          "bind"
+        ],
+        "rentalAgreement.reference": [
+          "quote",
+          "bind"
+        ]
+      },
+      "sections": [
+        {
+          "id": "policy-holder",
+          "title": "Renter and residence",
+          "questions": [
+            {
+              "path": "proposer.firstName",
+              "label": "First name",
+              "type": "text",
+              "required": true,
+              "key": "proposer.firstName",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-insured-first",
+              "answerPath": [
+                "proposer",
+                "firstName"
+              ]
+            },
+            {
+              "path": "proposer.lastName",
+              "label": "Last name",
+              "type": "text",
+              "required": true,
+              "key": "proposer.lastName",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-insured-last",
+              "answerPath": [
+                "proposer",
+                "lastName"
+              ]
+            },
+            {
+              "path": "proposer.email",
+              "label": "Email",
+              "type": "text",
+              "required": true,
+              "key": "proposer.email",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "proposer",
+                "email"
+              ]
+            },
+            {
+              "path": "proposer.phone",
+              "label": "Phone",
+              "type": "text",
+              "required": true,
+              "key": "proposer.phone",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "proposer",
+                "phone"
+              ]
+            },
+            {
+              "path": "proposer.address.line1",
+              "label": "Address",
+              "type": "text",
+              "required": true,
+              "key": "proposer.address.line1",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-insured-address",
+              "answerPath": [
+                "proposer",
+                "address",
+                "line1"
+              ]
+            },
+            {
+              "path": "proposer.address.city",
+              "label": "Residence city",
+              "type": "text",
+              "required": true,
+              "key": "proposer.address.city",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "proposer",
+                "address",
+                "city"
+              ]
+            },
+            {
+              "path": "proposer.address.state",
+              "label": "Residence state or region",
+              "type": "text",
+              "required": true,
+              "key": "proposer.address.state",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "proposer",
+                "address",
+                "state"
+              ]
+            },
+            {
+              "path": "proposer.address.postalCode",
+              "label": "Postal code",
+              "type": "text",
+              "required": true,
+              "key": "proposer.address.postalCode",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "proposer",
+                "address",
+                "postalCode"
+              ]
+            },
+            {
+              "path": "proposer.address.country",
+              "label": "Policy holder country",
+              "type": "text",
+              "required": true,
+              "key": "proposer.address.country",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-insured-country",
+              "answerPath": [
+                "proposer",
+                "address",
+                "country"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rental-driver",
+          "title": "Driver and licence",
+          "questions": [
+            {
+              "path": "driver.age",
+              "label": "Driver age",
+              "type": "number",
+              "required": true,
+              "min": 0,
+              "max": 120,
+              "key": "driver.age",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-driver-age",
+              "answerPath": [
+                "driver",
+                "age"
+              ],
+              "settings": {
+                "decimalPlaces": 4
+              }
+            },
+            {
+              "path": "driver.licenceNumber",
+              "label": "Driver licence number",
+              "type": "text",
+              "required": true,
+              "key": "driver.licenceNumber",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-driver-licence",
+              "answerPath": [
+                "driver",
+                "licenceNumber"
+              ]
+            },
+            {
+              "path": "driver.licenceCountry",
+              "label": "Driver licence country",
+              "type": "text",
+              "required": true,
+              "key": "driver.licenceCountry",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-driver-licence-country",
+              "answerPath": [
+                "driver",
+                "licenceCountry"
+              ]
+            },
+            {
+              "path": "driver.licenceValid",
+              "label": "Valid driver licence",
+              "type": "boolean",
+              "required": true,
+              "key": "driver.licenceValid",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-valid-licence",
+              "answerPath": [
+                "driver",
+                "licenceValid"
+              ]
+            },
+            {
+              "path": "driver.namedOnRentalAgreement",
+              "label": "Named on the rental agreement",
+              "type": "boolean",
+              "required": true,
+              "key": "driver.namedOnRentalAgreement",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "driver",
+                "namedOnRentalAgreement"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rental-vehicle",
+          "title": "Rental vehicle",
+          "questions": [
+            {
+              "path": "vehicle.make",
+              "label": "Vehicle make",
+              "type": "text",
+              "required": true,
+              "key": "vehicle.make",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-vehicle-make",
+              "answerPath": [
+                "vehicle",
+                "make"
+              ]
+            },
+            {
+              "path": "vehicle.model",
+              "label": "Vehicle model",
+              "type": "text",
+              "required": true,
+              "key": "vehicle.model",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-vehicle-model",
+              "answerPath": [
+                "vehicle",
+                "model"
+              ]
+            },
+            {
+              "path": "vehicle.trim",
+              "label": "Vehicle trim",
+              "type": "text",
+              "key": "vehicle.trim",
+              "sourceQuestionId": "bonzah-vehicle-trim",
+              "answerPath": [
+                "vehicle",
+                "trim"
+              ]
+            },
+            {
+              "path": "vehicle.class",
+              "label": "Vehicle class",
+              "type": "text",
+              "required": true,
+              "key": "vehicle.class",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-vehicle-class",
+              "answerPath": [
+                "vehicle",
+                "class"
+              ]
+            },
+            {
+              "path": "vehicle.year",
+              "label": "Vehicle year",
+              "type": "number",
+              "required": true,
+              "min": 1886,
+              "max": 9999,
+              "key": "vehicle.year",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-vehicle-year",
+              "answerPath": [
+                "vehicle",
+                "year"
+              ],
+              "settings": {
+                "decimalPlaces": 4
+              }
+            },
+            {
+              "path": "vehicle.value",
+              "label": "Declared vehicle value",
+              "type": "currency",
+              "required": true,
+              "min": 0,
+              "key": "vehicle.value",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-vehicle-value",
+              "answerPath": [
+                "vehicle",
+                "value"
+              ],
+              "settings": {
+                "decimalPlaces": 4
+              }
+            }
+          ]
+        },
+        {
+          "id": "rental-locations",
+          "title": "Pickup and return",
+          "questions": [
+            {
+              "path": "pickup.country",
+              "label": "Pickup country",
+              "type": "text",
+              "required": true,
+              "key": "pickup.country",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-pickup-country",
+              "answerPath": [
+                "pickup",
+                "country"
+              ]
+            },
+            {
+              "path": "pickup.state",
+              "label": "Pickup state",
+              "type": "text",
+              "required": true,
+              "key": "pickup.state",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "help": "Approved eight-state eligibility/limit/rate catalogue is missing; no state allowlist inferred.",
+              "sourceQuestionId": "bonzah-pickup-state",
+              "answerPath": [
+                "pickup",
+                "state"
+              ]
+            },
+            {
+              "path": "pickup.location",
+              "label": "Pickup location",
+              "type": "text",
+              "required": true,
+              "key": "pickup.location",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-pickup-location",
+              "answerPath": [
+                "pickup",
+                "location"
+              ]
+            },
+            {
+              "path": "return.country",
+              "label": "Return country",
+              "type": "text",
+              "required": true,
+              "key": "return.country",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "return",
+                "country"
+              ]
+            },
+            {
+              "path": "return.state",
+              "label": "Return state or region",
+              "type": "text",
+              "required": true,
+              "key": "return.state",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "return",
+                "state"
+              ]
+            },
+            {
+              "path": "return.location",
+              "label": "Return location",
+              "type": "text",
+              "required": true,
+              "key": "return.location",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-return-location",
+              "answerPath": [
+                "return",
+                "location"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rental-risk",
+          "title": "Coverage",
+          "questions": [
+            {
+              "path": "rental.coverages",
+              "nativeList": {
+                "kind": "coverage_selection",
+                "schemaVersion": 1
+              },
+              "label": "Selected coverages",
+              "type": "list",
+              "required": true,
+              "key": "rental.coverages",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "rental",
+                "coverages"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "acceptance",
+          "title": "Rental period",
+          "questions": [
+            {
+              "path": "policy.startDate",
+              "label": "Pickup date",
+              "type": "date",
+              "required": true,
+              "key": "policy.startDate",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "policy",
+                "startDate"
+              ]
+            },
+            {
+              "path": "policy.endDate",
+              "label": "Return date",
+              "type": "date",
+              "required": true,
+              "key": "policy.endDate",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "answerPath": [
+                "policy",
+                "endDate"
+              ]
+            },
+            {
+              "path": "policy.startAt",
+              "label": "Pickup time",
+              "type": "text",
+              "required": true,
+              "description": "Exact pickup timestamp with seconds and UTC offset.",
+              "key": "policy.startAt",
+              "answerPath": [
+                "policy",
+                "startAt"
+              ],
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "exactTime": {
+                "dateAnswerPath": [
+                  "policy",
+                  "startDate"
+                ],
+                "timeZone": "America/Denver"
+              }
+            },
+            {
+              "path": "policy.endAt",
+              "label": "Return time",
+              "type": "text",
+              "required": true,
+              "description": "Exact return timestamp with seconds and UTC offset.",
+              "key": "policy.endAt",
+              "answerPath": [
+                "policy",
+                "endAt"
+              ],
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "exactTime": {
+                "dateAnswerPath": [
+                  "policy",
+                  "endDate"
+                ],
+                "timeZone": "America/Denver"
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-group-1",
+          "title": "Primary driver",
+          "questions": [
+            {
+              "key": "driver.fullName",
+              "label": "Driver full name",
+              "type": "text",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-driver-name",
+              "answerPath": [
+                "driver.fullName"
+              ]
+            },
+            {
+              "key": "driver.namedOnAgreement",
+              "label": "Named on the rental agreement",
+              "type": "boolean",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-named-driver",
+              "answerPath": [
+                "driver.namedOnAgreement"
+              ]
+            },
+            {
+              "key": "driver.firstName",
+              "label": "Driver first name",
+              "type": "text",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-driver-first",
+              "answerPath": [
+                "driver.firstName"
+              ]
+            },
+            {
+              "key": "driver.lastName",
+              "label": "Driver last name",
+              "type": "text",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-driver-last",
+              "answerPath": [
+                "driver.lastName"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-group-2",
+          "title": "Rental and vehicle",
+          "questions": [
+            {
+              "key": "residence.country",
+              "label": "Residence country",
+              "type": "text",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-residence-country",
+              "answerPath": [
+                "residence.country"
+              ]
+            },
+            {
+              "key": "residence.state",
+              "label": "Residence state",
+              "type": "text",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-residence-state",
+              "answerPath": [
+                "residence.state"
+              ]
+            },
+            {
+              "key": "vehicle.registration",
+              "label": "Vehicle registration",
+              "type": "text",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-vehicle-registration",
+              "answerPath": [
+                "vehicle.registration"
+              ]
+            },
+            {
+              "key": "rentalAgreement.reference",
+              "label": "Rental agreement reference",
+              "type": "text",
+              "requiredAtStages": [
+                "quote",
+                "bind"
+              ],
+              "sourceQuestionId": "bonzah-rental-reference",
+              "answerPath": [
+                "rentalAgreement.reference"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-group-3",
+          "title": "Additional named drivers",
+          "questions": [
+            {
+              "key": "additionalDrivers",
+              "label": "Additional named drivers",
+              "type": "list",
+              "sourceCollection": {
+                "key": "additionalDrivers",
+                "itemLabel": "Driver",
+                "minimumItems": 0,
+                "maximumItems": 20,
+                "fields": [
+                  {
+                    "key": "fullName",
+                    "label": "Driver full name",
+                    "type": "text",
+                    "requiredAtStages": [
+                      "quote",
+                      "bind"
+                    ],
+                    "sourceQuestionId": "bonzah-additional-driver",
+                    "answerPath": [
+                      "fullName"
+                    ]
+                  },
+                  {
+                    "key": "namedOnAgreement",
+                    "label": "Named on the rental agreement",
+                    "type": "boolean",
+                    "requiredAtStages": [
+                      "quote",
+                      "bind"
+                    ],
+                    "sourceQuestionId": "bonzah-additional-named",
+                    "answerPath": [
+                      "namedOnAgreement"
+                    ]
+                  },
+                  {
+                    "key": "additionalFirstName",
+                    "label": "Additional driver first name",
+                    "type": "text",
+                    "requiredAtStages": [
+                      "quote",
+                      "bind"
+                    ],
+                    "sourceQuestionId": "bonzah-additional-first",
+                    "answerPath": [
+                      "additionalFirstName"
+                    ]
+                  },
+                  {
+                    "key": "additionalLastName",
+                    "label": "Additional driver last name",
+                    "type": "text",
+                    "requiredAtStages": [
+                      "quote",
+                      "bind"
+                    ],
+                    "sourceQuestionId": "bonzah-additional-last",
+                    "answerPath": [
+                      "additionalLastName"
+                    ]
+                  }
+                ]
+              },
+              "answerPath": [
+                "additionalDrivers"
+              ]
+            }
+          ]
+        }
+      ],
+      "sourceQuestionBehaviorVersion": 1,
+      "sourceScopeProductType": "RENTAL",
+      "sourceScopeBindings": [],
+      "claimsContract": {
+        "version": 1,
+        "productType": "RENTAL",
+        "fnol": {},
+        "fullClaimForm": {}
+      }
+    },
+    "coverage": {
+      "schemaVersion": 1,
+      "programCode": "rental",
+      "base": [
+        {
+          "code": "RENTAL_POLICY",
+          "enabled": true
+        }
+      ],
+      "options": []
+    },
+    "capabilities": {
+      "questions": true,
+      "quote": true,
+      "payment": false,
+      "documents": true,
+      "portal": false,
+      "claim": false,
+      "cancel": false
+    },
+    "title": "Bonzah Rental Car",
+    "applicantType": "PERSON",
+    "initialQuoteData": {
+      "proposer": {
+        "insuredPartyType": "PERSON"
+      }
+    },
+    "coverageQuestionKey": "rental.coverages",
+    "coverageAnswerPath": [
+      "rental",
+      "coverages"
+    ],
+    "coverageOptions": [
+      {
+        "coverage": "CDW",
+        "label": "CDW",
+        "termsMode": "structured",
+        "benefitTerms": {
+          "schemaVersion": 1,
+          "benefits": [
+            {
+              "id": "collision",
+              "label": "Vehicle collision damage",
+              "terms": [
+                {
+                  "id": "damage",
+                  "label": "Damage maximum",
+                  "kind": "limit",
+                  "basis": "per_occurrence",
+                  "value": {
+                    "kind": "money",
+                    "amount": 35000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "deductible",
+                  "label": "Deductible",
+                  "kind": "deductible",
+                  "basis": "per_occurrence",
+                  "value": {
+                    "kind": "money",
+                    "amount": 1000,
+                    "currency": "USD"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "selectable": true,
+        "requires": []
+      },
+      {
+        "coverage": "RCLI",
+        "label": "RCLI",
+        "termsMode": "structured",
+        "benefitTerms": {
+          "schemaVersion": 1,
+          "benefits": [
+            {
+              "id": "liability",
+              "label": "Liability",
+              "terms": [
+                {
+                  "id": "bi-person",
+                  "label": "Bodily injury per person",
+                  "kind": "limit",
+                  "basis": "per_person_per_event",
+                  "value": {
+                    "kind": "money",
+                    "amount": 25000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "bi-occurrence",
+                  "label": "Bodily injury total",
+                  "kind": "limit",
+                  "basis": "per_occurrence",
+                  "value": {
+                    "kind": "money",
+                    "amount": 50000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "property",
+                  "label": "Property damage",
+                  "kind": "limit",
+                  "basis": "per_occurrence",
+                  "value": {
+                    "kind": "money",
+                    "amount": 25000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "demo-deductible",
+                  "label": "Deductible",
+                  "kind": "deductible",
+                  "basis": "per_event",
+                  "value": {
+                    "kind": "none"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "selectable": true,
+        "requires": []
+      },
+      {
+        "coverage": "SLI",
+        "label": "SLI",
+        "termsMode": "structured",
+        "benefitTerms": {
+          "schemaVersion": 1,
+          "benefits": [
+            {
+              "id": "excess-liability",
+              "label": "Excess liability",
+              "terms": [
+                {
+                  "id": "bi-person",
+                  "label": "Bodily injury per person",
+                  "kind": "limit",
+                  "basis": "per_person",
+                  "value": {
+                    "kind": "money",
+                    "amount": 100000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "aggregate",
+                  "label": "Shared aggregate maximum",
+                  "kind": "limit",
+                  "basis": "aggregate",
+                  "value": {
+                    "kind": "money",
+                    "amount": 500000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "property",
+                  "label": "Property damage",
+                  "kind": "limit",
+                  "basis": "per_occurrence",
+                  "value": {
+                    "kind": "money",
+                    "amount": 10000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "demo-deductible",
+                  "label": "Deductible",
+                  "kind": "deductible",
+                  "basis": "per_event",
+                  "value": {
+                    "kind": "none"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "selectable": true,
+        "requires": [
+          "RCLI"
+        ]
+      },
+      {
+        "coverage": "PAI / PEI",
+        "label": "PAI / PEI",
+        "termsMode": "structured",
+        "benefitTerms": {
+          "schemaVersion": 1,
+          "benefits": [
+            {
+              "id": "personal-accident",
+              "label": "Personal accident",
+              "terms": [
+                {
+                  "id": "renter-life",
+                  "label": "Renter death benefit",
+                  "kind": "limit",
+                  "basis": "per_person_per_event",
+                  "value": {
+                    "kind": "money",
+                    "amount": 50000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "passenger-life",
+                  "label": "Passenger/family death benefit",
+                  "kind": "limit",
+                  "basis": "per_person_per_event",
+                  "value": {
+                    "kind": "money",
+                    "amount": 5000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "medical",
+                  "label": "Emergency medical reimbursement",
+                  "kind": "limit",
+                  "basis": "per_event",
+                  "value": {
+                    "kind": "money",
+                    "amount": 1000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "accident-aggregate",
+                  "label": "Shared personal accident maximum",
+                  "kind": "limit",
+                  "basis": "per_event",
+                  "value": {
+                    "kind": "money",
+                    "amount": 55000,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "demo-deductible",
+                  "label": "Deductible",
+                  "kind": "deductible",
+                  "basis": "per_event",
+                  "value": {
+                    "kind": "none"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "personal-effects",
+              "label": "Personal effects",
+              "terms": [
+                {
+                  "id": "gross",
+                  "label": "Gross maximum before deductible",
+                  "kind": "limit",
+                  "basis": "per_policy_period",
+                  "value": {
+                    "kind": "money",
+                    "amount": 525,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "deductible",
+                  "label": "Deductible",
+                  "kind": "deductible",
+                  "basis": "per_claim",
+                  "value": {
+                    "kind": "money",
+                    "amount": 25,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "id": "net",
+                  "label": "Net maximum after deductible",
+                  "kind": "limit",
+                  "basis": "per_policy_period",
+                  "value": {
+                    "kind": "money",
+                    "amount": 500,
+                    "currency": "USD"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "selectable": true,
+        "requires": []
+      }
+    ],
+    "term": {
+      "basis": "per_24h",
+      "minimumDays": 1,
+      "maximumDays": 30
+    }
+  }
+}

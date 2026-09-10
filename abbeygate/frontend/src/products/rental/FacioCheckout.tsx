@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ArrowLeft, ShieldCheck } from 'lucide-react';
-import { Button, Checkbox, Input, Select } from '@/src/shared/ui';
+import { Button, Checkbox, Input } from '@/src/shared/ui';
+import { ConfiguredField, collectionErrors, unsupportedField } from './ConfiguredField';
 import { CoverageTerms } from './CoverageTerms';
 import {
   downloadFacioDocument,
@@ -8,7 +9,6 @@ import {
   readAnswer,
   writeAnswer,
   type FacioIntake,
-  type FacioField,
   type FacioQuote,
   type FacioPolicy,
   type FacioReview,
@@ -68,7 +68,26 @@ export function FacioCheckout({ channel, prefill, onBack }: Props) {
     };
   }, [attempt]);
   const change = (path: string[], value: unknown) => {
-    setAnswers((current) => writeAnswer(current, path, value));
+    setAnswers((current) => {
+      let next = writeAnswer(current, path, value);
+      for (const field of intake?.questionnaire.sections.flatMap((section) => section.questions) ??
+        []) {
+        if (
+          !field.exactTime ||
+          JSON.stringify(field.exactTime.dateAnswerPath) !== JSON.stringify(path)
+        )
+          continue;
+        const retained = readAnswer(current, field.answerPath);
+        if (
+          typeof retained === 'string' &&
+          /^\d{4}-\d{2}-\d{2}T/.test(retained) &&
+          typeof value === 'string' &&
+          /^\d{4}-\d{2}-\d{2}$/.test(value)
+        )
+          next = writeAnswer(next, field.answerPath, value + retained.slice(10));
+      }
+      return next;
+    });
     setQuote(undefined);
     setReview(undefined);
     setConfirmed(false);
@@ -76,28 +95,7 @@ export function FacioCheckout({ channel, prefill, onBack }: Props) {
   };
   const unsupported = intake?.questionnaire.sections
     .flatMap((section) => section.questions)
-    .filter(
-      (field) =>
-        field.key !== intake.coverageQuestionKey &&
-        (field.sourceCollection ||
-          ![
-            'text',
-            'email',
-            'tel',
-            'number',
-            'currency',
-            'money',
-            'integer',
-            'date',
-            'datetime',
-            'boolean',
-            'select',
-            'hidden',
-            'paragraph',
-            'textarea',
-            'multiselect',
-          ].includes(field.type)),
-    );
+    .filter((field) => field.key !== intake.coverageQuestionKey && unsupportedField(field));
   const selectedRaw = intake ? readAnswer(answers, intake.coverageAnswerPath) : [];
   const selected = Array.isArray(selectedRaw)
     ? (selectedRaw as Array<{ coverage: string; limit?: number; excess?: number }>)
@@ -111,6 +109,14 @@ export function FacioCheckout({ channel, prefill, onBack }: Props) {
   };
   async function getQuote(event: FormEvent) {
     event.preventDefault();
+    const errors = collectionErrors(
+      intake?.questionnaire.sections.flatMap((section) => section.questions) ?? [],
+      answers,
+    );
+    if (errors.length) {
+      setError(errors.join(' '));
+      return;
+    }
     setBusy(true);
     setError('');
     const body = { channel, quoteData: answers };
@@ -197,99 +203,6 @@ export function FacioCheckout({ channel, prefill, onBack }: Props) {
       setBusy(false);
     }
   }
-  function fieldControl(field: FacioField) {
-    const value = readAnswer(answers, field.answerPath);
-    const common = {
-      'aria-label': field.label,
-      disabled: busy || Boolean(policy) || field.readOnly,
-      required:
-        field.required ||
-        field.requiredAtStages?.some((stage) => ['quote', 'pricing'].includes(stage)),
-      name: field.key,
-    };
-    if (field.type === 'paragraph')
-      return <p className="font-normal">{field.body || field.label}</p>;
-    if (field.sourceCollection)
-      return (
-        <p role="alert">
-          This configured repeating field requires the Facio operator for this demonstration.
-        </p>
-      );
-    if (field.type === 'boolean')
-      return (
-        <Select
-          {...common}
-          value={value === true ? 'true' : value === false ? 'false' : ''}
-          onChange={(event) =>
-            change(
-              field.answerPath,
-              event.target.value === '' ? undefined : event.target.value === 'true',
-            )
-          }
-        >
-          <option value="">Select</option>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </Select>
-      );
-    if (field.type === 'multiselect')
-      return (
-        <Select
-          {...common}
-          multiple
-          value={Array.isArray(value) ? value.map(String) : []}
-          onChange={(event) =>
-            change(
-              field.answerPath,
-              Array.from(event.target.selectedOptions, (option) => option.value),
-            )
-          }
-        >
-          {field.options?.map((option) => (
-            <option
-              key={typeof option === 'string' ? option : option.value}
-              value={typeof option === 'string' ? option : option.value}
-            >
-              {typeof option === 'string' ? option : option.label}
-            </option>
-          ))}
-        </Select>
-      );
-    if (field.options?.length)
-      return (
-        <Select
-          {...common}
-          value={String(value ?? '')}
-          onChange={(event) => change(field.answerPath, event.target.value)}
-        >
-          <option value="">Select</option>
-          {field.options.map((option) => (
-            <option
-              key={typeof option === 'string' ? option : option.value}
-              value={typeof option === 'string' ? option : option.value}
-            >
-              {typeof option === 'string' ? option : option.label}
-            </option>
-          ))}
-        </Select>
-      );
-    const numeric = ['number', 'currency', 'money', 'integer'].includes(field.type);
-    return (
-      <Input
-        {...common}
-        type={numeric ? 'number' : field.type === 'date' ? 'date' : 'text'}
-        step={numeric ? 'any' : undefined}
-        value={String(value ?? '')}
-        placeholder={field.key.endsWith('At') ? '2026-09-18T10:00:00-06:00' : undefined}
-        onChange={(event) =>
-          change(
-            field.answerPath,
-            numeric && event.target.value !== '' ? Number(event.target.value) : event.target.value,
-          )
-        }
-      />
-    );
-  }
   return (
     <section className="mx-auto max-w-4xl space-y-6 rounded-3xl bg-white p-6 text-slate-900 shadow-sm sm:p-10">
       <Button variant="link" onClick={onBack} disabled={busy}>
@@ -333,18 +246,13 @@ export function FacioCheckout({ channel, prefill, onBack }: Props) {
                   <legend className="mb-4 text-lg font-bold">{section.title}</legend>
                   <div className="grid gap-5 sm:grid-cols-2">
                     {fields.map((field) => (
-                      <label key={field.key} className="space-y-2 text-sm font-semibold">
-                        <span>
-                          {field.label}
-                          {field.required ? ' *' : ''}
-                        </span>
-                        {fieldControl(field)}
-                        {field.help && (
-                          <span className="block text-xs font-normal text-slate-500">
-                            {field.help}
-                          </span>
-                        )}
-                      </label>
+                      <ConfiguredField
+                        key={field.key}
+                        field={field}
+                        answers={answers}
+                        disabled={busy || Boolean(policy)}
+                        onChange={change}
+                      />
                     ))}
                   </div>
                 </fieldset>

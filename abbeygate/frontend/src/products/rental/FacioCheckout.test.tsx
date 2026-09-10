@@ -141,3 +141,133 @@ describe('Live website checkout', () => {
     expect(request.mock.calls.filter(([, body]) => body?.action === 'complete')).toHaveLength(0);
   });
 });
+
+const collectionIntake = {
+  ...intake,
+  questionnaire: {
+    sections: [
+      {
+        id: 'people',
+        title: 'Additional drivers',
+        questions: [
+          {
+            key: 'drivers',
+            label: 'Named drivers',
+            type: 'list',
+            answerPath: ['drivers'],
+            sourceCollection: {
+              key: 'drivers',
+              itemLabel: 'Driver',
+              minimumItems: 0,
+              maximumItems: 20,
+              fields: [
+                {
+                  key: 'fullName',
+                  label: 'Full name',
+                  type: 'text',
+                  answerPath: ['fullName'],
+                  requiredAtStages: ['quote'],
+                },
+                {
+                  key: 'named',
+                  label: 'Named on agreement',
+                  type: 'boolean',
+                  answerPath: ['named'],
+                  requiredAtStages: ['quote'],
+                },
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+describe('Configured collection controls', () => {
+  it('allows an empty optional collection, validates each row, and preserves explicit false on removal', async () => {
+    request.mockResolvedValueOnce({ intake: collectionIntake }).mockResolvedValue(quote);
+    render(<FacioCheckout channel="DISTRIBUTION" prefill={{}} onBack={() => undefined} />);
+    const add = await screen.findByRole('button', { name: 'Add driver' });
+    expect(
+      (screen.getByRole('button', { name: 'Get my quote' }) as HTMLButtonElement).disabled,
+    ).toBe(false);
+    fireEvent.submit(screen.getByRole('button', { name: 'Get my quote' }).closest('form')!);
+    await screen.findByText('Quote retained in Facio');
+    fireEvent.click(add);
+    fireEvent.submit(screen.getByRole('button', { name: 'Get my quote' }).closest('form')!);
+    await screen.findByText(/Driver 1: Full name is required/);
+    expect(request).toHaveBeenCalledTimes(2);
+    fireEvent.change(screen.getByLabelText('Full name'), {
+      target: { value: 'User-entered name' },
+    });
+    fireEvent.change(screen.getByLabelText('Named on agreement'), { target: { value: 'false' } });
+    fireEvent.click(add);
+    fireEvent.click(screen.getByRole('button', { name: 'Remove driver 2' }));
+    fireEvent.submit(screen.getByRole('button', { name: 'Get my quote' }).closest('form')!);
+    await waitFor(() => expect(request).toHaveBeenCalledTimes(3));
+    expect(request.mock.calls[2][1].quoteData.drivers).toEqual([
+      { fullName: 'User-entered name', named: false },
+    ]);
+  });
+  it('uses the published maximum bound, allowing add again only after removal', async () => {
+    request.mockResolvedValueOnce({ intake: collectionIntake });
+    render(<FacioCheckout channel="DISTRIBUTION" prefill={{}} onBack={() => undefined} />);
+    const add = await screen.findByRole('button', { name: 'Add driver' });
+    for (let i = 0; i < 20; i++) fireEvent.click(add);
+    expect((add as HTMLButtonElement).disabled).toBe(true);
+    expect(screen.getAllByLabelText('Full name')).toHaveLength(20);
+    fireEvent.click(screen.getByRole('button', { name: 'Remove driver 20' }));
+    expect((add as HTMLButtonElement).disabled).toBe(false);
+  });
+  it('updates the exact timestamp date while preserving an explicitly entered time and offset', async () => {
+    const next = {
+      ...intake,
+      questionnaire: {
+        sections: [
+          {
+            id: 'period',
+            title: 'Rental period',
+            questions: [
+              {
+                key: 'policy.endDate',
+                label: 'Return date',
+                type: 'date',
+                answerPath: ['policy', 'endDate'],
+              },
+              {
+                key: 'policy.endAt',
+                label: 'Return time',
+                type: 'text',
+                answerPath: ['policy', 'endAt'],
+                exactTime: { dateAnswerPath: ['policy', 'endDate'], timeZone: 'America/Denver' },
+              },
+            ],
+          },
+        ],
+      },
+    };
+    request.mockResolvedValueOnce({ intake: next }).mockResolvedValue(quote);
+    render(
+      <FacioCheckout
+        channel="DISTRIBUTION"
+        prefill={{ 'policy.endDate': '2026-09-22', 'policy.endAt': '2026-09-22T10:00:00-06:00' }}
+        onBack={() => undefined}
+      />,
+    );
+    await screen.findByLabelText('Return date');
+    fireEvent.change(screen.getByLabelText('Return time'), {
+      target: { value: '2026-09-22T11:45:00-07:00' },
+    });
+    fireEvent.change(screen.getByLabelText('Return date'), { target: { value: '' } });
+    fireEvent.change(screen.getByLabelText('Return date'), { target: { value: '24/09/2026' } });
+    expect((screen.getByLabelText('Return time') as HTMLInputElement).value).toBe(
+      '2026-09-24T11:45:00-07:00',
+    );
+    fireEvent.submit(screen.getByRole('button', { name: 'Get my quote' }).closest('form')!);
+    await screen.findByText('Quote retained in Facio');
+    expect(request.mock.calls[1][1].quoteData.policy).toEqual({
+      endDate: '2026-09-24',
+      endAt: '2026-09-24T11:45:00-07:00',
+    });
+  });
+});

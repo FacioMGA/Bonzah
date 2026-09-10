@@ -13,7 +13,7 @@ Website business paths: GET/POST `/api/quote`; POST `/api/bind` (`review`, `comp
 
 ## Platform prerequisites
 
-- Deploy and verify the generic checkout contract frozen at Facio Kernel `75d51b6a363ef1f2b54b35064cb24e05fb45fa64`, including its prerequisite release; API base is `/api/v1/workspaces/:workspaceId/insurance`.
+- Deploy and verify the generic checkout contract frozen at Facio Kernel `75d51b6a363ef1f2b54b35064cb24e05fb45fa64` plus recovery successor `0ba0e07a6055b3c79aad5721ea87f6cb4fdae1b0`, including prerequisites; API base is `/api/v1/workspaces/:workspaceId/insurance`.
 - Publish the coordinator-approved native RENTAL programme copied/reviewed from Amit's configuration; use its NEW programme ID. Preserve the existing COMMERCIAL prototype/history.
 - Activate its binder-product authority and programme link. Preserve authored daily rates 14.99 / 4.99 / 8.99 / 3.99 in configuration.
 - Issue separate server-only credentials for this workspace: Summit `policies.view`, `policies.create`; Bonzah those plus `policies.edit`, `policies.bind`, `policies.issue`, `documents.view`, `documents.generate`.
@@ -56,5 +56,5 @@ Verify `/api/health` reports the intended build SHA and checkout flag after depl
 ## Local verification and recovery
 
 Run from `abbeygate`: `npm ci --ignore-scripts`, `npm run build:validation`, `npm run build:products`, `npm run build:frontend`, and `npx tsc --noEmit -p frontend/tsconfig.json`.
-Run focused tests: `npx vitest --config frontend/vitest.config.ts run tools/demo/__tests__/facioBridge.test.ts frontend/src/products/rental/rentalPrefill.test.ts frontend/src/products/rental/FacioCheckout.test.tsx`.
+Run focused tests: `npx vitest --config frontend/vitest.config.ts run tools/demo/__tests__/facioBridge.test.ts frontend/src/products/rental/rentalPrefill.test.ts frontend/src/products/rental/FacioCheckout.test.tsx frontend/src/products/rental/FacioCheckout.candidate.test.tsx`. Full native fixture SHA `ad4ec46383be6c499f00442b1ce311dcf4fb3be8a7536fc52f28852d58b7820a`: 22 tests; desktop/mobile offline form-to-canonical-adapter proof returned USD197.76/6 days with an additional driver and USD131.84/4 days without, all four coverages; this is not hosted acceptance.
 If checkout fails, keep its reviewed state and retry unchanged. Do not substitute `/policies` BOUND-only success or create a second quote to hide the failure.
