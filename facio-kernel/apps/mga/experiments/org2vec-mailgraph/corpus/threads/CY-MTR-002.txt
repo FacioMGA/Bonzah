@@ -1,0 +1,34 @@
+Thread-ID: CY-MTR-002
+Claim-Ref: CY-MTR-002
+Subject: Windscreen replacement CY-MTR-002
+===
+
+From: Insured <k.papas@example.cy>
+To: claims@abbeygate.example
+Date: 2026-02-11 08:00
+Subject: Windscreen chip — claim
+
+Hello, my windscreen has a chip from a stone on the highway. Policy
+ABMTR-100044. Vehicle YBT-2200. Please advise.
+
+---
+From: Handler <claims@abbeygate.example>
+To: k.papas@example.cy
+Date: 2026-02-11 09:05
+Subject: RE: Windscreen — claim CY-MTR-002
+
+Kostas,
+
+Windscreen cover applies under your policy. Please attend approved
+glazier Autoglass Cy and quote claim CY-MTR-002. No excess.
+
+Regards.
+
+---
+From: Autoglass Cy <billing@autoglass.example>
+To: claims@abbeygate.example
+Date: 2026-02-13 17:30
+Subject: Invoice CY-MTR-002
+Attachments: invoice_188453.pdf
+
+Invoice attached. €185 incl. VAT. Replacement completed 13/02.

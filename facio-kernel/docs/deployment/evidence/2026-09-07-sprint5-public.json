@@ -1,0 +1,434 @@
+{
+  "observedAt": "2026-09-07T07:06:28.095516+00:00",
+  "releaseSha": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+  "origin": "https://platform.facio.io",
+  "health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "moneyEngine": {
+      "engine": "rust-wasm",
+      "engineVersion": "1.0.0",
+      "abiVersion": 1,
+      "calculationVersion": "exact-money-v1",
+      "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+      "target": "wasm32-unknown-unknown",
+      "sourceSha256": "e4512b0aeb03ce38c813ca490804d7adfa0d302ae8eed9721769c323061f87d8",
+      "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+      "wasmBytes": 16985,
+      "memoryBytes": 131072
+    },
+    "productionReady": false
+  },
+  "expectedRustFingerprintSource": "git:7b92ae6c8a856966f89296d13884809c39c5ae25:rust/evidence/2026-09-07-sprint5-final-container.json",
+  "allRegisteredStaticRoutesVerified": true,
+  "allCommittedPublicFilesCovered": true,
+  "staticRouteCount": 21,
+  "assets": [
+    {
+      "path": "/insurance-fnol.js",
+      "sourcePath": "public/insurance-fnol.js",
+      "status": 200,
+      "bytes": 24833,
+      "sha256": "99d32be5ec7480aa569779accdc54ff9e29769c9c72d9cee9c16334dac9b04b3",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/insurance-fnol.css",
+      "sourcePath": "public/insurance-fnol.css",
+      "status": 200,
+      "bytes": 2136,
+      "sha256": "37b2ce01088915b677a2b777e3768d0231c8e9a22e8c447f94223801eb278226",
+      "matchesCommittedSource": true,
+      "contentType": "text/css"
+    },
+    {
+      "path": "/insurance-documents.js",
+      "sourcePath": "public/insurance-documents.js",
+      "status": 200,
+      "bytes": 6913,
+      "sha256": "4eca3272f91926e9d760f6fa6c47a8f06f5446002305fb65b7bff2ab77f75c7c",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/insurance-documents.css",
+      "sourcePath": "public/insurance-documents.css",
+      "status": 200,
+      "bytes": 1805,
+      "sha256": "3bf7222908348acaad67ae7512b5c30a22571bf4fc48e51d96f3de243e3aa2b4",
+      "matchesCommittedSource": true,
+      "contentType": "text/css"
+    },
+    {
+      "path": "/insurance-report.js",
+      "sourcePath": "public/insurance-report.js",
+      "status": 200,
+      "bytes": 5181,
+      "sha256": "3e2727c8537326ad38ce4634dba43d33618dfcc207b5b3d2ec1a0b6ecc2dff57",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/insurance-finance.js",
+      "sourcePath": "public/insurance-finance.js",
+      "status": 200,
+      "bytes": 9939,
+      "sha256": "ae54057d59895d195290cbbf42226ec7e397d992de4b33abb5e89abca3ac6934",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/insurance-finance.css",
+      "sourcePath": "public/insurance-finance.css",
+      "status": 200,
+      "bytes": 2720,
+      "sha256": "ce7f040de425285e6cdb36fbbaa5df95b843f8974ba16ab9b0c2170d1fab56a3",
+      "matchesCommittedSource": true,
+      "contentType": "text/css"
+    },
+    {
+      "path": "/insurance-operations.js",
+      "sourcePath": "public/insurance-operations.js",
+      "status": 200,
+      "bytes": 15622,
+      "sha256": "c25adf5c4ab4e23246bad1e62a239a4193c64c43d0a262e45d99d8eb47a3eb7e",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/",
+      "sourcePath": "public/index.html",
+      "status": 200,
+      "bytes": 10017,
+      "sha256": "c4e17ecd7e6e326f6250d80c628bb34fb589161cd68639191aa3008138664297",
+      "matchesCommittedSource": true,
+      "contentType": "text/html"
+    },
+    {
+      "path": "/studio",
+      "sourcePath": "public/index.html",
+      "status": 200,
+      "bytes": 10017,
+      "sha256": "c4e17ecd7e6e326f6250d80c628bb34fb589161cd68639191aa3008138664297",
+      "matchesCommittedSource": true,
+      "contentType": "text/html"
+    },
+    {
+      "path": "/app.js",
+      "sourcePath": "public/app.js",
+      "status": 200,
+      "bytes": 166841,
+      "sha256": "e34cac6f5de4c86a4b6b1e0b8f3188afad584100c5c7570b85b088731695f590",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/styles.css",
+      "sourcePath": "public/styles.css",
+      "status": 200,
+      "bytes": 50098,
+      "sha256": "e22400237fe0a701d18fdb5eeb3a393bfe93dda04b1810990c3a48a90a24fdd9",
+      "matchesCommittedSource": true,
+      "contentType": "text/css"
+    },
+    {
+      "path": "/insurance-config.js",
+      "sourcePath": "public/insurance-config.js",
+      "status": 200,
+      "bytes": 52645,
+      "sha256": "94d86b339cbde06192791a462e7c8d624b6b1d03ef924017c59ae069e86941e8",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/insurance-config.css",
+      "sourcePath": "public/insurance-config.css",
+      "status": 200,
+      "bytes": 3929,
+      "sha256": "f06613730055617761f3a792e519717b944340574503f33724206a756194b794",
+      "matchesCommittedSource": true,
+      "contentType": "text/css"
+    },
+    {
+      "path": "/insurance-decision.js",
+      "sourcePath": "public/insurance-decision.js",
+      "status": 200,
+      "bytes": 28692,
+      "sha256": "5bdb34b3ef2b3e5050b8bf6628d3a2a3d61def1443784e0eda0b2501c5e6d986",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/insurance-decision.css",
+      "sourcePath": "public/insurance-decision.css",
+      "status": 200,
+      "bytes": 1772,
+      "sha256": "c9c237b860da3e6284c8a9b133e3ec864c368e45715382b7a8c623c7198ec225",
+      "matchesCommittedSource": true,
+      "contentType": "text/css"
+    },
+    {
+      "path": "/insurance-approval.js",
+      "sourcePath": "public/insurance-approval.js",
+      "status": 200,
+      "bytes": 18415,
+      "sha256": "4871b5369d8379667a2e69e0d2c6d9a80755b8a7e157374515b1b349b14c2816",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/insurance-approval.css",
+      "sourcePath": "public/insurance-approval.css",
+      "status": 200,
+      "bytes": 2565,
+      "sha256": "59ea7a4607c37222db46e24f8fabc7a0e6e6ea6d4c3119282a3bb9b1a2a7cbbd",
+      "matchesCommittedSource": true,
+      "contentType": "text/css"
+    },
+    {
+      "path": "/insurance-provider.js",
+      "sourcePath": "public/insurance-provider.js",
+      "status": 200,
+      "bytes": 7220,
+      "sha256": "43db8e96d230fbbc2223fc16c79efd7654c0502537c27453accfa886850ef230",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/insurance-provider.css",
+      "sourcePath": "public/insurance-provider.css",
+      "status": 200,
+      "bytes": 1891,
+      "sha256": "f71b44c4f06917a4369d322d6d3133123f44fcad6f7121974877ca6d6df3f889",
+      "matchesCommittedSource": true,
+      "contentType": "text/css"
+    },
+    {
+      "path": "/insurance-workflow.js",
+      "sourcePath": "public/insurance-workflow.js",
+      "status": 200,
+      "bytes": 10888,
+      "sha256": "005f95cfd113bad4091ea97324fe1cd86229dcdee504e76ec53e56c7ffb91ece",
+      "matchesCommittedSource": true,
+      "contentType": "text/javascript"
+    }
+  ],
+  "authConfig": {
+    "mode": "hosted-sandbox",
+    "loginUrl": "/auth/login",
+    "buildSha": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+    "region": "westeurope",
+    "providers": [
+      {
+        "id": "microsoft",
+        "label": "Microsoft organization account"
+      },
+      {
+        "id": "google",
+        "label": "Google Workspace"
+      }
+    ]
+  },
+  "oauthMetadata": {
+    "issuer": "https://platform.facio.io/",
+    "authorization_endpoint": "https://platform.facio.io/authorize",
+    "response_types_supported": ["code"],
+    "code_challenge_methods_supported": ["S256"],
+    "token_endpoint": "https://platform.facio.io/token",
+    "token_endpoint_auth_methods_supported": ["client_secret_post", "none"],
+    "grant_types_supported": ["authorization_code", "refresh_token"],
+    "scopes_supported": ["kernel:access"],
+    "revocation_endpoint": "https://platform.facio.io/revoke",
+    "revocation_endpoint_auth_methods_supported": ["client_secret_post"],
+    "registration_endpoint": "https://platform.facio.io/register"
+  },
+  "mcpResourceMetadata": {
+    "resource": "https://platform.facio.io/mcp",
+    "authorization_servers": ["https://platform.facio.io/"],
+    "scopes_supported": ["kernel:access"],
+    "resource_name": "Facio Kernel sandbox"
+  },
+  "unauthenticatedStatus": {
+    "/api/session": 401,
+    "/api/control/tenants": 401,
+    "/mcp": 401
+  },
+  "identityLoginPerformedByThisCheck": false,
+  "businessMutationsPerformed": false,
+  "browserSessionOrTokensRead": false,
+  "verificationMethod": "Public HTTPS reads with certificate verification; static bytes compared to git show at the exact committed release, not the working tree",
+  "limits": [
+    "Public health, static assets, protocol metadata and anonymous rejection are verified; actual Google UI and business journey evidence is recorded separately.",
+    "Provider metadata does not prove a new Google or Entra login or a connected ChatGPT client.",
+    "No customer integration, production acceptance or cloud-cost reduction is claimed."
+  ],
+  "github": {
+    "deployment": {
+      "url": "https://github.com/FacioMGA/facio-kernel/actions/runs/34093104467",
+      "headSha": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+      "headBranch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "name": "deploy",
+          "url": "https://github.com/FacioMGA/facio-kernel/actions/runs/34093104467/job/101650623165",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-07T06:56:58Z",
+          "completedAt": "2026-09-07T07:03:46Z",
+          "passedSteps": [
+            "Set up job",
+            "Run actions/checkout@v4",
+            "Run actions/setup-node@v4",
+            "Install pinned Rust compiler and WASM target",
+            "Run npm ci",
+            "Run npm run check",
+            "Run git diff --exit-code -- artifacts/contracts",
+            "Run npx playwright install --with-deps chromium",
+            "Run npm run test:browser",
+            "Run npm run test:insurance-browser",
+            "Run npm run test:intern-browser",
+            "Run npm run test:oauth-browser",
+            "Run npm run test:configuration-browser",
+            "Run npm run test:approval-browser",
+            "Run npm run test:provider-browser",
+            "Run npm run test:finance-browser",
+            "Run npm run test:documents-browser",
+            "Run npm run test:service-browser",
+            "Run npm run test:v2-browser",
+            "Run npm run test:fnol-browser",
+            "Run npm run test:ui-state-browser",
+            "Build immutable release",
+            "Run azure/login@v2",
+            "Upload immutable release bundle",
+            "Replay copied persisted evidence with the exact candidate",
+            "Activate verified SHA on the isolated VM",
+            "Verify public HTTPS build",
+            "Post Run azure/login@v2",
+            "Post Run actions/setup-node@v4",
+            "Post Run actions/checkout@v4",
+            "Complete job"
+          ]
+        }
+      ]
+    },
+    "mainCi": {
+      "url": "https://github.com/FacioMGA/facio-kernel/actions/runs/34093087308",
+      "headSha": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+      "headBranch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "name": "verify",
+          "url": "https://github.com/FacioMGA/facio-kernel/actions/runs/34093087308/job/101650567188",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-07T06:56:42Z",
+          "completedAt": "2026-09-07T07:03:05Z",
+          "passedSteps": [
+            "Set up job",
+            "Run actions/checkout@v4",
+            "Run actions/setup-node@v4",
+            "Install pinned Rust compiler and WASM target",
+            "Run npm ci",
+            "Run npm run check",
+            "Run npm run benchmark:rust",
+            "Verify checked-in contract artifacts",
+            "Run npx playwright install --with-deps chromium",
+            "Run npm run test:browser",
+            "Run npm run test:insurance-browser",
+            "Run npm run test:intern-browser",
+            "Run npm run test:oauth-browser",
+            "Run npm run test:configuration-browser",
+            "Run npm run test:approval-browser",
+            "Run npm run test:provider-browser",
+            "Run npm run test:finance-browser",
+            "Run npm run test:documents-browser",
+            "Run npm run test:service-browser",
+            "Run npm run test:v2-browser",
+            "Run npm run test:fnol-browser",
+            "Run npm run test:ui-state-browser",
+            "Run actions/upload-artifact@v4",
+            "Post Run actions/setup-node@v4",
+            "Post Run actions/checkout@v4",
+            "Complete job"
+          ]
+        }
+      ]
+    },
+    "remoteMain": {
+      "sha": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+      "url": "https://github.com/FacioMGA/facio-kernel/commit/7b92ae6c8a856966f89296d13884809c39c5ae25"
+    }
+  },
+  "preflight": {
+    "receiptPath": "docs/deployment/evidence/2026-09-07-sprint5-preflight.json",
+    "receiptSha256": "3457749a01977a988d1e5c654f4f49763c3419c87005a9a832229e3a8abef98f",
+    "observedHostReceiptPath": "/srv/facio-kernel/recovery/candidate-7b92ae6c8a85-20260907T070250.389085Z/evidence.json",
+    "workflowUrl": "https://github.com/FacioMGA/facio-kernel/actions/runs/34093104467",
+    "workflowStep": "Replay copied persisted evidence with the exact candidate",
+    "checkedAt": "2026-09-07T07:02:52.694555+00:00",
+    "candidateImageId": "sha256:7d0821823e8326af995c56f9e3f2314688d8f3438ef432d99e2b803274f793bf",
+    "imageArchiveSha256": "b906e99f841bc9c478da290ef74795625ed0acd7df2f5682c04ab2df070a21c9",
+    "committedReplaySourceSha256": "1d4584fa074511a187b6b24eab9d3d4d98e87049aecfb3fe045d55c3099392fe",
+    "businessSchemaAfterReplay": 7,
+    "allThreePreexistingRecordsVerified": true,
+    "oldMetadataComparison": {
+      "alpha": {
+        "tenantId": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+        "recordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+        "recordVersion": 2,
+        "recordHash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+        "historyVersions": 2,
+        "releaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+        "releaseHash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f",
+        "matchesPreupgradeEvidence": true
+      },
+      "gamma": {
+        "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+        "recordId": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+        "recordVersion": 2,
+        "recordHash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27",
+        "historyVersions": 2,
+        "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+        "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af",
+        "matchesPreupgradeEvidence": true
+      },
+      "beta": {
+        "tenantId": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+        "activeReleaseAbsent": true,
+        "completeRecordSetUnchangedFromThreePreupgradeRecords": true,
+        "recordCount": 0,
+        "comparisonMethod": "All retained record IDs equal the complete preupgrade Alpha/Gamma record set; Beta had no preupgrade record and no added record appears in the verified baseline."
+      },
+      "existingReferralWorkflow": {
+        "recordId": "cdffc011-94a6-47bd-9e89-3a28b0b31532",
+        "version": 1,
+        "recordHash": "6853f74f1d3b422566c1e9f9d11c9ce95ecd20d67afe8f17d31c75d8a186c7fd",
+        "approvalHash": "464a6750aae35e0dc48c70de09492a0c7602bf2f0ab29050e5a37d7a02534870",
+        "providerStateHash": "5d58f84ba47b3097b9745cce826ff8ef196a11ad4cf18cb402c523f0f49d8494",
+        "matchesPreupgradeEvidence": true
+      },
+      "newSyntheticLab": {
+        "tenantId": "ea44847a-bf87-447a-8691-c61856c10aeb",
+        "identitySource": "Root confirmed tenant ID from actual Google-authenticated predeployment creation",
+        "activeReleaseAtPreflight": null,
+        "requirementsVersion": 1,
+        "requirementsHash": "56ed86d6ca7678ed4c7bfdd9f88beebff07b065b8cdb5e0c22fa542bf99dcb56",
+        "scope": "Preflight checkpoint only; later lab activation and business actions are recorded in separate UI/recovery evidence."
+      }
+    },
+    "network": "none",
+    "authMount": "empty_schema_only",
+    "liveContainerUnchangedDuringPreflight": true,
+    "claims": "Read-only receipt retrieval and comparison; preflight ran copied data before activation and does not substitute for post-release recovery or live UI evidence."
+  }
+}

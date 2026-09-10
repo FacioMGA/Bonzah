@@ -1,0 +1,19 @@
+Thread-ID: CY-MTR-003
+Claim-Ref: CY-MTR-003
+Subject: CY-MTR-003 — closure confirmation
+===
+
+From: Handler <claims@abbeygate.example>
+To: anna@cyprusbrokers.example
+Date: 2026-03-20 12:00
+Subject: CY-MTR-003 closed
+
+Anna, CY-MTR-003 closed today. Final paid €1,420. Excess €250 retained.
+
+---
+From: Anna Brokerson <anna@cyprusbrokers.example>
+To: claims@abbeygate.example
+Date: 2026-03-20 12:30
+Subject: RE: CY-MTR-003 closed
+
+Noted, thanks George.

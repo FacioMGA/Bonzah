@@ -1,0 +1,30 @@
+# OS and local tool state
+.DS_Store
+.playwright-cli/
+.postman/
+tmp/
+
+# Local requirements evidence and customer-provided documents
+Learnings 02/
+
+# Secrets and machine-local configuration
+**/.env
+**/.env.*
+!**/.env.example
+**/.vercel/
+**/.local/
+
+# Dependencies and generated output
+**/node_modules/
+**/dist/
+**/.next/
+**/build/
+**/coverage/
+**/*.log
+**/*.sqlite
+**/*.sqlite3
+**/*.db
+
+# Local Postman values; request definitions remain versioned
+postman/globals/
+postman/environments/

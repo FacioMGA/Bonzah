@@ -1,0 +1,82 @@
+name: Shared MGA Platform verification
+on:
+  push:
+    branches: [main, codex/gen2-multitenant-proof]
+    paths: ['apps/mga/**', 'deploy/gen2/**', '.github/workflows/platform-ci.yml']
+  pull_request:
+    paths: ['apps/mga/**', 'deploy/gen2/**', '.github/workflows/platform-ci.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: platform-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  platform:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: kernel_owner
+          POSTGRES_PASSWORD: ci-disposable-owner
+          POSTGRES_DB: facio_gen2
+        ports: ['55439:5432']
+        options: >-
+          --health-cmd "pg_isready -U kernel_owner -d facio_gen2"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    defaults:
+      run:
+        working-directory: apps/mga
+    env:
+      DATABASE_URL: postgresql://kernel_app:ci-disposable-app@127.0.0.1:55439/facio_gen2?schema=public
+      KERNEL_PLATFORM_MODE: 'true'
+      KERNEL_PUBLIC_URL: http://localhost:4326
+      KERNEL_PUBLIC_BASE_URL: http://localhost:4326
+      KERNEL_FROM_EMAIL: noreply@example.invalid
+      KERNEL_PASSWORD_LOGIN_ENABLED: 'true'
+      KERNEL_EXTERNAL_DELIVERY_ENABLED: 'false'
+      KERNEL_BEHAVIOR_EMBEDDINGS_ENABLED: 'false'
+      JWT_SECRET: ci-only-disposable-platform-secret-never-used-for-deployment
+      OTP_SECRET: ci-only-disposable-platform-otp-never-used-for-deployment
+      QUOTE_TOKEN_SECRET: ci-only-disposable-platform-quote-never-used-for-deployment
+      PUPPETEER_SKIP_DOWNLOAD: '1'
+      PLATFORM_TENANT_PG_TEST: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/mga/package-lock.json
+      - run: npm install -g npm@11.10.0
+      - run: npm ci
+      - name: Build workspace packages required by platform initialization
+        run: |
+          npm run build:validation
+          npm run build:products
+      - name: Migrate isolated PostgreSQL as owner
+        env:
+          DATABASE_URL: postgresql://kernel_owner:ci-disposable-owner@127.0.0.1:55439/facio_gen2?schema=public
+        run: |
+          npx prisma migrate deploy
+          npx tsx backend/modules/platformTenants/infra/initializeCli.ts --initialize-new-platform
+      - name: Create restricted runtime database role
+        env:
+          PGPASSWORD: ci-disposable-owner
+        run: |
+          psql -h 127.0.0.1 -p 55439 -U kernel_owner -d facio_gen2 -v ON_ERROR_STOP=1 <<'SQL'
+          CREATE ROLE kernel_app LOGIN PASSWORD 'ci-disposable-app' NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOBYPASSRLS;
+          GRANT CONNECT ON DATABASE facio_gen2 TO kernel_app;
+          GRANT USAGE ON SCHEMA public TO kernel_app;
+          GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO kernel_app;
+          GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO kernel_app;
+          SQL
+      - name: Install browser for real PDF rendering
+        run: |
+          npx playwright install --with-deps chromium
+          node --input-type=module -e "import { chromium } from '@playwright/test'; import { appendFileSync } from 'node:fs'; appendFileSync(process.env.GITHUB_ENV, 'PUPPETEER_EXECUTABLE_PATH=' + chromium.executablePath() + '\n');"
+      - name: Build reused application and verify isolation and source configuration
+        run: npm run check:platform
+      - name: Verify deploy scripts parse
+        run: python3 -m py_compile ../../deploy/gen2/prepare-host.py ../../deploy/gen2/backup.py

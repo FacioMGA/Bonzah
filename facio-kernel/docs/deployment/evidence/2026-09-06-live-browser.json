@@ -1,0 +1,35 @@
+{
+  "verifiedAt": "2026-09-06T15:51:03.894087+00:00",
+  "sourceSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+  "url": "https://platform.facio.io",
+  "studioUrl": "https://platform.facio.io/studio",
+  "authentication": "User completed real Google organization sign-in; session scope inspected in live UI",
+  "issuer": "https://accounts.google.com",
+  "accountRole": "Admin",
+  "accountId": "facio-sandbox",
+  "sessionInjected": false,
+  "tenantsCreatedThroughUI": [
+    {
+      "id": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+      "displayName": "Kernel pilot Alpha (synthetic)",
+      "region": "westeurope",
+      "environment": "sandbox",
+      "setupStatus": "awaiting_requirements",
+      "activationEnabled": false,
+      "activeRelease": null
+    },
+    {
+      "id": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+      "displayName": "Kernel pilot Beta (synthetic)",
+      "region": "westeurope",
+      "environment": "sandbox",
+      "setupStatus": "awaiting_requirements",
+      "activationEnabled": false,
+      "activeRelease": null
+    }
+  ],
+  "internLoginVerified": false,
+  "insuranceJourneyVerified": false,
+  "customerAcceptanceRecorded": false,
+  "evidenceStage": "initial tenant provisioning before activation"
+}

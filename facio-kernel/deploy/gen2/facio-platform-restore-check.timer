@@ -1,0 +1,11 @@
+[Unit]
+Description=Weekly Facio Platform isolated PostgreSQL recovery rehearsal
+
+[Timer]
+OnCalendar=Sun *-*-* 01:30:00 UTC
+RandomizedDelaySec=5min
+Persistent=true
+Unit=facio-platform-restore-check.service
+
+[Install]
+WantedBy=timers.target

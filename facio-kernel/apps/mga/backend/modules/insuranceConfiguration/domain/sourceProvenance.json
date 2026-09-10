@@ -1,0 +1,118 @@
+{
+  "repository": "Cooper / Symphony",
+  "revision": "74499802ee76869c923c2227a18883d06eeb7b4b",
+  "files": [
+    {
+      "path": "symphony-api/src/services/questionGroupScopeGuardrails.ts",
+      "sha256": "119c0a9c4f73c4a88cd79ec089815506bff9833d5472c450a8ed240595361a60",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/proposalFormCoverageSelectGuardrails.ts",
+      "sha256": "fbf5fd3ea3a40e508677aeb49b5151bdd730ce86673779652feb7e895da085d1",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/routes/processConfig.ts",
+      "sha256": "9c26710582063d7c724d59f80f69d2475ef24ec942bdcc72778cd00772531914",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/routes/workflow.ts",
+      "sha256": "af8c8829dcbba8dbae2c7e4fe4b8c31376f1d46143ab316a9c4b965c200a4ff4",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/customerCapabilities.ts",
+      "sha256": "f2e3294041839770950a7fb8cc8063a19b341cd8a7fa7bdeb13ab277b648de7c",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/questionSettings.ts",
+      "sha256": "3e880ea623e68ab22473f0b2e04a63d866b6be5a0c148309578bc5be33573160",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/questionSync.ts",
+      "sha256": "6b5036f1b31cf80f7b96b04735cda8f32ebc8f409a0a4075601a4f9cdbf7f3f4",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/segmentSync.ts",
+      "sha256": "75c7c08a80c2962266eb40a824c3789fcdf8125182365137e5e5f5ed2f6c1198",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/productProposalForm.ts",
+      "sha256": "02d50f96c0cc41bb702bb6ecf943ae86be3fa21d509ae8a044ad6e42dc124df3",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "facio-admin/src/api/client.ts",
+      "sha256": "2a2b5239fd665be2471f31cf06a5c52c628c8f1dac17fa1e8e2cfcc0b7347d83",
+      "source": "committed tree",
+      "workingFileDiffers": true
+    },
+    {
+      "path": "facio-admin/src/pages/ProductEditorPage.tsx",
+      "sha256": "59b931e09926bd035d9bc3ace3d6ad16ee98b8f0dab238a8f0b4b500445ea7e7",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "facio-admin/src/pages/ProcessBuilderPage.tsx",
+      "sha256": "1523601f670b125f3f65214ecdce53327e9910ca8780fade747aeaeb5cdbab85",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/premiumCalculator.ts",
+      "sha256": "052b5bc2a0d1693388d90521471570a08afba4621e0dad1ed5b3368d63ac1dec",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/segmentCalculationPrimitive.ts",
+      "sha256": "630ea2d7c1e4b0192eafea43866aee69d896c3080c900eedf698537d4c40269c",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/calculationSourceCurrencyGuardrails.ts",
+      "sha256": "fb216aef4310f405a02d128d2b2fa70d9d8721d2799d0b7bab8a04bab6aa9723",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/currencyConfigurationGuardrails.ts",
+      "sha256": "e711dca40c879581b1e7b9d2d338728f31c4c2468bdb28aeaaae1392820bad28",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    },
+    {
+      "path": "symphony-api/src/services/productQuoteConfig.ts",
+      "sha256": "614fedbd33d6f8f0fdb1e3fe9f1be27c8c1d6970534262ed9fd1014ddba76f76",
+      "source": "committed tree",
+      "workingFileDiffers": false
+    }
+  ],
+  "mapping": "Product insurance fields and Process Builder controls adapted into existing Gen2 immutable programme definitions. No database/customer rows imported. Global source defaults and unsafe workflow advance behavior are not reused.",
+  "calculatorAdaptations": [
+    "Split source premiumCalculator.ts at function boundaries into product-owned pricing modules; original function names retained.",
+    "Caller resolves question IDs from canonical slugs and passes only visible valid authored answers.",
+    "Caller binds segment selection to the canonical union of configured professions and Ready product-line triggers, and rejects unconfigured limits, excesses, model and unsupported currencies.",
+    "No implicit USD currency or historical FX table; missing conversion rate throws instead of amount passthrough.",
+    "Primitive exceptions propagate instead of logging and silently trying another calculator.",
+    "Registered commercial adapter returns canonical quote trace and retained-definition schedule; no customer database rows or source rates imported.",
+    "Reject ignored product-line source/target, non-multiply loading, aggregate-minimum and cross-currency minimum instructions; apply explicit risk-code minimums and fail closed on configured factor-table misses or invalid factors."
+  ]
+}

@@ -1,0 +1,104 @@
+import path from 'path';
+import type { DocPackKind } from './genericDocPackGenerator.js';
+
+export type ProductDocumentPackMode = 'template' | 'staticPdf';
+
+export type ProductDocumentPackScope = {
+  docPacks: readonly DocPackKind[];
+  requiredForIssuedPack?: boolean;
+  emailAttachment?: boolean;
+};
+
+export type ProductDocumentPackBaseEntry = {
+  docType: string;
+  label: string;
+  filename: string;
+  scope: ProductDocumentPackScope;
+  assetVersion: string;
+};
+
+export type ProductTemplateDocumentEntry = ProductDocumentPackBaseEntry & {
+  mode: 'template';
+  template: string;
+  draftPrefix?: boolean;
+  endorsementVersionedFilename?: boolean;
+  viewModelOverrides?: Record<string, unknown>;
+  margin?: { top?: string; bottom?: string; left?: string; right?: string };
+  headerTemplate?: string;
+  footerTemplate?: string;
+};
+
+export type ProductStaticPdfDocumentEntry = ProductDocumentPackBaseEntry & {
+  mode: 'staticPdf';
+  staticPdfPath: string;
+};
+
+export type ProductDocumentPackEntry =
+  | ProductTemplateDocumentEntry
+  | ProductStaticPdfDocumentEntry;
+
+export type ProductDocumentPackContract = {
+  productType: string;
+  entries: readonly ProductDocumentPackEntry[];
+};
+
+export function requiredIssuedDocTypesFromContract(contract: ProductDocumentPackContract): string[] {
+  return contract.entries
+    .filter((entry) => entry.scope.requiredForIssuedPack === true)
+    .map((entry) => entry.docType);
+}
+
+/**
+ * The static IPID asset declared by a product's document-pack contract, or
+ * null when the product has none / its IPID is not a single static asset.
+ * Generic over the contract shape (no product coupling). Products whose IPID
+ * varies by territory (Home) resolve it themselves instead of using this.
+ */
+export function staticIpidAssetFromContract(
+  contract: ProductDocumentPackContract,
+): { absolutePath: string; filename: string } | null {
+  const entry = contract.entries.find(
+    (candidate) => candidate.mode === 'staticPdf' && candidate.docType.endsWith('_IPID_PDF'),
+  );
+  return entry && entry.mode === 'staticPdf'
+    ? { absolutePath: entry.staticPdfPath, filename: entry.filename }
+    : null;
+}
+
+export function assertProductDocumentPackContract(contract: ProductDocumentPackContract, manifestDocumentTypes: Record<string, string>): void {
+  const seen = new Set<string>();
+  const issued = new Set<string>();
+
+  for (const entry of contract.entries) {
+    const prefix = `${contract.productType} document pack contract`;
+    if (!entry.docType.trim()) throw new Error(`${prefix}: blank docType`);
+    if (!manifestDocumentTypes[entry.docType]) {
+      throw new Error(`${prefix}: ${entry.docType} is missing from manifest.documentTypes`);
+    }
+    if (seen.has(entry.docType)) throw new Error(`${prefix}: duplicate docType ${entry.docType}`);
+    seen.add(entry.docType);
+    if (!entry.assetVersion.trim()) throw new Error(`${prefix}: ${entry.docType} has no assetVersion`);
+    if (!entry.filename.trim() || !entry.filename.endsWith('.pdf')) {
+      throw new Error(`${prefix}: ${entry.docType} must declare a PDF filename`);
+    }
+    if (entry.scope.requiredForIssuedPack && !entry.scope.docPacks.includes('ISSUED_POLICY_PACK')) {
+      throw new Error(`${prefix}: ${entry.docType} is required for issued packs but is not in ISSUED_POLICY_PACK`);
+    }
+    if (entry.scope.emailAttachment && !entry.scope.requiredForIssuedPack) {
+      throw new Error(`${prefix}: ${entry.docType} is emailed but not required for issued packs`);
+    }
+    if (entry.scope.requiredForIssuedPack) issued.add(entry.docType);
+    if (entry.mode === 'staticPdf') {
+      if (!path.isAbsolute(entry.staticPdfPath)) {
+        throw new Error(`${prefix}: ${entry.docType} staticPdfPath must be absolute`);
+      }
+      if (!entry.staticPdfPath.endsWith('.pdf')) {
+        throw new Error(`${prefix}: ${entry.docType} staticPdfPath must point to a PDF`);
+      }
+    }
+  }
+
+  if (issued.size === 0) {
+    throw new Error(`${contract.productType} document pack contract: no issued-pack documents configured`);
+  }
+}

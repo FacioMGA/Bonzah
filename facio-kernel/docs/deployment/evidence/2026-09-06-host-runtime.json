@@ -1,0 +1,61 @@
+{
+  "verifiedAt": "2026-09-06T15:48:37.523404+00:00",
+  "health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "productionReady": false
+  },
+  "kernelCommit": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+  "imageDigest": "sha256:26e659653e9a78cafaeb5e20871377ad745bfad0d9598bf3f996e24a562b56db",
+  "imageDigestType": "docker-image-config-sha256",
+  "releaseArchiveSha256": "d53d5f99424c653e132fd7bc856a762d196717681d3089a8b8944489d6c16f22",
+  "containerId": "be80c6c68d92efb8cbc6023a2dff76b86032e1ea42060e724f50f5d4c8ea67d7",
+  "containerState": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 2128,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-09-06T15:47:41.321693968Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  },
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "/srv/facio-kernel/data",
+      "Destination": "/data",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/srv/facio-kernel/secrets/bootstrap.json",
+      "Destination": "/run/secrets/bootstrap.json",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "dataMount": "/dev/nvme0n2 ext4   /srv/facio-kernel/data",
+  "fixturesExcluded": true,
+  "databases": {
+    "kernel.sqlite": {
+      "integrity": "ok",
+      "tableCount": 24
+    },
+    "auth.sqlite": {
+      "integrity": "ok",
+      "tableCount": 3
+    }
+  }
+}

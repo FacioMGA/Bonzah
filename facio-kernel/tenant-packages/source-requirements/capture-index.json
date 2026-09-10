@@ -1,0 +1,14 @@
+{
+  "bonzah-demo-spec": "docs/source/Bonzah_Facio_Demo_Specification_v1.0.drive.txt",
+  "bonzah-api-requirements": "docs/source/Bonzah_API_Documentation_Requirements.drive.txt",
+  "bonzah-fnol": "docs/source/Bonzah_FNOL.drive.txt",
+  "ue-source-guide": "docs/source/UE_03_Source_Guide.drive.txt",
+  "ue-runbook": "docs/source/UE_01_Demo_Day_Runbook.drive.txt",
+  "ue-demo-deck": "docs/source/UE_00_Property_Demo_10_September_2026.drive.txt",
+  "ue-project-plan": "docs/source/UE_02_Project_Plan.drive.txt",
+  "vuw-workbook": "docs/source/VUW_Configuration_and_Open_Inputs.drive.json",
+  "vuw-sow": "docs/source/VUW_SOW_v1.1.drive.txt",
+  "vuw-poc-spec": "docs/source/VUW_POC_Implementation_Specification.drive.txt",
+  "vuw-operational": "docs/source/VUW_September_4_Operational_Requirements.drive.txt",
+  "vuw-deadline": "docs/source/VUW_Deadline_Decision_2026-09-06.txt"
+}

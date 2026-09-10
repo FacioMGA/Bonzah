@@ -1,0 +1,41 @@
+[
+  {
+    "messageId": "1a0422b204dc851a",
+    "sourceUrl": "https://mail.google.com/mail/#all/1a0422b204dc851a",
+    "sourceType": "Calendar RSVP notification; schedule evidence only, not gate acceptance or a current live-calendar read",
+    "subject": "Accepted: VUW.ai × Facio — POC Gate 3/5: Bind, Capacity & Policy Li... @ Fri Sep 11, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+    "messageDate": "Thu, 27 Aug 2026 07:41:57 +0000",
+    "startUtc": [
+      "20260911T110000Z"
+    ],
+    "endUtc": [
+      "20260911T120000Z"
+    ]
+  },
+  {
+    "messageId": "1a0422aebab1f6d3",
+    "sourceUrl": "https://mail.google.com/mail/#all/1a0422aebab1f6d3",
+    "sourceType": "Calendar RSVP notification; schedule evidence only, not gate acceptance or a current live-calendar read",
+    "subject": "Accepted: VUW.ai × Facio — POC Gate 4/5: Reporting & Reconciliation @ Fri Sep 18, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+    "messageDate": "Thu, 27 Aug 2026 07:41:43 +0000",
+    "startUtc": [
+      "20260918T110000Z"
+    ],
+    "endUtc": [
+      "20260918T120000Z"
+    ]
+  },
+  {
+    "messageId": "1a0422ae5f84d08e",
+    "sourceUrl": "https://mail.google.com/mail/#all/1a0422ae5f84d08e",
+    "sourceType": "Calendar RSVP notification; schedule evidence only, not gate acceptance or a current live-calendar read",
+    "subject": "Accepted: VUW.ai × Facio — POC Gate 5/5: Final Review & Continuatio... @ Fri Sep 25, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+    "messageDate": "Thu, 27 Aug 2026 07:41:42 +0000",
+    "startUtc": [
+      "20260925T110000Z"
+    ],
+    "endUtc": [
+      "20260925T120000Z"
+    ]
+  }
+]

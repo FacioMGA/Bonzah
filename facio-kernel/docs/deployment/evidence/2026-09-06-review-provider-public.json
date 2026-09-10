@@ -1,0 +1,117 @@
+{
+  "verifiedAt": "2026-09-06T18:57:39.509804+00:00",
+  "expectedMergedSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+  "health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "productionReady": false
+  },
+  "assets": [
+    {
+      "path": "/studio",
+      "sha256": "572d8ed1ea87a336d72209f07655acb787305351bb9cac0168b48b71ad364162",
+      "bytes": 9557,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/app.js",
+      "sha256": "3caf1be298977c7c34be3c85610a72f324e704a4840fbf9914ad9d12c050850e",
+      "bytes": 143393,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/styles.css",
+      "sha256": "e22400237fe0a701d18fdb5eeb3a393bfe93dda04b1810990c3a48a90a24fdd9",
+      "bytes": 50098,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-config.js",
+      "sha256": "0538332bac8a8c9611aa1144fa071896d3dc3845e38476d20caf2fc81cf55d0f",
+      "bytes": 38277,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-config.css",
+      "sha256": "4bfc8766040c0cd77c55e63d1631dbe40c09dd2c3c42883b09c24f16fd15a619",
+      "bytes": 3734,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-decision.js",
+      "sha256": "40b45507010d222db9bba805b83d62098c0caac8f1b97d8d512b456dc358e665",
+      "bytes": 16051,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-decision.css",
+      "sha256": "6e90398af23885e12ef956dcd529d77a2f0bac259cff5848eb8c4e01f23c4c14",
+      "bytes": 1400,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-approval.js",
+      "sha256": "4871b5369d8379667a2e69e0d2c6d9a80755b8a7e157374515b1b349b14c2816",
+      "bytes": 18415,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-approval.css",
+      "sha256": "59ea7a4607c37222db46e24f8fabc7a0e6e6ea6d4c3119282a3bb9b1a2a7cbbd",
+      "bytes": 2565,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-provider.js",
+      "sha256": "43db8e96d230fbbc2223fc16c79efd7654c0502537c27453accfa886850ef230",
+      "bytes": 7220,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-provider.css",
+      "sha256": "f71b44c4f06917a4369d322d6d3133123f44fcad6f7121974877ca6d6df3f889",
+      "bytes": 1891,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-workflow.js",
+      "sha256": "c7caaefd47fedc4bb65cc5b2a072fa8c2328904c45a9cf470b5763e9084750df",
+      "bytes": 10777,
+      "matchesMergedFile": true
+    }
+  ],
+  "anonymousDenials": [
+    {
+      "path": "/api/insurance/catalog",
+      "status": 401
+    },
+    {
+      "path": "/api/insurance/records",
+      "status": 401
+    },
+    {
+      "path": "/api/configuration",
+      "status": 401
+    },
+    {
+      "path": "/mcp",
+      "status": 401
+    },
+    {
+      "path": "/api/insurance/approvals",
+      "status": 401
+    },
+    {
+      "path": "/api/insurance/providers/requests",
+      "status": 401
+    }
+  ],
+  "limits": [
+    "Public health and static assets only; authenticated journey and recovery have separate evidence."
+  ]
+}

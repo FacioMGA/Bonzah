@@ -1,0 +1,43 @@
+// Lloyd's CRS v5.2 — Motor CLAIMS columns (canonical column-spec table).
+
+import type { ClaimsRowCtx, CsrColumnSpec } from './types.js';
+import { toISODate } from './helpers.js';
+
+export const CRS_V52_MOTOR_CLAIMS_COLUMNS: Array<CsrColumnSpec<ClaimsRowCtx>> = [
+  { key: 'cr0001', crCode: 'CR0001', title: 'CR0001 Reporting Period Start', required: true, get: () => '' },
+  { key: 'cr0002', crCode: 'CR0002', title: 'CR0002 Reporting Period End', required: true, get: () => '' },
+  { key: 'cr0013', crCode: 'CR0013', title: 'CR0013 Coverholder Name', required: true, get: (c) => c.binder?.coverholderName || '' },
+  { key: 'cr0014', crCode: 'CR0014', title: 'CR0014 Coverholder PIN', required: true, get: (c) => c.binder?.coverholderPin || '' },
+  { key: 'umr', crCode: 'CR0005', title: 'CR0005 UMR', required: true, get: (c) => c.binder?.umr || '' },
+  { key: 'agreement', crCode: 'CR0006', title: 'CR0006 Agreement Number', required: true, get: (c) => c.binder?.agreementNumber || '' },
+  { key: 'section', crCode: 'CR0007', title: 'CR0007 Section Number', get: (c) => c.binder?.sectionNumber || '' },
+  { key: 'certificate', crCode: 'CR0029', title: 'CR0029 Certificate Reference', required: true, get: (c) => c.claim.cr0029_certificate_reference || '' },
+  { key: 'riskInception', crCode: 'CR0030', title: 'CR0030 Risk Inception Date', required: true, get: (c) => toISODate(c.policy.inceptionDate) },
+  { key: 'riskExpiry', crCode: 'CR0031', title: 'CR0031 Risk Expiry Date', required: true, get: (c) => toISODate(c.policy.expiryDate) },
+  { key: 'claimRef', crCode: 'CR0104', title: 'CR0104 Claim Reference', required: true, get: (c) => c.claim.claimNumber || '' },
+  { key: 'claimStatus', crCode: 'CR0105', title: 'CR0105 Claim Status', required: true, get: (c) => c.status },
+  { key: 'referred', crCode: 'CR0106', title: 'CR0106 Referred to Underwriters', required: true, get: (c) => c.referredToUw },
+  { key: 'denial', crCode: 'CR0107', title: 'CR0107 Denial', required: true, get: (c) => c.denial },
+  { key: 'currency', crCode: 'CR0109', title: 'CR0109 Original Currency', required: true, get: (c) => c.claim.cr0109_original_currency || c.binder?.defaultCurrency || 'EUR' },
+  { key: 'lossFrom', crCode: 'CR0119', title: 'CR0119 Date of Loss From', required: true, get: (c) => c.claim.cr0119_date_of_loss_from || '' },
+  { key: 'lossTo', crCode: 'CR0120', title: 'CR0120 Date of Loss To', get: (c) => c.claim.cr0120_date_of_loss_to || '' },
+  { key: 'lossCountry', crCode: 'CR0116', title: 'CR0116 Loss Country', required: true, get: (c) => c.claim.cr0116_loss_country || '' },
+  { key: 'causeCode', crCode: 'CR0117', title: 'CR0117 Cause of Loss Code', get: (c) => c.claim.cr0117_cause_of_loss_code || '' },
+  { key: 'lossDesc', crCode: 'CR0118', title: 'CR0118 Loss Description', get: (c) => c.claim.cr0118_loss_description || '' },
+  { key: 'paidIndP', crCode: 'CR0126', title: 'CR0126 Paid This Month Indemnity', required: true, get: (c) => c.financials.paidThisPeriodIndemnity },
+  { key: 'paidFeesP', crCode: 'CR0127', title: 'CR0127 Paid This Month Fees', required: true, get: (c) => c.financials.paidThisPeriodFees },
+  { key: 'paidIndPrev', crCode: 'CR0128', title: 'CR0128 Previously Paid Indemnity', required: true, get: (c) => c.financials.previouslyPaidIndemnity },
+  { key: 'paidFeesPrev', crCode: 'CR0129', title: 'CR0129 Previously Paid Fees', required: true, get: (c) => c.financials.previouslyPaidFees },
+  { key: 'reserveInd', crCode: 'CR0130', title: 'CR0130 Reserve Indemnity', required: true, get: (c) => c.financials.reserveIndemnityAtEnd },
+  { key: 'reserveFees', crCode: 'CR0131', title: 'CR0131 Reserve Fees', required: true, get: (c) => c.financials.reserveFeesAtEnd },
+  { key: 'incurredInd', crCode: 'CR0134', title: 'CR0134 Total Incurred Indemnity', required: true, get: (c) => c.financials.totalIncurredIndemnity },
+  { key: 'incurredFees', crCode: 'CR0135', title: 'CR0135 Total Incurred Fees', required: true, get: (c) => c.financials.totalIncurredFees },
+  { key: 'dateClosed', crCode: 'CR0137', title: 'CR0137 Date Closed', get: (c) => c.claim.closedAt || '' },
+  { key: 'incurredTotal', crCode: 'CR0155', title: 'CR0155 Total Incurred', get: (c) => c.financials.totalIncurredOverall },
+  { key: 'deniedAt', crCode: 'CR0311', title: 'CR0311 Date Claim Denied', get: (c) => c.claim.deniedAt || '' },
+  { key: 'deniedReason', crCode: 'CR0312', title: 'CR0312 Reason for Denial', get: (c) => c.claim.denialReason || '' },
+  { key: 'reopenedAt', crCode: 'CR0306', title: 'CR0306 Date Re-opened', get: (c) => c.claim.reopenedAt || '' },
+  { key: 'withdrawnAt', crCode: 'CR0316', title: 'CR0316 Date Claim Withdrawn', get: (c) => c.claim.withdrawnAt || '' },
+  { key: 'recoveriesReceived', crCode: 'CR0375', title: 'CR0375 Recoveries Received To Date', get: (c) => c.financials.recoveriesReceivedToDate },
+  { key: 'recoveriesOutstanding', crCode: 'CR0376', title: 'CR0376 Recoveries Outstanding', get: (c) => c.financials.recoveriesExpectedAtEnd },
+];

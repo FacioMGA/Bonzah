@@ -1,0 +1,237 @@
+{
+  "checkedAt": "2026-09-07T07:31:42.072735+00:00",
+  "status": "passed",
+  "exactRecordEvidence": {
+    "path": "/Users/urielaharoni/Documents/ChatGPT/Facio Kernel/.local/sprint5-live-original-exact-rendered.json",
+    "sha256": "a2bab0b93599904ba0d29b53b528ae6f6ab2593e07f82c94e22ef759c268bd95",
+    "bytes": 74822,
+    "noMaxDepthPlaceholders": true,
+    "allFourRecordHashesRecomputed": true,
+    "quoteAndInputEvaluationHashesRecomputed": true,
+    "eventPreviousRecordHashLinksMatchAllFourRevisions": true
+  },
+  "sourceEvidence": {
+    "path": "/Users/urielaharoni/Documents/ChatGPT/Facio Kernel/.local/sprint5-live-rendered-evidence.json",
+    "sha256": "1244dba5f8ed21a39f39c623a27e973c6fe3717e0a9b6248e4c13030a4d7455d",
+    "observedAt": "2026-09-07T07:23:15.475Z",
+    "buildSha": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+    "source": "Google-authenticated actual rendered Studio UI"
+  },
+  "scope": {
+    "environment": "sandbox",
+    "operatingEntityId": "entity_ea44847abf87447a8691c61856c10aeb",
+    "tenantId": "tenant_ea44847abf87447a8691c61856c10aeb",
+    "workspaceId": "facio-sandbox"
+  },
+  "files": [
+    {
+      "name": "training-ledger-0f50a03f-ea82-43fe-9522-c2c5aeda1619.csv",
+      "path": "/Users/urielaharoni/Downloads/training-ledger-0f50a03f-ea82-43fe-9522-c2c5aeda1619.csv",
+      "bytes": 6397,
+      "sha256": "da51d7e67477fe1e982e45848960fc133e2676260612e6611a23a82293bdf534"
+    },
+    {
+      "name": "training-financial-as-of-2026-09-07.csv",
+      "path": "/Users/urielaharoni/Downloads/training-financial-as-of-2026-09-07.csv",
+      "bytes": 4720,
+      "sha256": "e11d43732d3a41be5e63d1682182664955eb6736c4b64c4f5f80746cf843be25"
+    },
+    {
+      "name": "TRN-EB3D83B330D740C7A733560DEE10A3C5-coverage_schedule-v2.pdf",
+      "path": "/Users/urielaharoni/Downloads/TRN-EB3D83B330D740C7A733560DEE10A3C5-coverage_schedule-v2.pdf",
+      "bytes": 8236,
+      "sha256": "0f3a5cfd42e2bcfb00b19d6ded00236dbc7c545dc96736332bb22de2f8ae1b72"
+    }
+  ],
+  "ledger": {
+    "dataRows": 14,
+    "journals": 4,
+    "insuranceVersions": [
+      2,
+      3,
+      4
+    ],
+    "allCellsAndBytesMatchRetainedJournals": true,
+    "journalHashesRecomputed": true,
+    "previousJournalHashChainVerified": true,
+    "sourceInsuranceHashReferencesMatch": true,
+    "sourceInsuranceFullHashChecks": [
+      {
+        "version": 1,
+        "recordHash": "0541b4b59abd753722609d8b52ea7f905443071d8466aad87fe93fee8ad638be",
+        "recomputed": true,
+        "boundary": "Full canonical hash recomputed"
+      },
+      {
+        "version": 2,
+        "recordHash": "e3475328861827c27598dfd7856e138d46cd37d40fb3310bad8cc15b79d15b32",
+        "recomputed": true,
+        "boundary": "Full canonical hash recomputed"
+      },
+      {
+        "version": 3,
+        "recordHash": "36e3544087ead88cf0dff14d5629b275ac9564643aa11db72de59c77a697595c",
+        "recomputed": true,
+        "boundary": "Full canonical hash recomputed"
+      },
+      {
+        "version": 4,
+        "recordHash": "5a888536ce00459109fac23bf13ab165a4b497c2318f77848cf603b33509f931",
+        "recomputed": true,
+        "boundary": "Full canonical hash recomputed"
+      },
+      {
+        "version": 4,
+        "recordHash": "5a888536ce00459109fac23bf13ab165a4b497c2318f77848cf603b33509f931",
+        "recomputed": true,
+        "boundary": "Full canonical hash recomputed"
+      }
+    ],
+    "allBooksBalancedPerJournal": true,
+    "bookBalances": [
+      {
+        "journalId": "3658a56e-e948-43de-a71e-17acb8e10eb9",
+        "currency": "GBP",
+        "book": "external_premium_control",
+        "debitMinor": "4800",
+        "creditMinor": "4800"
+      },
+      {
+        "journalId": "3658a56e-e948-43de-a71e-17acb8e10eb9",
+        "currency": "GBP",
+        "book": "financial",
+        "debitMinor": "336",
+        "creditMinor": "336"
+      },
+      {
+        "journalId": "65e5fe91-66e9-478f-a9da-3f74c1acbee2",
+        "currency": "GBP",
+        "book": "financial",
+        "debitMinor": "100",
+        "creditMinor": "100"
+      },
+      {
+        "journalId": "e9d5162d-e307-4b6f-a006-879e13d0d588",
+        "currency": "GBP",
+        "book": "external_premium_control",
+        "debitMinor": "2400",
+        "creditMinor": "2400"
+      },
+      {
+        "journalId": "e9d5162d-e307-4b6f-a006-879e13d0d588",
+        "currency": "GBP",
+        "book": "financial",
+        "debitMinor": "168",
+        "creditMinor": "168"
+      },
+      {
+        "journalId": "75306ec9-9cfe-40c4-b218-f49f6c6d8f00",
+        "currency": "GBP",
+        "book": "external_premium_control",
+        "debitMinor": "2400",
+        "creditMinor": "2400"
+      },
+      {
+        "journalId": "75306ec9-9cfe-40c4-b218-f49f6c6d8f00",
+        "currency": "GBP",
+        "book": "financial",
+        "debitMinor": "168",
+        "creditMinor": "168"
+      }
+    ]
+  },
+  "report": {
+    "dataRows": 8,
+    "rowTypes": {
+      "report": 1,
+      "insurance_record": 1,
+      "record_capacity": 1,
+      "journal": 2,
+      "journal_capacity": 1,
+      "currency_total": 1,
+      "currency_capacity": 1
+    },
+    "allCellsAndBytesMatchRenderedReport": true,
+    "reportHashRecomputed": "e80c4a2a84daacdbae16aa76ee78d167ca7b095df671a39041e7721271385001",
+    "effectiveAsOf": "2026-09-07",
+    "recordedAsOf": "2026-09-07T07:20:10.209Z",
+    "selectedVersion": 2,
+    "selectedRecordHash": "e3475328861827c27598dfd7856e138d46cd37d40fb3310bad8cc15b79d15b32",
+    "latestRecordedVersion": 4,
+    "latestRecordedStatus": "cancelled",
+    "futureEffectiveVersionsExcluded": [
+      {
+        "version": 3,
+        "effectiveDate": "2026-09-09"
+      },
+      {
+        "version": 4,
+        "effectiveDate": "2026-09-11"
+      }
+    ],
+    "eligibleJournals": 2,
+    "totalsRecomputedFromEligibleJournalLines": {
+      "externalPremiumMinor": "4800",
+      "commissionAccruedMinor": "336",
+      "commissionReceivedMinor": "100",
+      "commissionOutstandingMinor": "236"
+    },
+    "currency": "GBP",
+    "capacityTotalsMatch": true,
+    "boundary": "As-of selection intentionally uses v2 although v4 is already recorded. Future-effective v3/v4 remain in full ledger export and are excluded from this September 7 report."
+  },
+  "pdf": {
+    "pages": 3,
+    "recordVersion": 2,
+    "originalTerm": {
+      "startDate": "2026-09-07",
+      "endDate": "2026-09-10"
+    },
+    "premiumMinor": "4800",
+    "commissionMinor": "336",
+    "currency": "GBP",
+    "commissionRateBps": 700,
+    "recordHash": "e3475328861827c27598dfd7856e138d46cd37d40fb3310bad8cc15b79d15b32",
+    "quotePolicyReleaseDefinitionDecisionReferencesMatch": true,
+    "syntheticNoInsuranceCoverLabel": true,
+    "templateAndUnverifiedLegalReferencesPresent": true,
+    "primaryExcessLimitAggregateAttachmentLabelsPresent": true,
+    "parsedBy": "Poppler pdfinfo/pdftotext",
+    "visualReview": "All three rendered pages inspected at 1000px longest edge; legible tables, continuing headings and page numbers; no visible clipping, overlap or missing text.",
+    "encrypted": false,
+    "javaScript": false
+  },
+  "limitations": [
+    "Read-only comparison of the three identified downloads with the supplied Google-session rendered evidence capture; no live API/DB/browser/cloud query or mutation performed by this verifier.",
+    "The original broad capture contains [MaxDepth] placeholders in insurance risk details. Record verification instead uses the separate complete serialized DOM capture, matching the original captured version/hash references. All four record, quote, decision/input, journal and report hashes are recomputed; this is not an independent database signature, availability or storage-integrity inspection.",
+    "This verifies the original v2 PDF only; later service/cancellation document packs, all template variants, and multilingual glyph coverage were not rechecked here.",
+    "Synthetic recorded commission cash is not actual bank settlement; no payment, refund, customer BDX, legal issuance, notice delivery or claims acceptance is established.",
+    "Final UI release and changed-storage recovery are separate pending evidence; this receipt pertains to the captured PR28 build."
+  ],
+  "fnolExactCapture": {
+    "path": "/Users/urielaharoni/Documents/ChatGPT/Facio Kernel/.local/sprint5-live-fnol-exact-rendered.json",
+    "sha256": "823b99851303645da0bab28cab566262b61b783298372ea69bb872ed2518e821",
+    "versions": 4,
+    "state": "acknowledged",
+    "noticeHash": "0d8784a427692b6c29ff233a870cdbee709e60c7571c83da9814f6b3ae4519f9",
+    "allNoticeHashesAndPreviousLinksRecomputed": true,
+    "policySnapshotVersion": 2,
+    "policySnapshotExactlyMatchesRetainedVersion": true,
+    "snapshotAndDestinationHashesRecomputed": true,
+    "internalAcknowledgementPinsSubmittedHash": true,
+    "externalDelivery": "not_attempted",
+    "boundary": "Complete rendered capture verification only; no FNOL external transmission or adjudication."
+  },
+  "downloadsUnmodified": true,
+  "deployedArtifactComparison": {
+    "checkedAt": "2026-09-07T07:53:03.436338+00:00",
+    "buildSha": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+    "evidence": "docs/deployment/evidence/2026-09-07-sprint5-final-preflight.json",
+    "evidenceSha256": "d673a3b29dd2a3fd299763607683945c8c8357f8b717d6f6f364b2a9cf2349dd",
+    "downloadMatchesStoredArtifactBytes": true,
+    "jobId": "eb3d83b3-30d7-40c7-a733-560dee10a3c5",
+    "artifactId": "c5112cb6-b335-4769-ba8a-78f87f57006f",
+    "contentHash": "0f3a5cfd42e2bcfb00b19d6ded00236dbc7c545dc96736332bb22de2f8ae1b72",
+    "state": "completed"
+  }
+}

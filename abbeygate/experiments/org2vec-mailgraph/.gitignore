@@ -1,0 +1,20 @@
+.env
+.cache/
+__pycache__/
+*.pyc
+.venv/
+.ruff_cache/
+.pytest_cache/
+
+# Local LLM response cache (regenerated)
+artifacts/llm-cache/
+
+# FAISS index (regenerated)
+artifacts/index/
+
+# Keep these tracked for the assignment appendix:
+!artifacts/results.csv
+!artifacts/results.md
+!artifacts/results.png
+!artifacts/screenshots/
+!artifacts/ingest-log.jsonl

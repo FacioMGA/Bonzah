@@ -1,0 +1,150 @@
+Kernel deployment &source-of-truth plan
+Customer continuity, migration controls and continuously consistent API / MCP documentation.
+Baseline | Value
+Version / date | 1.0 · 6 September 2026
+Status | Proposed delivery and governance requirements; live deployment verification pending
+Accountable functions | Facio Product, Platform Engineering and Customer Operations; named owners to be assigned
+Mandate. Move all in-scope customers onto a shared Kernel through configuration and compatibility adapters while maintaining service for active customers. A shared Kernel means one governed code and contract lineage; residency may require multiple regional deployments.
+Production policies
+Abbeygate: user-confirmed production in parallel operation. Plan a controlled reset and consolidation to one Cyprus account. This document does not execute or authorize an unscoped deletion.
+Altus: user-confirmed production. Preserve all customer records, financial state, files, relationships and audit evidence. No destructive reset is permitted.
+Attsure, VUW.ai, Deefa, PolarisRe, Bonzah and UE: in scope; current production status and deployed resources must be verified.
+Evidence and limits
+This baseline combines the user’s operating constraints with repository files reviewed on 6 September 2026. Repository manifests and runbooks describe intended or documented deployments; they do not establish current cloud state. Every unknown remains an explicit inventory gap. No cloud changes, customer migrations, data resets or documentation publication were performed.
+Companion documents: Facio Insurance Kernel Development Requirements v1.0; Facio Kernel Milestones, September 2026. MUST denotes a required acceptance condition. Dates below preserve the existing milestone plan; production migration dates require readiness gates.
+1. Customer deployment inventory
+Seed inventory. The registry owner must reconcile each row with cloud resources, deployment pipelines and customer operations. “Not verified” must never be rendered as “not deployed”. Source references are listed in section 8.
+Customer / status | Repository evidence | Required transition / unresolved facts
+AbbeygateProduction confirmed | FacioMGA/abbeygate. AKS staging → production, immutable image SHA and migration jobs. CY/PT staging hosts documented. [S1–S3] | One Cyprus account; scoped reset and compatibility validation. Verify production namespace, domains, tenant IDs, databases, integrations and residency.
+AltusProduction confirmed | FacioMGA/AltusUW. Helm/container deployment plus documented production App Service faciomga-altus-app-prod. [S5] | Protect production data. Resolve active deployment lane and all state stores before cutover.
+AttsureStatus not verified | FacioMGA/Attsure. Attsure and Abbeygate-named Helm trees; customer OpenAPI registry. [S4] | Inventory chart consumers, provisioned regions and state; connect through tenant configuration and adapters.
+PolarisReStatus not verified | FacioMGA/polarisre. Two Helm locations; multiple OpenAPI paths. A legacy registry names an Abbeygate server. [S6] | Trace active entrypoints, remove cross-customer documentation leakage, establish tenant and region mapping.
+VUW.aiStatus not verified | No verified live deployment in this review. POC coverage is a separate milestone input. | Map POC environment, endpoints, integrations, data and configuration coverage.
+Bonzah + UEStatus not verified | Demo targets in the milestone plan; live topology not verified here. | Separate tenant configurations on the shared Kernel; no customer-specific hard-coded branches.
+DeefaStatus not verified | No verified live deployment in this review. | Record current application, owner, scope, residency, data and onboarding path.
+Required record per customer × environment × region
+Stable customer, commercial account, runtime tenant and operating-entity IDs; environment and lifecycle state; region/residency; cloud subscription/resource group, cluster/namespace or app; domains/DNS/TLS; repository and pipeline; deployed commit/image digest; schema and configuration versions; database, objects, queues, backups and key references; external integrations; API/MCP URLs and contract hashes; owner, support route, recovery objectives, last verification and evidence link. Store secret references only.
+Residency gate. Validate primary stores, replicas, backups, logs, telemetry and integration data flows against the tenant’s selected residency. Consolidating an account to Cyprus does not by itself prove Cyprus data residency.
+2. Website, CRM and developer surfaces
+Surface | Evidence / dependency | Target control
+Public website | FacioMGA/facio-website: Next.js static export; README documents Azure Static Web Apps and www.facio.io. Browser lead forms call CRM. [S7] | Verify actual host and release pipeline. Generate capability claims and developer links from published release metadata.
+CRM / commercial portal | FacioMGA/facioCRM: VM + Docker Compose + Caddy, GHCR images; SQLite and uploads on fixed persistent volumes. [S9] | Preserve subscription and uploaded-file data independently of customer Kernel migration. Verify active VM, region, backup and restore.
+CRM integration routes | Caddy documents marketplace, admin, developer, trials, activities, deals, support and portal routes. [S9] | Maintain website lead capture, developer access and account/subscription identity mappings during transition.
+Developer portal / docs / MCP | developers.facio.io, docs.facio.io and mcp.facio.io appear in repository references. Actual hosting and canonical source are unresolved. [S8–S9] | Inventory public endpoints, source repos, deployment owners, auth, caching and contract versions before declaring consistency.
+Agent-readable website files | Website generator writes public/llms.txt; public/llms-full.txt also exists, but its generation path was not established. [S8] | Trace all generators; include agent-readable manifests, examples and discovery files in the same publication checks.
+Abbeygate website | FacioMGA/abbeygate-website repository identified; implementation and live hosting not reviewed. | Verify quote entrypoints, redirects and tenant/domain mapping before Cyprus consolidation.
+Commercial identity and runtime identity
+Maintain an explicit mapping from CRM account and subscription to Kernel tenant, environment and operating entities. Subscription status and billing transactions retain a single owning commercial service; the Control Plane consumes versioned events or APIs to calculate and enforce runtime entitlements. During transition, document the existing owner before assigning a future owner. Do not copy editable subscription truth into every tenant database.
+Integration acceptance
+A website enquiry reaches the correct CRM account; retries do not duplicate leads or subscriptions.
+Developer access and subscription changes reach the correct tenant with an auditable correlation ID and retry/reconciliation path.
+Account consolidation does not merge unrelated subscriptions, contacts or customer data.
+CRM recovery verifies both database and uploads; image rollback alone is not a data recovery plan.
+3. One authoritative source per concern
+One source of truth is a governed ownership model. Independent copies must be generated projections or explicitly versioned compatibility contracts, with provenance and a retirement policy.
+Concern / owner role | Authoritative source | Consumers / invariant
+Domain behaviorKernel Engineering | Owning domain commands, schemas and capability descriptors in the Kernel. | UI, API, MCP, imports and jobs call the same domain paths; no independent transport business logic.
+Tenant behaviorProduct / Configuration | Versioned tenant, product, process, jurisdiction, document and integration packages. | Published immutable Tenant Release; draft changes never silently alter live behavior.
+Deployment intentPlatform Engineering | Version-controlled infrastructure and per-environment deployment manifests. | Cloud state is observed and compared with desired state. Drift becomes a tracked exception, not a silent overwrite.
+Public contractsAPI / MCP Engineering | Canonical schemas plus explicit HTTP and MCP operation descriptors. | Generate OpenAPI, MCP discovery, configuration catalog and documentation models. Share domain definitions without assuming HTTP and MCP are identical.
+Commercial recordsCRM / Billing owner | Designated CRM and billing services with stable account/subscription IDs. | Control Plane and website consume governed APIs/events. One writer per commercial fact.
+Observed deploymentPlatform Operations | Deployment registry populated from CI/CD and authenticated runtime observation. | Customer support, deployment map and API screen show verified versions and timestamps.
+Published documentationDeveloper Experience | Versioned release artifacts and approved explanatory source content. | Website, portal, SDK examples and agent-readable discovery reference the same released contract lineage.
+Release manifest — required provenance
+Record Kernel commit and image digest; schema/migration version; Tenant Release and compatibility adapter versions; OpenAPI, MCP and configuration-catalog versions and hashes; documentation build and source references; supported capabilities; target tenant/environment/region; publication status; deployment time and validation evidence. Never expose secrets, private infrastructure or another tenant’s configuration in a public manifest.
+Ownership and operating rules
+Every record, contract and generated artifact has one accountable owner and a named maintainer.
+Changes enter through a reviewed source change or configuration publication; generated output is not hand-edited.
+Customer-specific contracts may coexist when capabilities differ, but each is an explicit projection or supported compatibility version.
+An emergency service fix follows the existing production path, then receives contract, manifest and documentation reconciliation within a tracked incident task.
+4. OpenAPI and MCP reconciliation backlog
+Evidence | Required disposition | Completion evidence
+Abbeygate platform registry: v1.0.6. HTTP docs file re-exports it. [S3] | Keep the platform registry as the current owner pending Kernel convergence. Retain the re-export while imported; it is not a second registry. | Import/route graph, one generated artifact per supported contract and passing route tests.
+Attsure platform registry: v1.0.5, different hosts, signature header and idempotency wording. [S4] | Compare actual behavior. Preserve real customer contract differences as explicit metadata or compatibility versions. | Validated endpoint, auth, webhook and idempotency matrix; examples match runtime behavior.
+PolarisRe: wrapper chain through “http 2”; separate server/src registry names Abbeygate production. [S6] | Trace build and runtime consumers. Correct or retire the stale customer-specific registry after identifying active contract users. | No supported PolarisRe artifact advertises an unrelated customer endpoint; unused generator removed with references updated.
+Abbeygate / Attsure docs contain availability and rate-limit claims. [S3–S4] | Reconcile with enforced limits and approved service terms. Do not propagate unverified claims into shared docs. | Named approval and runtime/configuration evidence for published claims.
+Abbeygate MCP tool registry exists; website advertises MCP discovery. [S8, S10] | Map each tool to canonical schemas, owning command, permissions, tenant scope and release capability. | Discovery, invocation and API documentation agree for the selected tenant and environment.
+Altus, other clients, developer-site source and generated SDKs | Search repositories, build outputs and deployed routes; unknown results remain backlog items. | Inventory covers each active source, generated copy, owner and deprecation consumer list.
+Retirement procedure
+Classify each occurrence as authoritative source, generated output, compatibility shim, supported older version, historical material or unused duplicate. Trace imports, jobs, routes, SDKs, bookmarks and agent discovery before removal. Replace live links and search indexes; remove retired content from active agent discovery. Preserve clearly labeled historical versions only when needed, with canonical replacement links. Do not delete functional re-exports merely because filenames match.
+Configuration gap register. For every configuration type and field, publish support state: complete, partial, missing or deprecated; UI/API/MCP coverage; validation and simulation support; owner; affected customers; workaround and target milestone. Unknown must be distinct from unsupported. Show authorized tenant-specific gaps in the API Documentation screen.
+5. Continuous documentation delivery
+Changes to domain schemas, routes, MCP tools, tenant configuration schemas, adapters or deployment metadata must trigger the following pipeline. Documentation is part of release acceptance.
+Gate | Required automated behavior
+1 · Validate source | Lint schemas and descriptors; detect breaking changes; verify auth, permissions, tenant isolation and capability metadata. Validate OpenAPI output against its declared specification version.
+2 · Generate artifacts | Build OpenAPI, MCP schemas/discovery, configuration catalog and gap report, reference pages, examples and applicable SDK artifacts from the same versioned inputs.
+3 · Check parity | Exercise representative exposed HTTP operations and MCP tools against the release; verify required fields, errors, permission denials and configuration visibility. Tenant context must be server-authorized.
+4 · Package and deploy | Pin all hashes in the release manifest; deploy through the customer’s governed lane. Keep last-known-good docs until matching runtime availability is verified.
+5 · Publish | Update API Documentation screen, developer sites and agent discovery for the deployed tenant/environment/version. Invalidate caches and rebuild search indexes. Preserve explicit supported-version navigation.
+6 · Observe and reconcile | After every deployment and on a proposed daily schedule, compare runtime versions, served OpenAPI/MCP hashes, registry and public docs. Open an owned drift issue; never silently promote a mismatched contract.
+Publication failure and urgent fixes
+Block planned releases with unapproved breaking contracts or failed parity checks. For a necessary production incident fix, use the existing incident authorization path, preserve accurate prior-version documentation, label availability and track urgent reconciliation. A documentation outage must not force a rollback that risks customer data. Keep the new release unpublished as generally available until its supported contract can be served accurately.
+Definition of done
+For each live tenant and environment, support can identify the running Kernel, configuration and contract versions from one registry record.
+API screen, OpenAPI and MCP expose consistent supported configuration capabilities and the same unresolved-gap status.
+Website links, downloadable schemas, examples, SDK versions and agent discovery resolve to the intended released contract; retired links are handled explicitly.
+A deliberately mismatched contract hash is detected and prevents an ordinary release from being labeled current.
+Documentation projections omit secrets and internal-only fields; access control prevents cross-tenant configuration disclosure.
+6. Production migration runbooks
+Abbeygate — controlled reset into Cyprus
+Inventory exact source/target account and tenant IDs, databases, object stores, search indexes, queues, credentials, integrations and CRM mappings. Confirm whether “one Cyprus account” means tenant, operating entity or both. Preserve applicable territory and jurisdiction rules for business still serviced outside Cyprus.
+Prepare the Kernel target and compatibility adapters. Prove existing customer journeys, documents, ratings, permissions, reporting and integration behavior using agreed representative cases.
+Agree the retained source of operational truth during parallel running and the precise reset scope. Create and restore-test scoped backups/exports. Do not reset shared infrastructure or unrelated customer records.
+At cutover, isolate scoped workers and inbound events, establish the final synchronization boundary, apply the approved reset/consolidation and reconcile any records that must remain operationally available. Preserve audit evidence of the reset itself.
+Validate Cyprus identity, domains, payment and webhook routing, numbering and customer access. Re-enable one writer and replay only safe, deduplicated events. Rollback must account for post-cutover writes; do not restore an old snapshot over new transactions.
+Altus — preserve all production data
+Verify the active App Service/Helm lane, exact production data stores and integration endpoints. Capture baseline counts, stable IDs, financial totals per currency and account, attachment checksums, permissions and audit relationships.
+Use backward-compatible schema expansion and versioned adapters. Restore-test backups; rehearse migration on an isolated copy with external side effects disabled. Define acceptable cutover interruption and recovery objectives with operations.
+Backfill with checkpoints and reconcile. Capture intervening changes through logs or an equivalent reliable delta mechanism. Run shadow reads/comparisons while keeping a single authoritative writer; never duplicate charges or outbound notifications.
+At cutover, drain or briefly pause writes if needed, apply the final delta, reconcile all in-scope records and financial/control totals, then switch routing. No lost writes, orphaned records or missing files are acceptable.
+Monitor agreed customer journeys and reconciliation reports. Prefer safe forward repair; any rollback must preserve writes made after cutover. Remove legacy schema or storage only after all dependent consumers are retired and retention requirements are met.
+Continuity gate. Maintain the active service lane, incident ownership and customer support throughout migration. Urgent fixes must remain deliverable without waiting for all tenants to move. Carry shared fixes into the Kernel lineage and test affected adapters. No big-bang customer rewrite is a prerequisite.
+7. Delivery gates and milestone alignment
+Gate / target | Required outcome | Proposed accountable role
+G0 · Before either production cutover | Verified deployment and data inventory; named decision makers; active lane resolved; backup/restore evidence; agreed service and recovery criteria. | Platform Operations + customer owner
+M3 · Tue 8 Sep 2026 | API screen, OpenAPI and MCP expose system configuration plus missing/partial items. Seed deployment registry and duplicate-source backlog; show unknowns honestly. | API/MCP lead + Developer Experience
+M1 · Before demo, 10 Sep 2026 | Bonzah and UE demo on the shared Kernel with separate configuration packages; pin demo manifests and matching documentation. | Kernel lead + demo owner
+M2 · Fri 11 Sep 2026 | All agreed VUW.ai POC scope passes its acceptance matrix; pin contracts, configuration and deployment evidence. POC scope must be supplied/confirmed. | POC owner + Kernel lead
+M4 · Sat 12 Sep 2026 | Self-onboarding experience and interfaces specified: CRM/account mapping, subscription, billing, domains, draft/test → live, account panel and support. | Product + CRM/Control Plane lead
+G1 · Date after readiness review | Abbeygate reset/Cyprus consolidation passes section 6, customer acceptance and verified version/doc publication. | Abbeygate owner + Platform Operations
+G2 · Date after readiness review | Altus migration proves data preservation, safe cutover/recovery and customer journey acceptance. No date is inferred from demo/POC targets. | Altus owner + migration lead
+Decisions to close first
+Confirm live deployment owners, resources and regions; identify Altus’s active production lane and developer-site hosting/source.
+Define Abbeygate’s Cyprus account identity, exact reset boundaries and treatment of records created during parallel operation.
+Nominate the canonical contract package and deployment registry location; select a migration sequence without forcing all customers onto one infrastructure instance.
+Assign CRM/billing/entitlement ownership, confirm integration identity mapping, and validate backup/restore coverage for CRM and both production customers.
+Name accountable people, estimate engineering capacity and approve readiness-based cutover windows. These deadlines are target gates, not evidence that the work is complete.
+Completion evidence pack
+For each migration: approved scope and owner; before/after deployment manifests; contract compatibility results; backup restore test; reconciliation report; customer journey acceptance; routing and one-writer evidence; support handover; rollback/forward-repair procedure; matching published documentation versions; and legacy retirement record.
+8. Repository evidence index
+Reviewed 6 September 2026. These repository links are navigational references to mutable branches, not proof of deployed commit or live endpoint availability. Capture immutable commit references in the operational registry when verifying deployments.
+S1 · Abbeygate deployment
+Immutable image delivery, staging-to-production promotion and separation of reset/operator tasks.
+FacioMGA/abbeygate / docs/operate/deploy.md
+S2 · Abbeygate staging
+Documented CY/PT staging hosts, AKS resources and isolated migration rehearsal.
+FacioMGA/abbeygate / docs/operate/staging-delivery.md
+S3 · Abbeygate OpenAPI
+Platform registry, version and public contract claims; backend/http/docs/openapi.ts is a re-export.
+FacioMGA/abbeygate / backend/platform/openapi/openapi.ts
+S4 · Attsure OpenAPI
+Customer endpoints, signature header, version and idempotency wording. Helm trees identified by repository search.
+FacioMGA/Attsure / backend/platform/openapi/openapi.ts
+S5 · Altus deployment
+Helm/container architecture and production/staging App Service deployment lanes.
+FacioMGA/AltusUW / DEPLOYMENT.md
+S6 · PolarisRe legacy registry
+Independent registry containing Abbeygate server metadata. Also inspected backend/http/docs/openapi.ts and backend/http 2/docs/openapi.ts wrapper chain.
+FacioMGA/polarisre / server/src/api/docs/openapi.ts
+S7 · Public website
+Static export hosting description, canonical domain and CRM lead submission integration.
+FacioMGA/facio-website / README.md
+S8 · Agent discovery generation
+llms.txt generator and developer/MCP links; public/llms-full.txt located separately.
+FacioMGA/facio-website / src/lib/llms-generator.ts
+S9 · CRM deployment
+VM delivery, fixed database/uploads volumes, backup and rollback controls. Also inspected .azure/deployment-plan.md and Caddyfile.
+FacioMGA/facioCRM / docs/cicd-azure-vm.md
+S10 · MCP registry
+Registry location for discovery and command mapping; public deployment not established.
+FacioMGA/abbeygate / backend/modules/mcp/app/toolRegistry.ts

@@ -1,0 +1,236 @@
+{
+  "registryVersion": 1,
+  "viewSchemaVersion": 1,
+  "entity": "policies",
+  "filters": {
+    "status": {
+      "field": "status",
+      "type": "enum",
+      "operators": ["eq", "in"],
+      "requiredIndexes": ["PolicyListIndex@@index([status])"],
+      "urlKey": "status",
+      "label": "Status",
+      "options": [
+        "CANCELLATION_REQUESTED",
+        "INFO_REQUIRED",
+        "REFERRAL",
+        "AWAITING_PAYMENT",
+        "QUOTED",
+        "INTAKE",
+        "DRAFT",
+        "ISSUED",
+        "ACTIVE",
+        "EXPIRED",
+        "DECLINED",
+        "CANCELLED",
+        "BOUND"
+      ]
+    },
+    "boStatus": {
+      "field": "bo_status",
+      "type": "enum",
+      "operators": ["eq", "in"],
+      "requiredIndexes": ["PolicyListIndex@@index([bo_status])"],
+      "urlKey": "bo_status",
+      "label": "BO Status",
+      "options": [
+        "CANCELLATION_REQUESTED",
+        "ENDORSEMENT_IN_PROGRESS",
+        "RENEWAL_IN_PROGRESS",
+        "INFO_REQUIRED",
+        "REFERRAL",
+        "AWAITING_PAYMENT",
+        "QUOTED",
+        "INTAKE",
+        "DRAFT",
+        "ISSUED",
+        "ACTIVE",
+        "EXPIRED",
+        "DECLINED",
+        "CANCELLED"
+      ]
+    },
+    "needsAttention": {
+      "field": "attentionScore",
+      "type": "boolean",
+      "operators": ["eq"],
+      "requiredIndexes": ["PolicyListIndex@@index([attentionScore, lastActivityAt(sort: Desc)])"],
+      "urlKey": "attention",
+      "label": "Needs Attention",
+      "attentionThreshold": 80
+    },
+    "hasOpenClaim": {
+      "field": "hasOpenClaim",
+      "type": "boolean",
+      "operators": ["eq"],
+      "requiredIndexes": ["PolicyListIndex@@index([hasOpenClaim])"],
+      "urlKey": "open_claim",
+      "label": "Has Open Claim"
+    },
+    "invoiceOverdue": {
+      "field": "invoiceOverdue",
+      "type": "boolean",
+      "operators": ["eq"],
+      "requiredIndexes": ["PolicyListIndex@@index([invoiceOverdue])"],
+      "urlKey": "invoice_overdue",
+      "label": "Payment Overdue"
+    },
+    "cancellationPending": {
+      "field": "cancellationPending",
+      "type": "boolean",
+      "operators": ["eq"],
+      "requiredIndexes": ["PolicyListIndex@@index([cancellationPending])"],
+      "urlKey": "cancellation_pending",
+      "label": "Cancelation Pending"
+    },
+    "customerActionRequired": {
+      "field": "customerActionRequired",
+      "type": "boolean",
+      "operators": ["eq"],
+      "requiredIndexes": ["PolicyListIndex@@index([customerActionRequired])"],
+      "urlKey": "customer_action",
+      "label": "Customer Action"
+    },
+    "uwActionRequired": {
+      "field": "uwActionRequired",
+      "type": "boolean",
+      "operators": ["eq"],
+      "requiredIndexes": ["PolicyListIndex@@index([uwActionRequired])"],
+      "urlKey": "uw_action",
+      "label": "UW Action"
+    },
+    "outstandingBalance": {
+      "field": "outstandingBalance",
+      "type": "number",
+      "operators": ["eq", "gte", "lte", "between"],
+      "requiredIndexes": ["PolicyListIndex@@index([outstandingBalance])"],
+      "urlKey": "balance",
+      "label": "Outstanding Balance"
+    },
+    "totalPremium": {
+      "field": "totalPremium",
+      "type": "number",
+      "operators": ["eq", "gte", "lte", "between"],
+      "requiredIndexes": ["PolicyListIndex@@index([totalPremium])"],
+      "urlKey": "premium",
+      "label": "Premium"
+    },
+    "expiryDate": {
+      "field": "policy.expiryDate",
+      "type": "date",
+      "operators": ["eq", "gte", "lte", "between"],
+      "requiredIndexes": ["Policy@@index([expiryDate])"],
+      "urlKey": "expiry_date",
+      "label": "Expiry Date"
+    },
+    "quoteExpiryDate": {
+      "field": "quoteExpiryDate",
+      "type": "date",
+      "operators": ["eq", "gte", "lte", "between"],
+      "requiredIndexes": ["PolicyListIndex@@index([quoteExpiryDate])"],
+      "urlKey": "quote_expiry",
+      "label": "Quote Expiry"
+    },
+    "renewalDate": {
+      "field": "renewalDate",
+      "type": "date",
+      "operators": ["eq", "gte", "lte", "between"],
+      "requiredIndexes": ["PolicyListIndex@@index([renewalDate])"],
+      "urlKey": "renewal_date",
+      "label": "Renewal Date"
+    },
+    "lastActivityAt": {
+      "field": "lastActivityAt",
+      "type": "date",
+      "operators": ["eq", "gte", "lte", "between"],
+      "requiredIndexes": ["PolicyListIndex@@index([lastActivityAt(sort: Desc)])"],
+      "urlKey": "last_activity",
+      "label": "Last Activity"
+    },
+    "program": {
+      "field": "policy.programId",
+      "type": "string",
+      "operators": ["eq", "in"],
+      "requiredIndexes": ["Policy@@index([programId])"],
+      "urlKey": "program_id",
+      "label": "Program"
+    },
+    "binder": {
+      "field": "policy.binderId",
+      "type": "string",
+      "operators": ["eq"],
+      "requiredIndexes": ["Policy@@index([binderId])"],
+      "urlKey": "binder_id",
+      "label": "Binder"
+    }
+  },
+  "sortFields": {
+    "attentionScore": { "location": "index", "type": "number", "cheap": true, "requiredIndexes": ["PolicyListIndex@@index([attentionScore, lastActivityAt(sort: Desc)])"] },
+    "lastActivityAt": { "location": "index", "type": "date", "cheap": true, "requiredIndexes": ["PolicyListIndex@@index([lastActivityAt(sort: Desc)])"] },
+    "updatedAt": { "location": "index", "type": "date", "cheap": true, "requiredIndexes": ["PolicyListIndex@@index([updatedAt(sort: Desc)])"] },
+    "createdAt": { "location": "policy", "type": "date", "cheap": false, "requiredIndexes": ["Policy@@index([createdAt(sort: Desc)])"] },
+    "inceptionDate": { "location": "policy", "type": "date", "cheap": false, "requiredIndexes": ["Policy@@index([inceptionDate])"] },
+    "expiryDate": { "location": "policy", "type": "date", "cheap": false, "requiredIndexes": ["Policy@@index([expiryDate])"] },
+    "status": { "location": "index", "type": "string", "cheap": true, "requiredIndexes": ["PolicyListIndex@@index([status])"] },
+    "statusSortRank": { "location": "index", "type": "number", "cheap": true, "requiredIndexes": ["PolicyListIndex@@index([statusSortRank])"] },
+    "bo_status": { "location": "index", "type": "string", "cheap": true, "requiredIndexes": ["PolicyListIndex@@index([bo_status])"] },
+    "bo_statusSortRank": { "location": "index", "type": "number", "cheap": true, "requiredIndexes": ["PolicyListIndex@@index([bo_statusSortRank])"] },
+    "policyNumber": { "location": "index", "type": "string", "cheap": true, "requiredIndexes": ["PolicyListIndex@@index([policyNumber])"] },
+    "totalPremium": { "location": "index", "type": "number", "cheap": true, "requiredIndexes": ["PolicyListIndex@@index([totalPremium])"] }
+  },
+  "defaultSort": [
+    { "field": "attentionScore", "direction": "desc" },
+    { "field": "lastActivityAt", "direction": "desc" },
+    { "field": "policyNumber", "direction": "desc" }
+  ],
+  "defaultSavedViews": [
+    {
+      "id": "default_policies_needs_attention",
+      "name": "Needs Attention",
+      "query": {
+        "search": "",
+        "filters": { "needsAttention": "yes" },
+        "sorts": [
+          { "field": "attentionScore", "direction": "desc" },
+          { "field": "lastActivityAt", "direction": "desc" }
+        ]
+      }
+    },
+    {
+      "id": "default_policies_active_in_force",
+      "name": "Active / In Force",
+      "query": {
+        "search": "",
+        "filters": { "status": "ACTIVE" },
+        "sorts": [
+          { "field": "expiryDate", "direction": "asc" },
+          { "field": "lastActivityAt", "direction": "desc" }
+        ]
+      }
+    },
+    {
+      "id": "default_policies_renewal_queue",
+      "name": "Renewal Queue",
+      "query": {
+        "search": "",
+        "filters": { "status": "ACTIVE" },
+        "sorts": [
+          { "field": "expiryDate", "direction": "asc" },
+          { "field": "attentionScore", "direction": "desc" }
+        ]
+      }
+    },
+    {
+      "id": "default_policies_expiring_soon",
+      "name": "Expiring Soon",
+      "query": {
+        "search": "",
+        "filters": { "status": "ACTIVE" },
+        "sorts": [
+          { "field": "expiryDate", "direction": "asc" },
+          { "field": "attentionScore", "direction": "desc" }
+        ]
+      }
+    }
+  ]
+}

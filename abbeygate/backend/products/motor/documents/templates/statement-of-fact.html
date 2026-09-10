@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <base href="{{basePath}}">
+    <link rel="stylesheet" href="styles/pdf-theme.css">
+    <style>
+        .draft-watermark {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            font-weight: 900;
+            letter-spacing: 0.22em;
+            color: var(--brand-navy);
+            opacity: 0.08;
+            transform: rotate(-22deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+        body.is-draft .draft-watermark {
+            display: flex;
+        }
+        .draft-watermark span {
+            padding: 18px 28px;
+            border: 8px solid rgba(14, 53, 83, 0.18);
+            border-radius: 18px;
+        }
+        .sof-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+            align-items: start;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: white;
+        }
+
+        .sof-broker {
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--brand-navy);
+            margin: 0 0 6px 0;
+        }
+
+        .sof-broker-addr {
+            font-size: 10px;
+            color: var(--muted);
+            line-height: 1.35;
+            white-space: pre-wrap;
+        }
+
+        .sof-title {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--brand-navy);
+            line-height: 1.1;
+        }
+
+        .sof-lede {
+            margin-top: 10px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            font-size: 11px;
+            color: var(--brand-navy-2);
+            line-height: 1.45;
+        }
+
+        .sof-section {
+            margin-top: 14px;
+        }
+
+        .sof-h2 {
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: var(--brand-navy);
+            margin: 0 0 8px 0;
+        }
+
+        .sof-table td,
+        .sof-table th {
+            font-size: 11px;
+            padding: 8px 10px;
+        }
+
+        .sof-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .sof-note {
+            font-size: 10px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body class="{{#if isDraft}}is-draft{{/if}}">
+    <div class="draft-watermark"><span>DRAFT</span></div>
+
+    <div class="doc-page">
+        <div class="brand-topbar avoid-break">
+            <div class="doc-topbar-left">
+                <img class="doc-logo-left" src="assets/abbeygate.svg" alt="Abbeygate" />
+            </div>
+            <div class="doc-topbar-center">
+                <div class="doc-title">Statement of Fact</div>
+                <div class="doc-subtitle">
+                    Reference: <span class="font-mono">{{policy_number}}</span> · Printed: {{generatedDate}}
+                </div>
+            </div>
+            <div class="doc-topbar-right">
+                <img class="doc-logo-right" src="assets/lloyds.svg" alt="Lloyd's" />
+            </div>
+        </div>
+
+        <div class="facts avoid-break">
+            <div class="card-mini">
+                <div class="fact-k">Policyholder</div>
+                <div class="fact-v">{{insured.name}}</div>
+            </div>
+            <div class="card-mini">
+                <div class="fact-k">Cover</div>
+                <div class="fact-v">{{statement.cover_level}}</div>
+            </div>
+            <div class="card-mini">
+                <div class="fact-k">Period</div>
+                <div class="fact-v">{{period.from_date_only}} → {{period.to_date_only}}</div>
+            </div>
+            <div class="card-mini">
+                <div class="fact-k">Vehicle</div>
+                <div class="fact-v">{{vehicle.reg}}</div>
+            </div>
+        </div>
+
+        <div class="sof-lede">
+        Here is the information you supplied. This Statement of Fact is a record of the information about you and your insurance requirements as given by you to {{brand.dataControllerName}}.
+        It is issued for information purposes only and is not part of your insurance policy. However, the information you provided has been taken into account when
+        calculating your premium and terms of insurance.
+        <br /><br />
+        If any information has been omitted or is incorrect you have a duty to inform us immediately. Failure to disclose any such necessary information could invalidate
+        your insurance or result in a claim not being paid.
+        <br /><br />
+        <strong>Information Held</strong><br />
+        For your protection, calls to {{brand.dataControllerName}} may be recorded and regularly monitored. The data controller in relation to any personal data you supply is {{brand.dataControllerName}}.
+        Information you supply may be used for the purpose of arranging insurance on your behalf and may be disclosed to insurance companies concerned, including Lloyd's Insurance Company S.A.
+        </div>
+
+        <div class="sof-section">
+        <div class="sof-h2">You (The Policyholder)</div>
+        <div class="card-soft">
+            <div class="kv-grid">
+                <div class="kv">
+                    <div class="k">Full name</div>
+                    <div class="v">{{insured.name}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">Identity card number</div>
+                    <div class="v">{{insured.identity_card_number}}</div>
+                </div>
+                <div class="kv" style="grid-column: 1 / -1;">
+                    <div class="k">Postal address</div>
+                    <div class="v">{{insured.address_one_line}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">Postal code</div>
+                    <div class="v">{{insured.address.postcode}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">Telephone</div>
+                    <div class="v">{{insured.contact.phone}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">Email</div>
+                    <div class="v">{{insured.contact.email}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">Occupation</div>
+                    <div class="v">{{insured.occupation}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">Date of birth</div>
+                    <div class="v">{{statement.date_of_birth}}</div>
+                </div>
+            </div>
+        </div>
+        {{#if statement.additionalPolicyHolders.length}}
+        <div class="sof-h2" style="margin-top: 14px;">Joint proposer(s)</div>
+        <table class="sof-table">
+            <thead>
+                <tr>
+                    <th>Full name</th>
+                    <th>Date of birth</th>
+                    <th>Postal address</th>
+                    <th>Telephone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each statement.additionalPolicyHolders}}
+                <tr>
+                    <td class="font-bold">{{name}}</td>
+                    <td>{{date_of_birth}}</td>
+                    <td style="white-space: pre-line;">{{address_multiline}}</td>
+                    <td>{{phone}}</td>
+                    <td>{{email}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{/if}}
+        </div>
+    </div>
+
+    <div style="page-break-before: always; break-before: page;"></div>
+
+    <div class="sof-section">
+        <div class="sof-h2">Persons who will drive your vehicle</div>
+        <div class="sof-note" style="margin-bottom: 8px;">
+            Note: only drivers in the age group shown on your Certificate of Motor Insurance are covered.
+        </div>
+        <table class="sof-table">
+            <thead>
+                <tr>
+                    <th style="width:22%;">Full name</th>
+                    <th style="width:14%;">Date of birth</th>
+                    <th style="width:18%;">Resident</th>
+                    <th style="width:18%;">Licence type / years held</th>
+                    <th style="width:14%;">Occupation</th>
+                    <th style="width:14%;">Relationship</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each statement.drivers}}
+                <tr>
+                    <td class="font-bold">{{full_name}}</td>
+                    <td>{{date_of_birth}}</td>
+                    <td>{{resident}}</td>
+                    <td>{{license_type}} · {{years_held}}</td>
+                    <td>{{occupation}}</td>
+                    <td>{{relationship}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <div class="sof-h2" style="margin-top: 14px;">Incident & conviction history</div>
+        <div class="card-soft">
+            <div class="sof-split">
+                <div>
+                    <div class="kv">
+                        <div class="k">Claims / accidents declared</div>
+                        <div class="v">{{statement.claims_declared}}</div>
+                    </div>
+                    {{#if statement.claims_details}}
+                    <div class="sof-note" style="margin-top: 6px; white-space: pre-wrap;">{{statement.claims_details}}</div>
+                    {{else}}
+                    <div class="sof-note" style="margin-top: 6px;">None</div>
+                    {{/if}}
+                </div>
+                <div>
+                    <div class="kv">
+                        <div class="k">Motoring convictions declared</div>
+                        <div class="v">{{statement.convictions_declared}}</div>
+                    </div>
+                    {{#if statement.convictions_details}}
+                    <div class="sof-note" style="margin-top: 6px; white-space: pre-wrap;">{{statement.convictions_details}}</div>
+                    {{else}}
+                    <div class="sof-note" style="margin-top: 6px;">None</div>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="sof-split" style="margin-top: 10px;">
+                <div>
+                    <div class="kv">
+                        <div class="k">Other drivers claims declared</div>
+                        <div class="v">{{statement.other_drivers_claims_declared}}</div>
+                    </div>
+                    {{#if statement.other_drivers_claims_details}}
+                    <div class="sof-note" style="margin-top: 6px; white-space: pre-wrap;">{{statement.other_drivers_claims_details}}</div>
+                    {{else}}
+                    <div class="sof-note" style="margin-top: 6px;">None</div>
+                    {{/if}}
+                </div>
+                <div>
+                    <div class="kv">
+                        <div class="k">Other drivers convictions declared</div>
+                        <div class="v">{{statement.other_drivers_convictions_declared}}</div>
+                    </div>
+                    {{#if statement.other_drivers_convictions_details}}
+                    <div class="sof-note" style="margin-top: 6px; white-space: pre-wrap;">{{statement.other_drivers_convictions_details}}</div>
+                    {{else}}
+                    <div class="sof-note" style="margin-top: 6px;">None</div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+
+        <div class="sof-h2" style="margin-top: 14px;">Insurance refusal history</div>
+        <div class="card-soft avoid-break">
+            <div class="kv">
+                <div class="k">Refused insurance / renewal / increased premium / special conditions imposed</div>
+                <div class="v">{{statement.insurance_refusal_declared}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="page-break-before: always; break-before: page;"></div>
+
+    <div class="sof-section">
+        <div class="sof-h2">Your vehicle</div>
+        <table class="sof-table">
+            <thead>
+                <tr>
+                    <th style="width:20%;">Registration</th>
+                    <th style="width:40%;">Make / Model</th>
+                    <th style="width:10%;">Year</th>
+                    <th style="width:15%;">Fuel</th>
+                    <th style="width:15%;" class="text-right">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold font-mono">{{vehicle.reg}}</td>
+                    <td>{{vehicle.make}} {{vehicle.model}}<br /><span class="text-xs text-muted">{{vehicle.engine_cc}}cc · Seats {{vehicle.seating_capacity}}</span></td>
+                    <td>{{vehicle.year}}</td>
+                    <td>{{vehicle.fuel}}</td>
+                    <td class="text-right">€{{vehicle.estimated_value_eur}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="sof-h2" style="margin-top: 16px;">Your cover</div>
+        <div class="card-soft">
+            <div class="kv-grid">
+                <div class="kv">
+                    <div class="k">Policy number</div>
+                    <div class="v">{{policy_number}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">Level of cover</div>
+                    <div class="v">{{statement.cover_level}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">Use</div>
+                    <div class="v">{{statement.vehicle_use}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">Excess</div>
+                    <div class="v">{{statement.excess}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">No claims bonus (NCB)</div>
+                    <div class="v">{{statement.ncb}}</div>
+                </div>
+                <div class="kv">
+                    <div class="k">Annual mileage</div>
+                    <div class="v">{{statement.kms_per_year}}</div>
+                </div>
+                <div class="kv" style="grid-column: 1 / -1;">
+                    <div class="k">Policy period</div>
+                    <div class="v">From {{period.from_full}} to {{period.to_full}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sof-lede" style="margin-top: 16px;">
+        Based on the information you have supplied, {{brand.dataControllerName}} has recommended Lloyd's Insurance Company S.A. as your insurer.
+        The policy is an annual contract, which commences on {{period.from_full}}.
+        <div class="sof-note" style="margin-top: 10px;">
+            For your protection, calls to {{brand.dataControllerName}} may be recorded and regularly monitored. If any information is incorrect please contact our Customer Care Team.
+        </div>
+    </div>
+</body>
+
+</html>
+

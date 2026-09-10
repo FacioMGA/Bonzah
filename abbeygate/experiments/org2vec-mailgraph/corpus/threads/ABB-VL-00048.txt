@@ -1,0 +1,26 @@
+Thread-ID: ABB-VL-00048
+Claim-Ref: ABB/VL/00048
+Subject: ABB/VL/00048 — TP collision, settlement over authority
+===
+
+From: Algarve Broker Lda <geral@algarvebroker.example>
+To: claims@abbeygate.pt
+Date: 2026-03-15 09:30
+Subject: FNOL ABB/VL/00048 — Lisbon collision
+Attachments: estimate_approved.pdf, fidelidade_letter.pdf
+
+Multi-vehicle collision Lisbon ring road. Insured policy
+ABLV/PT1003710, vehicle 72-TE-20. Third-party insurer:
+Insurer: Fidelidade Seguros (ref. FS-2026-7711). Estimate
+attached, EUR 41,200 from approved repairer.
+
+---
+From: Claims Handler <claims@abbeygate.pt>
+To: manager@abbeygate.pt
+Date: 2026-03-15 14:00
+Subject: Referral — ABB/VL/00048 over authority
+
+Estimate EUR 41,200 exceeds my delegated authority of EUR
+25,000 (Cyprus DCA LMA9188). Referring before any settlement.
+Endorsement CV4 (EUR 300 excess) and CV172 (NCD protection)
+active on policy ABLV/PT1003710.

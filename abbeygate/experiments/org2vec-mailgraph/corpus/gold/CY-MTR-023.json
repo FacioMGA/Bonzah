@@ -1,0 +1,18 @@
+{
+  "thread_id": "CY-MTR-023",
+  "claim_ref": "CY-MTR-023",
+  "gold_missing_documents": [
+    "medical_report"
+  ],
+  "gold_authority_flags": [
+    "bi_potential",
+    "tp_recovery_required"
+  ],
+  "gold_decision_posture": "reserved",
+  "gold_key_events": [
+    "FNOL",
+    "doc_request"
+  ],
+  "gold_similar_threads": [],
+  "scenario": "bi_potential"
+}

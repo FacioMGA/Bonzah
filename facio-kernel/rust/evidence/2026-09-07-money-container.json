@@ -1,0 +1,24 @@
+{
+  "node": "v22.23.2",
+  "platform": "linux",
+  "arch": "arm64",
+  "uid": 1000,
+  "engine": {
+    "engine": "rust-wasm",
+    "engineVersion": "1.0.0",
+    "abiVersion": 1,
+    "calculationVersion": "exact-money-v1",
+    "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "target": "wasm32-unknown-unknown",
+    "sourceSha256": "e4512b0aeb03ce38c813ca490804d7adfa0d302ae8eed9721769c323061f87d8",
+    "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+    "wasmBytes": 16985,
+    "memoryBytes": 131072
+  },
+  "calculationPassed": true,
+  "runtimeExcludesCompilerOracleFixtures": true,
+  "schemaVersion": "rust-money-container-verification-v1",
+  "imageId": "sha256:dbeefa486fe3c6401049110f7c6fe301f067babacb7f83d606ae0ad2bb74f13e",
+  "sourceState": "Uncommitted development working tree; not a released image",
+  "network": "none"
+}

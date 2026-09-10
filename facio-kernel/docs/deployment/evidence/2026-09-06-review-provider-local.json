@@ -1,0 +1,127 @@
+{
+  "verifiedAt": "2026-09-06T18:35:48.256940+00:00",
+  "scope": "isolated local synthetic data; candidate implementation, no customer or deployed acceptance inferred",
+  "commands": {
+    "npm run check": "passed: formatting, strict TypeScript, boundaries, 123 tests, generated OpenAPI/MCP contracts and build",
+    "browserSuites": 7,
+    "git diff --check": "passed"
+  },
+  "browserEvidence": [
+    {
+      "suite": "browser-evidence",
+      "passed": true,
+      "checks": [
+        "Invalid credential denied",
+        "Reference scope, all 13 categories, metadata validity and wider gaps rendered",
+        "Source requirements, provenance, explicit pending evidence, category links and mobile layout verified; failed refresh clears stale profile and recovers",
+        "Mismatched snapshot/report revisions trigger a bounded consistency retry",
+        "UI draft edit persisted; published snapshot remained immutable",
+        "Successful save with failed gap refresh shows unavailable validity and recovers without lost data",
+        "Authenticated OpenAPI and MCP discovery dialogs rendered",
+        "Missing scoped source profile is explicit after logout/login and reveals no previous tenant requirements",
+        "Incomplete tenant and missing published version show explicit gaps/errors without prior-tenant leakage",
+        "390px mobile viewport has no document overflow",
+        "Read-only role cannot edit or inspect audit",
+        "Reload clears authentication; no browser storage used"
+      ],
+      "pageErrors": []
+    },
+    {
+      "suite": "insurance-browser-evidence",
+      "passed": true,
+      "checks": [
+        "Scoped registered product drives decimal currency and percentage fields; excess monetary and share precision rejected without rounding; variable capacity inputs preserve values after real server rejection of an invalid share total; mobile form has no overflow",
+        "UI converted GBP 500,000.00 to exactly 50000000 minor units and 60.00%/40.00% to 6000/4000 bps in a persisted external quote with canonical allocations and separate external-custody commission",
+        "UI quote revision retained original history; competing actual HTTP revision invalidated the selected bind hash; refresh then bound exactly the new selected quote",
+        "Manual endorsement, cancellation and reinstatement persisted effective dates and signed deltas; original source quote and all prior version hashes remained immutable",
+        "A real successful write with deliberately lost response retried the exact idempotent command, with one additional version only",
+        "Desktop/mobile record and history presentation verified, with expandable canonical original evidence",
+        "Failed read cleared stale insurance data without falsely claiming no product or record, and refresh recovered persisted state",
+        "Alternate registered currency and premium above JavaScript safe integer displayed exactly using three minor-unit decimals",
+        "Read-only credentials cannot write in UI or actual HTTP; unregistered scope shows no runtime product and cannot read another scope record; configuration-only session has no insurance access",
+        "A separate SQLite connection reopened the database and verified the full immutable eight-version event/history chain"
+      ],
+      "pageErrors": []
+    },
+    {
+      "suite": "intern-browser-evidence",
+      "passed": true,
+      "checks": [
+        "Individual hosted fixture sessions provisioned two separate durable tenants on one HTTPS build; organization sign-in shown for anonymous access; external IdP sign-in is not claimed",
+        "Both interns imported typed requirements without rebuilding, saved configuration through the existing editor, authored exact decimal policy configuration and activated exact immutable candidates",
+        "Same Insurance workspace executed different activated policies and retained per-record release IDs; cross-tenant reads and a mutation without CSRF were rejected by actual HTTPS endpoints",
+        "A concurrent policy draft change rejected stale activation; a fresh release activated without changing the original quote, which bound against its retained original release and commission",
+        "Rollback selected the retained release by exact active-release precondition without reverting policy drafts or insurance transactions",
+        "Own MCP connection inspection and revocation operated through CSRF-protected hosted HTTP; no actual ChatGPT authorization is claimed",
+        "Hosted setup, three readiness dimensions, runtime draft and activation evidence render on desktop and mobile without horizontal overflow",
+        "Tenant switching is blocked during pending scoped reads, and switching clears prior tenant data; an unauthorized deep link cannot select or display another tenant",
+        "Viewer cannot provision or discover unassigned tenants; admin membership revocation removes existing-session access on subsequent UI/HTTP requests",
+        "Fresh HTTPS deep link recovers server state; logout invalidates the browser session; a separate database connection recovers active release and pinned insurance history"
+      ],
+      "pageErrors": []
+    },
+    {
+      "suite": "oauth-browser-verification",
+      "passed": true,
+      "checks": [
+        "Exact registered callback origin permitted by consent CSP",
+        "Browser allow reaches registered HTTPS callback with code and state",
+        "Browser deny reaches registered HTTPS callback with error and state"
+      ],
+      "pageErrors": []
+    },
+    {
+      "suite": "insurance-configuration-browser",
+      "passed": true,
+      "checks": [
+        "An intern authored a versioned product, typed risk question, exact-money coverage, referral rule, rating floor and authority through structured Studio controls without JSON.",
+        "Active server preview reports missing answers and selections, then a priced referral with rule/source evidence. No policy record is created by evaluation.",
+        "The UI and direct API produce identical decision hashes; quote capture retains the full decision; a later active price does not change the historical quote or its bind decision; another intern cannot read this tenant.",
+        "Desktop and 390px mobile insurance decision rendering complete without page errors or horizontal overflow."
+      ],
+      "pageErrors": []
+    },
+    {
+      "suite": "insurance-approval-browser",
+      "passed": true,
+      "checks": [
+        "Dismissing Bind discard confirmation preserves an unsaved withdrawal and the exact quoted record/review history; accepting navigation discard clears the draft when returning and reopening the form.",
+        "Actual requester and independent reviewer forms request, approve and bind the exact quote; retained question labels, choice labels and exact monetary units render from the pinned definition. Actor/evidence/history and original evaluation hashes match canonical API reads. Requester mutation and cross-tenant read are denied.",
+        "An independent decline through the form is retained, blocks binding and cannot be replaced by a new request on the same quote revision.",
+        "An administrator who created the quote or requested its review cannot approve it; UI controls and direct server decisions enforce both independence boundaries.",
+        "A quote revision between opening and submitting a review rejects the stale form decision and projects stale status while preserving the original request.",
+        "The actual withdrawal form records a third immutable action and removes approval applicability without deleting the quote or history.",
+        "A real accepted request whose response is lost remains durable; unchanged form retry reuses the identical idempotency key and payload, returning one original review with one history action.",
+        "Server clock advancement projects expired status and disables review; no browser time assumption grants approval.",
+        "Desktop and 390px mobile review rendering has no page errors or horizontal overflow; the mobile navigation drawer is closed."
+      ],
+      "pageErrors": []
+    },
+    {
+      "suite": "insurance-provider-browser",
+      "passed": true,
+      "checks": [
+        "Real HTTPS UI queues an exact configured quote, the actual worker retains synthetic delivery, and insurance price/version/history remain unchanged.",
+        "Reload retains the completed provider request and prevents a second request for the same adapter/quote revision.",
+        "Public synthetic callback, missing CSRF and cross-tenant provider reads are rejected.",
+        "Desktop and 390px mobile provider evidence renders without page errors or horizontal overflow."
+      ],
+      "pageErrors": []
+    }
+  ],
+  "reviewedFailurePaths": [
+    "self-review and cross-tenant denial",
+    "stale, expired, declined and revoked approval",
+    "retained definition labels and exact-money units",
+    "payment/provider/decline/authority conditions remain blocking",
+    "transaction rollback, restarts, concurrent worker claims, timeouts and reconciliation",
+    "HMAC authenticates exact HTTP bytes; nonce/correlation/quote/risk guards",
+    "late historical receipts do not consume active response sequence",
+    "schema-five retained tables remain identical after additive schema-six migration",
+    "raw callback body size and bounded callback rate limiter expiration",
+    "unsaved review draft is preserved on cancelled bind; discarded navigation draft does not reappear; lost accepted HTTP response retries the exact idempotency key"
+  ],
+  "customerGoldenEvidence": false,
+  "liveIndependentReviewerAcceptance": false,
+  "externalProviderIntegrationAcceptance": false
+}

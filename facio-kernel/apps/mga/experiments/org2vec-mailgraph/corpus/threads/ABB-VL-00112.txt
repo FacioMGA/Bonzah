@@ -1,0 +1,46 @@
+Thread-ID: ABB-VL-00112
+Claim-Ref: ABB/VL/00112
+Subject: ABB/VL/00112 — Section A medical expenses claim
+===
+
+From: Cyprus Health Broker <claims@cyhealthbroker.example>
+To: claims@abbeygate.cy
+Date: 2026-04-10 10:00
+Subject: FNOL ABB/VL/00112 — Section A medical claim
+Attachments: discharge_summary.pdf, medical_invoices.pdf
+
+Dear Claims,
+
+FNOL for our insured (Cyprus immigrant policyholder). At data
+capture GESY was confirmed as active. Claim under Section A —
+medical expenses, total EUR 4,200. Attached: discharge summary,
+medical invoices from private clinic.
+
+Please confirm payment.
+
+Regards,
+Cyprus Health Broker
+
+---
+From: Claims Handler <claims@abbeygate.cy>
+To: claims@cyhealthbroker.example
+Date: 2026-04-11 09:15
+Subject: RE: FNOL ABB/VL/00112 — GESY evidence required
+
+Dear Broker,
+
+Endorsement No. 141 (GHS/GESY Claims Condition) applies to
+this claim because GESY was confirmed at data capture. Before
+we can admit or pay any Section A claim we require:
+
+  (i)  Documentary evidence that GESY was approached
+       regarding this illness.
+  (ii) Written confirmation from GESY that they declined,
+       refused, or were unable to treat.
+
+Without these two items the Company has no liability under
+Section A. Posture: insufficient evidence pending receipt.
+
+Suggested template: Request for GESY Documentary Evidence.
+
+Regards.

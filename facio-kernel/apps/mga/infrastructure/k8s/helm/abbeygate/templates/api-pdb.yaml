@@ -1,0 +1,15 @@
+{{- if and .Values.api.enabled .Values.pdb.api.enabled }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "abbeygate.fullname" . }}-api
+  labels:
+    {{- include "abbeygate.labels" . | nindent 4 }}
+    app.kubernetes.io/component: api
+spec:
+  minAvailable: {{ .Values.pdb.api.minAvailable }}
+  selector:
+    matchLabels:
+      {{- include "abbeygate.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: api
+{{- end }}

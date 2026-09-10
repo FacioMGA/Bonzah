@@ -1,0 +1,9 @@
+{
+  "version": "travel-fee-bands@1.0.0",
+  "appliesTo": "net_premium",
+  "bands": [
+    { "uptoNet": 70,  "fee": 7  },
+    { "uptoNet": 200, "fee": 18 },
+    { "uptoNet": null, "fee": 25 }
+  ]
+}

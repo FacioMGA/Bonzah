@@ -1,0 +1,18 @@
+{
+  "thread_id": "CY-MTR-027",
+  "claim_ref": "CY-MTR-027",
+  "gold_missing_documents": [],
+  "gold_authority_flags": [
+    "tp_recovery_required"
+  ],
+  "gold_decision_posture": "accepted",
+  "gold_key_events": [
+    "chase",
+    "chase",
+    "chase"
+  ],
+  "gold_similar_threads": [
+    "CY-MTR-015"
+  ],
+  "scenario": "tp_chase_loop"
+}

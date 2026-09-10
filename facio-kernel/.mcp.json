@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "facio_bonzah_config": {
+      "type": "http",
+      "url": "https://platform.facio.io/api/v1/mcp/workspaces/fd24a745-736e-4e70-9ffc-3c75438246e0/config",
+      "oauth": {
+        "scopes": "configuration.read configuration.draft configuration.validate configuration.simulate configuration.publish_sandbox programs.view programs.edit programs.publish binders.view binders.edit binders.publish"
+      }
+    },
+    "facio_bonzah_operator": {
+      "type": "http",
+      "url": "https://platform.facio.io/api/v1/mcp/workspaces/fd24a745-736e-4e70-9ffc-3c75438246e0/operator",
+      "oauth": {
+        "scopes": "operator.read operator.comm operator.analytics operator.mutate policies.bind documents.view"
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+Thread-ID: CY-MTR-031
+Claim-Ref: CY-MTR-031
+Subject: CY-MTR-031 — QuickFix estimate
+===
+
+From: Anna Brokerson <anna@cyprusbrokers.example>
+To: claims@abbeygate.example
+Date: 2026-03-18 09:30
+Subject: FNOL CY-MTR-031
+Attachments: estimate_quickfix.pdf
+
+Front-corner collision. Insured policy ABMTR-100881, reg AKR-7791.
+Vehicle taken to QuickFix Auto. Estimate attached, €18,200.
+
+---
+From: Handler <claims@abbeygate.example>
+To: anna@cyprusbrokers.example
+Date: 2026-03-18 11:45
+Subject: RE: CY-MTR-031 — second estimate please
+
+Anna,
+
+Please obtain a second estimate from an approved repairer. QuickFix
+estimates have run high on recent claims (CY-MTR-011, CY-MTR-017).
+
+---
+From: Anna Brokerson <anna@cyprusbrokers.example>
+To: claims@abbeygate.example
+Date: 2026-03-25 16:14
+Subject: RE: CY-MTR-031 — second estimate
+Attachments: estimate_panelpro.pdf
+
+Second estimate €11,400 from PanelPro. Insured agrees to PanelPro.

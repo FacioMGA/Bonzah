@@ -1,0 +1,53 @@
+Thread-ID: CY-MTR-004
+Claim-Ref: CY-MTR-004
+Subject: Reversing collision CY-MTR-004 — liability disputed
+===
+
+From: Demetris Broker <d@brokerbros.example>
+To: claims@abbeygate.example
+Date: 2026-01-15 10:11
+Subject: FNOL CY-MTR-004
+Attachments: photos.zip
+
+Dear Claims,
+
+Reversing incident in supermarket car park, Limassol. Our insured
+(policy ABMTR-100119, reg XKL-9082) says the TP reversed into them.
+TP says the opposite. No witnesses. Photos attached.
+
+Police were not called. Estimate to follow.
+
+---
+From: Handler <claims@abbeygate.example>
+To: d@brokerbros.example
+Date: 2026-01-15 14:30
+Subject: RE: FNOL CY-MTR-004 — liability reserved
+
+Demetris,
+
+Without independent evidence we will reserve liability pending TP
+insurer position. Please request the TP insurer details and any
+CCTV the car park may hold.
+
+Regards.
+
+---
+From: Demetris Broker <d@brokerbros.example>
+To: claims@abbeygate.example
+Date: 2026-01-22 09:00
+Subject: RE: CY-MTR-004 — TP insurer
+
+TP insurer is Pancyprian Mutual, reference PM-2026-00441. No CCTV
+— car park has not retained footage.
+
+---
+From: Handler <claims@abbeygate.example>
+To: d@brokerbros.example
+Date: 2026-02-04 16:00
+Subject: RE: CY-MTR-004 — liability remains reserved
+
+Demetris,
+
+We continue to reserve liability. Estimate has been authorised on a
+without-prejudice basis (€2,100 PanelPro). Recovery from TP insurer
+to follow once liability agreed.

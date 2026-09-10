@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "rust-money-final-container-verification-v1",
+  "capturedAt": "2026-09-07T06:37:47.111Z",
+  "node": "v22.23.2",
+  "platform": "linux",
+  "architecture": "arm64",
+  "uid": 1000,
+  "network": "none",
+  "rootFilesystem": "read-only",
+  "writableFilesystem": "disposable tmpfs /tmp only",
+  "sourceState": "Uncommitted Sprint 5 candidate working tree; BUILD_SHA is a supplied candidate label, not proof of the image matching a committed release",
+  "candidateBuildLabel": "300381a299fc4e814c1f7087d3a567eedd9cb615",
+  "health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "300381a299fc4e814c1f7087d3a567eedd9cb615",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "moneyEngine": {
+      "engine": "rust-wasm",
+      "engineVersion": "1.0.0",
+      "abiVersion": 1,
+      "calculationVersion": "exact-money-v1",
+      "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+      "target": "wasm32-unknown-unknown",
+      "sourceSha256": "e4512b0aeb03ce38c813ca490804d7adfa0d302ae8eed9721769c323061f87d8",
+      "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+      "wasmBytes": 16985,
+      "memoryBytes": 131072
+    },
+    "productionReady": false
+  },
+  "packagedRust": {
+    "engine": "rust-wasm",
+    "engineVersion": "1.0.0",
+    "abiVersion": 1,
+    "calculationVersion": "exact-money-v1",
+    "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "target": "wasm32-unknown-unknown",
+    "sourceSha256": "e4512b0aeb03ce38c813ca490804d7adfa0d302ae8eed9721769c323061f87d8",
+    "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+    "wasmBytes": 16985,
+    "memoryBytes": 131072
+  },
+  "canonicalPositiveAndNegativeIllustrativeAllocationPassed": true,
+  "zeroWasmImports": true,
+  "hostedHealthyOffline": true,
+  "gracefulHostedShutdownExitCode": 0,
+  "excludedRuntimePaths": [
+    "/usr/local/cargo",
+    "/usr/local/rustup",
+    "/app/dist/tests",
+    "/app/dist/scripts",
+    "/app/tests",
+    "/app/src",
+    "/app/tenant-packages",
+    "/app/dist/src/fixtures",
+    "/app/dist/src/domain/money-reference.js",
+    "/app/dist/src/main.js",
+    "/app/dist/src/dev.js"
+  ],
+  "runtimeCompilerCommandsAbsent": ["rustc", "cargo", "rustup", "tsc", "tsx"],
+  "runtimeCompiledTestsFixturesAndSourceMapsAbsent": true,
+  "failClosedHostedStartupCases": [
+    {
+      "condition": "missing-wasm",
+      "exitCode": 1,
+      "errorCode": "RUST_MONEY_UNAVAILABLE",
+      "businessDatabaseCreated": false,
+      "authDatabaseCreated": false
+    },
+    {
+      "condition": "corrupt-wasm",
+      "exitCode": 1,
+      "errorCode": "RUST_MONEY_UNAVAILABLE",
+      "businessDatabaseCreated": false,
+      "authDatabaseCreated": false
+    },
+    {
+      "condition": "missing-manifest",
+      "exitCode": 1,
+      "errorCode": "RUST_MONEY_UNAVAILABLE",
+      "businessDatabaseCreated": false,
+      "authDatabaseCreated": false
+    }
+  ],
+  "boundary": "Local Linux arm64 packaging/startup check only; no customer identities, live credentials, provider traffic, cloud deployment, billing or Linux amd64 performance measurement",
+  "image": {
+    "tag": "facio-kernel:sprint5-final-local",
+    "imageId": "sha256:5ed468a94eb35432bc98e2743477f175b5d6e4a01e9fe0c361c1b8e586d82566",
+    "os": "linux",
+    "architecture": "arm64",
+    "configuredUser": "node",
+    "created": "2026-09-07T06:35:18.429472923Z",
+    "sizeBytes": 90718185,
+    "revisionLabel": "300381a299fc4e814c1f7087d3a567eedd9cb615",
+    "baseImages": [
+      "rust:1.97.1-bookworm@sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97",
+      "node:22-bookworm-slim@sha256:83f487e0a63425e5b4d146fb5e5be574bcbe1b7b843d3ebafdd95eaf7767a7e5"
+    ]
+  },
+  "workspace": {
+    "headAtVerification": "300381a299fc4e814c1f7087d3a567eedd9cb615",
+    "dirty": true,
+    "meaning": "Image built from the shared uncommitted working tree, not from an immutable git archive; revision label is not release provenance"
+  },
+  "performanceDocumentationReview": {
+    "readme": "rust/README.md",
+    "comparisonArithmeticRecomputedFromRawResults": true,
+    "initialWallSpeedupVersusRetainedTs": [1.33, 1.46, 1.55, 1.56],
+    "initialWallSpeedupVersusOptimizedTs": [1.04, 1.11, 1.15, 1.36],
+    "initialAmortizedCpuReductionVersusOptimizedTsPercent": [3.4, 9.8, 13.2, 24.6],
+    "repeatWallSpeedupVersusRetainedTs": [1.37, 1.51, 1.59, 1.4],
+    "repeatAmortizedCpuReductionVersusRetainedTsPercent": [26.6, 32.7, 36.0, 12.8],
+    "repeat100ParticipantAmortizedCpuIncreaseVersusOptimizedTsPercent": 15.6,
+    "participants": [1, 4, 10, 100],
+    "wholeServiceOrCloudCostClaim": false,
+    "benchmarks": [
+      {
+        "path": "rust/evidence/2026-09-07-money-benchmark.json",
+        "sha256": "fbd21dae9a5ef0f041355e71540fe9d41c9a077df2713c365a4f14a155e86750"
+      },
+      {
+        "path": "rust/evidence/2026-09-07-money-benchmark-repeat.json",
+        "sha256": "a9fd69f34e25eacddf7b60e6c8087648ee3991e9f0f25037ebd988246ded7421"
+      }
+    ]
+  }
+}

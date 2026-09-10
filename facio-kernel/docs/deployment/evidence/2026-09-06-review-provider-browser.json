@@ -1,0 +1,66 @@
+{
+  "verifiedAt": "2026-09-06T18:59:24.690506+00:00",
+  "buildSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+  "url": "https://platform.facio.io/studio?tenant=469343e9-3c8e-41f9-8814-488ce8ab1bf5&view=insurance",
+  "identity": "Existing actual Google Workspace session: uriel@facio.io; no injected session or second-user impersonation",
+  "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+  "record": {
+    "id": "cdffc011-94a6-47bd-9e89-3a28b0b31532",
+    "version": 1,
+    "status": "quoted",
+    "recordHash": "6853f74f1d3b422566c1e9f9d11c9ce95ecd20d67afe8f17d31c75d8a186c7fd",
+    "quoteHash": "ef0db02d7dee38c0cfef1447e7bd7e6ab1e39c0255cd545c774b8e54a68b962b",
+    "sourceReference": "training-review-provider-20260906",
+    "currency": "GBP",
+    "premiumMinor": "10000",
+    "commissionMinor": "700",
+    "employees": 60,
+    "eligibility": "referred",
+    "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+    "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af"
+  },
+  "approval": {
+    "id": "104a7638-74fd-48d3-91b3-87bb9ccba6aa",
+    "version": 1,
+    "status": "requested",
+    "hash": "464a6750aae35e0dc48c70de09492a0c7602bf2f0ab29050e5a37d7a02534870",
+    "expiresAt": "2026-09-08T12:00:00.000Z",
+    "selfReviewControlDisabled": true,
+    "independenceExplanationObserved": true,
+    "realIndependentDecisionObserved": false
+  },
+  "provider": {
+    "id": "e037c67a-a290-45e0-af38-76b2f0107586",
+    "adapterId": "synthetic_quote_evidence",
+    "requestHash": "a3a045c0c5c632fbb5e69479f88ed3b772c6e534bde8d3d3de3855d0659f6ea0",
+    "stateVersion": 3,
+    "stateHash": "5d58f84ba47b3097b9745cce826ff8ef196a11ad4cf18cb402c523f0f49d8494",
+    "status": "completed",
+    "attempts": 1,
+    "receiptHash": "566a42aabafc153d517811186ce9a31e4c60c88b88a0a19584a22db3094c36ba",
+    "receiptMode": "synthetic",
+    "outcome": "referred"
+  },
+  "checks": [
+    "Existing Google session opened exact deployed build and original activated release.",
+    "Actual configured-risk form evaluated employees60/Buildings cover at GBP100 with explicit referral.",
+    "Retain command saved exact v1 quoted risk; bind without approval was rejected.",
+    "Actual review request form persisted rationale, evidence, quote and expiry. Self-review was unavailable with a server-derived explanation.",
+    "Actual provider button queued exact quote; real hosted worker completed one synthetic attempt with requested/claimed/receiptaccepted history.",
+    "Provider outcome remained referred; review remained requested; insurance remained v1quoted GBP100.",
+    "Original Gamma v2bound GBP100 record remained separately visible.",
+    "Final build reload retains the same authenticated Google session, both quote records, pending review and completed provider state.",
+    "Typed original review answers remain Employees60, Buildings limit GBP100000 and deductible GBP500.",
+    "Final expanded UI evidence matches the exact prior quote/record/approval/request/state/receipt hashes. No new workflow mutation was performed during final reload.",
+    "Retained product evaluation is visibly separate from current Human review availability. The approval label says unresolved in evaluator; original evidence is preserved.",
+    "Final actual desktop screenshot inspected: pending review, reason, UTC expiry, self-review explanation and separate provider activity are readable."
+  ],
+  "limits": [
+    "No actual second-person review or customer underwriting acceptance.",
+    "Only registered synthetic training adapter used; no external provider, payment or screening verification.",
+    "Read-only runtime/recovery proof is recorded separately."
+  ],
+  "workflowCreatedOnBuildSha": "af1464e1cd853b4b1db2f0da1eee7c75e1e88ba6",
+  "finalReloadVerified": true,
+  "finalReloadWorkflowHashesMatch": true
+}

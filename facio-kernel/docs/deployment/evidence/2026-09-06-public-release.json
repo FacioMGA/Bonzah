@@ -1,0 +1,40 @@
+{
+  "observedAt": "2026-09-06T15:50:00.732797+00:00",
+  "releaseSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+  "health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "productionReady": false
+  },
+  "assetsSha256": {
+    "/": "7b4d501a4222118adc01571f59bdf2b3ac5440f10b21a78918b73204ef0b2ea8",
+    "/studio": "7b4d501a4222118adc01571f59bdf2b3ac5440f10b21a78918b73204ef0b2ea8",
+    "/app.js": "ed2fbb0d99ad372522de22d2923265db69a009185c929ab837f0327e541c0a54",
+    "/styles.css": "e22400237fe0a701d18fdb5eeb3a393bfe93dda04b1810990c3a48a90a24fdd9"
+  },
+  "providers": [
+    {
+      "id": "microsoft",
+      "label": "Microsoft organization account"
+    },
+    {
+      "id": "google",
+      "label": "Google Workspace"
+    }
+  ],
+  "oauthIssuer": "https://platform.facio.io/",
+  "mcpResource": "https://platform.facio.io/mcp",
+  "resourceMetadataUrl": "https://platform.facio.io/.well-known/oauth-protected-resource/mcp",
+  "unauthenticatedStatus": {
+    "/api/session": 401,
+    "/api/control/tenants": 401,
+    "/mcp": 401
+  },
+  "realIdentityLogin": "user_confirmed_and_browser_observed_by_infra_agent",
+  "actualChatGPTConnection": "not_verified"
+}

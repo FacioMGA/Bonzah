@@ -1,0 +1,78 @@
+name: Deploy shared Kernel sandbox
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: kernel-shared-sandbox-deploy
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.2'
+          cache: npm
+      - name: Install pinned Rust compiler and WASM target
+        run: |
+          rustup toolchain install 1.97.1 --profile minimal --component rustfmt --target wasm32-unknown-unknown
+          rustup default 1.97.1
+      - run: npm ci
+      - run: npm run check
+      - run: git diff --exit-code -- artifacts/contracts
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - run: npm run test:insurance-browser
+      - run: npm run test:intern-browser
+      - run: npm run test:oauth-browser
+      - run: npm run test:configuration-browser
+      - run: npm run test:approval-browser
+      - run: npm run test:provider-browser
+      - run: npm run test:finance-browser
+      - run: npm run test:documents-browser
+      - run: npm run test:service-browser
+      - run: npm run test:v2-browser
+      - run: npm run test:fnol-browser
+      - run: npm run test:ui-state-browser
+      - run: npm run test:conditional-browser
+      - name: Build immutable release
+        run: |
+          docker build --platform linux/amd64 --build-arg BUILD_SHA="$GITHUB_SHA" --tag "facio-kernel:$GITHUB_SHA" .
+          docker save "facio-kernel:$GITHUB_SHA" | gzip > image.tar.gz
+          sha256sum image.tar.gz > image.sha256
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.KERNEL_AZURE_DEPLOY_CLIENT_ID }}
+          tenant-id: ${{ vars.KERNEL_AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.KERNEL_AZURE_SUBSCRIPTION_ID }}
+      - name: Upload immutable release bundle
+        env:
+          KERNEL_STORAGE_ACCOUNT: ${{ vars.KERNEL_STORAGE_ACCOUNT }}
+        run: |
+          published=$(az storage blob exists --account-name "$KERNEL_STORAGE_ACCOUNT" --container-name releases --name "$GITHUB_SHA/image.sha256" --auth-mode login --query exists -o tsv)
+          if test "$published" != true; then
+            uploaded=$(az storage blob exists --account-name "$KERNEL_STORAGE_ACCOUNT" --container-name releases --name "$GITHUB_SHA/image.tar.gz" --auth-mode login --query exists -o tsv)
+            if test "$uploaded" = true; then
+              az storage blob download --account-name "$KERNEL_STORAGE_ACCOUNT" --container-name releases --name "$GITHUB_SHA/image.tar.gz" --file image.tar.gz --auth-mode login --overwrite true --only-show-errors -o none
+              docker load --input image.tar.gz
+              test "$(docker image inspect "facio-kernel:$GITHUB_SHA" --format '{{index .Config.Labels "org.opencontainers.image.revision"}}')" = "$GITHUB_SHA"
+              sha256sum image.tar.gz > image.sha256
+            else
+              az storage blob upload --account-name "$KERNEL_STORAGE_ACCOUNT" --container-name releases --name "$GITHUB_SHA/image.tar.gz" --file image.tar.gz --auth-mode login --overwrite false --only-show-errors -o none
+            fi
+            az storage blob upload --account-name "$KERNEL_STORAGE_ACCOUNT" --container-name releases --name "$GITHUB_SHA/image.sha256" --file image.sha256 --auth-mode login --overwrite false --only-show-errors -o none
+          fi
+      - name: Replay copied persisted evidence with the exact candidate
+        run: python3 deploy/run-preflight.py --sha "$GITHUB_SHA"
+      - name: Activate verified SHA on the isolated VM
+        run: |
+          az vm run-command invoke --resource-group rg-facio-kernel-sandbox-weu --name vm-kernel-sandbox --command-id RunShellScript --scripts "/bin/bash /srv/facio-kernel/deploy/activate.sh $GITHUB_SHA" --query 'value[].message' -o tsv
+      - name: Verify public HTTPS build
+        env:
+          KERNEL_PUBLIC_URL: ${{ vars.KERNEL_PUBLIC_URL }}
+        run: |
+          curl --fail --silent --show-error "$KERNEL_PUBLIC_URL/health" | jq -e --arg sha "$GITHUB_SHA" '.buildSha == $sha and .environment == "sandbox" and .mode == "hosted-sandbox" and .moneyEngine.engine == "rust-wasm" and .moneyEngine.abiVersion == 1 and (.moneyEngine.wasmSha256 | test("^[a-f0-9]{64}$"))'

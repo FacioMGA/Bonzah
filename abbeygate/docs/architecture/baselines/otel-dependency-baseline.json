@@ -1,0 +1,2374 @@
+{
+  "generatedAt": "2026-03-27T22:27:45.343Z",
+  "summary": {
+    "packageCount": 40,
+    "multiVersionCount": 9
+  },
+  "packages": [
+    {
+      "name": "@opentelemetry/api-logs",
+      "versions": [
+        "0.200.0",
+        "0.205.0",
+        "0.208.0"
+      ],
+      "versionCount": 3
+    },
+    {
+      "name": "@opentelemetry/core",
+      "versions": [
+        "2.1.0",
+        "2.2.0",
+        "2.5.1"
+      ],
+      "versionCount": 3
+    },
+    {
+      "name": "@opentelemetry/resources",
+      "versions": [
+        "2.1.0",
+        "2.2.0",
+        "2.5.1"
+      ],
+      "versionCount": 3
+    },
+    {
+      "name": "@opentelemetry/context-async-hooks",
+      "versions": [
+        "2.2.0",
+        "2.5.1"
+      ],
+      "versionCount": 2
+    },
+    {
+      "name": "@opentelemetry/instrumentation",
+      "versions": [
+        "0.200.0",
+        "0.208.0"
+      ],
+      "versionCount": 2
+    },
+    {
+      "name": "@opentelemetry/sdk-logs",
+      "versions": [
+        "0.205.0",
+        "0.208.0"
+      ],
+      "versionCount": 2
+    },
+    {
+      "name": "@opentelemetry/sdk-metrics",
+      "versions": [
+        "2.2.0",
+        "2.5.1"
+      ],
+      "versionCount": 2
+    },
+    {
+      "name": "@opentelemetry/sdk-trace-base",
+      "versions": [
+        "2.2.0",
+        "2.5.1"
+      ],
+      "versionCount": 2
+    },
+    {
+      "name": "@opentelemetry/sdk-trace-node",
+      "versions": [
+        "2.2.0",
+        "2.5.1"
+      ],
+      "versionCount": 2
+    },
+    {
+      "name": "@opentelemetry/api",
+      "versions": [
+        "1.9.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-logs-otlp-grpc",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-logs-otlp-http",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-logs-otlp-proto",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-metrics-otlp-http",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-metrics-otlp-proto",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-prometheus",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-trace-otlp-grpc",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-trace-otlp-http",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-trace-otlp-proto",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/exporter-zipkin",
+      "versions": [
+        "2.2.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/instrumentation-bunyan",
+      "versions": [
+        "0.54.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/instrumentation-http",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/instrumentation-mongodb",
+      "versions": [
+        "0.61.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/instrumentation-mysql",
+      "versions": [
+        "0.54.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/instrumentation-pg",
+      "versions": [
+        "0.61.2"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/instrumentation-redis",
+      "versions": [
+        "0.57.2"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/instrumentation-winston",
+      "versions": [
+        "0.53.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/otlp-exporter-base",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/otlp-grpc-exporter-base",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/otlp-transformer",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/propagator-b3",
+      "versions": [
+        "2.2.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/propagator-jaeger",
+      "versions": [
+        "2.2.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/redis-common",
+      "versions": [
+        "0.38.2"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/resource-detector-azure",
+      "versions": [
+        "0.7.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/sdk-node",
+      "versions": [
+        "0.208.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/sdk-trace-web",
+      "versions": [
+        "2.5.1"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/semantic-conventions",
+      "versions": [
+        "1.39.0"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/sql-common",
+      "versions": [
+        "0.41.2"
+      ],
+      "versionCount": 1
+    },
+    {
+      "name": "@opentelemetry/winston-transport",
+      "versions": [
+        "0.19.0"
+      ],
+      "versionCount": 1
+    }
+  ],
+  "roots": [
+    {
+      "rootPackage": "applicationinsights",
+      "otelPackages": [
+        {
+          "name": "@opentelemetry/api-logs",
+          "versions": [
+            "0.200.0",
+            "0.205.0",
+            "0.208.0"
+          ],
+          "versionCount": 3
+        },
+        {
+          "name": "@opentelemetry/core",
+          "versions": [
+            "2.1.0",
+            "2.2.0",
+            "2.5.1"
+          ],
+          "versionCount": 3
+        },
+        {
+          "name": "@opentelemetry/resources",
+          "versions": [
+            "2.1.0",
+            "2.2.0",
+            "2.5.1"
+          ],
+          "versionCount": 3
+        },
+        {
+          "name": "@opentelemetry/context-async-hooks",
+          "versions": [
+            "2.2.0",
+            "2.5.1"
+          ],
+          "versionCount": 2
+        },
+        {
+          "name": "@opentelemetry/instrumentation",
+          "versions": [
+            "0.200.0",
+            "0.208.0"
+          ],
+          "versionCount": 2
+        },
+        {
+          "name": "@opentelemetry/sdk-logs",
+          "versions": [
+            "0.205.0",
+            "0.208.0"
+          ],
+          "versionCount": 2
+        },
+        {
+          "name": "@opentelemetry/sdk-metrics",
+          "versions": [
+            "2.2.0",
+            "2.5.1"
+          ],
+          "versionCount": 2
+        },
+        {
+          "name": "@opentelemetry/sdk-trace-base",
+          "versions": [
+            "2.2.0",
+            "2.5.1"
+          ],
+          "versionCount": 2
+        },
+        {
+          "name": "@opentelemetry/sdk-trace-node",
+          "versions": [
+            "2.2.0",
+            "2.5.1"
+          ],
+          "versionCount": 2
+        },
+        {
+          "name": "@opentelemetry/api",
+          "versions": [
+            "1.9.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-logs-otlp-grpc",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-logs-otlp-http",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-logs-otlp-proto",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-metrics-otlp-grpc",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-metrics-otlp-http",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-metrics-otlp-proto",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-prometheus",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-trace-otlp-grpc",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-trace-otlp-http",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-trace-otlp-proto",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/exporter-zipkin",
+          "versions": [
+            "2.2.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/instrumentation-bunyan",
+          "versions": [
+            "0.54.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/instrumentation-http",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/instrumentation-mongodb",
+          "versions": [
+            "0.61.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/instrumentation-mysql",
+          "versions": [
+            "0.54.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/instrumentation-pg",
+          "versions": [
+            "0.61.2"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/instrumentation-redis",
+          "versions": [
+            "0.57.2"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/instrumentation-winston",
+          "versions": [
+            "0.53.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/otlp-exporter-base",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/otlp-grpc-exporter-base",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/otlp-transformer",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/propagator-b3",
+          "versions": [
+            "2.2.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/propagator-jaeger",
+          "versions": [
+            "2.2.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/redis-common",
+          "versions": [
+            "0.38.2"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/resource-detector-azure",
+          "versions": [
+            "0.7.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/sdk-node",
+          "versions": [
+            "0.208.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/sdk-trace-web",
+          "versions": [
+            "2.5.1"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/semantic-conventions",
+          "versions": [
+            "1.39.0"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/sql-common",
+          "versions": [
+            "0.41.2"
+          ],
+          "versionCount": 1
+        },
+        {
+          "name": "@opentelemetry/winston-transport",
+          "versions": [
+            "0.19.0"
+          ],
+          "versionCount": 1
+        }
+      ]
+    },
+    {
+      "rootPackage": "vitest",
+      "otelPackages": [
+        {
+          "name": "@opentelemetry/api",
+          "versions": [
+            "1.9.0"
+          ],
+          "versionCount": 1
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "parent": "@azure/monitor-opentelemetry-exporter",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.205.0"
+    },
+    {
+      "parent": "@opentelemetry/api-logs",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry-exporter",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry-exporter",
+      "package": "@opentelemetry/core",
+      "version": "2.1.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry-exporter",
+      "package": "@opentelemetry/resources",
+      "version": "2.1.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.1.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry-exporter",
+      "package": "@opentelemetry/sdk-logs",
+      "version": "0.205.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-logs",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.205.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-logs",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-logs",
+      "package": "@opentelemetry/core",
+      "version": "2.1.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-logs",
+      "package": "@opentelemetry/resources",
+      "version": "2.1.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry-exporter",
+      "package": "@opentelemetry/sdk-metrics",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry-exporter",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry-exporter",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/instrumentation-bunyan",
+      "version": "0.54.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-bunyan",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-bunyan",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-bunyan",
+      "package": "@opentelemetry/instrumentation",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/instrumentation-http",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-http",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-http",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-http",
+      "package": "@opentelemetry/instrumentation",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-http",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/instrumentation-mongodb",
+      "version": "0.61.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-mongodb",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-mongodb",
+      "package": "@opentelemetry/instrumentation",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/instrumentation-mysql",
+      "version": "0.54.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-mysql",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-mysql",
+      "package": "@opentelemetry/instrumentation",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/instrumentation-pg",
+      "version": "0.61.2"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-pg",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-pg",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-pg",
+      "package": "@opentelemetry/instrumentation",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-pg",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-pg",
+      "package": "@opentelemetry/sql-common",
+      "version": "0.41.2"
+    },
+    {
+      "parent": "@opentelemetry/sql-common",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sql-common",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/instrumentation-redis",
+      "version": "0.57.2"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-redis",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-redis",
+      "package": "@opentelemetry/instrumentation",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-redis",
+      "package": "@opentelemetry/redis-common",
+      "version": "0.38.2"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-redis",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/instrumentation-winston",
+      "version": "0.53.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-winston",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-winston",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation-winston",
+      "package": "@opentelemetry/instrumentation",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/instrumentation",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/resource-detector-azure",
+      "version": "0.7.0"
+    },
+    {
+      "parent": "@opentelemetry/resource-detector-azure",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resource-detector-azure",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/resource-detector-azure",
+      "package": "@opentelemetry/resources",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/resource-detector-azure",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/resources",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/sdk-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/sdk-metrics",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/sdk-node",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-logs-otlp-grpc",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-grpc",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-grpc",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-grpc",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-grpc",
+      "package": "@opentelemetry/otlp-grpc-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-grpc-exporter-base",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-grpc-exporter-base",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-grpc-exporter-base",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-grpc-exporter-base",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-grpc",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-grpc",
+      "package": "@opentelemetry/sdk-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-logs-otlp-http",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-logs-otlp-proto",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-proto",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-proto",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-proto",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-proto",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-proto",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-proto",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-proto",
+      "package": "@opentelemetry/sdk-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-proto",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "package": "@opentelemetry/exporter-metrics-otlp-http",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "package": "@opentelemetry/otlp-grpc-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "package": "@opentelemetry/sdk-metrics",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-metrics-otlp-http",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-metrics-otlp-proto",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-prometheus",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-prometheus",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-prometheus",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-prometheus",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-prometheus",
+      "package": "@opentelemetry/sdk-metrics",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-trace-otlp-grpc",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-grpc",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-grpc",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-grpc",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-grpc",
+      "package": "@opentelemetry/otlp-grpc-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-grpc",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-grpc",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-grpc",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-trace-otlp-http",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-trace-otlp-proto",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-proto",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-proto",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-proto",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-proto",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-proto",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-proto",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/exporter-zipkin",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-zipkin",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-zipkin",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-zipkin",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-zipkin",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-zipkin",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/instrumentation",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/propagator-b3",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/propagator-b3",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/propagator-b3",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/propagator-jaeger",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/propagator-jaeger",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/propagator-jaeger",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/sdk-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/sdk-metrics",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/sdk-trace-node",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-node",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-node",
+      "package": "@opentelemetry/context-async-hooks",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/context-async-hooks",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-node",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-node",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-node",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/sdk-trace-node",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@azure/monitor-opentelemetry",
+      "package": "@opentelemetry/winston-transport",
+      "version": "0.19.0"
+    },
+    {
+      "parent": "@opentelemetry/winston-transport",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@azure/opentelemetry-instrumentation-azure-sdk",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@azure/opentelemetry-instrumentation-azure-sdk",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@azure/opentelemetry-instrumentation-azure-sdk",
+      "package": "@opentelemetry/instrumentation",
+      "version": "0.200.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.200.0"
+    },
+    {
+      "parent": "@opentelemetry/api-logs",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/instrumentation",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@azure/opentelemetry-instrumentation-azure-sdk",
+      "package": "@opentelemetry/sdk-trace-web",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-web",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-web",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-web",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/api-logs",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/exporter-logs-otlp-http",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-http",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-http",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-http",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-http",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-http",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-transformer",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-transformer",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-transformer",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-transformer",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-transformer",
+      "package": "@opentelemetry/sdk-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-transformer",
+      "package": "@opentelemetry/sdk-metrics",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-transformer",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-logs-otlp-http",
+      "package": "@opentelemetry/sdk-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/exporter-metrics-otlp-http",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-http",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-http",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-http",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-http",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-http",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-http",
+      "package": "@opentelemetry/sdk-metrics",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/exporter-metrics-otlp-proto",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-proto",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-proto",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-proto",
+      "package": "@opentelemetry/exporter-metrics-otlp-http",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-proto",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-proto",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-proto",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-metrics-otlp-proto",
+      "package": "@opentelemetry/sdk-metrics",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/exporter-trace-otlp-http",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-http",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-http",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-http",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-http",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-http",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/exporter-trace-otlp-http",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/otlp-exporter-base",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-exporter-base",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-exporter-base",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/otlp-exporter-base",
+      "package": "@opentelemetry/otlp-transformer",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/resources",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/sdk-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-logs",
+      "package": "@opentelemetry/api-logs",
+      "version": "0.208.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-logs",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-logs",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/core",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-logs",
+      "package": "@opentelemetry/resources",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/core",
+      "version": "2.2.0"
+    },
+    {
+      "parent": "@opentelemetry/resources",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/sdk-metrics",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/sdk-metrics",
+      "package": "@opentelemetry/resources",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/resources",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-base",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/sdk-trace-node",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-node",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-node",
+      "package": "@opentelemetry/context-async-hooks",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/context-async-hooks",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-node",
+      "package": "@opentelemetry/core",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "@opentelemetry/sdk-trace-node",
+      "package": "@opentelemetry/sdk-trace-base",
+      "version": "2.5.1"
+    },
+    {
+      "parent": "applicationinsights",
+      "package": "@opentelemetry/semantic-conventions",
+      "version": "1.39.0"
+    },
+    {
+      "parent": "vitest",
+      "package": "@opentelemetry/api",
+      "version": "1.9.0"
+    }
+  ]
+}

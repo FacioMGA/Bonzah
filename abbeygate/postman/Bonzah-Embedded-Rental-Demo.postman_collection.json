@@ -1,0 +1,336 @@
+{
+  "info": {
+    "name": "Bonzah Embedded Rental Insurance \u2014 DEMO BUILD",
+    "description": "Synthetic, non-production Summit Rentals / Bonzah API demonstration. No real customer, payment, carrier or policy data.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{partnerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.request.headers.upsert({key: 'X-Partner-Id', value: pm.environment.get('partnerId')});",
+          "pm.request.headers.upsert({key: 'X-Tenant-Slug', value: pm.environment.get('tenantSlug')});",
+          "pm.request.headers.upsert({key: 'X-Correlation-Id', value: pm.variables.replaceIn('{{$guid}}')});"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Create golden RAV4 quote",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "golden-rav4-001"
+          }
+        ],
+        "url": "{{baseUrl}}/api/v1/bonzah/quotes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"programId\": \"BONZAH-US-DEMO-2026\",\n  \"channel\": \"API\",\n  \"effectiveDate\": \"2026-09-03\",\n  \"risk\": {\n    \"pickup\": {\"country\": \"US\", \"state\": \"CO\", \"location\": \"Denver International Airport\"},\n    \"residence\": {\"country\": \"US\", \"state\": \"CA\"},\n    \"rentalStart\": \"2026-09-18T10:00:00-06:00\",\n    \"rentalEnd\": \"2026-09-22T10:00:00-06:00\",\n    \"driver\": {\"age\": 35, \"licenceValid\": true},\n    \"vehicle\": {\"id\": \"rav4\", \"year\": 2025, \"make\": \"Toyota\", \"model\": \"RAV4\", \"class\": \"suv\", \"declaredValue\": 31500, \"repairProfile\": \"standard\", \"powertrain\": \"hybrid\"}\n  },\n  \"coverages\": [\"CDW\", \"RCLI\", \"SLI\", \"PAI_PEI\"]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Golden quote is canonical', () => pm.response.to.have.status(201));",
+              "const q = pm.response.json().data;",
+              "pm.environment.set('quoteId', q.quoteId);",
+              "pm.environment.set('integrityToken', q.integrityToken);",
+              "pm.environment.set('quoteTotal', q.total);",
+              "pm.test('Illustrative rule version returned', () => pm.expect(q.ruleVersion).to.eql('bonzah-rental-foundation@2.0.0'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Repeat same quote idempotently",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "golden-rav4-001"
+          }
+        ],
+        "url": "{{baseUrl}}/api/v1/bonzah/quotes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"programId\": \"BONZAH-US-DEMO-2026\", \"channel\": \"API\", \"effectiveDate\": \"2026-09-03\",\n  \"risk\": {\"pickup\": {\"country\": \"US\", \"state\": \"CO\"}, \"residence\": {\"country\": \"US\", \"state\": \"CA\"}, \"rentalStart\": \"2026-09-18T10:00:00-06:00\", \"rentalEnd\": \"2026-09-22T10:00:00-06:00\", \"driver\": {\"age\": 35, \"licenceValid\": true}, \"vehicle\": {\"id\": \"rav4\", \"year\": 2025, \"make\": \"Toyota\", \"model\": \"RAV4\", \"class\": \"suv\", \"declaredValue\": 31500, \"repairProfile\": \"standard\", \"powertrain\": \"hybrid\"}},\n  \"coverages\": [\"CDW\", \"RCLI\", \"SLI\", \"PAI_PEI\"]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('No duplicate quote', () => pm.expect(pm.response.json().data.quoteId).to.eql(pm.environment.get('quoteId')));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Retrieve exact website/API quote",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/bonzah/quotes/{{quoteId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Rated snapshot matches', () => { const q=pm.response.json().data; pm.expect(q.quoteId).to.eql(pm.environment.get('quoteId')); pm.expect(String(q.total)).to.eql(pm.environment.get('quoteTotal')); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Compare vehicle premiums",
+      "item": [
+        {
+          "name": "Corolla \u2014 lower",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "compare-corolla"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/bonzah/quotes",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"programId\":\"BONZAH-US-DEMO-2026\",\"channel\":\"API\",\"effectiveDate\":\"2026-09-03\",\"risk\":{\"pickup\":{\"country\":\"US\",\"state\":\"CO\"},\"residence\":{\"country\":\"US\",\"state\":\"CA\"},\"rentalStart\":\"2026-09-18T10:00:00-06:00\",\"rentalEnd\":\"2026-09-22T10:00:00-06:00\",\"driver\":{\"age\":35,\"licenceValid\":true},\"vehicle\":{\"year\":2025,\"make\":\"Toyota\",\"model\":\"Corolla\",\"class\":\"compact\",\"declaredValue\":24000,\"repairProfile\":\"low\",\"powertrain\":\"combustion\"}},\"coverages\":[\"CDW\"]}"
+            }
+          }
+        },
+        {
+          "name": "Tesla Model 3 \u2014 higher",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "compare-tesla"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/bonzah/quotes",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"programId\":\"BONZAH-US-DEMO-2026\",\"channel\":\"API\",\"effectiveDate\":\"2026-09-03\",\"risk\":{\"pickup\":{\"country\":\"US\",\"state\":\"CO\"},\"residence\":{\"country\":\"US\",\"state\":\"CA\"},\"rentalStart\":\"2026-09-18T10:00:00-06:00\",\"rentalEnd\":\"2026-09-22T10:00:00-06:00\",\"driver\":{\"age\":35,\"licenceValid\":true},\"vehicle\":{\"year\":2025,\"make\":\"Tesla\",\"model\":\"Model 3\",\"class\":\"sedan\",\"declaredValue\":47500,\"repairProfile\":\"high\",\"powertrain\":\"ev\"}},\"coverages\":[\"CDW\"]}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Excluded Porsche",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "decline-porsche"
+          }
+        ],
+        "url": "{{baseUrl}}/api/v1/bonzah/quotes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"programId\":\"BONZAH-US-DEMO-2026\",\"channel\":\"API\",\"effectiveDate\":\"2026-09-03\",\"risk\":{\"pickup\":{\"country\":\"US\",\"state\":\"CO\"},\"residence\":{\"country\":\"US\",\"state\":\"CA\"},\"rentalStart\":\"2026-09-18T10:00:00-06:00\",\"rentalEnd\":\"2026-09-22T10:00:00-06:00\",\"driver\":{\"age\":35,\"licenceValid\":true},\"vehicle\":{\"year\":2025,\"make\":\"Porsche\",\"model\":\"911 Carrera\",\"class\":\"sedan\",\"declaredValue\":128000,\"repairProfile\":\"high\",\"powertrain\":\"combustion\"}},\"coverages\":[\"CDW\"]}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Porsche is declined without price', () => {const q=pm.response.json().data; pm.expect(q.status).to.eql('DECLINED'); pm.expect(q.total).to.eql(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Invalid SLI without RCLI",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "invalid-sli"
+          }
+        ],
+        "url": "{{baseUrl}}/api/v1/bonzah/quotes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"programId\":\"BONZAH-US-DEMO-2026\",\"channel\":\"API\",\"effectiveDate\":\"2026-09-03\",\"risk\":{\"pickup\":{\"country\":\"US\",\"state\":\"CO\"},\"residence\":{\"country\":\"US\",\"state\":\"CA\"},\"rentalStart\":\"2026-09-18T10:00:00-06:00\",\"rentalEnd\":\"2026-09-22T10:00:00-06:00\",\"driver\":{\"age\":35,\"licenceValid\":true},\"vehicle\":{\"year\":2025,\"make\":\"Toyota\",\"model\":\"RAV4\",\"class\":\"suv\",\"declaredValue\":31500,\"repairProfile\":\"standard\",\"powertrain\":\"hybrid\"}},\"coverages\":[\"CDW\",\"SLI\"]}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Dependency rejected', () => pm.response.to.have.status(422));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Simulate bind",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "bind-rav4-001"
+          }
+        ],
+        "url": "{{baseUrl}}/api/v1/bonzah/quotes/{{quoteId}}/bind",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"integrityToken\":\"{{integrityToken}}\",\"payment\":{\"provider\":\"SIMULATED\",\"token\":\"simulated-payment-token\"},\"expectedTotal\":{{quoteTotal}},\"policyholder\":{\"firstName\":\"Alex\",\"lastName\":\"Morgan\",\"dateOfBirth\":\"1991-06-15\",\"email\":\"alex.morgan@example.test\",\"phone\":\"+15550102040\",\"address\":{\"line1\":\"123 Summit Demo Way\",\"city\":\"Denver\",\"state\":\"CA\",\"postalCode\":\"80202\",\"country\":\"US\"},\"licence\":{\"number\":\"D0000000\",\"state\":\"CA\"}},\"rentalAgreement\":{\"rentalCompany\":\"Summit Rentals\"},\"consents\":{\"electronicDelivery\":true,\"termsAndPrivacyAccepted\":true,\"exclusionsAccepted\":true,\"truthfulnessAccepted\":true,\"liabilityNoticeAccepted\":true,\"wordingVersion\":\"bonzah-rental-us-2026.1\",\"acceptedAt\":\"2026-09-07T10:00:00-06:00\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Simulated confirmation only', () => pm.expect(pm.response.json().data.status).to.eql('SIMULATED_CONFIRMED'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. Retry bind without duplicate",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "bind-rav4-001"
+          }
+        ],
+        "url": "{{baseUrl}}/api/v1/bonzah/quotes/{{quoteId}}/bind",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"integrityToken\":\"{{integrityToken}}\",\"payment\":{\"provider\":\"SIMULATED\",\"token\":\"simulated-payment-token\"},\"expectedTotal\":{{quoteTotal}},\"policyholder\":{\"firstName\":\"Alex\",\"lastName\":\"Morgan\",\"dateOfBirth\":\"1991-06-15\",\"email\":\"alex.morgan@example.test\",\"phone\":\"+15550102040\",\"address\":{\"line1\":\"123 Summit Demo Way\",\"city\":\"Denver\",\"state\":\"CA\",\"postalCode\":\"80202\",\"country\":\"US\"},\"licence\":{\"number\":\"D0000000\",\"state\":\"CA\"}},\"rentalAgreement\":{\"rentalCompany\":\"Summit Rentals\"},\"consents\":{\"electronicDelivery\":true,\"termsAndPrivacyAccepted\":true,\"exclusionsAccepted\":true,\"truthfulnessAccepted\":true,\"liabilityNoticeAccepted\":true,\"wordingVersion\":\"bonzah-rental-us-2026.1\",\"acceptedAt\":\"2026-09-07T10:00:00-06:00\"}}"
+        }
+      }
+    },
+    {
+      "name": "9. Price preview (non-bindable)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/v1/bonzah/price-preview",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"pickup\":{\"country\":\"US\",\"state\":\"CO\"},\"rentalStart\":\"2026-09-18T10:00:00-06:00\",\"rentalEnd\":\"2026-09-22T10:00:00-06:00\",\"vehicle\":{\"year\":2025,\"make\":\"Toyota\",\"model\":\"RAV4\",\"class\":\"suv\",\"declaredValue\":31500,\"repairProfile\":\"standard\",\"powertrain\":\"hybrid\"},\"coverages\":[\"CDW\",\"RCLI\",\"SLI\",\"PAI_PEI\"]}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Non-bindable preview returned', () => { const d = pm.response.json().data; pm.expect(d.total).to.be.above(0); pm.expect(d.demoStatus).to.eql('DEMO BUILD'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "10. Reject mismatched total",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "bind-mismatch-001"
+          }
+        ],
+        "url": "{{baseUrl}}/api/v1/bonzah/quotes/{{quoteId}}/bind",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"integrityToken\":\"{{integrityToken}}\",\"payment\":{\"provider\":\"SIMULATED\",\"token\":\"simulated-payment-token\"},\"expectedTotal\":999999,\"policyholder\":{\"firstName\":\"Alex\",\"lastName\":\"Morgan\",\"dateOfBirth\":\"1991-06-15\",\"email\":\"alex.morgan@example.test\",\"phone\":\"+15550102040\",\"address\":{\"line1\":\"123 Summit Demo Way\",\"city\":\"Denver\",\"state\":\"CA\",\"postalCode\":\"80202\",\"country\":\"US\"},\"licence\":{\"number\":\"D0000000\",\"state\":\"CA\"}},\"rentalAgreement\":{\"rentalCompany\":\"Summit Rentals\"},\"consents\":{\"electronicDelivery\":true,\"termsAndPrivacyAccepted\":true,\"exclusionsAccepted\":true,\"truthfulnessAccepted\":true,\"liabilityNoticeAccepted\":true,\"wordingVersion\":\"bonzah-rental-us-2026.1\",\"acceptedAt\":\"2026-09-07T10:00:00-06:00\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Client total mismatch rejected', () => { pm.response.to.have.status(409); pm.expect(pm.response.json().error.code).to.eql('CLIENT_TOTAL_MISMATCH'); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

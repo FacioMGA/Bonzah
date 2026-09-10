@@ -1,0 +1,29 @@
+Thread-ID: CY-MTR-033
+Claim-Ref: CY-MTR-033
+Subject: CY-MTR-033 — broker delay
+===
+
+From: Handler <claims@abbeygate.example>
+To: slowbroker@delayed.example
+Date: 2026-01-20 09:00
+Subject: CY-MTR-033 — documents requested
+
+Please provide motor claim form, photos and estimates.
+
+---
+From: Handler <claims@abbeygate.example>
+To: slowbroker@delayed.example
+Date: 2026-02-10 09:00
+Subject: Chaser — CY-MTR-033
+
+Chasing the 20/01 request. No response received.
+
+---
+From: Handler <claims@abbeygate.example>
+To: slowbroker@delayed.example
+Date: 2026-03-04 09:00
+Subject: Second chaser — CY-MTR-033
+
+Second chaser. Insured contacted us directly today asking for
+progress. This is the fourth claim with delayed responses from
+your office in the past quarter.

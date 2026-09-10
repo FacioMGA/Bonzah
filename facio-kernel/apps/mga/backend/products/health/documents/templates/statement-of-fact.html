@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{tenantBrand.displayName}} Immigration Medical — Statement of Fact</title>
+  <link rel="stylesheet" href="styles/pdf-theme.css" />
+  <style>
+    .page { padding: 28px 32px; }
+    .doc-title { background: var(--brand-navy); color: #fff; padding: 8px 14px; font-weight: 800; letter-spacing: 0.04em; font-size: 14px; text-align: center; margin-bottom: 12px; }
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table td { padding: 5px 8px; font-size: 11.5px; vertical-align: top; border-bottom: 1px solid #e5e7eb; }
+    .info-table td.label { width: 35%; color: #4b5563; font-weight: 600; }
+    .section-title { font-weight: 800; color: var(--brand-navy); margin: 18px 0 6px; font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .declaration { padding: 12px; background: var(--surface); border-left: 3px solid var(--accent-teal); font-size: 11.5px; line-height: 1.55; margin-top: 12px; }
+    .signature-block { margin-top: 28px; display: flex; justify-content: space-between; font-size: 11px; }
+    .insured-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+    .insured-table th, .insured-table td { font-size: 10.5px; padding: 5px 7px; border: 1px solid #d1d5db; text-align: left; }
+    .insured-table th { background: var(--surface-2); font-weight: 700; }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <div class="doc-title">STATEMENT OF FACT</div>
+    <p style="font-size:11.5px;color:#374151;">
+      This Statement of Fact records the information You have provided to {{coverholderName}} in support of the Immigration Medical Insurance Policy issued under Coverholder Appointment Agreement UMR {{coverholderUmr}}. Please review the entries below carefully — any inaccuracy may affect cover or claims validation.
+    </p>
+
+    <div class="section-title">Policy</div>
+    <table class="info-table">
+      <tr><td class="label">Policy Number</td><td>{{policyNumber}}</td></tr>
+      <tr><td class="label">Cover Type</td><td>{{coverTypeLabel}}</td></tr>
+      <tr><td class="label">Inception Date</td><td>{{inceptionDateDisplay}}</td></tr>
+      <tr><td class="label">Expiry Date</td><td>{{expiryDateDisplay}}</td></tr>
+      <tr><td class="label">Country of Cover</td><td>{{countryOfCover}}</td></tr>
+      <tr><td class="label">GESY Beneficiary</td><td>{{#if isGhsBeneficiary}}Yes — GESY doctor visits & medications extension applies{{else}}No — Standard inpatient, outpatient & repatriation cover applies{{/if}}</td></tr>
+    </table>
+
+    <div class="section-title">Proposer</div>
+    <table class="info-table">
+      <tr><td class="label">Full Name</td><td>{{proposerName}}</td></tr>
+      <tr><td class="label">Date of Birth</td><td>{{proposerDateOfBirthDisplay}}</td></tr>
+      <tr><td class="label">Gender</td><td>{{proposerGenderLabel}}</td></tr>
+      <tr><td class="label">ID / Passport Number</td><td>{{proposerIdentityNumber}}</td></tr>
+      <tr><td class="label">Occupation</td><td>{{proposerOccupationLabel}}</td></tr>
+      <tr><td class="label">Mailing Address</td><td>{{proposerMailingAddress}}</td></tr>
+      <tr><td class="label">Telephone</td><td>{{proposerTelephone}}</td></tr>
+      <tr><td class="label">Email</td><td>{{proposerEmail}}</td></tr>
+    </table>
+
+    <div class="section-title">Insured Person{{#unless isSingleInsured}}s{{/unless}}</div>
+    <table class="insured-table">
+      <thead>
+        <tr><th>#</th><th>Full Name</th><th>ID / Passport</th><th>Date of Birth</th><th>Gender</th><th>Occupation</th><th>Age</th></tr>
+      </thead>
+      <tbody>
+        {{#each insuredPersons}}
+        <tr>
+          <td>{{this.ordinal}}</td>
+          <td>{{this.fullName}}</td>
+          <td>{{this.idNumber}}</td>
+          <td>{{this.dateOfBirthDisplay}}</td>
+          <td>{{this.genderLabel}}</td>
+          <td>{{this.occupationLabel}}</td>
+          <td>{{this.age}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="declaration">
+      You confirmed that the information provided is accurate and complete. You acknowledged that we can only insure expatriate residents of the Republic of Cyprus, that you are legally permitted to reside in Cyprus, and that you will remain resident in Cyprus for the duration of the policy. You also acknowledged the Medical Notice, the How to Claim / Complain / Privacy guidance, and consented to the use of your personal data for the purposes of this insurance.
+    </div>
+
+    <div class="signature-block">
+      <div><strong>Date:</strong> {{issueDateDisplay}}</div>
+      <div>
+        For and on behalf of {{coverholderName}}
+      </div>
+    </div>
+  </section>
+</body>
+</html>

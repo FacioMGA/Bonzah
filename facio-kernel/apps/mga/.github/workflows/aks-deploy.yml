@@ -1,0 +1,519 @@
+name: AKS Deploy
+
+on:
+  # Fully-automated promotion: when a STAGING deploy of a main SHA succeeds,
+  # auto-promote that exact SHA to production. The verify-promotion job below
+  # still re-verifies staging success + main ancestry, and the deploy uses
+  # atomic Helm with a /health smoke gate (auto-rollback on failure). Manual
+  # workflow_dispatch remains available for hotfixes / emergency overrides.
+  workflow_run:
+    workflows: ["AKS Deploy (Staging)"]
+    branches: [main]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Full 40-character commit SHA from a successful AKS Deploy (Staging) run"
+        required: true
+      run_migration:
+        description: "Run prisma migrate deploy via the Helm pre-upgrade Job (default 'true' — migrations are idempotent and applying a no-op is cheap)"
+        required: false
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+      skip_staging_verify:
+        description: "EMERGENCY override: skip the staging-success preflight. Only use when staging is intentionally unavailable (e.g. not yet provisioned) and a prod hotfix must ship. Prod's own /health smoke still gates the deploy."
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      account_intelligence_backfill_run_id:
+        description: "Optional DNS-safe id to run the reviewed account-intelligence projection recovery Job"
+        required: false
+      account_intelligence_backfill_tenant_slug:
+        description: "Required with a recovery run id: abbeygate-cy, abbeygate-pt, abbeygate-gr, or abbeygate-es"
+        required: false
+
+concurrency:
+  group: aks-deploy
+  cancel-in-progress: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  AKS_RESOURCE_GROUP: abbeygate-cy4-rg
+  AKS_CLUSTER_NAME: abbeygate-cy4-aks
+  AKS_NAMESPACE: faciomga-prod
+  HELM_RELEASE: abbeygate
+  ACR_NAME: abbeygateacr
+  ACR_LOGIN_SERVER: abbeygateacr.azurecr.io
+  API_IMAGE_REPO: abbeygate-platform-api
+  WORKER_IMAGE_REPO: abbeygate-platform-worker
+  CI_TIMINGS_FILE: /tmp/aks-stage-timings.jsonl
+
+jobs:
+  verify-promotion:
+    # When auto-promoted from staging, only proceed if that staging deploy
+    # actually succeeded. Manual dispatch always runs (no workflow_run payload).
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    # GitHub environment reviewer gates are unavailable on the current billing
+    # plan, so this staging-success preflight (plus the atomic Helm + /health
+    # smoke gate in the deploy job) is the guardrail before any Azure mutation.
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      tag: ${{ steps.resolve_sha.outputs.tag }}
+      run_migration: ${{ steps.resolve_sha.outputs.run_migration }}
+      account_intelligence_backfill_run_id: ${{ steps.resolve_sha.outputs.account_intelligence_backfill_run_id }}
+      account_intelligence_backfill_tenant_slug: ${{ steps.resolve_sha.outputs.account_intelligence_backfill_tenant_slug }}
+    steps:
+      - name: Resolve image SHA
+        id: resolve_sha
+        env:
+          DISPATCH_TAG: ${{ github.event.inputs.image_tag }}
+          DISPATCH_MIGRATE: ${{ github.event.inputs.run_migration }}
+          DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_RUN_ID: ${{ github.event.inputs.account_intelligence_backfill_run_id }}
+          DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_TENANT_SLUG: ${{ github.event.inputs.account_intelligence_backfill_tenant_slug }}
+          AUTO_TAG: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          if [ -n "${DISPATCH_TAG:-}" ]; then
+            tag="${DISPATCH_TAG}"
+            migrate="${DISPATCH_MIGRATE:-true}"
+            backfill_run_id="${DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_RUN_ID:-}"
+            backfill_tenant_slug="${DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_TENANT_SLUG:-}"
+          else
+            tag="${AUTO_TAG}"
+            migrate="true"
+            backfill_run_id=""
+            backfill_tenant_slug=""
+          fi
+          if ! [[ "${tag}" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::image_tag must be a full 40-character lowercase commit SHA."
+            exit 1
+          fi
+          if [ -n "${backfill_run_id}" ] && ! [[ "${backfill_run_id}" =~ ^[a-z0-9]([a-z0-9-]{0,38}[a-z0-9])?$ ]]; then
+            echo "::error::account_intelligence_backfill_run_id must be a DNS-safe lowercase id up to 40 characters."
+            exit 1
+          fi
+          if [ -n "${backfill_run_id}" ] && ! [[ "${backfill_tenant_slug}" =~ ^abbeygate-(cy|pt|gr|es)$ ]]; then
+            echo "::error::account_intelligence_backfill_tenant_slug is required with a recovery run id and must be a supported tenant slug."
+            exit 1
+          fi
+          if [ -z "${backfill_run_id}" ] && [ -n "${backfill_tenant_slug}" ]; then
+            echo "::error::account_intelligence_backfill_tenant_slug requires account_intelligence_backfill_run_id."
+            exit 1
+          fi
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+          echo "run_migration=${migrate}" >> "$GITHUB_OUTPUT"
+          echo "account_intelligence_backfill_run_id=${backfill_run_id}" >> "$GITHUB_OUTPUT"
+          echo "account_intelligence_backfill_tenant_slug=${backfill_tenant_slug}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout promotion SHA
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 400
+          ref: ${{ steps.resolve_sha.outputs.tag }}
+
+      - name: Verify SHA is on main
+        env:
+          IMAGE_TAG: ${{ steps.resolve_sha.outputs.tag }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main --depth=400
+          if ! git merge-base --is-ancestor "${IMAGE_TAG}" origin/main; then
+            echo "::error::SHA ${IMAGE_TAG} is not on origin/main history."
+            exit 1
+          fi
+
+      - name: Staging preflight skipped (emergency override)
+        if: ${{ github.event.inputs.skip_staging_verify == 'true' }}
+        env:
+          IMAGE_TAG: ${{ steps.resolve_sha.outputs.tag }}
+        run: |
+          echo "::warning::Staging-success preflight SKIPPED via skip_staging_verify=true. Deploying ${IMAGE_TAG} to production WITHOUT a green staging run. Production /health smoke still gates the rollout."
+
+      - name: Verify staging success for SHA
+        if: ${{ github.event.inputs.skip_staging_verify != 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          IMAGE_TAG: ${{ steps.resolve_sha.outputs.tag }}
+        run: |
+          set -euo pipefail
+          gh api "/repos/${GITHUB_REPOSITORY}/actions/runs?head_sha=${IMAGE_TAG}&status=completed&per_page=100" > /tmp/staging-runs.json
+          IMAGE_TAG="${IMAGE_TAG}" node <<'NODE'
+          const fs = require('node:fs');
+          const tag = process.env.IMAGE_TAG;
+          const payload = JSON.parse(fs.readFileSync('/tmp/staging-runs.json', 'utf8'));
+          const stagingRun = (payload.workflow_runs || []).find((run) =>
+            run.name === 'AKS Deploy (Staging)' &&
+            run.head_sha === tag &&
+            run.conclusion === 'success'
+          );
+          if (!stagingRun) {
+            console.error(`::error::No successful AKS Deploy (Staging) run found for ${tag}. Refusing production deploy.`);
+            process.exit(1);
+          }
+          console.log(`Staging deploy verified for ${tag}: ${stagingRun.html_url}`);
+          NODE
+
+  deploy:
+    needs: verify-promotion
+    if: ${{ needs.verify-promotion.result == 'success' }}
+    # `verify-promotion` runs before any Azure mutation, so manual production
+    # dispatch can only deploy SHAs that have already passed staging.
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    environment: production-aks
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    steps:
+      - name: Resolve image SHA
+        id: resolve_sha
+        env:
+          DISPATCH_TAG: ${{ github.event.inputs.image_tag }}
+          DISPATCH_MIGRATE: ${{ github.event.inputs.run_migration }}
+          DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_RUN_ID: ${{ github.event.inputs.account_intelligence_backfill_run_id }}
+          DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_TENANT_SLUG: ${{ github.event.inputs.account_intelligence_backfill_tenant_slug }}
+          AUTO_TAG: ${{ github.event.workflow_run.head_sha }}
+          PREFLIGHT_TAG: ${{ needs.verify-promotion.outputs.tag }}
+          PREFLIGHT_MIGRATE: ${{ needs.verify-promotion.outputs.run_migration }}
+          PREFLIGHT_ACCOUNT_INTELLIGENCE_BACKFILL_RUN_ID: ${{ needs.verify-promotion.outputs.account_intelligence_backfill_run_id }}
+          PREFLIGHT_ACCOUNT_INTELLIGENCE_BACKFILL_TENANT_SLUG: ${{ needs.verify-promotion.outputs.account_intelligence_backfill_tenant_slug }}
+        run: |
+          set -euo pipefail
+          if [ -n "${PREFLIGHT_TAG:-}" ]; then
+            tag="${PREFLIGHT_TAG}"
+            migrate="${PREFLIGHT_MIGRATE:-true}"
+            backfill_run_id="${PREFLIGHT_ACCOUNT_INTELLIGENCE_BACKFILL_RUN_ID:-}"
+            backfill_tenant_slug="${PREFLIGHT_ACCOUNT_INTELLIGENCE_BACKFILL_TENANT_SLUG:-}"
+          elif [ -n "${DISPATCH_TAG:-}" ]; then
+            tag="${DISPATCH_TAG}"
+            migrate="${DISPATCH_MIGRATE:-true}"
+            backfill_run_id="${DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_RUN_ID:-}"
+            backfill_tenant_slug="${DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_TENANT_SLUG:-}"
+          else
+            tag="${AUTO_TAG}"
+            migrate="true"
+            backfill_run_id=""
+            backfill_tenant_slug=""
+          fi
+          if [ -z "${tag}" ]; then echo "::error::no image_tag resolved"; exit 1; fi
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+          echo "run_migration=${migrate}" >> "$GITHUB_OUTPUT"
+          echo "account_intelligence_backfill_run_id=${backfill_run_id}" >> "$GITHUB_OUTPUT"
+          echo "account_intelligence_backfill_tenant_slug=${backfill_tenant_slug}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout chart and scripts
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 400
+          ref: ${{ steps.resolve_sha.outputs.tag }}
+
+      - name: Initialize timing
+        run: |
+          : > "${CI_TIMINGS_FILE}"
+
+      - name: Validate Azure OIDC configuration
+        env:
+          AZURE_CLIENT_ID_VALUE: ${{ secrets[format('{0}', 'AZURE_CLIENT_ID')] }}
+          AZURE_TENANT_ID_VALUE: ${{ secrets[format('{0}', 'AZURE_TENANT_ID')] }}
+          AZURE_SUBSCRIPTION_ID_VALUE: ${{ secrets[format('{0}', 'AZURE_SUBSCRIPTION_ID')] }}
+        run: |
+          set -euo pipefail
+          missing=0
+          if [ -z "${AZURE_CLIENT_ID_VALUE:-}" ]; then echo "::error::Missing AZURE_CLIENT_ID in production-aks."; missing=1; fi
+          if [ -z "${AZURE_TENANT_ID_VALUE:-}" ]; then echo "::error::Missing AZURE_TENANT_ID in production-aks."; missing=1; fi
+          if [ -z "${AZURE_SUBSCRIPTION_ID_VALUE:-}" ]; then echo "::error::Missing AZURE_SUBSCRIPTION_ID in production-aks."; missing=1; fi
+          if [ "${missing}" -ne 0 ]; then exit 1; fi
+
+      - name: Azure login
+        uses: azure/login@v3
+        with:
+          client-id: ${{ secrets[format('{0}', 'AZURE_CLIENT_ID')] }}
+          tenant-id: ${{ secrets[format('{0}', 'AZURE_TENANT_ID')] }}
+          subscription-id: ${{ secrets[format('{0}', 'AZURE_SUBSCRIPTION_ID')] }}
+
+      - name: Install Kubernetes tooling
+        run: |
+          set -euo pipefail
+          curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+          az aks install-cli
+
+      - name: Set AKS context
+        run: |
+          set -euo pipefail
+          az aks get-credentials \
+            --resource-group "${AKS_RESOURCE_GROUP}" \
+            --name "${AKS_CLUSTER_NAME}" \
+            --format azure \
+            --overwrite-existing
+          kubelogin convert-kubeconfig -l azurecli
+          kubectl config set-context --current --namespace "${AKS_NAMESPACE}"
+
+      - name: Validate immutable SHA
+        id: image_tag
+        env:
+          RESOLVED_TAG: ${{ steps.resolve_sha.outputs.tag }}
+        run: |
+          set -euo pipefail
+          started="$(date +%s)"
+          tag="${RESOLVED_TAG}"
+          if ! [[ "${tag}" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::image_tag must be a full 40-character lowercase commit SHA."
+            exit 1
+          fi
+          if [ "${tag}" = "latest" ]; then
+            echo "::error::Deploying latest is forbidden."
+            exit 1
+          fi
+          git fetch --no-tags origin main --depth=400
+          if ! git cat-file -e "${tag}^{commit}" 2>/dev/null; then
+            echo "::error::SHA ${tag} does not resolve to a commit in this repository."
+            exit 1
+          fi
+          if ! git merge-base --is-ancestor "${tag}" origin/main; then
+            echo "::error::SHA ${tag} is not on origin/main history."
+            exit 1
+          fi
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+          ended="$(date +%s)"
+          echo "{\"stage\":\"validate_sha\",\"duration_seconds\":$((ended-started)),\"status\":\"success\"}" >> "${CI_TIMINGS_FILE}"
+
+      - name: Validate deploy values
+        id: deploy_values
+        env:
+          GH_VARS_JSON: ${{ toJson(vars) }}
+          AKS_RUNTIME_SECRET_NAME_SECRET: ${{ secrets[format('{0}', 'AKS_RUNTIME_SECRET_NAME')] }}
+        run: |
+          set -euo pipefail
+          read_var() {
+            node -e "const vars=JSON.parse(process.env.GH_VARS_JSON || '{}'); process.stdout.write(String(vars[process.argv[1]] || ''));" "$1"
+          }
+          api_host="$(read_var CY4_AKS_API_HOST)"
+          api_additional_host="$(read_var CY4_AKS_API_ADDITIONAL_HOST)"
+          appgw_ssl_cert_name="$(read_var CY4_AKS_APPGW_SSL_CERT_NAME)"
+          runtime_secret_name="$(read_var AKS_RUNTIME_SECRET_NAME)"
+          if [ -z "${api_host}" ]; then api_host="$(read_var AKS_API_HOST)"; fi
+          if [ -z "${api_additional_host}" ]; then api_additional_host="$(read_var AKS_API_ADDITIONAL_HOST)"; fi
+          if [ -z "${appgw_ssl_cert_name}" ]; then appgw_ssl_cert_name="$(read_var AKS_APPGW_SSL_CERT_NAME)"; fi
+          if [ -z "${runtime_secret_name}" ]; then runtime_secret_name="${AKS_RUNTIME_SECRET_NAME_SECRET:-}"; fi
+          missing=0
+          if [ -z "${api_host}" ]; then echo "::error::Missing CY4_AKS_API_HOST or AKS_API_HOST in production-aks variables."; missing=1; fi
+          if [ -z "${runtime_secret_name}" ]; then echo "::error::Missing AKS_RUNTIME_SECRET_NAME in production-aks variables/secrets."; missing=1; fi
+          if [ "${missing}" -ne 0 ]; then exit 1; fi
+          echo "api_host=${api_host}" >> "$GITHUB_OUTPUT"
+          echo "api_additional_host=${api_additional_host}" >> "$GITHUB_OUTPUT"
+          echo "appgw_ssl_cert_name=${appgw_ssl_cert_name}" >> "$GITHUB_OUTPUT"
+          echo "runtime_secret_name=${runtime_secret_name}" >> "$GITHUB_OUTPUT"
+
+      - name: Verify images exist
+        run: |
+          set -euo pipefail
+          started="$(date +%s)"
+          image_tag="${{ steps.image_tag.outputs.tag }}"
+          az acr repository show --name "${ACR_NAME}" --image "${API_IMAGE_REPO}:${image_tag}" >/dev/null
+          az acr repository show --name "${ACR_NAME}" --image "${WORKER_IMAGE_REPO}:${image_tag}" >/dev/null
+          ended="$(date +%s)"
+          echo "{\"stage\":\"verify_images\",\"duration_seconds\":$((ended-started)),\"status\":\"success\"}" >> "${CI_TIMINGS_FILE}"
+
+      # Upsert backend SENTRY_DSN into the runtime K8s secret BEFORE
+      # `helm upgrade` so the new pod sees the env var on first boot.
+      # GitHub Actions becomes the source of truth for this key, which
+      # matches operator intuition (set once in the production-aks
+      # environment, redeploys carry it forward) and avoids the silent-
+      # Sentry footgun where the key existed in GH Actions but was
+      # never propagated into the cluster. Helm's `secretKeys` requires
+      # SENTRY_DSN — without this step a fresh cluster's pods would
+      # CrashLoop until an operator ran `kubectl patch`.
+      - name: Upsert Sentry DSN into runtime secret
+        env:
+          SENTRY_DSN_VALUE: ${{ secrets[format('{0}', 'SENTRY_DSN')] }}
+          RUNTIME_SECRET_NAME: ${{ steps.deploy_values.outputs.runtime_secret_name }}
+        run: |
+          set -euo pipefail
+          started="$(date +%s)"
+          if [ -z "${SENTRY_DSN_VALUE:-}" ]; then
+            echo "::error::SENTRY_DSN must be configured in the production-aks environment secrets. The pod will fail to start without it (Helm runtimeConfig.secretKeys.SENTRY_DSN is required)."
+            exit 1
+          fi
+          SENTRY_DSN_VALUE="$(printf '%s' "${SENTRY_DSN_VALUE}" | tr -d '\r' | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+          # Be tolerant of common secret-paste formats:
+          #   SENTRY_DSN=https://public@o123.ingest.sentry.io/456
+          #   "https://public@o123.ingest.sentry.io/456"
+          # GitHub still stores the whole string verbatim, so normalize
+          # those forms before validating and patching the K8s secret.
+          SENTRY_DSN_VALUE="$(printf '%s' "${SENTRY_DSN_VALUE}" | sed -E 's/^SENTRY_DSN=//; s/^"//; s/"$//; s/^'\''//; s/'\''$//')"
+          SENTRY_DSN_VALUE="${SENTRY_DSN_VALUE}" node <<'NODE'
+          const raw = String(process.env.SENTRY_DSN_VALUE || '').trim();
+          let url;
+          try {
+            url = new URL(raw);
+          } catch {
+            console.error('::error::SENTRY_DSN is not a valid URL. Expected a real Sentry DSN, not a placeholder.');
+            process.exit(1);
+          }
+          const host = url.hostname.toLowerCase();
+          const projectId = url.pathname.replace(/^\/+/, '');
+          const isSentryIngestHost =
+            /^o\d+\.ingest\.sentry\.io$/.test(host) ||
+            /^o\d+\.ingest\.[a-z0-9-]+\.sentry\.io$/.test(host);
+          const publicKey = url.username || '';
+          if (
+            url.protocol !== 'https:' ||
+            !publicKey ||
+            !/^[A-Za-z0-9]+$/.test(publicKey) ||
+            !isSentryIngestHost ||
+            !/^\d+$/.test(projectId)
+          ) {
+            console.error(
+              '::error::SENTRY_DSN does not look like a valid Sentry ingest DSN. ' +
+              'Expected https://<public-key>@o<orgid>.ingest.sentry.io/<projectid> ' +
+              'or https://<public-key>@o<orgid>.ingest.<region>.sentry.io/<projectid>. ' +
+              'Refusing to deploy with a placeholder or malformed DSN.'
+            );
+            process.exit(1);
+          }
+          NODE
+          # `kubectl create secret --dry-run=client | kubectl apply -f -`
+          # is the canonical idempotent upsert. We restrict the patch
+          # to the SENTRY_DSN key only so it merges into whatever
+          # other keys the secret already holds.
+          kubectl -n "${AKS_NAMESPACE}" patch secret "${RUNTIME_SECRET_NAME}" \
+            --type=merge \
+            -p "{\"stringData\":{\"SENTRY_DSN\":\"${SENTRY_DSN_VALUE}\"}}"
+          ended="$(date +%s)"
+          echo "{\"stage\":\"upsert_sentry_dsn\",\"duration_seconds\":$((ended-started)),\"status\":\"success\"}" >> "${CI_TIMINGS_FILE}"
+
+      - name: Helm upgrade
+        run: |
+          set -euo pipefail
+          started="$(date +%s)"
+          appgw_ssl_cert_name="${{ steps.deploy_values.outputs.appgw_ssl_cert_name }}"
+          run_migration="${{ steps.resolve_sha.outputs.run_migration }}"
+          if [ "${run_migration}" = "true" ]; then
+            migration_enabled="true"
+          else
+            migration_enabled="false"
+          fi
+          # ADR-0049: ingress hosts are chart-authoritative in values.yaml. The
+          # main ingress serves the facio.io hosts on the *.facio.io cert
+          # (appgw_ssl_cert_name below); the abbeygate.com production domains are
+          # served by the separate `abbeygateIngress` in the chart, bound to the
+          # *.abbeygate.com cert. The legacy CY4_AKS_API_ADDITIONAL_HOST append
+          # is gone: abbeygate-pt.facio.io is now a static host in values.yaml,
+          # and a sparse `additionalHosts[5]` --set would inject null hosts into
+          # the shorter facio-only list.
+          extra_set_args=(
+            --set "ingress.sslRedirect=true"
+            --set "migration.enabled=${migration_enabled}"
+          )
+          if [ -n "${appgw_ssl_cert_name}" ]; then
+            extra_set_args+=(--set "ingress.appgwSslCertificate=${appgw_ssl_cert_name}")
+          fi
+          backfill_run_id="${{ steps.resolve_sha.outputs.account_intelligence_backfill_run_id }}"
+          backfill_tenant_slug="${{ steps.resolve_sha.outputs.account_intelligence_backfill_tenant_slug }}"
+          if [ -n "${backfill_run_id}" ]; then
+            extra_set_args+=(--set-string "accountIntelligenceBackfill.runId=${backfill_run_id}")
+            extra_set_args+=(--set-string "accountIntelligenceBackfill.tenantSlug=${backfill_tenant_slug}")
+          fi
+          helm upgrade --install "${HELM_RELEASE}" ./infrastructure/k8s/helm/abbeygate \
+            --namespace "${AKS_NAMESPACE}" \
+            --create-namespace \
+            --set image.registry="${ACR_LOGIN_SERVER}" \
+            --set image.tag="${{ steps.image_tag.outputs.tag }}" \
+            --set runtimeConfig.secretName="${{ steps.deploy_values.outputs.runtime_secret_name }}" \
+            "${extra_set_args[@]}" \
+            --atomic \
+            --wait \
+            --timeout 3m
+          ended="$(date +%s)"
+          echo "{\"stage\":\"helm_upgrade\",\"duration_seconds\":$((ended-started)),\"status\":\"success\"}" >> "${CI_TIMINGS_FILE}"
+
+      - name: Rollout wait
+        run: |
+          set -euo pipefail
+          started="$(date +%s)"
+          api_deploy="$(kubectl get deploy -n "${AKS_NAMESPACE}" -l "app.kubernetes.io/instance=${HELM_RELEASE},app.kubernetes.io/component=api" -o jsonpath='{.items[0].metadata.name}')"
+          worker_deploy="$(kubectl get deploy -n "${AKS_NAMESPACE}" -l "app.kubernetes.io/instance=${HELM_RELEASE},app.kubernetes.io/component=worker" -o jsonpath='{.items[0].metadata.name}')"
+          kubectl rollout status "deployment/${api_deploy}" -n "${AKS_NAMESPACE}" --timeout=90s
+          kubectl rollout status "deployment/${worker_deploy}" -n "${AKS_NAMESPACE}" --timeout=90s
+          ended="$(date +%s)"
+          echo "{\"stage\":\"rollout_wait\",\"duration_seconds\":$((ended-started)),\"status\":\"success\"}" >> "${CI_TIMINGS_FILE}"
+
+      - name: Smoke
+        env:
+          APP_BASE_URL: https://${{ steps.deploy_values.outputs.api_host }}
+          GH_VARS_JSON: ${{ toJson(vars) }}
+        run: |
+          set -euo pipefail
+          started="$(date +%s)"
+          # `kubectl rollout status` reports Ready as soon as the pod-level
+          # readiness probe passes, but Azure Application Gateway's backend
+          # health probe runs out-of-band on a ~30s cadence and only marks
+          # the new pods healthy after that probe succeeds. During that
+          # window the AGW accepts TCP+TLS and then closes the connection
+          # without sending HTTP data, which surfaces as `curl: (52) Empty
+          # reply from server`. Retry each smoke curl with built-in backoff
+          # so the smoke step absorbs that propagation race instead of
+          # failing the deploy on a transient.
+          SMOKE_RETRY_OPTS=(
+            --retry 12
+            --retry-delay 5
+            --retry-connrefused
+            --retry-all-errors
+            --max-time 30
+          )
+          curl -fsS "${SMOKE_RETRY_OPTS[@]}" "${APP_BASE_URL%/}/health" >/dev/null
+          curl -fsS "${SMOKE_RETRY_OPTS[@]}" "${APP_BASE_URL%/}/health/integrations" >/dev/null
+          queue_smoke_endpoint="$(node -e "const vars=JSON.parse(process.env.GH_VARS_JSON || '{}'); process.stdout.write(String(vars.QUEUE_SMOKE_ENDPOINT || ''));" )"
+          if [ -n "${queue_smoke_endpoint}" ]; then
+            curl -fsS "${SMOKE_RETRY_OPTS[@]}" -X POST "${queue_smoke_endpoint}" >/dev/null
+          fi
+          ended="$(date +%s)"
+          echo "{\"stage\":\"smoke\",\"duration_seconds\":$((ended-started)),\"status\":\"success\"}" >> "${CI_TIMINGS_FILE}"
+
+      - name: Diagnostics on failure
+        if: failure()
+        run: |
+          set +e
+          helm status "${HELM_RELEASE}" -n "${AKS_NAMESPACE}"
+          kubectl get deploy,job,po,svc,ingress -n "${AKS_NAMESPACE}" -o wide
+          kubectl get events -n "${AKS_NAMESPACE}" --sort-by=.lastTimestamp
+          for pod in $(kubectl get pods -n "${AKS_NAMESPACE}" -o name); do
+            echo "--- ${pod} ---"
+            kubectl logs -n "${AKS_NAMESPACE}" "${pod#pod/}" --tail=200
+          done
+
+      - name: Publish deployment timing summary
+        if: always()
+        run: |
+          echo "## AKS Deployment Stage Timings" >> "$GITHUB_STEP_SUMMARY"
+          if [ -s "${CI_TIMINGS_FILE}" ]; then
+            while IFS= read -r line; do
+              stage="$(echo "${line}" | node -e "const fs=require('node:fs');const x=JSON.parse(fs.readFileSync(0,'utf8'));process.stdout.write(String(x.stage||''));")"
+              duration="$(echo "${line}" | node -e "const fs=require('node:fs');const x=JSON.parse(fs.readFileSync(0,'utf8'));process.stdout.write(String(x.duration_seconds||0));")"
+              status="$(echo "${line}" | node -e "const fs=require('node:fs');const x=JSON.parse(fs.readFileSync(0,'utf8'));process.stdout.write(String(x.status||''));")"
+              echo "- ${stage}: ${duration}s (${status})" >> "$GITHUB_STEP_SUMMARY"
+            done < "${CI_TIMINGS_FILE}"
+          else
+            echo "- No timing data captured." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Deployment summary
+        run: |
+          {
+            echo "## AKS Deployment Summary"
+            echo "- AKS release: ${HELM_RELEASE}"
+            echo "- Namespace: ${AKS_NAMESPACE}"
+            echo "- Image tag: ${{ steps.image_tag.outputs.tag }}"
+            echo "- Promotion lane: staging-verified immutable SHA"
+          } >> "$GITHUB_STEP_SUMMARY"

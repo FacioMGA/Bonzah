@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "lastReviewedUtc": "2026-03-19T18:35:00Z",
+  "runtimeSourceOfTruth": "backend/modules/communications/domain/customerTemplateCatalog.ts",
+  "entries": [
+    {
+      "file": "Updated Quote letter Volante CY.docx",
+      "sha256": "4794d2fe023bd8cf16778a12cc9705f59ad7d8afbc1d2beaeb4bda02915fe6c3",
+      "classification": "customer-email-source",
+      "mapsToTemplateKeys": ["QUOTE_STANDARD"]
+    },
+    {
+      "file": "Updated Quote letter Volante CY .docx",
+      "sha256": "322435f78f43a141bd1c7e7b9f681f66cc310d72b32f0ea22dcfd06935ed0f5c",
+      "classification": "customer-email-source",
+      "mapsToTemplateKeys": ["QUOTE_BANK_TRANSFER"],
+      "notes": "Filename includes a trailing-space variant before extension."
+    },
+    {
+      "file": "Updated NB letter for Cyprus.docx",
+      "sha256": "565dd31d3aaab6d7c4426a243c9adf61815894f78c881b325f6a7fdc2afb6835",
+      "classification": "customer-email-source",
+      "mapsToTemplateKeys": ["NEW_BUSINESS_CONFIRMATION"]
+    },
+    {
+      "file": "Updated Renewal Invite.docx",
+      "sha256": "29d0ca45fc75567acc0319d07ba22b6c56e29dc46276dbca04c93c6066879071",
+      "classification": "customer-email-source",
+      "mapsToTemplateKeys": ["RENEWAL_INVITE"]
+    },
+    {
+      "file": "Updated Renewal Chaser CY.docx",
+      "sha256": "965ef1366301f47d227aa01f1608cabbc582da301ae249b95b14c8ceee3311a6",
+      "classification": "customer-email-source",
+      "mapsToTemplateKeys": ["RENEWAL_CHASER"]
+    },
+    {
+      "file": "Std emails for claims.docx",
+      "sha256": "ad26fe0edda0fb59ac082ae1624e411444ca4cf3ceb68af87ee547fd92ddfd6f",
+      "classification": "customer-email-source",
+      "mapsToTemplateKeys": [
+        "CLAIMS_FNOL_LINK",
+        "CLAIMS_INFO_REQUEST",
+        "CLAIMS_DOCUMENT_REQUEST"
+      ]
+    },
+    {
+      "file": "Abbeygate Home Claims TPA Blueprint.docx",
+      "sha256": "d88df1272219f5526e73b055c441a95b41dcb17bccf063297cf30fb3f931b7fa",
+      "classification": "business-reference",
+      "mapsToTemplateKeys": []
+    },
+    {
+      "file": "First Gear Motor Group Deck 2026 (1).pptx",
+      "sha256": "f5923a7aa2e27fb49b6fc3a9d44ff8e84cc61d5fd30bd117cbc47e8e9d21b1b2",
+      "classification": "business-reference",
+      "mapsToTemplateKeys": []
+    }
+  ]
+}

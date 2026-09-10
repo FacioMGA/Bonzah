@@ -1,0 +1,38 @@
+export const NAMED_OPERATOR_ROLES: readonly NamedOperatorRoleDef[] = [
+  {
+    name: 'Configure Admin',
+    description: 'BO Configure / admin. Assigned to Danny and Peter only — not Andy.',
+    permissions: CONFIGURE_ADMIN_PERMISSIONS,
+    emails: ['danny@abbeygate.cy', 'peter@abbeygate.cy'],
+  },
+  {
+    name: 'Staff Activity',
+    description: 'View the staff activity log. Assigned to Danny, Peter, and Andy.',
+    permissions: ['people.activity.view'],
+    emails: ['danny@abbeygate.cy', 'peter@abbeygate.cy', 'andy@abbeygate.cy', 'andy@abbeygate.pt'],
+  },
+  {
+    name: 'Leave Input',
+    description: 'Record holiday and sick leave. Assigned to Peter and Danny.',
+    permissions: ['people.leave.edit'],
+    emails: ['danny@abbeygate.cy', 'peter@abbeygate.cy'],
+  },
+  {
+    name: 'Leave Cancellation',
+    description: 'Cancel recorded holiday and sick leave. Assigned to Danny, Peter, and Andy.',
+    permissions: ['people.leave.cancel'],
+    emails: ['danny@abbeygate.cy', 'peter@abbeygate.cy', 'andy@abbeygate.cy', 'andy@abbeygate.pt'],
+  },
+  {
+    name: 'Renewals Allocate',
+    description: 'Generate the renewals list and allocate work. Assigned to Danny, Peter, and Andy.',
+    permissions: ['renewals.allocate'],
+    emails: ['danny@abbeygate.cy', 'peter@abbeygate.cy', 'andy@abbeygate.cy', 'andy@abbeygate.pt'],
+  },
+  {
+    name: 'Underwriting Review',
+    description: 'Take a UW review onto yourself on the policy-holder tab. Assigned to Danny, Peter, and Andy.',
+    permissions: ['underwriting.review.receive'],
+    emails: ['danny@abbeygate.cy', 'peter@abbeygate.cy', 'andy@abbeygate.cy', 'andy@abbeygate.pt'],
+  },
+];

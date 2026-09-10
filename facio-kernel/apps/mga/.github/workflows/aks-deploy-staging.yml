@@ -1,0 +1,323 @@
+name: AKS Deploy (Staging)
+
+# ABY-367 — isolated STAGING deploy. Same AKS cluster as prod, but a separate
+# namespace (`faciomga-staging`) with its own DB / Redis / storage / secret set
+# (OPPWA test keys, CARDCORP_ENV=test).
+#
+# Main promotion lane: CI must pass, Azure Images must publish immutable SHA
+# images, then this workflow deploys that exact SHA to staging and runs the
+# staging smoke set. Environment isolation is enforced by the namespace +
+# backing services behind the staging hostnames, never by hostname alone.
+
+on:
+  workflow_run:
+    workflows: ["Azure Images"]
+    branches: [main]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "40-char commit SHA to deploy (defaults to current main HEAD)"
+        required: false
+      run_migration:
+        description: "Run prisma migrate deploy via the Helm pre-upgrade Job"
+        required: false
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+      account_intelligence_backfill_run_id:
+        description: "Optional DNS-safe id to run the reviewed account-intelligence projection recovery Job"
+        required: false
+      account_intelligence_backfill_tenant_slug:
+        description: "Required with a recovery run id: abbeygate-cy, abbeygate-pt, abbeygate-gr, or abbeygate-es"
+        required: false
+
+concurrency:
+  group: aks-deploy-staging
+  cancel-in-progress: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  AKS_RESOURCE_GROUP: abbeygate-cy4-rg
+  AKS_CLUSTER_NAME: abbeygate-cy4-aks
+  AKS_NAMESPACE: faciomga-staging
+  HELM_RELEASE: abbeygate-staging
+  ACR_NAME: abbeygateacr
+  ACR_LOGIN_SERVER: abbeygateacr.azurecr.io
+  API_IMAGE_REPO: abbeygate-platform-api
+  WORKER_IMAGE_REPO: abbeygate-platform-worker
+
+jobs:
+  deploy:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: staging-aks
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    steps:
+      - name: Resolve image SHA
+        id: resolve_sha
+        env:
+          DISPATCH_TAG: ${{ github.event.inputs.image_tag }}
+          DISPATCH_MIGRATE: ${{ github.event.inputs.run_migration }}
+          DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_RUN_ID: ${{ github.event.inputs.account_intelligence_backfill_run_id }}
+          DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_TENANT_SLUG: ${{ github.event.inputs.account_intelligence_backfill_tenant_slug }}
+          AUTO_TAG: ${{ github.event.workflow_run.head_sha }}
+          DEFAULT_TAG: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          tag="${DISPATCH_TAG:-}"
+          if [ -z "${tag}" ]; then tag="${AUTO_TAG:-${DEFAULT_TAG}}"; fi
+          if ! [[ "${tag}" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::image_tag must be a full 40-character lowercase commit SHA."
+            exit 1
+          fi
+          backfill_run_id="${DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_RUN_ID:-}"
+          backfill_tenant_slug="${DISPATCH_ACCOUNT_INTELLIGENCE_BACKFILL_TENANT_SLUG:-}"
+          if [ -n "${backfill_run_id}" ] && ! [[ "${backfill_run_id}" =~ ^[a-z0-9]([a-z0-9-]{0,38}[a-z0-9])?$ ]]; then
+            echo "::error::account_intelligence_backfill_run_id must be a DNS-safe lowercase id up to 40 characters."
+            exit 1
+          fi
+          if [ -n "${backfill_run_id}" ] && ! [[ "${backfill_tenant_slug}" =~ ^abbeygate-(cy|pt|gr|es)$ ]]; then
+            echo "::error::account_intelligence_backfill_tenant_slug is required with a recovery run id and must be a supported tenant slug."
+            exit 1
+          fi
+          if [ -z "${backfill_run_id}" ] && [ -n "${backfill_tenant_slug}" ]; then
+            echo "::error::account_intelligence_backfill_tenant_slug requires account_intelligence_backfill_run_id."
+            exit 1
+          fi
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+          echo "run_migration=${DISPATCH_MIGRATE:-true}" >> "$GITHUB_OUTPUT"
+          echo "account_intelligence_backfill_run_id=${backfill_run_id}" >> "$GITHUB_OUTPUT"
+          echo "account_intelligence_backfill_tenant_slug=${backfill_tenant_slug}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout chart and scripts
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 400
+          ref: ${{ steps.resolve_sha.outputs.tag }}
+
+      - name: Verify CI passed for SHA
+        env:
+          GH_TOKEN: ${{ github.token }}
+          IMAGE_TAG: ${{ steps.resolve_sha.outputs.tag }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main --depth=400
+          if ! git merge-base --is-ancestor "${IMAGE_TAG}" origin/main; then
+            echo "::error::SHA ${IMAGE_TAG} is not on origin/main history."
+            exit 1
+          fi
+          # Azure Images (which triggers this deploy) usually finishes before the
+          # slower CI run, so rather than failing when CI is still in progress we
+          # POLL until the CI push run for this SHA reaches a terminal state. This
+          # makes the promotion lane resilient to that ordering race — previously
+          # the first staging attempt failed and needed a manual re-run.
+          # Written as .cjs (not .mjs) so Node treats it as CommonJS and
+          # `require` is defined; a .mjs would throw "require is not defined".
+          cat > /tmp/ci-state.cjs <<'NODE'
+          const fs = require('node:fs');
+          const tag = process.env.IMAGE_TAG;
+          const payload = JSON.parse(fs.readFileSync('/tmp/ci-runs.json', 'utf8'));
+          const ci = (payload.workflow_runs || []).find((r) => r.name === 'CI' && r.head_sha === tag);
+          if (!ci) process.stdout.write('pending');
+          else if (ci.status !== 'completed') process.stdout.write('running');
+          else process.stdout.write(ci.conclusion === 'success' ? 'success' : 'failed');
+          NODE
+          max_attempts=40   # 40 x 30s = 20 min ceiling
+          attempt=0
+          while :; do
+            attempt=$((attempt + 1))
+            gh api "/repos/${GITHUB_REPOSITORY}/actions/runs?head_sha=${IMAGE_TAG}&event=push&per_page=100" > /tmp/ci-runs.json
+            state="$(IMAGE_TAG="${IMAGE_TAG}" node /tmp/ci-state.cjs)"
+            case "${state}" in
+              success)
+                echo "CI success verified for ${IMAGE_TAG}."
+                break
+                ;;
+              failed)
+                echo "::error::CI concluded non-success for ${IMAGE_TAG}. Refusing staging deploy."
+                exit 1
+                ;;
+              *)
+                if [ "${attempt}" -ge "${max_attempts}" ]; then
+                  echo "::error::Timed out waiting for CI to finish for ${IMAGE_TAG} (last state: ${state})."
+                  exit 1
+                fi
+                echo "CI not finished (state=${state}); attempt ${attempt}/${max_attempts}, waiting 30s..."
+                sleep 30
+                ;;
+            esac
+          done
+
+      - name: Validate Azure OIDC configuration
+        env:
+          AZURE_CLIENT_ID_VALUE: ${{ secrets[format('{0}', 'AZURE_CLIENT_ID')] }}
+          AZURE_TENANT_ID_VALUE: ${{ secrets[format('{0}', 'AZURE_TENANT_ID')] }}
+          AZURE_SUBSCRIPTION_ID_VALUE: ${{ secrets[format('{0}', 'AZURE_SUBSCRIPTION_ID')] }}
+        run: |
+          set -euo pipefail
+          missing=0
+          if [ -z "${AZURE_CLIENT_ID_VALUE:-}" ]; then echo "::error::Missing AZURE_CLIENT_ID in staging-aks."; missing=1; fi
+          if [ -z "${AZURE_TENANT_ID_VALUE:-}" ]; then echo "::error::Missing AZURE_TENANT_ID in staging-aks."; missing=1; fi
+          if [ -z "${AZURE_SUBSCRIPTION_ID_VALUE:-}" ]; then echo "::error::Missing AZURE_SUBSCRIPTION_ID in staging-aks."; missing=1; fi
+          if [ "${missing}" -ne 0 ]; then exit 1; fi
+
+      - name: Azure login
+        uses: azure/login@v3
+        with:
+          client-id: ${{ secrets[format('{0}', 'AZURE_CLIENT_ID')] }}
+          tenant-id: ${{ secrets[format('{0}', 'AZURE_TENANT_ID')] }}
+          subscription-id: ${{ secrets[format('{0}', 'AZURE_SUBSCRIPTION_ID')] }}
+
+      - name: Install Kubernetes tooling
+        run: |
+          set -euo pipefail
+          curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+          az aks install-cli
+
+      - name: Set AKS context
+        run: |
+          set -euo pipefail
+          az aks get-credentials \
+            --resource-group "${AKS_RESOURCE_GROUP}" \
+            --name "${AKS_CLUSTER_NAME}" \
+            --format azure \
+            --overwrite-existing
+          kubelogin convert-kubeconfig -l azurecli
+          kubectl create namespace "${AKS_NAMESPACE}" --dry-run=client -o yaml | kubectl apply -f -
+          kubectl config set-context --current --namespace "${AKS_NAMESPACE}"
+
+      - name: Resolve deploy values
+        id: deploy_values
+        env:
+          GH_VARS_JSON: ${{ toJson(vars) }}
+          STAGING_RUNTIME_SECRET_NAME_SECRET: ${{ secrets[format('{0}', 'STAGING_AKS_RUNTIME_SECRET_NAME')] }}
+        run: |
+          set -euo pipefail
+          read_var() {
+            node -e "const vars=JSON.parse(process.env.GH_VARS_JSON || '{}'); process.stdout.write(String(vars[process.argv[1]] || ''));" "$1"
+          }
+          api_host="$(read_var STAGING_AKS_API_HOST)"
+          appgw_ssl_cert_name="$(read_var STAGING_AKS_APPGW_SSL_CERT_NAME)"
+          runtime_secret_name="$(read_var STAGING_AKS_RUNTIME_SECRET_NAME)"
+          if [ -z "${api_host}" ]; then api_host="cy.staging.abbeygate.com"; fi
+          if [ -z "${runtime_secret_name}" ]; then runtime_secret_name="${STAGING_RUNTIME_SECRET_NAME_SECRET:-abbeygate-runtime-secrets}"; fi
+          echo "api_host=${api_host}" >> "$GITHUB_OUTPUT"
+          echo "appgw_ssl_cert_name=${appgw_ssl_cert_name}" >> "$GITHUB_OUTPUT"
+          echo "runtime_secret_name=${runtime_secret_name}" >> "$GITHUB_OUTPUT"
+
+      - name: Verify images exist
+        run: |
+          set -euo pipefail
+          image_tag="${{ steps.resolve_sha.outputs.tag }}"
+          az acr repository show --name "${ACR_NAME}" --image "${API_IMAGE_REPO}:${image_tag}" >/dev/null
+          az acr repository show --name "${ACR_NAME}" --image "${WORKER_IMAGE_REPO}:${image_tag}" >/dev/null
+
+      - name: Upsert Sentry DSN into staging runtime secret
+        env:
+          SENTRY_DSN_VALUE: ${{ secrets[format('{0}', 'SENTRY_DSN')] }}
+          RUNTIME_SECRET_NAME: ${{ steps.deploy_values.outputs.runtime_secret_name }}
+        run: |
+          set -euo pipefail
+          if [ -z "${SENTRY_DSN_VALUE:-}" ]; then
+            echo "::error::SENTRY_DSN must be configured in the staging-aks environment secrets."
+            exit 1
+          fi
+          SENTRY_DSN_VALUE="$(printf '%s' "${SENTRY_DSN_VALUE}" | tr -d '\r' | sed 's/^[[:space:]]*//; s/[[:space:]]*$//; s/^SENTRY_DSN=//; s/^"//; s/"$//')"
+          kubectl -n "${AKS_NAMESPACE}" patch secret "${RUNTIME_SECRET_NAME}" \
+            --type=merge \
+            -p "{\"stringData\":{\"SENTRY_DSN\":\"${SENTRY_DSN_VALUE}\"}}"
+
+      - name: Helm upgrade (staging overlay)
+        run: |
+          set -euo pipefail
+          appgw_ssl_cert_name="${{ steps.deploy_values.outputs.appgw_ssl_cert_name }}"
+          run_migration="${{ steps.resolve_sha.outputs.run_migration }}"
+          if [ "${run_migration}" = "true" ]; then migration_enabled="true"; else migration_enabled="false"; fi
+          extra_set_args=(
+            --set "ingress.sslRedirect=true"
+            --set "migration.enabled=${migration_enabled}"
+          )
+          if [ -n "${appgw_ssl_cert_name}" ]; then
+            extra_set_args+=(--set "ingress.appgwSslCertificate=${appgw_ssl_cert_name}")
+          fi
+          backfill_run_id="${{ steps.resolve_sha.outputs.account_intelligence_backfill_run_id }}"
+          backfill_tenant_slug="${{ steps.resolve_sha.outputs.account_intelligence_backfill_tenant_slug }}"
+          if [ -n "${backfill_run_id}" ]; then
+            extra_set_args+=(--set-string "accountIntelligenceBackfill.runId=${backfill_run_id}")
+            extra_set_args+=(--set-string "accountIntelligenceBackfill.tenantSlug=${backfill_tenant_slug}")
+          fi
+          helm upgrade --install "${HELM_RELEASE}" ./infrastructure/k8s/helm/abbeygate \
+            --namespace "${AKS_NAMESPACE}" \
+            --create-namespace \
+            -f ./infrastructure/k8s/helm/abbeygate/values.yaml \
+            -f ./infrastructure/k8s/helm/abbeygate/values-staging.yaml \
+            --set image.registry="${ACR_LOGIN_SERVER}" \
+            --set image.tag="${{ steps.resolve_sha.outputs.tag }}" \
+            --set runtimeConfig.secretName="${{ steps.deploy_values.outputs.runtime_secret_name }}" \
+            "${extra_set_args[@]}" \
+            --atomic \
+            --wait \
+            --timeout 5m
+
+      - name: Rollout wait
+        run: |
+          set -euo pipefail
+          api_deploy="$(kubectl get deploy -n "${AKS_NAMESPACE}" -l "app.kubernetes.io/instance=${HELM_RELEASE},app.kubernetes.io/component=api" -o jsonpath='{.items[0].metadata.name}')"
+          worker_deploy="$(kubectl get deploy -n "${AKS_NAMESPACE}" -l "app.kubernetes.io/instance=${HELM_RELEASE},app.kubernetes.io/component=worker" -o jsonpath='{.items[0].metadata.name}')"
+          kubectl rollout status "deployment/${api_deploy}" -n "${AKS_NAMESPACE}" --timeout=120s
+          kubectl rollout status "deployment/${worker_deploy}" -n "${AKS_NAMESPACE}" --timeout=120s
+
+      - name: Smoke
+        env:
+          APP_BASE_URL: https://${{ steps.deploy_values.outputs.api_host }}
+        run: |
+          set -euo pipefail
+          SMOKE_RETRY_OPTS=( --retry 12 --retry-delay 5 --retry-connrefused --retry-all-errors --max-time 30 )
+          curl -fsS "${SMOKE_RETRY_OPTS[@]}" "${APP_BASE_URL%/}/health" >/dev/null
+          curl -fsS "${SMOKE_RETRY_OPTS[@]}" "${APP_BASE_URL%/}/health/integrations" >/dev/null
+
+      - name: Deep smoke
+        env:
+          APP_BASE_URL: https://${{ steps.deploy_values.outputs.api_host }}
+          INBOUND_WEBHOOK_SECRET: ${{ secrets[format('{0}', 'STAGING_INBOUND_WEBHOOK_SECRET')] || secrets[format('{0}', 'INBOUND_WEBHOOK_SECRET')] }}
+          API_V1_PROGRAM_ID: ${{ vars.STAGING_API_V1_PROGRAM_ID }}
+          API_V1_SMOKE_KEY: ${{ secrets[format('{0}', 'STAGING_API_V1_SMOKE_KEY')] }}
+          SMOKE_BO_EMAIL: ${{ secrets[format('{0}', 'STAGING_SMOKE_BO_EMAIL')] }}
+          SMOKE_BO_PASSWORD: ${{ secrets[format('{0}', 'STAGING_SMOKE_BO_PASSWORD')] }}
+          SMOKE_BO_TOKEN: ${{ secrets[format('{0}', 'STAGING_SMOKE_BO_TOKEN')] }}
+          SMOKE_MODE: postdeploy
+          RELEASE_SMOKE_STRICT_APP_JOURNEYS: "true"
+          RELEASE_SMOKE_ARTIFACT_PATH: /tmp/staging-postdeploy-smoke.json
+          SMOKE_ARTIFACT_PATH: /tmp/staging-quote-bind-issue.json
+        run: |
+          set -euo pipefail
+          node tools/quality/aks/release-blocking-smoke.mjs
+
+      - name: Upload staging smoke artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-smoke-${{ steps.resolve_sha.outputs.tag }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/staging-postdeploy-smoke.json
+            /tmp/staging-quote-bind-issue.json
+          if-no-files-found: warn
+
+      - name: Diagnostics on failure
+        if: failure()
+        run: |
+          set +e
+          helm status "${HELM_RELEASE}" -n "${AKS_NAMESPACE}"
+          kubectl get deploy,job,po,svc,ingress -n "${AKS_NAMESPACE}" -o wide
+          kubectl get events -n "${AKS_NAMESPACE}" --sort-by=.lastTimestamp
+          for pod in $(kubectl get pods -n "${AKS_NAMESPACE}" -o name); do
+            echo "--- ${pod} ---"
+            kubectl logs -n "${AKS_NAMESPACE}" "${pod#pod/}" --tail=200
+          done

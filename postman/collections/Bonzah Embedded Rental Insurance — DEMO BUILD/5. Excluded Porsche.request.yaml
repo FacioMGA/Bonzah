@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/bonzah/quotes"
+method: POST
+headers:
+  Content-Type: application/json
+  Idempotency-Key: decline-porsche
+body:
+  type: text
+  content: '{"programId":"BONZAH-US-DEMO-2026","channel":"API","effectiveDate":"2026-09-03","risk":{"pickup":{"country":"US","state":"CO"},"residence":{"country":"US","state":"CA"},"rentalStart":"2026-09-18T10:00:00-06:00","rentalEnd":"2026-09-22T10:00:00-06:00","driver":{"age":35,"licenceValid":true},"vehicle":{"year":2025,"make":"Porsche","model":"911 Carrera","class":"sedan","declaredValue":128000,"repairProfile":"high","powertrain":"combustion"}},"coverages":["CDW"]}'
+scripts:
+  - type: afterResponse
+    code: pm.test('Porsche is declined without price', () => {const q=pm.response.json().data; pm.expect(q.status).to.eql('DECLINED'); pm.expect(q.total).to.eql(0);});
+    language: text/javascript
+order: 5000

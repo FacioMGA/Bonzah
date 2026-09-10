@@ -1,0 +1,41 @@
+{
+  "name": "@facio/validation",
+  "version": "0.0.0",
+  "description": "Single source of truth for Abbeygate validation. Owns Zod-based rules, ValidationProfile registry, and the shared validateForContext runner. Consumers wire their environment via the ./frontend or ./backend subpath exports, which inject the appropriate phone validator (react-phone-number-input on FE, libphonenumber-js on BE).",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./frontend": {
+      "source": "./src/adapters/frontend.ts",
+      "types": "./dist/adapters/frontend.d.ts",
+      "import": "./dist/adapters/frontend.js"
+    },
+    "./backend": {
+      "source": "./src/adapters/backend.ts",
+      "types": "./dist/adapters/backend.d.ts",
+      "import": "./dist/adapters/backend.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "type-check": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "libphonenumber-js": "*",
+    "react-phone-number-input": "*",
+    "zod": "*"
+  }
+}

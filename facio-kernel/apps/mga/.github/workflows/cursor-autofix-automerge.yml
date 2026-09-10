@@ -1,0 +1,71 @@
+name: Cursor Autofix Auto-merge
+
+# Arms GitHub native auto-merge only after a human applies the
+# `autofix-approved` label to a same-repository cursor/* PR. Any later push
+# removes that approval and disables auto-merge, requiring a fresh review.
+#
+# Why a PAT and not GITHUB_TOKEN: a merge performed with the default
+# GITHUB_TOKEN does NOT trigger downstream `push`-triggered workflows (GitHub's
+# recursion guard), which would silently skip the Azure Images build + staging
+# deploy. A user PAT is not GITHUB_TOKEN, so the merge push fires the normal main
+# pipeline. Store a fine-grained PAT (repo-scoped: Contents + Pull requests
+# read/write) or a classic PAT (`repo` scope) as the repo secret AUTOFIX_TOKEN.
+
+on:
+  pull_request:
+    types: [labeled, synchronize]
+
+concurrency:
+  group: cursor-automerge-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  clear-stale-approval:
+    if: ${{ github.event.action == 'synchronize' && startsWith(github.head_ref, 'cursor/') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require fresh human approval after every push
+        env:
+          GH_TOKEN: ${{ secrets.AUTOFIX_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          if [[ "$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json autoMergeRequest --jq '.autoMergeRequest != null')" == "true" ]]; then
+            gh pr merge "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --disable-auto
+          fi
+          if [[ "$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json labels --jq 'any(.labels[]; .name == "autofix-approved")')" == "true" ]]; then
+            gh pr edit "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --remove-label autofix-approved
+          fi
+          test "$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json autoMergeRequest --jq '.autoMergeRequest == null')" = "true"
+          test "$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json labels --jq 'all(.labels[]; .name != "autofix-approved")')" = "true"
+
+  arm-auto-merge:
+    if: >-
+      ${{ github.event.action == 'labeled' &&
+          github.event.label.name == 'autofix-approved' &&
+          github.event.pull_request.draft == false &&
+          github.base_ref == 'main' &&
+          startsWith(github.head_ref, 'cursor/') &&
+          github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Enable auto-merge (gates decide)
+        env:
+          GH_TOKEN: ${{ secrets.AUTOFIX_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          APPROVAL_ACTOR: ${{ github.actor }}
+          AUTOFIX_APPROVERS: ${{ vars.AUTOFIX_APPROVERS }}
+        run: |
+          set -euo pipefail
+          test -n "$AUTOFIX_APPROVERS"
+          if ! printf '%s\n' "$AUTOFIX_APPROVERS" | tr ',' '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | grep -Fxiqx -- "$APPROVAL_ACTOR"; then
+            echo "Actor $APPROVAL_ACTOR is not listed in AUTOFIX_APPROVERS." >&2
+            exit 1
+          fi
+          gh pr merge "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --auto --squash
+          echo "Human-approved auto-merge armed for PR #$PR_NUMBER by $APPROVAL_ACTOR."

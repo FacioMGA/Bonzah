@@ -1,0 +1,43 @@
+{{- if and .Values.api.enabled .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "abbeygate.fullname" . }}-api
+  labels:
+    {{- include "abbeygate.labels" . | nindent 4 }}
+    app.kubernetes.io/component: api
+  annotations:
+    appgw.ingress.kubernetes.io/ssl-redirect: {{ (.Values.ingress.sslRedirect | default true) | quote }}
+    appgw.ingress.kubernetes.io/request-timeout: {{ (.Values.ingress.requestTimeout | default 180) | quote }}
+    {{- if .Values.ingress.appgwSslCertificate }}
+    appgw.ingress.kubernetes.io/appgw-ssl-certificate: {{ .Values.ingress.appgwSslCertificate | quote }}
+    {{- end }}
+spec:
+  ingressClassName: {{ .Values.ingress.className | quote }}
+  {{- $root := . }}
+  {{- $hosts := list .Values.ingress.host }}
+  {{- range $h := .Values.ingress.additionalHosts }}
+  {{- $hosts = append $hosts $h }}
+  {{- end }}
+  rules:
+    {{- range $host := $hosts }}
+    - host: {{ $host | quote }}
+      http:
+        paths:
+          - path: {{ $root.Values.ingress.path }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "abbeygate.fullname" $root }}-api
+                port:
+                  number: {{ $root.Values.api.service.port }}
+    {{- end }}
+  {{- if and .Values.ingress.tls.enabled .Values.ingress.tls.secretName }}
+  tls:
+    - hosts:
+        {{- range $host := $hosts }}
+        - {{ $host | quote }}
+        {{- end }}
+      secretName: {{ .Values.ingress.tls.secretName }}
+  {{- end }}
+{{- end }}

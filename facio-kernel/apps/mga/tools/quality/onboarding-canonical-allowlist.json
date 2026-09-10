@@ -1,0 +1,8 @@
+{
+  "_doc": "ADR-0033 — products that intentionally don't ship a per-product binder-overlay migration (slot 8). Each entry MUST be defended by a follow-up ADR explaining why production data for this product is bootstrapped through a different path (e.g. legacy seed run before ADR-0033, dev-only product never deployed, etc.). New products added after ADR-0033 (2026-05-25) MUST ship the migration; this allowlist exists for legacy products only.",
+  "bindersBy": [
+    "MOTOR",
+    "HOME"
+  ],
+  "_legacy": "MOTOR and HOME pre-date ADR-0033. Their BinderProductAuthority rows were created on prod via a one-time hand-applied seed run before the canonical-checklist guard existed. Removing them from this allowlist requires shipping retroactive prisma/migrations/*.sql files that mirror backend/seed/binders.ts for both products."
+}

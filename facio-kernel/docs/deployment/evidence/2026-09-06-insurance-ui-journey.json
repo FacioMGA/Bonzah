@@ -1,0 +1,49 @@
+{
+  "verifiedAt": "2026-09-06T17:41:39.088150+00:00",
+  "method": "Actual Chrome UI through existing Google-authenticated uriel@facio.io administrator session; structured product authoring and normal canonical HTTP operations",
+  "servingSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+  "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+  "displayName": "Insurance configuration training (synthetic)",
+  "workspaceId": "facio-sandbox",
+  "operatingEntityId": "entity_469343e93c8e41f98814488ce8ab1bf5",
+  "requirementsHash": "fb8999cf786bc41234142f10a3c60cb607647b2af863c23efc12cc001ff7a05b",
+  "configurationVersion": 3,
+  "configurationHash": "92e5790e847d88bf103a3c5fd19b92744e5c3e05d0c9e4d90ca60bf15cc52c25",
+  "runtimeDraftVersion": 2,
+  "runtimeDraftHash": "1653b8a8c7fe5fa480539d15be4c98bd5e76773987852292f0661b3e9bb62aa8",
+  "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+  "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af",
+  "recordId": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+  "recordVersion": 2,
+  "status": "bound",
+  "recordHash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27",
+  "quoteHash": "b1120cde66ee711ef4e6c1a3dda2dc3688104c4b69bb20a97146ecde7b158581",
+  "policyHash": "2edbeb43d46e01bed75836c6d08fcbd35a3b04099ec536288aeb24485e09984c",
+  "definitionHash": "a2d75c16173719f65bb65fecadcd6af10d6049b4ec3b459ad652f08a29be50b4",
+  "inputHash": "636e0605914cdf838317ec645ed042ccf6183b0958542493ffca796195f71012",
+  "evaluationHash": "91ce983bddba2caf8bd2cb004923dd11fdf45a272ca77951b266a3fe5014efaa",
+  "currency": "GBP",
+  "premiumMinor": "10000",
+  "commissionMinor": "700",
+  "history": ["v1 quoted", "v2 bound"],
+  "liveCases": [
+    {
+      "case": "missing answers and coverage selection",
+      "result": "validation invalid; field-specific findings; rating/bind blocked; retain button disabled"
+    },
+    {
+      "case": "60 employees with required Buildings cover",
+      "result": "GBP100 calculated; employee-referral matched; referral and unsupported approval required; bind evaluation blocked; no record retained for this preview"
+    },
+    {
+      "case": "10 employees with required Buildings cover",
+      "result": "GBP100 calculated; eligible, within authority, bind checks passed; exact quote retained and bound, GBP7 calculated commission"
+    }
+  ],
+  "boundaries": [
+    "All source/rules/risks are explicitly synthetic; no customer acceptance, external provider verification, real payment or production policy.",
+    "Tenant/entity/process base and synthetic source import use existing JSON controls; the insurance product was authored via structured Product/Risk questions/Coverages/Eligibility/Rating/Authority controls.",
+    "No fresh intern sign-in or actual ChatGPT connector test performed in this journey.",
+    "Rich quote revision UI and risk-aware servicing remain unavailable."
+  ]
+}

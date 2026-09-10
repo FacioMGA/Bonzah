@@ -1,0 +1,325 @@
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  registry: abbeygateacr.azurecr.io
+  pullPolicy: IfNotPresent
+  tag: latest
+
+api:
+  enabled: true
+  replicaCount: 2
+  strategy:
+    type: RollingUpdate
+    # Avoid rollout deadlocks when the cluster cannot place surge pods immediately.
+    # Keeping one unavailable still preserves availability with replicaCount >= 2.
+    maxUnavailable: 1
+    maxSurge: 1
+  imageRepository: abbeygate-platform-api
+  service:
+    port: 80
+    targetPort: 3000
+  resources:
+    requests:
+      cpu: 300m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+  env:
+    PORT: "3000"
+    DOC_GENERATION_MODE: "queue"
+    QUEUE_WORKERS_ENABLED: "false"
+  probe:
+    path: /health
+    initialDelaySeconds: 20
+    periodSeconds: 10
+  startupProbe:
+    path: /health
+    periodSeconds: 10
+    failureThreshold: 30
+
+worker:
+  enabled: true
+  replicaCount: 1
+  strategy:
+    type: RollingUpdate
+    # Single-replica workers can deadlock on maxUnavailable=0 if no spare capacity exists.
+    # This allows in-place replacement without requiring an additional schedulable slot.
+    maxUnavailable: 1
+    maxSurge: 0
+  imageRepository: abbeygate-platform-worker
+  resources:
+    requests:
+      cpu: 300m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1536Mi
+  env:
+    QUEUE_WORKERS_ENABLED: "true"
+    WORKER_HEALTH_PORT: "3001"
+    # Keep renewal scans observable but non-delivering until an operator has
+    # reviewed the tenant-level eligible counts and approves the catch-up.
+    RENEWAL_EMAIL_DISPATCH_ENABLED: "false"
+  probe:
+    path: /health
+    port: 3001
+    initialDelaySeconds: 20
+    periodSeconds: 10
+  startupProbe:
+    path: /health
+    periodSeconds: 10
+    failureThreshold: 30
+
+ingress:
+  enabled: true
+  className: azure-application-gateway
+  # Redirect HTTP requests to HTTPS at the Application Gateway edge.
+  sslRedirect: true
+  # Existing App Gateway certificate resource name (uploaded in Azure).
+  # Example: cert-faciomga-prod-abbeygate-tls
+  appgwSslCertificate: ""
+  # Production hostnames (ABY-367). The host list is chart-authoritative so the
+  # single deployment can serve every prod domain at once; the deploy workflow
+  # no longer injects host/additionalHosts via --set (only the env-specific
+  # appgwSslCertificate). Staging hosts live in values-staging.yaml.
+  # App-layer host->tenant routing is in backend/http/middleware/resolveTenant.ts.
+  #
+  # ADR-0049 — this (main) ingress serves ONLY the facio.io hosts, bound to the
+  # *.facio.io certificate (CY4_AKS_APPGW_SSL_CERT_NAME). The abbeygate.com
+  # production domains live on the separate `abbeygateIngress` below because AGIC
+  # binds exactly ONE SSL certificate per ingress and the two domains need
+  # different certs. Do NOT add abbeygate.com hosts here.
+  host: abbeygate-cy.facio.io
+  additionalHosts:
+    - abbeygate-pt.facio.io
+    - abbeygate-gr.facio.io
+    - abbeygate-es.facio.io
+  path: /
+  tls:
+    enabled: false
+    secretName: ""
+
+# ADR-0049 — dedicated ingress for the abbeygate.com production domains.
+# Separate from the facio.io ingress because AGIC applies ONE SSL certificate
+# per ingress: facio.io stays on cert-faciomga-prod-abbeygate-tls (*.facio.io),
+# while abbeygate.com serves cert-abbeygate-prod-wildcard-* (*.abbeygate.com).
+# Disabled in staging (see values-staging.yaml) — staging owns *.staging.abbeygate.com.
+abbeygateIngress:
+  enabled: true
+  className: azure-application-gateway
+  sslRedirect: true
+  requestTimeout: 180
+  appgwSslCertificate: cert-abbeygate-prod-wildcard-20260707
+  path: /
+  hosts:
+    - cy.abbeygate.com
+    - pt.abbeygate.com
+    - gr.abbeygate.com
+
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 8
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 75
+
+keda:
+  enabled: true
+  minReplicaCount: 1
+  maxReplicaCount: 8
+  pollingInterval: 15
+  cooldownPeriod: 120
+  # KEDA redis-lists scaler watches the BullMQ WAITING list for each queue.
+  # BullMQ stores waiting jobs at `bull:<queue>:wait` (queue names carry the
+  # {..} hashtag for Redis Cluster). The worker scales up when ANY listed queue
+  # exceeds its threshold. The prior config watched a non-existent key
+  # "{documents}", so the scaler always read length 0 and never scaled up —
+  # which let the data-sync backlog wedge the single worker (2026-07-21 P1).
+  redisQueues:
+    - name: "bull:{data-sync}:wait"
+      listLength: "50"
+    - name: "bull:{documents}:wait"
+      listLength: "25"
+    - name: "bull:{notifications}:wait"
+      listLength: "25"
+
+issuanceProof:
+  # Re-armed after the Aug 2026 quote outage (fail-closed sanctions gate went
+  # days unnoticed). Safe to run every 10 min because the two proof mailboxes
+  # are split in the runtime secret: ISSUANCE_PROOF_WELCOME_TO points at a
+  # non-human sub-address (routine synthetic welcome emails) and only
+  # ISSUANCE_PROOF_ALERT_TO (a human inbox) receives failure alerts.
+  enabled: true
+  schedule: "*/10 * * * *"
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  activeDeadlineSeconds: 540
+  env:
+    ISSUANCE_PROOF_PRODUCTS: "MOTOR,HOME,TRAVEL"
+    ISSUANCE_PROOF_CLEANUP_ON_SUCCESS: "true"
+    ISSUANCE_PROOF_ARTIFACT_PATH: "/tmp/issuance-proof.json"
+
+# Quote-health canary (ADR-0066): actively proves every few minutes that the
+# product engine still returns a price for a known-good application, so a
+# sales-stopping outage is caught in minutes instead of days. Credit-free —
+# it does not call Creditsafe. Failure alerts reuse ISSUANCE_PROOF_ALERT_TO
+# unless QUOTE_HEALTH_ALERT_TO is set (both a human inbox).
+quoteHealth:
+  enabled: true
+  schedule: "*/5 * * * *"
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  activeDeadlineSeconds: 180
+  env:
+    QUOTE_HEALTH_PRODUCTS: "MOTOR,HOME,TRAVEL"
+
+# Explicit operator recovery only. The deployment workflows render the Job when
+# given a DNS-safe run id; ordinary deploys leave this empty and do not backfill.
+accountIntelligenceBackfill:
+  runId: ""
+  # Required whenever runId is set. The Job must never infer a jurisdiction
+  # from the deployment default; the workflow accepts only supported slugs.
+  tenantSlug: ""
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  activeDeadlineSeconds: 3600
+  env:
+    ACCOUNT_INTELLIGENCE_BACKFILL_BATCH_SIZE: "250"
+    ACCOUNT_INTELLIGENCE_BACKFILL_MAX_BATCHES: "400"
+
+migration:
+  enabled: false
+  backoffLimit: 0
+  activeDeadlineSeconds: 300
+  ttlSecondsAfterFinished: 600
+
+nodeSelector:
+  # Keep selectors empty so the scheduler can place pods on any healthy node.
+  # The workers pool (aks-workers-*) has persistent Redis connectivity issues
+  # (EPIPE/ECONNRESET during BullMQ startup). The default nodepool1 runs API
+  # pods successfully. Do not pin API to a specific pool until the underlying
+  # Redis networking issue is resolved.
+  api: {}
+  worker: {}
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+runtimeConfig:
+  configMapName: abbeygate-runtime-config
+  secretName: abbeygate-runtime-secrets
+  sentryEnvironment: production
+  secretKeys:
+    DATABASE_URL: DATABASE_URL
+    JWT_SECRET: JWT_SECRET
+    # ADR-0019 / PR 2 — quote-token signing keyspace is intentionally
+    # separate from `JWT_SECRET`. Required in production by
+    # `backend/platform/config/startupValidation.ts`; the pod fails-closed
+    # at startup if this env var is missing or empty (no legacy
+    # `process.env.QUOTE_TOKEN_SECRET || process.env.JWT_SECRET` fallback
+    # since `8dc2b2e5`). Bootstrap/rotation is an operator secret task, not
+    # something the lean deploy workflow mutates.
+    QUOTE_TOKEN_SECRET: QUOTE_TOKEN_SECRET
+    OTP_SECRET: OTP_SECRET
+    SESSION_SECRET: SESSION_SECRET
+    REDIS_HOST: REDIS_HOST
+    REDIS_PORT: REDIS_PORT
+    REDIS_ADDRESS: REDIS_ADDRESS
+    REDIS_PASSWORD: REDIS_PASSWORD
+    REDIS_TLS: REDIS_TLS
+    REDIS_ENABLE_CLUSTER: REDIS_ENABLE_CLUSTER
+    # Production contract: AKS remains stateless and durable files stay in Azure services.
+    # STORAGE_PROVIDER=local is for non-production only and is rejected by startup validation.
+    STORAGE_PROVIDER: STORAGE_PROVIDER
+    STORAGE_CONNECTION_STRING: STORAGE_CONNECTION_STRING
+    STORAGE_CONTAINER_NAME: STORAGE_CONTAINER_NAME
+    # Sentry DSN is mandatory in production. The pod's
+    # `instrument.ts` throws at boot when it is missing (chosen
+    # 2026-05-16 to surface the silent-Sentry footgun: the previous
+    # `optionalSecretKeys` placement meant a missing key produced an
+    # empty env var and Sentry no-op'd with no log). Adding/rotating
+    # the DSN is an operator secret task, not a deploy-workflow
+    # mutation — see `docs/operate/monitoring.md`.
+    SENTRY_DSN: SENTRY_DSN
+  optionalSecretKeys:
+    INBOUND_WEBHOOK_SECRET: INBOUND_WEBHOOK_SECRET
+    # When set, exposes POST /api/__debug/sentry-smoke (gated by
+    # X-Sentry-Smoke-Token header). When absent, the endpoint returns
+    # 404 (intentionally indistinguishable from a routing miss).
+    # Operator-managed: `kubectl -n faciomga-prod patch secret
+    # abbeygate-runtime-secrets --type=merge -p
+    # '{"stringData":{"SENTRY_SMOKE_TOKEN":"<random>"}}'`
+    SENTRY_SMOKE_TOKEN: SENTRY_SMOKE_TOKEN
+    # ADR-0049 — CardCorp is provisioned PER COUNTRY: one shared bearer token
+    # per environment, plus a per-country entity id + webhook decryption secret.
+    # There is no global CARDCORP_ENTITY_ID / CARDCORP_WEBHOOK_SECRET anymore
+    # (the app reads only the per-country keys; a missing key fails closed).
+    # Secret VALUES are operator-managed and never live in the repo.
+    CARDCORP_BEARER_TOKEN: CARDCORP_BEARER_TOKEN
+    CARDCORP_BASE_URL: CARDCORP_BASE_URL
+    CARDCORP_TEST_MODE: CARDCORP_TEST_MODE
+    # 'live' in prod (base URL = eu-prod.oppwa.com, testMode param omitted),
+    # 'test' in staging (OPPWA test keys).
+    CARDCORP_ENV: CARDCORP_ENV
+    CARDCORP_ENTITY_ID_CY: CARDCORP_ENTITY_ID_CY
+    CARDCORP_ENTITY_ID_PT: CARDCORP_ENTITY_ID_PT
+    CARDCORP_ENTITY_ID_GR: CARDCORP_ENTITY_ID_GR
+    CARDCORP_WEBHOOK_SECRET_CY: CARDCORP_WEBHOOK_SECRET_CY
+    CARDCORP_WEBHOOK_SECRET_PT: CARDCORP_WEBHOOK_SECRET_PT
+    CARDCORP_WEBHOOK_SECRET_GR: CARDCORP_WEBHOOK_SECRET_GR
+    SENDGRID_API_KEY: SENDGRID_API_KEY
+    # ECDSA public key (PEM) used to verify SendGrid event webhook signatures.
+    # Required by backend/platform/config/startupValidation.ts in production.
+    SENDGRID_EVENT_WEBHOOK_PUBLIC_KEY: SENDGRID_EVENT_WEBHOOK_PUBLIC_KEY
+    EMAIL_FROM_ADDRESS: EMAIL_FROM_ADDRESS
+    ISSUANCE_PROOF_ALERT_TO: ISSUANCE_PROOF_ALERT_TO
+    ISSUANCE_PROOF_WELCOME_TO: ISSUANCE_PROOF_WELCOME_TO
+    PUBLIC_APP_BASE_URL: PUBLIC_APP_BASE_URL
+    APP_URL: APP_URL
+    SMTP_HOST: SMTP_HOST
+    SMTP_PORT: SMTP_PORT
+    SMTP_USER: SMTP_USER
+    SMTP_PASS: SMTP_PASS
+    SMTP_SECURE: SMTP_SECURE
+    TWILIO_ACCOUNT_SID: TWILIO_ACCOUNT_SID
+    TWILIO_AUTH_TOKEN: TWILIO_AUTH_TOKEN
+    TWILIO_SMS_FROM: TWILIO_SMS_FROM
+    TWILIO_SMS_MESSAGING_SERVICE_SID: TWILIO_SMS_MESSAGING_SERVICE_SID
+    TWILIO_WHATSAPP_FROM: TWILIO_WHATSAPP_FROM
+    CARDOG_API_KEY: CARDOG_API_KEY
+    CARDOG_API_BASE_URL: CARDOG_API_BASE_URL
+    CARDOG_REGION: CARDOG_REGION
+    OPENAI_API_KEY: OPENAI_API_KEY
+    # Creditsafe KYC Protect sanctions/PEP screening (ADR-0043). Screening is
+    # OPT-IN: serviceFactory.ts treats it as disabled unless CREDITSAFE_ENABLED is
+    # truthy AND all three creds are present. It also fails CLOSED at boot —
+    # startupValidation.ts THROWS if CREDITSAFE_ENABLED=true but a cred is missing,
+    # so a `helm --atomic` deploy would roll back. Therefore set ALL keys together
+    # in the runtime secret; never enable the flag alone. Secret VALUES are
+    # operator-managed and never live in the repo:
+    #   kubectl -n faciomga-prod patch secret abbeygate-runtime-secrets --type=merge \
+    #     -p '{"stringData":{"CREDITSAFE_ENABLED":"true","CREDITSAFE_BASE_URL":"https://connect.creditsafe.com/v1","CREDITSAFE_USERNAME":"<user>","CREDITSAFE_PASSWORD":"<pass>","CREDITSAFE_THRESHOLD":"90","CREDITSAFE_DATASETS":"SAN-CURRENT,SAN-FORMER,PEP-CURRENT,PEP-FORMER,PEP-LINKED,AM,ENF,INS,DD,POI","CREDITSAFE_BLOCKING_DATASETS":"SAN-CURRENT,SAN-FORMER,PEP-CURRENT,PEP-FORMER,PEP-LINKED,AM,ENF,POI"}}'
+    CREDITSAFE_ENABLED: CREDITSAFE_ENABLED
+    CREDITSAFE_BASE_URL: CREDITSAFE_BASE_URL
+    CREDITSAFE_USERNAME: CREDITSAFE_USERNAME
+    CREDITSAFE_PASSWORD: CREDITSAFE_PASSWORD
+    CREDITSAFE_THRESHOLD: CREDITSAFE_THRESHOLD
+    CREDITSAFE_DATASETS: CREDITSAFE_DATASETS
+    CREDITSAFE_BLOCKING_DATASETS: CREDITSAFE_BLOCKING_DATASETS
+
+keyVault:
+  enabled: false
+  name: ""
+  tenantId: ""
+  clientId: ""
+  secretProviderClassName: abbeygate-kv
+  objects: []
+
+pdb:
+  api:
+    enabled: true
+    minAvailable: 1

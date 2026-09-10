@@ -1,0 +1,4 @@
+{
+  "_note": "Ceiling of 1 = the single legitimate backend/http reference: apps/api/router.ts re-exporting createApiRouter from backend/http/composition.js (the API entrypoint). Shared HTTP middleware (auth/tenant/rate-limit) now lives in backend/platform/http/middleware/, so modules no longer reference backend/http. Lower-only: do not raise without eliminating a real reference.",
+  "maxBackendHttpReferences": 1
+}

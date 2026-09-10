@@ -1,0 +1,23 @@
+{
+  "thread_id": "CY-MTR-015",
+  "claim_ref": "CY-MTR-015",
+  "gold_missing_documents": [
+    "police_report",
+    "third_party_insurer_details",
+    "witness_statement"
+  ],
+  "gold_authority_flags": [
+    "tp_recovery_required"
+  ],
+  "gold_decision_posture": "reserved",
+  "gold_key_events": [
+    "FNOL",
+    "doc_request",
+    "chase"
+  ],
+  "gold_similar_threads": [
+    "CY-MTR-017",
+    "CY-MTR-027"
+  ],
+  "scenario": "missing_tp_details"
+}

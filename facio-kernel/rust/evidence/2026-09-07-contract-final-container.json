@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "rust-money-final-container-verification-v1",
+  "capturedAt": "2026-09-07T06:48:42.589Z",
+  "node": "v22.23.2",
+  "platform": "linux",
+  "architecture": "arm64",
+  "uid": 1000,
+  "network": "none",
+  "rootFilesystem": "read-only",
+  "writableFilesystem": "disposable tmpfs /tmp only",
+  "sourceState": "Uncommitted Sprint 5 candidate working tree; BUILD_SHA is a supplied candidate label, not proof of the image matching a committed release",
+  "candidateBuildLabel": "300381a299fc4e814c1f7087d3a567eedd9cb615",
+  "health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "300381a299fc4e814c1f7087d3a567eedd9cb615",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "moneyEngine": {
+      "engine": "rust-wasm",
+      "engineVersion": "1.0.0",
+      "abiVersion": 1,
+      "calculationVersion": "exact-money-v1",
+      "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+      "target": "wasm32-unknown-unknown",
+      "sourceSha256": "e4512b0aeb03ce38c813ca490804d7adfa0d302ae8eed9721769c323061f87d8",
+      "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+      "wasmBytes": 16985,
+      "memoryBytes": 131072
+    },
+    "productionReady": false
+  },
+  "packagedRust": {
+    "engine": "rust-wasm",
+    "engineVersion": "1.0.0",
+    "abiVersion": 1,
+    "calculationVersion": "exact-money-v1",
+    "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "target": "wasm32-unknown-unknown",
+    "sourceSha256": "e4512b0aeb03ce38c813ca490804d7adfa0d302ae8eed9721769c323061f87d8",
+    "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+    "wasmBytes": 16985,
+    "memoryBytes": 131072
+  },
+  "canonicalPositiveAndNegativeIllustrativeAllocationPassed": true,
+  "zeroWasmImports": true,
+  "hostedHealthyOffline": true,
+  "gracefulHostedShutdownExitCode": 0,
+  "excludedRuntimePaths": [
+    "/usr/local/cargo",
+    "/usr/local/rustup",
+    "/app/dist/tests",
+    "/app/dist/scripts",
+    "/app/tests",
+    "/app/src",
+    "/app/tenant-packages",
+    "/app/dist/src/fixtures",
+    "/app/dist/src/domain/money-reference.js",
+    "/app/dist/src/main.js",
+    "/app/dist/src/dev.js"
+  ],
+  "runtimeCompilerCommandsAbsent": ["rustc", "cargo", "rustup", "tsc", "tsx"],
+  "runtimeCompiledTestsFixturesAndSourceMapsAbsent": true,
+  "failClosedHostedStartupCases": [
+    {
+      "condition": "missing-wasm",
+      "exitCode": 1,
+      "errorCode": "RUST_MONEY_UNAVAILABLE",
+      "businessDatabaseCreated": false,
+      "authDatabaseCreated": false
+    },
+    {
+      "condition": "corrupt-wasm",
+      "exitCode": 1,
+      "errorCode": "RUST_MONEY_UNAVAILABLE",
+      "businessDatabaseCreated": false,
+      "authDatabaseCreated": false
+    },
+    {
+      "condition": "missing-manifest",
+      "exitCode": 1,
+      "errorCode": "RUST_MONEY_UNAVAILABLE",
+      "businessDatabaseCreated": false,
+      "authDatabaseCreated": false
+    }
+  ],
+  "boundary": "Local Linux arm64 packaging/startup check only; no customer identities, live credentials, provider traffic, cloud deployment, billing or Linux amd64 performance measurement",
+  "imageTag": "facio-kernel:sprint5-contract-final",
+  "imageId": "sha256:a149290032c2836c0fd6220436717527d3cb9a41ace63aed4bc7617b25e879a7"
+}

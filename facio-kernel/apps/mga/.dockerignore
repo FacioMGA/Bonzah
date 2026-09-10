@@ -1,0 +1,60 @@
+node_modules
+**/node_modules
+
+# Build outputs and caches
+dist
+**/dist
+coverage
+**/coverage
+.cache
+**/.cache
+**/*.tsbuildinfo
+
+# VCS/IDE/local artifacts
+.git
+.gitignore
+.github
+.vscode
+.idea
+.cursor
+*.log
+.DS_Store
+
+# Local secrets
+.env
+.env.local
+.env.*.local
+
+# Local runtime artifacts and caches (not needed for image builds)
+uploads
+**/uploads
+policy-documents
+**/policy-documents
+tmp
+**/tmp
+puppeteer-cache
+**/puppeteer-cache
+
+# Non-runtime docs and scratch material
+README.md
+docs
+!docs/architecture/
+!docs/architecture/baselines/
+!docs/architecture/baselines/*.csv
+!docs/architecture/baselines/*.json
+qa
+
+# Tests are not needed for image builds
+tests
+**/tests
+**/__tests__/
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+**/*.test.js
+**/*.spec.js
+
+# Build-time quality guards inspect product conformance tests.
+!backend/products/__tests__/
+!backend/products/__tests__/productConformance.*.test.ts

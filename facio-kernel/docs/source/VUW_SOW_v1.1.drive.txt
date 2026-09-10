@@ -1,0 +1,215 @@
+﻿STATEMENT OF WORK · V1.1 · CONFIDENTIAL
+Implementation for Vuw.ai
+The system of record, Lloyd's reporting, and financial reconciliation layer behind Vuw's underwriting engine, delivered through the Microsoft Managed Success Program.
+
+
+	
+
+	Version
+	1.1
+	Date
+	August 11, 2026
+	Parties
+	Facio Ltd. ("Facio") and Vuw.ai ("Vuw")
+	Program structure
+	Microsoft Marketplace Private Offer / Managed Success subscription
+	Service levels
+	99.99% monthly uptime, subject to the Facio Cloud Service Level Agreement
+	Primary scope
+	Lloyd's-market system of record, bordereaux reporting, and financial reconciliation: Property (reinsurance) and Cargo (insurance) programs first
+	
+
+Executive summary
+This SOW defines the FacioMGA implementation for Vuw.ai as the system of record, regulatory reporting, and financial operations layer sitting behind Vuw's in-house underwriting and risk engine. Vuw ingests and underwrites business through its own front end; Facio receives the bound and quoted risk data via API, records it in a Lloyd's-ready policy administration system and risk ledger, produces the required documents and bordereaux, and manages the financial layer: banking reconciliation, commissions, and capacity reporting.
+The engagement begins with a Proof of Concept (three working sessions across approximately one month) at no cost. The commercial subscription follows the Microsoft Managed Success structure for 12 months and commences upon successful POC completion, targeting go-live readiness by mid-September 2026. The Facio Cloud Service Level Agreement takes effect with the paid subscription and does not apply during the free POC.
+Initial programs: (1) US regional-mutual property quota-share reinsurance following Munich Re and Swiss Re; (2) Middle East cargo insurance placed into the Lloyd's market via a London broker with a multi-insurer tower; (3) property reinsurance for a Caribbean reinsurer via a major London broker. Initial capacity: two Lloyd's syndicates and one Caribbean reinsurer.
+	________________
+
+
+01  ·  BACKGROUND
+Background.
+Vuw.ai is building an MGA operation that ingests business from multiple brokers, regions, and channels (Whitespace in the Lloyd's market, email, and Excel bordereaux) into its proprietary front end and underwriting engine. Vuw's engine handles submission intake, risk assessment, and underwriting decisioning, including auto-bind for risks within the capacity providers' appetite and referral workflows where required.
+Vuw requires everything downstream of the underwriting decision: a clean system of record, a risk ledger tightly connected to an accounting ledger, document production, Lloyd's-standard reporting, and a financial layer covering bordereaux production, banking reconciliation, and commission management. Underwriters operate only in the underwriting engine and the policy administration system, never in email.
+Vuw does not yet hold Lloyd's coverholder status and operates as an Appointed Representative through ProGlobal. In the first iteration Vuw will trade as ProGlobal, which will act as coverholder. This is a legal-structure consideration only and does not change the scope of this SOW; the platform configuration will reflect the ProGlobal coverholder arrangement.
+Initial programs
+* Program 1, US property reinsurance (regional mutual). Localized office properties in the US, non-cat risks initially, on a quota-share basis behind a 50% line, following Munich Re and Swiss Re. Early cases are expected to route through referral workflows while appetite-rule interpretation is calibrated.
+* Program 2, cargo insurance (Middle East book). Direct insurance business entering London via a London broker, placed in the Lloyd's market with a tower of multiple insurers behind the lead capacity provider. The capacity provider's in-house placing broker participates in the flow. This program will be subject to Lloyd's audit.
+* Program 3, property reinsurance (Caribbean reinsurer). Reinsurance product placed through a major London broker into London.
+Initial capacity: two Lloyd's syndicates and one Caribbean reinsurer. Brokers are expected to be predominantly, but not necessarily exclusively, Lloyd's brokers. Additional programs are under development and can be added under the same architecture.
+Objective
+Implement FacioMGA as Vuw's Azure-hosted system of record and financial operations platform: receive underwritten risk data from Vuw's engine via API, administer the full policy lifecycle, produce broker statements and regulatory outputs, generate Lloyd's-standard bordereaux, and reconcile banking transactions against the risk and accounting ledgers.
+02  ·  GOALS & OUTCOMES
+Goals & business outcomes.
+* Clean system of record. Every quote and bound risk from Vuw's engine is recorded in the PAS, satisfying Lloyd's requirements for quote recording and full lifecycle auditability.
+* Lloyd's-first reporting. Premium, risk, and claims bordereaux in Lloyd's standard out of the box, mapped to Lloyd's CR codes for the agreed classes of business.
+* Financial control. Risk ledger tightly connected to the accounting ledger, with intelligent bank reconciliation linking funds movements to risk transactions, exposure, and claims.
+* Unified claims visibility. Monthly intake of claims bordereaux from multiple insurers (all claims handled in-house by insurers; no TPAs), consolidated into one unified claims bordereau.
+* Audit readiness. Auditor interface with granted access so Lloyd's auditors work directly in the system, reducing manual audit overhead for the audited programs (e.g., cargo).
+* Multi-capacity complexity. Support for towers with multiple insurers on one risk, quota-share follow structures, and reporting across two Lloyd's syndicates plus a non-Lloyd's Caribbean reinsurer.
+Success metrics, POC
+* Agreed data schema, mapped to Lloyd's CR codes for Vuw's classes of business, accepted end-to-end via API.
+* Policies issued correctly from Vuw engine output, including midterm amendments and endorsements.
+* Premium bordereau generated in Lloyd's standard from recorded risks.
+* Reconciliation demonstrated on synthesized bank transactions against the known Revolut schema.
+* Broker statement produced electronically from a Vuw-branded template.
+03  ·  SCOPE OF WORK
+Scope of work.
+3.1 System of record & policy administration
+* Recording of every quote produced by Vuw's engine in the PAS, per Lloyd's requirements.
+* Full policy lifecycle: bind, issue, midterm amendments, endorsements, cancellation, and renewal, with version history and audit logging.
+* Configuration for the ProGlobal coverholder legal structure and the reinsurance/insurance program distinctions (cedent-facing reinsurance vs. direct cargo insurance).
+* Multi-capacity support: towers with multiple insurers on one risk, quota-share follow behind a 50% line, and per-capacity allocation across two Lloyd's syndicates and one Caribbean reinsurer.
+* Optional risk-level granularity: rating breakdown beyond the approved wording or schedule (e.g., peril-level splits for property) recorded into the risk ledger to enrich downstream risk reporting; pass-through of final premium alone is also supported.
+3.2 Integration & data schema
+* REST API integration from Vuw's underwriting engine into the PAS; MCP server available for AI-agent-driven interaction; full GUI access included. API, UI, and MCP may be used interchangeably.
+* Facio-generated data schema based on Vuw's risk codes (classes of business), pre-mapped to Lloyd's CR codes, with mandatory and recommended fields marked.
+* Joint mapping session to align Vuw's schema (object-oriented or otherwise) to the minimum required dataset; North America assumed as the initial risk-location specification, with other regions added as needed.
+* Support for dynamic or constant schema approaches as preferred by Vuw's engineering team.
+3.3 Document generation
+* Broker statements issued electronically from a Vuw-supplied Word template (logo and content as provided), the only client-issued document required by the current business model.
+* All regulatory-required artifacts and outputs produced by Facio as part of the platform's Lloyd's-ready reporting layer; no policy-document issuance obligation exists for Vuw in the initial programs.
+3.4 Bordereaux, Lloyd's reporting & audit
+* Premium bordereau and risk bordereau in Lloyd's standard, mapped via Facio's CR-code libraries for the agreed classes of business.
+* Monthly intake of claims bordereaux from the insurers (3 to 20+ files per month), consolidated into a unified claims bordereau; claims feed recorded for Vuw's visibility. All claims are handled in-house by the insurers, so no TPA integration is required.
+* Audit center with auditor interface: access-granted Lloyd's auditors work directly in the system for the audited programs.
+* Reporting configuration across the Lloyd's syndicates and the Caribbean reinsurer, demonstrating the mixed-capacity reporting complexity.
+3.5 Financial layer: reconciliation, banking & commissions
+* Risk ledger tightly connected to the accounting ledger as the core financial system of record.
+* Intelligent reconciliation engine linking bank funds movements to risk transactions, exposure, and claims, with an easy-to-use interface for manual linking of exceptions.
+* Banking connectivity via UK Open Banking: Revolut assumed first (known schema, no client action needed); HSBC supported subject to a CSV transaction export sample to validate the schema.
+* Commission calculation and capacity/broker splits recorded against the risk ledger.
+* Financial reports required for filing, generated from the reconciled ledgers.
+* Reconciliation available through the API as well, allowing Vuw to build its own screens inside its front end if preferred.
+04  ·  PROOF OF CONCEPT
+Proof of concept plan.
+The POC compresses the full core handshake set into three working sessions across approximately one month, at no cost to Vuw. The session of Thursday, August 13 is the first of the three and forms part of the POC process.
+* Session 1, schema & scope (Thursday, August 13, 2026). Review of the Lloyd's CR-mapped schema generated from Vuw's risk codes; joint mapping of Vuw's schema to the minimum required dataset; broker statement template and bank confirmation locked.
+* Session 2, issuance & reporting (week of August 17, 2026). Demonstrate correct policy issuance from Vuw engine data, including midterm amendments and endorsements, the area where policy admin systems typically become messy; premium bordereau generated in Lloyd's standard; audit center walk-through configured for the cargo program.
+* Session 3, financial simulation & completion (week of August 31, 2026). Reconciliation demonstrated on synthesized bank transactions (no live bank integration during the POC); integration handshake test validated; confidential demonstration of the reconciliation engine operating at scale in existing production deployments; POC completion review.
+The purpose of the POC is to reach sufficient confidence to continue at full pace toward the September demonstration to Vuw's mandates: realistic, demonstrable, and without shortcuts. POC success is defined in Section 11, Acceptance Criteria. The Facio Cloud Service Level Agreement does not apply during the free POC; it takes effect upon commencement of the paid subscription.
+	05  ·  NON-FUNCTIONAL REQUIREMENTS
+Non-functional requirements.
+* Hosting: Facio-managed Microsoft Azure cloud environment under the Managed Success deployment structure (Production, Test/UAT, and Disaster Recovery environments).
+* Security: MFA for admin access, encryption at rest and in transit, role-based access control including auditor roles.
+* Compliance readiness: Lloyd's-standard reporting out of the box; GDPR-aligned processing; auditable event history.
+* Availability: 99.99% monthly uptime, subject to and as defined in the Facio Cloud Service Level Agreement, including its exclusions, maintenance windows, and Service Credit remedies. The SLA applies from commencement of the paid subscription and does not apply during the free POC.
+* Auditability: immutable workflow and event history for data changes, document issuance, user actions, and financial movements.
+06  ·  ASSUMPTIONS & DEPENDENCIES
+Assumptions & dependencies.
+Status as of August 11, 2026
+Received: Vuw's risk codes (classes of business), provided by James Bowler. Schema generation is underway on this basis.
+Pending: the RI (reinsurance) certificate, required to finalize the reinsurance program configuration and complete schema validation.
+	
+
+* Vuw will provide a broker statement example, or a description of its required content, as a Word template.
+* Vuw will confirm the operating bank account: Revolut assumed for the POC; if HSBC is included, Vuw will supply a CSV transaction export sample for schema validation. Bank connectivity depends on each bank's Open Banking API conformance and cannot be guaranteed for non-conforming banks.
+* Underwriting, pricing, and risk decisioning remain entirely within Vuw's engine; Facio provides no rating engine under this SOW.
+* Claims adjudication, handling, and payments are performed by the insurers in-house and are out of scope; Facio's claims scope is limited to bordereaux intake, consolidation, and reporting.
+* North America is the assumed initial risk-location specification; additional regions require further scoping of region-specific reporting requirements.
+* The ProGlobal coverholder arrangement is a legal-structure matter managed by Vuw; Facio will configure the platform accordingly.
+* Custom UI development is excluded to keep the engagement lean; Vuw will use core services via API, the standard GUI, and/or the MCP server. Custom UI work can be added by change order.
+* Timelines depend on timely provision of the pending inputs and Vuw's participation in the mapping and validation sessions.
+07  ·  DELIVERABLES
+Deliverables.
+* Configured Facio tenant(s) under the Managed Success Azure deployment structure.
+* Lloyd's CR-mapped data schema for Vuw's risk codes, with mandatory and recommended fields marked.
+* API (and MCP) integration endpoints with a validated handshake from Vuw's underwriting engine.
+* Policy administration configuration for the three initial programs and the multi-capacity structure.
+* Broker statement generation from the Vuw-branded template.
+* Premium and risk bordereaux in Lloyd's standard; unified claims bordereau consolidation workflow.
+* Reconciliation workspace connected to Revolut (and HSBC subject to schema validation).
+* Audit center configuration with auditor access roles.
+* Training, UAT support, go-live checklist, and operating runbook.
+08  ·  PLAN & TIMELINE
+Implementation plan & timeline.
+Target: go-live ready by mid-September 2026. The POC environment will support a demonstration to at least one of Vuw's four mandates in early September. Dates assume the pending RI certificate and remaining inputs arrive during the alignment phase.
+PHASE
+	DATES (2026)
+	KEY ACTIVITIES
+	OUTPUTS
+	0 · Alignment
+	Aug 11–14
+	Risk codes received (done); schema generated and mapped; broker statement template and bank confirmation; POC session 1 on Thu Aug 13.
+	Locked schema & inputs
+	1 · POC build
+	Aug 17–28
+	Issuance incl. MTAs and endorsements; premium bordereau; audit center; POC session 2.
+	Core handshakes demonstrated
+	2 · POC financial
+	Aug 31–Sep 4
+	Synthesized-transaction reconciliation demo; integration handshake test; POC session 3 and completion review.
+	POC sign-off
+	3 · Production build
+	Sep 7–11
+	Production configuration for the three programs, capacity structure, reporting, and banking connectivity; early-September mandate demo supported from the POC environment.
+	UAT-ready environment
+	4 · UAT & go-live
+	Sep 14–18
+	Vuw scenario validation, hardening, training, cutover.
+	Go-live ready, mid-September
+	5 · Managed Success
+	Ongoing
+	Operational cadence, tuning, support, backlog shaping through the subscription term.
+	Stabilized operations
+	
+
+09  ·  ROLES & RESPONSIBILITIES
+Roles & responsibilities.
+PARTY
+	RESPONSIBILITIES
+	Vuw
+	Provide the RI certificate, broker statement template, bank confirmation (and HSBC CSV sample if applicable), schema preferences, syndicate/binder documentation, UAT participation, sign-off authority, Microsoft subscription coordination, and designated technical and operations contacts.
+	Facio
+	Generate the Lloyd's CR-mapped schema; configure, host, secure, and implement the platform; run the three POC sessions; deliver training, UAT support, go-live support, and ongoing Managed Success services during the subscription term; produce all regulatory-required reporting outputs.
+	
+
+10  ·  COMMERCIALS
+Microsoft Managed Success subscription.
+* Commercial structure. Microsoft Marketplace Private Offer subscription; all purchasing and payment is transacted through Microsoft.
+* Proof of Concept. Three working sessions, provided at no cost. The subscription commences only upon successful POC completion and mutual confirmation to proceed.
+* Annual commitment. 12 months from subscription commencement.
+* Billing frequency. Monthly, via Microsoft.
+* Subscription fee. USD $5,000 per month.
+* Included envelope: implementation services during the initial 12-month term, Production + Test/UAT + DR environments, and up to 10 admin users.
+* No separate upfront implementation fee applies during the 12-month Managed Success term.
+* Service levels. Availability of 99.99% monthly uptime, governed by the Facio Cloud Service Level Agreement. The SLA takes effect upon commencement of the paid subscription and does not apply during the free POC.
+* Contract structure and liabilities. Procurement and billing run through the Microsoft Marketplace: Vuw purchases the subscription from Microsoft under the Private Offer terms and pays Microsoft. The service relationship is directly between Facio and Vuw and is governed by the Facio Master Subscription Agreement, this SOW, and the Facio Cloud Service Level Agreement. Facio is responsible for service delivery, availability commitments, and support; Microsoft acts solely as the marketplace and billing channel and assumes no service-performance obligations. Service Credits under the SLA are the sole and exclusive remedy for availability shortfalls and are applied against future subscription payments.
+* Microsoft technology program. Facio will assess Vuw's candidacy for Microsoft's enhanced technology partnership program, which includes additional Microsoft technical support and substantial cost subsidies. Confirmation will be provided separately; any resulting benefit will be reflected in the Private Offer.
+* Any material scope expansion beyond this SOW (including custom UI work or additional regions) shall be handled through a written change order or a revised SOW.
+11  ·  ACCEPTANCE CRITERIA
+Acceptance criteria, POC.
+* Schema delivered, mapped to Lloyd's CR codes for the agreed risk codes, and accepted by Vuw's engineering team.
+* Risk data passed from Vuw's engine via API is recorded in the PAS, with every quote logged.
+* Policies issued correctly, including at least one midterm amendment and one endorsement scenario.
+* Premium bordereau generated in Lloyd's standard from the recorded test risks.
+* Multi-capacity allocation demonstrated across two Lloyd's syndicates and the Caribbean reinsurer.
+* Reconciliation demonstrated on synthesized transactions with the Revolut schema, including manual exception linking.
+* Broker statement generated electronically from the Vuw template.
+* Auditor interface demonstrated for the audited (cargo) program.
+12  ·  EXCLUSIONS
+Exclusions & deferred items.
+* Underwriting, rating, or pricing engine functionality; these remain in Vuw's engine.
+* Claims intake from insureds, adjudication, reserving, and claims payments; insurers handle claims in-house, and only bordereaux consolidation and reporting are in scope.
+* Live bank integration during the POC; reconciliation is simulated on synthesized data, and production banking connectivity follows in the production build.
+* Custom UI development for Vuw's front end (available by change order).
+* Region-specific reporting beyond North America risk locations (added by change order per region).
+* Any integrations, migrations, or third-party services not expressly included in this SOW.
+13  ·  SIGNATURES
+Signatures.
+For Vuw.ai
+Name: _______________________
+Title: _______________________
+Date: _______________________
+
+
+Signature: _______________________
+	For Facio Ltd.
+Name: Uriel Aharoni
+Title: CEO & Co-Founder
+Date: _______________________
+
+
+Signature: _______________________
+	
+
+CONFIDENTIAL · FACIO · 2026 · FACIO.IO    PAGE  OF

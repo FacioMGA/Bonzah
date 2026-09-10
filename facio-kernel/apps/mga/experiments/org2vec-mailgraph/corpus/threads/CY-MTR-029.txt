@@ -1,0 +1,22 @@
+Thread-ID: CY-MTR-029
+Claim-Ref: CY-MTR-029
+Subject: CY-MTR-029 — settlement offer over authority
+===
+
+From: TP Solicitor <claims@lawpartners.example>
+To: claims@abbeygate.example
+Date: 2026-03-10 10:00
+Subject: Settlement proposal CY-MTR-029
+
+On behalf of our client, we propose full and final settlement at
+€42,000 inclusive of general damages and special damages. Please
+confirm acceptance.
+
+---
+From: Handler <claims@abbeygate.example>
+To: manager@abbeygate.example
+Date: 2026-03-10 14:00
+Subject: Referral — CY-MTR-029 over authority
+
+Settlement proposal €42,000 exceeds my delegated authority (€25,000).
+Referring for review before any acceptance.

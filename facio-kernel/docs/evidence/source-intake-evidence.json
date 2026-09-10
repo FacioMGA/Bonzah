@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-09-06T13:30:03.565Z",
+  "mode": "actual source intake packages on local development server",
+  "checks": [
+    {
+      "tenantId": "ue-intake",
+      "requirements": 15,
+      "sources": 4,
+      "profileHash": "62fd5f6d80b626dcfd1c01db77883aa816cae8473924353c7e4e641405e94ee7",
+      "runtimeStatus": "pending_evidence",
+      "acceptanceStatus": "not_recorded",
+      "manifestMatches": true
+    },
+    {
+      "tenantId": "vuw-intake",
+      "requirements": 53,
+      "sources": 5,
+      "profileHash": "8ce13f7ba9fa2bd2f633e636d3f3373783b9faa08e3265279e71db262dbf3cb8",
+      "runtimeStatus": "pending_evidence",
+      "acceptanceStatus": "not_recorded",
+      "manifestMatches": true
+    }
+  ],
+  "errors": [],
+  "limits": "Read-only requirements visibility only; no customer insurance transaction or acceptance executed."
+}

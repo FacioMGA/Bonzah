@@ -1,0 +1,716 @@
+{
+  "schemaVersion": "rust-money-benchmark-v1",
+  "capturedAt": "2026-09-07T05:52:39.139Z",
+  "node": "v22.22.2",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "cpu": "Apple M5 Max",
+  "logicalCpus": 18,
+  "parityCases": 12000,
+  "module": {
+    "engine": "rust-wasm",
+    "engineVersion": "1.0.0",
+    "abiVersion": 1,
+    "calculationVersion": "exact-money-v1",
+    "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "target": "wasm32-unknown-unknown",
+    "sourceSha256": "dbefdafbfb0fb4142ae1b3c75804425d4f81945c8273c96ad9cd988096ecf314",
+    "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+    "wasmBytes": 16985,
+    "memoryBytes": 131072
+  },
+  "scope": "Full allocation function: strict schema validation, stable-ID sorting, JS/WASM memory copies and BigInt ABI, exact arithmetic, result assembly. Excludes HTTP/database/insurance persistence and billable cloud cost.",
+  "method": "Separate Node22 process for each engine/workload; 50000 warmups, 7 consecutive measured rounds; full GC before all measured work and after the final round. Amortized CPU includes final GC; median round metrics include normal in-loop GC. Fixed deterministic inputs. Peak RSS includes process/JIT baseline and is not per-operation memory.",
+  "results": [
+    {
+      "engine": "optimized",
+      "participantCount": 1,
+      "callsPerRound": 750000,
+      "rounds": [
+        {
+          "wallMs": 689.773834,
+          "cpuMs": 685.444
+        },
+        {
+          "wallMs": 686.720791,
+          "cpuMs": 685.506
+        },
+        {
+          "wallMs": 686.630042,
+          "cpuMs": 686.379
+        },
+        {
+          "wallMs": 682.344083,
+          "cpuMs": 680.073
+        },
+        {
+          "wallMs": 685.1078339999999,
+          "cpuMs": 682.826
+        },
+        {
+          "wallMs": 679.6889999999999,
+          "cpuMs": 677.302
+        },
+        {
+          "wallMs": 682.081083,
+          "cpuMs": 679.209
+        }
+      ],
+      "medianWallMs": 685.1078339999999,
+      "medianCpuMs": 682.826,
+      "operationsPerSecond": 1094718.1783357044,
+      "cpuMicrosecondsPerCall": 0.9104346666666666,
+      "amortizedCpuMicrosecondsPerCall": 0.9111129523809524,
+      "totalMeasuredWallMs": 4794.016375,
+      "maxRssKiB": 126688,
+      "endingMemory": {
+        "rss": 129728512,
+        "heapTotal": 46940160,
+        "heapUsed": 10132488,
+        "external": 2457424,
+        "arrayBuffers": 25107
+      },
+      "checksum": 141237264,
+      "module": null
+    },
+    {
+      "engine": "rust",
+      "participantCount": 1,
+      "callsPerRound": 750000,
+      "rounds": [
+        {
+          "wallMs": 663.544,
+          "cpuMs": 662.425
+        },
+        {
+          "wallMs": 661.931458,
+          "cpuMs": 661.208
+        },
+        {
+          "wallMs": 662.735416,
+          "cpuMs": 662.816
+        },
+        {
+          "wallMs": 660.8797910000003,
+          "cpuMs": 658.985
+        },
+        {
+          "wallMs": 657.96675,
+          "cpuMs": 655.866
+        },
+        {
+          "wallMs": 653.9748749999999,
+          "cpuMs": 651.612
+        },
+        {
+          "wallMs": 663.8228749999998,
+          "cpuMs": 661.861
+        }
+      ],
+      "medianWallMs": 661.931458,
+      "medianCpuMs": 661.208,
+      "operationsPerSecond": 1133047.8268340586,
+      "cpuMicrosecondsPerCall": 0.8816106666666667,
+      "amortizedCpuMicrosecondsPerCall": 0.8802384761904762,
+      "totalMeasuredWallMs": 4626.50225,
+      "maxRssKiB": 127616,
+      "endingMemory": {
+        "rss": 130678784,
+        "heapTotal": 45891584,
+        "heapUsed": 10170984,
+        "external": 2588500,
+        "arrayBuffers": 25111
+      },
+      "checksum": 141237264,
+      "module": {
+        "engine": "rust-wasm",
+        "engineVersion": "1.0.0",
+        "abiVersion": 1,
+        "calculationVersion": "exact-money-v1",
+        "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+        "target": "wasm32-unknown-unknown",
+        "sourceSha256": "dbefdafbfb0fb4142ae1b3c75804425d4f81945c8273c96ad9cd988096ecf314",
+        "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+        "wasmBytes": 16985,
+        "memoryBytes": 131072
+      }
+    },
+    {
+      "engine": "reference",
+      "participantCount": 1,
+      "callsPerRound": 750000,
+      "rounds": [
+        {
+          "wallMs": 878.9399169999999,
+          "cpuMs": 874.538
+        },
+        {
+          "wallMs": 886.4407920000001,
+          "cpuMs": 882.303
+        },
+        {
+          "wallMs": 885.816916,
+          "cpuMs": 882.386
+        },
+        {
+          "wallMs": 881.3584999999998,
+          "cpuMs": 875.922
+        },
+        {
+          "wallMs": 880.9532920000001,
+          "cpuMs": 877.711
+        },
+        {
+          "wallMs": 868.5915000000005,
+          "cpuMs": 866.025
+        },
+        {
+          "wallMs": 869.3201659999995,
+          "cpuMs": 866.673
+        }
+      ],
+      "medianWallMs": 880.9532920000001,
+      "medianCpuMs": 875.922,
+      "operationsPerSecond": 851350.4709169074,
+      "cpuMicrosecondsPerCall": 1.167896,
+      "amortizedCpuMicrosecondsPerCall": 1.1679668571428572,
+      "totalMeasuredWallMs": 6152.967541,
+      "maxRssKiB": 127552,
+      "endingMemory": {
+        "rss": 130613248,
+        "heapTotal": 46940160,
+        "heapUsed": 10149336,
+        "external": 2457424,
+        "arrayBuffers": 25107
+      },
+      "checksum": 141237264,
+      "module": null
+    },
+    {
+      "engine": "optimized",
+      "participantCount": 4,
+      "callsPerRound": 187500,
+      "rounds": [
+        {
+          "wallMs": 368.40762500000005,
+          "cpuMs": 368.312
+        },
+        {
+          "wallMs": 366.98683300000005,
+          "cpuMs": 366.588
+        },
+        {
+          "wallMs": 369.6072499999999,
+          "cpuMs": 370.336
+        },
+        {
+          "wallMs": 362.820917,
+          "cpuMs": 361.679
+        },
+        {
+          "wallMs": 365.52575,
+          "cpuMs": 364.286
+        },
+        {
+          "wallMs": 362.4029580000001,
+          "cpuMs": 361.227
+        },
+        {
+          "wallMs": 371.19275000000016,
+          "cpuMs": 368.15
+        }
+      ],
+      "medianWallMs": 366.98683300000005,
+      "medianCpuMs": 366.588,
+      "operationsPerSecond": 510917.5129452123,
+      "cpuMicrosecondsPerCall": 1.9551360000000002,
+      "amortizedCpuMicrosecondsPerCall": 1.9557691428571429,
+      "totalMeasuredWallMs": 2568.572792,
+      "maxRssKiB": 127920,
+      "endingMemory": {
+        "rss": 130990080,
+        "heapTotal": 45891584,
+        "heapUsed": 10150088,
+        "external": 2457424,
+        "arrayBuffers": 25107
+      },
+      "checksum": 34689046,
+      "module": null
+    },
+    {
+      "engine": "rust",
+      "participantCount": 4,
+      "callsPerRound": 187500,
+      "rounds": [
+        {
+          "wallMs": 330.909833,
+          "cpuMs": 331.073
+        },
+        {
+          "wallMs": 330.515041,
+          "cpuMs": 330.709
+        },
+        {
+          "wallMs": 328.20454200000006,
+          "cpuMs": 329.157
+        },
+        {
+          "wallMs": 333.6378340000001,
+          "cpuMs": 331.728
+        },
+        {
+          "wallMs": 335.11633299999994,
+          "cpuMs": 333.26
+        },
+        {
+          "wallMs": 328.190959,
+          "cpuMs": 327.034
+        },
+        {
+          "wallMs": 327.5046669999997,
+          "cpuMs": 326.543
+        }
+      ],
+      "medianWallMs": 330.515041,
+      "medianCpuMs": 330.709,
+      "operationsPerSecond": 567296.4214660354,
+      "cpuMicrosecondsPerCall": 1.7637813333333334,
+      "amortizedCpuMicrosecondsPerCall": 1.7642384761904761,
+      "totalMeasuredWallMs": 2315.581791,
+      "maxRssKiB": 128864,
+      "endingMemory": {
+        "rss": 131956736,
+        "heapTotal": 45629440,
+        "heapUsed": 10185680,
+        "external": 2588500,
+        "arrayBuffers": 25111
+      },
+      "checksum": 34689046,
+      "module": {
+        "engine": "rust-wasm",
+        "engineVersion": "1.0.0",
+        "abiVersion": 1,
+        "calculationVersion": "exact-money-v1",
+        "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+        "target": "wasm32-unknown-unknown",
+        "sourceSha256": "dbefdafbfb0fb4142ae1b3c75804425d4f81945c8273c96ad9cd988096ecf314",
+        "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+        "wasmBytes": 16985,
+        "memoryBytes": 131072
+      }
+    },
+    {
+      "engine": "reference",
+      "participantCount": 4,
+      "callsPerRound": 187500,
+      "rounds": [
+        {
+          "wallMs": 483.07266599999997,
+          "cpuMs": 483.206
+        },
+        {
+          "wallMs": 481.4514589999999,
+          "cpuMs": 481.164
+        },
+        {
+          "wallMs": 485.4884159999999,
+          "cpuMs": 486.038
+        },
+        {
+          "wallMs": 482.65200000000004,
+          "cpuMs": 481.209
+        },
+        {
+          "wallMs": 481.6805830000003,
+          "cpuMs": 480.249
+        },
+        {
+          "wallMs": 486.62837500000023,
+          "cpuMs": 484.721
+        },
+        {
+          "wallMs": 487.7976670000003,
+          "cpuMs": 485.988
+        }
+      ],
+      "medianWallMs": 483.07266599999997,
+      "medianCpuMs": 483.206,
+      "operationsPerSecond": 388140.3631312065,
+      "cpuMicrosecondsPerCall": 2.5770986666666666,
+      "amortizedCpuMicrosecondsPerCall": 2.582086095238095,
+      "totalMeasuredWallMs": 3390.3826670000003,
+      "maxRssKiB": 130720,
+      "endingMemory": {
+        "rss": 133857280,
+        "heapTotal": 45891584,
+        "heapUsed": 10163856,
+        "external": 2457424,
+        "arrayBuffers": 25107
+      },
+      "checksum": 34689046,
+      "module": null
+    },
+    {
+      "engine": "optimized",
+      "participantCount": 10,
+      "callsPerRound": 75000,
+      "rounds": [
+        {
+          "wallMs": 293.53058300000004,
+          "cpuMs": 293.291
+        },
+        {
+          "wallMs": 291.889625,
+          "cpuMs": 292.215
+        },
+        {
+          "wallMs": 293.28649999999993,
+          "cpuMs": 292.452
+        },
+        {
+          "wallMs": 292.5893329999999,
+          "cpuMs": 293.719
+        },
+        {
+          "wallMs": 292.01691600000004,
+          "cpuMs": 291.192
+        },
+        {
+          "wallMs": 291.5991670000001,
+          "cpuMs": 290.75
+        },
+        {
+          "wallMs": 293.97804099999985,
+          "cpuMs": 293.142
+        }
+      ],
+      "medianWallMs": 292.5893329999999,
+      "medianCpuMs": 292.452,
+      "operationsPerSecond": 256331.96955953285,
+      "cpuMicrosecondsPerCall": 3.89936,
+      "amortizedCpuMicrosecondsPerCall": 3.911019047619048,
+      "totalMeasuredWallMs": 2050.5443330000003,
+      "maxRssKiB": 128864,
+      "endingMemory": {
+        "rss": 131956736,
+        "heapTotal": 45891584,
+        "heapUsed": 10216112,
+        "external": 2457424,
+        "arrayBuffers": 25107
+      },
+      "checksum": 13676747,
+      "module": null
+    },
+    {
+      "engine": "rust",
+      "participantCount": 10,
+      "callsPerRound": 75000,
+      "rounds": [
+        {
+          "wallMs": 255.12341700000002,
+          "cpuMs": 254.633
+        },
+        {
+          "wallMs": 256.21579099999997,
+          "cpuMs": 256.296
+        },
+        {
+          "wallMs": 254.82858299999998,
+          "cpuMs": 253.885
+        },
+        {
+          "wallMs": 253.7755830000001,
+          "cpuMs": 254.928
+        },
+        {
+          "wallMs": 252.41075,
+          "cpuMs": 251.608
+        },
+        {
+          "wallMs": 251.04158299999995,
+          "cpuMs": 250.332
+        },
+        {
+          "wallMs": 253.95675000000028,
+          "cpuMs": 253.131
+        }
+      ],
+      "medianWallMs": 253.95675000000028,
+      "medianCpuMs": 253.885,
+      "operationsPerSecond": 295325.8773393498,
+      "cpuMicrosecondsPerCall": 3.3851333333333335,
+      "amortizedCpuMicrosecondsPerCall": 3.394142857142857,
+      "totalMeasuredWallMs": 1779.174958,
+      "maxRssKiB": 129104,
+      "endingMemory": {
+        "rss": 132202496,
+        "heapTotal": 45629440,
+        "heapUsed": 10183920,
+        "external": 2588500,
+        "arrayBuffers": 25111
+      },
+      "checksum": 13676747,
+      "module": {
+        "engine": "rust-wasm",
+        "engineVersion": "1.0.0",
+        "abiVersion": 1,
+        "calculationVersion": "exact-money-v1",
+        "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+        "target": "wasm32-unknown-unknown",
+        "sourceSha256": "dbefdafbfb0fb4142ae1b3c75804425d4f81945c8273c96ad9cd988096ecf314",
+        "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+        "wasmBytes": 16985,
+        "memoryBytes": 131072
+      }
+    },
+    {
+      "engine": "reference",
+      "participantCount": 10,
+      "callsPerRound": 75000,
+      "rounds": [
+        {
+          "wallMs": 393.79258400000003,
+          "cpuMs": 393.363
+        },
+        {
+          "wallMs": 389.0813330000001,
+          "cpuMs": 389.168
+        },
+        {
+          "wallMs": 394.337084,
+          "cpuMs": 393.244
+        },
+        {
+          "wallMs": 394.944084,
+          "cpuMs": 395.887
+        },
+        {
+          "wallMs": 392.1375829999997,
+          "cpuMs": 391.067
+        },
+        {
+          "wallMs": 391.202542,
+          "cpuMs": 389.9
+        },
+        {
+          "wallMs": 393.41491700000006,
+          "cpuMs": 391.897
+        }
+      ],
+      "medianWallMs": 393.41491700000006,
+      "medianCpuMs": 391.897,
+      "operationsPerSecond": 190638.42462282637,
+      "cpuMicrosecondsPerCall": 5.225293333333333,
+      "amortizedCpuMicrosecondsPerCall": 5.24116,
+      "totalMeasuredWallMs": 2750.7291250000003,
+      "maxRssKiB": 128576,
+      "endingMemory": {
+        "rss": 131661824,
+        "heapTotal": 45629440,
+        "heapUsed": 10157672,
+        "external": 2457424,
+        "arrayBuffers": 25107
+      },
+      "checksum": 13676747,
+      "module": null
+    },
+    {
+      "engine": "optimized",
+      "participantCount": 100,
+      "callsPerRound": 10000,
+      "rounds": [
+        {
+          "wallMs": 406.679083,
+          "cpuMs": 467.811
+        },
+        {
+          "wallMs": 406.81558399999994,
+          "cpuMs": 472.411
+        },
+        {
+          "wallMs": 451.3929159999998,
+          "cpuMs": 522.185
+        },
+        {
+          "wallMs": 457.10291700000016,
+          "cpuMs": 524.847
+        },
+        {
+          "wallMs": 451.3109159999999,
+          "cpuMs": 527.218
+        },
+        {
+          "wallMs": 403.67454200000066,
+          "cpuMs": 462.642
+        },
+        {
+          "wallMs": 419.12895800000024,
+          "cpuMs": 486.599
+        }
+      ],
+      "medianWallMs": 419.12895800000024,
+      "medianCpuMs": 486.599,
+      "operationsPerSecond": 23859.005227694135,
+      "cpuMicrosecondsPerCall": 48.6599,
+      "amortizedCpuMicrosecondsPerCall": 49.61235714285714,
+      "totalMeasuredWallMs": 2998.294375,
+      "maxRssKiB": 186768,
+      "endingMemory": {
+        "rss": 191037440,
+        "heapTotal": 57163776,
+        "heapUsed": 12171536,
+        "external": 2452215,
+        "arrayBuffers": 25107
+      },
+      "checksum": 1764763,
+      "module": null
+    },
+    {
+      "engine": "rust",
+      "participantCount": 100,
+      "callsPerRound": 10000,
+      "rounds": [
+        {
+          "wallMs": 306.2247090000001,
+          "cpuMs": 365.785
+        },
+        {
+          "wallMs": 308.964708,
+          "cpuMs": 373.677
+        },
+        {
+          "wallMs": 311.9385830000001,
+          "cpuMs": 377.429
+        },
+        {
+          "wallMs": 311.92087500000025,
+          "cpuMs": 376.897
+        },
+        {
+          "wallMs": 311.0735000000004,
+          "cpuMs": 380.55
+        },
+        {
+          "wallMs": 302.816875,
+          "cpuMs": 361.496
+        },
+        {
+          "wallMs": 307.2802079999997,
+          "cpuMs": 372.657
+        }
+      ],
+      "medianWallMs": 308.964708,
+      "medianCpuMs": 373.677,
+      "operationsPerSecond": 32366.15620189216,
+      "cpuMicrosecondsPerCall": 37.367700000000006,
+      "amortizedCpuMicrosecondsPerCall": 37.398514285714285,
+      "totalMeasuredWallMs": 2162.431292,
+      "maxRssKiB": 186320,
+      "endingMemory": {
+        "rss": 190660608,
+        "heapTotal": 57163776,
+        "heapUsed": 12196696,
+        "external": 2583291,
+        "arrayBuffers": 25111
+      },
+      "checksum": 1764763,
+      "module": {
+        "engine": "rust-wasm",
+        "engineVersion": "1.0.0",
+        "abiVersion": 1,
+        "calculationVersion": "exact-money-v1",
+        "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+        "target": "wasm32-unknown-unknown",
+        "sourceSha256": "dbefdafbfb0fb4142ae1b3c75804425d4f81945c8273c96ad9cd988096ecf314",
+        "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+        "wasmBytes": 16985,
+        "memoryBytes": 131072
+      }
+    },
+    {
+      "engine": "reference",
+      "participantCount": 100,
+      "callsPerRound": 10000,
+      "rounds": [
+        {
+          "wallMs": 509.00470799999994,
+          "cpuMs": 504.754
+        },
+        {
+          "wallMs": 487.69158300000026,
+          "cpuMs": 484.963
+        },
+        {
+          "wallMs": 493.31066599999986,
+          "cpuMs": 489.296
+        },
+        {
+          "wallMs": 481.7773750000001,
+          "cpuMs": 479.179
+        },
+        {
+          "wallMs": 479.1332079999993,
+          "cpuMs": 477.089
+        },
+        {
+          "wallMs": 474.179083,
+          "cpuMs": 473.113
+        },
+        {
+          "wallMs": 472.2541250000004,
+          "cpuMs": 471.208
+        }
+      ],
+      "medianWallMs": 481.7773750000001,
+      "medianCpuMs": 479.179,
+      "operationsPerSecond": 20756.47491748652,
+      "cpuMicrosecondsPerCall": 47.917899999999996,
+      "amortizedCpuMicrosecondsPerCall": 48.41641428571429,
+      "totalMeasuredWallMs": 3399.615292,
+      "maxRssKiB": 175856,
+      "endingMemory": {
+        "rss": 180076544,
+        "heapTotal": 49823744,
+        "heapUsed": 13355440,
+        "external": 2457424,
+        "arrayBuffers": 25107
+      },
+      "checksum": 1764763,
+      "module": null
+    }
+  ],
+  "comparisons": [
+    {
+      "participants": 1,
+      "rustVersusRetainedTs": 1.3308829507238802,
+      "rustVersusOptimizedTs": 1.0350132566142518,
+      "cpuReductionVsOptimizedPercent": 3.1659602885654725,
+      "amortizedCpuReductionVsOptimizedPercent": 3.388655172752608,
+      "amortizedCpuReductionVsRetainedPercent": 24.6349782267142
+    },
+    {
+      "participants": 4,
+      "rustVersusRetainedTs": 1.4615754385592394,
+      "rustVersusOptimizedTs": 1.110348357792286,
+      "cpuReductionVsOptimizedPercent": 9.78728163496896,
+      "amortizedCpuReductionVsOptimizedPercent": 9.793112206835596,
+      "amortizedCpuReductionVsRetainedPercent": 31.673909733525164
+    },
+    {
+      "participants": 10,
+      "rustVersusRetainedTs": 1.5491414069521665,
+      "rustVersusOptimizedTs": 1.1521226862448017,
+      "cpuReductionVsOptimizedPercent": 13.187463241831143,
+      "amortizedCpuReductionVsOptimizedPercent": 13.215895504033782,
+      "amortizedCpuReductionVsRetainedPercent": 35.24061739876559
+    },
+    {
+      "participants": 100,
+      "rustVersusRetainedTs": 1.559328177378758,
+      "rustVersusOptimizedTs": 1.3565593323364307,
+      "cpuReductionVsOptimizedPercent": 23.20637732506643,
+      "amortizedCpuReductionVsOptimizedPercent": 24.618549814058422,
+      "amortizedCpuReductionVsRetainedPercent": 22.75653858830049
+    }
+  ]
+}

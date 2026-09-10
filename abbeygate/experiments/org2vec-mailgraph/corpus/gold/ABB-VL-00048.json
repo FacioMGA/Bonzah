@@ -1,0 +1,20 @@
+{
+  "thread_id": "ABB-VL-00048",
+  "claim_ref": "ABB/VL/00048",
+  "gold_missing_documents": [],
+  "gold_authority_flags": [
+    "estimate_exceeds_authority",
+    "tp_recovery_required"
+  ],
+  "gold_decision_posture": "reserved",
+  "gold_key_events": [
+    "FNOL",
+    "estimate_received",
+    "escalation"
+  ],
+  "gold_similar_threads": [
+    "CY-MTR-017",
+    "CY-MTR-029"
+  ],
+  "scenario": "abbvl_pt_authority_breach"
+}

@@ -1,0 +1,133 @@
+name: Azure Images
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: azure-images-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+  ACR_NAME: abbeygateacr
+  ACR_LOGIN_SERVER: abbeygateacr.azurecr.io
+  CI_TIMINGS_DIR: .metrics/ci-timings
+
+jobs:
+  build-images:
+    runs-on: ubuntu-latest
+    environment: production-aks
+    # The worker image includes document-generation dependencies and can exceed
+    # the API image's normal build duration. Keep a bounded timeout, but allow
+    # the immutable image build to finish before the production rollout starts.
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image_name: api
+            image_repo: abbeygate-platform-api
+            dockerfile: infrastructure/docker/Dockerfile.api
+          - image_name: worker
+            image_repo: abbeygate-platform-worker
+            dockerfile: infrastructure/docker/Dockerfile.worker
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Azure login
+        uses: azure/login@v3
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Verify ACR pull credentials exist
+        env:
+          ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
+          ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -z "${ACR_USERNAME:-}" ] || [ -z "${ACR_PASSWORD:-}" ]; then
+            echo "::error::ACR_USERNAME/ACR_PASSWORD must be configured for immutable deploy provenance."
+            exit 1
+          fi
+
+      - name: Build and push SHA image
+        env:
+          VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+          VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
+          VITE_SENTRY_ENVIRONMENT: ${{ vars.VITE_SENTRY_ENVIRONMENT || 'production' }}
+          VITE_SENTRY_ERROR_SAMPLE_RATE: ${{ vars.VITE_SENTRY_ERROR_SAMPLE_RATE }}
+          VITE_SENTRY_TRACES_SAMPLE_RATE: ${{ vars.VITE_SENTRY_TRACES_SAMPLE_RATE }}
+          VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE: ${{ vars.VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE }}
+          VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE: ${{ vars.VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE }}
+          VITE_SENTRY_SEND_DEFAULT_PII: ${{ vars.VITE_SENTRY_SEND_DEFAULT_PII }}
+          SENTRY_ORG: ${{ vars.SENTRY_ORG || 'facio' }}
+          SENTRY_PROJECT: ${{ vars.SENTRY_PROJECT || 'abbeygate-react' }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+        run: |
+          set -euo pipefail
+          started="$(date +%s)"
+          args=()
+          if [ "${{ matrix.image_name }}" = "api" ]; then
+            if [ -z "${VITE_SENTRY_DSN:-}" ]; then
+              echo "::error::VITE_SENTRY_DSN must be configured in the GitHub Environment before building the API/frontend image."
+              exit 1
+            fi
+            release="${GITHUB_SHA}"
+            args+=(--build-arg "VITE_GOOGLE_MAPS_API_KEY=${VITE_GOOGLE_MAPS_API_KEY}")
+            args+=(--build-arg "VITE_SENTRY_DSN=${VITE_SENTRY_DSN}")
+            args+=(--build-arg "VITE_SENTRY_ENVIRONMENT=${VITE_SENTRY_ENVIRONMENT}")
+            args+=(--build-arg "VITE_SENTRY_RELEASE=${release}")
+            args+=(--build-arg "VITE_SENTRY_ERROR_SAMPLE_RATE=${VITE_SENTRY_ERROR_SAMPLE_RATE}")
+            args+=(--build-arg "VITE_SENTRY_TRACES_SAMPLE_RATE=${VITE_SENTRY_TRACES_SAMPLE_RATE}")
+            args+=(--build-arg "VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE=${VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE}")
+            args+=(--build-arg "VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE=${VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE}")
+            args+=(--build-arg "VITE_SENTRY_SEND_DEFAULT_PII=${VITE_SENTRY_SEND_DEFAULT_PII}")
+            args+=(--build-arg "SENTRY_ORG=${SENTRY_ORG}")
+            args+=(--build-arg "SENTRY_PROJECT=${SENTRY_PROJECT}")
+            args+=(--build-arg "SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}")
+            args+=(--build-arg "SENTRY_RELEASE=${release}")
+          fi
+          az acr build \
+            -r "${ACR_NAME}" \
+            -t "${{ matrix.image_repo }}:${GITHUB_SHA}" \
+            -f "${{ matrix.dockerfile }}" \
+            "${args[@]}" \
+            .
+          mkdir -p "${CI_TIMINGS_DIR}"
+          ended="$(date +%s)"
+          echo "{\"stage\":\"build_${{ matrix.image_name }}\",\"duration_seconds\":$((ended-started)),\"status\":\"success\"}" > "${CI_TIMINGS_DIR}/build-${{ matrix.image_name }}.json"
+
+      - name: Upload image timing
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: azure-image-timing-${{ matrix.image_name }}-${{ github.run_id }}
+          path: ${{ env.CI_TIMINGS_DIR }}/build-${{ matrix.image_name }}.json
+          if-no-files-found: warn
+
+  summary:
+    needs: build-images
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download timing artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: azure-image-timing-*-${{ github.run_id }}
+          merge-multiple: true
+          path: .metrics/ci-timings
+
+      - name: Publish image summary
+        run: |
+          echo "## Azure Image Build Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "- API image: ${ACR_LOGIN_SERVER}/abbeygate-platform-api:${GITHUB_SHA}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Worker image: ${ACR_LOGIN_SERVER}/abbeygate-platform-worker:${GITHUB_SHA}" >> "$GITHUB_STEP_SUMMARY"
+          if ls .metrics/ci-timings/*.json >/dev/null 2>&1; then
+            for file in .metrics/ci-timings/*.json; do
+              node -e 'const fs=require("node:fs");const x=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));console.log(`- ${x.stage}: ${x.duration_seconds}s (${x.status})`);' "$file" >> "$GITHUB_STEP_SUMMARY"
+            done
+          fi

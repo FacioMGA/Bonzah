@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <base href="{{basePath}}">
+    <link rel="stylesheet" href="styles/pdf-theme.css">
+    <style>
+      * { box-sizing: border-box; }
+      body { font-family: Inter, Arial, sans-serif; color: #0f172a; margin: 0; }
+      .muted { color: #64748b; }
+      .h1 { font-size: 22px; font-weight: 900; margin: 0; }
+      .row { display: flex; justify-content: space-between; gap: 16px; }
+      .card { border: 1px solid #e2e8f0; border-radius: var(--radius-lg); padding: 14px; background: #fff; }
+      .kv { display: grid; grid-template-columns: 140px 1fr; gap: 6px 10px; font-size: 12px; }
+      .kv .k { color: #64748b; font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: .08em; }
+      .kv .v { font-weight: 700; }
+      table { width: 100%; border-collapse: collapse; font-size: 12px; }
+      th { text-align: left; color: #64748b; font-weight: 800; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; padding: 10px 8px; border-bottom: 1px solid #e2e8f0; }
+      td { padding: 10px 8px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+      .right { text-align: right; }
+      .totalBox { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--radius-lg); padding: 14px; }
+      .totals { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; font-size: 12px; }
+      .totals .label { color: #475569; font-weight: 700; }
+      .totals .amount { font-weight: 900; }
+      .totals .grand { font-size: 16px; }
+      .divider { height: 1px; background: #e2e8f0; margin: 10px 0; }
+    </style>
+  </head>
+  <body>
+    <div class="doc-page">
+      <div class="doc-topbar avoid-break">
+        <div class="doc-topbar-left">
+          <img class="doc-logo-left" src="assets/abbeygate.svg" alt="Abbeygate" />
+        </div>
+        <div class="doc-topbar-center">
+          <div class="doc-title">{{title}}</div>
+          <div class="doc-subtitle">{{brand.uwTeamName}} · {{documentLabel}} <span class="font-mono">{{invoiceNumber}}</span> · Date {{invoiceDate}}</div>
+        </div>
+        <div class="doc-topbar-right">
+          <img class="doc-logo-right" src="assets/lloyds.svg" alt="Lloyd's" />
+        </div>
+      </div>
+
+    <div style="padding: 10px 0;">
+      <div class="row">
+        <div class="card" style="flex:1;">
+          <div class="kv">
+            <div class="k">Bill to</div><div class="v">{{billToName}}</div>
+            <div class="k">Address</div><div class="v">{{billToAddress}}</div>
+            <div class="k">Reference</div><div class="v">{{reference}}</div>
+            <div class="k">Cover</div><div class="v">{{cover}}</div>
+          </div>
+        </div>
+        <div class="card" style="width: 260px;">
+          <div class="kv">
+            <div class="k">Currency</div><div class="v">{{currency}}</div>
+            <div class="k">Period</div><div class="v">{{period}}</div>
+            <div class="k">Due date</div><div class="v">{{dueDate}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 10px 0;">
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th class="right">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each items}}
+              <tr>
+                <td>
+                  <div style="font-weight: 800;">{{name}}</div>
+                  {{#if note}}<div class="muted" style="font-weight: 600; margin-top: 2px;">{{note}}</div>{{/if}}
+                </td>
+                <td class="right" style="font-weight: 900;">{{amount}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="padding: 10px 0;">
+      <div class="totalBox">
+        <div class="totals">
+          <div class="label">Subtotal</div><div class="amount right">{{subtotal}}</div>
+          <div class="label">Tax</div><div class="amount right">{{tax}}</div>
+          <div class="divider" style="grid-column:1 / -1;"></div>
+          <div class="label grand">Total due</div><div class="amount grand right">{{total}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="muted" style="padding: 10px 0; font-size: 11px; font-weight: 700;">
+      This invoice is generated electronically. If you have questions, contact {{brand.uwTeamName}}.
+    </div>
+    </div>
+  </body>
+</html>
+

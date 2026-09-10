@@ -1,0 +1,137 @@
+United Educators demo day runbook
+Facio presenter preparation for 10 September 2026.
+Meeting and desired decision
+Time: 18:30–19:15 Israel time, 11:30–12:15 EDT. Duration: 45 minutes. Yoni Novick organized the session. Invited participants are Santosh Bachuwar, Vineesh Subramaniam, Uriel Aharoni, Yahav Fruchter, and Liav Geffen. Meeting invitation.
+The objective is to show how UE’s 15 requested modules connect across a property-insurance workflow, then agree the first pilot boundary, responsible people, missing inputs, and next decision. UE explicitly said a generic property demo would be sufficient. The supplied institutional documents make intake and review more concrete; they are not a complete configured UE property product. Customer scope.
+Presenter roles and opening
+Proposed roles: Yoni Novick opens, manages time, and closes with decisions; Yahav Fruchter operates the demonstration; Liav Geffen tracks questions and workflow gaps; Uriel Aharoni handles executive scope and commercial questions. Confirm these assignments internally before rehearsal.
+Suggested opening:
+“Thank you for the detailed workflow brief and the sample documents. We will follow one property submission through review, rating, quote and policy creation, then show how policy changes connect to finance and reporting. We will use your supplied documents for the intake example and identify any prepared lifecycle examples as we go. The decision we want to reach is which workflow to prove first in a pilot, with the product rules, integrations and success criteria you need.”
+At the first screen, identify the demonstration environment and what the session will actually show. Each module should have one of four rehearsal outcomes recorded: observed live behavior, prepared example, design discussion, or unresolved. A successful deck or script does not establish working software.
+Timed agenda
+The proposed timing retains every requested module. If discussion consumes the schedule, record remaining modules explicitly and agree how they will be covered. Avoid silently dropping finance or later policy transactions.
+Primary scenario and source preparation
+Use Randolph Community College as the primary institution for document intake and underwriting review. Its package contains an application, a statement of values, a loss-run workbook, and a property appraisal. Keep all source periods visible. The package is a submission example, not evidence that UE has bound it or accepted the values for the new property program. Randolph source folder.
+The source guide records exact values and locators. On sheet Schedule of Value - 2025-08-28T, cell G45 totals $163,260,053, while G47 displays $161,957,303. The $1,302,750 difference equals the renovation amount in F45. The row-45 total includes the renovation amount, while the displayed grand total does not. Show both totals and their source references, explain the unresolved treatment, and route the difference for review. Never silently select the larger total as the approved exposure.
+The appraisal reports $163,161,600 with a different valuation date and includes property in the open. It is not an interchangeable third SOV total. The application lists more premises than the SOV site codes, including vacant land and a leased site. These differences require scope and date reconciliation, rather than a blanket assertion that the documents are wrong.
+Use the actual application to populate institution and broker information where legible. Load the original files once, preserve their names, and display the document list. A separate demo fixture should carry synthetic quote options, policy lifecycle events, invoices, payments, commissions, and claim notifications. Prefix fixture identifiers with DEMO-UE and keep them visibly separate from source policy numbers.
+Case A submission review
+Open the brokerage relationship and institution. Show the owner and current submission state.
+Open the document inventory. Point out the application, SOV, loss runs and appraisal as separate source types.
+Open a mapped location and its source evidence. Explain how an operator corrects an extracted value while preserving the original.
+Open the total-value discrepancy. Display the schedule total, the alternate total including renovation, the difference, and the source locations.
+Show the underwriter review task. The resolution should record whether renovation belongs in insured values, whether another field already includes it, and which approved value proceeds to rating.
+Review the loss history with dates and valuation context. A reviewed source loss is historical information; a new demonstration FNOL is a separate synthetic event.
+Suggested narration:
+“The submission contains values that need a business decision. The application should keep both source values visible, show the difference, and record who approved the value used for rating. The useful result is a reviewable submission with an explainable decision.”
+Backup scenarios
+Use Carroll University for incumbent property and equipment-breakdown documents alongside renewal exposure workbooks. The periods differ, so position it as comparison and renewal-intake material, not a ready quote.
+Use Greensboro Day School for loss-history triage if needed. Its file named Page 1.PDF is a multi-page loss run, and the history includes multiple lines of business. Show document classification and separate reserves, payments and expenses. Exclude driver birth dates and licence details from demonstration views.
+Live walkthrough and presenter prompts
+Review and external enrichment
+Show the underwriting queue and the institution’s unresolved items. Resolve one item only if the demo has an approved example resolution; otherwise retain its review state and continue on a separate prepared case. Show external data next to the submitted field with source, retrieval time and match status. If there is no actual provider connection, use a labeled prepared response or discuss the integration contract.
+Presenter prompt: “Which external information must be available before an underwriter can quote, and which differences require referral rather than automatic replacement?”
+Rating and quote options
+Show the inputs used for rating, their approved state, the calculation or engine version, and the returned price/terms. UE’s rate manual and engine contract are customer dependencies. Synthetic prices must remain labeled. Compare two prepared quote options, select one, and show the selected version carried forward without ambiguity.
+Presenter prompt: “Where should your rating engine remain authoritative, and which approved examples should we use to prove the integration?”
+Binding and policy administration
+Show prerequisites and subjectivities, the approval step, and the link from selected quote to policy. Open the policy timeline and its issued or prepared documents. Demonstrate a blocked bind where a required condition is unmet if the application supports it. Explain the authority check using the actual demo behavior, not an inferred control.
+Presenter prompt: “Who can authorize binding, and what must be complete before a policy or binder can be issued?”
+Billing and commissions
+Open the policy’s invoice and receivable. Apply only a synthetic prepared receipt in the demo environment, then show the outstanding amount and commission treatment. Keep calculated commission, payable commission, and paid commission separate. If finance is currently a prepared example, state that before showing it.
+Presenter prompt: “Will the property program use agency bill or direct bill, and which system will own cash allocation and the accounting ledger?”
+Endorsement, FNOL, renewal and cancellation
+Use separate branches of the prepared policy so the history stays coherent. Branch A adds a synthetic midterm change, shows its effective date and premium effect, and later opens a renewal comparison. Branch B records a synthetic property incident linked to the correct policy term. Branch C demonstrates cancellation and return-premium review on a separate copy. Do not show a cancelled policy proceeding through an ordinary active-policy renewal without explaining reinstatement or the alternate branch.
+Show the financial consequence of the endorsement or cancellation in the same billing and commission views used earlier. For FNOL, show capture and handoff rather than a claim-coverage or settlement decision.
+Reporting
+Open a report based on the displayed policy and transaction records. Show the as-of date, filters, metric definitions, totals and a drill-through to the originating transaction. Where export is available, verify that values and IDs survive the export and distinguish policy premium from billed, collected, outstanding and refunded amounts.
+Rehearsal and fallback instructions
+Before the customer session, record a result for each R01–R15 requirement in the project plan. For any live feature, capture the environment URL, application version or build, demo case ID, last rehearsal time, and observed result. The operator should be able to reset and replay the case without creating duplicate policy or financial records.
+Prepare the primary intake files, the approved or clearly synthetic continuation case, the alternate policy branches, and the reporting view. Check that each view points to the correct institution and selected policy version. Hide unrelated institutions and unnecessary personal fields, including data in hidden workbook sheets. The exposure templates contain stale Menta Group material that must not enter this demonstration. Confirm the presenter can access source documents and that the shared-screen display is readable.
+Use a prepared screenshot or recording only if it comes from an actual run and is labeled with its context. A slide illustrating expected behavior should be described as a design example. If an integration fails during the session, state the observed failure, show the prepared contract or example, record the dependency, and continue to the next connected step. Do not claim a live call succeeded when it did not.
+Preflight checklist
+Meeting link, presenter access, audio and screen sharing work.
+Primary case and synthetic continuation case are separate and clearly named.
+Source values, periods and file locators match the reviewed originals.
+Rating assumptions and provider fixtures are visibly labeled.
+Selected quote version reaches the intended policy and document pack.
+Endorsement, cancellation, receipts and commission examples reconcile.
+Report filters and totals match the displayed records.
+Every requested module has a planned demonstration or explicit discussion outcome.
+An operator can recover from a failure within the remaining schedule.
+Likely questions and grounded answers
+Close and decision capture
+Suggested close:
+“We have covered the connected property lifecycle you requested. To turn this into a pilot, we need to agree the first workflow, the people who will accept it, and the product and integration inputs. We propose starting with the submission-to-quote flow, keeping the complete policy and finance lifecycle in the project plan. We should confirm whether that matches your first-launch priorities.”
+The proposed pilot starting point is a recommendation, not a reduction of UE’s requested demo scope. Ask the customer to identify the must-have launch functions, target date and year, rating owner, approved policy documents, business sponsor, and acceptance owner.
+Action capture during the session
+After the meeting, record actual outcomes in place of assumptions. Prepare a recap that distinguishes demonstrated behavior, customer requests, open items, owners and dates. Prepare a pilot proposal only to the agreed boundary. Sending any email remains a separate action.
+Follow-up message content
+“Thank you for the property workflow session. Our agreed first priority is [record the customer decision]. We demonstrated [record the actual results] and identified [record the remaining dependencies]. UE will provide [input and owner] by [agreed date]. Facio will provide [deliverable and owner] by [agreed date]. The next decision is [pilot scope or acceptance decision]. We will confirm the target launch date and implementation commitments through the scoped proposal.”
+These fields depend on a future meeting and intentionally remain unfilled until the customer discussion occurs.
+Separate Match Day use
+The emails also discuss an InsurTech NY Match event on 16–17 September 2026. Its exact UE meeting slot was not found. For a 15–20-minute Match conversation, use the same opening, one source discrepancy, the connected lifecycle overview, and the pilot decision. Retain the 45-minute September 10 agenda for the scheduled dedicated demo. Match Day correspondence.
+Minutes
+Israel time
+Segment
+Modules covered
+0–4
+18:30–18:34
+Goal, case, data boundaries and connected record
+Context
+4–12
+18:34–18:42
+Broker, submission package, extracted fields and discrepancy
+Broker Management; Intake and Ingestion
+12–20
+18:42–18:50
+Human review, external evidence, rating input/output
+Underwriting; External Data Enrichment; Rating
+20–27
+18:50–18:57
+Quote options, selected version, bind and policy history
+Quote Management; Binding; Policy Administration
+27–32
+18:57–19:02
+Invoice, receipt and broker commission
+Billing and Receivables; Commission Tracking
+32–39
+19:02–19:09
+Related policy transaction examples
+Endorsements; FNOL; Renewals; Cancellations and Refunds
+39–42
+19:09–19:12
+Report totals, drill-through and export
+Reporting
+42–45
+19:12–19:15
+Pilot boundary, inputs, owners and next decision
+Decision close
+Question
+Response boundary
+Can this support our full property program?
+“The lifecycle request is clear. We need the approved product, authority, rating, finance and integration rules to define the implementation and prove it against your examples.”
+Can we launch on January 1?
+“The correspondence mentions January 1 without a confirmed year or launch boundary. We should confirm those and the required dependencies before agreeing a delivery date.”
+Does this replace Salesforce or My UE?
+“We will define ownership and handoffs with your team. UE already has member and broker services. The integration or replacement boundary is a discovery decision.”
+Is the displayed premium a UE price?
+Answer yes only for a UE-approved engine/reference result that was actually verified. Otherwise identify it as a synthetic demonstration value.
+Who owns and can export our data?
+“Ownership and export were discussed. We will document the required records, attachments and history, demonstrate the export path, and confirm the contractual terms.”
+What is the price?
+The automated recap records an indicative earlier vendor discussion. Uriel should approve a scoped commercial proposal; do not present the recap as an accepted agreement.
+Decision
+Capture before the meeting ends
+First pilot workflow
+Products, users, jurisdictions, included transactions and explicit exclusions
+Authoritative inputs
+Product/rate documents, representative test cases, provider and API information
+Owners
+UE sponsor, business acceptance owner, technical contact and Facio delivery lead
+Success
+Reference cases, measurable outcomes, baseline and acceptance process
+Timing
+Target year/date, customer dependencies and next planning milestone
+Follow-up
+Responsible person, due date, decision needed and proposed meeting purpose

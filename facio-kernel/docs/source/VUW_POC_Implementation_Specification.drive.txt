@@ -1,0 +1,664 @@
+﻿VUW.ai × Facio
+
+
+POC Implementation Specification and Readiness Plan
+
+
+Confidential joint working document. Draft for review and approval.
+
+
+1. Purpose and intended outcome
+
+
+This document converts the signed Statement of Work, the 30-day milestone plan, the joint working-session transcript, and the materials supplied by VUW.ai into one implementation specification.
+
+
+The POC will prove that Facio can operate as VUW.ai’s authoritative insurance system of record, policy administration, reporting, audit and reconciliation layer, while VUW.ai retains ownership of submission intake, risk analysis, pricing and underwriting decisioning.
+
+
+The first implementation focus is US property reinsurance. The design must also create a reusable foundation for the later Middle East cargo and Caribbean property-reinsurance programmes.
+
+
+The POC clock begins only after the readiness inputs and Microsoft environment are available. Commercial activation is handled separately from the technical readiness gate.
+
+
+2. Agreed operating model
+
+
+2.1 System boundary
+
+
+* VUW.ai owns broker and source-channel intake, data enrichment, risk assessment, pricing, appetite logic, underwriting rules and the primary underwriting decision.
+* VUW.ai sends every relevant quote, referral, decline and bind outcome to Facio through a documented API contract.
+* Facio creates and maintains the canonical insurance record, including quote history, bound contract, capacity participation, evidence, documents, endorsements, cancellations, renewals, financial transactions, bordereaux and audit history.
+* Facio returns lifecycle status and outcome events to VUW.ai so the VUW.ai interface can display the authoritative downstream state.
+* Underwriters and operations users work in VUW.ai and/or the standard Facio interface. The integration must not depend on operational rekeying or email-based administration.
+* API, GUI and MCP access are complementary views of the same underlying record and lifecycle.
+
+
+2.2 Source-of-truth rules
+
+
+* Before a quote is accepted by Facio, VUW.ai is the source of truth for underwriting inputs, model outputs, decision evidence and the proposed commercial terms.
+* Once accepted, Facio is the source of truth for the insurance record, quote version, bind status, policy or reinsurance-certificate lifecycle, issued documents, capacity ledger and financial ledger.
+* VUW.ai may revise an unbound quote by sending a new version. It must not silently overwrite a prior quoted or bound state.
+* All API messages must carry stable external identifiers, a schema version, an idempotency key and a correlation identifier.
+* Every material change must create an immutable audit event showing actor or source system, timestamp, prior version, new version and supporting evidence.
+
+
+3. Business context incorporated into the design
+
+
+3.1 Programme 1 — US property reinsurance, POC focus
+
+
+* Regional-mutual property business in North America, initially focused on localised office-property risks and non-cat business.
+* Quota-share and follow-capacity structures must be supported, including a representative structure behind a 50% line.
+* Early risks are expected to use referral workflows while appetite interpretation and automation are calibrated.
+* Property fields supplied by VUW.ai cover policy, layer, deductible, risk-location, sums insured, occupancy, construction, protection, loss history and premium data.
+* Relevant Lloyd’s risk-code and CDR mappings must be retained on the canonical record.
+
+
+3.2 Programme 2 — Middle East cargo insurance, post-POC roadmap
+
+
+* Direct cargo insurance enters London through a London broker and can include a multi-insurer tower behind a lead capacity provider.
+* The programme is expected to be subject to Lloyd’s audit.
+* The common architecture must support direct-insurance parties and documents in addition to cedant-facing reinsurance.
+
+
+3.3 Programme 3 — Caribbean property reinsurance, post-POC roadmap
+
+
+* Property reinsurance is placed through a major London broker into the London market.
+* The design must support reporting to both Lloyd’s and non-Lloyd’s capacity providers.
+
+
+3.4 Legal and operating structure
+
+
+* VUW.ai currently operates as an Appointed Representative through ProGlobal rather than as a Lloyd’s coverholder.
+* The initial Facio configuration must therefore represent ProGlobal as the legal coverholder where required without obscuring VUW.ai’s operational role.
+* The final party and document presentation must be confirmed against representative contractual documents before production use.
+
+
+4. Source material received and incorporated
+
+
+* Signed POC approval and the agreed Statement of Work.
+* VUW.ai Azure billing account identifier for the Microsoft Private Offer.
+* Draft VUW.ai underwriting workflow covering intake, sanctions, underwriting, binding-authority checks, referral, quote, bind confirmation and rejection logging.
+* Property Data Fields workbook containing policy, layer, deductible, location, property-value, occupancy, construction, protection, loss, premium and brokerage fields.
+* CDR version 3.2 package and confirmation that VUW.ai front-end and underwriting fields are mapped to CDR.
+* VUW.ai risk-code workbook, including active property, cargo and reinsurance codes.
+* Confirmation that Revolut is the POC banking format.
+* Agreed 30-day POC milestone plan with five Friday gates.
+* Confirmation that the initial POC should use one clear US property-reinsurance schema and representative capacity structure.
+
+
+These items should not be requested again. Where a supplied workbook needs clarification, the clarification should reference the exact field or mapping rather than ask for the file to be resent.
+
+
+5. Target end-to-end workflow
+
+
+1. VUW.ai receives a broker submission from its supported source channel and stores the original submission pack.
+2. VUW.ai extracts and enriches risk data, performs its underwriting analysis and prepares a proposed decision.
+3. VUW.ai calls the Facio submission endpoint with the canonical payload, evidence references and external identifiers.
+4. Facio validates the schema, prevents duplicate processing and stores the original payload and evidence as an auditable submission version.
+5. Facio performs or records the agreed Simplified ID sanctions screening and binding-authority checks.
+6. Facio creates the appropriate outcome: rejected, referred or quote-ready.
+7. For referrals, Facio records the reason, owner, status, notes, evidence and resolution. The outcome is returned to VUW.ai.
+8. Facio creates a versioned quote with commercial terms, layer, deductible, premium, capacity allocation, conditions and validity.
+9. A bind request references a specific quote version. Facio validates authority and capacity, then records the bind outcome.
+10. On bind, Facio creates the authoritative contract and capacity-ledger entries and generates the agreed broker statement or reinsurance certificate.
+11. Facio returns bind confirmation, identifiers, document references and lifecycle state to VUW.ai.
+12. A post-bind endorsement creates a new contract version, revised evidence and any required financial adjustments without erasing the original state.
+13. Facio produces premium and risk bordereaux and records claims-bordereau data when that workstream is introduced.
+14. Facio reconciles representative bank transactions against the risk and accounting ledgers, with a manual exception workflow.
+15. Management and auditors can inspect the record, evidence, event history, capacity and financial status through the Facio interface and authorised APIs.
+
+
+6. Canonical insurance record
+
+
+6.1 Root object
+
+
+The proposed root object is InsuranceRecord. It is the stable aggregate for one risk through submission, quote, bind and post-bind lifecycle. It should not be limited to the screen structure of either platform.
+
+
+Mandatory envelope fields:
+
+
+* schemaVersion: version of the agreed VUW.ai–Facio contract.
+* sourceSystem: VUW.ai environment and service producing the message.
+* externalSubmissionId: stable VUW.ai submission identifier.
+* externalRiskId: stable VUW.ai risk identifier where different from the submission.
+* correlationId: identifier used across the complete request and event chain.
+* idempotencyKey: unique key preventing duplicate creation on retries.
+* messageType: submission, quoteRevision, bindRequest, endorsement, cancellation or renewal.
+* occurredAt: source-system event time.
+* programmeId: agreed programme or product identifier.
+* recordStatus: current canonical lifecycle state in Facio.
+
+
+6.2 Party model
+
+
+The object must distinguish legal and operational roles rather than use one generic customer field.
+
+
+* cedant: reinsured entity, legal name, address, code type, code and client type.
+* originalInsured: name, address and industry where applicable.
+* broker: submitting and placing broker identifiers and contacts.
+* appointedRepresentative: VUW.ai’s regulated operating role.
+* coverholder: ProGlobal in the initial legal configuration where required.
+* leadCarrier and followingCarriers: capacity providers and their contractual roles.
+* interestedParties: any additional parties relevant to screening or documents.
+
+
+6.3 Contract and programme model
+
+
+* classOfBusiness and lineOfBusiness.
+* contractType: quota share, primary layer, excess layer, full value, binder or other agreed type.
+* LloydsRiskCode and CDR mapping identifiers.
+* territory, risk country and regulatory jurisdiction.
+* currency, inception and expiry.
+* basisOfAcceptance.
+* binder or authority reference and authority version.
+* placement channel, such as API, Whitespace, email-derived or bordereau-derived.
+
+
+6.4 Layer and participation model
+
+
+* policyLimit100Percent and policyLimitBasis.
+* layerLimit and layerLimitBasis.
+* attachmentPoint and attachmentBasis.
+* cedantParticipationType and cedantParticipationPercent.
+* netRetention.
+* reinsurerShare and share basis.
+* peril scope and sublimits.
+* deductible level, type, value, basis, minimum, maximum and zone.
+* one or more capacityParticipation records, each containing provider, contractual role, written line, signed line, effective share, commission, authority reference and status.
+
+
+The model must support a simple quota share and a lead/follow tower without changing the root payload.
+
+
+6.5 Property risk model
+
+
+The property section contains one or more locations. Each location includes the relevant fields from the supplied workbook:
+
+
+* location number, name and complete address.
+* country and postal code.
+* property-damage value, building value, contents value and business-interruption value.
+* indemnity period.
+* other insured value and description.
+* total insured value.
+* occupancy category, type and description.
+* construction class and year built.
+* number of storeys and buildings.
+* sprinkler protection, public protection class and basement indicator.
+* optional peril, accumulation, catastrophe or geospatial enrichment used by VUW.ai, with its source and timestamp.
+
+
+6.6 Loss and premium model
+
+
+* priorLossesReported.
+* lossHistoryYears.
+* numberOfLosses.
+* largestLoss.
+* totalIncurred.
+* averageLossPerYear.
+* lossComments and supporting evidence.
+* originalInsuredPolicyNumber where relevant.
+* groundUpPremium.
+* netAnnualLayerPremium.
+* brokerage, commission, fees and agreed allocation basis.
+
+
+6.7 Underwriting and compliance evidence
+
+
+* underwritingDecision: proposed, referred, approved, declined or bound.
+* decisionReasonCodes and narrative.
+* modelVersion and rulesetVersion.
+* authorityCheck result, reasons and authority reference.
+* sanctionsScreening provider, request reference, status, matched parties, decision, completed time and evidence reference.
+* referral record with reason, owner, due status, notes, attachments and resolution.
+* evidence array containing immutable document identifier, filename, type, source, checksum, received time, version and relationship to the decision.
+
+
+Facio does not need to reproduce VUW.ai’s proprietary model internals. It does need enough decision evidence to explain and audit why a quote, referral, decline or bind state was recorded.
+
+
+6.8 Quote, bind and policy lifecycle
+
+
+* quoteVersions: immutable list of quote versions with terms, premium, capacity, validity, conditions and status.
+* selectedQuoteVersion: the exact version referenced by a bind request.
+* bindRequest: requester, request time, requested effective time and evidence.
+* bindOutcome: bound, rejected or referred, with reasons and authority evidence.
+* contractIdentifier: Facio policy or reinsurance-contract identifier.
+* externalContractIdentifier: VUW.ai or market identifier.
+* certificate and brokerStatement document references.
+* lifecycleVersion and version history.
+* endorsement, cancellation and renewal transactions with effective date, reason, changed fields, document impact and financial impact.
+
+
+6.9 Financial, reporting and reconciliation model
+
+
+* riskLedgerEntries for premium, adjustments, brokerage, commission, fees and capacity splits.
+* accountingLedgerReferences linked to the insurance transaction.
+* bordereau period, row identifier, status and submission version.
+* bankTransaction reference and matching status.
+* reconciliation confidence, matched items, exception reason, manual resolution and resolver.
+* reporting dimensions for programme, risk code, CDR class, broker, cedant, capacity provider, territory and accounting period.
+
+
+7. Illustrative payload skeleton
+
+
+The following structure is a mapping draft, not the final API contract. Final required and optional fields will be published in VUW.ai-specific API documentation after the mapping session.
+
+
+{
+  "schemaVersion": "0.1",
+  "sourceSystem": "vuw-ai",
+  "externalSubmissionId": "VUW-SUB-001",
+  "externalRiskId": "VUW-RISK-001",
+  "correlationId": "CORR-001",
+  "idempotencyKey": "VUW-SUB-001-v1",
+  "messageType": "submission",
+  "programmeId": "US-PROPERTY-RI",
+  "parties": {
+    "cedant": {},
+    "originalInsured": {},
+    "broker": {},
+    "appointedRepresentative": {},
+    "coverholder": {},
+    "capacityProviders": []
+  },
+  "contract": {
+    "classOfBusiness": "property-reinsurance",
+    "contractType": "quota-share",
+    "riskCode": null,
+    "cdrMappings": [],
+    "territory": "US",
+    "currency": "USD",
+    "inception": null,
+    "expiry": null,
+    "authorityReference": null
+  },
+  "layer": {
+    "policyLimit100Percent": 0,
+    "layerLimit": 0,
+    "attachmentPoint": 0,
+    "cedantParticipationPercent": 0,
+    "reinsurerSharePercent": 0,
+    "deductibles": [],
+    "sublimits": []
+  },
+  "locations": [],
+  "lossHistory": {},
+  "premium": {
+    "groundUpPremium": 0,
+    "netAnnualLayerPremium": 0,
+    "brokerage": 0,
+    "commission": 0
+  },
+  "underwriting": {
+    "decision": "referred",
+    "decisionReasons": [],
+    "modelVersion": null,
+    "rulesetVersion": null,
+    "authorityCheck": {},
+    "sanctionsScreening": {},
+    "referral": {}
+  },
+  "capacityParticipations": [],
+  "evidence": [],
+  "requestedAction": "createQuote",
+  "callback": {
+    "mode": "webhook",
+    "url": null
+  }
+}
+
+
+8. API contract requirements
+
+
+8.1 Authentication and environments
+
+
+* Separate staging and production credentials and base URLs.
+* Agreed authentication method, credential rotation and least-privilege access.
+* VUW.ai-specific API documentation generated from the configured schema.
+* Clear environment indicator in every payload and response.
+* No production personal data in the POC unless explicitly approved and appropriately protected.
+
+
+8.2 Request behaviour
+
+
+* Schema validation with field-level error messages.
+* Idempotent create and lifecycle operations.
+* Synchronous acknowledgement followed by asynchronous lifecycle events where processing is not immediate.
+* Stable Facio identifiers returned on the first accepted request.
+* Explicit rejection rather than partial silent acceptance of invalid mandatory data.
+* Version-aware updates; a post-quote change creates a new version rather than mutating history.
+
+
+8.3 Event and callback model
+
+
+The minimum outbound event set is:
+
+
+* submission.accepted and submission.rejected.
+* screening.completed and screening.referred.
+* underwriting.referred and underwriting.referralResolved.
+* quote.created, quote.revised and quote.withdrawn.
+* bind.accepted, bind.rejected and bind.referred.
+* contract.issued and document.available.
+* endorsement.accepted, endorsement.rejected and endorsement.issued.
+* cancellation.completed and renewal.created when those flows enter scope.
+* bordereau.generated and reconciliation.exceptionCreated where VUW.ai consumes these states.
+
+
+Each event must include eventId, eventType, schemaVersion, occurredAt, correlationId, Facio record identifier, VUW.ai external identifiers, lifecycle version and a payload or resource link. Delivery must define retry behaviour, signature verification and duplicate handling.
+
+
+8.4 Staging reset and repeatability
+
+
+* VUW.ai must be able to run repeatable end-to-end tests without manual Facio intervention.
+* The agreed mechanism may reset an isolated staging dataset, create a new test namespace or archive prior runs.
+* Reset capability must not be available against production.
+* Test evidence must preserve enough execution history to prove the POC gate while allowing the next clean run.
+
+
+9. Lifecycle state model
+
+
+The proposed canonical states are:
+
+
+1. RECEIVED — payload accepted and identifiers issued.
+2. VALIDATING — schema, duplication and evidence checks in progress.
+3. SCREENING — sanctions and compliance checks in progress or recorded.
+4. UNDERWRITING_REVIEW — underwriting result received and authority checked.
+5. REFERRED — human or capacity-provider decision required.
+6. DECLINED — terminal underwriting or authority outcome, with reason.
+7. QUOTE_READY — terms validated and ready to issue.
+8. QUOTED — immutable quote version issued.
+9. BIND_REQUESTED — bind requested against a specific quote version.
+10. BOUND — risk contractually bound and capacity committed.
+11. ISSUED — agreed document generated and available.
+12. ACTIVE — contract in force.
+13. ENDORSEMENT_PENDING — post-bind change under review.
+14. CANCELLED — cancellation recorded with financial and reporting effects.
+15. EXPIRED — contract reached expiry without renewal.
+16. RENEWED — successor record created and linked.
+
+
+State transitions must be validated. A later message cannot move a bound contract back to an unbound quote state or bind a superseded quote version.
+
+
+10. Documents, evidence and audit
+
+
+* Retain the original submission pack and every derived document as linked evidence.
+* Store immutable document identifiers, versions and checksums.
+* Record document type, source, received or generated time, related lifecycle version and access classification.
+* Generate the agreed broker statement from a VUW.ai-approved template.
+* Generate or retain the representative reinsurance certificate where required by the chosen flow.
+* Preserve underwriting decision evidence, authority evidence, sanctions evidence, referral notes and bind confirmation.
+* Make policy version history and material user/API actions visible to authorised management and auditor roles.
+* Provide document availability through both the Facio interface and the API.
+
+
+11. Capacity and authority configuration
+
+
+* Support a representative quota-share structure and a lead/follow structure in the same model.
+* Record provider identity, legal role, participation basis, written and signed lines, effective share, commission and authority reference.
+* Validate that total signed participation and line utilisation are internally consistent.
+* Prevent bind where the requested share exceeds available or authorised capacity unless an approved referral resolves the exception.
+* Retain capacity changes as versions; do not rewrite the originally bound allocation.
+* Produce provider-level reporting and ledger entries from the same capacity allocation used at bind.
+
+
+The exact POC capacity structure remains a readiness dependency and may be anonymised if commercial sensitivity requires it.
+
+
+12. Reporting, finance and reconciliation
+
+
+* Generate premium and risk bordereaux from the canonical record, not from a separate manual spreadsheet.
+* Map the agreed fields to Lloyd’s risk codes and relevant CDR fields.
+* Support provider-level and programme-level reporting across mixed capacity.
+* Maintain risk-ledger entries for premium, brokerage, commission, fees, endorsements and cancellations.
+* Use representative synthetic Revolut-format transactions during the POC.
+* Demonstrate an automatic match and at least one manual exception resolution.
+* Preserve the relationship between a bank transaction, accounting entry, risk transaction, capacity allocation and bordereau row.
+* Claims handling remains outside scope; later claims-bordereau intake will consolidate files from insurers for visibility and reporting.
+
+
+13. Non-functional requirements
+
+
+* Azure-hosted Facio-managed staging and production model, with disaster-recovery arrangements under the agreed service.
+* Encryption in transit and at rest.
+* MFA for administrative access and role-based access for operations, management and auditors.
+* Auditable event history for data changes, API actions, document issuance and financial movements.
+* GDPR-aligned processing and agreed retention controls.
+* POC observability must expose correlation identifiers, processing status and actionable validation errors.
+* Availability target and service commitments follow the signed SOW and Facio Cloud SLA.
+
+
+14. POC gates and acceptance evidence
+
+
+Gate 0 — Readiness
+
+
+* Microsoft Private Offer accepted and VUW.ai environment available.
+* Representative risks and submission packs received.
+* Representative capacity structure received.
+* Initial product, schema, endpoint and staging environment configured.
+* Technical and business acceptance owners confirmed.
+
+
+Gate 1 — API and schema
+
+
+* Review configured endpoint, authentication, payloads, responses and lifecycle events.
+* Confirm property-reinsurance schema, evidence storage, risk-code mapping and CDR mapping.
+* Confirm that the API contract is viable for VUW.ai engineering.
+
+
+Gate 2 — Submission, quote and underwriting
+
+
+* Submit a representative risk through the API without manual rekeying.
+* Retain the original evidence and extracted record.
+* Demonstrate sanctions screening, quote versioning and referral collaboration.
+* Return relevant status and outcome events to VUW.ai.
+
+
+Gate 3 — Bind, capacity and lifecycle
+
+
+* Bind the representative risk with the agreed capacity structure.
+* Generate the broker statement or agreed document.
+* Process one representative endorsement or midterm amendment.
+* Verify version history, evidence and financial impact through UI and API.
+
+
+Gate 4 — Reporting and reconciliation
+
+
+* Generate the premium bordereau.
+* Reconcile representative synthetic bank transactions.
+* Resolve one exception manually.
+* Demonstrate management and auditor visibility.
+* Run a repeatable end-to-end test including the agreed staging-reset mechanism.
+
+
+Gate 5 — Final review
+
+
+* Review all success criteria and evidence.
+* Classify remaining items as production blockers or enhancements.
+* Confirm production priorities and the initial cargo and Caribbean roadmap.
+* Record the continuation decision and next delivery plan.
+
+
+15. Readiness inputs still required from VUW.ai
+
+
+Required to lock the schema and start the full POC:
+
+
+* Three to five representative US property-reinsurance risks with available submission packs. Redacted or synthetic examples are acceptable if they preserve structure. The set should include a straightforward quote, a referral case and a decline or authority-exception case where possible.
+* Current VUW.ai API payload or object-structure documentation, including stable identifiers and a representative request example. If no formal document exists, one anonymised JSON example is sufficient for the first mapping session.
+* Representative capacity structure and shares for the POC, including lead/follow or quota-share roles, line percentages and any bind constraints. Anonymised provider labels are acceptable.
+* The promised representative reinsurance-certificate example.
+* Broker statement example or the desired content in an editable Word template.
+* Confirmation of the Simplified ID arrangement: whether VUW.ai has an account, who owns it and how sandbox credentials should be exchanged securely. Credentials must not be sent in ordinary email.
+* Named technical acceptance owner and business/operations acceptance owner.
+
+
+Needed during the first mapping sessions but not necessarily before environment provisioning:
+
+
+* Preferred integration pattern for outcomes: webhooks, polling or both; expected callback endpoint ownership; retry and signature requirements.
+* Field-level confirmation of which VUW.ai fields are sent at submission, quote and bind, and which fields Facio is expected to enrich or return.
+* One representative endorsement or midterm-amendment scenario with the expected commercial and document changes.
+* Confirmation of how ProGlobal, VUW.ai, broker, cedant and capacity providers must appear on the broker statement and reinsurance certificate.
+* Confirmation that the shared milestone plan and Friday noon UK gate cadence are approved, plus any requested changes.
+
+
+Deferred from the readiness request because they are not required for the first property-reinsurance gate:
+
+
+* Cargo schema and tower examples.
+* Caribbean programme examples.
+* Claims bordereaux samples and consolidation rules.
+* Cancellation and renewal design beyond the initial representative lifecycle.
+* Live bank credentials or live transactions; the POC uses synthetic Revolut-format data.
+
+
+16. Discovery and research workstream for Facio and Yahav
+
+
+16.1 VUW.ai business and market model
+
+
+* Understand each initial programme, distribution channel, contractual chain, revenue model and operational owner.
+* Confirm who is the regulated principal, coverholder, appointed representative, broker, cedant and capacity provider in each programme.
+* Clarify which activities VUW.ai performs directly and which are performed by ProGlobal, brokers, syndicates or reinsurers.
+* Document the path from submission to cash, including commission and reporting obligations.
+
+
+16.2 Underwriting engine and integration
+
+
+* Review VUW.ai’s object model, API style, authentication, environment strategy, identifiers, versioning and error handling.
+* Map VUW.ai fields to the canonical insurance record and identify missing mandatory insurance, Lloyd’s or financial fields.
+* Understand how VUW.ai records model version, decision evidence, referrals and overrides.
+* Confirm when VUW.ai considers a quote, bind or referral final and what event should trigger Facio processing.
+* Define retry, idempotency, reconciliation and staging-reset behaviour with VUW.ai engineering.
+
+
+16.3 Property reinsurance domain
+
+
+* Learn the exact contract form used in the POC: quota share, primary, excess, full value or binder-based acceptance.
+* Understand the relationship among policy limit, layer limit, attachment, cedant retention, reinsurer share, brokerage and commission.
+* Validate location, TIV, occupancy, construction, protection, peril, deductible, loss and premium fields against representative submissions.
+* Confirm capacity allocation, lead/follow rules, authority constraints and referral thresholds.
+* Map the selected Lloyd’s risk code and CDR fields to the final object and bordereau outputs.
+
+
+16.4 Compliance, evidence and audit
+
+
+* Confirm the screened parties and Simplified ID workflow, ownership and evidence requirements.
+* Determine which underwriting and authority evidence must be retained for Lloyd’s and ProGlobal audit.
+* Confirm retention, access and redaction requirements for source documents and personal data.
+* Test the auditor and management views against a complete representative record.
+
+
+16.5 Documents and lifecycle
+
+
+* Analyse the reinsurance certificate and broker statement examples field by field.
+* Define document triggers, numbering, branding, legal entities, authorised signatures and version behaviour.
+* Model one endorsement in detail, including changed fields, approval, document regeneration, premium adjustment and reporting impact.
+* Later, extend the same analysis to cancellation, renewal and claims-bordereau intake.
+
+
+16.6 Reporting and finance
+
+
+* Validate premium and risk bordereau fields, grouping, reporting period, provider splits and exception handling.
+* Confirm brokerage, commission and capacity-provider allocation logic.
+* Learn the Revolut transaction format and design representative successful and exception reconciliation cases.
+* Trace one test risk from bound premium through ledger entries, bordereau row, bank match and management report.
+
+
+16.7 Research outputs expected from Yahav
+
+
+* Maintained glossary of VUW.ai, reinsurance, Lloyd’s, CDR, risk-code and capacity terminology.
+* Source inventory and decision log showing received, missing, confirmed and superseded information.
+* Field-mapping workbook with source field, canonical field, type, required status, owner, validation and reporting destination.
+* API handshake test collection covering happy path, validation failure, retry, duplicate, referral, bind and endorsement.
+* Representative demo and POC data pack with no unexplained placeholder values.
+* Weekly gate evidence pack containing screenshots or API traces, record identifiers, outputs, known gaps and decisions requested.
+
+
+17. Open decisions for joint confirmation
+
+
+* Exact POC contract and capacity configuration and whether provider identities may be anonymised.
+* Final legal-party representation for VUW.ai and ProGlobal on records and documents.
+* Final risk code and CDR mapping for the selected US property-reinsurance example.
+* Which parties require sanctions screening and whether screening runs in Facio or is recorded from VUW.ai.
+* Webhook, polling or hybrid event-delivery pattern.
+* Broker statement versus reinsurance certificate as the primary Gate 3 output, or whether both are required.
+* Required VUW.ai interface visibility for financial, audit and document states.
+* Staging reset mechanism and the minimum audit evidence retained after reset.
+* Acceptance owners and authority to sign off each gate.
+
+
+18. Immediate next steps
+
+
+* VUW.ai reviews this working specification, comments on incorrect assumptions and supplies the readiness inputs listed above.
+* Facio converts the agreed object into the configured VUW.ai schema and publishes environment-specific API documentation.
+* VUW.ai and Facio nominate technical and business acceptance owners.
+* Facio prepares the staging product, sanctions workflow, evidence model and representative reporting mappings.
+* Both teams hold Gate 1 at the agreed Friday noon UK cadence after the readiness gate is complete.
+
+
+19. POC completion definition
+
+
+The POC is complete when a representative US property-reinsurance risk can be submitted from VUW.ai through the agreed API, validated and recorded without manual rekeying, screened and referred or quoted, bound with a representative capacity structure, issued with the agreed document, changed through one endorsement, reported in a premium bordereau and reconciled against representative bank transactions, with complete evidence and audit history visible through Facio and relevant status events returned to VUW.ai.
+
+
+All remaining items must then be explicitly classified as production blockers, planned production work or later programme enhancements.
+
+
+Confidential · Facio · VUW.ai

@@ -1,0 +1,78 @@
+{
+  "version": "travel-eu-tax-rates@1.0.0",
+  "source": "BRIT BAA EU expansion — Peter (Abbeygate) email 2026-05-16; Insurance Europe 2025 indirect-taxation report.",
+  "asOf": "2026-05-16",
+  "rows": [
+    {
+      "countryCode": "CY",
+      "iptRate": 0,
+      "iptLabel": "IPT",
+      "notes": "Per Peter 2026-05-16: no Cyprus stamp duty applied to Travel."
+    },
+    {
+      "countryCode": "PT",
+      "iptRate": 0.09,
+      "iptLabel": "Stamp duty",
+      "notes": "9% stamp duty applied to net premium. INEM medical-emergency levy may also apply on accident/health element — pending BRIT confirmation; not applied at MVP."
+    },
+    {
+      "countryCode": "GR",
+      "iptRate": 0.15,
+      "iptLabel": "IPT",
+      "parafiscalLevies": [
+        {
+          "code": "PENSION_FUND",
+          "label": "Pension fund levy",
+          "rate": 0.004
+        }
+      ],
+      "notes": "15% IPT + 0.4% pension fund levy (treated as accident/health class per Peter 2026-05-16)."
+    },
+    {
+      "countryCode": "ES",
+      "iptRate": 0.08,
+      "iptLabel": "IPT",
+      "parafiscalLevies": [
+        {
+          "code": "WINDING_UP_FUND",
+          "label": "Winding-up fund",
+          "rate": 0.0015
+        }
+      ],
+      "notes": "8% IPT + 0.15% winding-up fund. Consorcio charge on accident element pending BRIT confirmation; not applied at MVP."
+    },
+    {
+      "countryCode": "BE",
+      "iptRate": 0.0925,
+      "iptLabel": "IPT",
+      "notes": "9.25% headline. INAMI levy not applied at MVP — flag if BRIT requires."
+    },
+    {
+      "countryCode": "NL",
+      "refer": true,
+      "notes": "Partial-exemption structure on Dutch travel insurance (cancellation, car/legal/veterinary at 21%; remainder exempt). Refer to underwriting until BRIT confirms cover-bundle classification — no silent rate."
+    },
+    {
+      "countryCode": "IT",
+      "iptRate": 0.2125,
+      "iptLabel": "IPT",
+      "interimConservative": true,
+      "notes": "21.25% on full premium as conservative interim per Peter 2026-05-16, pending BRIT confirmation of split treatment (2.5% accident/health vs 10% assistance vs 21.25% baggage/cancellation)."
+    },
+    {
+      "countryCode": "FR",
+      "iptRate": 0.09,
+      "iptLabel": "IPT (assistance for persons)",
+      "flatStampDuty": 6.50,
+      "flatStampDutyLabel": "Terrorism / victims fund",
+      "notes": "9% on assistance-for-persons class + €6.50 terrorism/victims fund flat per policy. BRIT-confirmed (Peter 2026-05-16); cover-bundle classification flagged in PR risks for explicit confirmation before go-live."
+    },
+    {
+      "countryCode": "MT",
+      "iptRate": 0.11,
+      "iptLabel": "Document duty",
+      "minimumDuty": 13,
+      "notes": "11% document duty with €13 minimum applied to small premiums."
+    }
+  ]
+}

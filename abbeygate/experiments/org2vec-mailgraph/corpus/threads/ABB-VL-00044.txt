@@ -1,0 +1,44 @@
+Thread-ID: ABB-VL-00044
+Claim-Ref: ABB/VL/00044
+Subject: ENC: Pedido peritagem REF. ABB/VL/00044 — 60-UN-97
+===
+
+From: Algarve Broker Lda <geral@algarvebroker.example>
+To: claims@abbeygate.pt
+Date: 2026-03-02 08:55
+Subject: Pedido peritagem REF. ABB/VL/00044 — 60-UN-97
+Attachments: relatorio_rnp.pdf
+
+Bom dia,
+
+Solicito agendamento de peritagem para a viatura matrícula 60-UN-97
+(policy ABLV/PT1004112). Acidente em Lisboa, frontal contra muro.
+Estimativa preliminar EUR 12,500. Anexo: relatório RNP.
+
+Obrigado,
+
+---
+From: Claims Handler <claims@abbeygate.pt>
+To: geral@algarvebroker.example
+Date: 2026-03-04 11:00
+Subject: RE: Pedido peritagem REF. ABB/VL/00044
+
+Bom dia,
+
+Perito aprovado nomeado: Engº António Silva. Inspeção marcada
+para 09/03. Endorsement CV4 (excesso EUR 300) aplica-se.
+Beazley loss adjuster report a ser solicitado.
+
+Cumprimentos.
+
+---
+From: Algarve Broker Lda <geral@algarvebroker.example>
+To: claims@abbeygate.pt
+Date: 2026-03-12 14:20
+Subject: RE: Pedido peritagem REF. ABB/VL/00044 — Total Loss
+Attachments: total_loss_report.pdf, valor_de_mercado.pdf
+
+Bom dia,
+
+O perito declarou perda total. Valor de Mercado EUR 8,400.
+Confirmar processamento.

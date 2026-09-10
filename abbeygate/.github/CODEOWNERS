@@ -1,0 +1,63 @@
+# CODEOWNERS for the Abbeygate platform.
+#
+# Required reviewers for paths below. Last matching pattern takes precedence.
+#
+# NOTE: @platform-leads is a placeholder GitHub team handle. Swap in the real
+# owner team handle (or individual handles) before merge.
+# Example: @abbeygate/platform-core or @abbeygate/consolidation-owners
+
+# ---------------------------------------------------------------------------
+# Per-product authority — canonical shape sites
+#
+# Profiles, schemas, generated validation contracts, and golden fixtures live
+# under packages/products/<product>/. Frontend and backend product trees
+# expose adapters/runtime; review there as well to catch drift.
+# ---------------------------------------------------------------------------
+
+# Per-product profile, schemas, and generated validation contracts
+/packages/products/src/*/profile.ts                                     @platform-leads
+/packages/products/src/*/schemas/                                       @platform-leads
+/packages/products/src/*/generated/                                     @platform-leads
+
+# Single source of truth for validation. The pre-Phase-3 mirrors
+# `frontend/src/shared/validation/` and `backend/shared/validation/` were
+# deleted in Phase 3h; tools/quality/check-validation-single-source.mjs
+# blocks resurrection.
+/packages/validation/                                                   @platform-leads
+
+# Backend product adapters and runtime registration
+/backend/products/                                                      @platform-leads
+/backend/modules/policy/domain/productContracts.ts                      @platform-leads
+
+# Frontend product registration surfaces
+/frontend/src/products/catalog.ts                                       @platform-leads
+/frontend/src/products/index.ts                                         @platform-leads
+
+# Underwriting HTTP boundary (Phase 2.5 adds rejection of legacy shape)
+/backend/modules/policy/http/uwRouter.ts                                @platform-leads
+/backend/modules/policy/http/uwHelpers.ts                               @platform-leads
+/frontend/src/modules/policies/underwriting/hooks/                      @platform-leads
+/frontend/src/modules/policies/underwriting/workspace/                  @platform-leads
+
+# Generated validation artifacts (only allowed under packages/products/<product>/generated/)
+**/*ValidationContract*.generated.*                                     @platform-leads
+**/motorValidationContract.generated.ts                                 @platform-leads
+
+# Quality tooling and the canonical-ownership / architecture-locks guards
+/tools/quality/check-architecture-locks.mjs                             @platform-leads
+/tools/quality/check-no-cross-layer-shadow-files.mjs                    @platform-leads
+/tools/quality/check-no-shared-product-facades.mjs                      @platform-leads
+/tools/quality/check-no-inline-rate-tables.mjs                          @platform-leads
+/tools/quality/check-validation-single-source.mjs                       @platform-leads
+/tools/quality/generateValidationContractArtifacts.ts                   @platform-leads
+
+# Binding contracts and ADRs
+/docs/architecture/contracts/                                           @platform-leads
+/docs/architecture/decisions/                                           @platform-leads
+
+# Deploy + ops surfaces
+/.github/workflows/deploy-aks-cy4.yml                                   @platform-leads
+/.github/workflows/azure-deploy.yml                                     @platform-leads
+/.github/workflows/reusable-quality-gate.yml                            @platform-leads
+/infrastructure/k8s/helm/abbeygate/                                     @platform-leads
+/docs/operate/                                                          @platform-leads

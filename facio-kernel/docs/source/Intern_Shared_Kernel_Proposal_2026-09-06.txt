@@ -1,0 +1,80 @@
+You’re right. **“Connect to the kernel” hides the infrastructure and onboarding work that makes your workflow possible.** Developers need to deliver a hosted environment, identity and tenant provisioning, a configuration interface, and an executable tenant application—and prove they work together.
+
+I would make the following the **target architecture and deployment acceptance checklist**. This is a proposed contract; the repository we inspected earlier does not yet implement all of it.
+
+**The deployment model**
+
+Use one shared kernel codebase and deploy a versioned runtime into an intern sandbox environment. Each customer gets an isolated tenant within that environment, with its own configuration and test data. Separate deployments remain possible where residency or isolation requires them; they should run the same kernel distribution.
+
+| Component                 | Responsibility                                                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Control plane**         | Customer/workspace registration, users, tenant creation, environment placement, provisioning status and access assignments     |
+| **Configuration service** | Versioned tenant/product definitions, validation, gaps, drafts and release activation                                          |
+| **Kernel runtime**        | Executes journeys using the selected tenant’s activated configuration                                                          |
+| **Configuration Studio**  | Lets interns inspect and edit configuration, resolve gaps and inspect readiness                                                |
+| **Tenant application**    | The actual broker/UW/customer screens used to run demo scripts                                                                 |
+| **MCP service**           | Exposes authorized configuration and inspection operations to ChatGPT through the same application services used by the UI/API |
+| **Deployment registry**   | Maps tenant/environment to region, runtime build, configuration release, URLs and operational owner                            |
+
+These are responsibility boundaries; they do not require seven separately deployed services.
+
+**The intern’s actual connection and setup journey**
+
+1. An administrator invites the intern to Facio’s implementation workspace and assigns permitted customer accounts.
+2. The intern signs into Configuration Studio through the organization’s identity provider.
+3. They select a customer and choose **Create sandbox tenant**, if authorized. Alternatively, an administrator provisions it beforehand.
+4. The control plane provisions the tenant and returns its ID, status, region, Studio link and tenant application link.
+5. The intern adds the **Facio Kernel MCP connection** in ChatGPT using the published HTTPS MCP endpoint and signs in through the supported OAuth flow.
+6. ChatGPT discovers the tenants/environments that user can access. The intern selects one, and every operation carries an explicit target validated against server-side authorization.
+7. ChatGPT configures the draft. The intern inspects the same draft in Studio, validates it and activates an approved sandbox release.
+8. The intern opens the tenant application, confirms the active release, runs the scripts and files defects with attached diagnostic references.
+
+**A ChatGPT conversation is not the configuration store.** Reconnecting or starting a new conversation must recover the tenant’s state from Facio.
+
+Here is the refined developer checklist.
+
+| #      | Deployment/architecture check                                           | Required acceptance evidence                                                                                                                                                                                                            |
+| ------ | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1**  | **Hosted sandbox exists**                                               | A persistent HTTPS environment is reachable from an intern’s browser and the actual ChatGPT connection. Record deployed build, region, URLs and owner. A developer’s localhost does not satisfy this gate.                              |
+| **2**  | **Deployment is repeatable**                                            | A documented pipeline deploys a pinned build, applies compatible schema changes and performs health/readiness checks. Failed deployment does not leave the environment serving an incompatible combination.                             |
+| **3**  | **Storage is durable**                                                  | Configuration, tenant records, test transactions and audit history survive service restarts and redeployment. Backups and a restore exercise are demonstrated.                                                                          |
+| **4**  | **Intern identity works**                                               | A newly invited intern can sign into Studio and authorize ChatGPT using their own account. The documented setup is tested in the actual ChatGPT workspace used by interns.                                                              |
+| **5**  | **MCP authentication is complete**                                      | Publish the exact MCP URL and required connection instructions. Demonstrate OAuth sign-in, token expiry/renewal and access revocation. No copied shared administrator token.                                                            |
+| **6**  | **UI and ChatGPT permissions agree**                                    | Both resolve the same user membership and tenant permissions. Removing a user’s customer access prevents subsequent operations through both interfaces.                                                                                 |
+| **7**  | **Tenant creation has an explicit contract**                            | A supported UI/API/MCP operation—or documented administrator operation—accepts customer account, environment, residency and initial owner. It returns a durable tenant ID and provisioning status.                                      |
+| **8**  | **Tenant provisioning is retry-safe**                                   | Repeated requests do not create duplicate tenants. Provisioning has visible states such as Requested, Provisioning, Ready and Failed, with a supported retry/recovery path.                                                             |
+| **9**  | **Provisioning creates everything needed**                              | Tenant storage scope, access bindings, initial configuration draft and application routing exist before status becomes Ready. Failed setup never presents a usable-looking tenant.                                                      |
+| **10** | **Customer identity is mapped explicitly**                              | The registry links commercial account, workspace, tenant, environment and operating entities. A prospect name is not used as an implicit authorization or database-routing rule.                                                        |
+| **11** | **Tenant routing is deterministic**                                     | Opening a tenant application URL and invoking an MCP operation reach the same intended tenant/environment. Hostnames, paths or supplied IDs cannot bypass access checks. Custom domains are optional for the intern phase.              |
+| **12** | **Isolation covers all storage and execution paths**                    | Demonstrate isolation across database reads/writes, files, caches, background jobs, search and audit access. Include attempted cross-tenant requests.                                                                                   |
+| **13** | **Requirements attach without a code release**                          | An authorized workflow imports or links a versioned customer requirements package to the tenant. Adding PolarisRe or Deefa does not require modifying shared runtime imports or rebuilding the kernel.                                  |
+| **14** | **ChatGPT can discover and change supported configuration**             | Tools expose schemas, capability support and current draft state. Demonstrate creating a product and its valid dependencies through conversation, with structured failures for unsupported behavior.                                    |
+| **15** | **All interfaces use one write path**                                   | UI, API and MCP enforce the same validation, authorization, concurrency and audit rules. Saved changes have matching revisions/hashes across interfaces.                                                                                |
+| **16** | **Draft-to-runtime activation exists**                                  | A supported operation validates a draft and creates an immutable sandbox release. The runtime reports which release it uses. A saved draft alone does not change the running demo.                                                      |
+| **17** | **Build/configuration compatibility is enforced**                       | Activation rejects configurations requiring unavailable capabilities or incompatible schema versions. Existing transactions retain the configuration/version references needed to explain their outcomes.                               |
+| **18** | **The tenant application is deployed and connected**                    | Developers provide the actual application URL for each supported user role. Screens read and execute against the tenant’s activated release; they do not display a separate demo fixture.                                               |
+| **19** | **Integrations and background work are scoped**                         | Provider credentials are managed references. Jobs retain tenant/environment context, support safe retries and expose failures. Sandbox payments and communications use controlled provider accounts or explicitly labelled simulations. |
+| **20** | **Gaps distinguish configuration from deployment and runtime failures** | Studio and MCP distinguish missing customer inputs, unsupported capabilities, unprovisioned resources, unavailable providers and execution defects. Entering metadata cannot clear a deployment blocker.                                |
+| **21** | **Test data has a supported lifecycle**                                 | Interns can load approved samples and reset their authorized sandbox test data. Reset preserves intended configuration and cannot affect another tenant or production.                                                                  |
+| **22** | **Diagnostics reach the kernel team**                                   | A failed scenario provides correlation ID, tenant/environment, build, release and operation references. The agreed ticket workflow captures these without exposing secrets.                                                             |
+| **23** | **Upgrades and recovery preserve intern work**                          | Demonstrate a sandbox upgrade and recovery from a failed release. Configuration rollback and runtime/data recovery are treated separately; rollback does not silently discard transactions.                                             |
+| **24** | **Handover works without developer assistance**                         | A fresh intern follows the published instructions, provisions or receives a tenant, connects ChatGPT, configures a product, activates it, runs a supported journey and files a reproducible issue.                                      |
+
+**Tenant creation should have a precise definition of “Ready.”**
+
+For this programme, I would define it as:
+
+> The tenant has durable storage, authorized users, an editable configuration draft, attached requirements, functioning Studio and application routes, and discoverable access through MCP. Its executable journey readiness is reported separately.
+
+That avoids treating “a row exists in the tenants table” as successful provisioning.
+
+**The developers’ handover package should contain six concrete items:**
+
+* Exact Studio, MCP and tenant application URLs.
+* Intern invitation and ChatGPT connection instructions.
+* Tenant provisioning instructions and permitted roles.
+* Supported configuration capabilities and executable journeys for the deployed build.
+* Draft validation, activation, test-data reset and recovery instructions.
+* Support owner and a working issue template.
+
+For the first acceptance run, use **two differently configured tenants on the same deployed build**. Have two intern accounts configure and run them independently, then attempt unauthorized cross-access. That proves the deployment supports your operating model—and makes customer-specific shortcuts much harder to hide.

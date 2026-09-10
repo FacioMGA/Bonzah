@@ -1,0 +1,151 @@
+{
+  "_doc": [
+    "Identifiers deleted from the production codebase as part of the stale-code-removal program.",
+    "CI fails if any of these regexes match outside `allowedPaths`.",
+    "",
+    "Rules:",
+    "  - Add rows in the same PR that deletes the code; never relax an existing row without an ADR amendment.",
+    "  - allowedPaths are matched as path prefixes (POSIX). Trailing slash means directory.",
+    "  - The guard self-test (tools/quality/__tests__/check-no-deleted-identifiers.test.mjs)",
+    "    asserts that injecting any banned identifier into a fixture causes the guard to fail.",
+    "    Update the self-test sample map when adding patterns whose regex source isn't already listed."
+  ],
+  "patterns": [
+    {
+      "id": "umr-fabrication-generator",
+      "regex": "generateUMR|policyNumberGenerator",
+      "_followUp": "The UMR is the bound binder's Unique Market Reference (canonical owner: Binder.umr, resolved via resolvePolicyUmrFromBinder). The `generateUMR` fabricator and its `policyNumberGenerator` module were deleted — a policy's UMR must never be derived from the policy/quote number or generated. Regenerate docs/architecture/backend-dependency-graph.svg via `npm run docs:generate` to clear the stale edge.",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/",
+        "docs/architecture/decisions/",
+        "docs/archive/"
+      ]
+    },
+    {
+      "id": "tenant-env-singleton-call",
+      "regex": "runWithOperatingTenant\\(\\s*getTenantConfig\\(\\)",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/"
+      ]
+    },
+    {
+      "id": "tenant-slug-env-read",
+      "regex": "process\\.env\\.TENANT_SLUG",
+      "_followUp": "Runtime module-level reads in emailInfra.ts and platformIds.ts were removed; remaining executable reads are limited to HTTP slug resolution, its tests, the deleted-identifiers self-test fixture, and one migration script that requires an explicit tenant slug.",
+      "allowedPaths": [
+        "backend/platform/http/middleware/resolveTenant.ts",
+        "backend/platform/http/middleware/__tests__/resolveTenant.test.ts",
+        "tools/quality/__tests__/check-no-deleted-identifiers.test.mjs",
+        "tools/migrations/reassign_bdx_motor_policies_misfiled_as_travel.mjs"
+      ]
+    },
+    {
+      "id": "strict-binder-product-authority",
+      "regex": "STRICT_BINDER_PRODUCT_AUTHORITY",
+      "_followUp": "PR 1B deleted the env-flag and the synthetic-result branch in binderAuthority.ts. Production K8s manifests must drop this var as part of the rollout.",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/",
+        "docs/architecture/decisions/",
+        "docs/archive/"
+      ]
+    },
+    {
+      "id": "strict-permission-enforcement",
+      "regex": "STRICT_PERMISSION_ENFORCEMENT",
+      "_followUp": "Permission checks fail closed unconditionally. The retired env flag must not reappear in runtime code.",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/",
+        "backend/modules/accessControl/http/__tests__/permissionMiddleware.test.ts"
+      ]
+    },
+    {
+      "id": "synthetic-nonstrict-authority-id",
+      "regex": "synthetic-nonstrict",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/",
+        "docs/architecture/decisions/",
+        "docs/archive/"
+      ]
+    },
+    {
+      "id": "fallback-policy-list-registry",
+      "regex": "FALLBACK_POLICY_LIST_REGISTRY",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/",
+        "docs/architecture/decisions/",
+        "docs/archive/"
+      ]
+    },
+    {
+      "id": "quote-token-secret-jwt-fallback",
+      "regex": "QUOTE_TOKEN_SECRET[^;]*\\|\\|[^;]*JWT_SECRET|JWT_SECRET[^;]*\\|\\|[^;]*QUOTE_TOKEN_SECRET",
+      "_followUp": "PR 2 separated quote-token signing onto its own QUOTE_TOKEN_SECRET keyspace. The OR-fallback chain between the two secrets is the specific deleted pattern; JWT_SECRET still legitimately serves the session / FNOL / OTP layers in their own modules.",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/",
+        "docs/architecture/decisions/",
+        "docs/archive/"
+      ]
+    },
+    {
+      "id": "ev-engine-size-normalized-flag",
+      "regex": "__electricEngineSizeNormalized",
+      "_followUp": "PR 4 closed ADR-0016: the canonical EV capacity field is `batteryKWh`. The legacy ADR-0012 sentinel flag has been deleted from the QuoteData type, the normalizer, and the UW automation. Legacy stored EV records (engineSize=1, no batteryKWh) are flagged on rerate via YELLOW.EV_BATTERY_KWH_MISSING.",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/",
+        "docs/architecture/decisions/",
+        "docs/archive/",
+        "prisma/migrations/"
+      ]
+    },
+    {
+      "id": "home-rate-cards-import",
+      "regex": "home/pricing/homeRateCards",
+      "_followUp": "PR 5 closed ADR-0014: home rate cards live as JSON + zod + loader at `backend/products/home/pricing/data/`. The deprecated `homeRateCards.ts` re-export shim has been deleted; consumers import from `data/loader.js` directly. The pure-re-export-shim exemption in `check-no-inline-rate-tables.mjs` was also removed.",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/",
+        "docs/architecture/decisions/",
+        "docs/archive/"
+      ]
+    },
+    {
+      "id": "claim-payment-indemnity-event-writer",
+      "regex": "PAYMENT_INDEMNITY",
+      "_followUp": "New claim payment writes use PAYMENT_ADDED with canonical classification. Historical event names may appear only in read-only projection/KPI code and tests. The `worksheetProjection/` submodule directory was added in the errors-and-warnings cleanup sprint when the parent file was split — same role, same allowance.",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/",
+        "backend/modules/claims/domain/worksheetProjection.ts",
+        "backend/modules/claims/domain/worksheetProjection/",
+        "backend/modules/claims/domain/kpis/claimsKpis.ts",
+        "backend/modules/claims/domain/__tests__/",
+        "backend/modules/claims/domain/kpis/__tests__/"
+      ]
+    },
+    {
+      "id": "claim-payment-fees-event-writer",
+      "regex": "PAYMENT_FEES",
+      "_followUp": "New claim payment writes use PAYMENT_ADDED with canonical classification. Historical event names may appear only in read-only projection/KPI code and tests. The `worksheetProjection/` submodule directory was added in the errors-and-warnings cleanup sprint when the parent file was split — same role, same allowance.",
+      "allowedPaths": [
+        "tools/quality/deleted-identifiers.json",
+        "tools/quality/__tests__/",
+        "backend/modules/claims/domain/worksheetProjection.ts",
+        "backend/modules/claims/domain/worksheetProjection/",
+        "backend/modules/claims/domain/kpis/claimsKpis.ts",
+        "backend/modules/claims/domain/__tests__/",
+        "backend/modules/claims/domain/kpis/__tests__/"
+      ]
+    }
+  ],
+  "_notes": [
+    "PR 5b: the motor wizard's frontend `getPublicIssueReadiness` fetch helper was deleted, but the same identifier names a separate, legitimate backend service (`backend/modules/quotes/app/publicAutoQuoteService.ts` and friends). The deleted-identifiers regex is too coarse for that distinction — the unification is enforced instead by the canonical-ownership.md `Issue-readiness HTTP` row + the absence of any frontend fetch helper for the route outside `frontend/src/shared/lib/wizard/issueReadinessClient.ts`."
+  ]
+}

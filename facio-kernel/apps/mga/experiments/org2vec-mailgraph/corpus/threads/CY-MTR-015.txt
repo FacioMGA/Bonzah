@@ -1,0 +1,41 @@
+Thread-ID: CY-MTR-015
+Claim-Ref: CY-MTR-015
+Subject: CY-MTR-015 — TP details outstanding
+===
+
+From: Demetris Broker <d@brokerbros.example>
+To: claims@abbeygate.example
+Date: 2026-01-29 08:45
+Subject: FNOL CY-MTR-015 — TP hit and run
+
+Insured Eleni P. (ABMTR-100302, reg YPL-4419). TP departed scene.
+Insured noted partial reg "...82A". Police informed.
+
+---
+From: Handler <claims@abbeygate.example>
+To: d@brokerbros.example
+Date: 2026-01-29 12:11
+Subject: RE: CY-MTR-015 — request
+
+Demetris,
+
+Please obtain (a) the police incident report or attendance number,
+(b) confirmation no witnesses exist, and (c) any CCTV nearby. We
+cannot pursue TP recovery without identifying the third party.
+
+---
+From: Handler <claims@abbeygate.example>
+To: d@brokerbros.example
+Date: 2026-02-12 09:00
+Subject: Chaser — CY-MTR-015 TP details
+
+Chasing the items requested 29/01. Still outstanding.
+
+---
+From: Handler <claims@abbeygate.example>
+To: d@brokerbros.example
+Date: 2026-02-26 09:00
+Subject: Second chaser — CY-MTR-015
+
+Second chaser. TP insurer details remain outstanding. Without them
+no recovery is possible.

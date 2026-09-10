@@ -1,0 +1,266 @@
+Facio + United Educators
+Property workflow
+demonstration
+10 September 2026
+11:30–12:15 EDT / 18:30–19:15 Israel
+Purpose: a generic property insurance workflow discussion grounded in the customer’s August 27 request and supplied submission files. This deck describes a proposed walkthrough. Prepared examples and future lifecycle events must not be represented as actual insurance transactions or production-verified functionality.
+
+Sources: https://mail.google.com/mail/#all/1a04390f8492b7e1
+https://mail.google.com/mail/#all/1a061112dcfdb3c0End-to-end property workflow
+02
+Submission and pricing
+Quote and policy
+Lifecycle and finance
+Broker Management
+Document Intake / Submission Intake & Ingestion
+Underwriting
+External Data Source Enrichment
+Rating
+Quote Management
+Binding
+Endorsements
+FNOL Intake
+Policy Administration & Management
+Renewals
+Cancellations & Refunds
+Commission Tracking / Broker Commissions
+Billing & Receivables
+Reporting
+Proposed walkthrough. Each segment will identify live behavior, prepared examples, or design discussion.
+All 15 modules below come directly from Vineesh Subramaniam’s August 27 brief. UE asked to understand how they work together. Timed agenda aligned with the demo day runbook: 0–4 minutes context; 4–12 broker and intake; 12–20 underwriting, enrichment and rating; 20–27 quote, bind and policy administration; 27–32 billing and commissions; 32–39 endorsements, FNOL, renewals and cancellations; 39–42 reporting; 42–45 decisions.
+
+Presentation mode: proposed walkthrough. The presenter identifies live behavior, prepared examples and design discussion as each segment begins. Product runtime readiness requires separate rehearsal evidence.
+
+Source: https://mail.google.com/mail/#all/1a04390f8492b7e1Randolph Community College submission
+03
+Supplied document
+Review focus
+Application.pdf
+Applicant and broker details, selected coverages, dates
+2026-2027 RCC SOV.xlsx
+Locations, building values, contents and total reconciliation
+2025 CPP Loss Runs.xlsx
+Reported loss history and source valuation period
+HCA appraisal report
+Property detail and valuation evidence
+Real submission evidence anchors the walkthrough. Future quotes and policy events are synthetic examples.
+The selected source pack is the Randolph folder supplied for document ingestion review. The application page 1 term is September 1, 2026 to September 1, 2027. Its pages 2 and 5 list 11 premises, including vacant or leased sites, while the SOV has six site codes. These scope differences require reconciliation. The appraisal pages 4 and 15 use an April 4, 2025 valuation and a different basis: $132,580,300 buildings, $28,821,700 contents and $1,759,600 property in the open, total $163,161,600. Do not describe this cross-source difference as an arithmetic error.
+
+Use the four documents as input evidence. Future quotes, bind actions and lifecycle events in this demonstration are synthetic. The sample does not define UE’s new property product.
+
+Sources: https://drive.google.com/drive/folders/1aiOhD9Q_nOUXnleArB2jgakdM3-JdSim
+https://drive.google.com/file/d/1fgn8Ia1H1DsQpxPv6fqRmuP_5W1gb8V3/view
+https://docs.google.com/spreadsheets/d/1Ap86DGJV1YID9cz83jlkqfKFGCdiwg6i/edit
+https://docs.google.com/spreadsheets/d/1qFEos5PTY5Qx-zY9BNtTAa5BBD48uQN6/edit
+https://drive.google.com/file/d/1ARgqvBJP9kqpl1C-EdIQZRmy2n1qnNzp/viewBroker management and intake review
+04
+SOV total comparison
+USD
+GRAND TOTALS, row 47
+$161,957,303
+Subtotal including renovations, row 45
+$163,260,053
+Difference requiring review
+$1,302,750
+Review issue: treatment of building renovations
+The difference matches the renovation subtotal. UE confirms its treatment before rating.
+Proposed sequence: select the broker and institution record, attach the source pack to one submission, verify extracted values against the source and route the discrepancy to an underwriter. Maintain original documents and each reviewed change.
+
+RCC SOV raw workbook verification: sheet Schedule of Value - 2025-08-28T, row 45: D45 building subtotal $133,135,603; E45 contents subtotal $28,821,700; F45 renovation subtotal $1,302,750; G45 total $163,260,053 from formula SUM(G2:G44). Displayed GRAND TOTALS row 47 has hardcoded G47 $161,957,303 and blank F47. The $1,302,750 difference matches renovations. The sheet has 43 exposure rows across six site codes, including structures and lighting. UE must decide the treatment of renovations before rating. Neither displayed nor computed total constitutes an approved insured value.
+
+Sources: https://mail.google.com/mail/#all/1a04390f8492b7e1
+https://docs.google.com/spreadsheets/d/1Ap86DGJV1YID9cz83jlkqfKFGCdiwg6i/editUnderwriting and external enrichment
+05
+Underwriter review
+Source evidence and unresolved values
+
+Exposure questions and referrals
+
+Decision, rationale and accountable owner
+External data boundary
+Provider and permitted use
+
+Matched location and retrieval date
+
+Unavailable or conflicting data stays visible
+UE confirms the required providers and authority rules. Any prepared enrichment response carries a clear label.
+Proposed demonstration of Underwriting and External Data Source Enrichment. The RCC exception is a document-review case. Do not present its unresolved total as a rated exposure.
+
+Provider selection, permitted use, contracts, API access and data ownership remain discovery items. Use a labeled prepared response if the integration is not available. Do not invent a live catastrophe, geocoding, imagery or valuation provider connection.
+
+Sources: https://mail.google.com/mail/#all/1a04390f8492b7e1
+https://mail.google.com/mail/#all/1a035160a4801127
+https://docs.google.com/spreadsheets/d/1Ap86DGJV1YID9cz83jlkqfKFGCdiwg6i/editRating and quote management
+06
+Step
+Record to review
+Approved inputs
+Reviewed exposures, requested coverages and rating input version
+Rating response
+Engine or rule version, result and returned errors
+Quote options
+Terms, assumptions and a separate version for each option
+Selected quote
+Chosen version, approvals and a traceable decision
+Rating logic and API ownership require UE confirmation. Customer rates and terms govern the quote.
+Proposed demonstration of Rating and Quote Management. The August 24 automated recap mentions an API-connected rating engine, which needs customer confirmation. No rating API specification, rates, credentials or approved rating logic has been established in the source set.
+
+Use a clearly labeled prepared result if a permitted engine is unavailable. Any live quote demonstration stays in a demo environment and carries synthetic status. Keep source values, adjustments, terms and selected quote version aligned.
+
+Sources: https://mail.google.com/mail/#all/1a04390f8492b7e1
+https://mail.google.com/mail/#all/1a035160a4801127Binding and policy administration
+07
+Before a demo bind
+Selected quote and effective dates
+
+Required approvals and subjectivities
+
+Approved forms and document version
+Policy record
+Submission and quote references
+
+Coverage and transaction history
+
+Documents with issue status
+The lifecycle examples use a synthetic policy record. UE defines bind authority and the final document pack.
+Proposed demonstration of Binding and Policy Administration & Management. Show the selected quote and prerequisite checks before the bind state. Do not create a real insurance commitment.
+
+The policy record should retain the source submission, selected quote, effective dates, coverages, authority decision and document versions. Actual forms, binder wording and issue authority require approved customer material.
+
+Source: https://mail.google.com/mail/#all/1a04390f8492b7e1Endorsements, renewals and cancellations
+08
+Lifecycle event
+Evidence and control
+Endorsement
+Before/after exposure, effective date, approval and premium adjustment
+Renewal
+Expiring policy, refreshed documents and changes for underwriting
+Cancellation & refund
+Reason, effective date, authority and approved calculation basis
+Shared policy history
+Each event retains prior values, documents and financial references
+Synthetic events demonstrate continuity. Customer rules govern financial treatment and notices.
+Proposed demonstration of Endorsements, Renewals and Cancellations & Refunds. Follow-on events are synthetic and do not assert an actual RCC policy change.
+
+A renovation update is a useful endorsement fixture after the initial value discrepancy has an explicit assumed resolution in the synthetic scenario. Cancellation/refund and commission adjustments require approved effective-date conventions and calculation rules. Do not apply a generic formula as UE’s rule.
+
+Source: https://mail.google.com/mail/#all/1a04390f8492b7e1FNOL intake and claims handoff
+09
+Notice record
+Policy and affected location
+
+Incident date and description
+
+Reporter details and supporting files
+Handoff record
+Destination and assigned owner
+
+External reference and status
+
+Acknowledgment or visible failure
+Prepared FNOL example. Claims-system ownership and the handoff interface remain discovery decisions.
+Proposed demonstration of FNOL Intake. Use a synthetic property incident and attachments to show policy association and handoff. The customer requested FNOL intake, not an established scope for full claims adjudication.
+
+UE already offers public claim reporting with separate Claim, Notification Only and ProResponse routes for its current business. That context does not define a property-program integration. Confirm carrier/TPA destination and return status for this project.
+
+Sources: https://mail.google.com/mail/#all/1a04390f8492b7e1
+https://www.ue.org/report-claim/Billing, receivables and broker commissions
+10
+Policy event
+Financial record
+Control to review
+Demo bind
+Invoice and receivable
+Selected quote matches billing basis
+Endorsement
+Debit or credit adjustment
+Effective date and approved premium delta
+Cancellation
+Refund and commission adjustment
+Rule basis, approval and settlement status
+Payment / reconciliation
+Receipt and broker ledger
+Allocation, balance and unmatched items
+All financial examples are synthetic. Terms, taxes, commission rates and payment rails require agreement.
+Proposed demonstration of Billing & Receivables and Commission Tracking / Broker Commissions. The purpose is to show consistent financial references across policy events, rather than assert a configured UE accounting system.
+
+Confirm direct/agency bill, installment plans, payment providers, tax/fee rules, commission agreements and accounting ownership. Show synthetic ledger entries only after financial rules are explicit. Do not invent amounts, percentages or refund formulas.
+
+Source: https://mail.google.com/mail/#all/1a04390f8492b7e1Reporting across the same records
+11
+Report view
+Traceable basis
+Submission work queue
+Owner, stage, missing documents and unresolved exceptions
+Underwriting and quotes
+Decision history, rating inputs and selected quote version
+Policy transactions
+Bind, endorsement, renewal, cancellation and FNOL references
+Finance and broker position
+Receivables, adjustments, payments and commission balances
+Each report should trace to its underlying record. UE defines the required outputs and reconciliation rules.
+Proposed Reporting segment. No numerical performance improvement, operational baseline or production data is claimed. Select a report, filter to the demonstration record, inspect details and export where the runtime supports it.
+
+Reporting definitions, bordereaux, finance and regulatory layouts need UE confirmation. Automated meeting recap mentions client ownership and CSV/report export, but the product behavior and contractual scope need validation.
+
+Sources: https://mail.google.com/mail/#all/1a04390f8492b7e1
+https://mail.google.com/mail/#all/1a035160a4801127Architecture and operating ownership
+12
+Domain
+Decision for discovery
+Salesforce and policy system
+System of record, identifiers, users and handoffs
+Rating and enrichment
+Provider owners, API contracts, sandbox access and error handling
+Documents, finance and FNOL
+Approved forms, accounting destination and claims recipient
+Data and operations
+Permissions, hosting, retention, export, monitoring and support
+These are architecture decisions for joint discovery. No integration topology is assumed.
+Discovery discussion. Vineesh is Senior Salesforce Developer & Administrator and Santosh is Senior Director of IT Business Applications. Those titles identify relevant participants but do not prove a specific Salesforce integration or system topology.
+
+UE’s Knowledge Center documents existing My UE member and broker services. Older event briefing mentions a custom PAS, while the newer customer request is property. Confirm whether the program is new, a replacement or a phased coexistence.
+
+Sources: https://mail.google.com/mail/#all/1a04390f8492b7e1
+https://mail.google.com/mail/#all/1a035160a4801127
+https://www.ue.org/working-with-you/knowledge-center/Proposed project path
+13
+Phase
+Work product
+Exit decision
+Discovery
+Product, workflow, owners and source inventory
+First release scope and dependencies
+Configured pilot
+RCC intake case and connected demo transactions
+Agreed acceptance cases pass
+Integration and validation
+Rating, documents, finance, permissions and reports
+UE reviews operational readiness
+Launch preparation
+Cutover, training, support and reconciliation
+Authorized launch decision
+Sequence and gates are proposed. Launch timing depends on agreed scope, inputs and acceptance criteria.
+This is a proposed phase structure, not an approved delivery schedule. Phase scope, owner and exit criteria need customer agreement. The NDA does not constitute an implementation contract.
+
+Yoni’s August 26 email references January 1 without a year. The automated August 24 recap mentions an end-of-year property MGA launch. January 1, 2027 is an unconfirmed inference and must not become a committed date in this deck.
+
+Sources: https://mail.google.com/mail/#all/1a04390f8492b7e1
+https://mail.google.com/mail/#all/1a03dd34e990d991
+https://mail.google.com/mail/#all/1a035160a4801127Decisions and next steps
+14
+First release
+Product, users and essential transactions
+Required inputs
+Rating contract, forms and source-file decisions
+Pilot acceptance
+Named test cases, evidence and approvers
+Accountability
+Owners, next working session and target-date meaning
+Close with specific decisions, assigned people and the next session date. Ask whether the walkthrough covered how all 15 modules work together and which behavior needs deeper proof.
+
+Confirm launch product/entity, scope, rating and document owners, finance/FNOL boundaries, representative samples, pilot acceptance and timing. Keep price and commitments out of this deck. No implementation award or customer-approved go-live date was found in the reviewed evidence.
+
+Sources: https://mail.google.com/mail/#all/1a04390f8492b7e1
+https://mail.google.com/mail/#all/1a035160a4801127
+https://mail.google.com/mail/#all/1a03dd34e990d991

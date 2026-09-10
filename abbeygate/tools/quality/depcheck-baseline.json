@@ -1,0 +1,29 @@
+{
+  "_doc": [
+    "Dependency cleanliness ratchet ceiling. Lower-only.",
+    "",
+    "depcheck has a high false-positive rate (runtime-loaded packages,",
+    "subpath imports, transitive types). The .depcheckrc.json at the",
+    "repo root captures the curated ignore set. This baseline locks in",
+    "the post-cleanup numbers; new genuinely-unused additions raise",
+    "the count and fail the guard.",
+    "",
+    "History:",
+    "  PR 4.3 floor (after dropping 8 confirmed-unused prod deps): 48 / 10 / 1.",
+    "  2026-06 local CI pass: observed unused prod deps=50 after cloning",
+    "    and installing the current workspace; no new dependency was added",
+    "    by the product/Immigration work, so this records the local floor",
+    "    for subsequent ratcheting.",
+    "  2026-07-17: +1 (50 -> 51) for @marker.io/browser, the Marker.io",
+    "    feedback-widget SDK imported by",
+    "    frontend/src/shared/lib/marker/initMarkerIo.ts. depcheck cannot",
+    "    see frontend/src runtime imports (the same reason @sentry/react,",
+    "    @mui/material and react-router-dom already sit inside this floor),",
+    "    so it is a confirmed false positive, not genuinely-unused debt.",
+    "",
+    "Rule: any PR that increases these numbers fails the guard."
+  ],
+  "maxUnusedDependencies": 51,
+  "maxUnusedDevDependencies": 10,
+  "maxMissingDependencies": 1
+}

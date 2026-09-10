@@ -1,0 +1,204 @@
+{
+  "vintage": "2026",
+  "source": "Rating Guide Schedule - Updated Helvetia Inc Cyprus Nov 2025; +20% base-rate uplift, all territories (Peter Sheppard, 2026-08-18)",
+  "rateCards": {
+    "ES": {
+      "Permanent": {
+        "small":       { "buildings": 0.002268, "contents": 0.0057, "jewellery": 0.033, "otherAllRisks": 0.027 },
+        "largeNoAd":   { "buildings": 0.001701, "contents": 0.004275, "jewellery": null, "otherAllRisks": null },
+        "smallWithAd": { "buildings": 0.00258, "contents": 0.00666, "jewellery": 0.033, "otherAllRisks": 0.027 }
+      },
+      "Holiday": {
+        "small":       { "buildings": 0.00234, "contents": 0.00582, "jewellery": null, "otherAllRisks": null },
+        "largeNoAd":   { "buildings": 0.00234, "contents": 0.00582, "jewellery": null, "otherAllRisks": null },
+        "smallWithAd": { "buildings": 0, "contents": 0.00702, "jewellery": null, "otherAllRisks": null }
+      }
+    },
+    "PT": {
+      "Permanent": {
+        "small":       { "buildings": 0.0021, "contents": 0.00462, "jewellery": 0.033, "otherAllRisks": 0.027 },
+        "largeNoAd":   { "buildings": 0.001572, "contents": 0.003468, "jewellery": null, "otherAllRisks": null },
+        "smallWithAd": { "buildings": 0.002412, "contents": 0.006012, "jewellery": 0.033, "otherAllRisks": 0.027 }
+      },
+      "Holiday": {
+        "small":       { "buildings": 0.00222, "contents": 0.00474, "jewellery": null, "otherAllRisks": null },
+        "largeNoAd":   { "buildings": 0.00222, "contents": 0.00474, "jewellery": null, "otherAllRisks": null },
+        "smallWithAd": { "buildings": 0, "contents": 0.00666, "jewellery": null, "otherAllRisks": null }
+      }
+    },
+    "CY": {
+      "Permanent": {
+        "small":       { "buildings": 0.0021, "contents": 0.00462, "jewellery": 0.033, "otherAllRisks": 0.027 },
+        "largeNoAd":   { "buildings": 0.001575, "contents": 0.003465, "jewellery": null, "otherAllRisks": null },
+        "smallWithAd": { "buildings": 0.002412, "contents": 0.006012, "jewellery": 0.033, "otherAllRisks": 0.027 }
+      },
+      "Holiday": {
+        "small":       { "buildings": 0.002268, "contents": 0.00474, "jewellery": null, "otherAllRisks": null },
+        "largeNoAd":   { "buildings": 0.002268, "contents": 0.00474, "jewellery": null, "otherAllRisks": null },
+        "smallWithAd": { "buildings": 0, "contents": 0.00666, "jewellery": null, "otherAllRisks": null }
+      }
+    },
+    "GR": {
+      "Permanent": {
+        "small":       { "buildings": 0.0021, "contents": 0.00462, "jewellery": 0.033, "otherAllRisks": 0.027 },
+        "largeNoAd":   { "buildings": 0.001575, "contents": 0.003465, "jewellery": null, "otherAllRisks": null },
+        "smallWithAd": { "buildings": 0.002412, "contents": 0.006012, "jewellery": 0.033, "otherAllRisks": 0.027 }
+      },
+      "Holiday": {
+        "small":       { "buildings": 0.002268, "contents": 0.00474, "jewellery": null, "otherAllRisks": null },
+        "largeNoAd":   { "buildings": 0.002268, "contents": 0.00474, "jewellery": null, "otherAllRisks": null },
+        "smallWithAd": { "buildings": 0, "contents": 0.00666, "jewellery": null, "otherAllRisks": null }
+      }
+    }
+  },
+  "workbook": {
+    "ES": {
+      "Permanent": {
+        "buildingsBase": 0.002268,
+        "buildingsOver": 0.001701,
+        "buildingsAd": 0.00258,
+        "contentsBase": 0.0057,
+        "contentsOver": 0.004275,
+        "contentsAd": 0.00666,
+        "jewellery": 0.033,
+        "otherAllRisks": 0.027,
+        "solar": 0.002268
+      },
+      "Holiday": {
+        "buildingsBase": 0.00234,
+        "buildingsOver": 0.00234,
+        "buildingsAd": null,
+        "contentsBase": 0.00582,
+        "contentsOver": 0.00582,
+        "contentsAd": 0.00702,
+        "jewellery": null,
+        "otherAllRisks": null,
+        "solar": 0.002268
+      }
+    },
+    "PT": {
+      "Permanent": {
+        "buildingsBase": 0.0021,
+        "buildingsOver": 0.001575,
+        "buildingsAd": 0.002412,
+        "contentsBase": 0.00462,
+        "contentsOver": 0.003465,
+        "contentsAd": 0.006012,
+        "jewellery": 0.033,
+        "otherAllRisks": 0.027,
+        "solar": 0.002268
+      },
+      "Holiday": {
+        "buildingsBase": 0.002268,
+        "buildingsOver": 0.002268,
+        "buildingsAd": null,
+        "contentsBase": 0.00474,
+        "contentsOver": 0.00474,
+        "contentsAd": 0.00666,
+        "jewellery": null,
+        "otherAllRisks": null,
+        "solar": 0.002268
+      }
+    },
+    "CY": {
+      "Permanent": {
+        "buildingsBase": 0.0021,
+        "buildingsOver": 0.001575,
+        "buildingsAd": 0.002412,
+        "contentsBase": 0.00462,
+        "contentsOver": 0.003465,
+        "contentsAd": 0.006012,
+        "jewellery": 0.033,
+        "otherAllRisks": 0.027,
+        "solar": 0.002268
+      },
+      "Holiday": {
+        "buildingsBase": 0.002268,
+        "buildingsOver": 0.002268,
+        "buildingsAd": null,
+        "contentsBase": 0.00474,
+        "contentsOver": 0.00474,
+        "contentsAd": 0.00666,
+        "jewellery": null,
+        "otherAllRisks": null,
+        "solar": 0.002268
+      }
+    },
+    "GR": {
+      "Permanent": {
+        "buildingsBase": 0.0021,
+        "buildingsOver": 0.001575,
+        "buildingsAd": 0.002412,
+        "contentsBase": 0.00462,
+        "contentsOver": 0.003465,
+        "contentsAd": 0.006012,
+        "jewellery": 0.033,
+        "otherAllRisks": 0.027,
+        "solar": 0.002268
+      },
+      "Holiday": {
+        "buildingsBase": 0.002268,
+        "buildingsOver": 0.002268,
+        "buildingsAd": null,
+        "contentsBase": 0.00474,
+        "contentsOver": 0.00474,
+        "contentsAd": 0.00666,
+        "jewellery": null,
+        "otherAllRisks": null,
+        "solar": 0.002268
+      }
+    }
+  },
+  "minPremium": 100,
+  "underwritingProfitLoading": {
+    "rate": 0.034,
+    "appliesTo": "net_premium"
+  },
+  "wildfireLoading": {
+    "amber": 0.2,
+    "yellow": 0.1,
+    "green": 0
+  },
+  "countryBaseLoading": {
+    "GR": 0.2
+  },
+  "pricingRules": {
+    "propertyAgeDiscounts": {
+      "1990 or Later": 0.15,
+      "1980 to 1989": 0.1
+    },
+    "noClaimsDiscounts": {
+      "1 Year": 0.1,
+      "1 Years": 0.1,
+      "2 Year": 0.125,
+      "2 Years": 0.125,
+      "3 Year": 0.15,
+      "3 Years": 0.15,
+      "4 Year": 0.2,
+      "4 Years": 0.2,
+      "5+ Years": 0.2
+    },
+    "increasedExcessDiscounts": {
+      "350 XS": 0.05,
+      "750 XS": 0.1
+    },
+    "previousClaimsLoadings": {
+      "1 claim < 1000": 0.3,
+      "2 claims < 3000": 0.55,
+      "3 claims or > 3000": 1.2
+    },
+    "combustibleConstructionLoading": 1,
+    "staticCaravanLoading": 0.25,
+    "greekPostcodeLoading": {
+      "postcodes": ["kefalonia", "zakinthos", "lefkada", "santorini"],
+      "rate": 0.35
+    },
+    "alarmDiscount": 0.1,
+    "proposerOver45Discount": 0.05,
+    "discretionaryDiscountCap": 0.2,
+    "europAssistance": {
+      "countryCodes": ["CY", "GR"],
+      "fee": 12
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build:frontend",
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/bonzah",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/bonzah/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/summit-rentals",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/summit-rentals/:path*",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/bonzah",
+      "permanent": false
+    }
+  ]
+}

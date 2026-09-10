@@ -1,0 +1,23 @@
+{
+  "thread_id": "ABB-VL-00043",
+  "claim_ref": "ABB/VL/00043",
+  "gold_missing_documents": [
+    "european_accident_statement",
+    "vehicle_registration",
+    "photos",
+    "third_party_insurer_details",
+    "witness_statement"
+  ],
+  "gold_authority_flags": [
+    "tp_recovery_required"
+  ],
+  "gold_decision_posture": "reserved",
+  "gold_key_events": [
+    "FNOL",
+    "doc_request"
+  ],
+  "gold_similar_threads": [
+    "ABB-VL-00044"
+  ],
+  "scenario": "abbvl_pt_information_request"
+}

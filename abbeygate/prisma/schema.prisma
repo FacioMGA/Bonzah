@@ -1,0 +1,2774 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+  // Azure App Service Linux containers typically run on OpenSSL 3.
+  // Include it explicitly so the query engine matches the runtime.
+  binaryTargets   = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+model User {
+  id              String    @id @default(uuid())
+  email           String    @unique
+  emailVerifiedAt DateTime?
+  name            String?
+  firstName       String?
+  lastName        String?
+  role            Role      @default(UNDERWRITER)
+  userType        UserType  @default(INTERNAL)
+  password        String
+  isActive        Boolean   @default(true)
+  mfaEnabled      Boolean   @default(false)
+  phone           String?
+  tokenVersion    Int       @default(0)
+  lastLogin       DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Invitation lifecycle
+  invitedById     String?
+  invitedBy       User?     @relation("InvitedUsers", fields: [invitedById], references: [id], onDelete: SetNull)
+  invitedUsers    User[]    @relation("InvitedUsers")
+  inviteToken     String?   @unique
+  inviteExpiresAt DateTime?
+
+  // Suspension
+  suspendedAt     DateTime?
+  suspendedReason String?
+
+  // Ownership + onboarding
+  primaryAccountId  String?
+  primaryAccount    Account?           @relation("UserPrimaryAccount", fields: [primaryAccountId], references: [id], onDelete: SetNull)
+  accountUsers      AccountUser[]
+  otps              UserOtp[]
+  accessAssignments AccessAssignment[]
+
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  UNDERWRITER
+  CUSTOMER
+}
+
+enum UserType {
+  INTERNAL
+  BROKER
+  CUSTOMER
+  PARTNER
+}
+
+enum AccessRoleType {
+  SYSTEM
+  CUSTOM
+}
+
+enum ScopeType {
+  GLOBAL
+  PRODUCT
+  BINDER
+  OWN_RECORDS
+}
+
+model AccessRole {
+  id          String         @id @default(uuid())
+  name        String         @unique
+  description String?
+  type        AccessRoleType @default(CUSTOM)
+  isActive    Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  permissions RolePermission[]
+  assignments AccessAssignment[]
+
+  @@map("access_roles")
+}
+
+model Permission {
+  id          String  @id @default(uuid())
+  resource    String
+  action      String
+  displayName String
+  description String?
+  constraints Json?   @db.JsonB
+
+  roles RolePermission[]
+
+  @@unique([resource, action])
+  @@map("permissions")
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  constraints  Json?  @db.JsonB
+
+  role       AccessRole @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model AccessAssignment {
+  id           String    @id @default(uuid())
+  userId       String
+  roleId       String
+  scopeType    ScopeType @default(GLOBAL)
+  scopeValue   String?
+  assignedById String?
+  assignedAt   DateTime  @default(now())
+  expiresAt    DateTime?
+
+  user User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role AccessRole @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, roleId, scopeType, scopeValue])
+  @@index([userId])
+  @@map("access_assignments")
+}
+
+enum AccountUserRole {
+  OWNER
+  MEMBER
+}
+
+enum AccountKind {
+  CUSTOMER
+  INTERNAL
+}
+
+enum EntityType {
+  PERSON
+  ORGANIZATION
+  VEHICLE
+  ASSET
+}
+
+enum UserOtpPurpose {
+  EMAIL_VERIFICATION
+  LOGIN
+  PASSWORD_RESET
+}
+
+model Account {
+  id                String      @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant      @relation("AccountOperatingTenant", fields: [operatingTenantId], references: [id])
+  name              String?
+  kind              AccountKind @default(CUSTOMER)
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  users            AccountUser[]
+  policies         Policy[]
+  entities         Entity[]
+  apiKeys          ApiKey[]
+  webhookEndpoints WebhookEndpoint[]
+
+  // Back-reference for User.primaryAccount
+  primaryUsers User[] @relation("UserPrimaryAccount")
+
+  @@index([operatingTenantId])
+  @@map("accounts")
+}
+
+model ApiKey {
+  id                String    @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant    @relation("ApiKeyTenant", fields: [operatingTenantId], references: [id])
+  keyHash           String    @unique
+  name              String
+  accountId         String
+  account           Account   @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  isActive          Boolean   @default(true)
+  expiresAt         DateTime?
+  createdAt         DateTime  @default(now())
+  lastUsedAt        DateTime?
+  // Per-key scoped permissions (ADR-0036 amendment for remote MCP access).
+  // Empty array on legacy / non-MCP keys; MCP keys are populated at issuance
+  // time from CONFIG_AGENT_BASELINE plus optional opt-ins.
+  permissions       String[]  @default([])
+
+  @@index([operatingTenantId])
+  @@index([accountId])
+  @@index([keyHash])
+  @@map("api_keys")
+}
+
+model WebhookEndpoint {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("WebhookEndpointTenant", fields: [operatingTenantId], references: [id])
+  accountId         String
+  account           Account  @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  url               String
+  secret            String
+  description       String?
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+
+  @@index([operatingTenantId])
+  @@index([accountId])
+  @@map("webhook_endpoints")
+}
+
+model AccountUser {
+  id        String          @id @default(uuid())
+  accountId String
+  userId    String
+  role      AccountUserRole @default(MEMBER)
+  createdAt DateTime        @default(now())
+
+  account Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([accountId, userId])
+  @@index([userId])
+  @@index([accountId])
+  @@map("account_users")
+}
+
+model Entity {
+  id                String     @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant     @relation("EntityOperatingTenant", fields: [operatingTenantId], references: [id])
+  accountId         String?
+  type              EntityType
+  name              String?
+  data              Json?      @db.JsonB
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  account         Account? @relation(fields: [accountId], references: [id], onDelete: SetNull)
+  insuredPolicies Policy[] @relation("PolicyInsuredEntity")
+
+  @@index([operatingTenantId])
+  @@index([accountId])
+  @@index([type])
+  @@map("entities")
+}
+
+model UserOtp {
+  id         String         @id @default(uuid())
+  userId     String?
+  email      String
+  purpose    UserOtpPurpose
+  codeHash   String
+  expiresAt  DateTime
+  consumedAt DateTime?
+  attempts   Int            @default(0)
+  createdAt  DateTime       @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([email])
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("user_otps")
+}
+
+model PolicyHolder {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("PolicyHolderOperatingTenant", fields: [operatingTenantId], references: [id])
+  name              String
+  segment           String?
+  address           String?
+  contact           String?
+  bankAccounts      Json?    @db.JsonB
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  policies          Policy[]
+
+  @@index([operatingTenantId])
+  @@map("policy_holders")
+}
+
+model AccountSummaryProjection {
+  id                   String    @id @default(uuid())
+  operatingTenantId    String
+  operatingTenant      Tenant    @relation("AccountSummaryProjectionOperatingTenant", fields: [operatingTenantId], references: [id])
+  accountId            String    @unique
+  accountName          String
+  accountType          String    @default("INDIVIDUAL")
+  secondaryIdentity    String?
+  ownerBroker          String?
+  activePoliciesCount  Int       @default(0)
+  openClaimsCount      Int       @default(0)
+  outstandingBalance   Decimal   @default(0)
+  annualizedPremium    Decimal   @default(0)
+  renewalIn30DaysCount Int       @default(0)
+  renewalIn60DaysCount Int       @default(0)
+  billingIssueCount    Int       @default(0)
+  healthStatus         String    @default("HEALTHY")
+  healthScore          Int       @default(0)
+  healthReasons        Json?     @db.JsonB
+  healthRuleVersion    Int       @default(1)
+  lastActivityAt       DateTime?
+  lastActivityType     String?
+  lastActivitySummary  String?
+  productMix           Json?     @db.JsonB
+  computedAt           DateTime  @default(now())
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([healthStatus])
+  @@index([lastActivityAt])
+  @@index([accountName])
+  @@map("account_summary_projection")
+}
+
+model AccountPortfolioMetrics {
+  id                     String   @id @default(uuid())
+  operatingTenantId      String
+  operatingTenant        Tenant   @relation("AccountPortfolioMetricsOperatingTenant", fields: [operatingTenantId], references: [id])
+  accountId              String   @unique
+  activePoliciesCount    Int      @default(0)
+  draftPoliciesCount     Int      @default(0)
+  expiredPoliciesCount   Int      @default(0)
+  cancelledPoliciesCount Int      @default(0)
+  annualizedPremium      Decimal  @default(0)
+  productMix             Json?    @db.JsonB
+  renewalBuckets         Json?    @db.JsonB
+  computedAt             DateTime @default(now())
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([annualizedPremium])
+  @@map("account_portfolio_metrics")
+}
+
+model AccountAlertsProjection {
+  id                String    @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant    @relation("AccountAlertsProjectionOperatingTenant", fields: [operatingTenantId], references: [id])
+  accountId         String
+  alertCode         String
+  severity          String
+  title             String
+  description       String?
+  isOpen            Boolean   @default(true)
+  sourceDomain      String
+  sourceRefId       String?
+  occurredAt        DateTime  @default(now())
+  resolvedAt        DateTime?
+  metadata          Json?     @db.JsonB
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([accountId, isOpen])
+  @@index([accountId, severity])
+  @@index([occurredAt])
+  @@map("account_alerts_projection")
+}
+
+model AccountActivityFeed {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("AccountActivityFeedOperatingTenant", fields: [operatingTenantId], references: [id])
+  accountId         String
+  sourceDomain      String
+  eventType         String
+  eventSummary      String
+  aggregateType     String?
+  aggregateId       String?
+  occurredAt        DateTime
+  metadata          Json?    @db.JsonB
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([accountId, occurredAt(sort: Desc)])
+  @@index([sourceDomain, eventType])
+  @@map("account_activity_feed")
+}
+
+model AccountIntelligenceProjection {
+  id                  String    @id @default(uuid())
+  operatingTenantId   String
+  operatingTenant     Tenant    @relation("AccountIntelligenceProjectionOperatingTenant", fields: [operatingTenantId], references: [id])
+  accountId           String    @unique
+  accountName         String
+  secondaryIdentity   String?
+  searchTerms         String?
+  activePolicies      Int       @default(0)
+  totalPolicies       Int       @default(0)
+  totalPremium        Decimal   @default(0)
+  productMix          Json?     @db.JsonB
+  openClaimsCount     Int       @default(0)
+  outstandingReserve  Decimal   @default(0)
+  overdueAmount       Decimal   @default(0)
+  failedPaymentsCount Int       @default(0)
+  nextRenewalAt       DateTime?
+  lastActivityAt      DateTime?
+  lastActivityType    String?
+  lastActivitySummary String?
+  state               String    @default("HEALTHY")
+  stateReasons        Json?     @db.JsonB
+  stateScore          Int?
+  statePriority       Int       @default(4)
+  computedAt          DateTime  @default(now())
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([state])
+  @@index([statePriority, lastActivityAt(sort: Desc), accountId])
+  @@index([nextRenewalAt])
+  @@index([accountName])
+  @@map("account_intelligence_projection")
+}
+
+model ProductDefinition {
+  code              String                   @id
+  displayName       String
+  icon              String?
+  isActive          Boolean                  @default(true)
+  programs          Program[]
+  binderAuthorities BinderProductAuthority[]
+  createdAt         DateTime                 @default(now())
+  updatedAt         DateTime                 @updatedAt
+
+  @@map("product_definitions")
+}
+
+model Program {
+  id                String    @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant    @relation("ProgramOperatingTenant", fields: [operatingTenantId], references: [id])
+  name              String
+  // Lifecycle status. Allowed values: DRAFT | ACTIVE | EXPIRED |
+  // CANCELLED | ARCHIVED. EXPIRED may be set explicitly by ops or
+  // derived at read time when `effectiveTo < now()`. Issuance is
+  // blocked unless the program is ACTIVE and the policy's
+  // inceptionDate falls within `[effectiveFrom, effectiveTo]`
+  // (open-ended bounds = unconstrained on that side).
+  status            String    @default("DRAFT")
+  productType       String?
+  effectiveFrom     DateTime?
+  effectiveTo       DateTime?
+  metadata          Json?     @db.JsonB
+
+  productDefinition ProductDefinition?   @relation(fields: [productType], references: [code])
+  ratingModels      ProgramRatingModel[]
+  policies          Policy[]
+  riskTransactions  RiskTransaction[]
+  binderLinks       ProgramBinderLink[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([status])
+  @@index([productType])
+  @@map("programs")
+}
+
+model Policy {
+  id                 String  @id @default(uuid())
+  operatingTenantId  String
+  operatingTenant    Tenant  @relation("PolicyOperatingTenant", fields: [operatingTenantId], references: [id])
+  policyNumber       String
+  // Public customer session identifier (unguessable). Replaces exposing policyNumber/UUID in public URLs.
+  publicSessionToken String? @unique @map("public_session_token")
+  // Motor: certificate numbering (issued at bind; immutable)
+  certificateNumber  String? @unique
+  // Motor: Green Card serial (global sequence; immutable once set)
+  greenCardSerial    String? @unique
+  // Gen2 locking + payment status projection
+  isLocked           Boolean @default(false)
+  paymentStatus      String  @default("NOT_REQUIRED") // NOT_REQUIRED | PENDING | PAID | FAILED
+  issueReadiness     Json?   @db.JsonB // Tracks issuance progress (bound transaction, documents, welcome email)
+
+  // Ownership
+  accountId String?
+  account   Account? @relation(fields: [accountId], references: [id], onDelete: SetNull)
+
+  // Normalized insured (new policies). Existing policies may keep insured/vehicle data in JSON.
+  insuredEntityId String?
+  insuredEntity   Entity? @relation("PolicyInsuredEntity", fields: [insuredEntityId], references: [id], onDelete: SetNull)
+
+  programId            String?
+  program              Program?          @relation(fields: [programId], references: [id])
+  binderId             String?
+  binder               Binder?           @relation(fields: [binderId], references: [id])
+  renewalFamilyId      String            @default(uuid())
+  renewalSequence      Int               @default(1)
+  priorTermPolicyId    String?
+  priorTermPolicy      Policy?           @relation("PolicyRenewalTermChain", fields: [priorTermPolicyId], references: [id], onDelete: SetNull)
+  nextTermPolicies     Policy[]          @relation("PolicyRenewalTermChain")
+  riskTransactions     RiskTransaction[]
+  umr                  String?
+  status               String
+  bo_status            String?           @map("bo_status")
+  inceptionDate        DateTime
+  expiryDate           DateTime
+  issuedAt             DateTime?
+  currentEndorsementId String?
+  policyHolderId       String
+
+  // Product Type
+  productType String? // MOTOR
+
+  // =========================================================================================
+  // SCHEMATIC GOVERNANCE WARNING (Multi-Product Extensibility):
+  // DO NOT add new product-specific root columns to the Policy model!
+  //
+  // Future product-specific fields (e.g. for Home, Travel, Health) MUST be housed in:
+  // 1. A generic JSON `productData` field, OR
+  // 2. Dedicated 1-to-1 relations (e.g. `PolicyHomeDetails`, `PolicyTravelDetails`).
+  //
+  // The fields below are legacy Motor-specific columns and are slated for eventual 
+  // extraction into a `PolicyMotorDetails` relation or generic JSON structure.
+  // =========================================================================================
+
+  // Auto Insurance specific fields (Legacy)
+  vehicleInfo   Json? @db.JsonB // Vehicle details from quote
+  driverInfo    Json? @db.JsonB // Driver/history information
+  quoteData     Json? @db.JsonB // Full QuoteData snapshot
+  quoteResponse Json? @db.JsonB // Full QuoteResponse snapshot
+
+  // Typed Lloyd's reporting projections (Legacy Motor-specific)
+  vehicleRegistrationCountry String?
+  vehicleRegistrationNumber  String?
+  vehicleTypeCode            String?
+  coverTypeCode              String?
+  excessAmount               Decimal?
+  sumInsuredAmount           Decimal?
+  originalCurrency           String?
+  insuredCountry             String?
+
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  claims                 Claim[]
+  documents              Document[]
+  endorsements           Endorsement[]
+  endorsementInstances   EndorsementInstance[]
+  policyHolder           PolicyHolder            @relation(fields: [policyHolderId], references: [id])
+  invoices               Invoice[]
+  payments               Payment[]
+  reconciliations        Reconciliation[]
+  stateCurrent           PolicyStateCurrent?
+  searchIndex            PolicySearchIndex?
+  listIndex              PolicyListIndex?
+  assignment             PolicyAssignment?
+  trajectory             PolicyTrajectory?
+  quoteHistory           PolicyQuoteHistory[]
+  documentSets           DocumentSet[]
+  sanctionScreeningRuns  SanctionScreeningRun[]
+  renewalEmailState      RenewalEmailState?
+  calculationAudits      PriceCalculationAudit[]
+  motorMarketSubmissions MotorMarketSubmission[]
+
+  @@unique([policyNumber, renewalSequence])
+  @@index([operatingTenantId])
+  @@index([policyHolderId])
+  @@index([accountId])
+  @@index([insuredEntityId])
+  @@index([programId])
+  @@index([binderId])
+  @@index([renewalFamilyId])
+  @@index([priorTermPolicyId])
+  @@index([renewalFamilyId, renewalSequence])
+  @@index([status])
+  @@index([bo_status])
+  @@index([productType])
+  @@index([inceptionDate])
+  @@index([expiryDate])
+  @@index([createdAt(sort: Desc)])
+  @@map("policies")
+}
+
+model RenewalEmailState {
+  id                 String    @id @default(uuid())
+  policyId           String    @unique
+  policy             Policy    @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  inviteSentAt       DateTime?
+  chaserSentAt       DateTime?
+  inviteAttemptCount Int       @default(0)
+  chaserAttemptCount Int       @default(0)
+  lastError          String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([inviteSentAt])
+  @@index([chaserSentAt])
+  @@map("renewal_email_states")
+}
+
+model RecoEvent {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("RecoEventTenant", fields: [operatingTenantId], references: [id])
+  productType       String   @default("MOTOR")
+  policyId          String
+  quoteRef          String?
+  type              String
+  artifactVersion   String?
+  modelKey          String?
+  shownBundleIds    Json?    @db.JsonB
+  selectedBundleId  String?
+  featuresHash      String?
+  features          Json?    @db.JsonB
+  uiContext         Json?    @db.JsonB
+  occurredAt        DateTime @default(now())
+  createdAt         DateTime @default(now())
+
+  @@index([operatingTenantId])
+  @@index([policyId])
+  @@index([quoteRef])
+  @@index([type])
+  @@index([occurredAt])
+  @@map("reco_events")
+}
+
+model RecoBanditArm {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("RecoBanditArmTenant", fields: [operatingTenantId], references: [id])
+  productType       String   @default("MOTOR")
+  bundleId          String
+  successes         Int      @default(0)
+  failures          Int      @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([operatingTenantId, productType, bundleId])
+  @@index([operatingTenantId, productType])
+  @@map("reco_bandit_arms")
+}
+
+model BdxImportJob {
+  id                String         @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant         @relation("BdxImportJobTenant", fields: [operatingTenantId], references: [id])
+  tenantHost        String
+  productLine       String
+  fileType          String
+  mode              String
+  status            String         @default("queued")
+  dryRunJobId       String?
+  dryRunJob         BdxImportJob?  @relation("BdxImportCommitDryRun", fields: [dryRunJobId], references: [id], onDelete: SetNull)
+  commitJobs        BdxImportJob[] @relation("BdxImportCommitDryRun")
+  sourceFileHash    String
+  sourceFilePath    String
+  sourceFileBytes   Bytes?
+  createdBy         String?
+  currentStep       String?
+  totalRows         Int            @default(0)
+  processedRows     Int            @default(0)
+  successRows       Int            @default(0)
+  failedRows        Int            @default(0)
+  summaryJson       Json?          @db.JsonB
+  startedAt         DateTime?
+  finishedAt        DateTime?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  logs   BdxImportJobLog[]
+  result BdxImportJobResult?
+
+  @@index([operatingTenantId])
+  @@index([status])
+  @@index([dryRunJobId])
+  @@index([sourceFileHash])
+  @@index([operatingTenantId, sourceFileHash])
+  @@map("bdx_import_jobs")
+}
+
+model BdxImportJobLog {
+  id              String       @id @default(uuid())
+  jobId           String
+  job             BdxImportJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  timestamp       DateTime     @default(now())
+  level           String
+  sourceSheetName String?
+  sourceMonth     String?
+  rowNumber       Int?
+  policyRef       String?
+  termKey         String?
+  facioPolicyId   String?
+  code            String
+  message         String
+  detailsJson     Json?        @db.JsonB
+
+  @@index([jobId, timestamp])
+  @@index([level])
+  @@index([code])
+  @@map("bdx_import_job_logs")
+}
+
+model BdxImportJobResult {
+  jobId       String       @id
+  job         BdxImportJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  summaryJson Json         @db.JsonB
+  resultJson  Json         @db.JsonB
+  createdAt   DateTime     @default(now())
+
+  @@map("bdx_import_job_results")
+}
+
+// ── Behavior Layer ────────────────────────────────────────────────────────────
+// Append-only, semantic representation of meaningful changes. Sits between the
+// raw Outbox (append-only, technical) and the per-entity Trajectory projection.
+//
+// Manifesto: behaviorEvents preserve MOVEMENT (what happened, when, in what
+// order, with what gap). They are NEVER mutated. Trajectory is DERIVED.
+model BehaviorEvent {
+  id                       String                       @id @default(uuid())
+  operatingTenantId        String
+  operatingTenant          Tenant                       @relation("BehaviorEventTenant", fields: [operatingTenantId], references: [id])
+  entityType               String // current canonical entity type: "POLICY"
+  entityId                 String
+  behaviorType             String // e.g. "policy.payment_failed"
+  canonicalText            String // human-readable rendering used as the embedding source
+  occurredAt               DateTime
+  deltaMsFromPreviousEvent BigInt? // gap from the entity's previous BehaviorEvent (durable for cadence/scoring)
+  sourceEventId            String                       @unique // outbox eventId — idempotency
+  payload                  Json?                        @db.JsonB
+  embedding                Unsupported("vector(1536)")? // embedding of canonicalText
+  createdAt                DateTime                     @default(now())
+
+  @@index([operatingTenantId])
+  @@index([entityType, entityId, occurredAt])
+  @@map("behavior_events")
+}
+
+// Per-entity Trajectory projection. Fast-read, regenerable from BehaviorEvent.
+//
+// trajectoryEmbedding means RECENT behavioral trajectory, not identity, not
+// lifetime history. Formally:
+//   trajectoryEmbedding =
+//     L2Normalize( mean( last `trajectoryWindowSize` BehaviorEvent.embedding
+//                        ordered by occurredAt desc ) )
+//
+// `direction` is computed from the last `directionWindowSize` behaviorTypes via
+// a deterministic rule table. Window sizes are stored per-row so a future A/B
+// (e.g. 100 vs 50) is config, not a schema migration.
+model PolicyTrajectory {
+  policyId             String                       @id
+  policy               Policy                       @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  operatingTenantId    String
+  operatingTenant      Tenant                       @relation("PolicyTrajectoryTenant", fields: [operatingTenantId], references: [id])
+  eventCount           Int                          @default(0)
+  lastEventAt          DateTime?
+  lastBehaviorTypes    Json                         @db.JsonB // last `directionWindowSize` behaviorTypes, chronological
+  direction            String                       @default("HEALTHY")
+  driftScore           Decimal                      @default(0)
+  trajectoryEmbedding  Unsupported("vector(1536)")? // L2-normalized mean of last N event embeddings
+  trajectoryWindowSize Int                          @default(50)
+  directionWindowSize  Int                          @default(20)
+  updatedAt            DateTime                     @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([direction])
+  @@map("policy_trajectories")
+}
+
+// Gen2: Archived versions of quotes when unlocked for editing
+model PolicyQuoteHistory {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("PolicyQuoteHistoryOperatingTenant", fields: [operatingTenantId], references: [id])
+  policyId          String
+  policy            Policy   @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  version           Int      @default(1)
+  quoteData         Json     @db.JsonB
+  quoteResponse     Json?    @db.JsonB
+  isLockedSnapshot  Boolean  @default(true)
+  archivedAt        DateTime @default(now())
+
+  @@unique([policyId, version])
+  @@index([operatingTenantId])
+  @@index([policyId])
+  @@index([policyId, version(sort: Desc)])
+  @@map("policy_quote_history")
+}
+
+model Endorsement {
+  id                String    @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant    @relation("EndorsementOperatingTenant", fields: [operatingTenantId], references: [id])
+  policyId          String
+  endorsementNo     Int
+  transactionType   String
+  status            String
+  effectiveAt       DateTime
+  effectiveTo       DateTime?
+  issuedAt          DateTime?
+  snapshot          Json      @db.JsonB
+  delta             Json?     @db.JsonB
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  policy            Policy    @relation(fields: [policyId], references: [id], onDelete: Cascade)
+
+  @@unique([policyId, endorsementNo])
+  @@index([operatingTenantId])
+  @@index([policyId])
+  @@map("endorsements")
+}
+
+model PolicyStateCurrent {
+  policyId          String   @id
+  policy            Policy   @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("PolicyStateCurrentOperatingTenant", fields: [operatingTenantId], references: [id])
+  snapshot          Json     @db.JsonB
+  updatedAt         DateTime @updatedAt
+
+  @@index([operatingTenantId])
+  @@map("policy_state_current")
+}
+
+model PolicySearchIndex {
+  policyId          String   @id
+  policy            Policy   @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("PolicySearchIndexTenant", fields: [operatingTenantId], references: [id])
+  policyNumber      String
+  insuredName       String
+  status            String
+  bo_status         String?  @map("bo_status")
+  address           String?
+  segment           String?
+  totalPremium      Decimal  @default(0)
+  // Legacy non-motor fields removed (motor-only)
+  updatedAt         DateTime @default(now())
+
+  @@index([operatingTenantId])
+  @@map("policy_search_index")
+}
+
+model PolicyListIndex {
+  policyId                String    @id
+  policy                  Policy    @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  operatingTenantId       String
+  operatingTenant         Tenant    @relation("PolicyListIndexTenant", fields: [operatingTenantId], references: [id])
+  policyNumber            String
+  insuredName             String
+  insuredDisplay          String?   @map("insured_display")
+  vehicleDisplay          String?   @map("vehicle_display")
+  policyholderDisplay     String?   @map("policyholder_display")
+  policyholderEmail       String?   @map("policyholder_email")
+  policyholderPhone       String?   @map("policyholder_phone")
+  coverageStart           DateTime? @map("coverage_start")
+  coverageEnd             DateTime? @map("coverage_end")
+  status                  String
+  bo_status               String?   @map("bo_status")
+  vehicleSearch           String?   @map("vehicle_search")
+  address                 String?
+  segment                 String?
+  totalPremium            Decimal   @default(0)
+  // Compatibility with existing list sort/display semantics.
+  updatedAt               DateTime  @default(now())
+  renewalDate             DateTime?
+  quoteExpiryDate         DateTime?
+  // Dedicated SoR list signals.
+  lastActivityAt          DateTime  @default(now())
+  attentionBucket         String    @default("NORMAL")
+  attentionScore          Int       @default(0)
+  // Categorical status ordering for BO table sorting.
+  statusSortRank          Int       @default(999)
+  bo_statusSortRank       Int?      @map("bo_status_sort_rank")
+  hasOpenClaim            Boolean   @default(false)
+  openClaimCount          Int       @default(0)
+  outstandingBalance      Decimal   @default(0)
+  invoiceOverdue          Boolean   @default(false)
+  cancellationPending     Boolean   @default(false)
+  customerActionRequired  Boolean   @default(false)
+  uwActionRequired        Boolean   @default(false)
+  complianceState         String    @default("PASS")
+  complianceProfile       String    @default("PRODUCTION_STRICT")
+  complianceReasons       Json?     @db.JsonB
+  complianceCheckedAt     DateTime?
+  // SLA 3: tracks when bo_status last changed, enabling referral-age queries.
+  bo_status_changed_at    DateTime? @map("bo_status_changed_at")
+  // OPERATIONS EUR: pro-rata unearned premium for cancellation-pending policies.
+  cancellationExposureEUR Decimal?  @map("cancellation_exposure_eur")
+  indexUpdatedAt          DateTime  @updatedAt
+  indexVersion            Int       @default(1)
+
+  @@index([status])
+  @@index([bo_status])
+  @@index([vehicleSearch])
+  @@index([attentionScore, lastActivityAt(sort: Desc)])
+  @@index([statusSortRank])
+  @@index([bo_statusSortRank])
+  @@index([lastActivityAt(sort: Desc)])
+  @@index([updatedAt(sort: Desc)])
+  @@index([renewalDate])
+  @@index([quoteExpiryDate])
+  @@index([policyNumber])
+  @@index([totalPremium])
+  @@index([outstandingBalance])
+  @@index([invoiceOverdue])
+  @@index([cancellationPending])
+  @@index([hasOpenClaim])
+  @@index([customerActionRequired])
+  @@index([uwActionRequired])
+  @@index([complianceState])
+  // SLA 3 index: find REFERRAL rows by when the status was entered.
+  @@index([bo_status, bo_status_changed_at])
+  @@index([operatingTenantId])
+  // Tenant-aware keyset paths for the BO list (PR3 of policies-list-perf).
+  // Default sort + keyset tie-break — see docs/architecture/contracts/database-indexes.md.
+  // Explicit `map:` keeps the schema, migration SQL, and indexBootstrap names in lockstep.
+  @@index([operatingTenantId, attentionScore(sort: Desc), lastActivityAt(sort: Desc), policyNumber(sort: Desc), policyId(sort: Desc)], map: "policy_list_index_tenant_default_sort_keyset_idx")
+  @@index([operatingTenantId, lastActivityAt(sort: Desc), policyId(sort: Desc)], map: "policy_list_index_tenant_lastactivity_keyset_idx")
+  @@map("policy_list_index")
+}
+
+// Atomic counters for human-friendly identifiers (e.g. policy numbers).
+model PolicyNumberSequence {
+  key  String @id
+  next Int    @default(1)
+
+  @@map("policy_number_sequences")
+}
+
+// --- PROGRAM RATING (Pricing Builder) ---
+// Versioned rating models stored per program id (frontend uses programId as the key).
+model ProgramRatingModel {
+  id                String  @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant  @relation("ProgramRatingModelOperatingTenant", fields: [operatingTenantId], references: [id])
+  programId         String
+  program           Program @relation(fields: [programId], references: [id], onDelete: Cascade)
+  version           Int
+  status            String  @default("DRAFT") // DRAFT | ACTIVE | ARCHIVED
+
+  name  String?
+  notes String?
+
+  // Builder payloads
+  stages Json    @db.JsonB
+  tables Json    @db.JsonB
+  source String? // e.g. workbook filename / import source
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([programId, version])
+  @@index([operatingTenantId])
+  @@index([programId, status])
+  @@map("program_rating_models")
+}
+
+model DashboardKPIs {
+  id          String   @id @default("montly_snap")
+  unitsActive Int
+  gwp         Decimal
+  netPremium  Decimal
+  openClaims  Int
+  updatedAt   DateTime @default(now())
+
+  @@map("dashboard_kpis")
+}
+
+model Settings {
+  id          String  @id @default(uuid())
+  defaultRate Decimal @default(0.23)
+  commissions String // Keep as string for now if simple, or migrate to JSON if complex object
+
+  // Template Configuration
+  localQuoteTemplatePath       String?
+  localCertificateTemplatePath String?
+  localInvoiceTemplatePath     String?
+  bordereauxTemplatePath       String? // Excel file path
+
+  // Email templates (SendGrid Dynamic Templates)
+  // These are editable from the BO Settings screen and used by notification flows.
+  sendgridAutoQuoteInitialTemplateId String?
+  sendgridAutoQuoteResendTemplateId  String?
+
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
+
+model Invoice {
+  id                String           @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant           @relation("InvoiceOperatingTenant", fields: [operatingTenantId], references: [id])
+  policyId          String?
+  policy            Policy?          @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  amount            Decimal
+  currency          String           @default("USD")
+  status            String
+  dueDate           DateTime
+  paidDate          DateTime?
+  commissionRate    Decimal          @default(0.15)
+  pdfUrl            String?
+  googleDocUrl      String?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  reconciliations   Reconciliation[]
+
+  @@index([operatingTenantId])
+  @@index([policyId])
+  @@index([status])
+  @@map("invoices")
+}
+
+model Payment {
+  id                String           @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant           @relation("PaymentOperatingTenant", fields: [operatingTenantId], references: [id])
+  policyId          String
+  policy            Policy           @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  riskTransactionId String?
+  riskTransaction   RiskTransaction? @relation(fields: [riskTransactionId], references: [id], onDelete: SetNull)
+  events            PaymentEvent[]
+  reconciliations   Reconciliation[]
+
+  provider       String  @default("CARDCORP")
+  purpose        String? // CUSTOMER_CHECKOUT | BO_CHARGE | REFUND
+  initiatedBy    String? // CUSTOMER | BO
+  idempotencyKey String?
+
+  // Gateway identifiers
+  entityId              String?
+  checkoutId            String? // providerIntentId (CardCorp checkoutId)
+  integrity             String?
+  paymentId             String?
+  merchantTransactionId String?
+
+  amount      Decimal
+  currency    String  @default("EUR")
+  paymentType String  @default("DB") // DB (debit) | PA (preauth) | CD (credit)
+
+  // Intent lifecycle (expand beyond old PENDING/PAID)
+  status          String @default("INITIATED") // INITIATED | REDIRECTED | AUTHORIZED | CAPTURED | FAILED | CANCELLED
+  requestPayload  Json?  @db.JsonB
+  responsePayload Json?  @db.JsonB
+  raw             Json?  @db.JsonB // legacy compatibility / provider payloads
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([policyId])
+  @@index([policyId, provider, idempotencyKey, createdAt(sort: Desc)])
+  @@index([policyId, provider, status, createdAt(sort: Desc)])
+  @@index([checkoutId])
+  @@index([paymentId])
+  @@index([riskTransactionId])
+  @@index([idempotencyKey])
+  @@map("payments")
+}
+
+model PaymentEvent {
+  id        String  @id @default(uuid())
+  paymentId String
+  payment   Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  eventType       String // AUTH | CAPTURE | FAIL | REFUND | STATUS_CHECK
+  providerEventId String?
+  payload         Json?    @db.JsonB
+  verified        Boolean  @default(false)
+  receivedAt      DateTime @default(now())
+
+  @@index([paymentId])
+  @@index([paymentId, eventType, receivedAt(sort: Desc)])
+  @@index([providerEventId])
+  @@map("payment_events")
+}
+
+model Document {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("DocumentOperatingTenant", fields: [operatingTenantId], references: [id])
+  policyId          String?
+  endorsementId     String?
+  type              String
+  // Gen2 document provenance
+  docPack           String? // QUOTE_PACK | ISSUED_POLICY_PACK | ENDORSEMENT_PACK
+  version           Int      @default(1)
+  status            String   @default("GENERATED") // GENERATED | SUPERSEDED | FAILED
+  templateVersion   String?
+  generatedByUserId String?
+  source            String? // CUSTOMER | BO | SYSTEM
+  generatedAt       DateTime @default(now())
+
+  riskTransactionId String?
+  riskTransaction   RiskTransaction? @relation(fields: [riskTransactionId], references: [id], onDelete: Cascade)
+
+  storageUri String
+  filename   String
+  fileHash   String? // SHA-256 for Lloyd's file integrity
+  createdAt  DateTime @default(now())
+  policy     Policy?  @relation(fields: [policyId], references: [id], onDelete: Cascade)
+
+  // Back-relation: sanctions screening runs that point at this document as
+  // their PDF evidence report (one document per run; relation is opposite).
+  sanctionScreeningRuns SanctionScreeningRun[] @relation("SanctionScreeningRunReport")
+
+  @@index([operatingTenantId])
+  @@index([policyId])
+  @@index([policyId, docPack, status, type, version(sort: Desc)])
+  @@index([riskTransactionId])
+  @@map("documents")
+}
+
+model DocumentSet {
+  id                String          @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant          @relation("DocumentSetOperatingTenant", fields: [operatingTenantId], references: [id])
+  policyId          String
+  policy            Policy          @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  transactionId     String
+  riskTransaction   RiskTransaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+
+  versionLabel String // e.g. "bind-v1"
+  status       String @default("ISSUED") // ISSUED, PENDING, FAILED, SUPERSEDED
+
+  files               Json    @db.JsonB // Array of { name, storageKey, sha256, pages, sizeBytes, contentType, createdAt }
+  renderingInputsHash String
+  scheduleJsonKey     String?
+
+  bordereauReady   Boolean @default(false)
+  validationErrors String?
+
+  supersedesId String? // Link to previous DocumentSet if replacement
+  supersedes   DocumentSet?  @relation("DocumentSetHistory", fields: [supersedesId], references: [id])
+  supersededBy DocumentSet[] @relation("DocumentSetHistory")
+
+  notes       String?
+  initiatedBy String?
+  generatedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([policyId])
+  @@index([transactionId])
+  @@map("document_sets")
+}
+
+// Transactional Outbox for Event-Driven Architecture
+model Outbox {
+  id                String    @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant    @relation("OutboxTenant", fields: [operatingTenantId], references: [id])
+  eventId           String?   @unique
+  idempotencyKey    String?
+  aggregateId       String
+  eventType         String
+  payload           Json      @db.JsonB
+  createdAt         DateTime  @default(now())
+  processed         Boolean   @default(false)
+  processedAt       DateTime?
+
+  @@index([operatingTenantId])
+  @@index([processed])
+  @@index([processed, createdAt])
+  @@index([eventId])
+  @@index([idempotencyKey])
+  @@map("outbox")
+}
+
+model SanctionScreeningRun {
+  id                 String               @id @default(uuid())
+  operatingTenantId  String
+  operatingTenant    Tenant               @relation("SanctionScreeningRunTenant", fields: [operatingTenantId], references: [id])
+  policyId           String?
+  policy             Policy?              @relation(fields: [policyId], references: [id], onDelete: SetNull)
+  quoteSessionId     String?
+  customerId         String?
+  provider           String
+  providerSearchId   String?
+  subjectType        String
+  subjectName        String
+  countryCodes       Json?                @db.JsonB
+  threshold          Int
+  datasets           Json                 @db.JsonB
+  actionType         String
+  outcome            String
+  blocking           Boolean              @default(true)
+  hitCount           Int                  @default(0)
+  providerStatus     String?
+  providerRiskRating String?
+  // Top hit projection (Match %, Name, Country, DOB, Gender, PEP Tier,
+  // Reason Listed, Hit ID, hitIdsAll[]) — surfaced in BO underwriting +
+  // premium tabs. Always present on hits; null on clear / unavailable runs.
+  firstHitJson       Json?                @db.JsonB
+  // FK to the persisted Creditsafe PDF report (`Document` row of
+  // type CREDITSAFE_SANCTIONS_REPORT_PDF). Populated by SanctionsService
+  // only when hitCount > 0 — clean searches have no report.
+  reportDocumentId   String?
+  reportDocument     Document?            @relation("SanctionScreeningRunReport", fields: [reportDocumentId], references: [id], onDelete: SetNull)
+  requestJson        Json                 @db.JsonB
+  responseJson       Json                 @db.JsonB
+  executedAt         DateTime             @default(now())
+  correlationId      String
+  idempotencyKey     String?
+  createdAt          DateTime             @default(now())
+  decisions          ComplianceDecision[]
+
+  @@unique([provider, policyId, actionType, idempotencyKey])
+  @@index([operatingTenantId])
+  @@index([policyId, executedAt(sort: Desc)])
+  @@index([quoteSessionId, executedAt(sort: Desc)])
+  @@index([providerSearchId])
+  @@index([outcome])
+  @@index([reportDocumentId])
+  @@map("sanction_screening_runs")
+}
+
+model ComplianceDecision {
+  id             String               @id @default(uuid())
+  screeningRunId String
+  screeningRun   SanctionScreeningRun @relation(fields: [screeningRunId], references: [id], onDelete: Cascade)
+  decision       String
+  reasonCode     String
+  decidedAt      DateTime             @default(now())
+  decidedBy      String
+  note           String?
+  createdAt      DateTime             @default(now())
+
+  @@index([screeningRunId, decidedAt(sort: Desc)])
+  @@index([decision, reasonCode])
+  @@map("compliance_decisions")
+}
+
+model EventProcessingLog {
+  eventId      String
+  consumerName String
+  jobId        String?
+  processedAt  DateTime @default(now())
+
+  @@id([eventId, consumerName])
+  @@index([processedAt])
+  @@map("event_processing_log")
+}
+
+model Claim {
+  id                     String                    @id @default(uuid())
+  operatingTenantId      String
+  operatingTenant        Tenant                    @relation("ClaimOperatingTenant", fields: [operatingTenantId], references: [id])
+  policyId               String?
+  firstNotifiedAt        DateTime                  @default(now())
+  policyLinkedAt         DateTime?
+  claimNumber            String                    @unique
+  incidentDate           DateTime
+  reportedDate           DateTime                  @default(now())
+  status                 String
+  claimType              String?
+  description            String?
+  data                   Json?                     @db.JsonB // FNOL + claim form + internal workflow (Lloyd's-aligned)
+  // Typed Lloyd's reporting projections (typed-first replacement for JSON fallbacks)
+  certificateReference   String?
+  originalCurrency       String?
+  lossCountry            String?
+  causeOfLossCode        String?
+  lossDescription        String?
+  dateOfLossFrom         DateTime?
+  dateOfLossTo           DateTime?
+  amountReserved         Decimal                   @default(0)
+  amountPaid             Decimal                   @default(0)
+  documents              Json?                     @db.JsonB // Migrated from String
+  updatedAt              DateTime                  @updatedAt
+  policy                 Policy?                   @relation(fields: [policyId], references: [id], onDelete: SetNull)
+  assignments            ClaimAssignment[]
+  reserves               ClaimReserveTransaction[]
+  infoRequests           ClaimInfoRequest[]
+  events                 ClaimEvent[]
+  projections            ClaimProjectionSnapshot[]
+  counterparties         ClaimCounterparty[]
+  memoryProjection       ClaimMemoryProjection?
+  motorMarketSubmissions MotorMarketSubmission[]
+
+  @@index([operatingTenantId])
+  @@index([policyId])
+  @@index([status])
+  @@map("claims")
+}
+
+model ClaimEvent {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("ClaimEventOperatingTenant", fields: [operatingTenantId], references: [id])
+  claimId           String
+  claim             Claim    @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  eventType         String
+  aggregateType     String   @default("CLAIM")
+  aggregateId       String
+  aggregateVersion  Int
+  payload           Json     @db.JsonB
+  occurredAt        DateTime
+  recordedAt        DateTime @default(now())
+  actorType         String
+  actorId           String?
+  actorName         String?
+  correlationId     String?
+  causationId       String?
+  idempotencyKey    String?
+
+  @@unique([claimId, idempotencyKey])
+  @@index([operatingTenantId])
+  @@index([claimId, occurredAt])
+  @@index([eventType])
+  @@index([aggregateId, aggregateVersion])
+  @@map("claim_events")
+}
+
+model ClaimProjectionSnapshot {
+  id                 String    @id @default(uuid())
+  operatingTenantId  String
+  operatingTenant    Tenant    @relation("ClaimProjectionSnapshotOperatingTenant", fields: [operatingTenantId], references: [id])
+  claimId            String
+  claim              Claim     @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  projectionVersion  Int       @default(1)
+  asOf               DateTime
+  status             String
+  paidIndemnity      Decimal   @default(0)
+  paidFees           Decimal   @default(0)
+  reserveIndemnity   Decimal   @default(0)
+  reserveFees        Decimal   @default(0)
+  recoveriesReceived Decimal   @default(0)
+  recoveriesExpected Decimal   @default(0)
+  referredToUw       Boolean   @default(false)
+  denied             Boolean   @default(false)
+  deniedAt           DateTime?
+  closedAt           DateTime?
+  reopenedAt         DateTime?
+  withdrawnAt        DateTime?
+  data               Json?     @db.JsonB
+  createdAt          DateTime  @default(now())
+
+  @@index([operatingTenantId])
+  @@index([claimId, asOf])
+  @@map("claim_projection_snapshots")
+}
+
+// ClaimMemoryProjection (ADR-0041) — cached, async-refreshed claim memory.
+// One row per claim. Written only by `backend/workers/handlers/CLAIM_MEMORY.REFRESH.ts`
+// via `refreshClaimMemoryUseCase`. Read by Claim Workspace co-pilot and V1 operator
+// MCP tools (`operator.get_claim_memory`, `operator.find_similar_claims`,
+// `operator.analyze_claim_memory`, `operator.refresh_claim_memory`).
+// Critical-path safe: if Neo4j or the LLM is down, the worker writes
+// `refreshStatus='failed'` and the UI renders the prior row with a stale banner.
+model ClaimMemoryProjection {
+  id                String @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant @relation("ClaimMemoryProjectionOperatingTenant", fields: [operatingTenantId], references: [id])
+  claimId           String @unique
+  claim             Claim  @relation(fields: [claimId], references: [id], onDelete: Cascade)
+
+  // LLM-generated summary text + citation refs (back to `communication_messages`).
+  // `summaryCitations` shape: [{ threadId, messageId, quote, charOffsetStart?, charOffsetEnd? }].
+  summary          String? @db.Text
+  summaryCitations Json?   @db.JsonB
+
+  // Structured memory object — timeline, missingInformation, authorityFlags,
+  // liabilityPositions, recommendedActions. Shape owned by
+  // `backend/modules/claims/domain/mailgraph/claimMemoryObject.ts`.
+  memoryObject Json @db.JsonB
+
+  // Graph-derived enrichment — written after Neo4j upsert + similarity queries.
+  // Empty arrays/objects when Neo4j is unavailable or before Week 2 lands.
+  // `similarClaims` shape: [{ claimId, score, reasons[], evidenceCitationIds[] }].
+  // `graphSignals` shape: { sharedRepairers[], sharedMissingDocPatterns[], escalationPatterns[] }.
+  similarClaims Json @default("[]") @db.JsonB
+  graphSignals  Json @default("{}") @db.JsonB
+
+  // Lifecycle. `refreshStatus`: pending | refreshing | fresh | stale | failed.
+  // `refreshError` is a short machine code (e.g. `neo4j_unavailable`).
+  lastRefreshedAt DateTime?
+  refreshStatus   String    @default("pending")
+  refreshError    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([operatingTenantId, refreshStatus])
+  @@index([lastRefreshedAt])
+  @@map("claim_memory_projections")
+}
+
+// ADR-0044 — Submission (underwriting) memory projection. Mirrors
+// ClaimMemoryProjection but anchored to a Policy id (the submission).
+// Sole writer: refreshSubmissionMemoryUseCase via SUBMISSION_MEMORY.REFRESH.
+model SubmissionMemoryProjection {
+  id                String @id @default(uuid())
+  operatingTenantId String
+  submissionId      String @unique // Policy.id treated as the submission
+
+  summary          String? @db.Text
+  summaryCitations Json?   @db.JsonB
+
+  // Shape owned by backend/modules/policy/domain/submissionMemory/submissionMemoryObject.ts
+  memoryObject Json @db.JsonB
+
+  // Graph-derived enrichment.
+  similarSubmissions Json @default("[]") @db.JsonB
+  graphSignals       Json @default("{}") @db.JsonB
+
+  lastRefreshedAt DateTime?
+  refreshStatus   String    @default("pending")
+  refreshError    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([operatingTenantId, refreshStatus])
+  @@index([lastRefreshedAt])
+  @@map("submission_memory_projections")
+}
+
+// ADR-0044 — durable log of every Org2Vec email ingestion + the business
+// object it resolved to (claim / submission / unresolved). Drives the
+// scoped memory refresh and gives the demo an audit trail.
+model Org2VecIngestionEvent {
+  id                String  @id @default(uuid())
+  operatingTenantId String
+  scopeType         String // CLAIM | SUBMISSION | UNRESOLVED
+  scopeId           String?
+  threadId          String?
+  conversationId    String?
+  source            String // sample | upload | graph
+  status            String  @default("PROCESSED") // PROCESSED | FAILED | PARTIAL
+  matchedBy         String?
+  messageCount      Int     @default(0)
+  payload           Json    @db.JsonB
+
+  createdAt DateTime @default(now())
+
+  @@index([operatingTenantId])
+  @@index([operatingTenantId, scopeType, scopeId])
+  @@index([createdAt])
+  @@map("org2vec_ingestion_events")
+}
+
+model ClaimCounterparty {
+  id           String   @id @default(uuid())
+  claimId      String
+  claim        Claim    @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  slug         String
+  name         String
+  entityType   String
+  roles        String[]
+  status       String   @default("ACTIVE")
+  providerType String?
+  sourceType   String?
+  sourceId     String?
+  data         Json?    @db.JsonB
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([claimId, slug])
+  @@index([claimId])
+  @@index([claimId, status])
+  @@map("claim_counterparties")
+}
+
+model ClaimPro {
+  id        String   @id @default(uuid())
+  role      String // lawyer | adjuster | estimator | other
+  name      String
+  company   String?
+  email     String?
+  phone     String?
+  meta      Json?    @db.JsonB
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  assignments ClaimAssignment[]
+
+  @@index([role])
+  @@index([name])
+  @@map("claim_pros")
+}
+
+model ClaimAssignment {
+  id                String    @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant    @relation("ClaimAssignmentOperatingTenant", fields: [operatingTenantId], references: [id])
+  claimId           String
+  claim             Claim     @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  proId             String?
+  pro               ClaimPro? @relation(fields: [proId], references: [id], onDelete: SetNull)
+  role              String // lawyer | adjuster | estimator | other
+  status            String    @default("ACTIVE") // ACTIVE | INACTIVE
+  notes             String?
+  assignedAt        DateTime  @default(now())
+  assignedByUserId  String?
+
+  @@index([operatingTenantId])
+  @@index([claimId])
+  @@index([proId])
+  @@index([status])
+  @@map("claim_assignments")
+}
+
+model ClaimReserveTransaction {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("ClaimReserveTransactionOperatingTenant", fields: [operatingTenantId], references: [id])
+  claimId           String
+  claim             Claim    @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  type              String // IBNR | CASE_RESERVE | PAID | RECOVERY | ADJUSTMENT
+  amount            Decimal
+  currency          String   @default("EUR")
+  occurredAt        DateTime @default(now())
+  notes             String?
+  externalRef       String?
+  createdAt         DateTime @default(now())
+  createdByUserId   String?
+
+  @@index([operatingTenantId])
+  @@index([claimId])
+  @@index([type])
+  @@index([occurredAt])
+  @@map("claim_reserve_transactions")
+}
+
+model ClaimInfoRequest {
+  id                String    @id @default(uuid())
+  claimId           String
+  claim             Claim     @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  status            String    @default("OPEN") // OPEN | RESOLVED
+  message           String
+  requestedAt       DateTime  @default(now())
+  requestedByUserId String?
+  responseMessage   String?
+  responseDocuments Json?     @db.JsonB
+  respondedAt       DateTime?
+  resolvedAt        DateTime?
+  resolvedByUserId  String?
+
+  @@index([claimId])
+  @@index([status])
+  @@map("claim_info_requests")
+}
+
+model Reconciliation {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("ReconciliationOperatingTenant", fields: [operatingTenantId], references: [id])
+  payer             String?
+  invoiceId         String?
+  invoice           Invoice? @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  policyId          String?
+  policy            Policy?  @relation(fields: [policyId], references: [id], onDelete: SetNull)
+  paymentId         String?
+  payment           Payment? @relation(fields: [paymentId], references: [id], onDelete: SetNull)
+  provider          String?
+  paymentReference  String
+  paymentAmount     Decimal
+  currency          String?
+  paymentDate       DateTime
+  paymentMethod     String
+  direction         String? // CREDIT | DEBIT
+  status            String
+  matchedAmount     Decimal  @default(0)
+  exceptionNotes    String?
+  raw               Json?    @db.JsonB
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([operatingTenantId])
+  @@index([invoiceId])
+  @@index([policyId])
+  @@index([paymentId])
+  @@index([status])
+  @@map("reconciliations")
+}
+
+// --- GEN2 COMPLIANCE CORE ---
+
+model Binder {
+  id                 String  @id @default(uuid())
+  operatingTenantId  String
+  operatingTenant    Tenant  @relation("BinderOperatingTenant", fields: [operatingTenantId], references: [id])
+  coverholderName    String
+  coverholderPin     String?
+  umr                String // Unique Market Reference (e.g., B6081 ABBEYGATE0125)
+  agreementNumber    String // e.g., ABBEYGATE0125
+  lloydsReportingVer String  @default("V5.2")
+  defaultCurrency    String  @default("USD")
+  settlementCurrency String  @default("USD")
+  // Magic-B binder workstation config (JSON pointers) + optimistic concurrency
+  config             Json?   @db.JsonB
+  version            Int     @default(1)
+  etag               String? @default(uuid())
+
+  startDate DateTime?
+  endDate   DateTime?
+  status    String    @default("DRAFT")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  policies           Policy[]
+  reportingPeriods   ReportingPeriod[] // Binder-specific reporting cycles
+  riskTransactions   RiskTransaction[]
+  documents          BinderDocument[]
+  parties            BinderParty[]
+  coverages          BinderCoverage[]
+  clauses            BinderClause[]
+  financials         BinderFinancials?
+  reportingConfig    BinderReporting?
+  programLinks       ProgramBinderLink[]
+  productAuthorities BinderProductAuthority[]
+
+  @@index([operatingTenantId])
+  @@map("binders")
+}
+
+model BinderDocument {
+  id       String @id @default(uuid())
+  binderId String
+  binder   Binder @relation(fields: [binderId], references: [id], onDelete: Cascade)
+
+  type       String // agreement | endorsement | wording | ipid | appendix
+  name       String
+  filename   String?
+  storageUri String
+  mimeType   String?
+  sizeBytes  Int?
+  meta       Json?   @db.JsonB
+
+  uploadedAt DateTime @default(now())
+  uploadedBy String?
+
+  @@index([binderId])
+  @@index([type])
+  @@map("binder_documents")
+}
+
+model BinderParty {
+  id       String @id @default(uuid())
+  binderId String
+  binder   Binder @relation(fields: [binderId], references: [id], onDelete: Cascade)
+
+  role         String // appointed_coverholder | lloyds_broker | managing_agent | tpa | operation_control | authorised_to_bind | document_responsible | claims_authority
+  partySubtype String?
+
+  name               String
+  registrationNumber String?
+  address            Json?   @db.JsonB
+  contact            Json?   @db.JsonB
+  rolesMeta          Json?   @db.JsonB
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([binderId])
+  @@index([role])
+  @@map("binder_parties")
+}
+
+model BinderCoverage {
+  id       String @id @default(uuid())
+  binderId String
+  binder   Binder @relation(fields: [binderId], references: [id], onDelete: Cascade)
+
+  coverageCode          String
+  title                 String?
+  allowed               Boolean       @default(true)
+  maxLimit              Json?         @db.JsonB
+  deductible            Json?         @db.JsonB
+  partyLimits           Json?         @db.JsonB
+  wordingAnchorClauseId String?
+  wordingAnchorClause   BinderClause? @relation("BinderCoverageWordingAnchor", fields: [wordingAnchorClauseId], references: [id], onDelete: SetNull)
+  meta                  Json?         @db.JsonB
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([binderId])
+  @@index([coverageCode])
+  @@map("binder_coverages")
+}
+
+model BinderClause {
+  id                  String           @id @default(uuid())
+  binderId            String
+  binder              Binder           @relation(fields: [binderId], references: [id], onDelete: Cascade)
+  wordingForCoverages BinderCoverage[] @relation("BinderCoverageWordingAnchor")
+
+  clauseType   String // authority | claims | wording | exclusion | reporting | other
+  textFragment String
+  pointer      Json?    @db.JsonB // {page, offset, ...}
+  codes        String[] // e.g. ["LBS0047A","LMA5441"]
+  meta         Json?    @db.JsonB // confidence, sourceDocId, etc
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([binderId])
+  @@index([clauseType])
+  @@map("binder_clauses")
+}
+
+model BinderFinancials {
+  binderId String @id
+  binder   Binder @relation(fields: [binderId], references: [id], onDelete: Cascade)
+
+  maxLine           Decimal? @default(0)
+  grossPremiumLimit Decimal? @default(0)
+  notifiablePercent Int?
+  commissionRate    Decimal? @default(0)
+  profitCommission  Json?    @db.JsonB
+  premiumAccount    Json?    @db.JsonB
+
+  @@map("binder_financials")
+}
+
+model BinderReporting {
+  binderId String @id
+  binder   Binder @relation(fields: [binderId], references: [id], onDelete: Cascade)
+
+  writtenRiskSchedule String?
+  paidClaimsSchedule  String?
+  bordereauFormat     String?
+  destination         Json?   @db.JsonB
+  reportingContacts   Json?   @db.JsonB
+
+  @@map("binder_reporting")
+}
+
+model ProgramBinderLink {
+  id        String  @id @default(uuid())
+  programId String
+  program   Program @relation(fields: [programId], references: [id], onDelete: Cascade)
+  binderId  String
+  binder    Binder  @relation(fields: [binderId], references: [id], onDelete: Cascade)
+
+  status  String @default("ACTIVE") // ACTIVE | INACTIVE
+  mapping Json?  @db.JsonB
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([programId, binderId])
+  @@index([programId])
+  @@index([binderId])
+  @@map("program_binder_links")
+}
+
+// Lloyd's-grade per-product authorization on a binder.
+// A binder "authorizes" a product (line of business) only when a row exists here.
+// Drives BDX class-of-business/risk-code segmentation and policy binding validation.
+model BinderProductAuthority {
+  id                String            @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant            @relation("BinderProductAuthorityOperatingTenant", fields: [operatingTenantId], references: [id])
+  binderId          String
+  binder            Binder            @relation(fields: [binderId], references: [id], onDelete: Cascade)
+  productCode       String
+  productDefinition ProductDefinition @relation(fields: [productCode], references: [code])
+
+  // Lloyd's reporting codes (per product, for V5.2 CRS column mapping)
+  classOfBusiness String // e.g. "MOTOR", "PROPERTY", "TRAVEL"
+  riskCode        String? // Lloyd's risk code (e.g. "MC", "HH", "TE")
+
+  // Underwriting authority (per product)
+  territorialScope        String[] @default([]) // ISO-3166 alpha-2 codes
+  maxPremiumAnnual        Decimal? @db.Decimal(14, 2)
+  maxPolicyPeriodDays     Int?
+  maxAdvanceInceptionDays Int?
+  authorityClasses        String[] @default([]) // e.g. ["TPBI","TPPD","OD"]
+
+  status        String    @default("ACTIVE") // ACTIVE | SUSPENDED
+  effectiveFrom DateTime?
+  effectiveTo   DateTime?
+  notes         String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([binderId, productCode])
+  @@index([operatingTenantId])
+  @@index([binderId])
+  @@index([productCode])
+  @@index([status])
+  @@map("binder_product_authorities")
+}
+
+// Immutable append-only audit of every rate event (quote, rate, endorsement-rate, cancellation-rate).
+// Primary purpose: deterministic debugging + BDX reconciliation.
+model PriceCalculationAudit {
+  id                String   @id @default(uuid())
+  policyId          String?
+  policy            Policy?  @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  riskTransactionId String?
+  quoteId           String?
+  productType       String
+  calculatorVersion String
+  inputs            Json     @db.JsonB
+  steps             Json     @db.JsonB
+  totalPremium      Decimal  @db.Decimal(14, 2)
+  policyExcess      Decimal? @db.Decimal(14, 2)
+  currency          String
+  reproHash         String
+  eventKind         String // 'QUOTE' | 'RATE' | 'ENDORSEMENT_RATE' | 'CANCELLATION_RATE'
+  createdAt         DateTime @default(now())
+  createdBy         String?
+
+  @@index([policyId, createdAt(sort: Desc)])
+  @@index([reproHash])
+  @@index([productType])
+  @@index([quoteId])
+  @@map("price_calculation_audits")
+}
+
+model ReportingPeriod {
+  id        String    @id @default(uuid())
+  binderId  String?
+  binder    Binder?   @relation(fields: [binderId], references: [id])
+  year      Int
+  month     Int
+  startDate DateTime
+  endDate   DateTime
+  status    String // OPEN, LOCKED, SUBMITTED
+  lockedAt  DateTime?
+  lockedBy  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  riskTransactions RiskTransaction[]
+  reportRuns       ReportRun[]
+
+  @@unique([binderId, year, month])
+  @@map("reporting_periods")
+}
+
+// Immutable Log of Policy Lifecycle Events (Inception, Endorsement, Cancellation)
+model RiskTransaction {
+  id                String           @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant           @relation("RiskTransactionOperatingTenant", fields: [operatingTenantId], references: [id])
+  policyId          String
+  policy            Policy           @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  programId         String?
+  program           Program?         @relation(fields: [programId], references: [id])
+  binderId          String?
+  binder            Binder?          @relation(fields: [binderId], references: [id])
+  reportingPeriodId String?
+  reportingPeriod   ReportingPeriod? @relation(fields: [reportingPeriodId], references: [id])
+
+  transactionNumber Int // Monotonic sequence per policy
+  transactionType   String // INCEPTION, ENDORSEMENT, CANCELLATION, REINSTATEMENT
+  status            String    @default("DRAFT") // DRAFT | REFERRED | APPROVED | BOUND
+  effectiveDate     DateTime
+  expiryDate        DateTime?
+  changeReason      String?
+  paymentMode       String? // CUSTOMER_CARD | OFFLINE | INVOICE | WAIVED
+  paymentNote       String?
+  issuedByUserId    String?
+
+  // Link to other sources
+  endorsementId String? // Optional link to legacy Endorsement table
+
+  // Frozen sources for audit-ready documents (bound snapshot)
+  snapshotDraft Json?   @db.JsonB
+  snapshotFinal Json?   @db.JsonB
+  pricingFinal  Json?   @db.JsonB
+  snapshotHash  String?
+  pricingHash   String?
+
+  createdAt DateTime @default(now())
+  createdBy String?
+
+  premiumTransactions    PremiumTransaction[]
+  documents              Document[]
+  payments               Payment[]
+  endorsementInstances   EndorsementInstance[]
+  documentSets           DocumentSet[]
+  motorMarketSubmissions MotorMarketSubmission[]
+
+  @@unique([policyId, transactionNumber])
+  @@index([operatingTenantId])
+  @@index([policyId])
+  @@index([policyId, transactionType, status, transactionNumber(sort: Desc)])
+  @@index([programId])
+  @@index([binderId])
+  @@index([reportingPeriodId])
+  @@map("risk_transactions")
+}
+
+// Immutable Log of Financial Impact (One Risk Txn -> Many Premium Txns)
+model PremiumTransaction {
+  id                String          @id @default(uuid())
+  riskTransactionId String
+  riskTransaction   RiskTransaction @relation(fields: [riskTransactionId], references: [id], onDelete: Cascade)
+
+  transactionType String // ORIGINAL, ADDITIONAL, RETURN
+  currency        String @default("USD")
+
+  grossPremium      Decimal @default(0)
+  commissionPercent Decimal @default(0)
+  commissionAmount  Decimal @default(0)
+  taxesTotal        Decimal @default(0)
+  feesTotal         Decimal @default(0)
+  netToLondon       Decimal @default(0)
+
+  createdAt DateTime @default(now())
+
+  taxLines TaxLine[]
+
+  @@index([riskTransactionId])
+  @@map("premium_transactions")
+}
+
+model TaxLine {
+  id                   String             @id @default(uuid())
+  premiumTransactionId String
+  premiumTransaction   PremiumTransaction @relation(fields: [premiumTransactionId], references: [id], onDelete: Cascade)
+
+  lineNo        Int // 1 to 5
+  jurisdiction  String? // State/Country
+  taxType       String? // Surplus Lines, Fire Tax, etc.
+  taxableAmount Decimal  @default(0)
+  taxAmount     Decimal  @default(0)
+  rate          Decimal? // Can be % or fixed
+
+  @@index([premiumTransactionId])
+  @@map("tax_lines")
+}
+
+// --- MAGIC B (METADATA REGISTRY) ---
+
+model MagicB_Slug {
+  slug        String  @id // e.g. "insured.legal_name"
+  title       String
+  description String?
+  dataType    String // string, number, money, date, enum
+  piiClass    String  @default("none") // none, low, high
+
+  createdAt DateTime @default(now())
+
+  rules    MagicB_Rule[]
+  mappings MagicB_StorageMapping[]
+
+  @@map("magicb_slugs")
+}
+
+model MagicB_Rule {
+  id      String      @id @default(uuid())
+  slug    String
+  slugDat MagicB_Slug @relation(fields: [slug], references: [slug])
+
+  ruleType      String // REQUIRED, VALIDATION, VISIBLE
+  contextFilter Json   @db.JsonB // { "country": "US", "step": "BIND" }
+  ruleBody      Json   @db.JsonB // { "op": "gt", "val": 0 }
+  severity      String @default("BLOCK") // BLOCK, WARN
+
+  createdAt DateTime @default(now())
+
+  @@map("magicb_rules")
+}
+
+model MagicB_StorageMapping {
+  id      String      @id @default(uuid())
+  slug    String
+  slugDat MagicB_Slug @relation(fields: [slug], references: [slug])
+
+  bindingType String // COLUMN, JSONB_PATH
+  tableName   String
+  columnName  String?
+  jsonPath    String? // $.bankAccounts[0].number
+
+  @@map("magicb_mappings")
+}
+
+// --- REPORTING PIPELINE ---
+
+model ReportRun {
+  id                String          @id @default(uuid())
+  reportingPeriodId String
+  reportingPeriod   ReportingPeriod @relation(fields: [reportingPeriodId], references: [id])
+
+  streamType    String // LLOYDS_RISK, LLOYDS_CLAIMS
+  status        String // QUEUED, RUNNING, COMPLETED, FAILED
+  rowCount      Int     @default(0)
+  outputFileUrl String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  rows ReportRow[]
+
+  @@map("report_runs")
+}
+
+model ReportRow {
+  id    String    @id @default(uuid())
+  runId String
+  run   ReportRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+
+  rowNumber Int
+  payload   Json   @db.JsonB // The final V5.2 Row Data
+  rowHash   String
+  lineage   Json?  @db.JsonB // Pointers to source transactions
+
+  @@index([runId])
+  @@map("report_rows")
+}
+
+model AuditAction {
+  id                String  @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant  @relation("AuditActionTenant", fields: [operatingTenantId], references: [id])
+  actorType         String // USER, SYSTEM
+  actorId           String
+  actorName         String?
+  actionName        String // ENDORSEMENT.BIND, CLAIM.APPROVE
+  entityType        String
+  entityId          String
+  diff              Json?   @db.JsonB
+  hash              String? // SHA-256 of the event record for tamper-evidence
+
+  occurredAt DateTime @default(now())
+
+  @@index([operatingTenantId])
+  @@index([entityId, entityType])
+  @@index([occurredAt(sort: Desc)])
+  @@map("audit_actions")
+}
+
+// --- MAGIC B ENDORSEMENTS (MBE) ---
+
+model EndorsementTemplate {
+  id                          String   @id @default(uuid())
+  programCode                 String // e.g. "abbeygate_motor"
+  code                        String // e.g. "CV 4"
+  title                       String
+  description                 String // legal text
+  type                        String // enum
+  scope                       String // enum POLICY, VEHICLE, DRIVER
+  parametersSchema            Json     @db.JsonB
+  defaultParams               Json?    @db.JsonB
+  rules                       Json     @db.JsonB
+  ui                          Json?    @db.JsonB
+  documentTemplate            String?
+  requiresUnderwriterApproval Boolean  @default(false)
+  allowedWith                 String[]
+  disallowedWith              String[]
+  jurisdiction                String[]
+
+  version   Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  instances EndorsementInstance[]
+
+  @@unique([programCode, code, version])
+  @@map("endorsement_templates_mbe")
+}
+
+model EndorsementInstance {
+  id                String @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant @relation("EndorsementInstanceOperatingTenant", fields: [operatingTenantId], references: [id])
+  policyId          String
+  policy            Policy @relation(fields: [policyId], references: [id], onDelete: Cascade)
+
+  transactionId String
+  transaction   RiskTransaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+
+  templateId String
+  template   EndorsementTemplate @relation(fields: [templateId], references: [id])
+
+  code  String
+  title String
+  scope String
+
+  targetId String? // vehicleId or driverId
+
+  params Json @db.JsonB
+
+  effectiveFrom DateTime
+  effectiveTo   DateTime?
+
+  status String @default("APPLIED") // APPLIED, PENDING, REJECTED, SUPERSEDED
+
+  documentKey  String?
+  documentRef  String? // Pointer to DocumentSet file (e.g. "endorsements.pdf#p3")
+  documentHash String? @map("sha256")
+
+  premiumDelta Decimal @default(0)
+
+  createdAt  DateTime  @default(now())
+  createdBy  String?
+  approvedBy String?
+  approvedAt DateTime?
+
+  @@index([operatingTenantId])
+  @@index([policyId])
+  @@index([transactionId])
+  @@map("endorsement_instances_mbe")
+}
+
+model EndorsementBundle {
+  id           String @id @default(uuid())
+  name         String
+  programCode  String
+  endorsements Json   @db.JsonB // [{code, default_params}]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("endorsement_bundles_mbe")
+}
+
+// --- COMMUNICATIONS (GEN2) ---
+
+model CommunicationThread {
+  id             String   @id @default(uuid())
+  entityType     String // CLAIM, POLICY, PARTY, CASE, QUOTE, INVOICE
+  entityId       String
+  primaryPartyId String?
+  status         String   @default("OPEN") // OPEN | CLOSED
+  lastActivityAt DateTime @default(now())
+  createdAt      DateTime @default(now())
+
+  messages CommunicationMessage[]
+
+  @@index([entityType, entityId])
+  @@map("communication_threads")
+}
+
+model CommunicationMessage {
+  id                String              @id @default(uuid())
+  threadId          String
+  thread            CommunicationThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  direction         String // OUTBOUND | INBOUND | INTERNAL
+  channel           String // WHATSAPP | EMAIL | SMS | PHONE_CALL | NOTE | INTERNAL_CHAT | SYSTEM
+  provider          String // SYSTEM | SENDGRID | MAILGUN | TWILIO | META_WHATSAPP | MANUAL
+  communicationType String              @default("EXTERNAL") // EXTERNAL | INTERNAL_NOTE | SYSTEM_EVENT
+  fromActor         String // User ID or "SYSTEM"
+  toRecipients      Json                @db.JsonB // Array of contacts/emails/phones
+  subject           String?
+  body              String              @db.Text
+  attachments       Json?               @db.JsonB // Array of file references
+  externalRefs      Json?               @db.JsonB // Provider message IDs
+  status            String              @default("QUEUED") // QUEUED | SENT | DELIVERED | FAILED | RECEIVED | LOGGED | DRAFT_PENDING_APPROVAL
+  idempotencyKey    String?
+
+  sentAt      DateTime?
+  deliveredAt DateTime?
+  receivedAt  DateTime?
+  createdAt   DateTime  @default(now())
+
+  deliveryAttempts CommunicationDeliveryAttempt[]
+
+  @@unique([threadId, idempotencyKey])
+  @@index([threadId])
+  @@index([channel])
+  @@index([status])
+  @@index([communicationType])
+  @@index([idempotencyKey])
+  @@map("communication_messages")
+}
+
+model CommunicationTemplate {
+  id               String  @id @default(uuid())
+  name             String
+  channel          String // EMAIL, SMS, WHATSAPP, etc.
+  language         String  @default("en")
+  subjectTemplate  String?
+  bodyTemplate     String  @db.Text
+  variablesSchema  Json    @db.JsonB // Allowed variables
+  ownership        String  @default("GLOBAL") // GLOBAL | TENANT | USER
+  enabled          Boolean @default(true)
+  approvalRequired Boolean @default(false)
+  tags             Json?   @db.JsonB // e.g., ["fnol", "missing-docs"]
+
+  // Versioning + approval governance (email-safety Phase 3). A DB-backed row
+  // may only OVERRIDE the shipped code design when approvalStatus == 'APPROVED';
+  // an unapproved/stale row must never silently reach a customer.
+  version         Int       @default(1)
+  approvalStatus  String    @default("DRAFT") // DRAFT | APPROVED | REJECTED
+  approvedBy      String?
+  approvedAt      DateTime?
+  lastEditor      String?
+  lastDeployedSha String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("communication_templates")
+}
+
+// Persistent audit trail for SYNTHETIC email runs (issuance-proof canary,
+// preview "send test"). Every synthetic dispatch leaves a row so we can prove
+// what was sent, to whom, from which deploy, and whether any created artefacts
+// still need cleaning up (email-safety Phase 3).
+model SyntheticEmailRun {
+  id              String   @id @default(uuid())
+  deployedSha     String   @default("unknown")
+  trigger         String
+  templateKey     String
+  templateVersion Int?
+  // The originating CommunicationMessage id. The outbound delivery worker uses
+  // it to finalise `result` (SENT/DELIVERED/FAILED) + provider delivery id once
+  // the message actually reaches the provider, so the audit is not stuck at QUEUED.
+  messageId       String?
+  // Operating tenant (jurisdiction) that produced this synthetic run, captured
+  // from the ALS context at dispatch so CY/PT/GR/ES canary evidence is
+  // distinguishable and a tenant-safe reporting reader is possible.
+  operatingTenantId String?
+  recipients      Json     @db.JsonB // string[]
+  deliveryIds     Json?    @db.JsonB // messageId(s) / provider ids
+  result          String   @default("QUEUED") // QUEUED | SENT | DELIVERED | FAILED | SKIPPED
+  resultDetail    String?
+  cleanupStatus   String   @default("NOT_REQUIRED") // NOT_REQUIRED | PENDING | DONE | FAILED
+  cleanupDetail   String?
+  source          String?
+  correlationId   String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now()) @updatedAt
+
+  @@index([createdAt])
+  @@index([trigger])
+  @@index([messageId])
+  @@index([operatingTenantId])
+  @@map("synthetic_email_runs")
+}
+
+// --- COMMUNICATIONS: PARTICIPANTS ---
+
+model CommunicationParticipant {
+  id          String   @id @default(uuid())
+  entityType  String // POLICY | CLAIM | ACCOUNT
+  entityId    String
+  contactName String
+  contactRole String // POLICYHOLDER | BROKER | ADJUSTER | UNDERWRITER | INTERNAL | CLAIMANT | INSURED | PAYER
+  email       String?
+  phone       String?
+  preferred   String? // EMAIL | SMS | WHATSAPP
+  consent     Json?    @db.JsonB // { email: true, sms: false, whatsapp: true }
+  meta        Json?    @db.JsonB // org, title, notes
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([entityType, entityId])
+  @@index([email])
+  @@map("communication_participants")
+}
+
+// --- COMMUNICATIONS: DELIVERY TRACKING ---
+
+// ---------------------------------------------------------------------------
+// Tenant — MGA / jurisdiction entity
+// ---------------------------------------------------------------------------
+
+enum TenantKind {
+  PRODUCTION
+  SYNTHETIC
+  TEST
+}
+
+enum TenantStatus {
+  ACTIVE
+  SUSPENDED
+  ARCHIVED
+}
+
+model Tenant {
+  id                           String       @id @default(uuid())
+  tenantSlug                   String       @unique
+  kind                         TenantKind   @default(PRODUCTION)
+  status                       TenantStatus @default(ACTIVE)
+  countryCode                  String // "CY" | "PT" | "GR" | "ES"
+  country                      String
+  currency                     String       @default("EUR")
+  iptJson                      Json         @map("ipt") @db.JsonB
+  adminFee                     Decimal      @default(0) @db.Decimal(10, 2)
+  legalPack                    String // "cy" | "pt" | "gr" | "es"
+  publicBaseUrl                String
+  fromEmail                    String
+  brandLogos                   Json?        @db.JsonB
+  // regionConfig replacements
+  priorityCountries            String[]
+  allowedRiskCountries         String[]
+  defaultNationality           String
+  defaultDriversLicenseCountry String
+  defaultBrokerName            String?
+  // reserved for Sprint 4 authority extraction
+  authority                    Json?        @db.JsonB
+  // reserved for multi-MGA org grouping
+  parentOrganizationId         String?
+
+  // Sprint 2 back-relations (low-risk operational tables)
+  recoEvents            RecoEvent[]            @relation("RecoEventTenant")
+  recoBanditArms        RecoBanditArm[]        @relation("RecoBanditArmTenant")
+  sanctionScreeningRuns SanctionScreeningRun[] @relation("SanctionScreeningRunTenant")
+  policySearchIndexes   PolicySearchIndex[]    @relation("PolicySearchIndexTenant")
+  policyListIndexes     PolicyListIndex[]      @relation("PolicyListIndexTenant")
+  outboxEntries         Outbox[]               @relation("OutboxTenant")
+  auditActions          AuditAction[]          @relation("AuditActionTenant")
+  apiKeys               ApiKey[]               @relation("ApiKeyTenant")
+  webhookEndpoints      WebhookEndpoint[]      @relation("WebhookEndpointTenant")
+
+  // Sprint 3 back-relations (core business tables)
+  accounts                       Account[]                       @relation("AccountOperatingTenant")
+  policies                       Policy[]                        @relation("PolicyOperatingTenant")
+  riskTransactions               RiskTransaction[]               @relation("RiskTransactionOperatingTenant")
+  endorsements                   Endorsement[]                   @relation("EndorsementOperatingTenant")
+  endorsementInstances           EndorsementInstance[]           @relation("EndorsementInstanceOperatingTenant")
+  documents                      Document[]                      @relation("DocumentOperatingTenant")
+  documentSets                   DocumentSet[]                   @relation("DocumentSetOperatingTenant")
+  invoices                       Invoice[]                       @relation("InvoiceOperatingTenant")
+  payments                       Payment[]                       @relation("PaymentOperatingTenant")
+  reconciliations                Reconciliation[]                @relation("ReconciliationOperatingTenant")
+  claims                         Claim[]                         @relation("ClaimOperatingTenant")
+  claimAssignments               ClaimAssignment[]               @relation("ClaimAssignmentOperatingTenant")
+  claimEvents                    ClaimEvent[]                    @relation("ClaimEventOperatingTenant")
+  claimReserveTransactions       ClaimReserveTransaction[]       @relation("ClaimReserveTransactionOperatingTenant")
+  binders                        Binder[]                        @relation("BinderOperatingTenant")
+  binderProductAuthorities       BinderProductAuthority[]        @relation("BinderProductAuthorityOperatingTenant")
+  programs                       Program[]                       @relation("ProgramOperatingTenant")
+  programRatingModels            ProgramRatingModel[]            @relation("ProgramRatingModelOperatingTenant")
+  policyHolders                  PolicyHolder[]                  @relation("PolicyHolderOperatingTenant")
+  entities                       Entity[]                        @relation("EntityOperatingTenant")
+  accountActivityFeeds           AccountActivityFeed[]           @relation("AccountActivityFeedOperatingTenant")
+  accountAlertsProjections       AccountAlertsProjection[]       @relation("AccountAlertsProjectionOperatingTenant")
+  accountIntelligenceProjections AccountIntelligenceProjection[] @relation("AccountIntelligenceProjectionOperatingTenant")
+  accountSummaryProjections      AccountSummaryProjection[]      @relation("AccountSummaryProjectionOperatingTenant")
+  accountPortfolioMetrics        AccountPortfolioMetrics[]       @relation("AccountPortfolioMetricsOperatingTenant")
+  claimProjectionSnapshots       ClaimProjectionSnapshot[]       @relation("ClaimProjectionSnapshotOperatingTenant")
+  claimMemoryProjections         ClaimMemoryProjection[]         @relation("ClaimMemoryProjectionOperatingTenant")
+  policyStateCurrent             PolicyStateCurrent[]            @relation("PolicyStateCurrentOperatingTenant")
+  policyQuoteHistories           PolicyQuoteHistory[]            @relation("PolicyQuoteHistoryOperatingTenant")
+  bdxImportJobs                  BdxImportJob[]                  @relation("BdxImportJobTenant")
+
+  // Behavior Layer
+  behaviorEvents     BehaviorEvent[]    @relation("BehaviorEventTenant")
+  policyTrajectories PolicyTrajectory[] @relation("PolicyTrajectoryTenant")
+
+  // Config MCP V1 (ADR-0037) — product launch staging
+  productLaunchDrafts           ProductLaunchDraft[]           @relation("ProductLaunchDraftTenant")
+  // MCP OAuth 2.1 (V2.1) — ADR-0040.
+  oauthClients                  OAuthClient[]                  @relation("OAuthClientTenant")
+  // Product channel switches (ADR-0046) — public journey gates per product.
+  productChannelSettings        ProductChannelSetting[]        @relation("ProductChannelSettingTenant")
+  officeStaffTargets            OfficeStaffTarget[]            @relation("OfficeStaffTargetTenant")
+  policyAssignments             PolicyAssignment[]             @relation("PolicyAssignmentTenant")
+  personnelFiles                PersonnelFile[]                @relation("PersonnelFileTenant")
+  staffAbsences                 StaffAbsence[]                 @relation("StaffAbsenceTenant")
+  staffPayslips                 StaffPayslip[]                 @relation("StaffPayslipTenant")
+  staffDiaryEntries             StaffDiaryEntry[]              @relation("StaffDiaryEntryTenant")
+  staffMessages                 StaffMessage[]                 @relation("StaffMessageTenant")
+  loginEvents                   LoginEvent[]                   @relation("LoginEventTenant")
+  motorMarketSubmissions        MotorMarketSubmission[]        @relation("MotorMarketSubmissionTenant")
+  motorMarketSubmissionAttempts MotorMarketSubmissionAttempt[] @relation("MotorMarketSubmissionAttemptTenant")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([tenantSlug])
+  @@index([status])
+  @@map("tenants")
+}
+
+// ---------------------------------------------------------------------------
+
+model CommunicationDeliveryAttempt {
+  id          String               @id @default(uuid())
+  messageId   String
+  message     CommunicationMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  provider    String // SENDGRID | TWILIO | META_WHATSAPP | SMTP
+  channel     String // EMAIL | SMS | WHATSAPP
+  status      String // QUEUED | SENDING | SENT | DELIVERED | BOUNCED | FAILED
+  externalId  String? // Provider-specific message ID
+  errorCode   String?
+  errorDetail String?
+  attemptedAt DateTime             @default(now())
+  resolvedAt  DateTime?
+
+  @@index([messageId])
+  @@index([status])
+  @@map("communication_delivery_attempts")
+}
+
+// ---------------------------------------------------------------------------
+// Config MCP V1 — Product launch staging (ADR-0037)
+// ---------------------------------------------------------------------------
+// Workflow object only — NOT a canonical configuration source. Drafts stage
+// natural-language-driven configuration changes from the Config MCP Product
+// Architect agent. On publish, `publishToSandbox` translates `delta` into
+// writes against canonical rows (Program.metadata, BinderProductAuthority,
+// BinderFinancials, Tenant.adminFee). After publish the draft becomes
+// evidence-only; no runtime consumer reads it.
+//
+// Single owner: `backend/modules/configuration/`. Enforced by
+// `tools/quality/check-product-launch-draft-isolation.mjs`.
+model ProductLaunchDraft {
+  id                 String   @id @default(uuid())
+  operatingTenantId  String
+  operatingTenant    Tenant   @relation("ProductLaunchDraftTenant", fields: [operatingTenantId], references: [id])
+  name               String
+  baseTemplateId     String
+  productCode        String // 'MOTOR' for V1
+  status             String   @default("draft")
+  // draft | validation_failed | validated | simulated | sandbox_published | archived
+  delta              Json     @db.JsonB
+  publishedProgramId String?
+  publishedBinderId  String?
+  createdByUserId    String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@index([operatingTenantId, status])
+  @@index([operatingTenantId, productCode])
+  @@map("product_launch_drafts")
+}
+
+// ---------------------------------------------------------------------------
+// Product channel switches (ADR-0046)
+// ---------------------------------------------------------------------------
+// Per operating-tenant (== operating country) x product, three independent
+// switches that gate the public customer journey:
+//   - questionsEnabled → can the public open/fill the quote wizard
+//   - quoteEnabled     → can the public see a price / run rating
+//   - paymentEnabled   → can the public pay online (CardCorp checkout)
+//
+// Backend is the single source of truth; the public frontend reads a
+// read-only projection via GET /api/public/product-channels. A logged-in
+// Back Office user bypasses any OFF gate (enforced server-side). Tenant-scoped
+// via the Prisma extension + RLS (ADR-0019).
+//
+// Single owner: `backend/modules/policy/app/productChannel/`.
+model ProductChannelSetting {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("ProductChannelSettingTenant", fields: [operatingTenantId], references: [id])
+  productCode       String // 'MOTOR' | 'HOME' | 'TRAVEL' | 'HEALTH' | 'BUSINESS' | 'OPEN_MARKET'
+  questionsEnabled  Boolean  @default(true)
+  quoteEnabled      Boolean  @default(true)
+  paymentEnabled    Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([operatingTenantId, productCode])
+  @@index([operatingTenantId])
+  @@map("product_channel_settings")
+}
+
+// ---------------------------------------------------------------------------
+// Back-office targets + staff attribution (Peter Sheppard baseline, Aug 2026)
+// ---------------------------------------------------------------------------
+
+model OfficeStaffTarget {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("OfficeStaffTargetTenant", fields: [operatingTenantId], references: [id])
+  scope             String // OFFICE | STAFF
+  businessCategory  String? // NEW_BUSINESS | RENEWAL (office targets only)
+  userId            String?
+  productCode       String?
+  periodStart       DateTime
+  periodEnd         DateTime
+  premiumTarget     Decimal  @default(0) @db.Decimal(12, 2)
+  policyCountTarget Int      @default(0)
+  conversionTarget  Decimal? @db.Decimal(5, 4)
+  createdByUserId   String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([operatingTenantId, periodStart, periodEnd])
+  @@index([operatingTenantId, scope, userId])
+  @@map("office_staff_targets")
+}
+
+model PolicyAssignment {
+  id                String    @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant    @relation("PolicyAssignmentTenant", fields: [operatingTenantId], references: [id])
+  policyId          String    @unique
+  policy            Policy    @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  assignedToUserId  String
+  assignedByUserId  String?
+  source            String    @default("MANUAL") // MANUAL | ALLOCATOR
+  status            String    @default("ACTIVE") // ACTIVE | RELEASED
+  assignedAt        DateTime  @default(now())
+  releasedAt        DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([operatingTenantId, assignedToUserId, status])
+  @@index([operatingTenantId, assignedAt])
+  @@map("policy_assignments")
+}
+
+model PersonnelFile {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("PersonnelFileTenant", fields: [operatingTenantId], references: [id])
+  userId            String
+  staffNumber       String?
+  jobTitle          String?
+  office            String?
+  phone             String?
+  emergencyContact  Json?    @db.JsonB
+  notes             String?  @db.Text
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  payslips StaffPayslip[]
+
+  @@unique([operatingTenantId, userId])
+  @@index([operatingTenantId])
+  @@index([userId])
+  @@map("personnel_files")
+}
+
+model StaffAbsence {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("StaffAbsenceTenant", fields: [operatingTenantId], references: [id])
+  userId            String
+  absenceType       String // HOLIDAY | SICK | OUT_OF_OFFICE | OTHER
+  startDate         DateTime
+  endDate           DateTime
+  status            String   @default("APPROVED") // REQUESTED | APPROVED | CANCELLED
+  notes             String?  @db.Text
+  createdByUserId   String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([operatingTenantId, startDate, endDate])
+  @@index([operatingTenantId, userId, status])
+  @@map("staff_absences")
+}
+
+model StaffPayslip {
+  id                String        @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant        @relation("StaffPayslipTenant", fields: [operatingTenantId], references: [id])
+  personnelFileId   String
+  personnelFile     PersonnelFile @relation(fields: [personnelFileId], references: [id], onDelete: Cascade)
+  periodLabel       String
+  fileName          String
+  storageKey        String?
+  uploadedByUserId  String?
+  uploadedAt        DateTime      @default(now())
+
+  @@index([operatingTenantId, personnelFileId])
+  @@index([uploadedAt])
+  @@map("staff_payslips")
+}
+
+model StaffDiaryEntry {
+  id                String    @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant    @relation("StaffDiaryEntryTenant", fields: [operatingTenantId], references: [id])
+  ownerUserId       String
+  title             String
+  body              String?   @db.Text
+  startAt           DateTime
+  endAt             DateTime?
+  visibility        String    @default("STAFF") // PRIVATE | STAFF | MANAGEMENT
+  createdByUserId   String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([operatingTenantId, ownerUserId, startAt])
+  @@index([operatingTenantId, startAt])
+  @@map("staff_diary_entries")
+}
+
+model StaffMessage {
+  id                String   @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant   @relation("StaffMessageTenant", fields: [operatingTenantId], references: [id])
+  fromUserId        String
+  toUserIds         String[]
+  subject           String
+  body              String   @db.Text
+  archivedByUserIds String[] @default([])
+  createdAt         DateTime @default(now())
+
+  @@index([operatingTenantId, fromUserId, createdAt])
+  @@index([createdAt])
+  @@map("staff_messages")
+}
+
+model LoginEvent {
+  id                String    @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant    @relation("LoginEventTenant", fields: [operatingTenantId], references: [id])
+  userId            String
+  email             String
+  role              String?
+  occurredAt        DateTime  @default(now())
+  ipAddress         String?
+  userAgent         String?
+  outOfHours        Boolean   @default(false)
+  alertRecipient    String?
+  alertQueuedAt     DateTime?
+
+  @@index([operatingTenantId, occurredAt])
+  @@index([operatingTenantId, userId, occurredAt])
+  @@index([outOfHours, occurredAt])
+  @@map("login_events")
+}
+
+model MotorMarketSubmission {
+  id                String           @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant           @relation("MotorMarketSubmissionTenant", fields: [operatingTenantId], references: [id])
+  provider          String // SEGURNET | FIVA
+  channel           String // SEGURNET_FNM | E_SEGURNET | IDS_CIDS | FIVA
+  status            String           @default("DRAFT") // DRAFT | QUEUED | SUBMITTED | ACCEPTED | REJECTED | RETRYABLE_FAILURE | TERMINAL_FAILURE | BLOCKED_WAITING_FOR_EXTERNAL_SPEC
+  policyId          String?
+  policy            Policy?          @relation(fields: [policyId], references: [id], onDelete: SetNull)
+  claimId           String?
+  claim             Claim?           @relation(fields: [claimId], references: [id], onDelete: SetNull)
+  riskTransactionId String?
+  riskTransaction   RiskTransaction? @relation(fields: [riskTransactionId], references: [id], onDelete: SetNull)
+  idempotencyKey    String
+  externalReference String?
+  correlationId     String?
+  requestPayload    Json?            @db.JsonB
+  latestResponse    Json?            @db.JsonB
+  lastErrorCode     String?
+  lastErrorMessage  String?          @db.Text
+  attemptCount      Int              @default(0)
+  createdByUserId   String?
+  submittedAt       DateTime?
+  acceptedAt        DateTime?
+  rejectedAt        DateTime?
+  nextRetryAt       DateTime?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  attempts MotorMarketSubmissionAttempt[]
+
+  @@unique([operatingTenantId, idempotencyKey])
+  @@index([operatingTenantId, provider, channel, status])
+  @@index([operatingTenantId, policyId])
+  @@index([operatingTenantId, claimId])
+  @@index([operatingTenantId, nextRetryAt])
+  @@map("motor_market_submissions")
+}
+
+model MotorMarketSubmissionAttempt {
+  id                String                @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant                @relation("MotorMarketSubmissionAttemptTenant", fields: [operatingTenantId], references: [id])
+  submissionId      String
+  submission        MotorMarketSubmission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  attemptNumber     Int
+  status            String
+  requestPayload    Json?                 @db.JsonB
+  responsePayload   Json?                 @db.JsonB
+  externalReference String?
+  errorCode         String?
+  errorMessage      String?               @db.Text
+  attemptedAt       DateTime              @default(now())
+
+  @@unique([submissionId, attemptNumber])
+  @@index([operatingTenantId, status, attemptedAt])
+  @@index([submissionId])
+  @@map("motor_market_submission_attempts")
+}
+
+// ---------------------------------------------------------------------------
+// MCP OAuth 2.1 (V2.1 — ADR-0040)
+// ---------------------------------------------------------------------------
+// Two tables: clients (DCR registrations) + refresh tokens. Authorization
+// codes and access tokens live in Redis (high read volume, short TTL) —
+// same precedent as confirmationTokenStore.
+//
+// Per-tenant: every row is bound to operatingTenantId. The tenant-scoped
+// Prisma extension enforces the boundary; cross-tenant reads/writes are
+// impossible from app code.
+//
+// Single owner: `backend/modules/mcp/oauth/`. Direct Prisma writes from
+// any other module fail the `check-mcp-auth-single-funnel.mjs` guard.
+
+model OAuthClient {
+  id                String @id @default(uuid())
+  operatingTenantId String
+  operatingTenant   Tenant @relation("OAuthClientTenant", fields: [operatingTenantId], references: [id])
+
+  // RFC 7591 client_id — public identifier returned by DCR.
+  // Format: `oauthc_<32hex>`. Used as the `client_id` URL param on
+  // /oauth/authorize and as the `client_id` form field on /oauth/token.
+  clientId String @unique
+
+  // RFC 7591 client_secret HASH. NULL for public clients (ChatGPT
+  // Apps, Claude Desktop with PKCE). Present for confidential clients.
+  // The raw secret is returned ONCE from /oauth/register and never
+  // stored — same posture as ApiKey.keyHash.
+  clientSecretHash String?
+
+  clientName String
+  clientUri  String?
+
+  // RFC 7591 redirect_uris. Validated at registration: HTTPS only
+  // (except localhost in non-prod tenants), no wildcards, no query
+  // strings, exact match required on /oauth/authorize.
+  redirectUris String[]
+
+  // Scopes this client may request at /oauth/authorize. A subset of
+  // the global scopes_supported. Enforced at authorize time —
+  // requesting outside this list is `invalid_scope`.
+  scopes String[]
+
+  // 'dcr' (RFC 7591 open registration) | 'predefined' (Facio-issued
+  // in-the-BO, V3). V2.1 only ships 'dcr'.
+  registrationKind String @default("dcr")
+
+  createdAt DateTime  @default(now())
+  revokedAt DateTime?
+
+  refreshTokens OAuthRefreshToken[] @relation("OAuthRefreshTokenClient")
+
+  @@index([operatingTenantId, revokedAt])
+  @@index([clientId])
+  @@map("oauth_clients")
+}
+
+model OAuthRefreshToken {
+  id                String @id @default(uuid())
+  operatingTenantId String
+
+  // SHA-256 hash of the opaque `rt_<32hex>` value. Raw value lives only
+  // in the OAuth client's local storage.
+  tokenHash String @unique
+
+  // FK by clientId not pkid (RFC 7591 semantics — clientId is the
+  // stable cross-table reference; the OAuthClient.id pkid is internal).
+  clientId String
+  client   OAuthClient @relation("OAuthRefreshTokenClient", fields: [clientId], references: [clientId])
+
+  // The BO user who granted consent. Audit trail for "who approved
+  // what this client may do".
+  userId String
+
+  scopes   String[]
+  resource String // RFC 8707 binding to the canonical MCP mount URL.
+
+  issuedAt  DateTime  @default(now())
+  expiresAt DateTime
+  // Set when this refresh token is used to mint a new one (rotation
+  // chain). Once rotatedAt is non-null, the token is no longer
+  // accepted.
+  rotatedAt DateTime?
+  revokedAt DateTime?
+
+  @@index([operatingTenantId, expiresAt])
+  @@index([clientId, expiresAt])
+  @@index([tokenHash])
+  @@map("oauth_refresh_tokens")
+}

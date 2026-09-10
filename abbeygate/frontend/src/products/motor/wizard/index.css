@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-navy: #003a70;
+    --brand-blue: #0066b3;
+    --brand-light-blue: #4a9fd8;
+    --brand-accent: #00b4d8;
+  }
+
+  body {
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #fff;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  h2 {
+    color: #1a1a1a;
+    letter-spacing: -0.015em;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  h3 {
+    color: #1a1a1a;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  p {
+    color: #6b7280;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+}
+
+@layer components {
+
+  /* Luxurious Input Style */
+  .ui-input,
+  .ui-select {
+    @apply w-full border border-gray-200 bg-white placeholder:text-gray-400 focus:outline-none transition-all duration-300;
+
+    /* 6. Decrease border-radius to 0.7rem (approx 11px) */
+    border-radius: 0.7rem;
+
+    /* Spacing */
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* 4. Gentle thin blue highlight on focus */
+  .ui-input:focus,
+  .ui-input:focus-within,
+  .ui-select:focus,
+  .ui-select:focus-within,
+  .PhoneInputInput:focus {
+    @apply ring-1 ring-[#0066b3]/20 border-[#0066b3]/30;
+    box-shadow: 0 0 0 4px rgba(0, 102, 179, 0.02);
+  }
+
+  /* 5. Minimalistic luxurious hover effect */
+  @media (hover: hover) and (pointer: fine) {
+    .ui-input:hover:not(:focus):not(:focus-within),
+    .ui-select:hover:not(:focus):not(:focus-within) {
+      border-color: #d1d5db !important;
+      /* gray-300 */
+      transform: translateY(-2px) !important;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025) !important;
+      will-change: transform;
+      z-index: 10;
+    }
+
+    .brand-input-wrap:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  /* Touch devices: disable any hover-lift/shadow even if Safari “sticks” :hover on tap */
+  @media (hover: none), (pointer: coarse) {
+    .ui-input:hover,
+    .ui-select:hover,
+    .PhoneInput:hover,
+    .brand-input-wrap:hover {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+  }
+
+  /* iOS/Safari: ensure date inputs can shrink inside grid/flex and never overflow viewport */
+  .ui-input[type="date"],
+  .ui-input[type="datetime-local"] {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* iOS Safari: date text can render centered and/or affect layout. Force left-alignment. */
+  .ui-input[type="date"]::-webkit-date-and-time-value,
+  .ui-input[type="datetime-local"]::-webkit-date-and-time-value {
+    text-align: left !important;
+    min-width: 0;
+    width: 100%;
+  }
+  .ui-input[type="date"]::-webkit-datetime-edit,
+  .ui-input[type="datetime-local"]::-webkit-datetime-edit {
+    text-align: left !important;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ui-input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+  .ui-input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper {
+    display: inline-flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  /* Hide native picker indicator (we render our own calendar icon) */
+  .ui-input[type="date"]::-webkit-calendar-picker-indicator,
+  .ui-input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* Touch devices: never show hover tooltips (prevents off-screen boxes affecting layout) */
+  @media (hover: none), (pointer: coarse) {
+    .brand-radio-tooltip {
+      display: none !important;
+    }
+  }
+
+  /* Phone Input Specifics to match */
+  .PhoneInputInput {
+    @apply w-full border-0 bg-transparent focus:outline-none h-full;
+  }
+
+  .PhoneInput {
+    @apply w-full border border-gray-200 bg-white transition-all duration-300 flex items-center px-4 py-3;
+    border-radius: 0.7rem;
+  }
+
+  .PhoneInput:hover {
+    @apply border-gray-300;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  .PhoneInput:focus-within {
+    @apply ring-1 ring-[#0066b3]/20 border-[#0066b3]/30;
+    box-shadow: 0 0 0 4px rgba(0, 102, 179, 0.02);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary-custom {
+    @apply bg-[var(--brand-blue)] text-white border border-transparent hover:bg-[#003865] active:bg-[#002a4d] transition-colors duration-200;
+  }
+
+  .btn-secondary-custom {
+    @apply bg-gray-100 text-gray-900 border border-transparent hover:bg-gray-200 active:bg-gray-300 transition-colors duration-200;
+  }
+
+  .btn-outline-custom {
+    @apply bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-gray-400 active:bg-gray-100 transition-colors duration-200;
+  }
+
+  /* Responsive Utilities */
+  .desktop-only-absolute {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-only-absolute {
+      display: block;
+      position: absolute;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    .desktop-inline {
+      display: inline;
+    }
+  }
+
+  .desktop-inline {
+    display: none;
+  }
+
+  .premium-breakdown {
+    width: 100%;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 768px) {
+    .premium-breakdown {
+      width: 20rem;
+      /* 320px */
+      min-width: 20rem;
+      margin: 0;
+    }
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

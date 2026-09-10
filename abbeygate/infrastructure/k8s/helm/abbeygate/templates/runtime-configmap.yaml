@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.runtimeConfig.configMapName }}
+  labels:
+    {{- include "abbeygate.labels" . | nindent 4 }}
+data:
+  NODE_ENV: "production"
+  SENTRY_ENVIRONMENT: {{ .Values.runtimeConfig.sentryEnvironment | quote }}
+  SENTRY_RELEASE: {{ .Values.image.tag | quote }}
+  DOC_GENERATION_MODE: {{ .Values.api.env.DOC_GENERATION_MODE | quote }}
+  QUEUE_WORKERS_ENABLED_API: {{ .Values.api.env.QUEUE_WORKERS_ENABLED | quote }}
+  QUEUE_WORKERS_ENABLED_WORKER: {{ .Values.worker.env.QUEUE_WORKERS_ENABLED | quote }}

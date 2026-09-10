@@ -1,0 +1,30 @@
+{
+  "_doc": [
+    "Files that may declare `declare global { namespace Express { ... } }`.",
+    "",
+    "Canonical owner of cross-cutting Express.Request properties:",
+    "  backend/platform/types/express.d.ts",
+    "",
+    "Modules MAY add a Request property that is genuinely module-local",
+    "(e.g. accessControl resolves a permission set onto req). When they do,",
+    "the file MUST be listed here. They MUST NOT redeclare a property that",
+    "already exists on the canonical augmentation; the guard checks both.",
+    "",
+    "If you find yourself wanting to add a module-local property that other",
+    "modules might also need, propose moving it to the canonical file via",
+    "an ADR — do NOT add it to two places."
+  ],
+  "allow": [
+    "backend/platform/types/express.d.ts",
+    "backend/modules/accessControl/http/permissionMiddleware.ts"
+  ],
+  "canonicalFile": "backend/platform/types/express.d.ts",
+  "canonicalProperties": [
+    "user",
+    "correlationId",
+    "apiSurface",
+    "tenantId",
+    "apiAccount",
+    "auditContext"
+  ]
+}

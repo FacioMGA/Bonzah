@@ -1,0 +1,1013 @@
+@import "./tokens.css";
+@import "./themes/bo.css";
+@import "./themes/customer.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.pac-container {
+  z-index: 99999 !important;
+}
+
+@keyframes brandFocusGlow {
+  from {
+    box-shadow: 0 0 0 0 rgba(0, 74, 138, 0.00);
+  }
+
+  to {
+    box-shadow: 0 0 0 3px rgba(0, 74, 138, 0.10);
+  }
+}
+
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  html,
+  body,
+  #root {
+    @apply h-full w-full overflow-hidden;
+  }
+
+  body {
+    @apply font-sans bg-brand-canvas text-slate-900 antialiased;
+    /* Hard override to avoid Tailwind-config cache issues during dev */
+    background-color: #FCFBF7;
+  }
+}
+
+@layer components {
+  .ui-page {
+    @apply w-full max-w-7xl mx-auto pt-8 pb-20 space-y-8;
+  }
+
+  .ui-card {
+    /* Borderless surface (no rings/borders). Depth comes only from shadow. */
+    @apply bg-white rounded-[2rem];
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 14px 40px rgba(15, 23, 42, 0.06);
+  }
+
+  .ui-card-flat {
+    box-shadow: none;
+  }
+
+  .ui-card-pad {
+    @apply p-8;
+  }
+
+  .ui-section-title {
+    @apply text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.16em] flex items-center gap-2;
+  }
+
+  .ui-input {
+    @apply w-full bg-slate-50/50 border border-slate-200/60 rounded-2xl px-5 py-4 font-semibold text-slate-700 outline-none transition-all duration-200 focus:bg-white focus:border-brand-primary;
+  }
+
+  .ui-select {
+    /* Increased opacity for visibility, matches restored border rule */
+    @apply w-full bg-slate-50/50 border border-slate-200 rounded-2xl px-5 py-4 font-semibold text-slate-700 outline-none transition-all duration-200 focus:bg-white focus:border-brand-primary appearance-none;
+  }
+
+  .ui-helper {
+    @apply text-xs text-slate-500;
+  }
+
+  .ui-tabsbar {
+    /* Gentle baseline under tabs (same vibe as disabled input border) */
+    @apply relative flex gap-10 overflow-x-auto no-scrollbar scroll-smooth border-b border-slate-200/60;
+  }
+
+  .ui-tabsbar-indicator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: rgb(0 74 138 / 1);
+    transform: translateX(0);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      width 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 180ms ease;
+  }
+
+  .ui-tab {
+    @apply transition-colors duration-200 relative whitespace-nowrap;
+    background-color: transparent;
+  }
+
+  .ui-tab:hover,
+  .ui-tab:focus-visible {
+    background-color: transparent;
+  }
+
+  .ui-tab.ui-tab-active {
+    @apply border-transparent;
+    color: rgb(0 74 138 / 1);
+  }
+
+  .ui-tab.ui-tab-inactive {
+    --tw-text-opacity: 1;
+    color: rgb(148 163 184 / var(--tw-text-opacity));
+  }
+
+  .ui-tab.ui-tab-inactive:hover,
+  .ui-tab.ui-tab-inactive:focus-visible {
+    color: rgb(0 74 138 / 1);
+  }
+
+  /* Ultra-minimal “luxury” tab panel enter */
+  .ui-tabpanel-enter {
+    animation: ui-tabpanel-enter 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    will-change: transform, opacity;
+  }
+
+  /* Unified table surface (no border/shadow; relies on internal dividers only) */
+  .ui-table-wrap {
+    /* Shared production table surface: soft, slightly translucent */
+    @apply bg-white/60 backdrop-blur-[2px] rounded-[2rem] overflow-hidden border border-slate-200/60;
+  }
+
+  .ui-table {
+    @apply w-full text-left;
+  }
+
+  .ui-thead {
+    @apply text-slate-400 uppercase text-[11px] font-black tracking-widest bg-slate-50/60 border-b border-slate-200/60;
+  }
+
+  .ui-tbody {
+    @apply divide-y divide-slate-200/60;
+  }
+
+  .ui-row {
+    @apply hover:bg-slate-50/50 transition-colors;
+  }
+}
+
+@keyframes ui-tabpanel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-tabsbar-indicator {
+    transition: none;
+  }
+
+  .ui-tabpanel-enter {
+    animation: none;
+  }
+}
+
+/* BO edit mode: match customer flow hover polish, but ONLY when editing and ONLY for enabled fields */
+@media (hover: hover) and (pointer: fine) {
+  /* Important: do NOT override focus border/ring while focused.
+     Otherwise the hover border-color `!important` hides the blue focus state. */
+  .bo-edit-mode input:not(:disabled):not(:focus):not([type="checkbox"]):not([type="radio"]):not(.PhoneInputInput):hover,
+  .bo-edit-mode select:not(:disabled):not(:focus):hover,
+  .bo-edit-mode textarea:not(:disabled):not(:focus):hover,
+  .bo-edit-mode .PhoneInput:not(.opacity-80):not(.cursor-not-allowed):not(:focus-within):hover,
+  .bo-edit-mode .ui-input:not(:disabled):not(:focus):hover,
+  .bo-edit-mode .ui-input[data-hover="true"]:not(:focus):hover {
+    border-color: rgb(203 213 225 / 0.9) !important; /* slate-300-ish */
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+    will-change: transform;
+  }
+}
+
+/* CardCorp COPYandPAY (BO Billing) - reuse customer payment styling (scoped) */
+.brand-bo-cardcorp .wpwl-label-brand,
+.brand-bo-cardcorp .wpwl-wrapper-brand {
+  display: none !important;
+}
+
+.brand-bo-cardcorp .wpwl-form,
+.brand-bo-cardcorp .wpwl-form * {
+  font-family: Arial, Helvetica, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide fields we don't use (prevents layout weirdness) */
+.brand-bo-cardcorp .wpwl-group-mobilePhoneCountryCode,
+.brand-bo-cardcorp .wpwl-group-mobilePhoneNumber,
+.brand-bo-cardcorp .wpwl-group-birthDate,
+.brand-bo-cardcorp .wpwl-group-clickToPayConfirmation,
+.brand-bo-cardcorp .wpwl-group-visaInstallmentConfirmation {
+  display: none !important;
+}
+
+/* The widget form IS the payment card */
+.brand-bo-cardcorp .wpwl-form {
+  background:
+    radial-gradient(120% 90% at 20% 10%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.35) 45%, rgba(255,255,255,0.10) 100%),
+    linear-gradient(135deg, #f8fafc 0%, #eef2f7 30%, #e5e7eb 55%, #f8fafc 100%) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 24px !important;
+  padding: 48px 28px 28px !important; /* headroom for brand badge */
+  box-shadow: 0 8px 30px rgba(0,0,0,0.04) !important;
+  width: 100% !important;
+  max-width: 560px !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+  gap: 14px 18px !important;
+}
+
+.brand-bo-cardcorp .wpwl-form:before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(115deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.55) 28%, rgba(255,255,255,0.0) 56%) !important;
+  opacity: 0.55 !important;
+  pointer-events: none !important;
+}
+
+.brand-bo-cardcorp .wpwl-form:after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(100% 80% at 80% 0%, rgba(0,74,138,0.06) 0%, rgba(0,0,0,0.0) 60%) !important;
+  pointer-events: none !important;
+}
+
+/* Inputs */
+.brand-bo-cardcorp .wpwl-control {
+  border-radius: 12px !important;
+  border: 1px solid rgba(15, 23, 42, 0.10) !important;
+  background-color: rgba(255, 255, 255, 0.70) !important;
+  height: 48px !important;
+  padding: 0 14px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #0f172a !important;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+  width: 100% !important;
+}
+
+.brand-bo-cardcorp .wpwl-control:focus {
+  background-color: #ffffff !important;
+  border-color: #004a8a !important;
+  box-shadow: 0 0 0 2px rgba(0, 74, 138, 0.1) !important;
+  outline: none !important;
+}
+
+.brand-bo-cardcorp .wpwl-control::placeholder,
+.brand-bo-cardcorp .wpwl-control::-webkit-input-placeholder,
+.brand-bo-cardcorp .wpwl-control::-moz-placeholder,
+.brand-bo-cardcorp .wpwl-control:-ms-input-placeholder {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  opacity: 0 !important;
+  text-transform: none !important;
+}
+
+/* Native fields (cardHolder/expiry) need a slightly darker placeholder
+   to visually match provider iframe rendering (card number/cvv). */
+.brand-bo-cardcorp .wpwl-group-cardHolder .wpwl-control::placeholder,
+.brand-bo-cardcorp .wpwl-group-cardHolder .wpwl-control::-webkit-input-placeholder,
+.brand-bo-cardcorp .wpwl-group-cardHolder .wpwl-control::-moz-placeholder,
+.brand-bo-cardcorp .wpwl-group-cardHolder .wpwl-control:-ms-input-placeholder,
+.brand-bo-cardcorp .wpwl-group-expiry .wpwl-control::placeholder,
+.brand-bo-cardcorp .wpwl-group-expiry .wpwl-control::-webkit-input-placeholder,
+.brand-bo-cardcorp .wpwl-group-expiry .wpwl-control::-moz-placeholder,
+.brand-bo-cardcorp .wpwl-group-expiry .wpwl-control:-ms-input-placeholder {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  opacity: 0 !important;
+  text-transform: none !important;
+}
+
+/* Labels */
+.brand-bo-cardcorp .wpwl-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: rgba(71, 85, 105, 0.95) !important;
+  margin: 0 0 8px 0 !important;
+  width: 100% !important;
+}
+
+/* Layout */
+.brand-bo-cardcorp .wpwl-group {
+  margin: 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+}
+
+.brand-bo-cardcorp .wpwl-label,
+.brand-bo-cardcorp .wpwl-wrapper {
+  float: none !important;
+  clear: both !important;
+}
+
+.brand-bo-cardcorp .wpwl-wrapper {
+  width: 100% !important;
+}
+
+/* Enforce credit-card schema only */
+.brand-bo-cardcorp .wpwl-group:not(.wpwl-group-cardNumber):not(.wpwl-group-cardHolder):not(.wpwl-group-expiry):not(.wpwl-group-cvv):not(.wpwl-group-brand):not(.wpwl-group-submit) {
+  display: none !important;
+}
+
+.brand-bo-cardcorp .wpwl-group-brand {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.brand-bo-cardcorp .wpwl-group-cardNumber {
+  flex: 0 0 calc((100% - 18px) * 0.66) !important;
+  max-width: calc((100% - 18px) * 0.66) !important;
+  order: 1 !important;
+}
+.brand-bo-cardcorp .wpwl-group-expiry {
+  flex: 0 0 calc((100% - 18px) * 0.34) !important;
+  max-width: calc((100% - 18px) * 0.34) !important;
+  min-width: 0 !important;
+  order: 2 !important;
+}
+.brand-bo-cardcorp .wpwl-group-cardHolder {
+  flex: 0 0 calc((100% - 18px) * 0.66) !important;
+  max-width: calc((100% - 18px) * 0.66) !important;
+  order: 3 !important;
+}
+.brand-bo-cardcorp .wpwl-group-cvv {
+  flex: 0 0 calc((100% - 18px) * 0.34) !important;
+  max-width: calc((100% - 18px) * 0.34) !important;
+  min-width: 0 !important;
+  order: 4 !important;
+}
+
+.brand-bo-cardcorp .wpwl-control-iframe {
+  width: 100% !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(15, 23, 42, 0.10) !important;
+  background-color: rgba(255, 255, 255, 0.70) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8) !important;
+  transition: all 0.2s ease !important;
+}
+
+.brand-bo-cardcorp .wpwl-group:focus-within .wpwl-control,
+.brand-bo-cardcorp .wpwl-group:focus-within .wpwl-control-iframe,
+.brand-bo-cardcorp .wpwl-group.brand-iframe-focused .wpwl-control-iframe {
+  background-color: #ffffff !important;
+  border-color: #004a8a !important;
+  box-shadow: 0 0 0 2px rgba(0, 74, 138, 0.1) !important;
+  outline: none !important;
+}
+
+/* Pay button */
+.brand-bo-cardcorp .wpwl-group-submit {
+  flex: 0 0 100% !important;
+  order: 5 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+.brand-bo-cardcorp .wpwl-button-pay {
+  background-color: #004a8a !important;
+  border-radius: 14px !important;
+  color: white !important;
+  border: none !important;
+  height: 50px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  width: 210px !important;
+  text-transform: none !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 74, 138, 0.2), 0 2px 4px -1px rgba(0, 74, 138, 0.1) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  margin-top: 16px !important;
+}
+.brand-bo-cardcorp .wpwl-button-pay:hover {
+  background-color: #00386b !important;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(0, 74, 138, 0.25) !important;
+}
+.brand-bo-cardcorp .wpwl-button-pay:active {
+  transform: translateY(0);
+}
+
+.brand-bo-cardcorp .wpwl-brand-card {
+  position: absolute !important;
+  top: 18px !important;
+  right: 18px !important;
+  left: auto !important;
+  opacity: 0 !important;
+  transition: opacity 200ms ease, transform 200ms ease;
+  transform: translateY(-2px);
+  pointer-events: none;
+}
+.brand-bo-cardcorp .wpwl-brand-card[data-brand-card-visible="1"] {
+  opacity: 0.9 !important;
+  transform: translateY(0);
+}
+
+@media (max-width: 420px) {
+  .brand-bo-cardcorp .wpwl-form {
+    padding: 22px !important;
+    gap: 12px 14px !important;
+  }
+  .brand-bo-cardcorp .wpwl-group-cardNumber,
+  .brand-bo-cardcorp .wpwl-group-expiry,
+  .brand-bo-cardcorp .wpwl-group-cardHolder,
+  .brand-bo-cardcorp .wpwl-group-cvv {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .brand-bo-cardcorp .wpwl-control {
+    height: 46px !important;
+    font-size: 14px !important;
+  }
+  .brand-bo-cardcorp .wpwl-group-submit { justify-content: stretch !important; }
+  .brand-bo-cardcorp .wpwl-button-pay { width: 100% !important; height: 52px !important; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .bo-edit-mode input:hover,
+  .bo-edit-mode select:hover,
+  .bo-edit-mode textarea:hover,
+  .bo-edit-mode .ui-input:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+[data-surface="bo"] .border-slate-200 {
+  border-color: transparent !important;
+}
+
+[data-surface="bo"] .border-gray-200 {
+  border-color: transparent !important;
+}
+
+/* Restore borders for actual form controls (inputs/selects/textareas) even if they use border-slate-200 */
+[data-surface="bo"] input.border-slate-200,
+[data-surface="bo"] select.border-slate-200,
+[data-surface="bo"] textarea.border-slate-200,
+[data-surface="bo"] .PhoneInput.border-slate-200 {
+  border-color: rgb(226 232 240 / 0.75) !important;
+  /* slate-200-ish */
+}
+
+[data-surface="bo"] input.border-gray-200,
+[data-surface="bo"] select.border-gray-200,
+[data-surface="bo"] textarea.border-gray-200 {
+  border-color: rgb(229 231 235 / 0.85) !important;
+  /* gray-200-ish */
+}
+
+/* Brand focus: blue border + minimal glow with a micro animation */
+.ui-input:focus,
+.ui-select:focus,
+.ui-input.PhoneInput:focus-within {
+  border-color: rgb(0 74 138 / 1) !important;
+  /* brand primary */
+  box-shadow: 0 0 0 3px rgba(0, 74, 138, 0.10) !important;
+  animation: brandFocusGlow 160ms ease-out;
+}
+
+/* Hide native date indicator; we render a consistent icon instead.
+   Note: new token-driven inputs don't use `.ui-input`, so we also target surface-scoped inputs. */
+.ui-input[type="date"]::-webkit-calendar-picker-indicator,
+.ui-input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+[data-surface] input[type="date"]:not([data-date-picker-overlay])::-webkit-calendar-picker-indicator,
+[data-surface] input[type="datetime-local"]:not([data-date-picker-overlay])::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ui-input[type="date"]::-webkit-inner-spin-button,
+.ui-input[type="datetime-local"]::-webkit-inner-spin-button,
+[data-surface] input[type="date"]::-webkit-inner-spin-button,
+[data-surface] input[type="datetime-local"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+/* Mobile date input stability (global layer): keep value left-aligned and clipped in-field. */
+.ui-input[type="date"],
+.ui-input[type="datetime-local"],
+[data-surface] input[type="date"],
+[data-surface] input[type="datetime-local"] {
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.ui-input[type="date"]::-webkit-date-and-time-value,
+.ui-input[type="datetime-local"]::-webkit-date-and-time-value,
+[data-surface] input[type="date"]::-webkit-date-and-time-value,
+[data-surface] input[type="datetime-local"]::-webkit-date-and-time-value {
+  text-align: left !important;
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+.ui-input[type="date"]::-webkit-datetime-edit,
+.ui-input[type="datetime-local"]::-webkit-datetime-edit,
+[data-surface] input[type="date"]::-webkit-datetime-edit,
+[data-surface] input[type="datetime-local"]::-webkit-datetime-edit {
+  text-align: left !important;
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.ui-input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+.ui-input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper,
+[data-surface] input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+[data-surface] input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper {
+  display: inline-flex !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+}
+
+/* Nested form controls inside a styled shell should be "naked".
+   This avoids "input inside input" inner borders/rings/shadows. */
+.ui-input input,
+.ui-input select,
+.ui-input textarea,
+.ui-input .PhoneInputInput,
+.ui-input .PhoneInputCountrySelect {
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+.ui-input input:focus,
+.ui-input select:focus,
+.ui-input textarea:focus,
+.ui-input .PhoneInputInput:focus,
+.ui-input .PhoneInputCountrySelect:focus {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+/* Policies filters: hard-override MUI date range field to app tokens */
+.bo-date-range-field .MuiOutlinedInput-root {
+  border-radius: 1rem !important;
+  min-height: 52px !important;
+  background: rgba(248, 250, 252, 0.5) !important;
+  color: rgb(51 65 85) !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+}
+
+.bo-date-range-field .MuiOutlinedInput-root fieldset {
+  border-color: rgb(226 232 240 / 0.9) !important;
+}
+
+.bo-date-range-field .MuiOutlinedInput-root:hover fieldset {
+  border-color: rgb(203 213 225) !important;
+}
+
+.bo-date-range-field .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: rgb(29 78 216) !important;
+  border-width: 1px !important;
+}
+
+.bo-date-range-field .MuiInputBase-input {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+  padding-left: 2px !important;
+}
+
+.bo-date-range-field .MuiIconButton-root,
+.bo-date-range-field .MuiSvgIcon-root {
+  color: rgb(100 116 139) !important;
+}
+
+/* Policies filters: hard-override MUI desktop range popup */
+.bo-date-range-paper {
+  border-radius: 1rem !important;
+  border: 1px solid rgb(226 232 240 / 0.9) !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12) !important;
+  color: rgb(51 65 85) !important;
+}
+
+.bo-date-range-paper .MuiPickersCalendarHeader-root {
+  color: rgb(15 23 42) !important;
+  padding-inline: 12px !important;
+}
+
+.bo-date-range-paper .MuiDayCalendar-weekDayLabel {
+  color: rgb(148 163 184) !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
+}
+
+.bo-date-range-paper .MuiPickersDay-root {
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  color: rgb(51 65 85) !important;
+}
+
+.bo-date-range-paper .MuiPickersDay-root.Mui-selected {
+  background-color: rgb(15 23 42) !important;
+  color: #fff !important;
+}
+
+.bo-date-range-paper .MuiPickersDay-root.Mui-selected:hover {
+  background-color: rgb(2 6 23) !important;
+}
+
+.bo-date-range-paper .MuiDateRangePickerDay-rangeIntervalDayHighlight {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Fallback selectors matching current MUI X rendered structure inside filters modal */
+.bo-filters-modal .MuiPickersInputBase-root,
+.bo-filters-modal .MuiPickersOutlinedInput-root,
+.bo-filters-modal .MuiOutlinedInput-root {
+  border-radius: 1rem !important;
+  min-height: 52px !important;
+  background: rgba(248, 250, 252, 0.5) !important;
+  color: rgb(51 65 85) !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+}
+
+.bo-filters-modal .MuiPickersOutlinedInput-notchedOutline,
+.bo-filters-modal .MuiOutlinedInput-notchedOutline {
+  border-color: rgb(226 232 240 / 0.9) !important;
+}
+
+.bo-filters-modal .MuiPickersInputBase-root:hover .MuiPickersOutlinedInput-notchedOutline,
+.bo-filters-modal .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgb(203 213 225) !important;
+}
+
+.bo-filters-modal .MuiPickersInputBase-root.Mui-focused .MuiPickersOutlinedInput-notchedOutline,
+.bo-filters-modal .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: rgb(29 78 216) !important;
+  border-width: 1px !important;
+}
+
+.bo-filters-modal .MuiPickersSectionList-root,
+.bo-filters-modal .MuiInputBase-input {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+}
+
+.bo-filters-modal .MuiIconButton-root,
+.bo-filters-modal .MuiSvgIcon-root {
+  color: rgb(100 116 139) !important;
+}
+
+/* Date picker popup through portal */
+.bo-date-range-popper .MuiPaper-root {
+  border-radius: 1rem !important;
+  border: 1px solid rgb(226 232 240 / 0.9) !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12) !important;
+}
+
+/* Premium dual-range: pixel aligned handles + both thumbs interactive */
+.bo-range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+}
+
+.bo-range-input::-webkit-slider-runnable-track {
+  height: 6px;
+  background: transparent;
+}
+
+.bo-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #004a8a;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.25);
+  margin-top: -7px;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.bo-range-input::-moz-range-track {
+  height: 6px;
+  background: transparent;
+}
+
+.bo-range-input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #004a8a;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.25);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+@keyframes bo-reco-bounce {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(0.985);
+  }
+  70% {
+    transform: scale(1.012);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bo-reco-bounce {
+  animation: bo-reco-bounce 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes claimTimelineReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.995);
+  }
+  35% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes claimTimelineAura {
+  0% {
+    opacity: 0;
+    transform: translateX(-14%) scale(0.98);
+    filter: blur(7px);
+  }
+  30% {
+    opacity: 0.9;
+    transform: translateX(0%) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(10%) scale(1.01);
+    filter: blur(5px);
+  }
+}
+
+.claim-tl-item {
+  isolation: isolate;
+}
+
+.claim-tl-item-aura {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0, 74, 138, 0.22);
+  border-radius: 0.75rem;
+  background:
+    radial-gradient(95% 90% at 15% 5%, rgba(0, 74, 138, 0.22) 0%, rgba(0, 74, 138, 0.10) 30%, rgba(0, 74, 138, 0.0) 72%),
+    linear-gradient(110deg, rgba(255, 255, 255, 0.0) 0%, rgba(255, 255, 255, 0.46) 35%, rgba(255, 255, 255, 0.0) 58%);
+  box-shadow:
+    0 8px 26px rgba(0, 74, 138, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 300ms ease;
+}
+
+.claim-tl-item-highlight {
+  animation: claimTimelineReveal 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.claim-tl-item-highlight .claim-tl-item-aura {
+  animation: claimTimelineAura 1900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Disabled/read-only tone: slightly lighter than edit mode */
+.ui-input:disabled,
+.ui-select:disabled,
+input.ui-input:disabled,
+select.ui-select:disabled,
+textarea.ui-input:disabled {
+  color: rgb(100 116 139 / 0.95);
+  /* slate-500-ish */
+  border-color: rgb(226 232 240 / 0.60) !important;
+  /* slate-200 softer */
+}
+
+/* Gentle borders for buttons (bring back “premium outline” without reintroducing boxy panels) */
+button.border-slate-200,
+a.border-slate-200 {
+  border-color: rgb(15 23 42 / 0.10) !important;
+}
+
+button.border-gray-200,
+a.border-gray-200 {
+  border-color: rgb(15 23 42 / 0.10) !important;
+}
+
+/* BO icon-only controls safety:
+   ensure inline SVGs inherit button/link color even if external styles interfere. */
+[data-surface="bo"] button svg[fill="none"],
+[data-surface="bo"] a svg[fill="none"],
+[data-surface="bo"] [role="button"] svg[fill="none"] {
+  color: inherit;
+  stroke: currentColor;
+  opacity: 1;
+}
+
+/* Questionnaire “submitted” hero animation */
+@keyframes ui-pop-in {
+  0% {
+    transform: translateY(10px) scale(0.98);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ui-badge-pulse {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 0 rgba(0, 74, 138, 0);
+  }
+
+  35% {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 18px 40px rgba(0, 74, 138, 0.20);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 12px 30px rgba(0, 74, 138, 0.14);
+  }
+}
+
+@keyframes ui-confetti {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--dx), var(--dy)) rotate(260deg) scale(0.9);
+    opacity: 0;
+  }
+}
+
+.ui-success-hero {
+  position: relative;
+  width: min(520px, 100%);
+}
+
+.ui-success-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 36px 34px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 18px 60px rgba(15, 23, 42, 0.08);
+  text-align: center;
+  animation: ui-pop-in 420ms ease-out both;
+}
+
+.ui-success-card::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 30px;
+  background: radial-gradient(closest-side, rgba(0, 74, 138, 0.14), rgba(0, 74, 138, 0.0) 70%);
+  filter: blur(14px);
+  z-index: -1;
+  opacity: 0.9;
+}
+
+.ui-success-badge {
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  margin: 0 auto 18px;
+  color: #004A8A;
+  background: rgba(0, 74, 138, 0.10);
+  border: 1px solid rgba(0, 74, 138, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ui-badge-pulse 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ui-success-confetti {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.ui-success-confetti-piece {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 14px;
+  border-radius: 3px;
+  opacity: 0;
+  animation: ui-confetti 900ms ease-out both;
+  animation-delay: var(--delay);
+  background:
+    linear-gradient(135deg, rgba(0, 74, 138, 0.95), rgba(0, 74, 138, 0.55));
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.ui-success-confetti-piece:nth-child(3n) {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(16, 185, 129, 0.55));
+}
+
+.ui-success-confetti-piece:nth-child(4n) {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.95), rgba(251, 191, 36, 0.55));
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}

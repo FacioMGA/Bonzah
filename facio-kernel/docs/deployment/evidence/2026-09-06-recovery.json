@@ -1,0 +1,155 @@
+{
+  "verifiedAt": "2026-09-06T16:03:59.103278+00:00",
+  "sourceSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+  "classification": "synthetic sandbox verification; no credentials or source-quote payloads",
+  "backupLocation": {
+    "storageAccount": "stkernelsandbox294904",
+    "container": "backups",
+    "verifiedSnapshot": "20260906T155716.227959Z",
+    "sharedKeysUsed": false,
+    "access": "VM managed identity; private blobs"
+  },
+  "isolatedRuntime": {
+    "snapshot": "20260906T155716.227959Z",
+    "liveDataOverwritten": false,
+    "databases": [
+      {
+        "file": "kernel.sqlite",
+        "sha256": "a23ed9fd4144ea0ff64b98de7f6ce75e16258f0e48ac02d8f6a54a8b058dd3e1",
+        "integrity": "ok",
+        "tableCount": 24
+      },
+      {
+        "file": "auth.sqlite",
+        "sha256": "3e507d530b7d5ffb0ba7a24acd250ccadf70f5498f98e3ba9671db912a438588",
+        "integrity": "ok",
+        "tableCount": 3
+      }
+    ],
+    "verifiedAt": "2026-09-06T15:59:43.495372+00:00",
+    "buildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+    "isolatedRuntimePort": 4311,
+    "liveContainerUnchanged": true,
+    "liveContainerId": "be80c6c68d92efb8cbc6023a2dff76b86032e1ea42060e724f50f5d4c8ea67d7",
+    "restoredRuntimeHealthy": true,
+    "unauthenticatedSessionStatus": 401,
+    "restoredRowCounts": {
+      "control_accounts": 1,
+      "control_memberships": 3,
+      "control_invitations": 6,
+      "control_tenants": 2,
+      "control_sandbox_releases": 1,
+      "insurance_records": 1
+    },
+    "restoredTenants": [
+      {
+        "id": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+        "displayName": "Kernel pilot Beta (synthetic)"
+      },
+      {
+        "id": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+        "displayName": "Kernel pilot Alpha (synthetic)"
+      }
+    ],
+    "insuranceRecordsPresentInSnapshot": true,
+    "businessWorkflowRecoveryVerified": false
+  },
+  "canonicalBusinessRead": {
+    "verifiedAt": "2026-09-06T15:59:59.664Z",
+    "method": "Existing compiled Store tenant/release/insuranceRead/insuranceHistory methods on restored copy, no HTTP credential/session injection",
+    "release": {
+      "id": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+      "hash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f",
+      "buildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+      "configurationHash": "5c4c56caa16028c3a603279a218d202a49fbbbb4a7ce75d2b20434038ef2a38e",
+      "requirementsHash": "61c6dd85bfcd0837d5e588c528b5ef4fc8abcacba30ea21b33544e50b5058aa3",
+      "runtimeDraftHash": "888ed7804f63b0b91e6cf1bf349a85b2d6232146b75e469d0a1b8a0afb3c9bb3"
+    },
+    "record": {
+      "id": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+      "version": 2,
+      "status": "bound",
+      "recordHash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+      "quoteHash": "97ecb641cc3f68b1b6cfca3a3e93a3847fa927cf3d9edc7845a549c5f1f85190",
+      "productPolicyHash": "4add22b5c68c4d5019c98cc45f78f1885ec563dae34321bf907fd90f53c79aae",
+      "runtimeReleaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+      "currency": "GBP",
+      "premiumMinor": "100000",
+      "commissionMinor": "7000",
+      "commissionBps": 700,
+      "capacityMinor": "100000"
+    },
+    "history": [
+      {
+        "version": 1,
+        "status": "quoted",
+        "hash": "af10bf4bd3bccdeefb5dc5b1fa4df469efd8b007a0b7c465035f289d0b8e82f9"
+      },
+      {
+        "version": 2,
+        "status": "bound",
+        "hash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce"
+      }
+    ],
+    "eventHashChainVerified": true,
+    "betaReleaseAbsent": true,
+    "crossTenantRecordReadDenied": true,
+    "businessRecordRecoveryVerified": true,
+    "restoredHttpBusinessWorkflowRun": false
+  },
+  "liveRestart": {
+    "verifiedAt": "2026-09-06T16:01:55.127851+00:00",
+    "buildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+    "containerId": "be80c6c68d92efb8cbc6023a2dff76b86032e1ea42060e724f50f5d4c8ea67d7",
+    "startedBefore": "2026-09-06T15:47:41.321693968Z",
+    "startedAfter": "2026-09-06T16:01:52.951853749Z",
+    "sameManagedDiskDatabaseFiles": true,
+    "databaseRestorePerformed": false,
+    "boundRecordVersion": 2,
+    "boundRecordHash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+    "activeReleaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+    "health": {
+      "status": "ok",
+      "version": "0.1.0",
+      "mode": "hosted-sandbox",
+      "environment": "sandbox",
+      "buildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+      "region": "westeurope",
+      "storage": "sqlite-single-writer-managed-disk",
+      "productionReady": false
+    }
+  },
+  "backupSchedule": {
+    "unit": "kernel-backup.timer",
+    "enabled": true,
+    "active": true,
+    "schedule": "hourly with up to120 seconds random delay",
+    "firstScheduledRunObserved": false,
+    "nextScheduledAt": "2026-09-06T17:00:11Z",
+    "manualServiceTest": {
+      "result": "success",
+      "exitStatus": 0,
+      "snapshot": "20260906T160229.371535Z",
+      "completedAt": "2026-09-06T16:02:29Z"
+    }
+  },
+  "limits": [
+    "The restored HTTP server booted with exact SHA and preserved authentication requirements; business release/record/hash-chain reads used the same compiled Store methods on the restored copy.",
+    "The drill reused existing private provider configuration and bootstrap; total VM-loss/credential reprovisioning was not rehearsed.",
+    "Fresh intern sign-in, ChatGPT connector action, customer golden journeys and customer acceptance are not established by this recovery test."
+  ],
+  "postRestartBrowser": {
+    "verifiedBy": "Parent agent inspected the actual signed-in browser after the ordinary live restart",
+    "persistedGoogleAdministratorSession": true,
+    "reloginRequired": false,
+    "sessionInjected": false,
+    "correctAlphaTenantOpened": true,
+    "boundRecordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+    "version": 2,
+    "status": "bound",
+    "runtimeReleaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+    "premiumMinor": "100000",
+    "commissionMinor": "7000",
+    "historyVersions": [1, 2]
+  }
+}

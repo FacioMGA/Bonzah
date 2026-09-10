@@ -1,0 +1,124 @@
+.fnol-panel {
+  margin-top: 24px;
+}
+.fnol-panel .panel-heading {
+  align-items: flex-start;
+  gap: 16px;
+}
+.fnol-boundary {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  background: #f1f6f6;
+  border-left: 3px solid var(--teal);
+  line-height: 1.6;
+}
+.fnol-form,
+.fnol-inspection {
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.fnol-form fieldset {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  margin: 20px 0;
+  min-width: 0;
+}
+.fnol-form legend {
+  font-weight: 700;
+  padding: 0 8px;
+}
+.fnol-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.fnol-form .form-field {
+  min-width: 0;
+  margin-bottom: 14px;
+}
+.fnol-form input,
+.fnol-form select,
+.fnol-form textarea {
+  max-width: 100%;
+}
+.fnol-evidence-row {
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 12px;
+}
+.fnol-declaration {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  line-height: 1.6;
+  margin-top: 24px;
+}
+.fnol-declaration input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+}
+.fnol-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.fnol-register {
+  margin-top: 24px;
+}
+.fnol-notice {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  border-top: 1px solid var(--border);
+  padding: 20px 0;
+}
+.fnol-notice > div {
+  min-width: 0;
+}
+.fnol-notice h3 {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+.fnol-notice .fnol-actions {
+  max-width: 460px;
+}
+.fnol-flags {
+  line-height: 1.6;
+  padding-left: 24px;
+}
+.fnol-flags li {
+  margin: 8px 0;
+}
+.fnol-inspection dd,
+.fnol-inspection p,
+.fnol-inspection li {
+  overflow-wrap: anywhere;
+}
+.fnol-inspection li {
+  margin-bottom: 8px;
+}
+@media (max-width: 700px) {
+  .fnol-form-grid,
+  .fnol-evidence-row {
+    grid-template-columns: 1fr;
+  }
+  .fnol-notice {
+    flex-direction: column;
+  }
+  .fnol-panel .panel-heading {
+    flex-wrap: wrap;
+  }
+  .fnol-actions .button {
+    white-space: normal;
+  }
+  .fnol-form fieldset {
+    padding: 12px;
+  }
+}

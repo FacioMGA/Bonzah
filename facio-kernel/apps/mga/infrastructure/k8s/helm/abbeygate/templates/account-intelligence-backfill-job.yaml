@@ -1,0 +1,84 @@
+{{- if .Values.accountIntelligenceBackfill.runId }}
+{{- $tenantSlug := required "accountIntelligenceBackfill.tenantSlug is required when running the account-intelligence recovery Job" .Values.accountIntelligenceBackfill.tenantSlug }}
+{{- if not (has $tenantSlug (list "abbeygate-cy" "abbeygate-pt" "abbeygate-gr" "abbeygate-es")) }}
+{{- fail "accountIntelligenceBackfill.tenantSlug must be one of abbeygate-cy, abbeygate-pt, abbeygate-gr, abbeygate-es" }}
+{{- end }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "abbeygate.fullname" . | trunc 38 | trimSuffix "-" }}-ai-backfill-{{ .Values.accountIntelligenceBackfill.runId | lower | trunc 12 | trimSuffix "-" }}
+  labels:
+    {{- include "abbeygate.labels" . | nindent 4 }}
+    app.kubernetes.io/component: account-intelligence-backfill
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "5"
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  backoffLimit: {{ .Values.accountIntelligenceBackfill.backoffLimit }}
+  activeDeadlineSeconds: {{ .Values.accountIntelligenceBackfill.activeDeadlineSeconds }}
+  ttlSecondsAfterFinished: {{ .Values.accountIntelligenceBackfill.ttlSecondsAfterFinished }}
+  template:
+    metadata:
+      labels:
+        {{- include "abbeygate.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: account-intelligence-backfill
+    spec:
+      serviceAccountName: {{ include "abbeygate.serviceAccountName" . }}
+      restartPolicy: Never
+      {{- if .Values.nodeSelector.worker }}
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector.worker | nindent 8 }}
+      {{- end }}
+      {{- if .Values.keyVault.enabled }}
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: {{ .Values.keyVault.secretProviderClassName }}
+      {{- end }}
+      containers:
+        - name: account-intelligence-backfill
+          image: "{{ .Values.image.registry }}/{{ .Values.worker.imageRepository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["node", "backend/dist/scripts/runAccountIntelligenceBackfill.mjs"]
+          env:
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.runtimeConfig.configMapName }}
+                  key: NODE_ENV
+            {{- range $envName, $envValue := .Values.accountIntelligenceBackfill.env }}
+            - name: {{ $envName }}
+              value: {{ $envValue | quote }}
+            {{- end }}
+            {{- range $envName, $secretKey := .Values.runtimeConfig.secretKeys }}
+            - name: {{ $envName }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.runtimeConfig.secretName }}
+                  key: {{ $secretKey }}
+            {{- end }}
+            {{- range $envName, $secretKey := .Values.runtimeConfig.optionalSecretKeys }}
+            - name: {{ $envName }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.runtimeConfig.secretName }}
+                  key: {{ $secretKey }}
+                  optional: true
+            {{- end }}
+            - name: TENANT_SLUG
+              value: {{ $tenantSlug | quote }}
+            - name: DEFAULT_REGION_CODE
+              value: {{ trimPrefix "abbeygate-" $tenantSlug | upper | quote }}
+          resources:
+            {{- toYaml .Values.worker.resources | nindent 12 }}
+          {{- if .Values.keyVault.enabled }}
+          volumeMounts:
+            - name: secrets-store-inline
+              mountPath: /mnt/secrets-store
+              readOnly: true
+          {{- end }}
+{{- end }}

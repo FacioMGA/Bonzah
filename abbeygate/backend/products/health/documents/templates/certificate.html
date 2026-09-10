@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Abbeygate Immigration Medical — Certificate of Insurance</title>
+  <link rel="stylesheet" href="styles/pdf-theme.css" />
+  <style>
+    .draft-watermark {
+      position: fixed; inset: 0;
+      display: none;
+      align-items: center; justify-content: center;
+      font-size: 120px; font-weight: 900;
+      letter-spacing: 0.22em; color: var(--brand-navy);
+      opacity: 0.08; transform: rotate(-22deg);
+      pointer-events: none; z-index: 0;
+    }
+    body.is-draft .draft-watermark { display: flex; }
+    .draft-watermark span { padding: 18px 28px; border: 8px solid rgba(14, 53, 83, 0.18); border-radius: 18px; }
+    .page { padding: 28px 32px; position: relative; }
+    .doc-title { background: var(--brand-navy); color: #fff; padding: 8px 14px; font-weight: 800; letter-spacing: 0.04em; font-size: 14px; text-align: center; margin-bottom: 10px; }
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table td { padding: 4px 8px; font-size: 11px; vertical-align: top; border-bottom: 1px solid #e5e7eb; }
+    .info-table td.label { width: 30%; color: #4b5563; font-weight: 600; }
+    .insured-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .insured-table th, .insured-table td { font-size: 10.5px; padding: 5px 7px; border: 1px solid #d1d5db; text-align: left; }
+    .insured-table th { background: var(--surface-2); font-weight: 700; }
+    .cover-section-title { font-weight: 800; color: var(--brand-navy); margin-top: 12px; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .cover-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .cover-table td { padding: 4px 8px; border-bottom: 1px solid #e5e7eb; }
+    .cover-table td.amount { text-align: right; font-weight: 700; color: var(--brand-navy); }
+    .certify-block { margin-top: 16px; font-size: 11px; line-height: 1.55; padding: 12px; background: var(--surface); border-left: 3px solid var(--accent-teal); }
+    .signature-row { display: flex; justify-content: space-between; margin-top: 24px; font-size: 11px; }
+    .coverholder-block { font-size: 11px; line-height: 1.4; color: #1f2937; margin-bottom: 16px; }
+  </style>
+</head>
+<body class="{{#if isDraft}}is-draft{{/if}}">
+  <div class="draft-watermark"><span>DRAFT</span></div>
+
+  <section class="page">
+    <div class="coverholder-block">
+      <strong>{{coverholderName}}</strong><br/>
+      {{coverholderAddress}}<br/>
+      Tel: {{coverholderTelephone}} · Fax: {{coverholderFax}}
+    </div>
+
+    <div class="doc-title">CERTIFICATE OF INSURANCE</div>
+    <p style="font-size:11.5px;font-weight:700;color:var(--brand-navy);margin:0 0 8px;">SECTION A : INBOUND INDIVIDUAL MEDICAL INSURANCE</p>
+
+    <table class="info-table">
+      <tr><td class="label">Policy No.</td><td>{{policyNumber}}</td><td class="label">Certificate No.</td><td>{{certificateNumber}}</td></tr>
+    </table>
+
+    <div class="cover-section-title">PROPOSER DETAILS</div>
+    <table class="info-table">
+      <tr><td class="label">Name</td><td>{{proposerName}}</td></tr>
+      <tr><td class="label">Mailing Address</td><td>{{proposerMailingAddress}}</td></tr>
+      <tr><td class="label">ID / Passport Number</td><td>{{proposerIdentityNumber}}</td></tr>
+      <tr><td class="label">Occupation</td><td>{{proposerOccupationLabel}}</td></tr>
+      <tr><td class="label">Telephone</td><td>{{proposerTelephone}}</td></tr>
+    </table>
+
+    <div class="cover-section-title">INSURED PERSON{{#unless isSingleInsured}}S{{/unless}}' DETAILS</div>
+    <table class="insured-table">
+      <thead>
+        <tr><th>#</th><th>Full Name</th><th>ID / Passport</th><th>Date of Birth</th><th>Gender</th><th>Occupation</th><th>Age / Band</th><th>Excess</th></tr>
+      </thead>
+      <tbody>
+        {{#each insuredPersons}}
+        <tr>
+          <td>{{this.ordinal}}</td>
+          <td>{{this.fullName}}</td>
+          <td>{{this.idNumber}}</td>
+          <td>{{this.dateOfBirthDisplay}}</td>
+          <td>{{this.genderLabel}}</td>
+          <td>{{this.occupationLabel}}</td>
+          <td>{{this.age}} ({{this.ageBand}})</td>
+          <td>{{this.excessDisplay}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <table class="info-table" style="margin-top:10px;">
+      <tr><td class="label">Inception Date</td><td>{{inceptionDateDisplay}}</td><td class="label">Expiry Date</td><td>{{expiryDateDisplay}}</td></tr>
+    </table>
+
+    <div class="cover-section-title">COVER PROVIDED — BASIC COVER</div>
+    <table class="cover-table">
+      <tr><td>Inpatient care — per Illness or Accident</td><td class="amount">{{baseCover.inpatientPerIllnessDisplay}}</td></tr>
+      <tr><td>Inpatient care — per Period of Insurance and per Person</td><td class="amount">{{baseCover.inpatientPerPeriodDisplay}}</td></tr>
+      <tr><td>Daily Hospitalisation (Regular)</td><td class="amount">{{baseCover.dailyRoomRegularDisplay}}</td></tr>
+      <tr><td>Daily Hospitalisation (Emergency Room)</td><td class="amount">{{baseCover.dailyRoomEmergencyDisplay}}</td></tr>
+      <tr><td>Childbirth lump-sum</td><td class="amount">{{baseCover.childbirthLumpSumDisplay}}</td></tr>
+      <tr><td>Transportation of Remains</td><td class="amount">{{baseCover.repatriationLimitDisplay}}</td></tr>
+    </table>
+
+    {{#if isGhsBeneficiary}}
+    <div class="cover-section-title">EXTENDED COVER — GESY BENEFICIARY ONLY</div>
+    <table class="cover-table">
+      <tr><td>Outpatient — per Illness or Accident</td><td class="amount">{{ghsExtension.outpatientPerIllnessDisplay}}</td></tr>
+      <tr><td>Outpatient — per Period of Insurance and per Person</td><td class="amount">{{ghsExtension.outpatientPerPeriodDisplay}}</td></tr>
+      <tr><td>Per Doctor's Visit</td><td class="amount">{{ghsExtension.doctorVisitDisplay}}</td></tr>
+      <tr><td>Doctor visits — per Period of Insurance and per Person</td><td class="amount">{{ghsExtension.doctorVisitsPerPeriodDisplay}}</td></tr>
+      <tr><td>Medications</td><td class="amount">{{ghsExtension.medicationsDisplay}}</td></tr>
+      <tr><td>Outpatient Excess</td><td class="amount">{{ghsExtension.outpatientExcessDisplay}}</td></tr>
+      <tr><td>Co-insurance</td><td class="amount">{{ghsExtension.coinsurancePercentDisplay}}</td></tr>
+    </table>
+    {{/if}}
+
+    <div class="certify-block">
+      We certify that the above mentioned Insured Person{{#unless isSingleInsured}}s have{{else}} has{{/unless}} submitted to our Company an application for insurance. The request was accepted under the Terms, Conditions and Exceptions of our Policy.
+    </div>
+
+    <div class="signature-row">
+      <div><strong>Issue Date:</strong> {{issueDateDisplay}}</div>
+      <div>
+        <img src="assets/ps-signature.png" alt="Authorised Signatory" style="height:38px;width:auto;display:block;" />
+        For and on behalf of {{coverholderName}}
+      </div>
+    </div>
+    <p style="font-size:10px;color:#6b7280;margin-top:18px;text-align:center;">(The Certificate is not valid unless countersigned by an authorised signatory of the Company)</p>
+  </section>
+</body>
+</html>

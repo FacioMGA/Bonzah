@@ -1,0 +1,245 @@
+# FacioMGA - API container (no Chromium)
+#
+# Purpose: fast deploys + fast cold starts.
+# Document generation runs in a separate worker container (BullMQ) when DOC_GENERATION_MODE=queue.
+
+FROM node:22-bookworm-slim AS frontend-builder
+WORKDIR /app
+ENV PUPPETEER_SKIP_DOWNLOAD=1
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
+RUN npm install -g npm@11.10.0
+
+ARG VITE_GOOGLE_MAPS_API_KEY
+ENV VITE_GOOGLE_MAPS_API_KEY=$VITE_GOOGLE_MAPS_API_KEY
+ARG VITE_SENTRY_DSN
+ARG VITE_SENTRY_ENVIRONMENT
+ARG VITE_SENTRY_RELEASE
+ARG VITE_SENTRY_ERROR_SAMPLE_RATE
+ARG VITE_SENTRY_TRACES_SAMPLE_RATE
+ARG VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE
+ARG VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE
+ARG VITE_SENTRY_SEND_DEFAULT_PII
+ARG SENTRY_ORG
+ARG SENTRY_PROJECT
+ARG SENTRY_AUTH_TOKEN
+ARG SENTRY_RELEASE
+ENV VITE_SENTRY_DSN=$VITE_SENTRY_DSN
+ENV VITE_SENTRY_ENVIRONMENT=$VITE_SENTRY_ENVIRONMENT
+ENV VITE_SENTRY_RELEASE=$VITE_SENTRY_RELEASE
+ENV VITE_SENTRY_ERROR_SAMPLE_RATE=$VITE_SENTRY_ERROR_SAMPLE_RATE
+ENV VITE_SENTRY_TRACES_SAMPLE_RATE=$VITE_SENTRY_TRACES_SAMPLE_RATE
+ENV VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE=$VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE
+ENV VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE=$VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE
+ENV VITE_SENTRY_SEND_DEFAULT_PII=$VITE_SENTRY_SEND_DEFAULT_PII
+ENV SENTRY_ORG=$SENTRY_ORG
+ENV SENTRY_PROJECT=$SENTRY_PROJECT
+ENV SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN
+ENV SENTRY_RELEASE=$SENTRY_RELEASE
+
+COPY package*.json ./
+COPY packages/ ./packages/
+RUN npm ci
+COPY tsconfig.json ./
+COPY frontend/vite.config.ts frontend/vitest.config.ts ./frontend/
+COPY postcss.config.js tailwind.config.js ./
+COPY frontend/index.html ./frontend/
+COPY frontend/public/ ./frontend/public/
+COPY frontend/src/ ./frontend/src/
+COPY tools/quality/ ./tools/quality/
+COPY prisma/ ./prisma/
+RUN npm run build:validation && npm run build:products
+RUN npm run build:frontend
+
+FROM node:22-bookworm-slim AS backend-builder
+WORKDIR /app
+ENV PUPPETEER_SKIP_DOWNLOAD=1
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
+# tsc memory grows roughly linearly with the number of source files in
+# the program; the V2 additions (operator MCP V2 + quote-lifecycle
+# services) pushed it past Node's default ~2 GB heap and CI started
+# failing with "Ineffective mark-compacts near heap limit" during
+# `npm run build:api` (the final `tsc -p backend/tsconfig.json` step).
+# Bumping to 4 GB gives headroom for future module growth without
+# changing tsconfig or the script itself.
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openssl \
+    ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+COPY package*.json ./
+COPY packages/ ./packages/
+RUN npm ci --omit=optional
+COPY tsconfig.json ./
+COPY prisma/ ./prisma/
+COPY backend/ ./backend/
+COPY tools/quality/ ./tools/quality/
+COPY tools/migrations/ ./tools/migrations/
+COPY frontend/src/modules/policies/list/ ./frontend/src/modules/policies/list/
+COPY email-templates-temp/ ./email-templates-temp/
+COPY docs/architecture/baselines/ ./docs/architecture/baselines/
+RUN npm run prisma:generate
+RUN npm run build:api
+
+FROM node:22-bookworm-slim AS production
+WORKDIR /app
+RUN npm install -g npm@11.10.0
+
+# Prevent Puppeteer from downloading Chromium during npm install.
+ENV PUPPETEER_SKIP_DOWNLOAD=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openssl \
+    ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+COPY package*.json ./
+COPY packages/ ./packages/
+RUN npm ci --omit=dev --omit=optional && npm cache clean --force
+
+COPY --from=backend-builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=backend-builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=backend-builder /app/packages ./packages
+COPY --from=backend-builder /app/tools/migrations ./tools/migrations
+# ADR-0034 — the Helm migration Job (`migration.enabled=true` in
+# `aks-deploy.yml`) runs `npm run prisma:migrate:deploy` from this image.
+# `prisma migrate deploy` needs `prisma/schema.prisma` + `prisma/migrations/*`
+# on disk; without these the job crashes with "Could not find a
+# schema.prisma file". Build-time tripwire below ensures the COPY stays.
+COPY --from=backend-builder /app/prisma ./prisma
+RUN test -f ./prisma/schema.prisma && test -d ./prisma/migrations
+COPY --from=backend-builder /app/frontend/src/modules/policies/list ./frontend/src/modules/policies/list
+RUN test -f ./frontend/src/modules/policies/list/registry.json
+COPY --from=backend-builder /app/email-templates-temp ./email-templates-temp
+
+COPY --from=frontend-builder /app/frontend/dist ./dist
+COPY --from=backend-builder /app/backend/dist ./backend/dist
+COPY --from=backend-builder /app/backend/platform/behavior/manifest/policyBehaviorManifest.json ./backend/dist/platform/behavior/manifest/policyBehaviorManifest.json
+RUN test -f ./backend/dist/platform/behavior/manifest/policyBehaviorManifest.json
+
+COPY --from=backend-builder /app/backend/products/motor/documents/templates ./backend/dist/products/motor/documents/templates
+RUN test -f ./backend/dist/products/motor/documents/templates/certificate.html && \
+    test -f ./backend/dist/products/motor/documents/templates/schedule.html && \
+    test -f ./backend/dist/products/motor/documents/templates/endorsements.html && \
+    test -f ./backend/dist/products/motor/documents/templates/invoice.html && \
+    test -f ./backend/dist/products/motor/documents/templates/green-card.html && \
+    test -f ./backend/dist/products/motor/documents/templates/statement-of-fact.html
+
+COPY --from=backend-builder /app/backend/products/motor/documents/static ./backend/dist/products/motor/documents/static
+RUN test -f ./backend/dist/products/motor/documents/static/Abbeygate_Motor_Cyprus_Policy_Wording_AB-S-1-2026.pdf && \
+    test -f ./backend/dist/products/motor/documents/static/Abbeygate_Motor_Cyprus_IPID_LIC_Santam_UMR_B176026EEA6152.pdf && \
+    test -f ./backend/dist/products/motor/documents/static/Abbeygate_Motor_Portugal_IPID_LIC_Santam_August2026.pdf && \
+    test -f ./backend/dist/products/motor/documents/static/Abbeygate_Motor_Portugal_Policy_Wording_AB-S-1-2026.pdf && \
+    test -f ./backend/dist/products/motor/documents/static/Abbeygate_Motor_Spain_Policy_Wording_AB-S-1-2026.pdf
+
+# ADR-0017 / ABY-97 — Home + Travel doc-pack templates. The previous
+# image only copied motor templates, so the worker's
+# `compile(templatesDir, 'certificate.html', data)` threw ENOENT for
+# every home/travel issuance, BullMQ exhausted retries, and the
+# customer wizard polled `pending` forever (no terminal `failed`
+# signal — see ADR-0017). The presence checks below fail the build
+# the moment a template is renamed/deleted without updating the COPY.
+COPY --from=backend-builder /app/backend/products/home/documents/templates ./backend/dist/products/home/documents/templates
+COPY --from=backend-builder /app/backend/products/travel/documents/templates ./backend/dist/products/travel/documents/templates
+COPY --from=backend-builder /app/backend/products/health/documents/templates ./backend/dist/products/health/documents/templates
+COPY --from=backend-builder /app/backend/products/rental/documents/templates ./backend/dist/products/rental/documents/templates
+RUN test -f ./backend/dist/products/home/documents/templates/schedule.html && \
+    test -f ./backend/dist/products/home/documents/templates/statement-of-fact.html && \
+    test -f ./backend/dist/products/travel/documents/templates/certificate.html && \
+    test -f ./backend/dist/products/travel/documents/templates/schedule.html && \
+    test -f ./backend/dist/products/travel/documents/templates/ipid.html && \
+    test -f ./backend/dist/products/travel/documents/templates/medical-card.html && \
+    test -f ./backend/dist/products/travel/documents/templates/statement-of-fact.html && \
+    test -f ./backend/dist/products/health/documents/templates/schedule.html && \
+    test -f ./backend/dist/products/health/documents/templates/certificate.html && \
+    test -f ./backend/dist/products/health/documents/templates/statement-of-fact.html
+
+# Pricing data JSON (motor + home rate matrices). The TS compiler does not
+# copy non-.ts assets, so these must be staged alongside the compiled JS
+# that resolves them via `path.dirname(import.meta.url)`. Loaded eagerly at
+# module top-level by `autoInsuranceCalculator.ts` and `homeRateCards.ts`,
+# so a missing file crashes the API at startup with `ENOENT`.
+COPY --from=backend-builder /app/backend/products/motor/pricing/data ./backend/dist/products/motor/pricing/data
+COPY --from=backend-builder /app/backend/products/home/pricing/data ./backend/dist/products/home/pricing/data
+COPY --from=backend-builder /app/backend/products/travel/pricing/data ./backend/dist/products/travel/pricing/data
+COPY --from=backend-builder /app/backend/products/health/pricing/data ./backend/dist/products/health/pricing/data
+RUN test -f ./backend/dist/products/motor/pricing/data/abbeygate-auto-cyprus-2022.json && \
+    test -f ./backend/dist/products/motor/pricing/data/classic-car-rates.json && \
+    test -f ./backend/dist/products/home/pricing/data/home-rates-2026.json && \
+    test -f ./backend/dist/products/home/pricing/data/wildfire-risk-tiers.json && \
+    test -f ./backend/dist/products/travel/pricing/data/brit-travel-2025.json && \
+    test -f ./backend/dist/products/travel/pricing/data/travel-eu-tax-rates.json && \
+    test -f ./backend/dist/products/travel/pricing/data/travel-fee-bands.json && \
+    test -f ./backend/dist/products/health/pricing/data/brit-health-2026.json
+
+# ADR-0017 / ABY-97 — HOME doc-pack `staticPdf` entries (IPID, policy
+# wording, Europ Assistance booklet) live under the product folder per
+# CHAMPS canonical-ownership and the root-hygiene guard (artifacts/ is
+# hard-banned from tracking). Mirror them into dist/ alongside the
+# compiled `documentPackContract.js` that resolves them via
+# `path.join(path.dirname(import.meta.url), 'static', ...)`.
+COPY --from=backend-builder /app/backend/products/home/documents/static ./backend/dist/products/home/documents/static
+RUN test -f ./backend/dist/products/home/documents/static/BeazleyHome_IPID_CyprusGreeceWithSubsidence2023.pdf && \
+    test -f ./backend/dist/products/home/documents/static/BeazleyHome_IPID_SpainAndPortugal.pdf && \
+    test -f "./backend/dist/products/home/documents/static/Beazley_Lloyds_Home_Policy_Wording_Cyprus_(CyprusDomiciled).pdf" && \
+    test -f "./backend/dist/products/home/documents/static/LloydsHomePolicyWordingCyprus(UKDomiciled)_2024.pdf" && \
+    test -f ./backend/dist/products/home/documents/static/Beazley_Home_Portugal_Domiciled_Policy_Wording_Amended_Clean.pdf && \
+    test -f ./backend/dist/products/home/documents/static/Beazley_Home_Portugal_UK_Domiciled_Policy_Wording_Amended_Clean.pdf && \
+    test -f ./backend/dist/products/home/documents/static/Abbeygate_Home_Greece_Domiciled.pdf && \
+    test -f ./backend/dist/products/home/documents/static/Abbeygate_Home_Greece_UK_Domiciled.pdf && \
+    test -f ./backend/dist/products/home/documents/static/LloydsHome_IPID_GR.pdf && \
+    test -f ./backend/dist/products/home/documents/static/NDP82515223207-04-2026.pdf
+
+# Travel issued-pack policy wording is also a static PDF. Keep it under
+# the product document contract so the image build fails before the worker
+# can throw ENOENT during issuance.
+COPY --from=backend-builder /app/backend/products/travel/documents/static ./backend/dist/products/travel/documents/static
+RUN test -f ./backend/dist/products/travel/documents/static/Brit_Travel_Policy_Wording_Amended_Clean.pdf && \
+    test -f ./backend/dist/products/travel/documents/static/Brit_Travel_SingleTrip_IPID.pdf && \
+    test -f ./backend/dist/products/travel/documents/static/Brit_Travel_AnnualMultiTrip_IPID.pdf
+
+# HEALTH (Brit Immigration Medical) issued-pack static PDFs — IPID and
+# Section A policy wording. Same eager-resolve pattern as home/travel
+# (see HEALTH_DOCUMENT_PACK_CONTRACT). Without this the API + worker
+# crash at startup because `backend/products/health/endorsementTemplates.ts`
+# does module-load-time `loadHealthBaseCover()` which reads
+# `brit-health-2026.json`; the rate-card copy above covers that file,
+# this copy makes sure the static PDFs are also present for issuance.
+COPY --from=backend-builder /app/backend/products/health/documents/static ./backend/dist/products/health/documents/static
+RUN test -f ./backend/dist/products/health/documents/static/BritImmigrationHealthIPID.pdf && \
+    test -f ./backend/dist/products/health/documents/static/Abbeygate_Immigration_Health_Wording.pdf
+
+# ADR-0047 — tenant terms-of-business PDFs attached to EVERY outbound
+# customer email for tenants with a configured country terms doc (CY, PT).
+# `tenantTermsAttachment.ts` does a synchronous `fs.readFileSync` of these
+# on the send path, so a missing asset throws ENOENT and blocks ALL
+# customer emails (welcome-on-contract included) for that territory across
+# every product. This is a cross-product/cross-territory concern, not a
+# product doc dir, but it lives on the SAME runtime-artifact spine: ship it
+# and assert it at build time so the image fails before it can ship broken.
+COPY --from=backend-builder /app/backend/modules/communications/infra/adapters/static ./backend/dist/modules/communications/infra/adapters/static
+RUN test -f ./backend/dist/modules/communications/infra/adapters/static/TermsAndConditions_CY.pdf && \
+    test -f ./backend/dist/modules/communications/infra/adapters/static/TermsAndConditions_PT.pdf
+
+# Non-root
+RUN useradd -m -u 1001 nodejs
+USER nodejs
+
+EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:3000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
+
+# Sentry ESM install: a single `--import ./instrument.js` is the
+# canonical Sentry v10 eager-init pattern (we call Sentry.init inside
+# the instrument file, so the preload hook is unnecessary and was
+# actually fighting the eager init in our 2026-05-17 production run).
+# The instrument file registers the OpenTelemetry import-in-the-middle
+# hook AND calls Sentry.init in one step before any application module
+# loads — see `backend/platform/observability/instrument.ts`.
+#
+# Late-init via `@sentry/node/preload` is documented for the case where
+# the DSN must be fetched at runtime; we get the DSN from env at boot,
+# so we use the simpler eager pattern.
+CMD ["node", "--import", "./backend/dist/platform/observability/instrument.js", "backend/dist/index.js"]

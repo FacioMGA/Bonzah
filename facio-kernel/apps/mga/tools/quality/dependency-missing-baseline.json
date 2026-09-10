@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "notes": "Fail only on newly introduced missing direct dependencies from depcheck output. k6 imports are ignored because load scripts run in the k6 runtime.",
+  "knownMissing": []
+}

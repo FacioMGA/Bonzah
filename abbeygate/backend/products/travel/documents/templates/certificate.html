@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Travel Insurance Certificate</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+      color: #0F172A;
+      margin: 0;
+      padding: 22mm 18mm 16mm 18mm;
+      font-size: 11.5px;
+      line-height: 1.45;
+    }
+    .doc-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #0E3553;
+      margin-bottom: 4px;
+    }
+    .doc-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #64748B;
+      margin-bottom: 18px;
+    }
+    .badge-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 18px; }
+    .badge {
+      border: 1px solid rgba(15,23,42,0.12);
+      border-radius: 10px;
+      padding: 10px 14px;
+      background: #FBFCFE;
+      min-width: 200px;
+    }
+    .badge .label { font-size: 9.5px; letter-spacing: 0.2em; color: #64748B; text-transform: uppercase; }
+    .badge .value { font-size: 14px; font-weight: 600; color: #0E3553; margin-top: 4px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 28px;
+      margin: 14px 0 22px 0;
+    }
+    .grid .row { display: flex; flex-direction: column; }
+    .grid .label { font-size: 10px; letter-spacing: 0.16em; color: #64748B; text-transform: uppercase; margin-bottom: 4px; }
+    .grid .value { font-size: 12.5px; font-weight: 600; color: #0F172A; }
+    h2 {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0E3553;
+      margin: 22px 0 10px 0;
+      border-bottom: 1px solid rgba(15,23,42,0.10);
+      padding-bottom: 4px;
+    }
+    .destination-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .destination-list span {
+      background: #EEF2F7;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: #0E3553;
+    }
+    .footer-note {
+      font-size: 9.5px;
+      color: #64748B;
+      margin-top: 18px;
+      border-top: 1px dashed rgba(15,23,42,0.15);
+      padding-top: 10px;
+    }
+    .draft-banner {
+      background: #FEF3C7;
+      color: #78350F;
+      border: 1px solid #F59E0B;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+  {{#if isDraft}}<div class="draft-banner">DRAFT — Issued only after the policy is bound and this version is finalised.</div>{{/if}}
+
+  <div class="doc-title">Travel Insurance — Certificate</div>
+  <div class="doc-subtitle">{{tenant.countryName}} · UMR {{umr}}</div>
+
+  <div class="badge-row">
+    <div class="badge">
+      <div class="label">Policy number</div>
+      <div class="value">{{policyNumber}}</div>
+    </div>
+    <div class="badge">
+      <div class="label">Plan</div>
+      <div class="value">{{planLabel}}</div>
+    </div>
+    <div class="badge">
+      <div class="label">Total Premium</div>
+      <div class="value">{{currencySymbol}}{{premium.gross}}</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="row"><span class="label">Insured</span><span class="value">{{policyHolder.name}}</span></div>
+    <div class="row"><span class="label">Cover Type</span><span class="value">{{coverTypeLabel}}</span></div>
+    <div class="row"><span class="label">Trip Type</span><span class="value">{{tripTypeLabel}}</span></div>
+    <div class="row"><span class="label">Lead Traveller DOB</span><span class="value">{{travellers.leadTravellerDOB}}</span></div>
+    <div class="row"><span class="label">Period of Insurance</span><span class="value">{{period.startDisplay}} — {{period.endDisplay}}</span></div>
+    <div class="row"><span class="label">Country of Residence</span><span class="value">{{eligibility.countryOfResidence}}</span></div>
+    <div class="row"><span class="label">Maximum Trip Duration</span><span class="value">{{maxTripDurationDisplay}}</span></div>
+    <div class="row"><span class="label">Date of Issue</span><span class="value">{{issueDateDisplay}}</span></div>
+  </div>
+
+  <h2>Destinations</h2>
+  <div class="destination-list">
+    {{#each destinations}}<span>{{this}}</span>{{/each}}
+    {{#unless destinations.length}}<span>Worldwide cover (per area selected)</span>{{/unless}}
+  </div>
+
+  <h2>Optional Cover</h2>
+  <div class="destination-list">
+    {{#each addonsLabels}}<span>{{this}}</span>{{/each}}
+    {{#unless addonsLabels.length}}<span>None selected</span>{{/unless}}
+  </div>
+
+  <div class="footer-note">
+    This certificate confirms the existence of a travel insurance contract issued through Abbeygate's
+    {{tenant.countryName}} authorised Lloyd's coverholder. Full terms, conditions and exclusions are set out
+    in the policy schedule and policy wording. UMR: {{umr}}.
+  </div>
+</body>
+</html>

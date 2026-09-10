@@ -1,0 +1,133 @@
+{
+  "observedAt": "2026-09-06T17:33:25.993387+00:00",
+  "method": "Azure VM RunCommand, read-only Docker/systemd metadata and SQLite readOnly connections using deployed canonical/schema modules; no restart, migration, data or configuration mutation",
+  "activeSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+  "releaseArchive": {
+    "checksumFile": "4da24b25a8a33302113c6db54605ceaa36e32b504dc79ca8f67d4b18c1faf96e  image.tar.gz",
+    "actualSha256": "4da24b25a8a33302113c6db54605ceaa36e32b504dc79ca8f67d4b18c1faf96e"
+  },
+  "container": {
+    "image": "facio-kernel:58d391d0e2388a80733552835e96c59acb2a23d1",
+    "imageId": "sha256:bb93c183466acc97349429f7ba86838634c8897c4727ac23eb37f593347aadcd",
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 4784,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-06T17:31:02.41114544Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    }
+  },
+  "backupTimer": {
+    "NextElapseUSecRealtime": "Sun 2026-09-06 18:01:23 UTC",
+    "LastTriggerUSec": "Sun 2026-09-06 17:00:12 UTC",
+    "ActiveState": "active",
+    "UnitFileState": "enabled"
+  },
+  "backupService": {
+    "Result": "success",
+    "ExecMainStartTimestamp": "Sun 2026-09-06 17:00:12 UTC",
+    "ExecMainExitTimestamp": "Sun 2026-09-06 17:00:12 UTC",
+    "ExecMainStatus": "0",
+    "ActiveState": "inactive"
+  },
+  "latestLocalBackup": {
+    "snapshotId": "20260906T173100.438840Z",
+    "createdAt": "2026-09-06T17:31:00.438944+00:00",
+    "databases": [
+      {
+        "file": "kernel.sqlite",
+        "sha256": "089b543e48ea688e6ee029e74da2e74340fee1fa3708d3686d50ab697be00e8c"
+      },
+      {
+        "file": "auth.sqlite",
+        "sha256": "763a07513162d203fcbf9a8dc0f97583d90297e45f961eaa2ba0d5042d6cdbdd"
+      }
+    ]
+  },
+  "latestBackupJournal": "Finished kernel-backup.service - Facio Kernel verified SQLite off-host backup.\nStarting kernel-backup.service - Facio Kernel verified SQLite off-host backup...\nupload: backups/20260906T170012.538593Z/kernel.sqlite\nupload: backups/20260906T170012.538593Z/auth.sqlite\nupload: backups/20260906T170012.538593Z/manifest.json\nVerified off-host snapshot: 20260906T170012.538593Z\nkernel-backup.service: Deactivated successfully.\nFinished kernel-backup.service - Facio Kernel verified SQLite off-host backup.",
+  "business": {
+    "businessSchema": 5,
+    "authSchema": 1,
+    "businessIntegrity": "ok",
+    "authIntegrity": "ok",
+    "readOnlyConnections": true,
+    "alpha": {
+      "tenantId": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+      "releaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+      "releaseHash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f",
+      "releaseBuildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+      "recordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+      "version": 2,
+      "status": "bound",
+      "recordHash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+      "quoteHash": "97ecb641cc3f68b1b6cfca3a3e93a3847fa927cf3d9edc7845a549c5f1f85190",
+      "productPolicyHash": "4add22b5c68c4d5019c98cc45f78f1885ec563dae34321bf907fd90f53c79aae",
+      "currency": "GBP",
+      "premiumMinor": "100000",
+      "commissionMinor": "7000",
+      "history": [
+        {
+          "version": 1,
+          "status": "quoted",
+          "hash": "af10bf4bd3bccdeefb5dc5b1fa4df469efd8b007a0b7c465035f289d0b8e82f9"
+        },
+        {
+          "version": 2,
+          "status": "bound",
+          "hash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce"
+        }
+      ],
+      "events": ["quote_created", "bound"],
+      "hashChainVerified": true
+    },
+    "beta": {
+      "tenantId": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+      "recordCount": 0,
+      "activeReleaseAbsent": true
+    }
+  },
+  "publicHealth": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "productionReady": false
+  },
+  "deployment": {
+    "runId": 34048683296,
+    "immediatePreUpgradeSnapshotId": "20260906T173100.438840Z",
+    "workflowArchiveChecksumPassed": true,
+    "activatedBuildSha": "58d391d0e2388a80733552835e96c59acb2a23d1"
+  },
+  "immediatePreUpgradeBackupObjects": {
+    "container": "backups",
+    "account": "stkernelsandbox294904",
+    "blobs": [
+      {
+        "lastModified": "2026-09-06T17:31:00+00:00",
+        "name": "20260906T173100.438840Z/auth.sqlite",
+        "size": 28672
+      },
+      {
+        "lastModified": "2026-09-06T17:31:00+00:00",
+        "name": "20260906T173100.438840Z/kernel.sqlite",
+        "size": 294912
+      },
+      {
+        "lastModified": "2026-09-06T17:31:00+00:00",
+        "name": "20260906T173100.438840Z/manifest.json",
+        "size": 327
+      }
+    ],
+    "verification": "Authenticated private blob metadata; full download/hash/schema verification reserved for authorized restore drill"
+  }
+}

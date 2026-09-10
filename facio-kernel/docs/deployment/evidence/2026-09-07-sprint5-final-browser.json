@@ -1,0 +1,28 @@
+{
+  "observedAt": "2026-09-07T07:49:29.375851+00:00",
+  "buildSha": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+  "url": "https://platform.facio.io/studio?tenant=ea44847a-bf87-447a-8691-c61856c10aeb&view=insurance",
+  "identity": "existing actual Google administrator session",
+  "syntheticOnly": true,
+  "checks": [
+    "Existing Google session survived final deployment and reload; serving build displayed 5287a070713a2ec3.",
+    "The original v4 GBP48 policy and distinct v2 GBP48 renewal both remain; no extra record was retained by the regression preview.",
+    "Previous loss No initially hid Loss detail; Yes immediately showed it as required.",
+    "An entered temporary value was hidden on switching No; the first renewal evaluation was valid, priced GBP48 and allowed, with no hidden-answer retry.",
+    "Switching back Yes restored the unsaved local value, invalidated only the preview, and preserved the retained original product evaluation.",
+    "The unsaved form was discarded; original-policy view shows all four retained revisions, three completed document packs, GBP48 premium control, GBP3.36 accrued commission, GBP1 applied and GBP2.36 outstanding.",
+    "The acknowledged internal loss notice remains revision4 against historical policy revision2."
+  ],
+  "nativeAccessibilityCaptureSha256": "5f216d5570dc57c0e2472bc28871b28b12e12936312d69ab0fc75e0df951b551",
+  "retainedRecordIds": [
+    "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+    "6b9d5671-3bb7-4e0e-9746-76ac210947f1"
+  ],
+  "activeReleaseId": "5f2050ef-a2e1-4a23-8f05-16aeda34e2b0",
+  "browserControlNote": "CDP focus/dialog calls timed out during discard. Native accessibility subsequently verified the dialog had closed, the test form was discarded, and the expected record view remained. No application state mutation or defect is inferred from the automation timeout.",
+  "limits": [
+    "A single real administrator session; no independent intern, second reviewer or ChatGPT acceptance.",
+    "Full record/document bytes and copied-snapshot restore are verified separately in final preflight/recovery receipts.",
+    "Synthetic records do not establish customer-approved insurance, payment, reporting or claims delivery."
+  ]
+}

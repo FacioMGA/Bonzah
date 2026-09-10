@@ -1,0 +1,69 @@
+---
+title: Worker Handlers Inventory
+audience: agent
+status: living
+owner: platform-eng
+reviewed: 2026-09-07
+binding: false
+generated_by: tools/docs/generate-workers.mjs
+---
+<!--
+  GENERATED FILE — DO NOT EDIT BY HAND.
+  Run `npm run docs:generate -- --only=workers` to regenerate.
+  CI: `npm run docs:generate -- --check` fails on drift.
+-->
+
+# Worker Handlers Inventory
+
+Canonical list of every BullMQ worker handler under `backend/workers/handlers/`. Concurrency is governed by `WORKER_CONCURRENCY` (env) or per-handler overrides in `registerQueues.ts`. Retry/backoff is set at queue registration time.
+
+## Schema
+
+| Column | Source |
+|--------|--------|
+| Handler | File name under `backend/workers/handlers/` |
+| Handler id | Filename without `.ts` |
+| Job name | `registerHandler('<JOB>', ...)` key inside the handler file |
+| Queue | Queue name resolved from the eventType prefix rules in `backend/platform/events/queue.ts` (`routeEventToQueue`) |
+| Last changed | Most recent `git log` commit touching the handler |
+
+## Inventory (36 handlers)
+
+| Handler | Handler id | Job name | Queue | Last changed |
+|---------|------------|----------|-------|--------------|
+| `ACCOUNT_INTELLIGENCE.PROJECTION_BACKFILL.ts` | `ACCOUNT_INTELLIGENCE.PROJECTION_BACKFILL` | `ACCOUNT_INTELLIGENCE.PROJECTION_BACKFILL` | `data-sync` | 2026-05-25 (+0000) |
+| `ACCOUNT_INTELLIGENCE.PROJECTION_RECONCILE.ts` | `ACCOUNT_INTELLIGENCE.PROJECTION_RECONCILE` | `ACCOUNT_INTELLIGENCE.PROJECTION_RECONCILE` | `data-sync` | 2026-05-25 (+0000) |
+| `ACCOUNT_INTELLIGENCE.PROJECTION_UPDATE.ts` | `ACCOUNT_INTELLIGENCE.PROJECTION_UPDATE` | `ACCOUNT_INTELLIGENCE.PROJECTION_UPDATE` | `data-sync` | 2026-08-18 (+0000) |
+| `ACCOUNTS360.PROJECTION_BACKFILL.ts` | `ACCOUNTS360.PROJECTION_BACKFILL` | `ACCOUNTS360.PROJECTION_BACKFILL` | `data-sync` | 2026-05-25 (+0000) |
+| `ACCOUNTS360.PROJECTION_RECONCILE.ts` | `ACCOUNTS360.PROJECTION_RECONCILE` | `ACCOUNTS360.PROJECTION_RECONCILE` | `data-sync` | 2026-05-25 (+0000) |
+| `ACCOUNTS360.PROJECTION_UPDATE.ts` | `ACCOUNTS360.PROJECTION_UPDATE` | `ACCOUNTS360.PROJECTION_UPDATE` | `data-sync` | 2026-08-18 (+0000) |
+| `BDX.IMPORT_JOB.ts` | `BDX.IMPORT_JOB` | `BDX.IMPORT_JOB` | `data-sync` | 2026-05-20 (+0000) |
+| `BEHAVIOR.NORMALIZE.ts` | `BEHAVIOR.NORMALIZE` | `BEHAVIOR.NORMALIZE` | `data-sync` | 2026-08-18 (+0000) |
+| `BEHAVIOR.TRAJECTORY_UPDATE.ts` | `BEHAVIOR.TRAJECTORY_UPDATE` | `BEHAVIOR.TRAJECTORY_UPDATE` | `data-sync` | 2026-08-28 (+0000) |
+| `CLAIM_MEMORY.REFRESH.ts` | `CLAIM_MEMORY.REFRESH` | `CLAIM_MEMORY.REFRESH` | `data-sync` | 2026-05-29 (+0000) |
+| `COMM.EMAIL_INGESTED.ts` | `COMM.EMAIL_INGESTED` | `COMM.EMAIL_INGESTED` | `data-sync` | 2026-06-12 (+0000) |
+| `COMMUNICATION_OUTBOUND.ts` | `COMMUNICATION_OUTBOUND` | `COMM.OUTBOUND_QUEUED` | `notifications` | 2026-08-11 (+0000) |
+| `DOC.DOCX_TO_PDF.ts` | `DOC.DOCX_TO_PDF` | `DOC.DOCX_TO_PDF` | `documents` | 2026-05-20 (+0000) |
+| `DOC.GENERATE_BUSINESS_DOC_PACK.ts` | `DOC.GENERATE_BUSINESS_DOC_PACK` | `DOC.GENERATE_BUSINESS_DOC_PACK` | `documents` | 2026-08-18 (+0000) |
+| `DOC.GENERATE_HEALTH_DOC_PACK.ts` | `DOC.GENERATE_HEALTH_DOC_PACK` | `DOC.GENERATE_HEALTH_DOC_PACK` | `documents` | 2026-08-18 (+0000) |
+| `DOC.GENERATE_HOME_DOC_PACK.ts` | `DOC.GENERATE_HOME_DOC_PACK` | `DOC.GENERATE_HOME_DOC_PACK` | `documents` | 2026-08-18 (+0000) |
+| `DOC.GENERATE_ISSUED_POLICY_PACK.ts` | `DOC.GENERATE_ISSUED_POLICY_PACK` | `DOC.GENERATE_ISSUED_POLICY_PACK` | `documents` | 2026-08-28 (+0000) |
+| `DOC.GENERATE_MOTOR_DOC_PACK.ts` | `DOC.GENERATE_MOTOR_DOC_PACK` | `DOC.GENERATE_MOTOR_DOC_PACK` | `documents` | 2026-08-18 (+0000) |
+| `DOC.GENERATE_OPEN_MARKET_DOC_PACK.ts` | `DOC.GENERATE_OPEN_MARKET_DOC_PACK` | `DOC.GENERATE_OPEN_MARKET_DOC_PACK` | `documents` | 2026-08-18 (+0000) |
+| `DOC.GENERATE_QUOTE_PACK.ts` | `DOC.GENERATE_QUOTE_PACK` | `DOC.GENERATE_QUOTE_PACK` | `documents` | 2026-05-20 (+0000) |
+| `DOC.GENERATE_TRAVEL_DOC_PACK.ts` | `DOC.GENERATE_TRAVEL_DOC_PACK` | `DOC.GENERATE_TRAVEL_DOC_PACK` | `documents` | 2026-08-18 (+0000) |
+| `EMAIL.CANCELLATION_CONFIRMED.ts` | `EMAIL.CANCELLATION_CONFIRMED` | `EMAIL.CANCELLATION_CONFIRMED` | `notifications` | 2026-05-20 (+0000) |
+| `EMAIL.CANCELLATION_REQUESTED.ts` | `EMAIL.CANCELLATION_REQUESTED` | `EMAIL.CANCELLATION_REQUESTED` | `notifications` | 2026-05-20 (+0000) |
+| `EMAIL.CARDOG_MODEL_SUGGESTION.ts` | `EMAIL.CARDOG_MODEL_SUGGESTION` | `EMAIL.CARDOG_MODEL_SUGGESTION` | `notifications` | 2026-06-02 (+0000) |
+| `EMAIL.INFO_REQUIRED.ts` | `EMAIL.INFO_REQUIRED` | `EMAIL.INFO_REQUIRED` | `notifications` | 2026-05-20 (+0000) |
+| `EMAIL.PUBLIC_QUOTE.ts` | `EMAIL.PUBLIC_QUOTE` | `EMAIL.PUBLIC_QUOTE` | `notifications` | 2026-08-28 (+0000) |
+| `EMAIL.UW_REFERRAL.ts` | `EMAIL.UW_REFERRAL` | `EMAIL.UW_REFERRAL` | `notifications` | 2026-08-25 (+0000) |
+| `POLICY.INDEX_BACKFILL.ts` | `POLICY.INDEX_BACKFILL` | `POLICY.INDEX_BACKFILL` | `data-sync` | 2026-05-25 (+0000) |
+| `POLICY.INDEX_RECONCILE.ts` | `POLICY.INDEX_RECONCILE` | `POLICY.INDEX_RECONCILE` | `data-sync` | 2026-05-25 (+0000) |
+| `POLICY.INDEX_UPDATE.ts` | `POLICY.INDEX_UPDATE` | `POLICY.INDEX_UPDATE` | `data-sync` | 2026-07-18 (+0000) |
+| `POLICY.ISSUED_PACK_RECONCILE.ts` | `POLICY.ISSUED_PACK_RECONCILE` | `POLICY.ISSUED_PACK_RECONCILE` | `data-sync` | 2026-09-02 (+0000) |
+| `POLICY.STATE_RECONCILE.ts` | `POLICY.STATE_RECONCILE` | `POLICY.STATE_RECONCILE` | `data-sync` | 2026-05-25 (+0000) |
+| `RENEWAL.EMAIL_SCAN.ts` | `RENEWAL.EMAIL_SCAN` | `RENEWAL.EMAIL_SCAN` | `notifications` | 2026-08-27 (+0000) |
+| `SUBMISSION_MEMORY.REFRESH.ts` | `SUBMISSION_MEMORY.REFRESH` | `SUBMISSION_MEMORY.REFRESH` | `data-sync` | 2026-06-12 (+0000) |
+| `XLSX.GENERATE_BORDEREAUX_V52.ts` | `XLSX.GENERATE_BORDEREAUX_V52` | `XLSX.GENERATE_BORDEREAUX_V52` | `documents` | 2026-05-20 (+0000) |
+| `XLSX.PARSE_FIRST_SHEET_TO_JSON.ts` | `XLSX.PARSE_FIRST_SHEET_TO_JSON` | `XLSX.PARSE_FIRST_SHEET_TO_JSON` | `documents` | 2026-05-20 (+0000) |

@@ -1,0 +1,29 @@
+{
+  "thread_id": "CY-MTR-017",
+  "claim_ref": "CY-MTR-017",
+  "gold_missing_documents": [
+    "police_report",
+    "third_party_insurer_details",
+    "witness_statement",
+    "vehicle_registration"
+  ],
+  "gold_authority_flags": [
+    "estimate_exceeds_authority",
+    "tp_recovery_required"
+  ],
+  "gold_decision_posture": "reserved",
+  "gold_key_events": [
+    "FNOL",
+    "doc_request",
+    "estimate_received",
+    "escalation",
+    "chase"
+  ],
+  "gold_similar_threads": [
+    "CY-MTR-004",
+    "CY-MTR-011",
+    "CY-MTR-015",
+    "CY-MTR-031"
+  ],
+  "scenario": "headline_authority_breach"
+}

@@ -1,0 +1,401 @@
+{
+  "id": "ue-property-demo-source",
+  "version": "1.0.0",
+  "title": "United Educators property demo — September 10, 2026",
+  "sources": [
+    {
+      "id": "ue-source-guide",
+      "title": "03 United Educators Source Guide.docx",
+      "version": null,
+      "capturedAt": "2026-09-06T13:15:10Z",
+      "sha256": "536382a84432840be04b5b8380a59b6f273e115c0bd232f868955e383512b31b",
+      "location": "https://docs.google.com/document/d/1qgR5-6Cd5Ond780Wc0aThQ_SfqH8ZtyN/edit",
+      "sourceBoundary": "Hash identifies the captured readable source snapshot, not the original Office binary. Source requirements do not establish implementation or customer acceptance."
+    },
+    {
+      "id": "ue-runbook",
+      "title": "01 United Educators Demo Day Runbook.docx",
+      "version": null,
+      "capturedAt": "2026-09-06T13:15:10Z",
+      "sha256": "52f5e234d9b444721c7e173a6d54f3b1d44625077599bd39f2395232d0fa7e9e",
+      "location": "https://docs.google.com/document/d/1rhgyJ87oKM9kJAc-sJQtaA2DVWSXqDrx/edit",
+      "sourceBoundary": "Hash identifies the captured readable source snapshot, not the original Office binary. Source requirements do not establish implementation or customer acceptance."
+    },
+    {
+      "id": "ue-demo-deck",
+      "title": "00 United Educators Property Demo 10 September 2026.pptx",
+      "version": null,
+      "capturedAt": "2026-09-06T13:15:10Z",
+      "sha256": "c76030af4671a8c8330d268383006c18293febe86fab371bacb4df263bba51f8",
+      "location": "https://docs.google.com/presentation/d/1qgAIBHDdj61st4wX4aM72ilXa1dqG82b/edit",
+      "sourceBoundary": "Hash identifies the captured readable source snapshot, not the original Office binary. Source requirements do not establish implementation or customer acceptance."
+    },
+    {
+      "id": "ue-project-plan",
+      "title": "02 United Educators Project Plan.docx",
+      "version": null,
+      "capturedAt": "2026-09-06T13:15:10Z",
+      "sha256": "84393aae181bb90ef8ce5165f4bdbd81092edfd578e7e60fb9d75389012bac43",
+      "location": "https://docs.google.com/document/d/1VLY0wXCkxA1pDBr3xqkgo5MbGlHUUpZb/edit",
+      "sourceBoundary": "Hash identifies the captured readable source snapshot, not the original Office binary. Source requirements do not establish implementation or customer acceptance."
+    }
+  ],
+  "requirements": [
+    {
+      "id": "UE-R01",
+      "title": "Broker Management",
+      "categories": [
+        "partyDistribution",
+        "operatingEntities",
+        "processes",
+        "experience"
+      ],
+      "expectedOutcome": "Broker, institution, producer and responsible underwriter remain linked across submission and policy; authorized institutions only; servicing changes preserve history.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R01 Broker Management; docs/source/UE_02_Project_Plan.drive.txt lines 15–16"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN03: Target property product/entity, carriers/capacity/jurisdictions/licensing/appetite and authority matrix. Live/demo assumptions explicit; binding/product acceptance and production blocked pending approval",
+        "UE-OPEN11: Existing PAS/Salesforce/My UE objects, record IDs, SSO/roles, APIs and keep/integrate/replace decisions. No assumed connection or wholesale replacement; data ownership and export/coexistence/migration unresolved",
+        "UE-OPEN13: Named UE sponsor/business/underwriting/finance/claims/security/compliance/executive approvers; Facio delivery owner/capacity. Contacts/invitees and proposed role table are not approval authority or accepted workload commitments"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R02",
+      "title": "Document Intake and Submission Intake and Ingestion",
+      "categories": [
+        "documents",
+        "products",
+        "processes",
+        "integrations"
+      ],
+      "expectedOutcome": "Retain/classify source PDFs and workbooks, expose mapped institution/location facts with page or cell provenance, missing information and conflicting totals; duplicate intake cannot duplicate business records.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R02 Document Intake and Submission Intake and Ingestion; docs/source/UE_02_Project_Plan.drive.txt lines 17–18"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN02: Approved primary discrepancy resolution and exact source-display boundary. Real Randolph case may stay in review; separate synthetic continuation permits truthful demo progression; never silently approve insured value",
+        "UE-OPEN15: Source reconciliation beyond Randolph: periods/duplicate files/blank values/appraisal display rights/private/hidden-sheet content. Later pilot scope; never turn missing inputs into zeros or stale template values into current rules"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R03",
+      "title": "Underwriting",
+      "categories": [
+        "products",
+        "processes",
+        "programmesBinders"
+      ],
+      "expectedOutcome": "Review exposures, COPE/losses and referrals together; authorized discrepancy decision retains previous/new values, reviewer, time and reason.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R03 Underwriting; docs/source/UE_02_Project_Plan.drive.txt lines 19–20"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN02: Approved primary discrepancy resolution and exact source-display boundary. Real Randolph case may stay in review; separate synthetic continuation permits truthful demo progression; never silently approve insured value",
+        "UE-OPEN03: Target property product/entity, carriers/capacity/jurisdictions/licensing/appetite and authority matrix. Live/demo assumptions explicit; binding/product acceptance and production blocked pending approval",
+        "UE-OPEN13: Named UE sponsor/business/underwriting/finance/claims/security/compliance/executive approvers; Facio delivery owner/capacity. Contacts/invitees and proposed role table are not approval authority or accepted workload commitments"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R04",
+      "title": "External Data Source Enrichment",
+      "categories": [
+        "integrations",
+        "products"
+      ],
+      "expectedOutcome": "Keep provider/source/query time/match quality beside submitted values; demonstrate a matching result and uncertain-match/provider failure without inventing or replacing data.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R04 External Data Source Enrichment; docs/source/UE_02_Project_Plan.drive.txt lines 21–22"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN06: External provider contracts/usage/licensing/cost/data ownership, match and failure rules. Prepared responses labeled; no invented live geocoding/CAT/imagery/valuation integration"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R05",
+      "title": "Rating",
+      "categories": [
+        "products",
+        "integrations",
+        "finance"
+      ],
+      "expectedOutcome": "Send reviewed input to versioned rating contract, retain input/output and errors; missing fields or failed engine block valid quote; demo assumptions visibly labeled.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R05 Rating; docs/source/UE_02_Project_Plan.drive.txt lines 23–24"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN03: Target property product/entity, carriers/capacity/jurisdictions/licensing/appetite and authority matrix. Live/demo assumptions explicit; binding/product acceptance and production blocked pending approval",
+        "UE-OPEN04: UE rating engine owner/API schema/test access/version/failure semantics and approved reference premiums/factors. Synthetic demo result allowed when labeled; production rating acceptance unavailable"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R06",
+      "title": "Quote Management",
+      "categories": [
+        "products",
+        "processes",
+        "documents"
+      ],
+      "expectedOutcome": "Compare two quote options with version/rate/terms/limits/deductibles/fees/validity, select one, and carry that exact approved version to bind; stale states cannot bind unnoticed.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R06 Quote Management; docs/source/UE_02_Project_Plan.drive.txt lines 26–27"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN04: UE rating engine owner/API schema/test access/version/failure semantics and approved reference premiums/factors. Synthetic demo result allowed when labeled; production rating acceptance unavailable",
+        "UE-OPEN05: Approved quote/binder/policy/endorsement/notice templates, clauses/signatures/numbering/issue rules. Prepared documents cannot be claimed UE-approved; document generation acceptance requires target pack"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R07",
+      "title": "Binding",
+      "categories": [
+        "products",
+        "processes",
+        "programmesBinders",
+        "documents",
+        "tenantRelease"
+      ],
+      "expectedOutcome": "Check authority, documents, dates, terms and subjectivities, show a blocked condition, and create one authorized binding transaction and correct document pack from one accepted quote.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R07 Binding; docs/source/UE_02_Project_Plan.drive.txt lines 28–29"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN03: Target property product/entity, carriers/capacity/jurisdictions/licensing/appetite and authority matrix. Live/demo assumptions explicit; binding/product acceptance and production blocked pending approval",
+        "UE-OPEN05: Approved quote/binder/policy/endorsement/notice templates, clauses/signatures/numbering/issue rules. Prepared documents cannot be claimed UE-approved; document generation acceptance requires target pack",
+        "UE-OPEN13: Named UE sponsor/business/underwriting/finance/claims/security/compliance/executive approvers; Facio delivery owner/capacity. Contacts/invitees and proposed role table are not approval authority or accepted workload commitments"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R08",
+      "title": "Endorsements",
+      "categories": [
+        "products",
+        "processes",
+        "finance",
+        "documents"
+      ],
+      "expectedOutcome": "Synthetic effective-dated location/value endorsement retains prior policy and links changed period, delta, new documents, receivable and commission; sequencing behavior explicit.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R08 Endorsements; docs/source/UE_02_Project_Plan.drive.txt lines 30–31"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN05: Approved quote/binder/policy/endorsement/notice templates, clauses/signatures/numbering/issue rules. Prepared documents cannot be claimed UE-approved; document generation acceptance requires target pack",
+        "UE-OPEN07: Direct versus agency billing, currency/instalments/payment/ledger ownership and reconciliation. Synthetic finance only with stated assumptions; production accounting integration unresolved",
+        "UE-OPEN08: Commission agreements/bases/splits/earned-payable-paid timing/tax/exceptions. No guessed customer commission rate; approved examples required for finance acceptance",
+        "UE-OPEN09: Cancellation/return-premium/tax/fee/notice/payment authorization; endorsement sequencing; renewal/nonrenewal windows. Preserve coherent branches and explicit illustrative rules; production financial/lifecycle behavior unapproved"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R09",
+      "title": "FNOL Intake",
+      "categories": [
+        "products",
+        "processes",
+        "documents",
+        "integrations"
+      ],
+      "expectedOutcome": "Synthetic FNOL retains insured/location/loss/report/evidence and exact policy version; route with acknowledgement and possible-duplicate handling; no adjudication or settlement claim.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R09 FNOL Intake; docs/source/UE_02_Project_Plan.drive.txt lines 32–33"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN10: FNOL owner/destination/fields/interface/duplicates/acknowledgement and term matching. Intake/handoff only; no full claims settlement scope inferred"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R10",
+      "title": "Renewals",
+      "categories": [
+        "products",
+        "processes",
+        "documents"
+      ],
+      "expectedOutcome": "Renewal compares updated schedule/losses/referrals to expiring term, with missing items and new term decisions/rating versions visible.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R10 Renewals; docs/source/UE_02_Project_Plan.drive.txt lines 34–35"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN04: UE rating engine owner/API schema/test access/version/failure semantics and approved reference premiums/factors. Synthetic demo result allowed when labeled; production rating acceptance unavailable",
+        "UE-OPEN05: Approved quote/binder/policy/endorsement/notice templates, clauses/signatures/numbering/issue rules. Prepared documents cannot be claimed UE-approved; document generation acceptance requires target pack",
+        "UE-OPEN09: Cancellation/return-premium/tax/fee/notice/payment authorization; endorsement sequencing; renewal/nonrenewal windows. Preserve coherent branches and explicit illustrative rules; production financial/lifecycle behavior unapproved"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R11",
+      "title": "Cancellations and Refunds",
+      "categories": [
+        "products",
+        "processes",
+        "finance",
+        "jurisdictions",
+        "documents"
+      ],
+      "expectedOutcome": "Separate synthetic cancellation branch records reason/dates/rule/notice/earned-return premium/refund stages; approved examples reconcile tax, fee, receivable and commission with authorized release.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R11 Cancellations and Refunds; docs/source/UE_02_Project_Plan.drive.txt lines 37–38"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN07: Direct versus agency billing, currency/instalments/payment/ledger ownership and reconciliation. Synthetic finance only with stated assumptions; production accounting integration unresolved",
+        "UE-OPEN08: Commission agreements/bases/splits/earned-payable-paid timing/tax/exceptions. No guessed customer commission rate; approved examples required for finance acceptance",
+        "UE-OPEN09: Cancellation/return-premium/tax/fee/notice/payment authorization; endorsement sequencing; renewal/nonrenewal windows. Preserve coherent branches and explicit illustrative rules; production financial/lifecycle behavior unapproved"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R12",
+      "title": "Commission Tracking and Broker Commissions",
+      "categories": [
+        "partyDistribution",
+        "finance",
+        "programmesBinders"
+      ],
+      "expectedOutcome": "Explain approved commission base/rate/agreement per transaction; distinguish earned, payable, paid and reversed; new-business and endorsement/cancel adjustment do not duplicate commission.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R12 Commission Tracking and Broker Commissions; docs/source/UE_02_Project_Plan.drive.txt lines 39–40"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN08: Commission agreements/bases/splits/earned-payable-paid timing/tax/exceptions. No guessed customer commission rate; approved examples required for finance acceptance"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R13",
+      "title": "Billing and Receivables",
+      "categories": [
+        "finance",
+        "integrations"
+      ],
+      "expectedOutcome": "Synthetic invoice, partial receipt and aged receivable link to policy; charges minus applied receipts/credits reconcile, unmatched money stays unapplied, and calculated/approved/paid refunds differ.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R13 Billing and Receivables; docs/source/UE_02_Project_Plan.drive.txt lines 41–42"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN07: Direct versus agency billing, currency/instalments/payment/ledger ownership and reconciliation. Synthetic finance only with stated assumptions; production accounting integration unresolved"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R14",
+      "title": "Policy Administration and Management",
+      "categories": [
+        "products",
+        "processes",
+        "partyDistribution",
+        "documents",
+        "tenantRelease"
+      ],
+      "expectedOutcome": "Stable policy identity exposes authorized timeline, terms, participants, activity, prior versions and their documents; effective-dated transactions and system ownership explicit.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R14 Policy Administration and Management; docs/source/UE_02_Project_Plan.drive.txt lines 43–44"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN05: Approved quote/binder/policy/endorsement/notice templates, clauses/signatures/numbering/issue rules. Prepared documents cannot be claimed UE-approved; document generation acceptance requires target pack",
+        "UE-OPEN11: Existing PAS/Salesforce/My UE objects, record IDs, SSO/roles, APIs and keep/integrate/replace decisions. No assumed connection or wholesale replacement; data ownership and export/coexistence/migration unresolved"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    },
+    {
+      "id": "UE-R15",
+      "title": "Reporting",
+      "categories": [
+        "reporting",
+        "finance",
+        "products"
+      ],
+      "expectedOutcome": "Drill from scoped report totals into submission/referral/quote/policy/receivable/commission records with as-of/date/currency/filter definitions and matching export.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "ue-project-plan",
+          "locator": "R15 Reporting; docs/source/UE_02_Project_Plan.drive.txt lines 45–46"
+        }
+      ],
+      "dependencies": [
+        "UE-OPEN01: Actual module-by-module environment/build/case/rehearsal result and allowed live/prepared/design boundary. Needed before describing a feature as working; current Kernel foundation alone does not satisfy UE-R01–15",
+        "UE-OPEN07: Direct versus agency billing, currency/instalments/payment/ledger ownership and reconciliation. Synthetic finance only with stated assumptions; production accounting integration unresolved",
+        "UE-OPEN12: Reports/bordereaux/regulatory/carrier/reinsurance layouts, metric definitions and owners; export content/cadence/termination. Demo record drill-through separate from accepted reporting/data-export contract"
+      ],
+      "sourceBoundary": "Requested September 10 connected demo module. Detailed acceptance checks are proposed in the supplied project plan. A labeled prepared example or design discussion is not executable M1 acceptance. Source records and synthetic continuation cases remain separate."
+    }
+  ]
+}

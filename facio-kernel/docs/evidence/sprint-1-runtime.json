@@ -1,0 +1,52 @@
+{
+  "verifiedAt": "2026-09-06T14:03:00.067Z",
+  "mode": "local_synthetic",
+  "recordId": "350c85e0-e0a7-4cb7-8bd4-7061c0c764af",
+  "scope": {
+    "workspaceId": "local",
+    "tenantId": "runtime-demo",
+    "environment": "development",
+    "operatingEntityId": "synthetic-entity"
+  },
+  "currentVersion": 6,
+  "status": "bound",
+  "premiumMinor": "60000000",
+  "currency": "GBP",
+  "commissionMinor": "6000000",
+  "revisions": 6,
+  "boundHash": "d6ca231fa661f6930b891d7868bb1b0ed2bd6a5b7954733011e001701dd1c71e",
+  "recordHash": "6900bf8243af5f12f004d1c4cded44eb69e360f253e22d682d0359a8bdfe8711",
+  "productPolicyHash": "3d628f8f351ec0448947867dc32c6e00289ca2ae75169187970bde5a0c7a6466",
+  "manifest": {
+    "version": "0.1.0",
+    "openapiHash": "7ececa02c864b97f68ef8a15e54c51352a9931e98880fab1be1ef4590a3ca3d6",
+    "mcpHash": "3de5b1c56f0d273c2b64349b0b6d81021ae6f50519c6f09f74fe957bb3284cef",
+    "canonicalMcpHash": "3de5b1c56f0d273c2b64349b0b6d81021ae6f50519c6f09f74fe957bb3284cef",
+    "catalogHash": "dd676c4aed032f253d9d4a4946998a0cec1ba677ccf6e174d40836ed4cf840d7",
+    "status": "development"
+  },
+  "checks": [
+    "real scoped HTTP create/revise/bind/endorse/cancel/reinstate",
+    "exact retry and duplicate business identity",
+    "malformed money 422",
+    "stale bind 409",
+    "other scope without insurance permission 403",
+    "compiled Store reopened same six-version history and six pending outbox records",
+    "served manifest matches compiled generated contracts"
+  ],
+  "productionReady": false,
+  "customerAcceptance": "not_recorded",
+  "sourceFingerprint": "579b47fdd82a55365e9bba5ee5ca2123ecbc9aab1f12a59c458841e9e795fa4d",
+  "fingerprintAlgorithm": "SHA256 of sorted source/test/script/public/package/lock/tsconfig/CI path NUL content NUL",
+  "repository": "https://github.com/FacioMGA/facio-kernel",
+  "verification": {
+    "node": "22.22.2",
+    "npmCheck": "passed",
+    "automatedTests": 44,
+    "configurationBrowserChecks": 12,
+    "insuranceBrowserChecks": 10,
+    "insuranceBrowserErrors": 0
+  },
+  "implementationCommit": "f49c01e3a85149347cc9d03e4c3d6fb4fe872d59",
+  "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/18"
+}

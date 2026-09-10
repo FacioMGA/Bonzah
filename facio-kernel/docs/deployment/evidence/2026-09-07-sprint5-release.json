@@ -1,0 +1,192 @@
+{
+  "recordedAt": "2026-09-07T08:06:16.875778+00:00",
+  "status": "bounded_synthetic_sandbox_release_verified_customer_acceptance_pending",
+  "repository": "https://github.com/FacioMGA/facio-kernel",
+  "platform": "https://platform.facio.io",
+  "application": {
+    "buildSha": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+    "pullRequests": [
+      "https://github.com/FacioMGA/facio-kernel/pull/28",
+      "https://github.com/FacioMGA/facio-kernel/pull/29"
+    ],
+    "imageConfigDigest": "sha256:48a31c2e85e40652913fcd4727669f05056a309554e6e2a2719fad2b0f44c134",
+    "archiveSha256": "962bb364883d676f52b0a73dbdc98c9843e542a6c83fb41dfb95ba3416f11383",
+    "businessSchema": 7,
+    "authSchema": 1,
+    "moneyEngine": {
+      "engine": "rust-wasm",
+      "engineVersion": "1.0.0",
+      "abiVersion": 1,
+      "calculationVersion": "exact-money-v1",
+      "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+      "target": "wasm32-unknown-unknown",
+      "sourceSha256": "e4512b0aeb03ce38c813ca490804d7adfa0d302ae8eed9721769c323061f87d8",
+      "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+      "wasmBytes": 16985,
+      "memoryBytes": 131072
+    },
+    "mainCiRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+    "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+    "documentationBoundary": "Later documentation/guide/evidence reconciliation commits do not change this explicitly verified serving application SHA."
+  },
+  "verification": {
+    "nodeTests": 181,
+    "nativeRustTests": 2,
+    "deploymentPythonTests": 4,
+    "browserSuites": 14,
+    "browserChecks": 86,
+    "registeredStaticRoutes": 21,
+    "ciArtifactDigest": "sha256:c34ae05e6137f989a6e4c35513669e936e12016e01fba955220e62ebc16e891a",
+    "actualIdentity": "existing real administrator Google session",
+    "copiedSnapshotCounts": {
+      "records": 5,
+      "documents": 4,
+      "notices": 1,
+      "finance": 5,
+      "approvals": 1,
+      "providers": 1,
+      "releases": 3,
+      "tenants": 4,
+      "requirements": 3,
+      "outbox": 11,
+      "recordHistoryRevisions": 11,
+      "documentArtifactHashes": 16,
+      "staticRoutes": 21,
+      "actualBrowserChecks": 7,
+      "downloadedFiles": 3,
+      "nodeTests": 181,
+      "rustTests": 2,
+      "pythonTests": 4,
+      "ciBrowserSuites": 14,
+      "ciBrowserChecks": 86
+    },
+    "existingThreeRecordHeadsPreserved": true
+  },
+  "syntheticJourney": {
+    "tenantId": "ea44847a-bf87-447a-8691-c61856c10aeb",
+    "releaseId": "5f2050ef-a2e1-4a23-8f05-16aeda34e2b0",
+    "originalRecordId": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+    "originalRevision": 4,
+    "originalHash": "5a888536ce00459109fac23bf13ab165a4b497c2318f77848cf603b33509f931",
+    "renewalRecordId": "6b9d5671-3bb7-4e0e-9746-76ac210947f1",
+    "renewalRevision": 2,
+    "renewalHash": "2c7856001d4068244dbb99359252f4f75909ce0fb2560baaeba32f458dced074",
+    "noticeId": "c6d35c0f-4c8d-4404-9568-ec95613beead",
+    "noticeRevision": 4,
+    "noticeHash": "0d8784a427692b6c29ff233a870cdbee709e60c7571c83da9814f6b3ae4519f9",
+    "currency": "GBP",
+    "quoteAndBoundPremium": "48.00",
+    "afterExtensionPremium": "72.00",
+    "scheduledCancellationReturn": "24.00",
+    "remainingOriginalPremium": "48.00",
+    "renewalPremium": "48.00",
+    "originalCommission": "3.36",
+    "syntheticReceiptApplied": "1.00",
+    "originalCommissionOutstanding": "2.36",
+    "lossNoticeExternalDelivery": "not_attempted"
+  },
+  "recovery": {
+    "passed": true,
+    "snapshotId": "20260907T074651.855869Z",
+    "manifestSha256": "50e5ca0c392ee9c8da28873382a65027cdcae71155cb4432ab3a7d98765531f4",
+    "completedAt": "2026-09-07T07:54:56.222075+00:00",
+    "exactBusinessEvidencePreservedAfterHostedBoot": true,
+    "liveContainerUnchanged": true,
+    "liveDataOverwritten": false,
+    "isolatedContainersRemoved": true,
+    "initialAttempt": "Failed cleanup assertion during Docker automatic-removal timing; read-only follow-up confirmed no remaining drill container and healthy unchanged live writer.",
+    "correction": "Verifier allows bounded cleanup with exact name, drill label and container ID checks. Twelve mock and three disposable Docker checks passed; complete recovery rerun passed.",
+    "scope": [
+      "Same-VM isolated recovery with existing private identity and bootstrap configuration; full VM/credential-loss recovery is separate.",
+      "Each database snapshot is independently consistent; cross-database atomicity is not claimed.",
+      "Canonical business evidence is compared before/after boot; working SQLite file-byte identity is not claimed.",
+      "Auth snapshot integrity and hosted startup are verified without reading session values or claiming a restored authenticated browser journey.",
+      "Only the pinned snapshot and its retained evidence are proved; later writes and customer acceptance remain separate."
+    ]
+  },
+  "rustMigration": {
+    "deployed": "Required exact-money-v1 premium allocation and commission in Rust/WASM",
+    "remainingTypeScript": "HTTP, authentication, persistence, orchestration and other application services",
+    "parityCases": 12000,
+    "benchmarkEvidence": "rust/evidence/2026-09-07-money-ci-benchmark.json",
+    "benchmarkBoundary": "Complete allocator calls on CI/local hosts, including validation/sorting/bridge/result construction; optimized TypeScript controls and variable local repeats retained. No serving-VM, HTTP, whole-service or actual cloud-bill savings claim.",
+    "nextGate": "Measure representative whole-service and target-host workload before choosing further core migrations."
+  },
+  "evidence": [
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-local.json",
+      "sha256": "38880fb4b29b140cf510a85f5999f594d3b4c9851ce52bd21549835e478e8ba2"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-preupgrade.json",
+      "sha256": "2b40135cb6d39d3516e9c7ab6ef0a630d8ea25fa42e9e946ba77d3d06b1060b6"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-preflight.json",
+      "sha256": "3457749a01977a988d1e5c654f4f49763c3419c87005a9a832229e3a8abef98f"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-public.json",
+      "sha256": "5e291232a318398276c9c1743978a8ba3864004d8765afe402256d73911c5d7b"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+      "sha256": "c01c58dc750c73639c29bebb37d2fb10fbb682135400c43eea368a6af6f9ec66"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-ci.json",
+      "sha256": "efab00590f5cac481f6a94796801de337587c4cb3dfed61226a5cd4ecbfb3aa5"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+      "sha256": "58b76b9caee43b4574126ab2a5f2bd0e3d6509e845e97158e330b0ad368d46fd"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-preflight.json",
+      "sha256": "d673a3b29dd2a3fd299763607683945c8c8357f8b717d6f6f364b2a9cf2349dd"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+      "sha256": "25d6f6686255f95752d8fa75495d5d75c70fc64abe9e68fdbd29282836cad85c"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-downloads.json",
+      "sha256": "d88a552c9d5cc1af98ff3d23f7e7621d78aaf9f3f287357cde8dc4ffb2126f35"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+      "sha256": "a0d1854ca75988fdf35eac9bf43f503395b65c9f46983eb3abdba614391d081d"
+    },
+    {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-consistency.json",
+      "sha256": "ec1b8e5facb8192269aa5e0151f285b9da2689f0c5a33a469bf304a7d4f876a7"
+    }
+  ],
+  "remainingAcceptance": [
+    "Approved separate Bonzah, UE and VUW rule/rate/authority packages, source discrepancy decisions and customer golden outcomes.",
+    "Actual provider/API/callback access and mapping; accepted insurance/payment/screening boundaries.",
+    "Approved legal document templates, numbering, customer outputs, signatures and delivery.",
+    "Approved accounting/tax/fee/invoice/return rules, bank/settlement integration and accepted BDX 5.2/source mappings.",
+    "Public expiring FNOL access, external handoff and customer intake acceptance; no claims adjudication.",
+    "Two actual independent interns, second administrator review, actual ChatGPT and named support/acceptance ownership.",
+    "Approved sample/reset boundary, independent full customer rehearsal, failed-deployment exercise and total VM/credential-loss recovery."
+  ],
+  "schedule": {
+    "timezone": "Asia/Jerusalem",
+    "M3": "2026-09-08",
+    "sprintImplementationAndRehearsalTarget": "2026-09-09",
+    "rustK16Target": "2026-09-09",
+    "BonzahAndUeDemos": "2026-09-10",
+    "fullVuwPoc": "2026-09-11",
+    "M4Specification": "2026-09-12",
+    "fullVuwScope": {
+      "uatScenarios": 22,
+      "sowCriteria": 8,
+      "inputDecisions": 23
+    },
+    "forecast": "at_risk",
+    "fullSprintAccepted": false,
+    "completionPercentage": null
+  },
+  "trackerBoundary": "K03, K04, K05, K06, K07, K08, K12, K13, K16 and K18 retain their full acceptance criteria and stay open. Remote reconciliation is verified separately after this documentation release."
+}

@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Commercial policy schedule</title><style>body{font:12px Arial,sans-serif;color:#172737}h1{font-size:24px}h2{margin-top:24px}table{width:100%;border-collapse:collapse}td,th{border:1px solid #d4dce4;padding:9px;text-align:left}p{white-space:pre-line;line-height:1.5}.muted{color:#526272;font-size:10px}.draft{color:#9a4500;font-weight:bold}</style></head><body>
+<h1>{{brand.brokerDisplayName}}</h1>{{#if isDraft}}<p class="draft">DRAFT — insurance has not been issued</p>{{/if}}
+<h2>{{productName}} — policy schedule</h2><p>Policy: {{policyNumber}}
+Policy holder: {{proposer.companyName}}
+Contact: {{proposer.firstName}} {{proposer.lastName}}
+Period: {{term.startDate}} to {{term.endDate}}</p>
+<table><thead><tr><th>Coverage</th><th>Limit ({{currency}})</th><th>Deductible ({{currency}})</th><th>Territorial limit</th></tr></thead><tbody>{{#each coverages}}<tr><td>{{coverage}}</td><td>{{limit}}</td><td>{{excess}}</td><td>{{territorialLimit}}</td></tr>{{/each}}</tbody></table>
+<p><strong>Recorded premium: {{currency}} {{premium}}</strong></p>
+{{#each coverages}}<h2>{{coverage}}</h2><p>{{notes}}</p>{{#each clauses}}<h3>{{name}} — {{category}}</h3><p>{{body}}</p>{{/each}}{{/each}}
+<hr><p>{{brand.brokerLegalName}}
+{{brand.brokerAddressMultiline}}
+{{brand.brokerRegulatoryLine}}
+{{brand.coverholderStatement}}</p><p class="muted">Retained programme definition {{definitionId}}, version {{definitionVersion}}. {{brand.dataControllerName}}</p></body></html>

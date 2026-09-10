@@ -1,0 +1,42 @@
+Thread-ID: CY-MTR-011
+Claim-Ref: CY-MTR-011
+Subject: CY-MTR-011 — estimate dispute QuickFix Auto
+===
+
+From: Anna Brokerson <anna@cyprusbrokers.example>
+To: claims@abbeygate.example
+Date: 2026-02-03 11:00
+Subject: FNOL CY-MTR-011
+Attachments: estimate_quickfix.pdf
+
+Front-end collision, Nicosia. Insured Andreas L., policy ABMTR-100231,
+reg KCA-7710. Driveable but heavy bumper/headlight damage. Estimate
+from QuickFix Auto attached.
+
+---
+From: Handler <claims@abbeygate.example>
+To: anna@cyprusbrokers.example
+Date: 2026-02-03 15:12
+Subject: RE: CY-MTR-011 — estimate review
+
+Anna,
+
+QuickFix estimate is €14,800. That is high for the visible damage.
+Please obtain a second estimate from an approved repairer.
+
+---
+From: Anna Brokerson <anna@cyprusbrokers.example>
+To: claims@abbeygate.example
+Date: 2026-02-09 09:42
+Subject: RE: CY-MTR-011 — second estimate
+Attachments: estimate_volante.pdf
+
+Second estimate €9,650 from Volante Approved Repairer.
+
+---
+From: Handler <claims@abbeygate.example>
+To: anna@cyprusbrokers.example
+Date: 2026-02-09 11:20
+Subject: RE: CY-MTR-011 — €9,650 authorised
+
+Volante estimate authorised. QuickFix rejected. Please proceed.

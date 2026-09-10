@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "deniedLicenseSubstrings": [
+    "AGPL",
+    "GPL-3.0",
+    "GPL-2.0",
+    "LGPL-3.0",
+    "LGPL-2.1",
+    "SSPL",
+    "BUSL",
+    "COMMONS CLAUSE"
+  ],
+  "allowUnknownPackages": [
+    "busboy",
+    "limiter",
+    "png-js",
+    "spawn-command",
+    "streamsearch"
+  ],
+  "allowDeniedPackages": []
+}

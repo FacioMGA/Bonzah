@@ -1,0 +1,33 @@
+Thread-ID: CY-MTR-025
+Claim-Ref: CY-MTR-025
+Subject: CY-MTR-025 — date inconsistencies
+===
+
+From: Insured <newcustomer@example.cy>
+To: claims@abbeygate.example
+Date: 2026-01-30 22:11
+Subject: FNOL — damage to my car
+
+Hello, I want to claim for damage to my vehicle reg KKL-3300, policy
+ABMTR-100744 (just taken out 28 Jan). Damage happened on 25 Jan.
+
+---
+From: Handler <claims@abbeygate.example>
+To: newcustomer@example.cy
+Date: 2026-01-31 09:15
+Subject: RE: CY-MTR-025 — clarification required
+
+Hello,
+
+The incident date you have given (25 Jan) is before the policy
+inception (28 Jan). Cover would not have been in force. Please
+clarify and provide any supporting evidence (photos with metadata,
+witness statements, police reference).
+
+---
+From: Handler <claims@abbeygate.example>
+To: manager@abbeygate.example
+Date: 2026-01-31 09:20
+Subject: Fraud flag — CY-MTR-025
+
+Stated incident date predates inception. Flagging to fraud team.

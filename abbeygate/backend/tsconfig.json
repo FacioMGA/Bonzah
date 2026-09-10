@@ -1,0 +1,62 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "lib": [
+      "ES2022"
+    ],
+    "outDir": "./dist",
+    "rootDir": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": false,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    // Constrain implicit @types inclusion to avoid picking up stray/broken type folders.
+    // Module types (e.g. express) are still resolved via imports.
+    "types": ["node"],
+    "baseUrl": ".",
+    // Phase 3: `@facio/validation` and its subpath exports resolve via
+    // Node's normal package resolution (workspaces create
+    // `node_modules/@facio/validation -> ../packages/validation`, and
+    // the package's `exports` field points each subpath at its emitted
+    // `dist/`). The package always builds first because `build:api`
+    // begins with `npm run build:validation`. We deliberately do NOT
+    // add tsconfig `paths` to the package source: doing so pulls
+    // package source files into the backend program and trips
+    // `rootDir` constraints (TS6059). Project references stay with
+    // each project's own tsconfig (`packages/validation/tsconfig.json`
+    // is `composite: true`) — backend/tsconfig.json simply consumes the
+    // emitted `.d.ts` like any other dependency.
+    "paths": {},
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "index.ts",
+    "worker.ts",
+    "seed.ts",
+    "scripts/runAccountIntelligenceBackfill.mts",
+    "seed/**/*",
+    "http/**/*",
+    "modules/**/*",
+    "platform/**/*",
+    "shared/**/*",
+    "workers/**/*",
+    "products/**/*",
+    "test/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/__tests__/**"
+  ]
+}

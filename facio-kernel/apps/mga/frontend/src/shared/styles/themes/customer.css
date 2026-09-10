@@ -1,0 +1,29 @@
+/* Customer surface theme.
+   For now, values match BO (no visual change). */
+
+[data-surface="customer"] {
+  --ui-canvas: 252 251 247;
+  --ui-surface: 255 255 255;
+  --ui-muted: 243 244 246;
+  --ui-text: 15 23 42;
+  --ui-subtext: 71 85 105;
+  --ui-border: 148 163 184;
+  --ui-border-alpha: 0.35;
+  --ui-focus: 0 74 138;
+  --ui-danger: 220 38 38;
+  --ui-warning: 217 119 6;
+  --ui-success: 22 163 74;
+  --control-radius: 0.875rem;
+  --control-height: 3.25rem;
+  --control-height-sm: 2.75rem;
+
+  --control-bg: 248 250 252;
+  --control-bg-alpha: 0.5;
+  --control-border: 226 232 240;
+  --control-border-alpha: 0.6;
+  --control-text: 51 65 85;
+  --control-placeholder: 148 163 184;
+  --control-disabled-text: 100 116 139;
+  --control-focus-shadow-alpha: 0.10;
+}
+

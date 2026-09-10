@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/bonzah/quotes"
+method: POST
+headers:
+  Content-Type: application/json
+  Idempotency-Key: compare-corolla
+body:
+  type: text
+  content: '{"programId":"BONZAH-US-DEMO-2026","channel":"API","effectiveDate":"2026-09-03","risk":{"pickup":{"country":"US","state":"CO"},"residence":{"country":"US","state":"CA"},"rentalStart":"2026-09-18T10:00:00-06:00","rentalEnd":"2026-09-22T10:00:00-06:00","driver":{"age":35,"licenceValid":true},"vehicle":{"year":2025,"make":"Toyota","model":"Corolla","class":"compact","declaredValue":24000,"repairProfile":"low","powertrain":"combustion"}},"coverages":["CDW"]}'
+order: 1000

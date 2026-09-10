@@ -1,0 +1,61 @@
+Thread-ID: CY-MTR-001
+Claim-Ref: CY-MTR-001
+Subject: FNOL CY-MTR-001 — minor parking damage
+===
+
+From: Anna Brokerson <anna@cyprusbrokers.example>
+To: claims@abbeygate.example
+Date: 2026-01-03 09:14
+Subject: FNOL CY-MTR-001
+Attachments: motor_claim_form.pdf, photos.zip
+
+Dear Claims Team,
+
+Please find attached the completed motor claim form for our insured
+Maria K., policy ABMTR-100021, reg AKR-1142.
+
+Incident: 02 Jan 2026, parked vehicle scratched in a Larnaca car park.
+No third party identified, no injuries. Insured will obtain two
+estimates from approved repairers.
+
+Kind regards,
+Anna
+
+---
+From: Handler <claims@abbeygate.example>
+To: anna@cyprusbrokers.example
+Date: 2026-01-03 11:42
+Subject: RE: FNOL CY-MTR-001
+
+Anna,
+
+Acknowledged. Claim opened as CY-MTR-001. Liability accepted (own damage,
+no TP). Please share the two estimates when received.
+
+Regards,
+George
+
+---
+From: Anna Brokerson <anna@cyprusbrokers.example>
+To: claims@abbeygate.example
+Date: 2026-01-08 15:02
+Subject: RE: FNOL CY-MTR-001 — estimates
+Attachments: estimate_volante.pdf, estimate_panelpro.pdf
+
+George,
+
+Two estimates attached. Lower is €820 from Volante Approved Repairer.
+
+Anna
+
+---
+From: Handler <claims@abbeygate.example>
+To: anna@cyprusbrokers.example
+Date: 2026-01-09 10:11
+Subject: RE: FNOL CY-MTR-001 — authorised
+
+Anna,
+
+€820 authorised. Excess €250 confirmed. Settlement on completion.
+
+George

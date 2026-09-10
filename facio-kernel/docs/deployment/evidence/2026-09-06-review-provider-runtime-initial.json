@@ -1,0 +1,330 @@
+{
+  "startedAt": "2026-09-06T18:48:57.743620+00:00",
+  "completedAt": "2026-09-06T18:49:00.438814+00:00",
+  "buildSha": "af1464e1cd853b4b1db2f0da1eee7c75e1e88ba6",
+  "businessSchema": 6,
+  "authSchema": 1,
+  "liveContainer": {
+    "id": "8f21aa6bca90c3a02f9a08d3b5313ac0e3b9eff114630181fbd0d3d5fb03e570",
+    "imageId": "sha256:8f4e85924234b11de813f80afc70a64cc428e54b7f9b0e03e184c62c117755b1",
+    "startedAt": "2026-09-06T18:43:15.274151106Z",
+    "running": "true"
+  },
+  "health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "af1464e1cd853b4b1db2f0da1eee7c75e1e88ba6",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "productionReady": false
+  },
+  "liveBusiness": {
+    "runtimeEvidence": [
+      {
+        "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+        "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+        "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af",
+        "releaseBuildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+        "recordId": "cdffc011-94a6-47bd-9e89-3a28b0b31532",
+        "recordHash": "6853f74f1d3b422566c1e9f9d11c9ce95ecd20d67afe8f17d31c75d8a186c7fd",
+        "version": 1,
+        "status": "quoted",
+        "quoteHash": "ef0db02d7dee38c0cfef1447e7bd7e6ab1e39c0255cd545c774b8e54a68b962b",
+        "inputHash": "2dabf6a4e50665ce28f01976f45b6496def66f4e9ecdbf0d8314a5824c404c9a",
+        "definitionHash": "a2d75c16173719f65bb65fecadcd6af10d6049b4ec3b459ad652f08a29be50b4",
+        "evaluationHash": "e87507057c0f3f20f51f45cc6e28408101038e6d7e7a4bcd2c9b7f1f10f21283",
+        "eligibility": "eligible",
+        "referral": "required",
+        "originalBind": "blocked",
+        "currency": "GBP",
+        "premiumMinor": "10000",
+        "commissionMinor": "700",
+        "eventTypes": ["quote_created"],
+        "originalDecisionRecomputed": true,
+        "recordHashChainVerified": true,
+        "approval": {
+          "id": "104a7638-74fd-48d3-91b3-87bb9ccba6aa",
+          "approvalHash": "464a6750aae35e0dc48c70de09492a0c7602bf2f0ab29050e5a37d7a02534870",
+          "version": 1,
+          "status": "requested",
+          "targetRecordVersion": 1,
+          "gates": ["referral"],
+          "actionHistory": ["request"],
+          "historyHashes": ["464a6750aae35e0dc48c70de09492a0c7602bf2f0ab29050e5a37d7a02534870"],
+          "hashChainAndTargetVerified": true
+        },
+        "provider": {
+          "id": "e037c67a-a290-45e0-af38-76b2f0107586",
+          "requestHash": "a3a045c0c5c632fbb5e69479f88ed3b772c6e534bde8d3d3de3855d0659f6ea0",
+          "stateHash": "5d58f84ba47b3097b9745cce826ff8ef196a11ad4cf18cb402c523f0f49d8494",
+          "version": 3,
+          "status": "completed",
+          "attempts": 1,
+          "receiptHashes": ["566a42aabafc153d517811186ce9a31e4c60c88b88a0a19584a22db3094c36ba"],
+          "outcomes": ["referred"],
+          "auditKinds": ["requested", "claimed", "receipt_accepted"],
+          "auditHashes": [
+            "83710b80b552c36090433b918abdd0901385efd08ccd9c1c1e8d864aeee4460f",
+            "16fafacfb4238cfa814b07f4ade7de7550c22250735bdd3e912e85fec28afdff",
+            "f620beda81950075f8778edc3508e4aba85e0ef53b8944c4ad1b9e8c90b7ae24"
+          ],
+          "hashChainAndSelectionVerified": true,
+          "syntheticEvidenceOnly": true
+        },
+        "crossTenantWorkflowAccessDenied": true
+      }
+    ],
+    "observedAt": "2026-09-06T18:49:00.408Z",
+    "method": "Read-only SQLite plus deployed ControlStorage/schema/canonical modules; no Store constructor on live data",
+    "businessSchema": 6,
+    "authSchema": 1,
+    "businessIntegrity": "ok",
+    "authIntegrity": "ok",
+    "alpha": {
+      "tenantId": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+      "releaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+      "releaseHash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f",
+      "releaseBuildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+      "recordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+      "recordHash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+      "version": 2,
+      "status": "bound",
+      "sourceMode": "manual_external_quote",
+      "currency": "GBP",
+      "premiumMinor": "100000",
+      "commissionMinor": "7000",
+      "history": [
+        {
+          "version": 1,
+          "status": "quoted",
+          "hash": "af10bf4bd3bccdeefb5dc5b1fa4df469efd8b007a0b7c465035f289d0b8e82f9"
+        },
+        {
+          "version": 2,
+          "status": "bound",
+          "hash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce"
+        }
+      ],
+      "eventTypes": ["quote_created", "bound"],
+      "hashChainVerified": true
+    },
+    "gamma": {
+      "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+      "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+      "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af",
+      "releaseBuildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+      "recordId": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+      "recordHash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27",
+      "version": 2,
+      "status": "bound",
+      "sourceMode": "configured_product",
+      "currency": "GBP",
+      "premiumMinor": "10000",
+      "commissionMinor": "700",
+      "history": [
+        {
+          "version": 1,
+          "status": "quoted",
+          "hash": "75a0939a0d550a67aa4bb34725169c0106fed37f4d0bc160f9b5f680a809aa81"
+        },
+        {
+          "version": 2,
+          "status": "bound",
+          "hash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27"
+        }
+      ],
+      "eventTypes": ["quote_created", "bound"],
+      "hashChainVerified": true,
+      "inputHash": "636e0605914cdf838317ec645ed042ccf6183b0958542493ffca796195f71012",
+      "definitionHash": "a2d75c16173719f65bb65fecadcd6af10d6049b4ec3b459ad652f08a29be50b4",
+      "evaluationHash": "91ce983bddba2caf8bd2cb004923dd11fdf45a272ca77951b266a3fe5014efaa",
+      "originalDecisionRecomputed": true,
+      "bindDecisionRecomputed": true
+    },
+    "beta": {
+      "tenantId": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+      "recordCount": 0,
+      "activeReleaseAbsent": true,
+      "crossTenantRecordAccessDenied": true
+    },
+    "authSessionValuesRead": false
+  },
+  "snapshot": {
+    "snapshotId": "20260906T184858.117152Z",
+    "createdAt": "2026-09-06T18:48:58.117250+00:00",
+    "databases": [
+      {
+        "file": "kernel.sqlite",
+        "sha256": "9fb67fe2e9eed70f20ff33b0b68296e5bdec0f843b9f389b17dc24d8d4daee67",
+        "schema": 6,
+        "integrity": "ok"
+      },
+      {
+        "file": "auth.sqlite",
+        "sha256": "d87925e51b9b182cd8f7f30fa0c58796b4982296a53ad86bdad9f9f04ffc6dda",
+        "schema": 1,
+        "integrity": "ok"
+      }
+    ],
+    "offHostDownloadedAndHashesVerified": true,
+    "deployedSchema6ReadOnlyBusinessProof": {
+      "runtimeEvidence": [
+        {
+          "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+          "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+          "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af",
+          "releaseBuildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+          "recordId": "cdffc011-94a6-47bd-9e89-3a28b0b31532",
+          "recordHash": "6853f74f1d3b422566c1e9f9d11c9ce95ecd20d67afe8f17d31c75d8a186c7fd",
+          "version": 1,
+          "status": "quoted",
+          "quoteHash": "ef0db02d7dee38c0cfef1447e7bd7e6ab1e39c0255cd545c774b8e54a68b962b",
+          "inputHash": "2dabf6a4e50665ce28f01976f45b6496def66f4e9ecdbf0d8314a5824c404c9a",
+          "definitionHash": "a2d75c16173719f65bb65fecadcd6af10d6049b4ec3b459ad652f08a29be50b4",
+          "evaluationHash": "e87507057c0f3f20f51f45cc6e28408101038e6d7e7a4bcd2c9b7f1f10f21283",
+          "eligibility": "eligible",
+          "referral": "required",
+          "originalBind": "blocked",
+          "currency": "GBP",
+          "premiumMinor": "10000",
+          "commissionMinor": "700",
+          "eventTypes": ["quote_created"],
+          "originalDecisionRecomputed": true,
+          "recordHashChainVerified": true,
+          "approval": {
+            "id": "104a7638-74fd-48d3-91b3-87bb9ccba6aa",
+            "approvalHash": "464a6750aae35e0dc48c70de09492a0c7602bf2f0ab29050e5a37d7a02534870",
+            "version": 1,
+            "status": "requested",
+            "targetRecordVersion": 1,
+            "gates": ["referral"],
+            "actionHistory": ["request"],
+            "historyHashes": ["464a6750aae35e0dc48c70de09492a0c7602bf2f0ab29050e5a37d7a02534870"],
+            "hashChainAndTargetVerified": true
+          },
+          "provider": {
+            "id": "e037c67a-a290-45e0-af38-76b2f0107586",
+            "requestHash": "a3a045c0c5c632fbb5e69479f88ed3b772c6e534bde8d3d3de3855d0659f6ea0",
+            "stateHash": "5d58f84ba47b3097b9745cce826ff8ef196a11ad4cf18cb402c523f0f49d8494",
+            "version": 3,
+            "status": "completed",
+            "attempts": 1,
+            "receiptHashes": ["566a42aabafc153d517811186ce9a31e4c60c88b88a0a19584a22db3094c36ba"],
+            "outcomes": ["referred"],
+            "auditKinds": ["requested", "claimed", "receipt_accepted"],
+            "auditHashes": [
+              "83710b80b552c36090433b918abdd0901385efd08ccd9c1c1e8d864aeee4460f",
+              "16fafacfb4238cfa814b07f4ade7de7550c22250735bdd3e912e85fec28afdff",
+              "f620beda81950075f8778edc3508e4aba85e0ef53b8944c4ad1b9e8c90b7ae24"
+            ],
+            "hashChainAndSelectionVerified": true,
+            "syntheticEvidenceOnly": true
+          },
+          "crossTenantWorkflowAccessDenied": true
+        }
+      ],
+      "observedAt": "2026-09-06T18:48:59.798Z",
+      "method": "Read-only SQLite plus deployed ControlStorage/schema/canonical modules; no Store constructor on live data",
+      "businessSchema": 6,
+      "authSchema": 1,
+      "businessIntegrity": "ok",
+      "authIntegrity": "ok",
+      "alpha": {
+        "tenantId": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+        "releaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+        "releaseHash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f",
+        "releaseBuildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+        "recordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+        "recordHash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+        "version": 2,
+        "status": "bound",
+        "sourceMode": "manual_external_quote",
+        "currency": "GBP",
+        "premiumMinor": "100000",
+        "commissionMinor": "7000",
+        "history": [
+          {
+            "version": 1,
+            "status": "quoted",
+            "hash": "af10bf4bd3bccdeefb5dc5b1fa4df469efd8b007a0b7c465035f289d0b8e82f9"
+          },
+          {
+            "version": 2,
+            "status": "bound",
+            "hash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce"
+          }
+        ],
+        "eventTypes": ["quote_created", "bound"],
+        "hashChainVerified": true
+      },
+      "gamma": {
+        "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+        "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+        "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af",
+        "releaseBuildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+        "recordId": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+        "recordHash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27",
+        "version": 2,
+        "status": "bound",
+        "sourceMode": "configured_product",
+        "currency": "GBP",
+        "premiumMinor": "10000",
+        "commissionMinor": "700",
+        "history": [
+          {
+            "version": 1,
+            "status": "quoted",
+            "hash": "75a0939a0d550a67aa4bb34725169c0106fed37f4d0bc160f9b5f680a809aa81"
+          },
+          {
+            "version": 2,
+            "status": "bound",
+            "hash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27"
+          }
+        ],
+        "eventTypes": ["quote_created", "bound"],
+        "hashChainVerified": true,
+        "inputHash": "636e0605914cdf838317ec645ed042ccf6183b0958542493ffca796195f71012",
+        "definitionHash": "a2d75c16173719f65bb65fecadcd6af10d6049b4ec3b459ad652f08a29be50b4",
+        "evaluationHash": "91ce983bddba2caf8bd2cb004923dd11fdf45a272ca77951b266a3fe5014efaa",
+        "originalDecisionRecomputed": true,
+        "bindDecisionRecomputed": true
+      },
+      "beta": {
+        "tenantId": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+        "recordCount": 0,
+        "activeReleaseAbsent": true,
+        "crossTenantRecordAccessDenied": true
+      },
+      "authSessionValuesRead": false
+    }
+  },
+  "backupService": {
+    "Result": "success",
+    "ExecMainStartTimestamp": "Sun 2026-09-06 18:48:58 UTC",
+    "ExecMainExitTimestamp": "Sun 2026-09-06 18:48:58 UTC",
+    "ExecMainStatus": "0",
+    "ActiveState": "inactive"
+  },
+  "backupTimer": {
+    "NextElapseUSecRealtime": "Sun 2026-09-06 19:00:11 UTC",
+    "LastTriggerUSec": "Sun 2026-09-06 18:01:10 UTC",
+    "Result": "success",
+    "ActiveState": "active"
+  },
+  "preUpgradeSnapshotId": "20260906T183402.689170Z",
+  "liveContainerUnchanged": true,
+  "liveDataOverwritten": false,
+  "liveBusinessMutationPerformed": false,
+  "authSessionValuesRead": false,
+  "limits": [
+    "This is the exact schema6 live and downloaded snapshot proof. Isolated full-image recovery is recorded separately.",
+    "The approval is retained at its observed status; this proof does not impersonate or substitute for an independent reviewer.",
+    "Provider receipt evidence is synthetic and grants no payment, provider or bind authority.",
+    "Each SQLite database is independently consistent; cross-database atomicity is not claimed.",
+    "No session impersonation, live business mutation, deployment or full VM-loss recovery was performed."
+  ],
+  "purpose": "Initial deployed human-review/provider-execution runtime and schema 6 backup proof; subsequent presentation-only deployment is recorded separately."
+}

@@ -1,0 +1,217 @@
+.ic-editor {
+  overflow: hidden;
+}
+.ic-editor .ic-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border, #dfe8ed);
+  padding: 12px 20px;
+}
+.ic-tabs button {
+  border: 0;
+  background: transparent;
+  color: #506b7b;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.ic-tabs button[aria-current='page'] {
+  background: #e8f2ef;
+  color: #176965;
+}
+.ic-product-row,
+.ic-section-intro,
+.ic-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.ic-product-row {
+  padding: 18px 0;
+  border-bottom: 1px solid #e7edf1;
+}
+.ic-product-row:last-child {
+  border-bottom: 0;
+}
+.ic-product-row h3,
+.ic-section-intro h2,
+.ic-card-heading h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+.ic-product-row p,
+.ic-section-intro p {
+  margin: 5px 0;
+  color: #567181;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.ic-section-intro {
+  margin-bottom: 20px;
+}
+.ic-section-card {
+  border: 1px solid #dfe8ed;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 18px;
+  background: #fff;
+}
+.ic-card-heading {
+  margin-bottom: 20px;
+}
+.ic-section-card .form-grid {
+  align-items: start;
+}
+.ic-editor textarea {
+  resize: vertical;
+  width: 100%;
+  min-height: 88px;
+  font: inherit;
+  padding: 10px;
+  border: 1px solid #cfdae2;
+  border-radius: 6px;
+  line-height: 1.6;
+}
+.ic-editor input,
+.ic-editor select {
+  min-width: 0;
+}
+.ic-checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  align-self: center;
+}
+.ic-checkbox input {
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  order: -1;
+}
+.ic-editor .ic-checkbox label {
+  margin: 0;
+}
+.ic-option-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+  gap: 12px;
+  margin: 12px 0;
+}
+.ic-option-row button {
+  margin-bottom: 0;
+}
+.ic-predicate-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0;
+}
+.ic-predicate {
+  display: grid;
+  grid-template-columns: 22px minmax(120px, 1fr) minmax(120px, 1fr) minmax(100px, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+  padding: 14px;
+  border-radius: 7px;
+  background: #f5f8fa;
+}
+.ic-predicate-number {
+  color: #7e939f;
+  font-size: 12px;
+  padding-top: 30px;
+}
+.ic-predicate .button {
+  align-self: center;
+}
+.ic-predicate .form-field {
+  min-width: 0;
+}
+.ic-empty {
+  padding: 22px;
+  background: #f5f8fa;
+  color: #567181;
+  line-height: 1.7;
+  border-radius: 8px;
+}
+.ic-editor button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.ic-editor :is(input, select, textarea):disabled {
+  background: #f3f6f8;
+  color: #567181;
+}
+.ic-editor :is(button, input, select, textarea):focus-visible {
+  outline: 2px solid #1d807b;
+  outline-offset: 3px;
+}
+.ic-editor .form-field .field-help {
+  font-size: 11px;
+  line-height: 1.65;
+}
+@media (max-width: 1000px) {
+  .ic-predicate {
+    grid-template-columns: 20px 1fr 1fr;
+  }
+  .ic-predicate > .form-field:nth-of-type(3) {
+    grid-column: 2/4;
+  }
+  .ic-predicate > button {
+    grid-column: 2/4;
+    justify-self: start;
+  }
+}
+@media (max-width: 620px) {
+  .ic-section-card {
+    padding: 15px;
+  }
+  .ic-section-intro,
+  .ic-product-row,
+  .ic-card-heading {
+    flex-wrap: wrap;
+  }
+  .ic-editor .ic-tabs {
+    padding: 10px;
+    gap: 2px;
+  }
+  .ic-tabs button {
+    padding: 9px;
+    font-size: 11px;
+  }
+  .ic-predicate {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+  .ic-predicate-number {
+    padding: 0;
+  }
+  .ic-predicate > .form-field:nth-of-type(3),
+  .ic-predicate > button {
+    grid-column: auto;
+  }
+  .ic-option-row {
+    grid-template-columns: 1fr;
+  }
+  .ic-option-row button {
+    justify-self: start;
+  }
+  .ic-editor .form-actions {
+    flex-wrap: wrap;
+  }
+}
+
+.ic-conditional {
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+.ic-conditional .button {
+  margin-right: 0.5rem;
+}
+.ic-section-card .ic-section-card {
+  margin: 0.75rem 0;
+}

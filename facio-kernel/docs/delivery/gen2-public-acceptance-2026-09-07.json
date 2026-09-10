@@ -1,0 +1,333 @@
+{
+  "publicUrl": "https://platform.facio.io",
+  "initialActivatedSourceCommit": "a95095c1f1111bb9a01da51f268ab5b0ef9d631f",
+  "googleSignIn": {
+    "account": "uriel@facio.io",
+    "method": "actual Chrome account chooser and callback",
+    "result": "workspace screen opened",
+    "followupReleaseVerified": true
+  },
+  "workspaceCreation": {
+    "method": "actual public browser MGA form",
+    "tenantId": "ade18bcc-c811-4263-8ae6-005ab1783bfc",
+    "tenantSlug": "facio-training",
+    "displayName": "Facio Training MGA",
+    "jurisdiction": "CY",
+    "currency": "EUR",
+    "profileVersion": 1,
+    "backOfficeOpened": true,
+    "primaryColor": "#126D72",
+    "secondaryColor": "#234251",
+    "computedColorValuesVerified": true,
+    "logoUrlsPersisted": true,
+    "initialLogoDisplay": "Initial CSP issue corrected; HTTPS logo loads on verified follow-up release."
+  },
+  "homeJourney": {
+    "method": "actual public browser five-step wizard, acceptance, back-office bind and issue",
+    "policyId": "57524cf2-3127-4688-95f2-ac9ac7b9db3e",
+    "policyNumber": "FACIO-TRAINI-CY-HOME-P5000001",
+    "status": "ISSUED",
+    "startDate": "2026-09-14",
+    "endDate": "2027-09-14",
+    "premium": {
+      "net": 263.39,
+      "admin": 18,
+      "assistance": 12,
+      "payable": 293.39,
+      "currency": "EUR"
+    },
+    "liveCheckout": "disabled by published programme",
+    "customerDelivery": "disabled in shared training host",
+    "issuedDocuments": [
+      {
+        "file": "statement-of-fact.pdf",
+        "pages": 6,
+        "sha256": "965414681bb54c989daff3b1d9f8e6f572e8da41e0c7b4effda031c7a94d2755",
+        "tenantIdentity": true,
+        "policyNumber": true,
+        "premiumPresent": false,
+        "oldBrandPresent": false,
+        "draftWatermarkPresent": false,
+        "selectedTerm": false
+      },
+      {
+        "file": "schedule.pdf",
+        "pages": 7,
+        "sha256": "c419799a5b30719087364f86a5a3cb540fbfd62d5cf7327e3816c031feecdfc2",
+        "tenantIdentity": true,
+        "policyNumber": true,
+        "premiumPresent": true,
+        "oldBrandPresent": false,
+        "draftWatermarkPresent": false,
+        "selectedTerm": true
+      }
+    ]
+  },
+  "followupReleaseState": "Public application, configuration parity, cross-tenant access and PostgreSQL recovery verified. Final merged revision deployment is recorded in the release process.",
+  "customerAcceptanceClaimed": false,
+  "verifiedFollowupSourceCommit": "6db0487f3d949fa13ce2920fb843dc6cf3e55b4a",
+  "additionalWorkspaceCreation": {
+    "method": "actual public Chrome create form and full back office",
+    "tenantSlug": "atlantic-training",
+    "displayName": "Atlantic Training MGA",
+    "jurisdiction": "PT",
+    "currency": "EUR",
+    "locale": "en-GB",
+    "timeZone": "Europe/Lisbon",
+    "primaryColor": "#753B9D",
+    "secondaryColor": "#E3A543",
+    "renderedPrimaryColor": "rgb(117, 59, 157)",
+    "logoNaturalWidth": 320,
+    "profileVersion": 1,
+    "separateEmptyPolicyList": true,
+    "originalTenantIssuedPolicyPreserved": true,
+    "organizationSignInRetainedAcrossTabs": true
+  },
+  "configurationScopeBrowser": {
+    "ok": true,
+    "origin": "https://platform.facio.io",
+    "tenantId": "64e3db7b-7f1d-4ee4-892c-e69ed0450886",
+    "tenantSlug": "cobalt-training",
+    "programId": "49604d78-ce30-4e66-b047-6f22a8ad4c51",
+    "policyId": "de14fffb-b78d-4bbc-a5e8-cb00f5db262b",
+    "authentication": "Owned automated browser with temporary authorized operator tokens; not an independent customer or Google-login claim",
+    "mutationBoundary": "Unsaved underwriting form edits only; no policy save, price, bind, publish, payment or delivery request",
+    "checks": [
+      "Nonmatching configured segment hides the required question",
+      "Nonmatching configured coverage/section hides the required question",
+      "Empty segment selection preserves visible scope; base-field requiredness remains server-owned",
+      "Matched question and its required marker restore with the unsaved answer intact",
+      "Source editor shows the same published definition name and retained base rate",
+      "Persisted quote data unchanged after browser-only scope edits"
+    ],
+    "mobile": {
+      "viewport": 390,
+      "documentWidth": 390
+    },
+    "definitionId": "9a77716a-5210-4f9e-abc4-8d7f75fedf0b",
+    "definitionVersion": 3,
+    "definitionHash": "823077f18aefc2545d2aad91d2c96092bcce1637fac0533b18d18ea04dec76dd",
+    "questionKey": "scopeReview",
+    "authorityId": "2115dc2e-bd9d-489b-92d3-725d059e8ed8",
+    "productName": "Cobalt Business Liability",
+    "baseRate": "0.7",
+    "completion": {
+      "matched": {
+        "completed": 13,
+        "total": 13
+      },
+      "hidden": {
+        "completed": 12,
+        "total": 12
+      }
+    },
+    "quoteDataHash": "7ae52f663f7e158225d81dda6e3bf5da8215d31e001fd75085679a2efc272bbf",
+    "insuranceWrites": [],
+    "failedRequests": [],
+    "imageBlobs": [
+      "tenants/64e3db7b-7f1d-4ee4-892c-e69ed0450886/acceptance/1788784198583-scope-matched-required.png",
+      "tenants/64e3db7b-7f1d-4ee4-892c-e69ed0450886/acceptance/1788784198882-scope-coverage-hidden.png",
+      "tenants/64e3db7b-7f1d-4ee4-892c-e69ed0450886/acceptance/1788784198894-scope-mobile.png",
+      "tenants/64e3db7b-7f1d-4ee4-892c-e69ed0450886/acceptance/1788784198904-published-source-editor.png"
+    ]
+  },
+  "localVerification": {
+    "command": "PLATFORM_TENANT_PG_TEST=1 node tools/platform/with-env.mjs npm run check:platform",
+    "passed": true,
+    "testFiles": 68,
+    "passedTests": 381,
+    "skippedTests": 1,
+    "skip": "Browser-state-dependent PostgreSQL test; actual browser paths verified separately.",
+    "includes": [
+      "backend/frontend builds",
+      "strict types",
+      "architecture guards",
+      "restricted-role PostgreSQL tests",
+      "source contract/runtime scope/permission regressions"
+    ]
+  },
+  "remoteCI": {
+    "sourceCommit": "6db0487f3d949fa13ce2920fb843dc6cf3e55b4a",
+    "platform": "https://github.com/FacioMGA/facio-kernel/actions/runs/34121649593",
+    "kernel": "https://github.com/FacioMGA/facio-kernel/actions/runs/34121649579",
+    "result": "success"
+  },
+  "finalPostgresqlRecovery": {
+    "createdAt": "20260907T123354.954705Z",
+    "file": "platform-20260907T123354.954705Z-78e69e53bcd74100a72c79775dfbc0ad.dump",
+    "offHostSha256Verified": true,
+    "restoreVerified": true,
+    "sha256": "25d44b7913f0816a0099dd7164734d821780a7b46dd612078da3b3e9875c5b24",
+    "tablesCompared": 112,
+    "forcedRlsTables": 66,
+    "migrations": 53,
+    "tenantCount": 3,
+    "policyCount": 3,
+    "documentCount": 2,
+    "temporaryRestoreDatabaseRemoved": true,
+    "applicationDatabaseOverwritten": false,
+    "blobObjectRestoreClaimed": false
+  },
+  "publicWorkflowUiPublication": {
+    "tenantSlug": "cobalt-training",
+    "programId": "49604d78-ce30-4e66-b047-6f22a8ad4c51",
+    "method": "Actual public Chrome fields, Save programme definition draft, existing linked authority selection, Publish definition",
+    "version": 4,
+    "status": "PUBLISHED",
+    "businessDescription": "Cobalt training workflow \u2014 configured in Facio Platform",
+    "existingPolicyRetainsVersion": 3
+  },
+  "finalAccessVerification": {
+    "base": "https://platform.facio.io",
+    "runId": "dbef8fa4-b76f-42ab-8a54-2e3bbd644eec",
+    "processId": 1403,
+    "ok": true,
+    "startedAt": "2026-09-07T12:49:49.723Z",
+    "authentication": "Canonical temporary authorized operator session; not a fresh Google sign-in or independent customer acceptance",
+    "mutationBoundary": "No product save/publish, policy creation, quote calculation, bind, issue, delivery or business data update",
+    "earlierEvidence": {
+      "source": "scope-browser-receipt.json and public-contract-acceptance-final.log",
+      "schemaReadSavePublishAndQuotePreviouslyExecuted": true,
+      "scopedBrowserChecksPreviouslyPassed": true,
+      "repeatedBusinessMutations": false
+    },
+    "cleanup": {
+      "keyRevoked": true,
+      "sessionRevoked": true
+    },
+    "executionUid": 1001,
+    "workspaces": [
+      {
+        "id": "ade18bcc-c811-4263-8ae6-005ab1783bfc",
+        "slug": "facio-training",
+        "profileVersion": 1,
+        "displayName": "Facio Training MGA",
+        "jurisdiction": "CY",
+        "currency": "EUR",
+        "contactEmailPresent": true,
+        "contactPhonePresent": true,
+        "programmeIds": [
+          "eada87bf-95e6-4f8b-8c7e-3ed3982dc2be",
+          "41de9326-27d1-487a-a21c-c9e07e98d23f",
+          "d43456cb-92e6-4584-a697-adafad40c502",
+          "c4a32a85-65d4-45f5-b15b-9545af64a38e",
+          "8be5d6e5-bf82-4a7b-83df-2acecd60f020"
+        ],
+        "products": [
+          "COMMERCIAL",
+          "HEALTH",
+          "HOME",
+          "MOTOR",
+          "TRAVEL"
+        ]
+      },
+      {
+        "id": "64e3db7b-7f1d-4ee4-892c-e69ed0450886",
+        "slug": "cobalt-training",
+        "profileVersion": 1,
+        "displayName": "Cobalt Training MGA",
+        "jurisdiction": "CY",
+        "currency": "EUR",
+        "contactEmailPresent": true,
+        "contactPhonePresent": true,
+        "programmeIds": [
+          "95b53596-135e-4c4f-85bf-8be9d5c7598e",
+          "2d692cf6-e0b3-4798-aa92-e0b86210941f",
+          "2ac0e22e-1f22-439f-8bb3-9f21794b5996",
+          "f6f261ab-05be-4e72-8709-97bc7c5c1e47",
+          "49604d78-ce30-4e66-b047-6f22a8ad4c51"
+        ],
+        "products": [
+          "COMMERCIAL",
+          "HEALTH",
+          "HOME",
+          "MOTOR",
+          "TRAVEL"
+        ]
+      },
+      {
+        "id": "388e2663-4721-4cfe-8952-050987facd8c",
+        "slug": "atlantic-training",
+        "profileVersion": 1,
+        "displayName": "Atlantic Training MGA",
+        "jurisdiction": "PT",
+        "currency": "EUR",
+        "contactEmailPresent": true,
+        "contactPhonePresent": true,
+        "programmeIds": [
+          "9b530822-318c-4e0a-b957-1ad5ed066beb",
+          "0e885672-ffba-4268-906a-b3e46858300a"
+        ],
+        "products": [
+          "HOME",
+          "TRAVEL"
+        ]
+      }
+    ],
+    "sharedProgrammeIds": false,
+    "cobalt": {
+      "policyId": "de14fffb-b78d-4bbc-a5e8-cb00f5db262b",
+      "status": "QUOTED",
+      "programId": "49604d78-ce30-4e66-b047-6f22a8ad4c51",
+      "definitionId": "c815d7cf-9459-4b61-aa0c-be0cb38638e1",
+      "definitionVersion": 4,
+      "definitionHash": "6c77637739bfcc84877fe08f79fbb5a60ed6d58144280dd9538013a68b58768a",
+      "retainedDefinitionId": "9a77716a-5210-4f9e-abc4-8d7f75fedf0b",
+      "retainedDefinitionVersion": 3,
+      "retainedDefinitionSnapshotHash": "9787142ac5764843b217b24c9eab4001ec46538b91d8297d4215fe4b2dd080ab",
+      "currentQuestionnaireDefinitionId": "c815d7cf-9459-4b61-aa0c-be0cb38638e1",
+      "baseRate": "0.7",
+      "quoteDataHash": "7ae52f663f7e158225d81dda6e3bf5da8215d31e001fd75085679a2efc272bbf"
+    },
+    "documents": [
+      {
+        "id": "a006e76a-c028-4ecf-96b5-db6b937da093",
+        "type": "HOME_SCHEDULE_PDF",
+        "docPack": "ISSUED_POLICY_PACK",
+        "storageUri": "/api/documents/69f69fec-700a-4d12-ad12-c75cf9e59ff1.pdf",
+        "bytes": 282765,
+        "sha256": "c419799a5b30719087364f86a5a3cb540fbfd62d5cf7327e3816c031feecdfc2",
+        "ownStatus": 200,
+        "foreignStatus": 404
+      },
+      {
+        "id": "bb89d191-fcdc-47cc-8ad8-48a05c42d09f",
+        "type": "HOME_STATEMENT_OF_FACT_PDF",
+        "docPack": "ISSUED_POLICY_PACK",
+        "storageUri": "/api/documents/50d3f105-551c-43ae-a192-d5d067b9cca5.pdf",
+        "bytes": 167182,
+        "sha256": "965414681bb54c989daff3b1d9f8e6f572e8da41e0c7b4effda031c7a94d2755",
+        "ownStatus": 200,
+        "foreignStatus": 404
+      }
+    ],
+    "home": {
+      "policyId": "57524cf2-3127-4688-95f2-ac9ac7b9db3e",
+      "policyNumber": "FACIO-TRAINI-CY-HOME-P5000001",
+      "status": "ISSUED",
+      "ownStatus": 200,
+      "foreignStatus": 404
+    },
+    "crossProgramme": {
+      "httpStatus": 404,
+      "code": "DRAFT_NOT_FOUND"
+    },
+    "mcp": {
+      "sdk": "@modelcontextprotocol/sdk",
+      "schema": true,
+      "read": true,
+      "save": false,
+      "publish": false,
+      "wrongWorkspace": {
+        "denied": true,
+        "httpStatus": 401
+      },
+      "revokedKey": {
+        "denied": true,
+        "httpStatus": 401
+      }
+    },
+    "businessReadbackUnchanged": true,
+    "completedAt": "2026-09-07T12:49:50.889Z"
+  }
+}

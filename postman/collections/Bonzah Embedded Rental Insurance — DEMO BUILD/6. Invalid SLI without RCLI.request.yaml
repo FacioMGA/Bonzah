@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/bonzah/quotes"
+method: POST
+headers:
+  Content-Type: application/json
+  Idempotency-Key: invalid-sli
+body:
+  type: json
+  content: '{"programId":"BONZAH-US-DEMO-2026","channel":"API","effectiveDate":"2026-09-03","risk":{"pickup":{"country":"US","state":"CO"},"residence":{"country":"US","state":"CA"},"rentalStart":"2026-09-18T10:00:00-06:00","rentalEnd":"2026-09-22T10:00:00-06:00","driver":{"age":35,"licenceValid":true},"vehicle":{"year":2025,"make":"Toyota","model":"RAV4","class":"suv","declaredValue":31500,"repairProfile":"standard","powertrain":"hybrid"}},"coverages":["CDW","SLI"]}'
+scripts:
+  - type: afterResponse
+    code: pm.test('Dependency rejected', () => pm.response.to.have.status(422));
+    language: text/javascript
+order: 6000

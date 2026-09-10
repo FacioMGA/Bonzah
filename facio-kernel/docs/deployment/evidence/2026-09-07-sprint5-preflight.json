@@ -1,0 +1,189 @@
+{
+  "buildSha": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+  "checkedAt": "2026-09-07T07:02:52.694555+00:00",
+  "imageId": "sha256:7d0821823e8326af995c56f9e3f2314688d8f3438ef432d99e2b803274f793bf",
+  "imageArchiveSha256": "b906e99f841bc9c478da290ef74795625ed0acd7df2f5682c04ab2df070a21c9",
+  "replaySourceSha256": "1d4584fa074511a187b6b24eab9d3d4d98e87049aecfb3fe045d55c3099392fe",
+  "originalDatabases": [
+    {
+      "file": "kernel.sqlite",
+      "sha256": "304023f7950cb141bd5b97451f267b69d99f445e57a2059179a2ce6d9bc53e39"
+    },
+    {
+      "file": "auth.sqlite",
+      "sha256": "6a26f5afe092e63a5bc2d23700ff0d9531cfa98d4106ec7981154647a5f1afab"
+    }
+  ],
+  "replay": {
+    "passed": true,
+    "baselineVerified": true,
+    "businessSchema": 7,
+    "moneyEngine": {
+      "engine": "rust-wasm",
+      "engineVersion": "1.0.0",
+      "abiVersion": 1,
+      "calculationVersion": "exact-money-v1",
+      "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+      "target": "wasm32-unknown-unknown",
+      "sourceSha256": "e4512b0aeb03ce38c813ca490804d7adfa0d302ae8eed9721769c323061f87d8",
+      "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+      "wasmBytes": 16985,
+      "memoryBytes": 131072
+    },
+    "records": [
+      {
+        "id": "cdffc011-94a6-47bd-9e89-3a28b0b31532",
+        "version": 1,
+        "hash": "6853f74f1d3b422566c1e9f9d11c9ce95ecd20d67afe8f17d31c75d8a186c7fd",
+        "historyVersions": 1
+      },
+      {
+        "id": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+        "version": 2,
+        "hash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27",
+        "historyVersions": 2
+      },
+      {
+        "id": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+        "version": 2,
+        "hash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+        "historyVersions": 2
+      }
+    ],
+    "documents": [],
+    "notices": [],
+    "finance": [
+      {
+        "recordId": "cdffc011-94a6-47bd-9e89-3a28b0b31532",
+        "ledgerHash": "5143d99ae8aa4b2eeaba764d9b92bbc66896587eeea8c35a75bf3bedb4d5adc3",
+        "journals": 0,
+        "applications": 0,
+        "receipts": 0
+      },
+      {
+        "recordId": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+        "ledgerHash": "952bd91c7c703fe3e83292c5eef80bbcbb228b2d3f51edb815b6055a67fbf3b9",
+        "journals": 0,
+        "applications": 0,
+        "receipts": 0
+      },
+      {
+        "recordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+        "ledgerHash": "af0b9af901222e51fe0911f69b62cb07c2e7d46ed6b447b2a7db797e3131dbe1",
+        "journals": 0,
+        "applications": 0,
+        "receipts": 0
+      }
+    ],
+    "approvals": [
+      {
+        "id": "104a7638-74fd-48d3-91b3-87bb9ccba6aa",
+        "version": 1,
+        "hash": "464a6750aae35e0dc48c70de09492a0c7602bf2f0ab29050e5a37d7a02534870",
+        "status": "requested"
+      }
+    ],
+    "providers": [
+      {
+        "id": "e037c67a-a290-45e0-af38-76b2f0107586",
+        "requestHash": "a3a045c0c5c632fbb5e69479f88ed3b772c6e534bde8d3d3de3855d0659f6ea0",
+        "stateHash": "5d58f84ba47b3097b9745cce826ff8ef196a11ad4cf18cb402c523f0f49d8494",
+        "status": "completed",
+        "receipts": [
+          "566a42aabafc153d517811186ce9a31e4c60c88b88a0a19584a22db3094c36ba"
+        ]
+      }
+    ],
+    "releases": [
+      {
+        "id": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+        "version": 1,
+        "hash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af"
+      },
+      {
+        "id": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+        "version": 1,
+        "hash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f"
+      }
+    ],
+    "tenants": [
+      {
+        "id": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+        "activeReleaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+        "activeReleaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af"
+      },
+      {
+        "id": "ea44847a-bf87-447a-8691-c61856c10aeb",
+        "activeReleaseId": null,
+        "activeReleaseHash": null
+      },
+      {
+        "id": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+        "activeReleaseId": null,
+        "activeReleaseHash": null
+      },
+      {
+        "id": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+        "activeReleaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+        "activeReleaseHash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f"
+      }
+    ],
+    "requirements": [
+      {
+        "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+        "version": 1,
+        "hash": "f1c41cf9fa05d062689fba51d95e0aa3ffdf3cd96c705d21d450c47ac3c6f3b9"
+      },
+      {
+        "tenantId": "ea44847a-bf87-447a-8691-c61856c10aeb",
+        "version": 1,
+        "hash": "56ed86d6ca7678ed4c7bfdd9f88beebff07b065b8cdb5e0c22fa542bf99dcb56"
+      },
+      {
+        "tenantId": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+        "version": 1,
+        "hash": "699c0ae6bd332ea376b486e99962fd8be8d558153bc692f31fbe6f7d3dc35f80"
+      }
+    ],
+    "outbox": [
+      {
+        "id": "633e3a29-e836-44a2-bf77-5222126e3720",
+        "eventId": "47243960-c95f-42a0-b052-e1b07b07f02f",
+        "payloadHash": "f157819d542e6d0450ef7ffe3d81cd56976c1165e00c92a68564865277d8d663"
+      },
+      {
+        "id": "b1bdd52f-9320-4144-920a-d76d6b22c014",
+        "eventId": "cc6b3fdd-84fb-44f6-9c7b-a8613ab6bd3f",
+        "payloadHash": "8e7d8a229f9490e1b7c5c47af24d0c5274c53f9085b5964b844a6be8975ba31a"
+      },
+      {
+        "id": "c73b898b-b0f6-4aac-9831-7ba6c5bc61da",
+        "eventId": "04441cbd-e25c-4fc1-97b8-d66dc353f86b",
+        "payloadHash": "a6d7078ac59391f43259adb6bcdc390345992edb762a0885464bb402c55ec2e8"
+      },
+      {
+        "id": "9a2772fb-46ad-40df-9d1d-03127087f033",
+        "eventId": "c5220c33-437f-49fd-b0bb-b9e2dca54ddf",
+        "payloadHash": "ea8f9930c97abaf2f211588feec45a0864a0048de13bb04f3e6121734361b80b"
+      },
+      {
+        "id": "f9638a22-0da0-49f9-a5d4-fbce64c057e7",
+        "eventId": "fdcffd87-d1db-4feb-a34e-f6bcd9db62f3",
+        "payloadHash": "241b453cc4636dd80783d4e295aaaf41ed849a212a3b94294ef6cff8f4d623e1"
+      }
+    ],
+    "authDataRowsMounted": 0,
+    "authSessionValuesRead": false,
+    "externalConnectionsAttempted": false
+  },
+  "liveContainerUnchanged": true,
+  "liveDataOverwritten": false,
+  "credentialsMounted": false,
+  "authMount": "empty_schema_only",
+  "network": "none",
+  "limits": [
+    "Each original database is independently consistent; cross-database atomicity is not claimed.",
+    "Authentication data rows are not replayed; only schema compatibility is checked inside the candidate.",
+    "This checks copied persisted business evidence, not customer acceptance or full VM-loss recovery."
+  ]
+}

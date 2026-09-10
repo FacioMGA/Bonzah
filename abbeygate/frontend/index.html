@@ -1,0 +1,22 @@
+<!-- Vite dev server entry. Surface-specific builds use public/index.{surface}.html. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://eu-test.oppwa.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Raleway:wght@400;500;600;700&display=swap">
+    <link rel="icon" type="image/svg+xml" href="/assets/branding/bonzah-logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <title>Bonzah</title>
+</head>
+
+<body data-surface="bo" class="text-slate-900 antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/surfaces/devEntry.tsx"></script>
+</body>
+
+</html>

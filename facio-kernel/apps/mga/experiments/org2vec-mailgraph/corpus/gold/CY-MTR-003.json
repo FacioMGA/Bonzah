@@ -1,0 +1,13 @@
+{
+  "thread_id": "CY-MTR-003",
+  "claim_ref": "CY-MTR-003",
+  "gold_missing_documents": [],
+  "gold_authority_flags": [],
+  "gold_decision_posture": "accepted",
+  "gold_key_events": [
+    "payment",
+    "closure"
+  ],
+  "gold_similar_threads": [],
+  "scenario": "control_clean"
+}

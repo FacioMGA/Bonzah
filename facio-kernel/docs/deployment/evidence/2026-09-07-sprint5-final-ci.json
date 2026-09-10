@@ -1,0 +1,194 @@
+{
+  "verifiedAt": "2026-09-07T07:42:24.866846+00:00",
+  "repository": "FacioMGA/facio-kernel",
+  "headSha": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+  "run": {
+    "id": 34096030376,
+    "url": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+    "conclusion": "success",
+    "jobId": 101659784506,
+    "completedAt": "2026-09-07T07:39:50Z"
+  },
+  "artifact": {
+    "id": 10008808790,
+    "name": "kernel-browser-evidence",
+    "digest": "sha256:c34ae05e6137f989a6e4c35513669e936e12016e01fba955220e62ebc16e891a",
+    "downloadedArchiveSha256": "c34ae05e6137f989a6e4c35513669e936e12016e01fba955220e62ebc16e891a",
+    "digestVerified": true,
+    "sizeInBytes": 13225214,
+    "archivePath": ".local/sprint5-final-ci-artifacts/kernel-browser-evidence.zip",
+    "extractedPath": ".local/sprint5-final-ci-artifacts/extracted"
+  },
+  "checks": {
+    "node": {
+      "tests": 181,
+      "pass": 181,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "rust": {
+      "tests": 2,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "docTests": 0
+    },
+    "python": {
+      "tests": 4,
+      "passed": 4,
+      "result": "OK"
+    },
+    "browser": {
+      "suites": 14,
+      "checks": 86,
+      "reportedOrAssertedConsoleErrors": 0,
+      "suitesWithExplicitEmptyErrorArray": 13,
+      "details": [
+        {
+          "command": "test:browser",
+          "report": "browser-evidence.json",
+          "reportSha256": "d211951ba1ea878e830236b09ba1497a3dccbde25aa79ac06d6fd77d1551c19c",
+          "checks": 12,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.errors"
+        },
+        {
+          "command": "test:insurance-browser",
+          "report": "insurance-browser-evidence.json",
+          "reportSha256": "fcb261f0b1bf05fcdf232342e8636e583f219050425cb81e35562b08cb3b695a",
+          "checks": 10,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.browserErrors"
+        },
+        {
+          "command": "test:intern-browser",
+          "report": "intern-browser-evidence.json",
+          "reportSha256": "f4734de047e82ff62a70a4a8ab0880b2463f5b39f6cda1884b2f5ba4922b8eb7",
+          "checks": 10,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.browserErrors"
+        },
+        {
+          "command": "test:oauth-browser",
+          "report": "oauth-browser-verification.json",
+          "reportSha256": "28e259857b9cdbc4841ed08ed7bf08b2bb823452b996ba8d47feee5b186da271",
+          "checks": 3,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "CI success after exact-head source assertion of no console errors; artifact has no error array",
+          "pageErrorCount": "not separately instrumented by this suite"
+        },
+        {
+          "command": "test:configuration-browser",
+          "report": "insurance-configuration-browser.json",
+          "reportSha256": "f46f8e631c3437b4f2b0d5b2dd797b1745d0f67fdb04205fb181509a9de4dc43",
+          "checks": 4,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.errors"
+        },
+        {
+          "command": "test:approval-browser",
+          "report": "insurance-approval-browser.json",
+          "reportSha256": "13295f5ee3419e3752f4c968a56a5a6ad8d3e5295c746ba413938368d23174ff",
+          "checks": 9,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.errors"
+        },
+        {
+          "command": "test:provider-browser",
+          "report": "insurance-provider-browser.json",
+          "reportSha256": "e741e107953055e55713067699d3de16b19adf8fb81ac10ca18dcd46f93591d0",
+          "checks": 4,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.errors"
+        },
+        {
+          "command": "test:finance-browser",
+          "report": "insurance-finance-browser.json",
+          "reportSha256": "f017b2aa40f77a3c5e767d732d2c7b71a1d6d24d414ae82d612f88bf421f4c8b",
+          "checks": 7,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.errors"
+        },
+        {
+          "command": "test:documents-browser",
+          "report": "insurance-documents-browser-report.json",
+          "reportSha256": "67e99803f6433cee2c2b267024861be618a62a0c7074ac4807aa7a5f8de77892",
+          "checks": 6,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.pageErrors"
+        },
+        {
+          "command": "test:service-browser",
+          "report": "insurance-service-browser.json",
+          "reportSha256": "f3f3b38b1705b61a155a3cd66f9e37233fcdd3a3ce6d0da63261473fe3910824",
+          "checks": 6,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.errors"
+        },
+        {
+          "command": "test:v2-browser",
+          "report": "insurance-v2-browser-checks.json",
+          "reportSha256": "5c215b3a6d8e6eaf74a1272907054e4703d530edf550530ae4d4e6e242313bcc",
+          "checks": 1,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.errors"
+        },
+        {
+          "command": "test:fnol-browser",
+          "report": "insurance-fnol-browser-report.json",
+          "reportSha256": "9d897506d0ed8dc3377df3353eb1708eab84ad8b0036838515684936eaf2591b",
+          "checks": 6,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.pageErrors"
+        },
+        {
+          "command": "test:ui-state-browser",
+          "report": "insurance-ui-state-browser.json",
+          "reportSha256": "7f35c002243e6cec602c5a5fddc500fc7ec2369d7f1af5193b1f1deec71ce8e2",
+          "checks": 5,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.errors"
+        },
+        {
+          "command": "test:conditional-browser",
+          "report": "insurance-conditional-browser.json",
+          "reportSha256": "7d98e27ddbfaa19c32d04690a4c7ac422641229409c1c378040d4d901be360b0",
+          "checks": 3,
+          "conclusion": "success",
+          "errors": 0,
+          "errorEvidence": "report.errors"
+        }
+      ]
+    }
+  },
+  "otherRequiredSteps": {
+    "Run npm run check": "success",
+    "Run npm run benchmark:rust": "success",
+    "Verify checked-in contract artifacts": "success"
+  },
+  "rawEvidence": {
+    "run": ".local/sprint5-final-ci-artifacts/run.json",
+    "artifactMetadata": ".local/sprint5-final-ci-artifacts/artifacts.json",
+    "log": ".local/sprint5-final-ci-artifacts/run.log",
+    "logSha256": "b184240395bc352eb7326b9de50f821de0b5c2b7575f118c99f99650f16f866b",
+    "oauthExactHeadSource": ".local/sprint5-final-ci-artifacts/oauth-browser-source.ts"
+  },
+  "boundary": "Remote CI against exact main commit, isolated synthetic browser fixtures. This receipt does not verify deployment, live identity-provider journeys, customer acceptance or production readiness.",
+  "errorCoverageNote": "Thirteen browser artifacts explicitly retain empty error arrays. OAuth artifact reports passed; exact-head source asserts zero console errors before writing it, and CI completed that path. OAuth does not separately collect pageerror events.",
+  "nonFailingRunnerWarning": "GitHub reports Node.js 20 deprecation for checkout/setup-node/upload-artifact v4 and forces those actions onto Node.js 24; this did not fail verification."
+}

@@ -1,0 +1,36 @@
+import React from 'react';
+
+export const DashboardPage = React.lazy(() => import('@/src/surfaces/bo/pages/DashboardPage'));
+export const MessengerPage = React.lazy(() => import('@/src/surfaces/bo/pages/MessengerPage'));
+export const ChangePasswordPage = React.lazy(() => import('@/src/surfaces/bo/pages/ChangePasswordPage'));
+export const PersonnelFilePage = React.lazy(() => import('@/src/surfaces/bo/pages/PersonnelFilePage'));
+export const BillingPage = React.lazy(() => import('@/src/surfaces/bo/pages/BillingPage'));
+export const ClaimsEntryPage = React.lazy(() => import('@/src/surfaces/bo/pages/ClaimsEntryPage'));
+export const ClaimsDeskPage = React.lazy(() => import('@/src/surfaces/bo/pages/ClaimsDeskPage'));
+export const ReportingPage = React.lazy(() => import('@/src/surfaces/bo/pages/ReportingPage'));
+export const CashSheetPage = React.lazy(() => import('@/src/surfaces/bo/pages/CashSheetPage'));
+export const DebtorsReportPage = React.lazy(() => import('@/src/surfaces/bo/pages/DebtorsReportPage'));
+export const ActivityLogReportPage = React.lazy(() => import('@/src/surfaces/bo/pages/ActivityLogReportPage'));
+export const ViewTracksReportPage = React.lazy(() => import('@/src/surfaces/bo/pages/ViewTracksReportPage'));
+export const OfficeTargetsPage = React.lazy(() => import('@/src/surfaces/bo/pages/OfficeTargetsPage'));
+export const OriginConversionPage = React.lazy(() => import('@/src/surfaces/bo/pages/OriginConversionPage'));
+export const CyprusDemographicPage = React.lazy(() => import('@/src/surfaces/bo/pages/CyprusDemographicPage'));
+export const DnoReportPage = React.lazy(() => import('@/src/surfaces/bo/pages/DnoReportPage'));
+export const PortfoliosPage = React.lazy(() => import('@/src/surfaces/bo/pages/PortfoliosPage'));
+export const AccountsPage = React.lazy(() => import('@/src/surfaces/bo/pages/AccountsPage'));
+export const FinancialRulesPage = React.lazy(() => import('@/src/surfaces/bo/pages/FinancialRulesPage'));
+export const BindersListPage = React.lazy(() => import('@/src/surfaces/bo/pages/BindersListPage'));
+export const BinderDetailPage = React.lazy(() => import('@/src/surfaces/bo/pages/BinderDetailPage'));
+export const BinderCreatePage = React.lazy(() => import('@/src/surfaces/bo/pages/BinderCreatePage'));
+export const ProgramsPage = React.lazy(() => import('@/src/surfaces/bo/pages/ProgramsPage'));
+export const SettingsGlobalPage = React.lazy(() => import('@/src/surfaces/bo/pages/SettingsGlobalPage'));
+export const TemplatesPage = React.lazy(() => import('@/src/surfaces/bo/pages/TemplatesPage'));
+export const EmailPreviewPage = React.lazy(() => import('@/src/surfaces/bo/pages/EmailPreviewPage'));
+export const AccessControlPage = React.lazy(() => import('@/src/surfaces/bo/pages/AccessControlPage'));
+export const OrganizationProfilePage = React.lazy(() => import('@/src/surfaces/bo/pages/OrganizationProfilePage'));
+export const IntegrationsPage = React.lazy(() => import('@/src/surfaces/bo/pages/IntegrationsPage'));
+export const OpenApiPage = React.lazy(() => import('@/src/surfaces/bo/pages/OpenApiPage'));
+// Config MCP V1 (ADR-0036)
+export const ProductArchitectPage = React.lazy(() => import('@/src/surfaces/bo/pages/ProductArchitectPage'));
+export const StaffDiaryPage = React.lazy(() => import('@/src/modules/people/views/StaffDiaryPage'));
+export const LeaveCalendarPage = React.lazy(() => import('@/src/modules/people/views/LeaveCalendarPage'));

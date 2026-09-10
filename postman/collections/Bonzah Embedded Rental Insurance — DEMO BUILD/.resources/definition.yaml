@@ -1,0 +1,15 @@
+$kind: collection
+description: Synthetic, non-production Summit Rentals / Bonzah API demonstration. No real customer, payment, carrier or policy data.
+scripts:
+  - type: http:beforeRequest
+    code: |-
+      pm.request.headers.upsert({key: 'X-Partner-Id', value: pm.environment.get('partnerId')});
+      pm.request.headers.upsert({key: 'X-Tenant-Slug', value: pm.environment.get('tenantSlug')});
+      pm.request.headers.upsert({key: 'X-Correlation-Id', value: pm.variables.replaceIn('{{$guid}}')});
+    language: text/javascript
+auth:
+  - id: 60e48a98-e563-424d-a71a-38acb794f129
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{partnerToken}}"

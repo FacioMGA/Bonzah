@@ -1,0 +1,11 @@
+[Unit]
+Description=Nightly Facio Platform PostgreSQL backup
+
+[Timer]
+OnCalendar=*-*-* 01:00:00 UTC
+RandomizedDelaySec=5min
+Persistent=true
+Unit=facio-platform-backup.service
+
+[Install]
+WantedBy=timers.target

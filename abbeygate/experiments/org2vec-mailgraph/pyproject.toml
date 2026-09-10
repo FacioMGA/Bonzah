@@ -1,0 +1,57 @@
+[project]
+name = "org2vec-mailgraph"
+version = "0.2.0"
+description = "Claims-email-native institutional memory prototype: Microsoft 365 / Gmail ingestion, structured extraction, hybrid retrieval, embedded Claim Workspace co-pilot, three-mode evaluation."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Facio org2vec" }]
+license = { text = "Proprietary" }
+
+dependencies = [
+  "pydantic>=2.7,<3",
+  "python-dotenv>=1.0",
+  "openai>=1.40",
+  "faiss-cpu>=1.8",
+  "numpy>=1.26",
+  "rank-bm25>=0.2.2",
+  "networkx>=3.3",
+  "streamlit>=1.36",
+  "pandas>=2.2",
+  "matplotlib>=3.9",
+  "python-dateutil>=2.9",
+  "mail-parser>=4.0; platform_system != 'Windows'",
+  "msal>=1.30",
+  "msgraph-core>=1.0",
+  "google-auth>=2.30",
+  "google-auth-oauthlib>=1.2",
+  "google-api-python-client>=2.140",
+  "python-docx>=1.1",
+  "pypdf>=4.3",
+  "eval_type_backport>=0.2; python_version<'3.10'",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3",
+  "ruff>=0.6",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q"

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="140" viewBox="0 0 520 140">
+  <title>Lloyd's Signature (stylized)</title>
+  <g fill="none" stroke="#0B1220" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+    <!-- Simple stylized cursive strokes (placeholder until scanned signature provided) -->
+    <path d="M18,84 C44,44 58,44 78,84 C94,118 122,118 142,78 C156,50 178,50 188,78 C198,102 212,106 230,90" />
+    <path d="M242,92 C270,64 290,64 310,92 C328,118 352,118 372,86 C392,50 418,54 430,86 C442,116 468,114 498,74" />
+    <path d="M120,104 C168,124 224,124 286,108 C342,94 404,90 488,98" />
+    <path d="M62,64 C48,76 42,88 42,104" />
+    <path d="M300,70 C292,78 286,90 286,106" />
+  </g>
+</svg>
+

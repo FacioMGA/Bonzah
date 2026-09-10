@@ -1,0 +1,64 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "allowUmdGlobalAccess": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "types": [
+      "vite/client",
+      "react",
+      "react-dom",
+      "vitest/globals"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./frontend/*"
+      ],
+      "@app/*": [
+        "./frontend/src/surfaces/app/*"
+      ],
+      "@bo/*": [
+        "./frontend/src/surfaces/bo/*"
+      ],
+      "@client/*": [
+        "./frontend/src/surfaces/client/*"
+      ],
+      "@public/*": [
+        "./frontend/src/surfaces/public/*"
+      ],
+      "@surfaces/*": [
+        "./frontend/src/surfaces/*"
+      ],
+      "@products/*": [
+        "./frontend/src/products/*"
+      ],
+      "@shared/*": [
+        "./frontend/src/shared/*"
+      ]
+    }
+  },
+  "include": [
+    "frontend/src/**/*",
+    "frontend/vite.config.ts",
+    "frontend/vitest.config.ts"
+  ],
+  "exclude": [
+    "backend",
+    "dist",
+    "node_modules"
+  ]
+}

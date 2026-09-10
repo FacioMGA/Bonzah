@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: #173b3f;
+        font-family: Inter, Arial, sans-serif;
+        font-size: 11px;
+        line-height: 1.35;
+      }
+      .page {
+        border: 1px solid #c9d8d6;
+        background: #fff;
+      }
+      .top {
+        padding: 18px 28px 14px;
+        color: #fff;
+        background: linear-gradient(130deg, #173b3f, #24766f);
+        position: relative;
+      }
+      .brand {
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 12px 0 3px;
+        font-size: 26px;
+        line-height: 1.08;
+      }
+      .subtitle {
+        color: #d9f2ed;
+        font-size: 14px;
+      }
+      .specimen {
+        position: absolute;
+        top: 24px;
+        right: 28px;
+        border: 2px solid #ffd166;
+        color: #ffd166;
+        padding: 7px 10px;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        transform: rotate(2deg);
+      }
+      .content {
+        padding: 16px 28px 18px;
+      }
+      .notice {
+        padding: 12px 14px;
+        border-left: 4px solid #e49b39;
+        background: #fff6e8;
+        color: #70430b;
+        font-weight: 700;
+      }
+      .coverage {
+        margin: 13px 0;
+        padding: 12px 18px;
+        border-radius: 8px;
+        background: #eef8f6;
+      }
+      .coverage-code {
+        color: #24766f;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+      }
+      .coverage h2 {
+        margin: 3px 0 10px;
+        font-size: 18px;
+      }
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .metric {
+        padding: 9px 11px;
+        background: #fff;
+        border: 1px solid #d4e2df;
+        border-radius: 6px;
+      }
+      .label {
+        display: block;
+        margin-bottom: 4px;
+        color: #607a7c;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .value {
+        font-size: 13px;
+        font-weight: 750;
+        color: #173b3f;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 13px 24px;
+        margin-top: 10px;
+      }
+      .panel {
+        border-top: 1px solid #c9d8d6;
+        padding-top: 9px;
+        break-inside: avoid;
+      }
+      .panel h3 {
+        margin: 0 0 7px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .row {
+        margin: 3px 0;
+      }
+      .drivers {
+        margin: 6px 0 0;
+        padding-left: 17px;
+      }
+      .fine {
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid #c9d8d6;
+        color: #5d7071;
+        font-size: 10px;
+      }
+      .footer {
+        margin-top: 8px;
+        display: flex;
+        justify-content: space-between;
+        color: #607a7c;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="top">
+        <div class="brand">{{tenantBrand.displayName}} | Facio Kernel</div>
+        <div class="specimen">DEMO SPECIMEN</div>
+        <h1>Rental protection certificate</h1>
+        <div class="subtitle">Evidence for the selected demonstration coverage</div>
+      </header>
+      <section class="content">
+        <div class="notice">
+          Simulation only. This document is not an issued insurance contract and grants no coverage.
+        </div>
+        <section class="coverage">
+          <div class="coverage-code">{{coverage.code}}</div>
+          <h2>{{coverage.label}}</h2>
+          <div class="metrics">
+            <div class="metric">
+              <span class="label">Limit</span><span class="value">{{coverage.limit}}</span>
+            </div>
+            <div class="metric">
+              <span class="label">Deductible</span
+              ><span class="value">{{coverage.deductible}}</span>
+            </div>
+            <div class="metric">
+              <span class="label">Coverage premium</span
+              ><span class="value">{{coverage.premium}}</span>
+            </div>
+          </div>
+          <p>{{coverage.description}}</p>
+        </section>
+        <div class="grid">
+          <section class="panel">
+            <h3>Policy and version</h3>
+            <div class="row">
+              <span class="label">Policy number</span><span class="value">{{policy.number}}</span>
+            </div>
+            <div class="row"><span class="label">Transaction</span>{{policy.transactionId}}</div>
+            <div class="row">
+              <span class="label">Configuration version</span>{{policy.configurationVersion}}
+            </div>
+            <div class="row"><span class="label">Generated</span>{{issuedAt}}</div>
+          </section>
+          <section class="panel">
+            <h3>Insured</h3>
+            <div class="row">
+              <span class="label">Name</span><span class="value">{{insured.name}}</span>
+            </div>
+            <div class="row">{{insured.address}}</div>
+            <div class="row">{{insured.email}} | {{insured.phone}}</div>
+          </section>
+          <section class="panel">
+            <h3>Rental period</h3>
+            <div class="row">
+              <span class="label">From</span><span class="value">{{rental.start}}</span>
+            </div>
+            <div class="row">
+              <span class="label">To</span><span class="value">{{rental.end}}</span>
+            </div>
+            <div class="row"><span class="label">Pickup</span>{{rental.pickup}}</div>
+            <div class="row"><span class="label">Residence</span>{{rental.residence}}</div>
+          </section>
+          <section class="panel">
+            <h3>Rental vehicle</h3>
+            <div class="row">
+              <span class="label">Vehicle</span><span class="value">{{vehicle.description}}</span>
+            </div>
+            <div class="row"><span class="label">Class</span>{{vehicle.class}}</div>
+            <div class="row">
+              <span class="label">Declared value</span>{{vehicle.declaredValue}}
+            </div>
+            <div class="row"><span class="label">Use</span>{{rental.use}}</div>
+          </section>
+          <section class="panel">
+            <h3>Drivers</h3>
+            <div class="row"><span class="label">Primary driver age</span>{{driver.age}}</div>
+            <div class="row">
+              <span class="label">Valid licence confirmed</span>{{driver.licenceValid}}
+            </div>
+            {{#if driver.additionalDrivers.length}}
+            <ul class="drivers">
+              {{#each driver.additionalDrivers}}
+              <li>{{name}} ({{licenceState}})</li>
+              {{/each}}
+            </ul>
+            {{else}}
+            <div class="row">No additional drivers retained in the rated snapshot.</div>
+            {{/if}}
+          </section>
+          <section class="panel">
+            <h3>Transaction premium</h3>
+            <div class="row">
+              <span class="label">Total selected premium</span
+              ><span class="value">{{quote.totalPremium}}</span>
+            </div>
+            <div class="row"><span class="label">Currency</span>{{quote.currency}}</div>
+          </section>
+        </div>
+        <p class="fine">
+          This demonstration certificate is generated from the retained policy transaction. It
+          intentionally does not reproduce a third-party form, carrier logo, signature, licence
+          claim, or policy wording that has not been approved for this sandbox.
+        </p>
+        <div class="footer">
+          <span>{{tenantBrand.legalName}}</span><span>{{coverage.code}} | {{policy.number}}</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

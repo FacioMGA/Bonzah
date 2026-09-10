@@ -1,0 +1,55 @@
+name: facio-platform
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: facio-platform-postgres
+    restart: unless-stopped
+    env_file: /srv/facio-platform/secrets/postgres.env
+    volumes:
+      - /srv/facio-platform/data/postgres:/var/lib/postgresql/data
+    command: [postgres, -c, shared_buffers=128MB, -c, max_connections=80]
+    mem_limit: 768m
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U kernel_owner -d facio_gen2']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  redis:
+    image: redis:7-alpine
+    container_name: facio-platform-redis
+    restart: unless-stopped
+    command: [redis-server, /run/config/redis.conf]
+    volumes:
+      - /srv/facio-platform/data/redis:/data
+      - /srv/facio-platform/secrets/redis.conf:/run/config/redis.conf:ro
+    mem_limit: 192m
+  app:
+    image: ${FACIO_PLATFORM_IMAGE:?Set the immutable application image}
+    container_name: facio-platform-app
+    restart: unless-stopped
+    env_file: /srv/facio-platform/secrets/app.env
+    ports:
+      - 127.0.0.1:4320:3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    logging:
+      driver: local
+      options:
+        max-size: 10m
+        max-file: "5"
+    mem_limit: 2304m
+    shm_size: 256m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    tmpfs:
+      - /tmp:rw,nosuid,nodev,size=256m
+    healthcheck:
+      test: [CMD, node, -e, "require('http').get('http://127.0.0.1:3000/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      start_period: 90s
+      retries: 4

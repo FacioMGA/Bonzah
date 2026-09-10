@@ -1,0 +1,63 @@
+{
+  "name": "@facio/kernel",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0 <23"
+  },
+  "scripts": {
+    "dev": "tsx src/dev.ts",
+    "start": "node dist/src/main.js",
+    "build": "npm run build:rust && npm run build:ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "contracts": "tsx scripts/generate-contracts.ts",
+    "check": "npm run format:check && npm run build:rust && npm run test:rust-native && npm run typecheck && npm run boundaries && npm run test:deployment && npm test && npm run contracts && npm run build:ts",
+    "boundaries": "tsx scripts/check-boundaries.ts",
+    "test:browser": "tsx scripts/browser-smoke.ts",
+    "test:insurance-browser": "tsx scripts/insurance-browser-smoke.ts",
+    "format": "prettier --write 'src/**/*.ts' 'tests/**/*.ts' 'scripts/**/*.ts' 'public/*' package.json tsconfig.json .prettierrc.json .github/workflows/ci.yml",
+    "format:check": "prettier --check 'src/**/*.ts' 'tests/**/*.ts' 'scripts/**/*.ts' 'public/*' package.json tsconfig.json .prettierrc.json .github/workflows/ci.yml",
+    "start:sandbox": "node dist/src/hosted.js",
+    "test:intern-browser": "tsx scripts/intern-browser-smoke.ts",
+    "test:oauth-browser": "tsx scripts/oauth-browser-smoke.ts",
+    "test:configuration-browser": "tsx scripts/insurance-configuration-browser-smoke.ts",
+    "test:approval-browser": "tsx scripts/insurance-approval-browser-smoke.ts",
+    "test:provider-browser": "tsx scripts/insurance-provider-browser-smoke.ts",
+    "build:rust": "tsx scripts/build-rust-money.ts",
+    "build:ts": "tsc",
+    "test:rust-native": "cd rust && cargo test --locked --offline && cargo fmt --all -- --check",
+    "test:rust": "npm run build:rust && npm run test:rust-native && tsx --test tests/rust-money.test.ts tests/rust-money-integration.test.ts",
+    "benchmark:rust": "tsx scripts/benchmark-rust-money.ts",
+    "test:finance-browser": "tsx scripts/insurance-finance-browser-smoke.ts",
+    "test:documents-browser": "tsx scripts/insurance-documents-browser-smoke.ts",
+    "test:service-browser": "tsx scripts/insurance-service-browser-smoke.ts",
+    "test:v2-browser": "tsx scripts/insurance-v2-browser-smoke.ts",
+    "test:fnol-browser": "tsx scripts/insurance-fnol-browser-smoke.ts",
+    "test:ui-state-browser": "tsx scripts/insurance-ui-state-browser-smoke.ts",
+    "test:deployment": "python3 -B -m unittest discover -s deploy -p 'test_*.py'",
+    "test:conditional-browser": "tsx scripts/insurance-conditional-browser-smoke.ts",
+    "dev:platform": "npm --prefix apps/mga run dev",
+    "build:platform": "npm --prefix apps/mga run build",
+    "check:platform": "npm --prefix apps/mga run check:platform",
+    "test:platform": "npm --prefix apps/mga run test:platform"
+  },
+  "dependencies": {
+    "@fastify/express": "4.0.7",
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "fastify": "5.12.3",
+    "jose": "6.2.12",
+    "pdf-lib": "1.17.1",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-parser": "^12.1.0",
+    "@playwright/test": "^1.55.0",
+    "@types/express": "5.0.6",
+    "@types/node": "22.20.1",
+    "prettier": "3.9.6",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.3"
+  }
+}

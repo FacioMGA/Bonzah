@@ -1,0 +1,146 @@
+{
+  "purpose": "Exact final-image isolated recovery from preserved schema 5 and current schema 6 off-host snapshots.",
+  "buildSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+  "imageId": "sha256:88b5b5847b4ed6acb6dd1028454a4c08f993c78cbd15f5b94a654c203760281f",
+  "releaseArchiveSha256": "e35cff0328018dd6cdbdcae34c9e79b7ab610822e8d19a556667ee67885936c4",
+  "completedAt": "2026-09-06T19:01:42.548681+00:00",
+  "runtimeEvidence": "2026-09-06-review-provider-runtime.json",
+  "preUpgradeEvidence": "2026-09-06-sprint4-preupgrade.json",
+  "schema6SnapshotEvidence": "2026-09-06-review-provider-runtime-initial.json",
+  "schema5Upgrade": {
+    "startedAt": "2026-09-06T19:00:28.669741+00:00",
+    "completedAt": "2026-09-06T19:00:33.174421+00:00",
+    "restoredSnapshot": {
+      "snapshotId": "20260906T183402.689170Z",
+      "createdAt": "2026-09-06T18:34:02.689295+00:00",
+      "databases": [
+        {
+          "file": "kernel.sqlite",
+          "sha256": "4ef1ca5963ef5cee4d01c49329c53f06907cfc588d106eb275b370be01beddad",
+          "schema": 5,
+          "integrity": "ok"
+        },
+        {
+          "file": "auth.sqlite",
+          "sha256": "d87925e51b9b182cd8f7f30fa0c58796b4982296a53ad86bdad9f9f04ffc6dda",
+          "schema": 1,
+          "integrity": "ok"
+        }
+      ],
+      "offHostDownloadedAndHashesVerified": true
+    },
+    "restoredRuntime": {
+      "health": {
+        "status": "ok",
+        "version": "0.1.0",
+        "mode": "hosted-sandbox",
+        "environment": "sandbox",
+        "buildSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+        "region": "westeurope",
+        "storage": "sqlite-single-writer-managed-disk",
+        "productionReady": false
+      },
+      "imageId": "sha256:88b5b5847b4ed6acb6dd1028454a4c08f993c78cbd15f5b94a654c203760281f",
+      "network": "none",
+      "hostPortsPublished": false,
+      "unauthenticatedSessionStatus": 401,
+      "businessSchema": 6,
+      "authSchema": 1,
+      "compiledStoreHashChainsAndDecisionRecomputationPassed": true,
+      "exactRestoredBusinessEqualsLive": true,
+      "matchedScopes": ["alpha", "gamma", "beta"],
+      "workflowTargetsMatched": 0
+    },
+    "actualSchemaMigration": {
+      "from": 5,
+      "to": 6,
+      "performedOnIsolatedCopy": true
+    },
+    "oldImageGuard": {
+      "oldBuildSha": "fa874bbe7fa2b114698d89f84f9ffae97c28ce35",
+      "code": "STORAGE_SCHEMA_TOO_NEW",
+      "actualSchema6Copy": true,
+      "copyBytesUnchangedByRejectedStartup": true
+    },
+    "originalSnapshotBytesPreserved": true,
+    "isolatedContainerRemoved": true,
+    "liveContainerUnchanged": true,
+    "liveDataOverwritten": false,
+    "liveBusinessMutationPerformed": false,
+    "authSessionValuesRead": false
+  },
+  "schema6Restore": {
+    "startedAt": "2026-09-06T19:01:37.010084+00:00",
+    "completedAt": "2026-09-06T19:01:42.548681+00:00",
+    "restoredSnapshot": {
+      "snapshotId": "20260906T184858.117152Z",
+      "createdAt": "2026-09-06T18:48:58.117250+00:00",
+      "databases": [
+        {
+          "file": "kernel.sqlite",
+          "sha256": "9fb67fe2e9eed70f20ff33b0b68296e5bdec0f843b9f389b17dc24d8d4daee67",
+          "schema": 6,
+          "integrity": "ok"
+        },
+        {
+          "file": "auth.sqlite",
+          "sha256": "d87925e51b9b182cd8f7f30fa0c58796b4982296a53ad86bdad9f9f04ffc6dda",
+          "schema": 1,
+          "integrity": "ok"
+        }
+      ],
+      "offHostDownloadedAndHashesVerified": true
+    },
+    "restoredRuntime": {
+      "health": {
+        "status": "ok",
+        "version": "0.1.0",
+        "mode": "hosted-sandbox",
+        "environment": "sandbox",
+        "buildSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+        "region": "westeurope",
+        "storage": "sqlite-single-writer-managed-disk",
+        "productionReady": false
+      },
+      "imageId": "sha256:88b5b5847b4ed6acb6dd1028454a4c08f993c78cbd15f5b94a654c203760281f",
+      "network": "none",
+      "hostPortsPublished": false,
+      "unauthenticatedSessionStatus": 401,
+      "businessSchema": 6,
+      "authSchema": 1,
+      "compiledStoreHashChainsAndDecisionRecomputationPassed": true,
+      "exactRestoredBusinessEqualsLive": true,
+      "matchedScopes": ["alpha", "gamma", "beta"],
+      "workflowTargetsMatched": 1
+    },
+    "actualSchemaMigration": {
+      "from": 6,
+      "to": 6,
+      "performedOnIsolatedCopy": false
+    },
+    "oldImageGuard": {
+      "oldBuildSha": "fa874bbe7fa2b114698d89f84f9ffae97c28ce35",
+      "code": "STORAGE_SCHEMA_TOO_NEW",
+      "actualSchema6Copy": true,
+      "copyBytesUnchangedByRejectedStartup": true
+    },
+    "originalSnapshotBytesPreserved": true,
+    "isolatedContainerRemoved": true,
+    "liveContainerUnchanged": true,
+    "liveDataOverwritten": false,
+    "liveBusinessMutationPerformed": false,
+    "authSessionValuesRead": false
+  },
+  "verification": "Both phases re-downloaded the private snapshots, checked manifest hashes and SQLite integrity, booted the exact final image on isolated copies, verified retained release/record/hash chains through compiled Store and recomputed pinned original decisions. The schema 6 phase also verified the exact approval target/history and provider request/state/receipt/audit chain against the final runtime evidence. Restored business evidence matched the unchanged live baseline.",
+  "probeTransport": "Native node:http to container loopback with the canonical Host header; no external network or host port in either restored container.",
+  "limits": [
+    "Recovery uses existing private image/OIDC/bootstrap material on the same VM; full VM or credential-loss recovery is separate.",
+    "No browser session, reviewer impersonation or new insurance action was performed.",
+    "SQLite snapshots are independently consistent; cross-database atomicity is not claimed.",
+    "Only the specified snapshot and observed records are proved recovered. Later writes are not covered.",
+    "Schema 5 cannot read schema 6; downgrade requires a compatible image or an explicit operator data-recovery decision, never automatic snapshot replacement.",
+    "The schema 5 snapshot predates the new review/provider records and proves migration of the historical baseline only; the schema 6 snapshot proves recovery of those exact new workflow records.",
+    "The approval remains requested. This recovery does not perform or replace an independent reviewer decision.",
+    "Provider evidence remains synthetic and does not establish real-provider acceptance."
+  ]
+}

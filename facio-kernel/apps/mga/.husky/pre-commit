@@ -1,0 +1,27 @@
+# Generated docs (`docs/reference/*.md`) are produced from
+# `package.json` scripts and the comment headers of `tools/quality/**/*.mjs`.
+# Hand-editing them is forbidden (AGENTS.md non-negotiable), so when a
+# guard script's header changes, the inventory drifts. CI catches this
+# at gate time; this hook catches it at commit time so the regen is
+# squashed into the same commit that triggered it.
+#
+# Skip with: SKIP_DOCS_HOOK=1 git commit ...
+if [ "${SKIP_DOCS_HOOK:-0}" = "1" ]; then
+  echo "[husky] SKIP_DOCS_HOOK=1 set — skipping docs:generate:check"
+  exit 0
+fi
+
+CHANGED=$(git diff --cached --name-only --diff-filter=ACM)
+
+needs_docs_check=0
+echo "${CHANGED}" | grep -qE '^(package\.json|tools/quality/.*\.mjs)$' && needs_docs_check=1
+
+if [ "${needs_docs_check}" = "1" ]; then
+  echo "[husky] tools/quality or package.json changed — running docs:generate:check"
+  if ! npm run --silent docs:generate:check; then
+    echo ""
+    echo "[husky] docs/reference/ is stale. Run \`npm run docs:generate\`, stage the result, and re-commit."
+    echo "       (or set SKIP_DOCS_HOOK=1 if you have a reason to bypass.)"
+    exit 1
+  fi
+fi

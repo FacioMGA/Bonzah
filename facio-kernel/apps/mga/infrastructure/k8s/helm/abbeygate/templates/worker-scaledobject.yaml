@@ -1,0 +1,37 @@
+{{- if and .Values.worker.enabled .Values.keda.enabled }}
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ include "abbeygate.fullname" . }}-worker
+  labels:
+    {{- include "abbeygate.labels" . | nindent 4 }}
+    app.kubernetes.io/component: worker
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: {{ include "abbeygate.fullname" . }}-worker
+  minReplicaCount: {{ .Values.keda.minReplicaCount }}
+  maxReplicaCount: {{ .Values.keda.maxReplicaCount }}
+  pollingInterval: {{ .Values.keda.pollingInterval }}
+  cooldownPeriod: {{ .Values.keda.cooldownPeriod }}
+  triggers:
+  {{- if .Values.keda.redisQueues }}
+  {{- range .Values.keda.redisQueues }}
+    - type: redis
+      metadata:
+        listName: {{ .name | quote }}
+        listLength: {{ .listLength | quote }}
+        enableTLS: "true"
+      authenticationRef:
+        name: {{ include "abbeygate.fullname" $ }}-redis-trigger-auth
+  {{- end }}
+  {{- else }}
+    - type: redis
+      metadata:
+        listName: {{ .Values.keda.redisQueueName | quote }}
+        listLength: {{ .Values.keda.listLength | quote }}
+        enableTLS: "true"
+      authenticationRef:
+        name: {{ include "abbeygate.fullname" . }}-redis-trigger-auth
+  {{- end }}
+{{- end }}

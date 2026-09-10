@@ -1,0 +1,16 @@
+{
+  "thread_id": "ABB-VL-00044",
+  "claim_ref": "ABB/VL/00044",
+  "gold_missing_documents": [],
+  "gold_authority_flags": [],
+  "gold_decision_posture": "accepted",
+  "gold_key_events": [
+    "FNOL",
+    "estimate_received",
+    "payment"
+  ],
+  "gold_similar_threads": [
+    "ABB-VL-00043"
+  ],
+  "scenario": "abbvl_pt_total_loss"
+}

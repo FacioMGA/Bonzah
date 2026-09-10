@@ -1,0 +1,87 @@
+# org2vec-worker (ADR-0041 §3) — async refresh worker for the
+# Claim Memory pipeline.  Consumes BullMQ jobs from the `dataSync`
+# queue named `CLAIM_MEMORY.REFRESH`.
+#
+# Deployed in `namespace: org2vec` (NOT `faciomga-prod` /
+# `abbeygate-*`) per the off-critical-path contract.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: org2vec-worker
+  namespace: org2vec
+  labels:
+    app: org2vec-worker
+    component: graph-enrichment
+    adr: ADR-0041
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: org2vec-worker
+  template:
+    metadata:
+      labels:
+        app: org2vec-worker
+        critical-path: "false"
+    spec:
+      serviceAccountName: org2vec-worker
+      containers:
+        - name: worker
+          image: abbeygateacr.azurecr.io/abbeygate-worker:latest
+          imagePullPolicy: Always
+          command: ["node", "dist/worker.js"]
+          env:
+            - name: WORKER_NAME
+              value: org2vec-worker
+            - name: WORKER_QUEUES
+              value: dataSync
+            - name: WORKER_CONCURRENCY_DATA_SYNC
+              value: "4"
+            - name: NODE_ENV
+              value: production
+            - name: NEO4J_URI
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-credentials
+                  key: NEO4J_URI
+            - name: NEO4J_USER
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-credentials
+                  key: NEO4J_USER
+            - name: NEO4J_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-credentials
+                  key: NEO4J_PASSWORD
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-credentials
+                  key: OPENAI_API_KEY
+                  optional: true
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: abbeygate-platform
+                  key: DATABASE_URL
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: abbeygate-platform
+                  key: REDIS_URL
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - "node -e 'process.exit(0)'"
+            initialDelaySeconds: 30
+            periodSeconds: 60

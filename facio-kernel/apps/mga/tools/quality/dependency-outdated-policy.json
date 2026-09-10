@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "maxMajorLag": 2,
+  "includeDevDependencies": false,
+  "packageOverrides": {
+    "prisma": 2,
+    "@prisma/client": 2
+  },
+  "deprecatedApprovals": []
+}

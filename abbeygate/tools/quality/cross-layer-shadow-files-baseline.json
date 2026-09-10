@@ -1,0 +1,4 @@
+{
+  "_comment": "Baseline of known same-name backend module files with substantive content in two layers (the cross-layer shadow-files anti-pattern). The guard fails CI on any NEW pair AND on any baseline entry that no longer exists in the codebase, so this list can only ever shrink. Adding an entry requires an ADR explaining why the pair is intentional and cannot be collapsed. See ADR-0011 for the canonical example. Goal: keep this list at [].",
+  "baseline": []
+}

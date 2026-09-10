@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <base href="{{basePath}}">
+    <link rel="stylesheet" href="styles/pdf-theme.css">
+    <style>
+        .draft-watermark {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            font-weight: 900;
+            letter-spacing: 0.22em;
+            color: var(--brand-navy);
+            opacity: 0.08;
+            transform: rotate(-22deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body.is-draft .draft-watermark {
+            display: flex;
+        }
+
+        .draft-watermark span {
+            padding: 14px 24px;
+            border: 8px solid rgba(14, 53, 83, 0.18);
+            border-radius: 18px;
+        }
+
+        @page {
+            /* Green Card must fit 1 page */
+            margin: 0;
+        }
+
+        .gc-shell {
+            /* `doc-page` provides the surface chrome */
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            background: transparent;
+        }
+
+        .gc-title {
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            text-align: center;
+            color: var(--ink);
+            margin: 0;
+        }
+
+        .gc-subtitle {
+            font-size: 10px;
+            text-align: center;
+            color: var(--muted);
+            margin-top: 4px;
+            margin-bottom: 10px;
+        }
+
+        .gc-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .gc-box {
+            border: 1px solid rgba(2, 6, 23, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 8px 10px;
+            background: #ffffff;
+        }
+
+        .gc-box .k {
+            font-size: 10px;
+            font-weight: 900;
+            color: var(--brand-navy);
+            margin-bottom: 4px;
+        }
+
+        .gc-box .v {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--ink);
+            line-height: 1.25;
+        }
+
+        .gc-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .gc-territory {
+            border: 1px solid rgba(2, 6, 23, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 10px 12px;
+            background: #ffffff;
+        }
+
+        .gc-territory .note {
+            font-size: 10px;
+            color: var(--muted);
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+
+        .gc-country-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 6px;
+        }
+
+        .gc-country {
+            border: 1px solid rgba(2, 6, 23, 0.10);
+            border-radius: var(--radius-lg);
+            padding: 4px 0;
+            text-align: center;
+            font-size: 9px;
+            font-weight: 900;
+            color: #0B1220;
+            background: #F8FAFC;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .gc-country.crossed {
+            color: rgba(2, 6, 23, 0.35);
+            background: rgba(2, 6, 23, 0.03);
+        }
+
+        .gc-country.crossed:before,
+        .gc-country.crossed:after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            right: 3px;
+            top: 50%;
+            height: 1px;
+            background: rgba(2, 6, 23, 0.35);
+            transform-origin: center;
+        }
+
+        .gc-country.crossed:before {
+            transform: translateY(-50%) rotate(20deg);
+        }
+
+        .gc-country.crossed:after {
+            transform: translateY(-50%) rotate(-20deg);
+        }
+
+        .gc-footer {
+            margin-top: 10px;
+            font-size: 9px;
+            color: var(--muted);
+            line-height: 1.35;
+        }
+    </style>
+</head>
+
+<body class="{{#if isDraft}}is-draft{{/if}}">
+    <div class="draft-watermark"><span>DRAFT</span></div>
+    <div class="doc-page gc-shell">
+        <div class="doc-topbar">
+            <div class="doc-topbar-left">
+                {{#if tenantBrand.logo}}<img class="doc-logo-left" src="{{tenantBrand.logo}}" alt="{{tenantBrand.displayName}}" />{{else}}<strong>{{tenantBrand.displayName}}</strong>{{/if}}
+            </div>
+            <div class="doc-topbar-center">
+                <div class="doc-title">Green Card</div>
+                <div class="doc-subtitle">Policy <span class="font-mono">{{policy_number}}</span> · Code <span
+                        class="font-mono">{{greenCard.serial}}</span></div>
+            </div>
+            <div class="doc-topbar-right">
+                <span>{{tenantBrand.legalName}}</span>
+            </div>
+        </div>
+
+
+        <!-- Removed redundant facts boxes (Policy, Code/Serial, Valid from/to) to save space -->
+
+        <h1 class="gc-title">1. INTERNATIONAL MOTOR INSURANCE CARD</h1>
+        <div class="gc-subtitle">1. CARTE INTERNATIONALE D'ASSURANCE AUTOMOBILE</div>
+
+        <div class="gc-grid">
+            <div class="gc-box">
+                <div class="k">2. ISSUED UNDER THE AUTHORITY OF:</div>
+                <div class="v">{{greenCard.authority}}</div>
+            </div>
+
+            <div class="gc-2col">
+                <div class="gc-box">
+                    <div class="k">3. Period valid</div>
+                    <div class="v">From {{greenCard.valid_from}} at 00:01</div>
+                </div>
+                <div class="gc-box">
+                    <div class="k">&nbsp;</div>
+                    <div class="v">Until {{greenCard.valid_to}} at noon</div>
+                </div>
+            </div>
+
+            <div class="gc-box">
+                <div class="k">4. Country Code / Insurer Code / Serial No. / Policy No.</div>
+                <div class="v">{{greenCard.code_line}}</div>
+            </div>
+
+            <div class="gc-2col">
+                <div class="gc-box">
+                    <div class="k">5. Vehicle registration number</div>
+                    <div class="v">{{vehicle.reg}}</div>
+                </div>
+                <div class="gc-box">
+                    <div class="k">6. Category*</div>
+                    <div class="v">{{greenCard.vehicle_category}}</div>
+                </div>
+            </div>
+
+            <div class="gc-box">
+                <div class="k">7. Make and model of vehicle</div>
+                <div class="v">{{vehicle.description_green_card}}</div>
+            </div>
+
+            <div class="gc-territory">
+                <div class="k" style="margin:0 0 6px 0; font-size:10px; font-weight:900; color:var(--brand-navy);">8.
+                    TERRITORIAL VALIDITY</div>
+                <div class="note">
+                    This card is valid in Countries for which the relevant box is not crossed out (for further
+                    information, see www.cobx.org). In each country visited, the Bureau of that country guarantees the
+                    compulsory cover in accordance with local law.
+                </div>
+                <div class="gc-country-grid">
+                    {{#each greenCard.territories}}
+                    <div class="gc-country {{#if crossed}}crossed{{/if}}">{{code}}</div>
+                    {{/each}}
+                </div>
+                <div class="note" style="margin-top: 8px;">
+                    The cover provided under Green Cards issued for the Republics of <strong>Azerbaijan</strong>,
+                    <strong>Cyprus</strong> and <strong>Serbia</strong> is restricted to those geographical parts of
+                    these countries which are under the control of their respective governments. For more information,
+                    please consult
+                    <a href="https://www.cobx.org/sites/default/files/2024-07/Green%20Card%20Territorial%20Validity%20Limitations.pdf"
+                        target="_blank" rel="noopener noreferrer">this document</a>.
+                </div>
+            </div>
+
+            <div class="gc-box">
+                <div class="k">9. Name and address of the policyholder (or user of the vehicle) and list of named
+                    drivers</div>
+                <div class="v">{{insured.name}}</div>
+                <div class="cert-small" style="margin-top: 6px; white-space: pre-wrap;">{{insured.address_multiline}}
+                </div>
+                {{#if drivers.named.length}}
+                <div class="cert-small" style="margin-top: 10px;">
+                    <strong>Named drivers</strong><br />
+                    {{drivers.named_csv}}
+                </div>
+                {{else}}
+                <div class="cert-small" style="margin-top: 10px;">
+                    <strong>{{drivers.named_none_text}}</strong>
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="gc-2col">
+                <div class="gc-box">
+                    <div class="k">10. This card has been issued by (Name and address of insurer)</div>
+                    <div class="v">{{greenCard.issuer_name}}</div>
+                    <div class="cert-small" style="margin-top: 6px; white-space: pre-wrap;">{{greenCard.issuer_address}}
+                    </div>
+                </div>
+                <div class="gc-box">
+                    <div class="k">11. Signature of insurer</div>
+                    <div style="min-height: 34px; display:flex; align-items:center; justify-content:center; border: 1px dashed #9ca3af; border-radius: 4px;">
+                        {{#if greenCard.signature_asset}}
+                        <img src="assets/{{greenCard.signature_asset}}" alt="Authorised signature"
+                            style="height: 30px; width: auto;" />
+                        {{else}}
+                        <span class="cert-small" style="opacity: 0.8;">Signature to be applied manually</span>
+                        {{/if}}
+                    </div>
+                    <div class="cert-small" style="margin-top: 4px; text-align: center;">Authorised Signatory</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gc-footer">
+            * Category of vehicle code: A. Car · B. Motorcycle · C. Lorry or Tractor · D. Cycle with auxiliary engine ·
+            E. Bus · F. Trailer
+        </div>
+    </div>
+</body>
+
+</html>

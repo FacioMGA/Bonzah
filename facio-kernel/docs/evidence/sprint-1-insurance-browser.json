@@ -1,0 +1,24 @@
+{
+  "verifiedAt": "2026-09-06T14:00:55.377Z",
+  "scope": "isolated synthetic local database",
+  "productionReady": false,
+  "customerAcceptance": "not_recorded",
+  "checks": [
+    "Scoped registered product drives decimal currency and percentage fields; excess monetary and share precision rejected without rounding; variable capacity inputs preserve values after real server rejection of an invalid share total; mobile form has no overflow",
+    "UI converted GBP 500,000.00 to exactly 50000000 minor units and 60.00%/40.00% to 6000/4000 bps in a persisted external quote with canonical allocations and separate external-custody commission",
+    "UI quote revision retained original history; competing actual HTTP revision invalidated the selected bind hash; refresh then bound exactly the new selected quote",
+    "Manual endorsement, cancellation and reinstatement persisted effective dates and signed deltas; original source quote and all prior version hashes remained immutable",
+    "A real successful write with deliberately lost response retried the exact idempotent command, with one additional version only",
+    "Desktop/mobile record and history presentation verified, with expandable canonical original evidence",
+    "Failed read cleared stale insurance data without falsely claiming no product or record, and refresh recovered persisted state",
+    "Alternate registered currency and premium above JavaScript safe integer displayed exactly using three minor-unit decimals",
+    "Read-only credentials cannot write in UI or actual HTTP; unregistered scope shows no runtime product and cannot read another scope record; configuration-only session has no insurance access",
+    "A separate SQLite connection reopened the database and verified the full immutable eight-version event/history chain"
+  ],
+  "browserErrors": [],
+  "screenshots": [
+    "insurance-quote-mobile.png",
+    "insurance-workspace.png",
+    "insurance-workspace-mobile.png"
+  ]
+}

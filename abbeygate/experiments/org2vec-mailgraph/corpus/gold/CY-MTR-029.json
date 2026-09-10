@@ -1,0 +1,16 @@
+{
+  "thread_id": "CY-MTR-029",
+  "claim_ref": "CY-MTR-029",
+  "gold_missing_documents": [],
+  "gold_authority_flags": [
+    "settlement_exceeds_authority"
+  ],
+  "gold_decision_posture": "reserved",
+  "gold_key_events": [
+    "escalation"
+  ],
+  "gold_similar_threads": [
+    "CY-MTR-017"
+  ],
+  "scenario": "settlement_authority_breach"
+}

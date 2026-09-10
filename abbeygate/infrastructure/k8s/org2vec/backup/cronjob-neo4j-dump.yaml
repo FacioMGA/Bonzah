@@ -1,0 +1,84 @@
+# Nightly Neo4j dump → Azure Blob (ADR-0041 §10).
+# Workload Identity + Azure Blob RBAC (no account keys).
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: neo4j-dump-to-blob
+  namespace: org2vec
+  labels:
+    component: graph-enrichment
+    adr: ADR-0041
+spec:
+  schedule: "30 2 * * *" # 02:30 UTC nightly
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 7
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        spec:
+          serviceAccountName: neo4j-backup
+          restartPolicy: OnFailure
+          containers:
+            - name: dump
+              image: mcr.microsoft.com/azure-cli:latest
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -euo pipefail
+                  DATESTAMP=$(date -u +%Y-%m-%dT%H%M%SZ)
+                  TARGET=neo4j-${DATESTAMP}.dump
+                  echo "[neo4j-dump] starting at ${DATESTAMP}"
+                  # 1. cypher-shell dump to a temp file inside the org2vec namespace
+                  kubectl exec -n org2vec statefulset/neo4j -- neo4j-admin database dump neo4j --to-path=/data/
+                  kubectl cp -n org2vec neo4j-0:/data/neo4j.dump /tmp/${TARGET}
+                  gzip -9 /tmp/${TARGET}
+                  sha256sum /tmp/${TARGET}.gz | awk '{print $1}' > /tmp/${TARGET}.gz.sha256
+                  # 2. upload to Azure Blob — path: env/tenant/year/month/day/
+                  ENV=${ENVIRONMENT:-staging}
+                  TENANT=${TENANT_SLUG:-abbeygate-cy}
+                  YEAR=$(date -u +%Y)
+                  MONTH=$(date -u +%m)
+                  DAY=$(date -u +%d)
+                  PREFIX="env=${ENV}/tenant=${TENANT}/year=${YEAR}/month=${MONTH}/day=${DAY}"
+                  az storage blob upload --auth-mode login \
+                    --account-name "${BLOB_ACCOUNT}" \
+                    --container-name neo4j-dumps \
+                    --name "${PREFIX}/${TARGET}.gz" \
+                    --file /tmp/${TARGET}.gz
+                  az storage blob upload --auth-mode login \
+                    --account-name "${BLOB_ACCOUNT}" \
+                    --container-name neo4j-dumps \
+                    --name "${PREFIX}/${TARGET}.gz.sha256" \
+                    --file /tmp/${TARGET}.gz.sha256
+                  echo "[neo4j-dump] done"
+              env:
+                - name: AZURE_CLIENT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: neo4j-backup-identity
+                      key: AZURE_CLIENT_ID
+                - name: BLOB_ACCOUNT
+                  valueFrom:
+                    secretKeyRef:
+                      name: neo4j-backup-identity
+                      key: BLOB_ACCOUNT
+                - name: ENVIRONMENT
+                  valueFrom:
+                    configMapKeyRef:
+                      name: org2vec-env
+                      key: ENVIRONMENT
+                - name: TENANT_SLUG
+                  valueFrom:
+                    configMapKeyRef:
+                      name: org2vec-env
+                      key: TENANT_SLUG
+              resources:
+                requests:
+                  cpu: "100m"
+                  memory: "256Mi"
+                limits:
+                  cpu: "500m"
+                  memory: "1Gi"

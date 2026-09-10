@@ -1,0 +1,208 @@
+{
+  "schemaVersion": "legacy-customer-template-v1",
+  "sourceCommit": "f85219459e6a888996d3d3af731b6d45a98fde94",
+  "customer": "Abbeygate",
+  "automaticRuntimeRegistration": false,
+  "profiles": {
+    "CY": {
+      "brandName": "Abbeygate",
+      "jurisdictionKey": "CY",
+      "logoUrl": "https://abbeygate.cy/assets/branding/logo-white.png",
+      "logoAlt": "Abbeygate Cyprus",
+      "defaultPreheader": "A message from Abbeygate Cyprus.",
+      "publicBaseUrl": "https://abbeygate.cy",
+      "fromEmail": "no-reply@abbeygate.cy",
+      "colors": {
+        "primary": "#0b3b6f",
+        "onPrimary": "#ffffff",
+        "accent": "#0b3b6f",
+        "pageBg": "#f5f7fb",
+        "cardBg": "#ffffff",
+        "mutedBg": "#f8fafc",
+        "text": "#0f172a",
+        "textMuted": "#64748b",
+        "divider": "#e5e9f2"
+      },
+      "signature": {
+        "jurisdiction": "Cyprus",
+        "legalLines": [
+          "Abbeygate is a trading name of Abbeygate Insurance Brokers LTD,",
+          "Lloyd's Coverholder registered and regulated in Cyprus."
+        ],
+        "addressLines": [
+          "Head Office: Shop 1, Mesogi Avenue,",
+          "Paphos 8280, Cyprus"
+        ],
+        "regulatorLine": "Regulated by Insurance Companies Control Service (ICCS)",
+        "websiteLabel": "Abbeygate.cy",
+        "websiteUrl": "https://abbeygate.cy",
+        "phones": [
+          {
+            "label": "WhatsApp / Viber — New Business",
+            "display": "+357 97 612602",
+            "tel": "+35797612602",
+            "whatsapp": "35797612602"
+          },
+          {
+            "label": "WhatsApp / Viber — Renewals",
+            "display": "+357 99 218015",
+            "tel": "+35799218015",
+            "whatsapp": "35799218015"
+          },
+          {
+            "label": "For queries please call",
+            "display": "+357 26 819175",
+            "tel": "+35726819175"
+          }
+        ]
+      }
+    },
+    "PT": {
+      "brandName": "Abbeygate",
+      "jurisdictionKey": "PT",
+      "logoUrl": "https://abbeygate.pt/assets/branding/logo-white.png",
+      "logoAlt": "Abbeygate Portugal",
+      "defaultPreheader": "A message from Abbeygate Portugal.",
+      "publicBaseUrl": "https://abbeygate.pt",
+      "fromEmail": "no-reply@abbeygate.pt",
+      "colors": {
+        "primary": "#0b3b6f",
+        "onPrimary": "#ffffff",
+        "accent": "#0b3b6f",
+        "pageBg": "#f5f7fb",
+        "cardBg": "#ffffff",
+        "mutedBg": "#f8fafc",
+        "text": "#0f172a",
+        "textMuted": "#64748b",
+        "divider": "#e5e9f2"
+      },
+      "signature": {
+        "jurisdiction": "Portugal",
+        "legalLines": [
+          "Abbeygate is a trading name of Abbeygate Insurance Brokers LTD,",
+          "Sucursal em Portugal — corporate number (NIPC) 980831970."
+        ],
+        "addressLines": [
+          "Estrada Regional 125, Loja 149A,",
+          "Boliqueime, 8100-069, Loulé, Portugal"
+        ],
+        "regulatorLine": "Registered numbers 922039390 and 923047966",
+        "phones": [
+          {
+            "label": "WhatsApp / Viber — New Business",
+            "display": "+351 968 127522",
+            "tel": "+351968127522",
+            "whatsapp": "351968127522"
+          },
+          {
+            "label": "WhatsApp / Viber — Renewals",
+            "display": "+351 925 602100",
+            "tel": "+351925602100",
+            "whatsapp": "351925602100"
+          },
+          {
+            "label": "For queries please call",
+            "display": "+351 289 369 254",
+            "tel": "+351289369254"
+          }
+        ]
+      }
+    },
+    "GR": {
+      "brandName": "Abbeygate",
+      "jurisdictionKey": "GR",
+      "logoUrl": "https://abbeygate.gr/assets/branding/logo-white.png",
+      "logoAlt": "Abbeygate Greece",
+      "defaultPreheader": "A message from Abbeygate Greece.",
+      "publicBaseUrl": "https://abbeygate.gr",
+      "fromEmail": "no-reply@abbeygate.gr",
+      "colors": {
+        "primary": "#0b3b6f",
+        "onPrimary": "#ffffff",
+        "accent": "#0b3b6f",
+        "pageBg": "#f5f7fb",
+        "cardBg": "#ffffff",
+        "mutedBg": "#f8fafc",
+        "text": "#0f172a",
+        "textMuted": "#64748b",
+        "divider": "#e5e9f2"
+      },
+      "signature": {
+        "jurisdiction": "Greece",
+        "legalLines": [
+          "Abbeygate is a trading name of Abbeygate Insurance Brokers Ltd,",
+          "registered and regulated in Cyprus."
+        ],
+        "addressLines": [
+          "Head Office: Shop 1, Mesogi Avenue,",
+          "Paphos 8280, Cyprus"
+        ],
+        "regulatorLine": "Regulated by Insurance Companies Control Service (ICCS)",
+        "phones": [
+          {
+            "label": "For queries please call",
+            "display": "+30 211 2345 774",
+            "tel": "+302112345774"
+          },
+          {
+            "label": "For queries please call",
+            "display": "+44 7593 621183",
+            "tel": "+447593621183"
+          }
+        ],
+        "hours": "Working Hours: Monday – Friday, 09:00 – 18:00"
+      }
+    },
+    "ES": {
+      "brandName": "Abbeygate",
+      "jurisdictionKey": "ES",
+      "logoUrl": "https://abbeygate.es/assets/branding/logo-white.png",
+      "logoAlt": "Abbeygate Spain",
+      "defaultPreheader": "A message from Abbeygate Spain.",
+      "publicBaseUrl": "https://abbeygate.es",
+      "fromEmail": "no-reply@abbeygate.es",
+      "colors": {
+        "primary": "#0b3b6f",
+        "onPrimary": "#ffffff",
+        "accent": "#0b3b6f",
+        "pageBg": "#f5f7fb",
+        "cardBg": "#ffffff",
+        "mutedBg": "#f8fafc",
+        "text": "#0f172a",
+        "textMuted": "#64748b",
+        "divider": "#e5e9f2"
+      },
+      "signature": {
+        "jurisdiction": "Spain",
+        "legalLines": [
+          "Abbeygate is a trading name of Abbeygate Insurance Brokers LTD,",
+          "Lloyd's Coverholder registered and regulated in Cyprus."
+        ],
+        "addressLines": [
+          "Head Office: Shop 1, Mesogi Avenue,",
+          "Paphos 8280, Cyprus"
+        ],
+        "regulatorLine": "Regulated by Insurance Companies Control Service (ICCS)",
+        "phones": [
+          {
+            "label": "WhatsApp / Viber — New Business",
+            "display": "+357 97 612602",
+            "tel": "+35797612602",
+            "whatsapp": "35797612602"
+          },
+          {
+            "label": "WhatsApp / Viber — Renewals",
+            "display": "+357 99 218015",
+            "tel": "+35799218015",
+            "whatsapp": "35799218015"
+          },
+          {
+            "label": "For queries please call",
+            "display": "+357 26 819175",
+            "tel": "+35726819175"
+          }
+        ]
+      }
+    }
+  }
+}

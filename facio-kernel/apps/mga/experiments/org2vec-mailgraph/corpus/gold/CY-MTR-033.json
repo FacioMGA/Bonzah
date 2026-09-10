@@ -1,0 +1,20 @@
+{
+  "thread_id": "CY-MTR-033",
+  "claim_ref": "CY-MTR-033",
+  "gold_missing_documents": [
+    "motor_claim_form",
+    "photos",
+    "estimates"
+  ],
+  "gold_authority_flags": [],
+  "gold_decision_posture": "unknown",
+  "gold_key_events": [
+    "doc_request",
+    "chase",
+    "chase"
+  ],
+  "gold_similar_threads": [
+    "CY-MTR-015"
+  ],
+  "scenario": "slow_broker"
+}

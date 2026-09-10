@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "notes": "maxMultiVersionPackages raised 43 -> 64 (2026-07). Observed floor: 63 on CI Linux, 64 on macOS clean install (delta = platform-specific esbuild binary). The gate had been stripped to a no-op; while it was off, the Express 4->5 dual-tree (~20 pkgs: express/body-parser/accepts/content-*/cookie*/finalhandler/fresh/media-typer/merge-descriptors/mime-*/negotiator/raw-body/send/serve-static/type-is/@types/send) and major bumps (zod 3+4, dotenv 16+17, jose 4+6, nanoid 3+5, yaml 1+2, semver 6+7, open 8+10, esbuild 0.25+0.27) accumulated. `npm dedupe` only collapses 1 of these (the rest are genuine incompatible majors) while regressing the audit surface, so the floor was ratcheted instead of masked. Lower this back down as the Express 5 migration completes. 64 -> 65 (2026-07-29): the HIGH npm-audit remediation (postcss/brace-expansion + npm audit fix) net-collapsed the OpenTelemetry core/resources/sdk-metrics/sdk-trace-node duals but pulled a transient @sentry/core dual (10.53.1 + 10.69.0) as the Sentry sub-packages upgraded ahead of @sentry/node; net +1 after `npm dedupe`. Lower back to 64 once the Sentry tree fully aligns on a single 10.x.",
+  "maxDepth": 9,
+  "allowedDepthIncrease": 0,
+  "maxMultiVersionPackages": 65,
+  "allowedMultiVersionIncrease": 0,
+  "watchedPackages": {
+    "lru-cache": 4,
+    "react-is": 3,
+    "@opentelemetry/core": 3,
+    "@opentelemetry/resources": 3,
+    "@opentelemetry/sdk-metrics": 2,
+    "@opentelemetry/sdk-trace-node": 2
+  }
+}

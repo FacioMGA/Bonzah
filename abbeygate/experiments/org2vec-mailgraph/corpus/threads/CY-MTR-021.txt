@@ -1,0 +1,31 @@
+Thread-ID: CY-MTR-021
+Claim-Ref: CY-MTR-021
+Subject: CY-MTR-021 — complaint received
+===
+
+From: Insured <p.constantinou@example.cy>
+To: complaints@abbeygate.example
+Date: 2026-03-02 19:14
+Subject: Complaint — handling of CY-MTR-021
+
+I have heard nothing for three weeks. My vehicle is undriveable.
+I expect a response within 48 hours or I will refer this to the
+Cyprus Insurance Commissioner.
+
+---
+From: Complaints <complaints@abbeygate.example>
+To: p.constantinou@example.cy
+Date: 2026-03-03 09:00
+Subject: RE: Complaint — CY-MTR-021
+
+Acknowledged within 24h per FCA / Cyprus complaints handling rules.
+Final response due within 8 weeks. Escalating internally.
+
+---
+From: Handler <claims@abbeygate.example>
+To: manager@abbeygate.example
+Date: 2026-03-03 10:30
+Subject: Escalation — CY-MTR-021 complaint
+
+Complaint received from insured. Acknowledging within complaints
+handling rules. Please review.

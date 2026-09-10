@@ -1,0 +1,7 @@
+Source: Uriel Aharoni's direct reply in the current Kernel conversation, 6 September 2026.
+
+Question: The new VUW.ai materials stage delivery across September 11, 18 and 25, while your Kernel milestone requires the full POC by September 11. Which schedule should govern?
+
+User decision: Keep September 11 for the full POC.
+
+Authority: direct user instruction. Preserve the complete POC scope, including obligations assigned to later gates in the source schedule. This decision sets the delivery target; it does not establish implementation, integration readiness, acceptance or permission for production cutover.

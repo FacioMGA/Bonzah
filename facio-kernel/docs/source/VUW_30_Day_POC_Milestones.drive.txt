@@ -1,0 +1,119 @@
+﻿facio.
+VUW.AI <> FACIO · JOINT WORKING DOCUMENT · CONFIDENTIAL
+30-Day POC Milestones Plan.
+Working document for joint review, comments and approval. Comment directly in this document; each gate has a dedicated space for VUW.ai feedback.
+
+
+Objective
+	Prove that Facio can operate as VUW.ai's authoritative system of record, policy administration, reporting and reconciliation layer, providing sufficient confidence to proceed into production.
+	POC model
+	Five Friday gates across the Microsoft Marketplace 30-day free trial. The trial starts only when the environment and minimum inputs are ready.
+	Primary focus
+	US property reinsurance, using representative risks and capacity structure supplied by VUW.ai.
+	
+
+00 · READINESS GATE
+Readiness before Day 1.
+* Microsoft Private Offer accepted and the VUW.ai environment available.
+* Representative risks, available submission packs and capacity structure received.
+* Facio has configured the initial product, schema, endpoint and staging environment.
+* Both teams have confirmed their technical and business acceptance owners.
+
+
+The 30-day trial clock begins only after this readiness gate is met.
+	
+
+01 · FRIDAY · WEEK 1
+Meeting 1: Configured API and schema review.
+* Review the configured VUW.ai API endpoint and property-reinsurance schema.
+* Review documented authentication, payloads, responses and lifecycle events.
+* Validate quote, bind, referral, rejection and endorsement event handling.
+* Review evidence storage, Lloyd's risk-code mapping and relevant CDR mapping.
+* Review VUW.ai-specific API documentation.
+
+
+OUTCOME
+	VUW.ai confirms that the configured endpoint, schema, authentication and lifecycle-event model provide a viable integration contract.
+	
+
+02 · FRIDAY · WEEK 2
+Meeting 2: Submission, quote and underwriting workflow.
+* Submit a representative risk to Facio through the API.
+* Retain the original submission pack and extracted data as linked evidence.
+* Demonstrate Simplified ID sanctions screening, quote creation and versioning.
+* Demonstrate referral and underwriting collaboration inside Facio.
+* Return relevant status and outcome events to VUW.ai.
+
+
+OUTCOME
+	The submission-to-quote workflow succeeds without manual rekeying and retains a complete audit trail.
+	
+
+03 · FRIDAY · WEEK 3
+Meeting 3: Bind, capacity and policy lifecycle.
+* Demonstrate bind confirmation and lead/follow or quota-share allocation.
+* Generate the agreed broker statement.
+* Process one endorsement or midterm amendment.
+* Verify policy version history, evidence and financial transaction impact.
+* Validate access through both the Facio interface and API.
+
+
+OUTCOME
+	Facio successfully administers the representative risk through bind and a post-bind policy change.
+	
+
+04 · FRIDAY · WEEK 4
+Meeting 4: Reporting, reconciliation and end-to-end test.
+* Generate the premium bordereau from the POC transactions.
+* Demonstrate reconciliation using representative synthetic bank transactions.
+* Resolve at least one reconciliation exception manually.
+* Demonstrate auditor and management visibility.
+* Run a repeatable end-to-end test, including staging reset.
+
+
+OUTCOME
+	The policy, reporting, audit and financial handshakes operate successfully as one connected process.
+	
+
+05 · FRIDAY · FINAL REVIEW
+Meeting 5: Final POC review and continuation decision.
+* Review all agreed POC success criteria.
+* Classify remaining items as blockers or post-POC enhancements.
+* Confirm production priorities and the initial roadmap for cargo and Caribbean programmes.
+* Decide whether to continue into the paid Microsoft subscription and production project.
+
+
+OUTCOME
+	Joint decision recorded, with an agreed production path or a clearly documented reason not to proceed.
+	
+
+06 · SUCCESS CRITERIA
+Final POC success criteria.
+* The configured API and schema integrate credibly with VUW.ai's underwriting engine.
+* Facio can serve as the authoritative system of record.
+* Submission evidence and lifecycle events are retained and auditable.
+* Quote, bind, capacity allocation and endorsement workflows operate correctly.
+* The agreed document, bordereau and reconciliation outputs are demonstrated.
+* The implementation provides a reusable foundation for production and additional programmes.
+
+
+07 · CADENCE
+Working cadence.
+* Formal gate review: Friday at 12:00 noon UK time.
+* Facio implementation continues between weekly reviews.
+* Technical working sessions may be scheduled between gates where required.
+* Priorities may be adjusted jointly without changing the agreed final success test.
+
+
+08 · APPROVAL
+Joint approval.
+Party
+	Name / role
+	Approval / comments
+	VUW.ai
+	 
+	 
+	Facio
+	 
+	 
+	CONFIDENTIAL · FACIO · 2026 · FACIO.IO

@@ -1,0 +1,409 @@
+{
+  "checkedAt": "2026-09-07T06:49:52.608857+00:00",
+  "scope": "final local synthetic working-tree verification, including contract deduplication; before remote CI and deployment",
+  "baseCommit": "300381a299fc4e814c1f7087d3a567eedd9cb615",
+  "uncommittedCandidate": true,
+  "npmCheck": {
+    "passed": true,
+    "nodeTests": 180,
+    "nativeRustTests": 2,
+    "strictTypes": true,
+    "boundaries": true,
+    "generatedOpenApiValidation": true,
+    "build": true,
+    "deploymentPythonTests": 4
+  },
+  "browserSuites": 13,
+  "browserChecks": 83,
+  "browserReports": [
+    {
+      "file": "test-results/browser-evidence.json",
+      "sha256": "aeeff11032f12c7b7fbab90d0635b331a205ae059a277e761b11ebe94b1e85ac",
+      "checks": 12,
+      "result": {
+        "checkedAt": "2026-09-07T06:48:07.311Z",
+        "mode": "isolated synthetic local fixtures",
+        "checks": [
+          "Invalid credential denied",
+          "Reference scope, all 13 categories, metadata validity and wider gaps rendered",
+          "Source requirements, provenance, explicit pending evidence, category links and mobile layout verified; failed refresh clears stale profile and recovers",
+          "Mismatched snapshot/report revisions trigger a bounded consistency retry",
+          "UI draft edit persisted; published snapshot remained immutable",
+          "Successful save with failed gap refresh shows unavailable validity and recovers without lost data",
+          "Authenticated OpenAPI and MCP discovery dialogs rendered",
+          "Missing scoped source profile is explicit after logout/login and reveals no previous tenant requirements",
+          "Incomplete tenant and missing published version show explicit gaps/errors without prior-tenant leakage",
+          "390px mobile viewport has no document overflow",
+          "Read-only role cannot edit or inspect audit",
+          "Reload clears authentication; no browser storage used"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "file": "test-results/insurance-browser-evidence.json",
+      "sha256": "e42c7d0bb3553137743851ec58dfd3d8da2089207bd943bf1b100527ec74283a",
+      "checks": 10,
+      "result": {
+        "verifiedAt": "2026-09-07T06:48:10.936Z",
+        "scope": "isolated synthetic local database",
+        "productionReady": false,
+        "customerAcceptance": "not_recorded",
+        "checks": [
+          "Scoped registered product drives decimal currency and percentage fields; excess monetary and share precision rejected without rounding; variable capacity inputs preserve values after real server rejection of an invalid share total; mobile form has no overflow",
+          "UI converted GBP 500,000.00 to exactly 50000000 minor units and 60.00%/40.00% to 6000/4000 bps in a persisted external quote with canonical allocations and separate external-custody commission",
+          "UI quote revision retained original history; competing actual HTTP revision invalidated the selected bind hash; refresh then bound exactly the new selected quote",
+          "Manual endorsement, cancellation and reinstatement persisted effective dates and signed deltas; original source quote and all prior version hashes remained immutable",
+          "A real successful write with deliberately lost response retried the exact idempotent command, with one additional version only",
+          "Desktop/mobile record and history presentation verified, with expandable canonical original evidence",
+          "Failed read cleared stale insurance data without falsely claiming no product or record, and refresh recovered persisted state",
+          "Alternate registered currency and premium above JavaScript safe integer displayed exactly using three minor-unit decimals",
+          "Read-only credentials cannot write in UI or actual HTTP; unregistered scope shows no runtime product and cannot read another scope record; configuration-only session has no insurance access",
+          "A separate SQLite connection reopened the database and verified the full immutable eight-version event/history chain"
+        ],
+        "browserErrors": [],
+        "screenshots": [
+          "insurance-quote-mobile.png",
+          "insurance-workspace.png",
+          "insurance-workspace-mobile.png"
+        ]
+      }
+    },
+    {
+      "file": "test-results/intern-browser-evidence.json",
+      "sha256": "41aa734cc657a43e8b55f86938ae640b7671bda3d3b37f80bfd78d5b7c51b138",
+      "checks": 10,
+      "result": {
+        "verifiedAt": "2026-09-07T06:48:16.592Z",
+        "transport": "actual HTTPS localhost proxy to actual Fastify TCP server",
+        "identityBoundary": "synthetic principals with server-created hosted sessions; external IdP and actual ChatGPT not exercised",
+        "buildSha": "cccccccccccccccccccccccccccccccccccccccc",
+        "checks": [
+          "Individual hosted fixture sessions provisioned two separate durable tenants on one HTTPS build; organization sign-in shown for anonymous access; external IdP sign-in is not claimed",
+          "Both interns imported typed requirements without rebuilding, saved configuration through the existing editor, authored exact decimal policy configuration and activated exact immutable candidates",
+          "Same Insurance workspace executed different activated policies and retained per-record release IDs; cross-tenant reads and a mutation without CSRF were rejected by actual HTTPS endpoints",
+          "A concurrent policy draft change rejected stale activation; a fresh release activated without changing the original quote, which bound against its retained original release and commission",
+          "Rollback selected the retained release by exact active-release precondition without reverting policy drafts or insurance transactions",
+          "Own MCP connection inspection and revocation operated through CSRF-protected hosted HTTP; no actual ChatGPT authorization is claimed",
+          "Hosted setup, three readiness dimensions, runtime draft and activation evidence render on desktop and mobile without horizontal overflow",
+          "Tenant switching is blocked during pending scoped reads, and switching clears prior tenant data; an unauthorized deep link cannot select or display another tenant",
+          "Viewer cannot provision or discover unassigned tenants; admin membership revocation removes existing-session access on subsequent UI/HTTP requests",
+          "Fresh HTTPS deep link recovers server state; logout invalidates the browser session; a separate database connection recovers active release and pinned insurance history"
+        ],
+        "browserErrors": [],
+        "productionReady": false,
+        "customerAcceptance": "not_recorded",
+        "screenshots": ["intern-sandbox-setup.png", "intern-sandbox-setup-mobile.png"]
+      }
+    },
+    {
+      "file": "test-results/oauth-browser-verification.json",
+      "sha256": "28e259857b9cdbc4841ed08ed7bf08b2bb823452b996ba8d47feee5b186da271",
+      "checks": 3,
+      "result": {
+        "status": "passed",
+        "checks": [
+          "Exact registered callback origin permitted by consent CSP",
+          "Browser allow reaches registered HTTPS callback with code and state",
+          "Browser deny reaches registered HTTPS callback with error and state"
+        ],
+        "boundary": "Synthetic organization session and disposable local HTTPS callback; live IdP and ChatGPT acceptance require separate verification"
+      }
+    },
+    {
+      "file": "test-results/insurance-configuration-browser.json",
+      "sha256": "51bcadd37c8e9daf451f1e0a6fef7da877fca4990f60ba9b3b3a3a107c6d8906",
+      "checks": 4,
+      "result": {
+        "passed": true,
+        "origin": "https://localhost:55027",
+        "buildSha": "cccccccccccccccccccccccccccccccccccccccc",
+        "checks": [
+          "An intern authored a versioned product, typed risk question, exact-money coverage, referral rule, rating floor and authority through structured Studio controls without JSON.",
+          "Active server preview reports missing answers and selections, then a priced referral with rule/source evidence. No policy record is created by evaluation.",
+          "The UI and direct API produce identical decision hashes; quote capture retains the full decision; a later active price does not change the historical quote or its bind decision; another intern cannot read this tenant.",
+          "Desktop and 390px mobile insurance decision rendering complete without page errors or horizontal overflow."
+        ],
+        "errors": []
+      }
+    },
+    {
+      "file": "test-results/insurance-approval-browser.json",
+      "sha256": "d2a673ade2baa848a3459ca7d19a3539434397a3140510128f384ff60937bfb4",
+      "checks": 9,
+      "result": {
+        "passed": true,
+        "origin": "https://localhost:55082",
+        "buildSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "checks": [
+          "Dismissing Bind discard confirmation preserves an unsaved withdrawal and the exact quoted record/review history; accepting navigation discard clears the draft when returning and reopening the form.",
+          "Actual requester and independent reviewer forms request, approve and bind the exact quote; retained question labels, choice labels and exact monetary units render from the pinned definition. Actor/evidence/history and original evaluation hashes match canonical API reads. Requester mutation and cross-tenant read are denied.",
+          "An independent decline through the form is retained, blocks binding and cannot be replaced by a new request on the same quote revision.",
+          "An administrator who created the quote or requested its review cannot approve it; UI controls and direct server decisions enforce both independence boundaries.",
+          "A quote revision between opening and submitting a review rejects the stale form decision and projects stale status while preserving the original request.",
+          "The actual withdrawal form records a third immutable action and removes approval applicability without deleting the quote or history.",
+          "A real accepted request whose response is lost remains durable; unchanged form retry reuses the identical idempotency key and payload, returning one original review with one history action.",
+          "Server clock advancement projects expired status and disables review; no browser time assumption grants approval.",
+          "Desktop and 390px mobile review rendering has no page errors or horizontal overflow; the mobile navigation drawer is closed."
+        ],
+        "errors": []
+      }
+    },
+    {
+      "file": "test-results/insurance-provider-browser.json",
+      "sha256": "adfa3c856ecb815ce48481f1666432a79640c5e22f4a66af015cbfff55be0d31",
+      "checks": 4,
+      "result": {
+        "passed": true,
+        "checks": [
+          "Real HTTPS UI queues an exact configured quote, the actual worker retains synthetic delivery, and insurance price/version/history remain unchanged.",
+          "Reload retains the completed provider request and prevents a second request for the same adapter/quote revision.",
+          "Public synthetic callback, missing CSRF and cross-tenant provider reads are rejected.",
+          "Desktop and 390px mobile provider evidence renders without page errors or horizontal overflow."
+        ],
+        "errors": [],
+        "externalProviderVerified": false,
+        "requestId": "ad7af992-738b-44bd-8e83-b3603c1ad607"
+      }
+    },
+    {
+      "file": "test-results/insurance-finance-browser.json",
+      "sha256": "f017b2aa40f77a3c5e767d732d2c7b71a1d6d24d414ae82d612f88bf421f4c8b",
+      "checks": 7,
+      "result": {
+        "passed": true,
+        "checks": [
+          "Authorized HTTPS UI recognizes the retained bound transaction with independently balanced financial and external-control books.",
+          "A committed receipt with a deliberately lost response retains the form and command identity; an unchanged retry creates one receipt.",
+          "A changed ledger rejects an application while preserving entered evidence; refresh and an exact new command apply only the selected partial amount.",
+          "The downloaded CSV bytes match the displayed ledger and exact source-lineage export hash.",
+          "Dated report and downloaded CSV share explicit effective/recorded cutoffs and byte hash; changing either cutoff invalidates the download.",
+          "Reversal retains the original application and restores receipt availability without changing any insurance state.",
+          "Desktop/mobile views have no page errors or overflow; builder sessions can inspect but cannot post or reconcile finance."
+        ],
+        "errors": [],
+        "liveBankVerified": false
+      }
+    },
+    {
+      "file": "test-results/insurance-documents-browser-report.json",
+      "sha256": "67e99803f6433cee2c2b267024861be618a62a0c7074ac4807aa7a5f8de77892",
+      "checks": 6,
+      "result": {
+        "scope": "Isolated local synthetic browser evidence; no customer approval or hosted user acceptance",
+        "checks": [
+          "Unbound quote cannot generate a document or gain an insurance state",
+          "Actual form queues one exact bound revision; background worker atomically retains PDF and HTML pack and immutable history",
+          "Authenticated PDF and HTML browser downloads reproduce exact registered filenames and stored byte hashes",
+          "Actual service form creates revision 3 and a new document pack; original revision 2 PDF/HTML hashes remain immutable",
+          "390px document controls, history and download cards remain usable without horizontal overflow",
+          "Read-only session can inspect/download but cannot issue; another authorized tenant cannot retrieve known artifact IDs"
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "file": "test-results/insurance-service-browser.json",
+      "sha256": "f3f3b38b1705b61a155a3cd66f9e37233fcdd3a3ce6d0da63261473fe3910824",
+      "checks": 6,
+      "result": {
+        "passed": true,
+        "checks": [
+          "Studio revises a configured quote against its retained release despite an active replacement with a different rate.",
+          "An actual four-to-six-day extension previews a 2400-minor-unit delta, invalidates on edits and retains the original quote/decision while committing one new contractual revision.",
+          "Named repeated risks retain stable IDs; a missing conditional loss answer and referral block service until the new input independently satisfies retained rules.",
+          "Renewal uses a fresh source reference and active rate to create a distinct linked quote; normal binding is a separate explicit action and the source policy remains unchanged.",
+          "A separate scheduled cancellation uses the retained explicit daily return rule and records cessation without inventing a refund payment or notice.",
+          "Reload retains the changed term and immutable history; desktop and mobile have no page errors or overflow."
+        ],
+        "errors": [],
+        "customerAcceptance": false
+      }
+    },
+    {
+      "file": "test-results/insurance-v2-browser-checks.json",
+      "sha256": "5c215b3a6d8e6eaf74a1272907054e4703d530edf550530ae4d4e6e242313bcc",
+      "checks": 1,
+      "result": {
+        "checks": [
+          "Actual Studio saves typed repeated questions and row-local boolean conditions, exact scoped aggregate/excess values and explicit servicing rules"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "file": "test-results/insurance-fnol-browser-report.json",
+      "sha256": "9d897506d0ed8dc3377df3353eb1708eab84ad8b0036838515684936eaf2591b",
+      "checks": 6,
+      "result": {
+        "scope": "Local disposable synthetic UI/HTTP/storage evidence; no customer routing, public token or legal signature acceptance",
+        "checks": [
+          "Actual incomplete draft survives an accepted-but-lost HTTP response and unchanged retry creates no duplicate effect",
+          "Structured save/resume retains reporter/preparer/evidence/server actor and flags out-of-term source date without adjudication",
+          "Reviewed submission and explicit internal handoff retain one immutable acknowledgement; frozen facts cannot be edited",
+          "Possible duplicate blocks unreviewed submission; actual rationale form preserves both notice histories",
+          "390px interface supports actual notice inspection without horizontal overflow",
+          "Read-only and other-tenant requests cannot mutate or retrieve unauthorized intake; policy money/state remain unchanged"
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "file": "test-results/insurance-ui-state-browser.json",
+      "sha256": "7f35c002243e6cec602c5a5fddc500fc7ec2369d7f1af5193b1f1deec71ce8e2",
+      "checks": 5,
+      "result": {
+        "passed": true,
+        "checks": [
+          "Service preview preserves disabled participant inputs and remains read-only.",
+          "Opening finance discards an acknowledged service form; read-only report preserves financial input but changing cutoffs removes stale totals and disables export.",
+          "Approval and finance are mutually exclusive with insurance revision forms after acknowledged discard.",
+          "A rate-only active release change retains editable risk answers and coverage selections for a separately evaluated renewal.",
+          "A renewal against changed repeated-risk semantics requires re-entry, avoids stale invisible group data, and generates valid stable row identifiers without changing the source policy."
+        ],
+        "errors": [],
+        "customerAcceptance": false
+      }
+    }
+  ],
+  "rustModuleSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+  "customerAcceptance": false,
+  "deploymentProved": false,
+  "limits": [
+    "Disposable fixtures and synthetic identities; real intern, independent reviewer and ChatGPT acceptance remains open.",
+    "Provider/document/finance/FNOL adapters are explicitly synthetic; no customer insurer, claims routing, banking or legal issuance acceptance.",
+    "Remote CI, exact serving image and real-session/recovery evidence recorded separately."
+  ],
+  "contractDeduplication": {
+    "recordedAt": "2026-09-07T06:47:30.102Z",
+    "node": "v22.22.2",
+    "boundary": "Local single-process indicative wall-clock measurements; no throughput, hosted latency or billing claim. Sequential cold builds may reuse schema cache from an earlier builder; warm timings exclude JSON serialization and network.",
+    "before": {
+      "openApi": {
+        "bytes": 3630659,
+        "prettyBytes": 18152013,
+        "ms": 103.42850000000001
+      },
+      "hostedOpenApi": {
+        "bytes": 4216455,
+        "prettyBytes": 21884792,
+        "ms": 102.00687499999998
+      },
+      "mcpDiscovery": {
+        "bytes": 1587984,
+        "prettyBytes": 7806575,
+        "ms": 37.051041999999995
+      },
+      "hostedMcpDiscovery": {
+        "bytes": 2098135,
+        "prettyBytes": 10925749,
+        "ms": 51.81383400000004
+      },
+      "hostedContractManifest": {
+        "bytes": 370,
+        "prettyBytes": 395,
+        "ms": 165.061708
+      }
+    },
+    "after": {
+      "openApi": {
+        "bytes": 1334116,
+        "prettyBytes": 2271382,
+        "coldMs": 44.01079200000001,
+        "warmMeanMs": 8.400000000000318e-5
+      },
+      "hostedOpenApi": {
+        "bytes": 1479878,
+        "prettyBytes": 2506629,
+        "coldMs": 14.812292000000014,
+        "warmMeanMs": 1.1208999999979596e-5
+      },
+      "mcpDiscovery": {
+        "bytes": 599485,
+        "prettyBytes": 1487458,
+        "coldMs": 0.19333299999999554,
+        "warmMeanMs": 9.749999999996817e-6
+      },
+      "hostedMcpDiscovery": {
+        "bytes": 804279,
+        "prettyBytes": 1982861,
+        "coldMs": 2.4821660000000065,
+        "warmMeanMs": 1.083300000001941e-5
+      },
+      "hostedContractManifest": {
+        "bytes": 370,
+        "prettyBytes": 395,
+        "coldMs": 16.807915999999977,
+        "warmMeanMs": 0.00022212500000000547
+      }
+    },
+    "verification": {
+      "focusedTests": 15,
+      "newTests": 5,
+      "canonicalSchemasExpandedIdentically": true,
+      "allReferencesResolve": true,
+      "swaggerParserValidatedBothDocuments": true,
+      "realSdkToolsListAndRetainedV2Read": true,
+      "strictTypes": true
+    }
+  },
+  "packagedMigrationReview": {
+    "localOnly": true,
+    "network": "none",
+    "results": [
+      {
+        "case": "verify-schema7",
+        "passed": true,
+        "records": 2,
+        "approvals": 1,
+        "documents": 1,
+        "providerRequests": 1,
+        "notices": 1,
+        "businessSchema": 7,
+        "originalUnchanged": true
+      },
+      {
+        "case": "verify-schema6-upgrade",
+        "passed": true,
+        "records": 2,
+        "approvals": 1,
+        "documents": 0,
+        "providerRequests": 0,
+        "notices": 0,
+        "businessSchema": 7,
+        "originalUnchanged": true
+      },
+      {
+        "case": "verify-future-rejected",
+        "rejected": true,
+        "originalUnchanged": true
+      },
+      {
+        "case": "verify-pending-review-corruption",
+        "rejected": true,
+        "originalUnchanged": true
+      },
+      {
+        "case": "verify-future-auth-rejected",
+        "rejected": true,
+        "originalUnchanged": true
+      },
+      {
+        "case": "verify-auth-data-rejected",
+        "rejected": true,
+        "originalUnchanged": true
+      }
+    ]
+  },
+  "productionDependencyAudit": {
+    "checkedAt": "2026-09-07T06:49:52.608857+00:00",
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  }
+}

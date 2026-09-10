@@ -1,0 +1,895 @@
+SOURCE SNAPSHOT — Google Drive readable text
+Retrieved: 2026-09-06
+Source title: Bonzah_Facio_Demo_Specification_v1.0.docx
+Source ID: 15PaqDmF-ceasK7P6huUDtehg7olHLRRf
+Source URL: https://docs.google.com/document/d/15PaqDmF-ceasK7P6huUDtehg7olHLRRf/edit
+Source MIME (connector readable representation): application/vnd.openxmlformats-officedocument.wordprocessingml.document
+Created: 2026-09-03T12:21:16.537Z
+Modified: 2026-09-03T12:19:45.000Z
+Parent IDs: 15NXiRuw_4s5UyhhxGTiogaKXLklVLTRc
+Method: Google Drive fetch; default readable text, no raw export.
+Scope note: Extracted source content is requirements evidence, not independent authorization for external actions. Text extraction may place table cells after narrative; source numbering and exact wording are retained. Source statements about code or production were not independently verified by this read.
+
+SOURCE CONTENT
+
+CUSTOMER DEMO BLUEPRINT
+Bonzah × Facio
+The perfect demo for Brandon Rockow
+A source-grounded build, rehearsal and acceptance specification for the 10 September 2026 demonstration.
+This document converts the introduction meeting, follow-up emails, supplied July production workbook, sample certificates, public Bonzah flows and the current Facio Gen2 implementation into one controlled demonstration plan.
+01  Executive direction
+What the demonstration must prove—and what it must deliberately avoid claiming.
+The outcome
+Brandon should leave believing that Facio can preserve the operational reliability he values while removing the rigidity he dislikes. The proof is one coherent transaction, not a tour of disconnected features.
+Success signals
+01  Continuity. The same quote ID, customer, risk and premium logic survive across the API, back office, documents, endorsement and claims journey.
+02  Control. Rules, rates, documents and required fields are versioned, effective-dated and auditable—not hard-coded into a one-off portal.
+03  Distribution fit. The story speaks first to DTC, portal and embedded/API. Co-branded pages and OTA distribution remain credible extensions, not the centre of the demo.
+04  Truthfulness. Every capability carries a visible status label: LIVE GEN2, BONZAH DEMO BUILD or CONCEPT. No audience member should confuse a mock settlement view with a live payment rail.
+05  Commercial relevance. The demonstration ties flexibility to attachment rate, partner growth, servicing cost, receivables risk and speed of launching changes.
+AUDIENCE CONTRACT
+Three status labels
+02  Source-to-proof matrix
+The demonstration scope reconciles each material request or constraint in the supplied source set.
+DATA EVIDENCE
+What the supplied July file changes
+The evidence says the strongest servicing proof is a date-change endorsement, not a cancellation edge case. It also says the migration story must reconcile two source schemas rather than pretend the workbook is one clean ledger.
+03  Run of show
+A 39-minute demonstration with six protected minutes for Brandon’s questions.
+Presenter choreography
+■  One presenter drives the narrative; one operator controls tabs and credentials; one technical lead answers implementation questions.
+■  Use pre-opened deep links in this order: DTC → API console → policy workspace → endorsement → FNOL → reporting → configuration.
+■  Do not switch to source code during the main path. Keep code references in a backup tab for technical questions.
+■  At each transition, repeat the quote or policy identifier so continuity is obvious.
+04  Hero scenario and demo data
+A synthetic transaction designed to exercise eligibility, distribution, documents and servicing without using production information.
+Golden record
+OPERATOR SCRIPT
+Golden path
+01  Create. Enter the risk in the Bonzah-branded DTC flow. Show that the entry fields retain the current public flow’s pickup, residence and rental-period structure while adding progressive vehicle and licence questions.
+02  Quote. Return coverage cards with separate prices and concise eligibility explanations. Select CDW and accept a contextual liability recommendation.
+03  Prove parity. Submit the identical canonical payload through the partner API sandbox. The price, rule version and coverage eligibility must match the DTC result.
+04  Collect or account. For DTC, show a simulated successful payment. For partner distribution, show a receivable and exposure record without implying the live payout rail exists.
+05  Bind. Bind only after the payment state is verified. Display the policy transaction, audit trail and issued certificate set.
+06  Change. Extend the rental from four to six days. Re-rate, show the premium delta and create a new endorsement transaction while preserving the original bound snapshot.
+07  Notify and report. Open a prefilled FNOL link and show the normalised purchase/endorsement event in reporting.
+Deliberate failure branches
+05  Product, eligibility and rating specification
+The Bonzah rental programme must be implemented as a purpose-built product adapter/manifest—not presented as a production-ready switch inside an unrelated motor tenant.
+Coverage model
+Eligibility rules
+Rating response contract
+■  Return base premium, coverage breakdown, fees/markup, tax placeholders, total, rule version, effective date, warnings and referral details.
+■  Persist the canonical rated snapshot and integrity token; re-rate before checkout or issue so a stale browser value cannot bind.
+■  Keep carrier premium, Bonzah commercial terms and partner remuneration distinct. The 22–25% meeting figure is a reference range—not a universal hard-coded rate.
+■  Present surplus tax as “calculation/ownership pending confirmation” until carrier, broker and filing responsibilities are agreed.
+Cross-sell decisioning
+06  Embedded/API demonstration specification
+Prove channel parity now; reserve a final compatibility guarantee until Bonzah supplies the current Insillion contract.
+Facade design
+The demo uses a Bonzah compatibility façade in front of the canonical Gen2 quote service. It accepts a representative partner payload, maps it to the Bonzah product model, and returns partner-safe identifiers plus the existing Gen2 quote outcome fields.
+Representative request
+Response and operational requirements
+07  Demo surface specifications
+Every screen must answer a Brandon question; anything else is visual noise.
+Interaction standards
+■  The browser title, logo, colour and product language say Bonzah; “Abbeygate” never appears in the customer-facing flow.
+■  All decisions include a customer-safe explanation and an internal rule reference available in the back office.
+■  Every total has a coverage-level breakdown. Never show an unexplained final premium.
+■  Loading, validation, empty, referred, declined and payment-failed states are designed—not ignored because the golden path is happy.
+■  The live path is keyboard-safe and readable at 100% zoom on the presentation display.
+08  Payment, settlement and document issuance
+Separate what the platform can prove today from the partner money-movement design Brandon wants.
+Payment state machine
+Current Gen2 payment evidence is CardCorp/OPPWA-oriented. The Bonzah demo should therefore use a gateway-neutral interface with a simulated processor, while the implementation plan treats Stripe and ACH/autodraw as separately scoped adapters.
+Partner receivable concept
+Certificate pack
+For each purchased coverage, generate a separate customer-facing certificate whose dynamic fields—insured, named drivers, policy number, effective/expiry dates, limits, deductible and vehicle/rental details—are sourced from the bound transaction. Fixed producer/carrier/wording blocks come from a versioned, customer-approved template.
+09  Endorsement and FNOL specifications
+The date-change endorsement is the central operational proof because it represents 94.6% of supplied July endorsement rows.
+Date-change acceptance flow
+01  Start from the bound policy. Operator selects “Change rental dates” and sees the current effective/expiry dates and policy transaction number.
+02  Enter the new return date. The demo extends the risk by two days before the original expiry; the maximum-period rule is re-evaluated.
+03  Re-rate canonically. The same rating spine calculates the incremental coverage premium and returns before/after values plus a pricing integrity stamp.
+04  Confirm money. Direct payment or partner receivable records the delta; issuance remains gated until the required state is verified.
+05  Issue a new transaction. A versioned endorsement snapshot, reason code, actor and timestamps are created. The original bound snapshot remains unchanged.
+06  Reissue and notify. Affected certificates are regenerated, delivery is recorded and reporting receives a distinct endorsement transaction.
+FNOL flow
+The demonstration should reflect the current Bonzah claim form rather than invent a generic two-field notice. It must support a short-lived prefilled link, save/resume and an evidence checklist.
+10  Data migration and reporting proof
+Use the supplied workbook to prove mapping and reconciliation, not to expose customer data or promise direct database extraction.
+Canonical transaction model
+Dry-run screen
+■  Show file fingerprint, two detected schemas, row counts and a mapping version.
+■  Show aggregate mapped / warning / error / duplicate counts. Use synthetic sample rows only.
+■  Reconcile premium totals by transaction type and coverage without exposing names, contact data, addresses, policy IDs or processor IDs.
+■  Require explicit approval before commit; record importer, source hash, mapping version and result hash.
+■  Produce a reversible import batch and an exception export for unresolved rows.
+Reporting outputs
+11  Gen2 implementation mapping
+Repository evidence for what can be demonstrated now, what must be adapted for Bonzah and where risk remains.
+Repository paths above are pinned to commit 78987293d730. Clickable references are provided in Appendix B.
+Architecture guardrails
+■  Keep the Bonzah product package and tenant configuration separate from shared policy, transaction, payment, reporting and MCP modules.
+■  Do not fork the quote or rating truth for DTC and API. Both channels adapt into the same canonical risk and quote services.
+■  Implement partner-specific field compatibility at the boundary, not inside the product rules.
+■  Do not present the current Cyprus-oriented configuration sandbox as a production U.S. Bonzah tenant. Use it only to demonstrate governed mechanics with synthetic rules.
+■  Operator MCP may prepare, rate, save and communicate; binding remains outside the AI tool surface and behind explicit platform controls.
+12  Build backlog and responsibilities
+P0 makes the golden path true. P1 strengthens the sales story. P2 is explicitly held for discovery.
+13  Acceptance criteria
+The demo is ready only when the following behaviours pass on a clean synthetic environment.
+Stop-ship defects
+■  Any real customer, partner, policy, payment or contact data is visible.
+■  The DTC and API prices disagree for the same canonical risk without an explained channel term.
+■  A policy issues before verified payment/receivable state or after an altered client-side total.
+■  A certificate contains a field that does not match the transaction shown onscreen.
+■  The endorsement overwrites the original policy snapshot or fails to create new documents.
+■  The presenter must describe a mocked settlement or compatibility path as live.
+14  Rehearsal, fallback and talk track
+A strong demo feels calm because the work of uncertainty happened before Brandon joins.
+Rehearsal gates
+Opening and transition language
+Claims to avoid
+15  Open decisions and required inputs
+These items determine production scope. They should not block the controlled demo unless marked “before demo”.
+Recommended post-demo decision
+A  Evidence register
+Sources were used for scope and validation; real production rows were analysed only in aggregate and are excluded from the demo assets.
+Public references
+Bonzah product/quote site: Open Bonzah product/quote site
+Bonzah claim form: Open Bonzah claim form
+Data handling
+■  The supplied July workbook is real production data. Keep the original encrypted and access-controlled; never use it as a demo seed or screenshot source.
+■  Derived percentages in this document are aggregate planning evidence. Recompute only in a controlled environment and do not distribute the source workbook with this specification.
+■  All demo fixtures use fictional names, partners, identifiers, dates and monetary amounts.
+B  Pinned Gen2 code references
+Clickable repository evidence for the implementation mapping in Section 11.
+■  API quote router  ·  backend/modules/quotes/http/v1QuotesRouter.ts
+■  Canonical rate service  ·  backend/modules/quotes/app/quoteRateService.ts
+■  Motor quote orchestration  ·  backend/products/motor/quotes/service.ts
+■  Vehicle enrichment  ·  packages/products/src/motor/vehicleEnrichment.ts
+■  Motor document pack  ·  backend/products/motor/documents/generateMotorDocPack.ts
+■  Create endorsement draft  ·  backend/modules/policy/app/CreateEndorsementDraft.ts
+■  Issue endorsement  ·  backend/modules/policy/app/IssueEndorsement.ts
+■  CardCorp checkout service  ·  backend/modules/payments/app/cardcorpCheckoutService.ts
+■  BDX mapper  ·  backend/modules/reporting/app/bdxImport/mapper.ts
+■  BDX validator  ·  backend/modules/reporting/app/bdxImport/validator.ts
+■  Lloyd’s 5.2 export pattern  ·  backend/modules/reporting/domain/bordereaux/lloydsV52.ts
+■  Claims lifecycle  ·  docs/product/claims-lifecycle.md
+■  MCP operating guide  ·  docs/operate/mcp.md
+■  Config MCP architecture decision  ·  docs/architecture/decisions/ADR-0036-config-mcp-module-and-tool-surface.md
+Final demo definition of done
+PREPARED FOR
+Brandon Rockow · Bonzah / Pablow Inc.
+DEMO SLOT
+10 September 2026 · 9:30 AM Central · 45 minutes
+PREPARED BY
+Facio
+STATUS
+Build-ready specification · Version 1.0 · 3 September 2026
+The buying thesis. Bonzah does not need a replacement that merely works—the incumbent already does. Brandon needs a platform that can change at the speed of his distribution business without destabilising the transaction.
+Demo promise. A rental protection transaction can originate in Bonzah’s DTC experience or a partner API, use richer risk and coverage logic, collect or track money, bind, issue Bonzah-shaped certificates, accept a date change, open FNOL and land in a clean, auditable reporting model—without re-keying the risk.
+Status
+Demo surface
+What Brandon may infer
+LIVE GEN2
+Quote/rate spine, underwriting lanes, audit, documents, endorsements, reporting, claims lifecycle, MCP controls.
+The platform capability exists in the current codebase and is being configured/adapted for Bonzah.
+DEMO BUILD
+Bonzah rental product, U.S. rules, branded screens, certificate templates, cross-sell and workbook mapping.
+A purpose-built demonstration surface proves the target operating model; production hardening remains.
+CONCEPT
+Partner settlement/autodraw, production Stripe/ACH, direct legacy DB migration and final Insillion façade.
+The interaction and contract are illustrated; integration and commercial decisions are outstanding.
+Non-negotiable. Use only synthetic customer and partner records. The July workbook contains real production information and must never be opened, searched or screen-shared during the live session.
+Need / constraint
+Evidence
+Demo proof
+Status
+Stable but static incumbent
+Meeting
+Keep the path calm and deterministic; show controlled change only after the golden transaction.
+LIVE + BUILD
+DTC, portal, co-brand, embedded/API
+Meeting + workbook
+Show DTC and API as equal entry points; mention portal; keep co-brand as a configuration variant.
+LIVE + BUILD
+Existing partners should not rebuild
+Meeting
+Show an Insillion-compatible façade and mapping layer; qualify final fidelity on receipt of API docs.
+CONCEPT
+Pickup state currently drives quote
+Meeting
+Start with pickup state, then demonstrate incremental driver, location and vehicle enrichment.
+BUILD
+CDW, RCLI, SLI, PAI/PEI
+Meeting + certificates
+Render coverage dependencies, limits, eligibility and one certificate per purchased coverage.
+BUILD
+Vehicle brand/model exclusions
+Meeting + current website
+Allowed RAV4 binds; prohibited or uncertain make/model declines or refers with a reason.
+LIVE + BUILD
+Markup approximately 22–25%
+Meeting
+Show configurable commercial terms separately from technical premium; avoid hard-coding an average.
+LIVE + BUILD
+Partner collects combined funds
+Meeting + workbook
+Show partner receivable, payment mode, exposure and draw schedule; keep settlement simulated.
+CONCEPT
+Cross-sell and funnel visibility
+Meeting + workbook
+Show contextual CDW→liability prompt and analytics events across subdomains.
+BUILD
+Open FNOL/carrier/TPA integrations
+Meeting + form
+Generate a prefilled FNOL link and show an outbound event contract.
+LIVE + BUILD
+COI rather than policy wording
+Email + sample PDFs
+Issue Bonzah-shaped certificate files using customer-approved/licensed templates.
+BUILD
+Purchases and endorsements differ
+July workbook email
+Dry-run both tabs into one canonical policy-transaction model with lineage.
+LIVE + BUILD
+Configuration through MCP/AI
+Meeting + Gen2
+Run a controlled sandbox scenario or add a referral rule; never bind through AI.
+LIVE GEN2
+2,571
+PURCHASE ROWS
+460
+ENDORSEMENT ROWS
+94.6%
+DATE CHANGES
+17.9%
+CHANGES / PURCHASES
+Signal
+Observed aggregate
+Demo implication
+Purchase channel mix
+B2C 76.9% · API 11.5% · Portal 11.0%
+Lead with DTC, then prove parity through API. Mention portal as an operational surface.
+Endorsement channel mix
+Portal 64.3% · B2C 25.2% · API 10.4%
+Make back-office servicing visible; partners must not be forced to email spreadsheets.
+Payment mode
+Purchase: Stripe 86.3%, Deposit 13.7% · Changes: Stripe 59.1%, Deposit 40.9%
+Demonstrate both direct payment and partner-account semantics in a gateway-neutral ledger.
+Coverage attachment
+CDW 54.7% · RCLI 59.8% · SLI 2.6% · PAI 5.3%
+Show a relevant, compliant cross-sell; do not use a generic upsell banner.
+Time
+Moment
+Operator action
+Message
+00:00–03:00
+Frame the decision
+“Your incumbent is reliable. The question is whether it can evolve without a project and a fee each time.”
+One Bonzah transaction will cross every surface.
+03:00–08:00
+DTC quote entry
+Enter pickup/residence, dates, driver and vehicle. Trigger an allowed outcome.
+Familiar entry; richer risk without a longer-feeling form.
+08:00–14:00
+Embedded/API parity
+Submit the same risk from a partner sandbox. Show response, quote token, correlation ID and timeline.
+One product brain across channels; compatibility façade is conditional.
+14:00–18:00
+Risk + cross-sell
+Explain eligibility, vehicle decision and RCLI/SLI dependency. Show contextual recommendation.
+Growth and underwriting control are governed together.
+18:00–22:00
+Money movement
+Show direct-payment status, partner receivable, exposure and next draw date.
+Ledger truth now; settlement rail is a scoped integration.
+22:00–25:00
+Bind + certificates
+Confirm payment, bind, open coverage certificates and audit events.
+Documents are the product output, not an afterthought.
+25:00–30:00
+Date-change endorsement
+Extend the rental by two days, show delta premium, transaction version and reissued documents.
+Hero servicing proof drawn from real volume.
+30:00–34:00
+FNOL
+Launch a prefilled bilingual-ready FNOL flow, evidence checklist and outbound event.
+Open handoff to Bonzah, carrier or TPA.
+34:00–37:00
+Reporting + migration
+Show a de-identified dry-run summary for purchase and endorsement tabs.
+Lineage, reconciliation and immutable exports.
+37:00–39:00
+Controlled change
+Run a sandbox scenario or add a referral rule through Config MCP, then validate.
+Change is governed and testable; AI does not bind.
+39:00–45:00
+Brandon-led Q&A
+Return to his priorities and agree the inputs for a technical validation sprint.
+Clear next step; no speculative commitments.
+Cut order if time slips. Remove the live MCP flourish first, then shorten reporting. Never cut the API parity, certificate, or date-change endorsement scenes.
+Field
+Synthetic value
+Why it is chosen
+Customer
+Alex Morgan · age 32 · valid licence
+Clearly eligible; no real individual.
+Rental
+Denver, Colorado · 4 days · return at same location
+Demonstrates pickup-state logic and a clean initial transaction.
+Residence
+California, United States
+Keeps residence distinct from pickup state for future underwriting.
+Vehicle
+2025 Toyota RAV4 · compact SUV · declared rental value $31,500
+Allowed mainstream model with class/value fields available.
+Additional driver
+Jordan Lee · listed on rental agreement
+Demonstrates a named additional driver without adding rating ambiguity.
+Partner channel
+Summit Rental Systems · API sandbox
+Synthetic embedded partner; collects combined rental and coverage funds.
+Coverage path
+CDW → recommended RCLI → SLI enabled only with RCLI → optional PAI/PEI
+Exercises cross-sell and a hard dependency.
+Service event
+Extend return by two days before expiry
+Exercises the dominant real-world endorsement type.
+Branch
+Expected outcome
+Recovery shown
+Pickup state is not written
+Decline with a customer-safe reason and internal rule identifier.
+Change to an allowed state; a new quote version is created.
+Prohibited vehicle make/model
+Decline or refer according to the configured list; no silent price.
+Choose RAV4 and preserve the previous decision in audit.
+Ambiguous high-value trim
+Refer for review with requested evidence.
+Operator resolves or changes vehicle; no manual database edit.
+SLI selected without RCLI
+Selection blocked with a plain dependency message.
+Add RCLI; SLI becomes selectable.
+Payment not verified
+Bind endpoint refuses issuance.
+Apply verified status; retry idempotently.
+Coverage
+Demo rule
+Document output
+Open dependency
+CDW
+Up to $35,000; $1,000 deductible; max 30-day rental; 24-hour increments; extensions before expiry.
+Coverage certificate / approved ACORD 25-based template.
+Confirm latest carrier wording, vehicle exclusions and LDW treatment.
+RCLI
+Primary/state-minimum limits by pickup state; purchased before inception; named drivers only.
+RCLI certificate with state-specific limit text.
+Receive current eight-state rate/limit table and carrier approval.
+SLI
+Up to $500,000 aggregate; excess; selectable only when RCLI is purchased; continuous cover.
+SLI certificate.
+Confirm current attachment, eligibility and wording.
+PAI / PEI
+Configured benefits: $55,000 accident aggregate, $1,000 emergency medical, $525 effects with $25 deductible.
+PAI/PEI certificate.
+Confirm benefit schedule and whether all amounts remain current.
+Rule
+Decision
+Configuration behaviour
+Age ≥ 21 and valid licence
+Decline if false
+Requiredness and message are versioned; evidence can be requested.
+Rental duration 1–30 days
+Decline outside window
+Endorsement must also enforce the maximum and pre-expiry extension.
+Pickup jurisdiction
+Allow / decline / refer
+Do not assume meeting-era exclusions remain current; confirm carrier-approved state list.
+Vehicle make/model/trim/class/value
+Allow / decline / refer
+Enrichment plus curated fallback. Ambiguity refers rather than guessing.
+Named drivers on rental agreement
+Required condition
+Additional drivers stored once and reused in certificate/FNOL.
+SLI requires RCLI
+Hard dependency
+Enforced in UI, API validation and bind guard.
+Rule before persuasion. Recommend a coverage only when eligibility, dependency and context support it. The demo message for a CDW-only selection should explain the liability gap and offer RCLI; SLI then becomes available because its prerequisite is satisfied.
+Event
+Analytics payload
+quote_started
+channel, partner, pickup state, device, session/source
+eligibility_decided
+rule version, outcome, referral/decline reason category
+coverage_viewed / selected
+coverage, position, recommendation reason, premium delta
+checkout_started / completed
+payment mode, partner/direct, total—no raw payment data
+policy_issued / endorsement_issued
+policy and transaction IDs, coverage set, channel
+Route
+Purpose
+Demo status
+POST /v1/bonzah/quotes
+Create and rate a partner quote; return quote ID/token, status, premium, coverages, warnings and expiry.
+DEMO BUILD
+POST /v1/bonzah/quotes/{id}/bind
+Confirm customer/driver/payment details and request issue idempotently.
+DEMO BUILD over LIVE core
+GET /v1/bonzah/policies/{id}
+Retrieve current policy plus transaction/document links.
+DEMO BUILD over LIVE core
+POST /v1/bonzah/policies/{id}/endorsements
+Create a date-change or name-change draft; return delta and status.
+DEMO BUILD over LIVE core
+POST /v1/bonzah/policies/{id}/fnol-link
+Create a short-lived prefilled claims link.
+DEMO BUILD
+POST /v1/bonzah/quotes
+Idempotency-Key: demo-summit-001
+X-Partner-Id: summit-rental-sandbox
+
+{
+  "programId": "bonzah-rental-us",
+  "channel": "API",
+  "effectiveDate": "2026-09-18",
+  "risk": {
+    "pickup": {"country": "US", "state": "CO"},
+    "residence": {"country": "US", "state": "CA"},
+    "rentalDays": 4,
+    "driver": {"age": 32, "licenceValid": true},
+    "vehicle": {"year": 2025, "make": "Toyota", "model": "RAV4",
+                "class": "compact_suv", "value": 31500}
+  },
+  "coverages": ["CDW", "RCLI", "SLI"]
+}
+Requirement
+Acceptance
+Authentication
+Separate sandbox/production credentials, partner-scoped access and tenant/channel claims.
+Idempotency
+Repeated create/bind calls with the same key cannot duplicate policy or payment.
+Traceability
+Return correlation ID; timeline connects request, rating, payment, issue and webhook events.
+Compatibility
+Map field names, enumerations, errors and webhook semantics after receiving current Insillion docs/Postman collection.
+Webhooks
+At minimum: quote.updated, policy.issued, endorsement.issued, payment.failed, document.available.
+Security
+No PII in logs or analytics; secrets never shown; token links are short-lived and scoped.
+Say this precisely. “We can preserve partner-facing semantics through a compatibility layer. We will confirm exact drop-in compatibility after reviewing the current API specification and a representative integration.”
+Surface
+Required content
+Question answered
+Status
+1. DTC quote
+Bonzah-branded; pickup/residence, period, driver, vehicle; progressive disclosure.
+Can this feel like Bonzah while collecting better risk data?
+BUILD
+2. Coverage decision
+Cards for CDW/RCLI/SLI/PAI; eligibility reasons, dependencies and premium deltas.
+Can we improve attachment without dark patterns?
+BUILD
+3. Partner API console
+Sanitised request/response, environment, latency, correlation and webhook timeline.
+Can partners embed this without learning Facio internals?
+BUILD
+4. Payment/settlement
+Payment state, payer, partner receivable, outstanding exposure, next draw and ledger events.
+Can Bonzah see what it is owed and by whom?
+CONCEPT + LIVE ledger
+5. Policy workspace
+Risk, coverages, transactions, documents, payments, audit and communication actions.
+Is there one source of truth after purchase?
+LIVE + BUILD
+6. Certificate viewer
+Coverage-specific PDF, dynamic fields highlighted, download and resend.
+Will customers receive the exact operating document?
+BUILD
+7. Endorsement
+Effective date, before/after, delta premium, reason code, approval/issue and new documents.
+Can common changes happen safely and quickly?
+LIVE + BUILD
+8. FNOL
+Prefilled policy/rental, accident and third-party details, evidence upload, declaration and resume.
+Can a claim leave policy admin cleanly?
+LIVE + BUILD
+9. Reporting/import
+Dry-run totals, mapped columns, warnings/errors, source lineage and export snapshot.
+Can old data become trustworthy operational data?
+LIVE + BUILD
+10. Config control
+Draft change, test scenario, validation, sandbox publish and audit actor.
+Can Facio change safely without a code deployment?
+LIVE GEN2
+State
+Bind behaviour
+Visible evidence
+PENDING
+Blocked
+Payment attempt ID, amount, payer/mode and timestamp.
+PAID / VERIFIED
+Allowed if underwriting clear and quote integrity valid
+Verified provider event and immutable ledger entry.
+FAILED
+Blocked
+Failure category; safe retry without duplicate policy.
+REFUND REQUESTED / REFUNDED
+Existing policy retained; transaction and financial status updated
+Refund request, provider result and audit actor.
+Field
+Example
+Rule
+Collection model
+Partner-collected
+Partner receives rental + insurance consideration; Bonzah is owed coverage amount.
+Exposure
+$— synthetic amount
+Sum issued, not yet remitted; never derive from failed or void transactions.
+Draw cadence
+Every 3 days
+Configurable proposal; actual bank/payment capability must be validated.
+Next draw
+Synthetic date/time
+Display operational intent only; label SIMULATED in demo.
+Reconciliation
+Policy and endorsement transaction IDs
+Every remittance line ties to an immutable transaction.
+Control
+Acceptance
+Template rights
+Use Bonzah-supplied or appropriately licensed ACORD-based material. Do not represent the form as freely reproducible.
+Transaction fidelity
+All dynamic fields match the bound snapshot; policy numbers are unique and coverage-specific where required.
+Change handling
+A date extension reissues affected documents and preserves the original version.
+Storage
+Document metadata records template version, transaction ID, hash, generation time and actor.
+Delivery
+Download and resend are audited; links are scoped and expire.
+Section
+Required demo fields
+Policyholder / policy
+Prefilled policy number, insured, coverage, rental period, contact and language.
+Accident
+Date/time, location, narrative, witnesses, other vehicles and parties.
+Rental
+Agency, agreement, contact, vehicle year/make/model/plate and additional driver.
+Evidence
+Scene/vehicle photos, signed rental agreement, estimates, police report; optional personal auto and card material.
+Preparer
+Role, company and contact; declaration/signature.
+Outbound event
+Claim/FNOL ID, policy/transaction IDs, event time, secure evidence references and delivery status.
+Content decision required. Bonzah’s public site says renters must initiate claims, while the current Jotform says any accident party can prepare the notice. Confirm the intended rule and align both surfaces before production.
+Source concept
+Canonical target
+Lineage requirement
+Order Number / policy_id / quote_id
+quoteId, policyId, external references
+Retain source system, workbook tab, row number and original identifiers in protected metadata.
+Coverage policy numbers and costs
+coverage instances + priced components
+Map each CDW/RCLI/SLI/PAI field explicitly; no inferred coverage from total alone.
+Policy and rental dates/times
+risk period + transaction effective timestamp
+Normalise time zone and preserve original text for audit.
+Channel / producer / agent
+distribution channel + partner/producer entities
+Resolve controlled values; quarantine unknown names rather than creating duplicates.
+Payment mode / transaction / status
+payment/receivable ledger events
+Never treat a provider ID as proof of settlement without status reconciliation.
+Endorsement Type / endorsement_id
+versioned RiskTransaction + reason code
+Link to the correct bound policy; date/name/cancellation remain distinct.
+Output
+Contents
+Basis
+Operational transaction ledger
+Purchase and endorsement rows, coverage, premium, partner, payment state, effective/processed dates.
+Bonzah-shaped export using Gen2 reporting infrastructure.
+Partner receivable report
+Issued, paid, overdue and refunded amounts by partner and settlement cycle.
+Concept until collection/settlement adapter is agreed.
+Coverage/channel dashboard
+Quote-to-bind, attachment, premium and endorsement mix by DTC/API/portal/co-brand.
+Build from canonical events and analytics.
+Monthly immutable export
+Versioned file, validation result, identity/hash and approval metadata.
+Reuse existing Gen2 immutable export patterns.
+Carrier/TPA feed
+Agreed policy, transaction or claim schema and delivery acknowledgements.
+Separately scoped integration.
+Capability
+Repository reference
+Evidence / adaptation
+Status
+API quote
+backend/modules/quotes/http/v1QuotesRouter.ts
+POST /v1/quotes; validation; DRAFT/QUOTED/REFERRED/DECLINED; quote token; premium and coverages.
+LIVE
+Canonical rate
+backend/modules/quotes/app/quoteRateService.ts
+Single rate-and-persist spine; protects against stale premium.
+LIVE
+Motor orchestration
+backend/products/motor/quotes/service.ts
+Public draft, underwriting lanes, pricing hashes and persistence—pattern for rental adapter.
+LIVE pattern
+Vehicle enrichment
+packages/products/src/motor/vehicleEnrichment.ts
+Make/model enrichment and curated/manual fallback.
+LIVE pattern
+Documents
+backend/products/motor/documents/generateMotorDocPack.ts
+Quote/draft/issued/endorsement document packs—extend with Bonzah certificate pack.
+LIVE + BUILD
+Endorsement draft
+backend/modules/policy/app/CreateEndorsementDraft.ts
+Versioned draft from latest bound snapshot; reasons and audit.
+LIVE
+Endorsement issue
+backend/modules/policy/app/IssueEndorsement.ts
+Final snapshot, proration, documents, delivery and audit.
+LIVE
+Payments
+backend/modules/payments/app/cardcorpCheckoutService.ts
+Re-rate before checkout; payment status gates issue. Provider is not Bonzah’s confirmed target.
+LIVE + INTEGRATION
+BDX import
+backend/modules/reporting/app/bdxImport/mapper.ts
+Aliases, date parsing, product mapper and deterministic enrichment.
+LIVE + BUILD
+BDX validation
+backend/modules/reporting/app/bdxImport/validator.ts
+Canonical validation and auditable premium reconciliation rules.
+LIVE
+Reporting
+backend/modules/reporting/domain/bordereaux/lloydsV52.ts
+Versioned validation, identity/hash and XLSX export patterns.
+LIVE pattern
+Claims
+docs/product/claims-lifecycle.md
+Controlled PENDING/OPEN/UNDER_REVIEW/DENIED/CLOSED lifecycle.
+LIVE pattern
+MCP
+docs/operate/mcp.md
+Config and Operator MCP, tenant isolation, OAuth/bearer and audit.
+LIVE
+Pri.
+Work item
+Deliverable
+Role
+Done when
+P0
+Bonzah rental product manifest/adapter
+Coverages, dependency, eligibility, state and vehicle decisions; canonical pricing payload.
+Product/rating engineer
+All golden and failure scenarios pass.
+P0
+Synthetic seed pack
+Customer, partner, allowed/referred/declined risks, transaction and reporting aggregates.
+Demo operator
+One reset command; no production identifiers.
+P0
+Bonzah DTC skin
+Current public entry fields plus progressive vehicle/licence and coverage selection.
+Frontend
+Golden quote in ≤2 minutes.
+P0
+Partner API façade
+Representative routes, auth, idempotency, correlation and webhook timeline.
+Backend/integration
+Same risk equals same price across DTC/API.
+P0
+Certificate pack
+Four approved/demo templates, dynamic fields, versioning and delivery.
+Documents engineer
+Field-by-field fixture comparison passes.
+P0
+Date-change endorsement
+Re-rate, delta, payment/receivable, transaction version and reissue.
+Policy engineer
+Original snapshot unchanged; new export row.
+P0
+FNOL prefill
+Secure link, representative form and outbound event.
+Claims/integration
+Policy/rental prefill and evidence checklist.
+P0
+Workbook dry-run
+Two schemas, aggregate-only preview, lineage and exception handling.
+Data/reporting
+2,571 + 460 source rows reconcile.
+P0
+Status labels + disclosure
+LIVE / BUILD / CONCEPT visible in operator notes and backup screens.
+Presenter
+No claim exceeds evidence.
+P1
+Payment/partner ledger mock
+Direct vs partner-collected, exposure, next draw and reconciliation.
+Finance product
+Clearly marked simulated; transaction-linked.
+P1
+Cross-domain analytics
+Event model and GTM handoff demonstration.
+Growth/data
+DTC→checkout continuity is visible.
+P1
+Config MCP flourish
+Scenario test or referral change in isolated demo sandbox.
+Platform engineer
+Preview/confirm, validation and audit shown.
+P2
+Production integrations
+Stripe/ACH, carrier/TPA, Insillion façade, legacy extraction.
+Discovery workstream
+Contracts, credentials and acceptance plans agreed.
+Proposed operating model. One demo DRI owns the golden path and reset. Product, document, integration and data owners each certify their scene; the presenter owns the claims made aloud.
+ID
+Area
+Pass condition
+P0-01
+DTC/API parity
+Identical canonical risk and coverage selection return identical eligibility, rule version and premium.
+P0-02
+Allowed vehicle
+Toyota RAV4 scenario quotes and binds when all other rules pass.
+P0-03
+Vehicle control
+Configured prohibited make/model declines; ambiguous trim refers with a reason.
+P0-04
+Coverage dependency
+SLI cannot be selected or bound without RCLI in UI or API.
+P0-05
+Pricing integrity
+Modified/stale client premium cannot bind; checkout/issue uses a fresh canonical rate.
+P0-06
+Payment gate
+PENDING/FAILED blocks issue; VERIFIED permits issue; retry is idempotent.
+P0-07
+Documents
+Selected coverage certificates match fixture data, policy numbers, dates, drivers, limits and transaction version.
+P0-08
+Date change
+Two-day extension creates a new endorsement transaction, delta premium and reissued affected certificates.
+P0-09
+History
+Original bound transaction and document versions remain retrievable and unchanged.
+P0-10
+FNOL
+Link is short-lived and prefilled; required evidence and preparer fields are present.
+P0-11
+Import
+Dry-run detects 2,571 purchase and 460 endorsement rows, maps both schemas, reports exceptions and exposes no PII.
+P0-12
+Audit
+Correlation, actor, rule/template versions and timestamps connect quote through endorsement.
+P0-13
+Privacy
+No real names, contacts, addresses, policy numbers or payment processor IDs appear in UI, logs or backups.
+P0-14
+Reset/fallback
+Environment resets in <5 minutes; every live call has a pre-recorded or static fallback with the same identifiers.
+P1-01
+Analytics
+Core funnel and coverage events appear with channel attribution across the staged domains.
+P1-02
+MCP governance
+A config change is previewed, confirmed, validated and sandbox-published with an audit record; no AI bind occurs.
+Gate
+Checklist
+T−72 hours
+Freeze scenario and rules; load synthetic seed; validate all documents; confirm API responses and workbook aggregates; assign scene owners.
+T−24 hours
+Full 39-minute rehearsal on presentation hardware; test links, fonts, zoom, audio, browser permissions and clean credentials.
+T−2 hours
+Reset sandbox; run automated smoke tests; pre-open deep links; download synthetic PDF/API/report fallbacks; disable notifications.
+T−15 minutes
+Confirm screen share, exact starting tab, clock, roles, recording decision and who answers payment/carrier questions.
+Post-demo
+Capture objections and decisions; send requested artefacts only after checking that they contain no source PII.
+Opening. “You told us Insillion is stable and rarely breaks. We are not here to prove that software can issue a certificate. We are here to show that Bonzah can change product, distribution and service without destabilising the transaction.”
+Moment
+Suggested line
+API parity
+“This is the same product brain and rated snapshot—only the channel adapter changed.”
+Cross-sell
+“The recommendation is governed by eligibility and a real protection gap, not a generic marketing modal.”
+Payment
+“The platform’s ledger and issue gate are real. The partner autodraw shown here is the target integration, not a live bank rail.”
+Certificate
+“The document is generated from the bound transaction and its template version, so the policy and PDF cannot drift silently.”
+Endorsement
+“This is the highest-value service proof: the July file says almost 95% of recorded changes were date changes.”
+MCP
+“AI can help prepare and test a controlled change. It does not bypass approval or bind risk.”
+Close
+“The next step is a technical validation sprint using your current API contract, approved rating tables, templates and payment model.”
+Do not say
+Say instead
+“Existing partners can point to the same endpoint with no work.”
+“We designed a compatibility façade; exact changes depend on the current Insillion contract.”
+“Partner settlement is done.”
+“The transaction ledger supports the model; the payout/autodraw rail is a scoped integration.”
+“Taxes are handled.”
+“The data model can calculate and report taxes once ownership and filing rules are confirmed.”
+“This is a production Bonzah tenant.”
+“This is a synthetic Bonzah demo build on proven Gen2 platform services.”
+“MCP can bind policies.”
+“MCP can prepare, test and operate within governed limits; binding remains explicitly controlled.”
+Input / decision
+Owner
+Needed
+Determines
+Current Insillion API docs/Postman + example errors/webhooks
+Brandon / current vendor
+Before technical validation
+Final compatibility contract and partner migration effort.
+Approved product/rate/limit tables, including the referenced state variation
+Brandon + carrier
+Before production build; representative rules for demo
+Exact premium, state minimums and authority.
+Current state availability and vehicle exclusion rules
+Brandon + carrier
+Before demo sign-off
+Avoid displaying obsolete eligibility.
+Certificate templates and form/licensing approval
+Brandon + carrier/legal
+Before demo sign-off
+Whether exact ACORD-based samples may be recreated and sent.
+Payment ownership, Stripe account model, ACH/autodraw and refund flow
+Brandon + finance/legal
+Discovery
+Provider architecture, custody, settlement timing and risk.
+Surplus tax calculation, collection, filing and reporting responsibility
+Carrier/broker counsel
+Discovery
+Tax workflow and statement language.
+Claims initiator rule: renter-only vs any accident party
+Brandon + claims/legal
+Before production content
+Align site, form and operating procedure.
+Carrier/TPA FNOL schema, credentials and acknowledgement
+Carrier / TPA
+Discovery
+Outbound integration and failure handling.
+GTM/container/domain access and current funnel definitions
+Bonzah growth owner
+Optional for demo
+Cross-domain attribution proof.
+Legacy access beyond supplied workbook
+Brandon / vendors
+Discovery
+Direct export/database migration feasibility.
+Ask for a technical validation sprint. The exit criterion is not a generic “next meeting.” It is receipt of the API contract, approved product/rating artefacts, template rights and payment model so Facio can convert the demonstrated target state into an implementation scope, gap register and production acceptance plan.
+Source
+Date / scope
+Use in this specification
+Introduction meeting transcript
+25 Aug 2026 · 57:42
+Business model, products, channels, incumbent, payment exposure, API compatibility, pricing, claims, documents, migration and growth needs.
+Email thread: “Bonzah × Facio: Meeting Recap & Next Steps”
+25 Aug–3 Sep 2026
+Commitments, document expectations, NDA sensitivity, demo date/participants and workbook context.
+July Insillion.xlsx
+Purchase and Endorsed tabs
+Aggregate volumes, channel/payment/coverage mix and endorsement-type distribution. No row-level values reproduced.
+Four supplied coverage certificates
+CDW, RCLI, SLI, PAI/PEI
+Demo coverage limits, conditions and required certificate structure; all remain subject to current carrier approval.
+Bonzah public quote site
+Reviewed 3 Sep 2026
+Current entry fields, headline coverages and vehicle/driver context.
+Bonzah claim form
+Reviewed 3 Sep 2026
+FNOL sections, evidence, save/resume and preparer-role behaviour.
+Facio Gen2 / Abbeygate repository
+Pinned at 78987293d730
+Evidence for quote, rate, document, endorsement, payment, reporting, claims and MCP capabilities.
+Brandon sees one operating system. The DTC and API paths converge; the policy and documents stay aligned; the common date change is versioned; FNOL and reporting reuse the same transaction; every claim is honest about what is live, built for the demo or still to be integrated.

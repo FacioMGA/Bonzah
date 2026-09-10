@@ -1,0 +1,4147 @@
+{
+  "spreadsheetId": "1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU",
+  "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit?ouid=103920952928218800475",
+  "properties": {
+    "title": "VUW.ai — Facio configuration and open inputs",
+    "locale": "en_US",
+    "timeZone": "America/Los_Angeles"
+  },
+  "acquiredAt": "2026-09-06T13:15:26.588Z",
+  "readBoundary": "Read only A1:Q100 per tab; Correspondence continues in VUW_Correspondence_Continuation.drive.json for A101:Q200. Other returned populated ranges end before row 100. Notes, formatting and formulas were not acquired.",
+  "sheets": [
+    {
+      "metadata": {
+        "sheetId": 162219105,
+        "title": "Start here",
+        "index": 0,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 6,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "range": "'Start here'!A1:Q100",
+      "majorDimension": "ROWS",
+      "values": [
+        [
+          "Start here"
+        ],
+        [
+          "VUW.ai • Prepared 6 September 2026 • Configuration preparation; runtime and acceptance results remain unverified."
+        ],
+        [],
+        [],
+        [],
+        [
+          "Area",
+          "Current position",
+          "Next action",
+          "Source"
+        ],
+        [
+          "Latest customer direction",
+          "One policy with variable capacity panel; 7.5% MGA commission; VUW does not hold client premiums; Bordereaux 5.2; manual policy adjustments.",
+          "Use Configuration and Open inputs to lock the implementation baseline.",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "What is prepared",
+          "34 configuration entries, 23 open inputs, 78 proposed field mappings and 22 acceptance scenarios. All UAT results begin as Not run.",
+          "Assign delivery owners and fill approval/evidence cells; do not treat proposed mappings as deployed.",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "Received material",
+          "Workflow, property fields, risk codes, CDR v3.2 and POC approval reviewed; sample ZIP has 3 packs / 21 files.",
+          "Select US POC slice and label expected case outcomes. Do not ask for the existing packs again.",
+          "https://mail.google.com/mail/#all/1a03e6ecac12249e"
+        ],
+        [
+          "Commercial state",
+          "POC plan approval verified. Paid subscription acceptance/activation not established. Sep4 recap calls for revised offer.",
+          "Verify offer status and readiness-based trial dates.",
+          "https://mail.google.com/mail/#all/1a06c275b6182a01"
+        ],
+        [
+          "Schedule",
+          "Customer Gate3 Sep11, Gate4 Sep18, Gate5 Sep25. Internal Kernel plan targets full POC Sep11.",
+          "Uriel + Nicholas to reconcile internal delivery target and customer acceptance cadence.",
+          "https://drive.google.com/file/d/1gPU_zt-f4Dp3g4L_sLlvrPHAUpV_wtDb/view"
+        ],
+        [
+          "Source precedence",
+          "Sep4 customer email is latest operational clarification. Signed POC plan is scope evidence. Draft implementation spec remains a proposal.",
+          "Resolve conflicts explicitly; meeting recaps and roadmaps do not prove functionality or commercial acceptance.",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "Data handling",
+          "Customer sample data is limited to POC/demo and must be deleted from controlled environments, storage and backups at conclusion.",
+          "Yahav to maintain copy inventory and confirm cleanup. This workbook contains no sample-policy data.",
+          "https://mail.google.com/mail/#all/1a05d2f54478d157"
+        ],
+        [
+          "Workbook use",
+          "Field map and CDR candidates are proposals. Risk shortlist is not a programme assignment. Financial example reproduces customer illustration.",
+          "Source URLs identify originals. Source access remains governed by the original permissions.",
+          "https://drive.google.com/file/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/view"
+        ],
+        [
+          "Coverage limits",
+          "Project correspondence/documents and sample-file structure reviewed. Sample test outcomes, live Facio deployment and actual gate acceptance remain unverified.",
+          "Choose test slice, expected outcomes and execute on exact runtime.",
+          "https://mail.google.com/mail/#all/1a03e6ecac12249e"
+        ]
+      ]
+    },
+    {
+      "metadata": {
+        "sheetId": 483380807,
+        "title": "Configuration",
+        "index": 1,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 6,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "range": "Configuration!A1:Q100",
+      "majorDimension": "ROWS",
+      "values": [
+        [
+          "Configuration"
+        ],
+        [
+          "Customer requirements, draft specification and proposed implementation follow-ups are identified separately."
+        ],
+        [],
+        [],
+        [],
+        [
+          "ID",
+          "Area",
+          "Configuration item",
+          "Known value / requirement",
+          "Basis",
+          "Remaining decision",
+          "Owner / counterpart",
+          "Source"
+        ],
+        [
+          "CFG-01",
+          "Organisation",
+          "First programme",
+          "US property reinsurance; regional-mutual / non-cat initial focus",
+          "Documented scope",
+          "Final contract form and selected risk code",
+          "Chris + Kraig",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-02",
+          "Organisation",
+          "Party roles",
+          "VUW operational MGA/AR; ProGlobal coverholder where required; separate cedant, insured, broker and carriers",
+          "Documented scope",
+          "Exact legal names, IDs, authority documents and output presentation",
+          "Chris + James",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-03",
+          "System boundary",
+          "Underwriting authority",
+          "VUW/QuoteBox owns intake, enrichment, rating and underwriting decision; Facio records downstream lifecycle and decision evidence",
+          "Documented scope",
+          "Validate implemented boundary and event triggers",
+          "Kraig + Yahav",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-04",
+          "System boundary",
+          "Canonical record",
+          "One risk / policy / overall placement with many capacity participation records",
+          "Customer requirement",
+          "Map stable IDs and record aggregate to selected Facio runtime",
+          "Kraig + Yahav",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-05",
+          "Capacity",
+          "Lead and followers",
+          "One lead, Swiss Re or Munich Re typically 50%; Ark follows approximately 5–15%; other followers vary by risk",
+          "Customer requirement",
+          "Actual POC panel and contractual limits; typical lines are not hard caps",
+          "Chris",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-06",
+          "Capacity",
+          "Participation data",
+          "Provider, role, written line, signed/participating line, share basis, allocated amounts, authority and effective version",
+          "Customer requirement",
+          "Define line basis, signing-down, rounding and partially placed handling",
+          "Chris + Yahav",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-07",
+          "Finance",
+          "MGA commission rate",
+          "7.5%",
+          "Customer requirement",
+          "Confirm commission base/exceptions and return-premium treatment",
+          "Chris + James",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-08",
+          "Finance",
+          "Client premium custody",
+          "VUW must not receive or hold underlying client premiums",
+          "Customer requirement",
+          "Configure accounting and roles around actual settlement evidence",
+          "James + Facio finance",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-09",
+          "Finance",
+          "Premium settlement chain",
+          "Anticipated: client/producing broker → Guy Carpenter → bureau → capacity providers",
+          "Partly specified",
+          "Final settlement model, entities, references, timing and evidence feed",
+          "James",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-10",
+          "Finance",
+          "Commission settlement",
+          "Separate commission receivable for VUW; payer expected GC or bureau",
+          "Partly specified",
+          "Final commission payer/mechanism remains TBC",
+          "James + Chris",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-11",
+          "Finance",
+          "Transaction amounts",
+          "Retain gross premium, capacity premium, MGA commission, brokerage/deductions, tax/charges, return premium and net settlement separately",
+          "Customer requirement",
+          "Signed calculations, currency/FX and rounding rules",
+          "Chris + Facio finance",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-12",
+          "Reporting",
+          "Initial bordereau",
+          "Bordereaux 5.2, with policy and transaction detail sufficient to populate required output",
+          "Customer requirement",
+          "Exact carrier-approved 5.2 template, codes, period and acceptance file",
+          "James + Chris",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-13",
+          "Lifecycle",
+          "Interim MTA entry",
+          "Manual MTA transaction linked to original policy; preserve versions, effective date, financial and capacity adjustments",
+          "Customer requirement",
+          "Manual operator/approver roles and agreed scenario",
+          "Chris + Yahav",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-14",
+          "Lifecycle",
+          "Cancellations / return premium / reinstatements",
+          "Same linked transaction model; recompute capacity and applicable commission impacts",
+          "Customer requirement",
+          "Return commission contract treatment, reinstatement rules and approvals",
+          "Chris",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-15",
+          "Lifecycle",
+          "Future QuoteBox MTA integration",
+          "Later automation through same canonical lifecycle; source estimates about six months until QuoteBox MTA support",
+          "Future work",
+          "No fixed delivery date established",
+          "Kraig",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-16",
+          "API",
+          "Versioned message envelope",
+          "schemaVersion, stable external IDs, correlationId, idempotencyKey, sourceSystem, messageType and occurredAt",
+          "Draft specification",
+          "Current VUW payload and actual supported endpoint contract",
+          "Kraig + Yahav",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-17",
+          "API",
+          "Validation and retries",
+          "Field-level errors, explicit rejection, idempotent retries, immutable quote versions and selected-version binding",
+          "Draft specification",
+          "Prove on chosen build; do not publish invented endpoints",
+          "Yahav",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-18",
+          "API",
+          "Status events",
+          "Submission, screening, referral, quote, bind, document, endorsement and agreed reporting events",
+          "Draft specification",
+          "Webhook/polling decision, signatures, retries, ordering and callback owner",
+          "Kraig + Yahav",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-19",
+          "Schema",
+          "Property fields",
+          "78 supplied field names: 42 policy, 25 risk, 7 loss and 4 premium",
+          "Source received",
+          "Types, requiredness by event, enums and mappings need approval",
+          "Kraig + Chris",
+          "https://drive.google.com/file/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/view"
+        ],
+        [
+          "CFG-20",
+          "Schema",
+          "Market reference mapping",
+          "Use supplied risk-code catalogue and received CDR v3.2 package",
+          "Source received",
+          "Confirm selected code and exact CDR crosswalk; CDR and BDX versions are separate",
+          "Kraig + Yahav",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-21",
+          "Screening",
+          "Simplified ID / sanctions",
+          "Perform or record agreed screening with party, reference, result, decision and evidence",
+          "Partly specified",
+          "Execution owner, screened parties, provider account and review policy",
+          "Kraig + Chris",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-22",
+          "Authority",
+          "Referral and bind controls",
+          "Authority reference/version; referral reason/owner/resolution; capacity check before bind",
+          "Draft specification",
+          "Actual binding authorities, thresholds and approvers",
+          "Chris",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-23",
+          "Documents",
+          "Broker statement / RI certificate",
+          "Broker statement is SOW client-issued output; draft spec allows statement and/or representative RI certificate",
+          "Unresolved decision",
+          "Approve required artifact, supplied template and legal party presentation",
+          "Chris + James",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-24",
+          "Evidence",
+          "Submission pack linkage",
+          "Keep source and extracted evidence linked with identifiers, checksums, versions and access classification during POC",
+          "Documented scope",
+          "Use samples only within agreed restricted POC access",
+          "Yahav",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-25",
+          "Evidence",
+          "POC sample retention",
+          "POC/demo only; delete customer sample data from all controlled workspaces, storage and backups at conclusion; confirm completion",
+          "Confirmed commitment",
+          "Maintain copy inventory and purge confirmation; completion not evidenced",
+          "Yahav",
+          "https://mail.google.com/mail/#all/1a05d2f54478d157"
+        ],
+        [
+          "CFG-26",
+          "Access",
+          "User experience",
+          "Internal underwriter/operations UI for risks and billing; no broker-facing portal currently planned",
+          "Meeting recap",
+          "Validate actual screen and role coverage; recap is not UAT acceptance",
+          "Yahav + Nicholas",
+          "https://mail.google.com/mail/#all/1a06c275b6182a01"
+        ],
+        [
+          "CFG-27",
+          "Access",
+          "API / UI / MCP parity",
+          "Same record and lifecycle, with scoped operations/management/auditor access",
+          "Documented scope",
+          "Verify selected runtime build and permission behavior on each surface",
+          "Yahav",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-28",
+          "Reconciliation",
+          "POC bank format",
+          "Synthetic Revolut-format transactions; automatic match and manual exception; reconcile VUW commission separately",
+          "Partly specified",
+          "Combine original bank demo with latest no-client-money flow",
+          "James + Facio finance",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-29",
+          "Environments",
+          "POC readiness",
+          "Azure environment, isolated staging data, configured schema/endpoint and repeatable reset",
+          "Draft specification",
+          "Current URL/build/config versions, provider boundaries, safe reset and retention",
+          "Yahav",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-30",
+          "Commercial",
+          "Activation",
+          "Signed POC plan found; paid subscription depends on successful POC and mutual continuation",
+          "Partly specified",
+          "Reissued offer acceptance, actual activation and trial dates not verified",
+          "Uriel + Kraig + David",
+          "https://mail.google.com/mail/#all/1a0250098869c533"
+        ],
+        [
+          "CFG-31",
+          "Acceptance",
+          "VUW reviewers",
+          "Technical: Kraig. Business: Nicholas, supported by James",
+          "Customer assignment",
+          "Facio delivery owner per item and actual gate decisions/evidence",
+          "Uriel + Yahav",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "CFG-32",
+          "Programme roadmap",
+          "Later programmes",
+          "Middle East cargo and Caribbean property reinsurance; later insurer claims bordereaux consolidation",
+          "Later programme scope",
+          "Keep out of initial programme acceptance unless jointly added",
+          "Nicholas + Uriel",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "CFG-33",
+          "Delivery",
+          "Schedule reconciliation",
+          "Customer Gate 3 Sep 11, Gate 4 Sep 18, Gate 5 Sep 25; internal plan targets full POC Sep 11",
+          "Conflicting schedules",
+          "Agree whether Sep11 is internal completion or changed customer acceptance date",
+          "Uriel + Nicholas",
+          "https://drive.google.com/file/d/1gPU_zt-f4Dp3g4L_sLlvrPHAUpV_wtDb/view"
+        ],
+        [
+          "CFG-34",
+          "Authority",
+          "Initial carrier approval",
+          "Aug10 discussion requires prior carrier submission even for engine auto-accept risks; automatic bind is a future state",
+          "Meeting statement",
+          "Retain approval gate unless later written authority changes it; agree screening/underwriting sequence",
+          "Chris + Kraig / Yahav",
+          "https://docs.google.com/document/d/1PJUw-m0Rs8R6yeQqD6UAaymyQsbNBTmqqWpmoz1dhWo"
+        ]
+      ]
+    },
+    {
+      "metadata": {
+        "sheetId": 1376415954,
+        "title": "Open inputs",
+        "index": 2,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 6,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "range": "'Open inputs'!A1:Q100",
+      "majorDimension": "ROWS",
+      "values": [
+        [
+          "Open inputs"
+        ],
+        [
+          "P0 blocks the affected POC acceptance. P1 is needed for its stated test or production step. Priority and proposed Facio owners are planning judgments."
+        ],
+        [],
+        [],
+        [],
+        [
+          "ID",
+          "Priority",
+          "Topic",
+          "Already known",
+          "Information / action needed",
+          "Owner / counterpart",
+          "Needed for",
+          "Status",
+          "Source",
+          "Information / action needed",
+          "Owner / counterpart",
+          "Needed for",
+          "Status",
+          "Source"
+        ],
+        [
+          "GAP-01",
+          "P0",
+          "Current environment / activation",
+          "Sep4 recaps request reissued private offer with revised date; old acceptance not evidenced",
+          "Reissue/locate correct offer, capture acceptance/activation state and exact trial start/end; publish POC URL/build/config",
+          "Uriel / Kraig / Yahav",
+          "Before declaring Gate 0 ready",
+          "Open",
+          "https://mail.google.com/mail/#all/1a06c275b6182a01"
+        ],
+        [
+          "GAP-02",
+          "P0",
+          "API payload and contract",
+          "Draft envelope and 78 source fields available",
+          "Supply or locate current QuoteBox/VUW JSON payload and map field presence by submission, quote, bind and adjustment; freeze actual OpenAPI",
+          "Kraig + Yahav",
+          "Schema freeze",
+          "Open",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "GAP-03",
+          "P0",
+          "Sample selection / expected outcomes",
+          "Existing ZIP reviewed: 3 packs / 21 files; portfolios extend beyond US-only baseline; no labelled expected-outcome manifest",
+          "Choose in-scope US POC slice; label quote/referral/decline or authority exception and expected results; request only missing case coverage",
+          "Yahav + Chris/Kraig",
+          "Before scenario run",
+          "Open",
+          "https://mail.google.com/mail/#all/1a03e6ecac12249e"
+        ],
+        [
+          "GAP-04",
+          "P0",
+          "Actual POC panel / authority",
+          "Sep4 supplies typical and worked example panel",
+          "Confirm approved POC participants, contractual share basis, authority refs/limits, signing down and bind thresholds",
+          "Chris",
+          "Before bind test",
+          "Open",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "GAP-05",
+          "P0",
+          "Commission payer and base",
+          "7.5% confirmed; GC or bureau payer unresolved",
+          "Confirm payer and basis (100% premium vs applicable participation), deductions/overrides and when commission is due",
+          "James + Chris",
+          "Before ledger and reconciliation acceptance",
+          "Open",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "GAP-06",
+          "P0",
+          "Return commission",
+          "Sep4 example is subject to contractual treatment",
+          "Confirm commission reversals/clawback on cancellation, return premium and reinstatement; provide approved expected outputs",
+          "Chris + James",
+          "Before negative transaction test",
+          "Open",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "GAP-07",
+          "P0",
+          "Bordereaux 5.2 template",
+          "Version 5.2 required by Chris",
+          "Locate approved empty 5.2 workbook, dictionary, carrier-specific columns/codes, reporting period and expected output; do not substitute another customer file",
+          "James + Chris",
+          "Before report implementation",
+          "Open",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "GAP-08",
+          "P0",
+          "Gate 3 document",
+          "Broker statement in SOW; RI certificate still awaited in Aug thread",
+          "Confirm statement, RI certificate or both; provide approved template/content, branding, legal roles and numbering",
+          "Chris + James",
+          "Before document acceptance",
+          "Open",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "GAP-09",
+          "P0",
+          "Screening arrangement",
+          "Simplified ID referenced; owner unresolved",
+          "Confirm account/execution owner, screened parties, match escalation and sandbox access via secret reference",
+          "Kraig + Chris",
+          "Before screening test",
+          "Open",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "GAP-10",
+          "P0",
+          "Field semantics and selected codes",
+          "Property fields, risk-code catalogue and CDR3.2 already received",
+          "Approve proposed types, requiredness, enums, units, exact selected risk code and per-field CDR/BDX mappings",
+          "Kraig + Chris / Yahav",
+          "Schema freeze",
+          "Open",
+          "https://drive.google.com/file/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/view"
+        ],
+        [
+          "GAP-11",
+          "P0",
+          "MTA operational approvals",
+          "Manual changes required while QuoteBox lacks MTA",
+          "Name operators/approvers; approve effective-date behavior, changing capacity lines, documents and immutable historical allocation",
+          "Chris + Nicholas",
+          "Before lifecycle acceptance",
+          "Open",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "GAP-12",
+          "P0",
+          "Gate dates and evidence",
+          "Customer Friday sequence and internal Sep11 completion differ",
+          "Agree complete scope/version and date interpretation; obtain recorded Gate1/2 decisions and exact build/config evidence",
+          "Uriel + Nicholas; Kraig technical",
+          "Internal baseline target Sep7",
+          "Open",
+          "https://drive.google.com/file/d/1gPU_zt-f4Dp3g4L_sLlvrPHAUpV_wtDb/view"
+        ],
+        [
+          "GAP-13",
+          "P1",
+          "Settlement and reconciliation evidence",
+          "VUW does not hold premiums; commission paid separately",
+          "Confirm authoritative GC/bureau settlement feed, matching IDs, commission bank account, timing and exception workflow",
+          "James + Facio finance",
+          "Before finance acceptance",
+          "Open",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "GAP-14",
+          "P1",
+          "Financial rule details",
+          "Amounts and allocation classes are identified",
+          "Confirm brokerage, tax/charges supplied vs calculated, currency/FX, rounding and allocation residual rules; no unknown value defaults to zero",
+          "Chris + James",
+          "Before finance acceptance",
+          "Open",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "GAP-15",
+          "P1",
+          "API callbacks and recovery",
+          "Draft event list exists",
+          "Choose webhook/polling, callback owner, signatures, retry/backoff, ordering, timeout and duplicate handling",
+          "Kraig + Yahav",
+          "Before integration acceptance",
+          "Open",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "GAP-16",
+          "P1",
+          "Legal party presentation",
+          "ProGlobal arrangement described",
+          "Confirm legal entity IDs and exact AR/coverholder/cedant/broker presentation against contractual documents",
+          "James + Chris",
+          "Before production configuration",
+          "Open",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "GAP-17",
+          "P1",
+          "POC access and cleanup",
+          "POC-only use and deletion commitment accepted Sep1",
+          "Record permitted team, systems holding copies, access controls, purge trigger and completion evidence including backups/derived data",
+          "Yahav",
+          "Before sample use; close at POC conclusion",
+          "Open",
+          "https://mail.google.com/mail/#all/1a05d2f54478d157"
+        ],
+        [
+          "GAP-18",
+          "P1",
+          "Actual Facio support",
+          "Sep4 recap described API progress and UI still pending",
+          "Select runtime and exact build; map each requirement to supported configuration or engineering work and verify UI/API/MCP parity",
+          "Yahav + Facio engineering",
+          "Before readiness claim",
+          "Open",
+          "https://mail.google.com/mail/#all/1a06c275b6182a01"
+        ],
+        [
+          "GAP-19",
+          "P1",
+          "Staging reset / evidence",
+          "Repeatable test reset required",
+          "Agree isolated namespace/reset, evidence retained during POC, deletion at conclusion and production prohibition",
+          "Yahav + Kraig",
+          "Before end-to-end rerun",
+          "Open",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "GAP-20",
+          "P1",
+          "Executed commercial versions",
+          "Signed POC approved; SOW/MSA/SLA supplied; subscription not proven",
+          "Identify governing executed documents and revised offer/trial dates; retain POC approval separately from subscription acceptance",
+          "Uriel + David",
+          "Before paid commencement",
+          "Open",
+          "https://mail.google.com/mail/#all/1a0250098869c533"
+        ],
+        [
+          "GAP-21",
+          "P1",
+          "Scope additions / exclusions",
+          "Sep4 adds operational transaction requirements; agenda and SOW differ on paid scope",
+          "Confirm which additional cases enter POC; reconcile custom UI, migrations and regional reporting with SOW exclusions/change orders",
+          "Uriel + Nicholas + David",
+          "Before changing acceptance scope",
+          "Open",
+          "https://docs.google.com/document/d/18ffhFUU4zYILER6UrnbP6NvLKU2ltp2uL-aQ-PDXyNA"
+        ],
+        [
+          "GAP-22",
+          "P0",
+          "Placement classification / CDR",
+          "CDR3.2 received; source separates treaty/facultative, proportional/nonproportional and written/signed shares",
+          "Confirm contract classification, carrier/broker codes, UMR/section, order/participation basis and conditions; no inferred US code default",
+          "Chris + Kraig / Yahav",
+          "Before CDR schema approval",
+          "Open",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "GAP-23",
+          "P0",
+          "Carrier approval and workflow order",
+          "Aug10 says prior submission initially required even on engine auto-accept; chart and draft differ on sequencing",
+          "Confirm current carrier approval requirement and evidence, sanctions/authority timing, overrides, quote release and bind permissions",
+          "Chris + Kraig / Yahav",
+          "Before workflow and bind acceptance",
+          "Open",
+          "https://docs.google.com/document/d/1PJUw-m0Rs8R6yeQqD6UAaymyQsbNBTmqqWpmoz1dhWo"
+        ]
+      ]
+    },
+    {
+      "metadata": {
+        "sheetId": 1342241524,
+        "title": "Field map",
+        "index": 3,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 6,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "range": "'Field map'!A1:Q100",
+      "majorDimension": "ROWS",
+      "values": [
+        [
+          "Field map"
+        ],
+        [
+          "All 78 source fields retained. Paths/types are proposed. Requiredness by event and CDR mappings await joint approval."
+        ],
+        [],
+        [],
+        [],
+        [
+          "Field ID",
+          "Source group",
+          "Source field",
+          "Proposed canonical path",
+          "Proposed type",
+          "Submission required",
+          "Quote required",
+          "Bind required",
+          "CDR candidate",
+          "Decision / validation needed",
+          "Source location",
+          "Source URL"
+        ],
+        [
+          "VUW-F001",
+          "Policy Details",
+          "Cedant Name",
+          "parties.cedant.name",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0120",
+          "Confirm length, null handling and required lifecycle stage. Confirm cedant is the policyholder under the selected reinsurance contract before adopting policyholder semantics.",
+          "Ark-Vuw AI Data Fields!A2:B2",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F002",
+          "Policy Details",
+          "Cedant Street",
+          "parties.cedant.address.street",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0130",
+          "Confirm length, null handling and required lifecycle stage. Subject to confirmed cedant/policyholder role.",
+          "Ark-Vuw AI Data Fields!A3:B3",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F003",
+          "Policy Details",
+          "Cedant City",
+          "parties.cedant.address.city",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0140",
+          "Confirm length, null handling and required lifecycle stage. Subject to confirmed cedant/policyholder role.",
+          "Ark-Vuw AI Data Fields!A4:B4",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F004",
+          "Policy Details",
+          "Cedant State",
+          "parties.cedant.address.state",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0160",
+          "Confirm length, null handling and required lifecycle stage. Subject to confirmed cedant/policyholder role; CDR uses ISO 3166-2 country subdivision.",
+          "Ark-Vuw AI Data Fields!A5:B5",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F005",
+          "Policy Details",
+          "Cedant Country",
+          "parties.cedant.address.country",
+          "country code string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0170",
+          "Confirm ISO country code standard and country versus risk jurisdiction. Subject to confirmed cedant/policyholder role; CDR uses ISO 3166-1 alpha-2.",
+          "Ark-Vuw AI Data Fields!A6:B6",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F006",
+          "Policy Details",
+          "Cedant ZIP",
+          "parties.cedant.address.postalCode",
+          "identifier string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0150",
+          "Preserve leading zeros and formatting; confirm uniqueness/scope. Subject to confirmed cedant/policyholder role; preserve postal text.",
+          "Ark-Vuw AI Data Fields!A7:B7",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F007",
+          "Policy Details",
+          "Cedent code type",
+          "parties.cedant.codeType",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0190",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. Confirm cedant identification code set equals CDR policyholder identification code set.",
+          "Ark-Vuw AI Data Fields!A8:B8",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F008",
+          "Policy Details",
+          "Cedent code",
+          "parties.cedant.code",
+          "identifier string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0180",
+          "Preserve leading zeros and formatting; confirm uniqueness/scope. Confirm cedant identification code equals CDR policyholder identification code.",
+          "Ark-Vuw AI Data Fields!A9:B9",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F009",
+          "Policy Details",
+          "Client type",
+          "parties.cedant.clientType",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0110",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. Client type may represent a different classification; confirm enum semantics.",
+          "Ark-Vuw AI Data Fields!A10:B10",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F010",
+          "Policy Details",
+          "Class of Business",
+          "contract.classOfBusiness",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0610",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. CDR field is insurer class of business at participation grain. Do not flatten multiple provider classifications into one root field.",
+          "Ark-Vuw AI Data Fields!A11:B11",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F011",
+          "Policy Details",
+          "Line of Business",
+          "contract.lineOfBusiness",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A12:B12",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F012",
+          "Policy Details",
+          "Original Insured Name",
+          "parties.originalInsured.name",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0630",
+          "Confirm length, null handling and required lifecycle stage. CDR Original Insured is conditional on Facultative. Confirm treaty/facultative status; preserve original insured even if CDR condition is not triggered.",
+          "Ark-Vuw AI Data Fields!A13:B13",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F013",
+          "Policy Details",
+          "Original Insured Street",
+          "parties.originalInsured.address.street",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm length, null handling and required lifecycle stage. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A14:B14",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F014",
+          "Policy Details",
+          "Original Insured City",
+          "parties.originalInsured.address.city",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm length, null handling and required lifecycle stage. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A15:B15",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F015",
+          "Policy Details",
+          "Original Insured State",
+          "parties.originalInsured.address.state",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm length, null handling and required lifecycle stage. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A16:B16",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F016",
+          "Policy Details",
+          "Original Insured Country",
+          "parties.originalInsured.address.country",
+          "country code string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm ISO country code standard and country versus risk jurisdiction. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A17:B17",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F017",
+          "Policy Details",
+          "Original Insured ZIP",
+          "parties.originalInsured.address.postalCode",
+          "identifier string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Preserve leading zeros and formatting; confirm uniqueness/scope. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A18:B18",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F018",
+          "Policy Details",
+          "Original Insured Industry",
+          "parties.originalInsured.industry",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A19:B19",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F019",
+          "Policy Details",
+          "Currency",
+          "contract.currency",
+          "currency code string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0440, CDR-0500",
+          "Confirm currency code standard and supported currencies. Premium and limit currencies are distinct fields. Confirm whether one source Currency can populate both.",
+          "Ark-Vuw AI Data Fields!A20:B20",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F020",
+          "Policy Details",
+          "Inception Date",
+          "contract.inception",
+          "date (ISO 8601 proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0700",
+          "Confirm dates and contract timezone/inclusivity. Source CDR allows date or datetime and UTC offset. Date-only requires Inclusive/Exclusive Indicator CDR-2240.",
+          "Ark-Vuw AI Data Fields!A21:B21",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F021",
+          "Policy Details",
+          "Expiration Date",
+          "contract.expiry",
+          "date (ISO 8601 proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0710",
+          "Confirm dates and contract timezone/inclusivity. Source CDR allows date or datetime and UTC offset. Date-only requires Inclusive/Exclusive Indicator CDR-2240.",
+          "Ark-Vuw AI Data Fields!A22:B22",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F022",
+          "Policy Details",
+          "100% Policy Limit",
+          "layer.policyLimit100Percent",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0490",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. CDR limit is 100% amount for each layer. Decide whether Policy Limit or Layer Limit is the correct per-section source.",
+          "Ark-Vuw AI Data Fields!A23:B23",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F023",
+          "Policy Details",
+          "Cedant participation type",
+          "layer.cedantParticipationType",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A24:B24",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F024",
+          "Policy Details",
+          "Reinsurer Share",
+          "layer.reinsurerShare",
+          "decimal with basis (unresolved)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-2050, CDR-0660",
+          "Confirm monetary amount versus percentage, percentage scale, gross/net basis, and allocation. One Reinsurer Share cannot safely stand for both written and signed share. Need provider-level values and written/signed/order bases.",
+          "Ark-Vuw AI Data Fields!A25:B25",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F025",
+          "Policy Details",
+          "Basis of Acceptance",
+          "contract.basisOfAcceptance",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A26:B26",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F026",
+          "Policy Details",
+          "Layer Limit",
+          "layer.layerLimit",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0490",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. CDR limit is 100% amount for each layer, not the subscribed share. Confirm layer grain versus policy limit.",
+          "Ark-Vuw AI Data Fields!A27:B27",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F027",
+          "Policy Details",
+          "Layer Limit Basis",
+          "layer.layerLimitBasis",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0510",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. Confirm supplied layer basis value against the CDR list of values.",
+          "Ark-Vuw AI Data Fields!A28:B28",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F028",
+          "Policy Details",
+          "Attachment Point",
+          "layer.attachmentPoint",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A29:B29",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F029",
+          "Policy Details",
+          "Attachment Point Basis",
+          "layer.attachmentBasis",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A30:B30",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F030",
+          "Policy Details",
+          "Net retention (incl treaty)",
+          "layer.netRetention",
+          "decimal with basis (unresolved)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm monetary amount versus percentage, percentage scale, gross/net basis, and allocation. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A31:B31",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F031",
+          "Policy Details",
+          "Peril",
+          "layer.perils[]",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0910, CDR-0920",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. Split included and excluded perils; one Peril field does not identify inclusion/exclusion.",
+          "Ark-Vuw AI Data Fields!A32:B32",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F032",
+          "Policy Details",
+          "Deductible Level",
+          "layer.deductibles[].level",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A33:B33",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F033",
+          "Policy Details",
+          "Deductible Type",
+          "layer.deductibles[].type",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0520",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. Confirm source deductible type distinguishes deductible versus excess consistently with CDR.",
+          "Ark-Vuw AI Data Fields!A34:B34",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F034",
+          "Policy Details",
+          "Deductible value",
+          "layer.deductibles[].value",
+          "decimal with basis (unresolved)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0530, CDR-2040",
+          "Confirm monetary amount versus percentage, percentage scale, gross/net basis, and allocation. Split amount and percentage based on source basis; CDR principal deductible is 100% layer/section amount.",
+          "Ark-Vuw AI Data Fields!A35:B35",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F035",
+          "Policy Details",
+          "Deductible Basis",
+          "layer.deductibles[].basis",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0550",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. Confirm basis list of values. Level/zone/minimum/maximum remain distinct source fields.",
+          "Ark-Vuw AI Data Fields!A36:B36",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F036",
+          "Policy Details",
+          "Deductible Minimum",
+          "layer.deductibles[].minimum",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A37:B37",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F037",
+          "Policy Details",
+          "Deductible Maximum",
+          "layer.deductibles[].maximum",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A38:B38",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F038",
+          "Policy Details",
+          "Deductible Zone",
+          "layer.deductibles[].zone",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A39:B39",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F039",
+          "Policy Details",
+          "Sublimit Level",
+          "layer.sublimits[].level",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A40:B40",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F040",
+          "Policy Details",
+          "Sublimit Amount",
+          "layer.sublimits[].amount",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A41:B41",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F041",
+          "Policy Details",
+          "Sublimit Basis",
+          "layer.sublimits[].basis",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A42:B42",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F042",
+          "Policy Details",
+          "Sublimit Zone",
+          "layer.sublimits[].zone",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A43:B43",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F043",
+          "Risk Details",
+          "Location number",
+          "locations[].locationNumber",
+          "identifier string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Preserve leading zeros and formatting; confirm uniqueness/scope. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A44:B44",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F044",
+          "Risk Details",
+          "Location name",
+          "locations[].name",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm length, null handling and required lifecycle stage. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A45:B45",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F045",
+          "Risk Details",
+          "Street",
+          "locations[].address.street",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-1060",
+          "Confirm length, null handling and required lifecycle stage. Candidate insurable-interest address mapping. Evaluate CDR applicability; preserve all property locations for underwriting.",
+          "Ark-Vuw AI Data Fields!A46:B46",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F046",
+          "Risk Details",
+          "City",
+          "locations[].address.city",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-1070",
+          "Confirm length, null handling and required lifecycle stage. Candidate insurable-interest address mapping. Evaluate CDR applicability.",
+          "Ark-Vuw AI Data Fields!A47:B47",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F047",
+          "Risk Details",
+          "State",
+          "locations[].address.state",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-1090",
+          "Confirm length, null handling and required lifecycle stage. Candidate insurable-interest subdivision mapping; evaluate field grain and ISO 3166-2 conversion.",
+          "Ark-Vuw AI Data Fields!A48:B48",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F048",
+          "Risk Details",
+          "Country",
+          "locations[].address.country",
+          "country code string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-1100",
+          "Confirm ISO country code standard and country versus risk jurisdiction. Candidate insurable-interest country mapping. Separate this from policyholder, regulatory and tax locations.",
+          "Ark-Vuw AI Data Fields!A49:B49",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F049",
+          "Risk Details",
+          "Zip",
+          "locations[].address.postalCode",
+          "identifier string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-1080",
+          "Preserve leading zeros and formatting; confirm uniqueness/scope. Candidate insurable-interest postal mapping; preserve leading zeros.",
+          "Ark-Vuw AI Data Fields!A50:B50",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F050",
+          "Risk Details",
+          "Property damage value",
+          "locations[].values.propertyDamage",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A51:B51",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F051",
+          "Risk Details",
+          "Buildings value",
+          "locations[].values.buildings",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A52:B52",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F052",
+          "Risk Details",
+          "Contents value",
+          "locations[].values.contents",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A53:B53",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F053",
+          "Risk Details",
+          "BI value",
+          "locations[].values.businessInterruption",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A54:B54",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F054",
+          "Risk Details",
+          "Indemnity period",
+          "locations[].indemnityPeriod",
+          "integer duration plus unit (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm duration unit, reporting period and permitted values. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A55:B55",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F055",
+          "Risk Details",
+          "Other value",
+          "locations[].values.other",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A56:B56",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F056",
+          "Risk Details",
+          "Value description",
+          "locations[].values.otherDescription",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm length, null handling and required lifecycle stage. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A57:B57",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F057",
+          "Risk Details",
+          "Total insured value",
+          "locations[].values.totalInsured",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-1230",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. Not a blanket US-reinsurance mapping. CDR field is conditional on Insurance and fixed property in AT,BB,DE,ES,GB,IS,KN,NZ; preserve TIV as insurer data and confirm any separate reporting requirement.",
+          "Ark-Vuw AI Data Fields!A58:B58",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F058",
+          "Risk Details",
+          "Occupancy category",
+          "locations[].occupancy.category",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A59:B59",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F059",
+          "Risk Details",
+          "Occupancy type ",
+          "locations[].occupancy.type",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A60:B60",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F060",
+          "Risk Details",
+          "Occupancy Description",
+          "locations[].occupancy.description",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm length, null handling and required lifecycle stage. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A61:B61",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F061",
+          "Risk Details",
+          "Construction class",
+          "locations[].construction.class",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A62:B62",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F062",
+          "Risk Details",
+          "Year of construction",
+          "locations[].construction.yearBuilt",
+          "integer (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm allowed ranges and treatment of unknown values. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A63:B63",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F063",
+          "Risk Details",
+          "Number of stories",
+          "locations[].construction.numberOfStoreys",
+          "integer (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm allowed ranges and treatment of unknown values. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A64:B64",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F064",
+          "Risk Details",
+          "Number of buildings",
+          "locations[].construction.numberOfBuildings",
+          "integer (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm allowed ranges and treatment of unknown values. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A65:B65",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F065",
+          "Risk Details",
+          "Sprinkler Protection",
+          "locations[].protection.sprinkler",
+          "boolean or controlled code (unresolved)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm accepted representation and whether unknown/not applicable is allowed. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A66:B66",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F066",
+          "Risk Details",
+          "Public protection class",
+          "locations[].protection.publicProtectionClass",
+          "controlled code/string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Customer enum/code list and CDR mapping are not defined in this workbook. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A67:B67",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F067",
+          "Risk Details",
+          "Basement",
+          "locations[].construction.basement",
+          "boolean or controlled code (unresolved)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm accepted representation and whether unknown/not applicable is allowed. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A68:B68",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F068",
+          "Loss Details",
+          "Loss Previously Reported",
+          "lossHistory.priorLossesReported",
+          "boolean or controlled code (unresolved)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm accepted representation and whether unknown/not applicable is allowed. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A69:B69",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F069",
+          "Loss Details",
+          "Number of years reported",
+          "lossHistory.yearsReported",
+          "integer duration plus unit (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm duration unit, reporting period and permitted values. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A70:B70",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F070",
+          "Loss Details",
+          "Number of losses",
+          "lossHistory.numberOfLosses",
+          "integer (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm allowed ranges and treatment of unknown values. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A71:B71",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F071",
+          "Loss Details",
+          "Largest individual loss amount",
+          "lossHistory.largestLoss",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A72:B72",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F072",
+          "Loss Details",
+          "Total amount of losses incurred",
+          "lossHistory.totalIncurred",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A73:B73",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F073",
+          "Loss Details",
+          "Average loss amount per year",
+          "lossHistory.averageLossPerYear",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A74:B74",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F074",
+          "Loss Details",
+          "Loss comments",
+          "lossHistory.comments",
+          "string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Confirm length, null handling and required lifecycle stage. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A75:B75",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F075",
+          "Premium",
+          "Original insured policy number",
+          "premium.originalInsuredPolicyNumber",
+          "identifier string (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "TBC",
+          "Preserve leading zeros and formatting; confirm uniqueness/scope. No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session.",
+          "Ark-Vuw AI Data Fields!A76:B76",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F076",
+          "Premium",
+          "Ground Up Premium",
+          "premium.groundUpPremium",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0430",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. Ground Up Premium is not automatically the MRC gross premium. Confirm 100%/order/layer, premium type and contractual currency.",
+          "Ark-Vuw AI Data Fields!A77:B77",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F077",
+          "Premium",
+          "Net annual layer premium",
+          "premium.netAnnualLayerPremium",
+          "decimal amount (proposed)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-0430",
+          "Confirm currency, precision, basis and whether values represent 100% or VUW share. Net Annual Layer Premium cannot populate Gross Premium without agreed gross-up and allocation logic.",
+          "Ark-Vuw AI Data Fields!A78:B78",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ],
+        [
+          "VUW-F078",
+          "Premium",
+          "Brokerage",
+          "premium.brokerage",
+          "decimal with basis (unresolved)",
+          "TBC",
+          "TBC",
+          "TBC",
+          "CDR-1860, CDR-1880, CDR-1890, CDR-1870",
+          "Confirm monetary amount versus percentage, percentage scale, gross/net basis, and allocation. Resolve brokerage amount vs percentage, basis and currency; preserve multiple payments if needed.",
+          "Ark-Vuw AI Data Fields!A79:B79",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit"
+        ]
+      ]
+    },
+    {
+      "metadata": {
+        "sheetId": 1544078362,
+        "title": "Risk shortlist",
+        "index": 4,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 6,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "range": "'Risk shortlist'!A1:Q100",
+      "majorDimension": "ROWS",
+      "values": [
+        [
+          "Risk shortlist"
+        ],
+        [
+          "15 supplied active codes. Select the US POC code after contract and regulatory classification; no default is approved."
+        ],
+        [],
+        [],
+        [],
+        [
+          "Code",
+          "Description",
+          "First year",
+          "Last year",
+          "Terrorism code",
+          "POC selection",
+          "Source location",
+          "Source URL"
+        ],
+        [
+          "B2",
+          "PHYS DAMAGE BINDER FOR PRIVATE PPTY IN USA",
+          "2004",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B2:F2",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "B3",
+          "PHYS DAMAGE BINDER FOR COMMERCIAL PPTY IN USA",
+          "2004",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B3:F3",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "B4",
+          "PHYS DAMAGE BINDER FOR PRIVATE PPTY EXCL USA",
+          "2004",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B4:F4",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "B5",
+          "PHYS DAMAGE BINDER FOR COMMERCIAL PPTY EXCL USA",
+          "2004",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B5:F5",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "P2",
+          "PHYS DAMAGE FOR PRIM LAYER PPTY IN USA EXCL BINDERS",
+          "2004",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B6:F6",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "P3",
+          "PHYS DAMAGE FOR PRIM LAYER PPTY EXCL USA EXCL BINDERS",
+          "2004",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B7:F7",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "P4",
+          "PHYS DAMAGE FOR FULL VALUE PPTY IN USA EXCL BINDERS",
+          "2004",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B8:F8",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "P5",
+          "PHYS DAMAGE FOR FULL VALUE PPTY EXCL USA EXCL BINDERS",
+          "2004",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B9:F9",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "P6",
+          "PHYS DAMAGE FOR XS LAYER PPTY IN USA EXCL BINDERS",
+          "2004",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B10:F10",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "P7",
+          "PHYS DAMAGE FOR XS LAYER PPTY EXCL USA EXCL BINDERS",
+          "2004",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B11:F11",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "Q",
+          "CARGO WAR AND OR CONFISCATION RISKS ONLY",
+          "1991",
+          "9999",
+          "8T",
+          "Unselected",
+          "Active Risk Codes!B12:F12",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "TR",
+          "ALL RISK PHYSICAL OR LOSS DAMAGE  DIRECT PPNL RI",
+          "1991",
+          "9999",
+          "6T",
+          "Unselected",
+          "Active Risk Codes!B13:F13",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "V",
+          "CARGO ALL RISKS INCL WAR EXCL WRO",
+          "1991",
+          "9999",
+          "8T",
+          "Unselected",
+          "Active Risk Codes!B14:F14",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "VL",
+          "LEGAL LIAB CARGO AND PROP INCL CCC OF ASSURED EXCL WRO",
+          "1991",
+          "9999",
+          "8T",
+          "Unselected",
+          "Active Risk Codes!B15:F15",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ],
+        [
+          "VX",
+          "XOL Cargo Incl. War Excl. WRO",
+          "1992",
+          "9999",
+          "8T",
+          "Unselected",
+          "Active Risk Codes!B16:F16",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit"
+        ]
+      ]
+    },
+    {
+      "metadata": {
+        "sheetId": 648690000,
+        "title": "Acceptance tests",
+        "index": 5,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 6,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "range": "'Acceptance tests'!A1:Q100",
+      "majorDimension": "ROWS",
+      "values": [
+        [
+          "Acceptance tests"
+        ],
+        [
+          "Prepared scenarios; no runtime execution is claimed. Add exact environment/build/configuration, output evidence and reviewer decision per test."
+        ],
+        [],
+        [],
+        [],
+        [
+          "Test ID",
+          "Gate",
+          "Scenario",
+          "Expected result",
+          "Dependent inputs",
+          "Result",
+          "Execution evidence / defect",
+          "Source",
+          "Expected result",
+          "Dependent inputs",
+          "Result",
+          "Execution evidence / defect",
+          "Source"
+        ],
+        [
+          "UAT-01",
+          "0",
+          "Provision and scope",
+          "Correct tenant, staging URL, build/config version, roles, accepted sample-use boundary and activation status recorded",
+          "GAP-01,12,17,18",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "UAT-02",
+          "1",
+          "Submit valid payload",
+          "Single stable record created; accepted payload and field-level schema version retained",
+          "GAP-02,10",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "UAT-03",
+          "1",
+          "Missing / invalid required data",
+          "Actionable field error; no silent partial record creation",
+          "GAP-02,10",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "UAT-04",
+          "1",
+          "Retry identical request",
+          "Same stable identifiers; no duplicate quote, bind or money entry",
+          "GAP-02,15",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "UAT-05",
+          "2",
+          "Quote / referral / decline cases",
+          "Each expected outcome recorded with reasons, owner and evidence; no manual rekeying",
+          "GAP-03,09",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1RR8xvjjF3utbqL1SHveQDb0bqQ4Cx-opBwkF62b32Ck"
+        ],
+        [
+          "UAT-06",
+          "2",
+          "Screening and match escalation",
+          "Agreed screened parties/provider result; match referral and resolution preserved",
+          "GAP-09",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "UAT-07",
+          "2",
+          "Quote revision and callback",
+          "Old quote immutable; new version linked; correct status reaches VUW and duplicate callback handled",
+          "GAP-02,15",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "UAT-08",
+          "3",
+          "Bind selected quote",
+          "Exact selected version bound with required carrier approval; stale/unauthorised request refused or referred; evidence retained",
+          "GAP-04,23",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "UAT-09",
+          "3",
+          "Variable capacity panel",
+          "One policy; one lead; many followers. Test 50/10/15/25 then a different panel without code change",
+          "GAP-04",
+          "Not run",
+          null,
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "UAT-10",
+          "3",
+          "Capacity and financial allocation",
+          "GBP500000 example allocates 250000/50000/75000/125000. MGA commission GBP37500 recorded separately",
+          "GAP-04,05,14",
+          "Not run",
+          null,
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "UAT-11",
+          "3",
+          "Manual additional-premium MTA",
+          "GBP100000 transaction linked to original; allocations 50000/10000/15000/25000, commission +7500, total premium 600000",
+          "GAP-05,11",
+          "Not run",
+          null,
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "UAT-12",
+          "Scope decision",
+          "Capacity-line change on MTA (additional case)",
+          "Proposed POC addition: new effective allocation preserved, original bound allocation unchanged, no unrelated policy",
+          "GAP-04,11,21",
+          "Not run",
+          null,
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "UAT-13",
+          "Scope decision",
+          "Cancellation / return premium (additional case)",
+          "Proposed POC addition: GBP100000 reversal allocated 50000/10000/15000/25000; commission follows approved contract",
+          "GAP-06,11,21",
+          "Not run",
+          null,
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "UAT-14",
+          "Scope decision",
+          "Reinstatement (additional case)",
+          "Proposed POC addition: transaction linked with effective version, premium/share/commission and report effects",
+          "GAP-06,11,21",
+          "Not run",
+          null,
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "UAT-15",
+          "3",
+          "Document generation",
+          "Approved output matches actual policy/version, legal roles, capacity and template; accessible via UI/API",
+          "GAP-08,16",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "UAT-16",
+          "4",
+          "Bordereaux 5.2 export",
+          "Approved template columns populated from canonical transactions; original/MTA/return amounts and capacity totals reconcile",
+          "GAP-07,10,14",
+          "Not run",
+          null,
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "UAT-17",
+          "4",
+          "Commission settlement and match",
+          "Synthetic commission receipt matches VUW receivable; client premium is not recorded as VUW-held cash",
+          "GAP-05,13",
+          "Not run",
+          null,
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "UAT-18",
+          "4",
+          "Manual reconciliation exception",
+          "Unmatched/partial transaction resolved with actor/reason; ledger/risk/report relationships remain traceable",
+          "GAP-13,14",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1RR8xvjjF3utbqL1SHveQDb0bqQ4Cx-opBwkF62b32Ck"
+        ],
+        [
+          "UAT-19",
+          "4",
+          "Auditor and management access",
+          "Authorised read works; unapproved writes and cross-tenant access denied; API/UI/MCP show same scoped record",
+          "GAP-18",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "UAT-20",
+          "4",
+          "Reset and repeat full run",
+          "Isolated staging reset/new namespace permits rerun; production protected; POC evidence policy applied",
+          "GAP-19",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw"
+        ],
+        [
+          "UAT-21",
+          "5",
+          "Full POC acceptance",
+          "Signed-plan cases plus jointly agreed additions have output evidence, defects, build/config and Kraig/Nicholas decisions; continuation recorded",
+          "Affected P0 gaps; GAP-21 for additions",
+          "Not run",
+          null,
+          "https://docs.google.com/document/d/1RR8xvjjF3utbqL1SHveQDb0bqQ4Cx-opBwkF62b32Ck"
+        ],
+        [
+          "UAT-22",
+          "Closure",
+          "Sample data deletion",
+          "Yahav verifies all controlled sample/derived data copies and backups removed at agreed POC/demo conclusion",
+          "GAP-17",
+          "Not run",
+          null,
+          "https://mail.google.com/mail/#all/1a05d2f54478d157"
+        ]
+      ]
+    },
+    {
+      "metadata": {
+        "sheetId": 118988491,
+        "title": "Financial example",
+        "index": 6,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "range": "'Financial example'!A1:Q100",
+      "majorDimension": "ROWS",
+      "values": [
+        [
+          "Customer worked example"
+        ],
+        [
+          "GBP illustration from Chris, 4 September. Figures do not select actual POC currency, panel or contractual limits."
+        ],
+        [
+          "Commission illustration uses 100% gross premium; actual basis and return-commission treatment require confirmation."
+        ],
+        [],
+        [
+          "Input",
+          "Amount"
+        ],
+        [
+          "100% insured value / order",
+          "£10,000,000"
+        ],
+        [
+          "Original gross premium",
+          "£500,000"
+        ],
+        [
+          "Additional MTA premium",
+          "£100,000"
+        ],
+        [
+          "MGA commission rate",
+          "7.5%"
+        ],
+        [],
+        [],
+        [
+          "Capacity provider",
+          "Role",
+          "Line",
+          "Written amount GBP",
+          "Original premium GBP",
+          "MTA premium GBP",
+          "Revised premium GBP"
+        ],
+        [
+          "Swiss Re",
+          "Lead",
+          "50.0%",
+          "£5,000,000",
+          "£250,000",
+          "£50,000",
+          "£300,000"
+        ],
+        [
+          "Ark",
+          "Follow",
+          "10.0%",
+          "£1,000,000",
+          "£50,000",
+          "£10,000",
+          "£60,000"
+        ],
+        [
+          "Lloyd’s Syndicate A",
+          "Follow",
+          "15.0%",
+          "£1,500,000",
+          "£75,000",
+          "£15,000",
+          "£90,000"
+        ],
+        [
+          "Lloyd’s Syndicate B",
+          "Follow",
+          "25.0%",
+          "£2,500,000",
+          "£125,000",
+          "£25,000",
+          "£150,000"
+        ],
+        [
+          "Total",
+          null,
+          "100.0%",
+          "£10,000,000",
+          "£500,000",
+          "£100,000",
+          "£600,000"
+        ],
+        [],
+        [],
+        [
+          "Commission / reconciliation check",
+          "Amount GBP"
+        ],
+        [
+          "Original commission",
+          "£37,500"
+        ],
+        [
+          "Additional MTA commission",
+          "£7,500"
+        ],
+        [
+          "Revised total commission",
+          "£45,000"
+        ],
+        [
+          "Share total minus 100%",
+          "0.0%"
+        ],
+        [
+          "Allocated premium minus total",
+          "£0"
+        ],
+        [],
+        [],
+        [
+          "Return-premium example (GBP100000): carrier amounts reverse 50000 / 10000 / 15000 / 25000."
+        ],
+        [
+          "Commission reversal of GBP7500 is conditional on the actual contract; not a configured cancellation rule."
+        ],
+        [],
+        [
+          "Premium custody: client/broker → Guy Carpenter → bureau → capacity. VUW receives only its separately settled commission."
+        ],
+        [],
+        [
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ]
+      ]
+    },
+    {
+      "metadata": {
+        "sheetId": 329236225,
+        "title": "Sources",
+        "index": 7,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 6,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "range": "Sources!A1:Q100",
+      "majorDimension": "ROWS",
+      "values": [
+        [
+          "Sources"
+        ],
+        [
+          "Source index preserves original file IDs and access. Repeated filenames and unsigned/signed variants are classified individually."
+        ],
+        [],
+        [],
+        [],
+        [
+          "Group",
+          "Source title",
+          "Use / version note",
+          "Source URL",
+          "Reviewed content"
+        ],
+        [
+          "Commercial / MSA",
+          "Facio - Master Subscription Agreement (English).docx",
+          "Generic MSA June 2025 referenced by SOW; no VUW order-form or execution evidence; reconcile Marketplace billing and trial conditions",
+          "https://docs.google.com/document/d/1INNjvbFCBtRs0H1Qq5TWLVRWVj4xpYqG/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / MSA",
+          "Facio_Master_Subscription_Agreement (1).pdf",
+          "Generic MSA June 2025 referenced by SOW; no VUW order-form or execution evidence; reconcile Marketplace billing and trial conditions",
+          "https://drive.google.com/file/d/1ft4GO0VP4d-l0YtT9LPSJx3e7RbfWQ2G/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / MSA",
+          "Facio_Master_Subscription_Agreement.pdf",
+          "Generic MSA June 2025 referenced by SOW; no VUW order-form or execution evidence; reconcile Marketplace billing and trial conditions",
+          "https://drive.google.com/file/d/1eI8k1cTpMnpndUZ3ghDpxDkTD5L2RRWj/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / NDA",
+          "Mutual NDA (1).docx",
+          "Unfilled template with residual VUW/FACIO LTD footer; exclude from VUW canonical documents",
+          "https://docs.google.com/document/d/1KfTOY-eojcEPBlxw50iFg4ZxTvF2SX4x/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / NDA",
+          "Mutual NDA (2).docx",
+          "Unfilled template with residual VUW/FACIO LTD footer; exclude from VUW canonical documents",
+          "https://docs.google.com/document/d/1pZZzSanf5ziaM1yr62dQmzwBobXPb2w5/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / NDA",
+          "Mutual NDA.docx",
+          "VUW-specific editable English-law draft; retain",
+          "https://docs.google.com/document/d/1NL_d4_0BnYQKyHMn8KzGQLI97ZLmK6I9/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / NDA",
+          "Mutual NDA.docx (2).pdf",
+          "Legacy NJ draft, FACIO LABS INC opening conflicts with FACIO LTD signature block",
+          "https://drive.google.com/file/d/1Z5PxrJmF7RjAfnfDMIE-Tsmkv2hQca9L/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / NDA",
+          "Mutual NDA.docx (3).pdf",
+          "Earlier NJ draft, blank signature lines; legacy",
+          "https://drive.google.com/file/d/1bSVtG7dnQILCk1dnmLfCAnzLT3cX7S-C/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / NDA",
+          "Mutual NDA.docx (4) (1).pdf",
+          "English-law version with visible Facio signature/stamp only; VUW line blank; preserve as signature evidence",
+          "https://drive.google.com/file/d/1t7D17UBE6maDSC6fkmuYEUNl_qlJMgZ_/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / NDA",
+          "Mutual NDA.docx (4) (2).pdf",
+          "Byte-identical local copy of (4)(1); preserve source link and Facio-signature evidence",
+          "https://drive.google.com/file/d/1QJ7DKks0H6sgj7gd2fqvmeoJa9GQ3bqP/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / NDA",
+          "Mutual NDA.docx (4).pdf",
+          "English-law draft with blank signature lines; preserve separately from Facio-marked version",
+          "https://drive.google.com/file/d/10JwT-w4o1KSn6seCoRSAZxAXMY3jujws/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / NDA",
+          "Mutual NDA.pdf",
+          "Earlier NJ version with visible Facio signature/stamp only; VUW line blank; preserve historical signature evidence",
+          "https://drive.google.com/file/d/1zrU0CxSp-EP2udWIZuBCxHSO2jiDoHJr/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SLA",
+          "Facio Cloud Service Level Agreement.docx",
+          "Older generic SLA DOCX January 2 2026; legacy compared with June PDF",
+          "https://docs.google.com/document/d/19rALkoNk-nJxUY4zA3AqJxDQSORE1yxZ/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SLA",
+          "Facio_Cloud_Service_Level_Agreement (1).pdf",
+          "Generic SLA June 15 2026 candidate incorporated by SOW; 99.99% paid-only; keep one PDF representative",
+          "https://drive.google.com/file/d/1dP15_o5n-siktcG0LtQySfL-f1t7zedM/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SLA",
+          "Facio_Cloud_Service_Level_Agreement (2).pdf",
+          "Generic SLA June 15 2026 candidate incorporated by SOW; 99.99% paid-only; keep one PDF representative",
+          "https://drive.google.com/file/d/1oKWUIM7sKRaf4oQ9hp4hldct-fKzuc0P/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SLA",
+          "Facio_Cloud_Service_Level_Agreement (3).pdf",
+          "Generic SLA June 15 2026 candidate incorporated by SOW; 99.99% paid-only; keep one PDF representative",
+          "https://drive.google.com/file/d/1kTlrBz0FUv99fBdNmiFGFGIIgDTpIk1q/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SLA",
+          "Facio_Cloud_Service_Level_Agreement.pdf",
+          "Generic SLA June 15 2026 candidate incorporated by SOW; 99.99% paid-only; keep one PDF representative",
+          "https://drive.google.com/file/d/12FASVqNVg_B2iTAIZuPpg5J3fkVMF2HV/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SOW",
+          "Vuw_SOW_FacioMGA_Microsoft_MS_v1_0",
+          "Legacy SOW v1.0; retain historical source",
+          "https://docs.google.com/document/d/1jJ5JrUNoOvmseb-9ACVzx0WzKXyTE1YkXcjnyriT0Pg/edit?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SOW",
+          "Vuw_SOW_FacioMGA_Microsoft_MS_v1_0 (1).pdf",
+          "Legacy SOW v1.0; retain historical source",
+          "https://drive.google.com/file/d/1YJocB4hGXRlkrHrZSXhNMMb4YnbhZD_T/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SOW",
+          "Vuw_SOW_FacioMGA_Microsoft_MS_v1_0.pdf",
+          "Legacy SOW v1.0; retain historical source",
+          "https://drive.google.com/file/d/1dYnul0Kvv79S0rHjrPPI-2-hN3ztO_BR/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SOW",
+          "Vuw_SOW_FacioMGA_Microsoft_MS_v1_1",
+          "SOW v1.1 commercial baseline candidate; POC model needs reconciliation with later approval",
+          "https://docs.google.com/document/d/18ffhFUU4zYILER6UrnbP6NvLKU2ltp2uL-aQ-PDXyNA/edit?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SOW",
+          "Vuw_SOW_FacioMGA_Microsoft_MS_v1_1 (1).pdf",
+          "SOW v1.1 commercial baseline candidate; POC model needs reconciliation with later approval",
+          "https://drive.google.com/file/d/1RrZGPCDMIVlLfTDnKVQ9K5n-atEwfGsb/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SOW",
+          "Vuw_SOW_FacioMGA_Microsoft_MS_v1_1 (2).pdf",
+          "SOW v1.1 commercial baseline candidate; POC model needs reconciliation with later approval",
+          "https://drive.google.com/file/d/1dHdfkFkBcby3vVcAm4DSJBb81BuiPWgm/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SOW",
+          "Vuw_SOW_FacioMGA_Microsoft_MS_v1_1 (3).pdf",
+          "SOW v1.1 commercial baseline candidate; POC model needs reconciliation with later approval",
+          "https://drive.google.com/file/d/1j04GMXjd9ErSz6R0aCwYGw38SolM_aQ8/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "Commercial / SOW",
+          "Vuw_SOW_FacioMGA_Microsoft_MS_v1_1.pdf",
+          "SOW v1.1 commercial baseline candidate; POC model needs reconciliation with later approval",
+          "https://drive.google.com/file/d/1dpYXGtkmHhLePYYwR_J4ra6tm3OfZ6nL/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "POC / Alignment",
+          "Vuw_Facio_POC_Alignment_Agenda (1).pdf",
+          "Historical August 13 proposed amendments, not executed SOW v1.2; retain one representative",
+          "https://drive.google.com/file/d/1xq8W2kt5CI_2fp_vcjxPYlYddXr3hqhu/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "POC / Alignment",
+          "Vuw_Facio_POC_Alignment_Agenda.pdf",
+          "Historical August 13 proposed amendments, not executed SOW v1.2; retain one representative",
+          "https://drive.google.com/file/d/1hEuQn5bN5mTJm2GNpGNQB5FwNARHljoK/view?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "POC / Milestones",
+          "VUW.ai <> Facio · 30-Day POC Milestones Plan",
+          "Native working plan candidate; five readiness-based gates; check signed approval and later emails for authority",
+          "https://docs.google.com/document/d/1RR8xvjjF3utbqL1SHveQDb0bqQ4Cx-opBwkF62b32Ck/edit?usp=drivesdk",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "POC / Milestones",
+          "VUW.ai __ Facio · 30-Day POC Milestones Plan (1) (1).docx",
+          "DOCX export; repeated package contents identical; retain one representative plus source history",
+          "https://docs.google.com/document/d/1wtmxXfRv5jc1xQxRHIaHPm-i7wcCJbSo/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "POC / Milestones",
+          "VUW.ai __ Facio · 30-Day POC Milestones Plan (1).docx",
+          "DOCX export; repeated package contents identical; retain one representative plus source history",
+          "https://docs.google.com/document/d/1Wfvr8eEvVynN8ha_obIcVEfZ6R9srD-l/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "POC / Milestones",
+          "VUW.ai __ Facio · 30-Day POC Milestones Plan.docx",
+          "DOCX export; repeated package contents identical; retain one representative plus source history",
+          "https://docs.google.com/document/d/1ki_KyXbFTNKGzxNf2navn1Gt7pcDRfRA/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "POC / Milestones",
+          "VUW.ai_Facio_30-Day_POC_Milestones_Plan.docx",
+          "Earlier layout with same operative content; retain legacy",
+          "https://docs.google.com/document/d/1cle8QbHb6pUTdFG4-PTW7QGy3Ms0PCnk/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full text; local structure/signature review where relevant"
+        ],
+        [
+          "POC / specification",
+          "VUW.ai × Facio — POC Implementation Specification & Readiness Plan",
+          "Draft for approval, not final API contract",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw/edit?usp=drivesdk",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "POC / meeting",
+          "Vuw.ai <> Facio integration discussion - 2026/08/10 11:20 IDT - Notes by Gemini",
+          "Full notes and transcript; initial carrier prior-submission condition at 00:22:37–00:23:53",
+          "https://docs.google.com/document/d/1PJUw-m0Rs8R6yeQqD6UAaymyQsbNBTmqqWpmoz1dhWo/edit?usp=drivesdk",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "POC / meeting",
+          "Vuw.ai <> Facio integration discussion - 2026/08/10 16:57 IDT - Notes by Gemini",
+          "No substantive notes/transcript; not corroborating evidence",
+          "https://docs.google.com/document/d/1Ktb6iSkKfRiJ_3MFYRuA9vK9WMjZxOIsAmMVteqyKJ0/edit?usp=drivesdk",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "Product / workflow",
+          "Vuw UWing Process V.1.1pdf.pdf",
+          "Three identical one-page process PDFs; flowchart visually reviewed; lacks post-bind lifecycle",
+          "https://drive.google.com/file/d/16oZXBTtlcGzVXce2oz_CFSrNvyr5TG3j/view?usp=drivesdk",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "Product / workflow",
+          "Vuw UWing Process V.1.1pdf (1).pdf",
+          "Three identical one-page process PDFs; flowchart visually reviewed; lacks post-bind lifecycle",
+          "https://drive.google.com/file/d/1UCZ1aM6R5537lFq7G1IvAesAzE83uSeD/view?usp=drivesdk",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "Product / workflow",
+          "Vuw UWing Process V.1.1pdf (2).pdf",
+          "Three identical one-page process PDFs; flowchart visually reviewed; lacks post-bind lifecycle",
+          "https://drive.google.com/file/d/1tWOUopx_C6U19q5WB_dmYBqqixva6EQ-/view?usp=drivesdk",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "Product / workflow",
+          "Vuw Risk Codes.xlsx",
+          "291 master rows, 15 active shortlist rows; programme selection unassigned; literal NA preserved",
+          "https://docs.google.com/spreadsheets/d/1BRaepG2ubbzGzX04SPQDqM3Er1XHGCdS/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "Product / workflow",
+          "Property Data fields 2026.xlsx",
+          "78 field names; numbered copy byte-identical locally; types/requiredness absent",
+          "https://docs.google.com/spreadsheets/d/1ZUU1ABAonNzwTzm7g1CnTP7k18s0vd4p/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "Product / workflow",
+          "Property Data fields 2026 (1).xlsx",
+          "78 field names; numbered copy byte-identical locally; types/requiredness absent",
+          "https://docs.google.com/spreadsheets/d/13E715DDLxpCVaysuFcnMmWvhZhUxzB0b/edit?usp=drivesdk&ouid=103920952928218800475&rtpof=true&sd=true",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "POC / approval",
+          "Facio VUW.ai POC approval 170826.pdf",
+          "Signed POC approval page visually verified; does not prove paid subscription activation",
+          "https://drive.google.com/file/d/1T6TPJStpM2CBVOwXkyRLdfj1n663r_CJ/view?usp=drivesdk",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "POC / internal delivery",
+          "Facio_Kernel_Milestones_September_2026.txt",
+          "Internal full-POC completion target Sep11; reconcile with customer Gate5 Sep25",
+          "https://drive.google.com/file/d/1lDtbqbHhIASxK16b256CMCzpWr6cOKhD/view?usp=drivesdk",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "POC / internal delivery",
+          "september-plan.md",
+          "Internal full-POC completion target Sep11; reconcile with customer Gate5 Sep25",
+          "https://drive.google.com/file/d/1gPU_zt-f4Dp3g4L_sLlvrPHAUpV_wtDb/view?usp=drivesdk",
+          "Full substantive content / native tabs or local originals as applicable"
+        ],
+        [
+          "Correspondence / requirements and delivery",
+          "Sep4 CUO operational requirements and worked example",
+          "See correspondence audit; invitation/recap is not acceptance evidence",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07",
+          "Full thread for substantive messages / metadata for RSVP"
+        ],
+        [
+          "Correspondence / controls",
+          "Sample ZIP receipt and POC-only handling conditions",
+          "See correspondence audit; invitation/recap is not acceptance evidence",
+          "https://mail.google.com/mail/#all/1a03e6ecac12249e",
+          "Full thread for substantive messages / metadata for RSVP"
+        ],
+        [
+          "Correspondence / controls",
+          "Uriel instruction to Yahav: delete POC data at conclusion",
+          "See correspondence audit; invitation/recap is not acceptance evidence",
+          "https://mail.google.com/mail/#all/1a05d2f54478d157",
+          "Full thread for substantive messages / metadata for RSVP"
+        ],
+        [
+          "Correspondence / requirements and delivery",
+          "Sep4 meeting recap: offer refresh and implementation status",
+          "See correspondence audit; invitation/recap is not acceptance evidence",
+          "https://mail.google.com/mail/#all/1a06c275b6182a01",
+          "Full thread for substantive messages / metadata for RSVP"
+        ],
+        [
+          "Correspondence / requirements and delivery",
+          "Service agreements and paid-subscription conditions",
+          "See correspondence audit; invitation/recap is not acceptance evidence",
+          "https://mail.google.com/mail/#all/1a0250098869c533",
+          "Full thread for substantive messages / metadata for RSVP"
+        ],
+        [
+          "Correspondence / requirements and delivery",
+          "Historical offer and dates: refresh required",
+          "See correspondence audit; invitation/recap is not acceptance evidence",
+          "https://mail.google.com/mail/#all/1a014b322fbcc58e",
+          "Full thread for substantive messages / metadata for RSVP"
+        ],
+        [
+          "Correspondence / requirements and delivery",
+          "Latest customer Gate3 invitation: Sep11",
+          "See correspondence audit; invitation/recap is not acceptance evidence",
+          "https://mail.google.com/mail/#all/1a0422b204dc851a",
+          "Full thread for substantive messages / metadata for RSVP"
+        ],
+        [
+          "Correspondence / requirements and delivery",
+          "Latest customer Gate4 invitation: Sep18",
+          "See correspondence audit; invitation/recap is not acceptance evidence",
+          "https://mail.google.com/mail/#all/1a0422aebab1f6d3",
+          "Full thread for substantive messages / metadata for RSVP"
+        ],
+        [
+          "Correspondence / requirements and delivery",
+          "Latest customer Gate5 invitation: Sep25",
+          "See correspondence audit; invitation/recap is not acceptance evidence",
+          "https://mail.google.com/mail/#all/1a0422ae5f84d08e",
+          "Full thread for substantive messages / metadata for RSVP"
+        ],
+        [
+          "Product / reference data",
+          "CDR v3.2.zip and duplicate (1)",
+          "Received package fully parsed: 37 mandatory, 180 conditional, 15 derived. Actual VUW API mapping absent. Two local archives byte-identical.",
+          "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw",
+          "All substantive CSVs; source receipt link shown (no original Drive URL found)"
+        ]
+      ]
+    },
+    {
+      "metadata": {
+        "sheetId": 2070538994,
+        "title": "Correspondence",
+        "index": 8,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 6,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "range": "Correspondence!A1:Q100",
+      "majorDimension": "ROWS",
+      "values": [
+        [
+          "Correspondence"
+        ],
+        [
+          "Email scope and disposition. Dates shown in UTC. Calendar notices and automated matches are classified separately from substantive decisions."
+        ],
+        [],
+        [],
+        [],
+        [
+          "Date UTC",
+          "Subject",
+          "Classification",
+          "Review note",
+          "Source URL"
+        ],
+        [
+          "2026-09-06 10:26",
+          "Accepted: VUW.ai × Facio — POC Gate 3/5: Bind, Capacity & Policy Li... @ Fri Sep 11, 2026 2pm - 3pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a07641ade7d4880"
+        ],
+        [
+          "2026-09-06 05:00",
+          "Pipeline today: 1 due · 11 cold · 1 demos",
+          "Automated operational notice",
+          "Search metadata / snippet. Not authoritative configuration or delivery evidence",
+          "https://mail.google.com/mail/#all/1a075167b562957b"
+        ],
+        [
+          "2026-09-05 05:00",
+          "Pipeline today: 1 due · 10 cold · 0 demos",
+          "Automated operational notice",
+          "Search metadata / snippet. Not authoritative configuration or delivery evidence",
+          "https://mail.google.com/mail/#all/1a06ff025def62c8"
+        ],
+        [
+          "2026-09-04 21:06",
+          "Re: Facio Requests - Urgent Follow Up",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a06e3eed6a831f8"
+        ],
+        [
+          "2026-09-04 13:52",
+          "Fwd: Facio Requests - Urgent Follow Up",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a06cb15377445ca"
+        ],
+        [
+          "2026-09-04 13:28",
+          "Fwd: Facio Requests - Urgent Follow Up",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a06c9b2915c1a07"
+        ],
+        [
+          "2026-09-04 11:22",
+          "Your meeting recap - VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underwriting",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a06c284cdb36328"
+        ],
+        [
+          "2026-09-04 11:21",
+          "Your meeting insights — VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underwriting",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a06c275b6182a01"
+        ],
+        [
+          "2026-09-04 09:57",
+          "Meeting Prep: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underwriting",
+          "Automated operational notice",
+          "Search metadata / snippet. Not authoritative configuration or delivery evidence",
+          "https://mail.google.com/mail/#all/1a06bd9b5b87927d"
+        ],
+        [
+          "2026-09-04 08:55",
+          "Accepted: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underw... @ Fri Sep 4, 2026 2pm - 3pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a06ba1b61ff07a3"
+        ],
+        [
+          "2026-09-04 05:00",
+          "Pipeline today: 1 due · 10 cold · 0 demos",
+          "Automated operational notice",
+          "Search metadata / snippet. Not authoritative configuration or delivery evidence",
+          "https://mail.google.com/mail/#all/1a06ac9c7a6cf0c8"
+        ],
+        [
+          "2026-09-01 13:36",
+          "Automatic reply: Anonymised Submission Examples",
+          "Availability notice",
+          "Search metadata / snippet. Kraig returns September 7; Caspar urgent cover",
+          "https://mail.google.com/mail/#all/1a05d2f8161f61f6"
+        ],
+        [
+          "2026-09-01 13:36",
+          "VUW.ai — חובה למחוק את הדאטה בסיום הדמו",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a05d2f54478d157"
+        ],
+        [
+          "2026-09-01 13:36",
+          "Re: Anonymised Submission Examples",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a05d2f505a2ba79"
+        ],
+        [
+          "2026-08-29 05:00",
+          "Pipeline today: 0 due · 12 cold · 0 demos",
+          "Automated operational notice",
+          "Search metadata / snippet. Not authoritative configuration or delivery evidence",
+          "https://mail.google.com/mail/#all/1a04be39b998f545"
+        ],
+        [
+          "2026-08-28 13:08",
+          "Declined: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underw... @ Fri Sep 4, 2026 2pm - 3pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0487c78fb31c18"
+        ],
+        [
+          "2026-08-28 09:52",
+          "Accepted: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underw... @ Fri Sep 4, 2026 2pm - 3pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a047c8cc33b5411"
+        ],
+        [
+          "2026-08-27 07:41",
+          "Accepted: VUW.ai × Facio — POC Gate 3/5: Bind, Capacity & Policy Li... @ Fri Sep 11, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0422b204dc851a"
+        ],
+        [
+          "2026-08-27 07:41",
+          "Accepted: VUW.ai × Facio — POC Gate 3/5: Bind, Capacity & Policy Lifecycle",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0422b12dc761e3"
+        ],
+        [
+          "2026-08-27 07:41",
+          "Accepted: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underw... @ Fri Sep 4, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0422b02bf64853"
+        ],
+        [
+          "2026-08-27 07:41",
+          "Accepted: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underwriting",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0422af5c6fd5a3"
+        ],
+        [
+          "2026-08-27 07:41",
+          "Accepted: VUW.ai × Facio — POC Gate 4/5: Reporting & Reconciliation @ Fri Sep 18, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0422aebab1f6d3"
+        ],
+        [
+          "2026-08-27 07:41",
+          "Accepted: VUW.ai × Facio — POC Gate 5/5: Final Review & Continuatio... @ Fri Sep 25, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0422ae5f84d08e"
+        ],
+        [
+          "2026-08-27 07:41",
+          "Accepted: VUW.ai × Facio — POC Gate 4/5: Reporting & Reconciliation",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0422ada912be99"
+        ],
+        [
+          "2026-08-27 07:41",
+          "Accepted: VUW.ai × Facio — POC Gate 5/5: Final Review & Continuation Decision",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0422acb69c3831"
+        ],
+        [
+          "2026-08-26 16:21",
+          "Fwd: Anonymised Submission Examples",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a03ee08f23909c5"
+        ],
+        [
+          "2026-08-26 14:17",
+          "Anonymised Submission Examples",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a03e6ecac12249e"
+        ],
+        [
+          "2026-08-25 03:52",
+          "Accepted: VUW.ai × Facio — POC Gate 3/5: Bind, Capacity & Policy Li... @ Fri Sep 4, 2026 2pm - 3pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0370c560d45bb4"
+        ],
+        [
+          "2026-08-24 15:37",
+          "Accepted: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underw... @ Fri Aug 28, 2026 2pm - 3pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0346b7595453f8"
+        ],
+        [
+          "2026-08-24 12:14",
+          "Re: Facio Service Agreements",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a033b13402779cd"
+        ],
+        [
+          "2026-08-24 08:37",
+          "Re: Facio Service Agreements",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a032eb1fedd0726"
+        ],
+        [
+          "2026-08-24 10:51",
+          "Re: Facio Service Agreements",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a033655a3c95490"
+        ],
+        [
+          "2026-08-24 08:26",
+          "Re: Facio Service Agreements",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a032e0c7c958433"
+        ],
+        [
+          "2026-08-24 00:03",
+          "Your upcoming meetings",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Repeated Aug21 contract delivery action, superseded by Aug24 MSA delivery",
+          "https://mail.google.com/mail/#all/1a03114ae8b83f73"
+        ],
+        [
+          "2026-08-22 05:00",
+          "Pipeline today: 0 due · 2 cold · 0 demos",
+          "Automated operational notice",
+          "Search metadata / snippet. Not authoritative configuration or delivery evidence",
+          "https://mail.google.com/mail/#all/1a027d716c89eb16"
+        ],
+        [
+          "2026-08-21 15:47",
+          "Fwd: Facio Service Agreements",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a02501e70caff37"
+        ],
+        [
+          "2026-08-21 15:47",
+          "Facio Service Agreements",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a0250148e33f406"
+        ],
+        [
+          "2026-08-21 15:55",
+          "Meeting Summary for FacioMGA Demo - David Casement",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a02508bad0de841"
+        ],
+        [
+          "2026-08-21 15:54",
+          "Re: Facio Service Agreements",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a02507c2ef79791"
+        ],
+        [
+          "2026-08-21 15:52",
+          "Re: Facio Service Agreements",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a025062446d8181"
+        ],
+        [
+          "2026-08-21 12:50",
+          "Re: VUW.ai — Microsoft Private Offer ready for acceptance and activation",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a0245fc97f16ffc"
+        ],
+        [
+          "2026-08-21 15:31",
+          "David Casement shared FacioMGA Demo - David Casement in Otter",
+          "Recording link notice",
+          "Search metadata / snippet. Associated summary email reviewed",
+          "https://mail.google.com/mail/#all/1a024f310c916f7d"
+        ],
+        [
+          "2026-08-21 14:33",
+          "Tentatively Accepted: FacioMGA Demo - David Casement @ Fri Aug 21, 2026 6:30pm - 7pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a024bd8b01aeaa4"
+        ],
+        [
+          "2026-08-21 14:27",
+          "Meeting Prep: FacioMGA Demo - David Casement",
+          "Automated operational notice",
+          "Search metadata / snippet. Not authoritative configuration or delivery evidence",
+          "https://mail.google.com/mail/#all/1a024b82992df816"
+        ],
+        [
+          "2026-08-21 13:06",
+          "Re: VUW.ai — Microsoft Private Offer ready for acceptance and activation",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a0246de22262104"
+        ],
+        [
+          "2026-08-21 13:05",
+          "Accepted: FacioMGA Demo - David Casement @ Fri Aug 21, 2026 6:30pm - 7pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0246d220632c5d"
+        ],
+        [
+          "2026-08-21 13:03",
+          "New demo booked: David Casement — Fri Aug 21, 18:30",
+          "Automated operational notice",
+          "Search metadata / snippet. Not authoritative configuration or delivery evidence",
+          "https://mail.google.com/mail/#all/1a0246b23567d2a5"
+        ],
+        [
+          "2026-08-21 12:09",
+          "Re: VUW.ai — Microsoft Private Offer ready for acceptance and activation",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a0243a3532b44a3"
+        ],
+        [
+          "2026-08-21 11:40",
+          "Your meeting recap - VUW.ai × Facio — POC Gate 1/5: Configured API & Schema",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a0241f83bc1750e"
+        ],
+        [
+          "2026-08-21 11:38",
+          "Your meeting insights — VUW.ai × Facio — POC Gate 1/5: Configured API & Schema",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a0241d57cf04848"
+        ],
+        [
+          "2026-08-21 09:56",
+          "Meeting Prep: VUW.ai × Facio — POC Gate 1/5: Configured API & Schema",
+          "Automated operational notice",
+          "Search metadata / snippet. Not authoritative configuration or delivery evidence",
+          "https://mail.google.com/mail/#all/1a023c019c985bf0"
+        ],
+        [
+          "2026-08-21 06:04",
+          "Catch up on yesterday in 2 minutes",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a022eb87ecf2335"
+        ],
+        [
+          "2026-08-20 17:55",
+          "Your meeting recap - VUW.ai Gate 1 — Final Readiness Check",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a0204ff3392b227"
+        ],
+        [
+          "2026-08-20 17:51",
+          "Your meeting insights — VUW.ai Gate 1 — Final Readiness Check",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a0204d1d1d32b54"
+        ],
+        [
+          "2026-08-19 20:07",
+          "Accepted: VUW.ai × Facio — POC Gate 1/5: Configured API & Schema @ Fri Aug 21, 2026 2pm - 3pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a01ba3466592a63"
+        ],
+        [
+          "2026-08-19 20:07",
+          "Accepted: VUW.ai Gate 1 — Final Readiness Check @ Thu Aug 20, 2026 8:30pm - 9pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a01ba318ed283f7"
+        ],
+        [
+          "2026-08-19 15:37",
+          "Re: VUW.ai — Microsoft Private Offer ready for acceptance and activation",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a01aab3844ae743"
+        ],
+        [
+          "2026-08-19 17:32",
+          "Your meeting insights — Facio Demo Review — Latitude + VUW.ai",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a01b148a2c3cdb8"
+        ],
+        [
+          "2026-08-19 17:31",
+          "Your meeting recap - Facio Demo Review — Latitude + VUW.ai",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a01b14265e5fc59"
+        ],
+        [
+          "2026-08-19 10:17",
+          "Re: VUW.ai — Microsoft Private Offer ready for acceptance and activation",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a01986a079e9d8b"
+        ],
+        [
+          "2026-08-19 08:59",
+          "Accepted: VUW.ai × Facio — POC Gate 1/5: Configured API & Schema @ Fri Aug 21, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0193f5c33ec9f4"
+        ],
+        [
+          "2026-08-19 08:59",
+          "Accepted: VUW.ai × Facio — POC Gate 1/5: Configured API & Schema",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0193f4a9fad8d9"
+        ],
+        [
+          "2026-08-19 08:59",
+          "Declined: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underw... @ Fri Aug 28, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0193f3b99624a9"
+        ],
+        [
+          "2026-08-19 08:59",
+          "Declined: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underwriting",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0193f1aa59cbb1"
+        ],
+        [
+          "2026-08-19 08:59",
+          "Accepted: VUW.ai × Facio — POC Gate 3/5: Bind, Capacity & Policy Li... @ Fri Sep 4, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0193edfa460df8"
+        ],
+        [
+          "2026-08-19 08:58",
+          "Accepted: VUW.ai × Facio — POC Gate 3/5: Bind, Capacity & Policy Lifecycle",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0193ecda914da0"
+        ],
+        [
+          "2026-08-19 06:38",
+          "Accepted: VUW.ai × Facio — POC Gate 5/5: Final Review & Continuatio... @ Fri Sep 18, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a018bde4743b792"
+        ],
+        [
+          "2026-08-19 06:38",
+          "Accepted: VUW.ai × Facio — POC Gate 3/5: Bind, Capacity & Policy Li... @ Fri Sep 4, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a018bddd755c3b0"
+        ],
+        [
+          "2026-08-19 06:38",
+          "Accepted: VUW.ai × Facio — POC Gate 1/5: Configured API & Schema @ Fri Aug 21, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a018bdcfadd8a9e"
+        ],
+        [
+          "2026-08-19 06:38",
+          "Accepted: VUW.ai × Facio — POC Gate 4/5: Reporting & Reconciliation @ Fri Sep 11, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a018bdcae0c463a"
+        ],
+        [
+          "2026-08-19 06:38",
+          "Accepted: VUW.ai × Facio — POC Gate 5/5: Final Review & Continuation Decision",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a018bdce9d74bdb"
+        ],
+        [
+          "2026-08-19 06:38",
+          "Accepted: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underw... @ Fri Aug 28, 2026 2pm - 3pm (GMT+3) (uriel@facio.io)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a018bdc5a80b66c"
+        ],
+        [
+          "2026-08-19 06:38",
+          "Accepted: VUW.ai × Facio — POC Gate 3/5: Bind, Capacity & Policy Lifecycle",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a018bdc77d2ccb6"
+        ],
+        [
+          "2026-08-19 06:38",
+          "Accepted: VUW.ai × Facio — POC Gate 1/5: Configured API & Schema",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a018bdbe8f1afee"
+        ],
+        [
+          "2026-08-19 06:37",
+          "Accepted: VUW.ai × Facio — POC Gate 4/5: Reporting & Reconciliation",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a018bdb4f7458e8"
+        ],
+        [
+          "2026-08-19 06:37",
+          "Accepted: VUW.ai × Facio — POC Gate 2/5: Submission, Quote & Underwriting",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a018bdb3cae402b"
+        ],
+        [
+          "2026-08-18 20:02",
+          "Fwd: יוצאים לדרך — גישות, שלושת הדמואים והאתגר למחר",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a0167857aa39e69"
+        ],
+        [
+          "2026-08-18 20:53",
+          "Accepted: VUW.ai × Facio — POC Gate 1/5: Configured API & Schema @ Fri Aug 21, 2026 2pm - 3pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a016a6ddbdfd65f"
+        ],
+        [
+          "2026-08-18 19:20",
+          "Accepted: VUW.ai Gate 1 — Final Readiness Check @ Thu Aug 20, 2026 8:30pm - 9pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0165114370c5b8"
+        ],
+        [
+          "2026-08-18 19:19",
+          "Accepted: Facio Demo Review — Latitude + VUW.ai @ Wed Aug 19, 2026 7:30pm - 8:15pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a01650f1fa32662"
+        ],
+        [
+          "2026-08-18 18:30",
+          "Accepted: VUW.ai Gate 1 — Final Readiness Check @ Thu Aug 20, 2026 8:30pm - 9pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a016233f378396c"
+        ],
+        [
+          "2026-08-18 16:06",
+          "Accepted: VUW.ai × Facio — POC Gate 1/5: Configured API & Schema @ Fri Aug 21, 2026 2pm - 3pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a015af2e737838f"
+        ],
+        [
+          "2026-08-18 15:12",
+          "Accepted: Facio Demo Review — Latitude + VUW.ai @ Wed Aug 19, 2026 7:30pm - 8:15pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a0157e1cf365c3a"
+        ],
+        [
+          "2026-08-18 15:06",
+          "Accepted: Facio Demo Review — Latitude + VUW.ai @ Wed Aug 19, 2026 7:30pm - 8:15pm (GMT+3) (Uriel Aharoni)",
+          "Calendar / RSVP",
+          "Search metadata / snippet. Schedule evidence only; no gate acceptance implied",
+          "https://mail.google.com/mail/#all/1a015792e7f3950a"
+        ],
+        [
+          "2026-08-18 11:13",
+          "Re: יוצאים לדרך — גישות, שלושת הדמואים והאתגר למחר",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a014940239f6836"
+        ],
+        [
+          "2026-08-18 11:04",
+          "יוצאים לדרך — גישות, שלושת הדמואים והאתגר למחר",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a0148baf4596f63"
+        ],
+        [
+          "2026-08-18 11:47",
+          "Re: VUW.ai × Facio: POC next steps — implementation specification and readiness inputs",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a014b2b84196dd9"
+        ],
+        [
+          "2026-08-18 11:47",
+          "VUW.ai — Microsoft Private Offer ready for acceptance and activation",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a014b322fbcc58e"
+        ],
+        [
+          "2026-08-17 19:30",
+          "Fwd: Your private offer in Partner Center is now ready to be shared with your customer",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a011341270b7604"
+        ],
+        [
+          "2026-08-17 16:50",
+          "Fwd: 'VUW Billing Account' Account ID",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a010a1ba7d4e1e3"
+        ],
+        [
+          "2026-08-17 16:32",
+          "Fwd: 'VUW Billing Account' Account ID",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a01090f2527164a"
+        ],
+        [
+          "2026-08-17 11:45",
+          "Re: VUW.ai × Facio: POC next steps",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a00f8ae32c46445"
+        ],
+        [
+          "2026-08-17 08:23",
+          "Re: VUW.ai × Facio: POC next steps",
+          "Substantive project correspondence",
+          "Full thread MIME/body. Full thread reviewed",
+          "https://mail.google.com/mail/#all/1a00ed1747f5cc79"
+        ],
+        [
+          "2026-08-17 00:44",
+          "Your upcoming meetings",
+          "Machine meeting summary / brief",
+          "Full thread MIME/body. Secondary evidence; not proof of acceptance, deployment, or legal agreement",
+          "https://mail.google.com/mail/#all/1a00d2db2eb00b56"
+        ]
+      ]
+    },
+    {
+      "metadata": {
+        "sheetId": 1654791905,
+        "title": "CDR candidates",
+        "index": 9,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 6,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "range": "'CDR candidates'!A1:Q100",
+      "majorDimension": "ROWS",
+      "values": [
+        [
+          "CDR candidates"
+        ],
+        [
+          "Candidate mappings against supplied CDR v3.2. Mandatory/conditional status belongs to source CDR, not a blanket Facio input rule."
+        ],
+        [],
+        [],
+        [],
+        [
+          "Source field",
+          "Candidate CDR IDs",
+          "CDR definitions",
+          "Mapping decision needed",
+          "Condition / source location"
+        ],
+        [
+          "Cedant Name",
+          "CDR-0120",
+          "Policyholder Name (Text, mandatory, Section)",
+          "Confirm cedant is the policyholder under the selected reinsurance contract before adopting policyholder semantics.",
+          "Source mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 5"
+        ],
+        [
+          "Cedant Street",
+          "CDR-0130",
+          "Policyholder Location - Street No. and Street (Text, conditional, Section)",
+          "Subject to confirmed cedant/policyholder role.",
+          "{Tax and Regulatory Coverages IS NOT Kidnap and Ransom}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 11"
+        ],
+        [
+          "Cedant City",
+          "CDR-0140",
+          "Policyholder Location - City (Text, conditional, Section)",
+          "Subject to confirmed cedant/policyholder role.",
+          "{Tax and Regulatory Coverages IS NOT Kidnap and Ransom}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 12"
+        ],
+        [
+          "Cedant State",
+          "CDR-0160",
+          "Policyholder Location - Country Sub-Division (Text, conditional, Section)",
+          "Subject to confirmed cedant/policyholder role; CDR uses ISO 3166-2 country subdivision.",
+          "{Policyholder Location - Country IS ANY OF (CH, ES, LI, PT, CA, AU, US)}\nAND\n{Tax and Regulatory Coverages IS NOT Kidnap and Ransom}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 13"
+        ],
+        [
+          "Cedant Country",
+          "CDR-0170",
+          "Policyholder Location - Country (Text, mandatory, Section)",
+          "Subject to confirmed cedant/policyholder role; CDR uses ISO 3166-1 alpha-2.",
+          "Source mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 6"
+        ],
+        [
+          "Cedant ZIP",
+          "CDR-0150",
+          "Policyholder Location - Zip or Postcode (Text, conditional, Section)",
+          "Subject to confirmed cedant/policyholder role; preserve postal text.",
+          "{Tax and Regulatory Coverages IS NOT Kidnap and Ransom} \nAND \nWhere the location has a Zip or Postcode\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 14"
+        ],
+        [
+          "Cedent code type",
+          "CDR-0190",
+          "Policyholder Identification Code Set (Text, conditional, Section)",
+          "Confirm cedant identification code set equals CDR policyholder identification code set.",
+          "({Insurance or Reinsurance = Insurance} \nAND \n{Policyholder Location - Country IS ANY OF (AU, NZ, PT, IT, ES)})\nOR\t\n({Insurance or Reinsurance = Reinsurance}\nAND\n({Regulatory Risk Location - Territory = US} OR {Policyholder Location - Country = US}))\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 16"
+        ],
+        [
+          "Cedent code",
+          "CDR-0180",
+          "Policyholder Identification Code (Alphanumeric, conditional, Section)",
+          "Confirm cedant identification code equals CDR policyholder identification code.",
+          "({Insurance or Reinsurance = Insurance} \nAND \n{Policyholder Location - Country IS ANY OF (AU, NZ, PT, IT, ES)})\nOR\t\n({Insurance or Reinsurance = Reinsurance}\nAND\n({Regulatory Risk Location - Territory = US} OR {Policyholder Location - Country = US}))\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 15"
+        ],
+        [
+          "Client type",
+          "CDR-0110",
+          "Policyholder Classification (Text, conditional, Section)",
+          "Client type may represent a different classification; confirm enum semantics.",
+          "{Insurance or Reinsurance = Insurance}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 10"
+        ],
+        [
+          "Class of Business",
+          "CDR-0610",
+          "(Re)Insurer Class of Business (Text, conditional, Participation)",
+          "CDR field is insurer class of business at participation grain. Do not flatten multiple provider classifications into one root field.",
+          "{(Re)Insurer Unique Identifier Type = Lloyd's of London Syndicate Number}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 65"
+        ],
+        [
+          "Line of Business",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Original Insured Name",
+          "CDR-0630",
+          "Original Insured (Text, conditional, MRC)",
+          "CDR Original Insured is conditional on Facultative. Confirm treaty/facultative status; preserve original insured even if CDR condition is not triggered.",
+          "{Treaty or Facultative = Facultative}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 63"
+        ],
+        [
+          "Original Insured Street",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Original Insured City",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Original Insured State",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Original Insured Country",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Original Insured ZIP",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Original Insured Industry",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Currency",
+          "CDR-0440, CDR-0500",
+          "Premium - Contractual Currency (Alphanumeric, mandatory, Section)\nSum Insured or Limit Currency (Text, mandatory, Section)",
+          "Premium and limit currencies are distinct fields. Confirm whether one source Currency can populate both.",
+          "Source mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 10\nSource mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 12"
+        ],
+        [
+          "Inception Date",
+          "CDR-0700",
+          "Insurance Period - Start (Datetime,Date, mandatory, Section)",
+          "Source CDR allows date or datetime and UTC offset. Date-only requires Inclusive/Exclusive Indicator CDR-2240.",
+          "Source mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 25"
+        ],
+        [
+          "Expiration Date",
+          "CDR-0710",
+          "Insurance Period - End (Datetime,Date, mandatory, Section)",
+          "Source CDR allows date or datetime and UTC offset. Date-only requires Inclusive/Exclusive Indicator CDR-2240.",
+          "Source mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 26"
+        ],
+        [
+          "100% Policy Limit",
+          "CDR-0490",
+          "Sum Insured or Limit Amount (Number - Currency / Monetary, mandatory, Section)",
+          "CDR limit is 100% amount for each layer. Decide whether Policy Limit or Layer Limit is the correct per-section source.",
+          "Source mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 11"
+        ],
+        [
+          "Cedant participation type",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Reinsurer Share",
+          "CDR-2050, CDR-0660",
+          "(Re)Insurer Written Share (Number - Percentage,Number - Currency / Monetary, mandatory, Participation)\n(Re)Insurer Signed Share (Number - Percentage, mandatory, Participation)",
+          "One Reinsurer Share cannot safely stand for both written and signed share. Need provider-level values and written/signed/order bases.",
+          "Source mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 18\nSource mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 20"
+        ],
+        [
+          "Basis of Acceptance",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Layer Limit",
+          "CDR-0490",
+          "Sum Insured or Limit Amount (Number - Currency / Monetary, mandatory, Section)",
+          "CDR limit is 100% amount for each layer, not the subscribed share. Confirm layer grain versus policy limit.",
+          "Source mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 11"
+        ],
+        [
+          "Layer Limit Basis",
+          "CDR-0510",
+          "Sum Insured or Limit Basis (Text, mandatory, Section)",
+          "Confirm supplied layer basis value against the CDR list of values.",
+          "Source mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 13"
+        ],
+        [
+          "Attachment Point",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Attachment Point Basis",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Net retention (incl treaty)",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Peril",
+          "CDR-0910, CDR-0920",
+          "Tax and Regulatory Perils - Included (Text, mandatory, Section)\nTax and Regulatory Perils - Excluded (Text, mandatory, Section)",
+          "Split included and excluded perils; one Peril field does not identify inclusion/exclusion.",
+          "Source mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 31\nSource mandatory / derived; mapping applicability still needs review\nCDR v3.2/Overview of CDR v3.2-1b) Mandatory fields.csv, row 32"
+        ],
+        [
+          "Deductible Level",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Deductible Type",
+          "CDR-0520",
+          "Deductible or Excess Indicator (Text, conditional, Section)",
+          "Confirm source deductible type distinguishes deductible versus excess consistently with CDR.",
+          "Where applicable to the contract\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 55"
+        ],
+        [
+          "Deductible value",
+          "CDR-0530, CDR-2040",
+          "Deductible or Excess Amount (Number - Currency / Monetary, conditional, Section)\nDeductible or Excess Percentage (Number - Percentage, conditional, Section)",
+          "Split amount and percentage based on source basis; CDR principal deductible is 100% layer/section amount.",
+          "{Deductible or Excess Percentage IS NULL}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 56\n{Deductible or Excess Amount IS NULL}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 58"
+        ],
+        [
+          "Deductible Basis",
+          "CDR-0550",
+          "Deductible or Excess Basis (Text, conditional, Section)",
+          "Confirm basis list of values. Level/zone/minimum/maximum remain distinct source fields.",
+          "Where applicable to the contract\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 59"
+        ],
+        [
+          "Deductible Minimum",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Deductible Maximum",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Deductible Zone",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Sublimit Level",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Sublimit Amount",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Sublimit Basis",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Sublimit Zone",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Location number",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Location name",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Street",
+          "CDR-1060",
+          "Insurable Interest Location - Street No. and Street (Text, conditional, Insurable Interest)",
+          "Candidate insurable-interest address mapping. Evaluate CDR applicability; preserve all property locations for underwriting.",
+          "{Insurance or Reinsurance = Insurance} \nAND \n{Insurable Interest Type Group IS ANY OF (Fixed Property, Movable Property)} \nAND \n({Insurable Interest Location - Country IS ANY OF (ES, GB, FR, IT, PT, AU)}\nOR\n{Insurable Interest Location - Country Sub-Division = US-KY}\nOR\n{(Re)Insurer Unique Identifier Type = Lloyd's Insurance Company Syndicate Number})\nAND\n({Insurable Interest Location - Latitude IS NULL}\nOR\n{Insurable Interest Location - Longitude IS NULL})\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 116"
+        ],
+        [
+          "City",
+          "CDR-1070",
+          "Insurable Interest Location - City (Text, conditional, Insurable Interest)",
+          "Candidate insurable-interest address mapping. Evaluate CDR applicability.",
+          "{Insurance or Reinsurance = Insurance} \nAND \n{Insurable Interest Type Group IS ANY OF (Fixed Property, Movable Property)} \nAND \n({Insurable Interest Location - Country IS ANY OF (ES, GB, FR, IT, PT, AU)}\nOR\n{Insurable Interest Location - Country Sub-Division = US-KY}\nOR\n{(Re)Insurer Unique Identifier Type = Lloyd's Insurance Company Syndicate Number})\nAND\n({Insurable Interest Location - Latitude IS NULL}\nOR\n{Insurable Interest Location - Longitude IS NULL})\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 117"
+        ],
+        [
+          "State",
+          "CDR-1090",
+          "Insurable Interest Location - Country Sub-Division (Text, conditional, Section)",
+          "Candidate insurable-interest subdivision mapping; evaluate field grain and ISO 3166-2 conversion.",
+          "({Insurable Interest Type Group IS ANY OF (Fixed Property, Transport, Energy, Movable Property)}\nAND\n{Insurable Interest Type IS NOT Spacecraft})\nAND\n{Insurable Interest Location - Country IS ANY OF (CH, ES, LI, PT, CA, AU, US)}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 118"
+        ],
+        [
+          "Country",
+          "CDR-1100",
+          "Insurable Interest Location - Country (Text, conditional, Section)",
+          "Candidate insurable-interest country mapping. Separate this from policyholder, regulatory and tax locations.",
+          "{Insurable Interest Type Group IS ANY OF (Fixed Property, Transport, Energy, Movable Property)}\nAND\n{Insurable Interest Type IS NOT Spacecraft}\nAND\nWhere the Insurable Interest is not located in international waters\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 119"
+        ],
+        [
+          "Zip",
+          "CDR-1080",
+          "Insurable Interest Location - Zip or Postcode (Text, conditional, Insurable Interest)",
+          "Candidate insurable-interest postal mapping; preserve leading zeros.",
+          "{Insurance or Reinsurance = Insurance}\nAND\n({(Re)Insurer Unique Identifier Type = Lloyd's Insurance Company Syndicate Number}\nOR\n({Insurable Interest Type Group IS ANY OF (Fixed Property, Movable Property)} AND {Insurable Interest Location - Country IS ANY OF (ES, GB, FR, IT, PT)})\nOR \n({Regulatory Risk Location - Territory = AU} AND {Pool Scheme = Australian Reinsurance Pool Corporation})\nOR \n{Regulatory Risk Location - Territory Sub-Division = US-KY})\nAND\nWhere the location has a Zip or Postcode\nAND\n({Insurable Interest Location - Latitude IS NULL}\nOR\n{Insurable Interest Location - Longitude IS NULL})\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 120"
+        ],
+        [
+          "Property damage value",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Buildings value",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Contents value",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "BI value",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Indemnity period",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Other value",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Value description",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Total insured value",
+          "CDR-1230",
+          "Property Insured Value (Number - Decimal, conditional, Insurable Interest)",
+          "Not a blanket US-reinsurance mapping. CDR field is conditional on Insurance and fixed property in AT,BB,DE,ES,GB,IS,KN,NZ; preserve TIV as insurer data and confirm any separate reporting requirement.",
+          "{Insurance or Reinsurance = Insurance} \nAND \n{Insurable Interest Type Group = Fixed Property}\nAND\n{Insurable Interest Location - Country IS ANY OF (AT, BB, DE, ES, GB, IS, KN, NZ)} \n\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 137"
+        ],
+        [
+          "Occupancy category",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Occupancy type ",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Occupancy Description",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Construction class",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Year of construction",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Number of stories",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Number of buildings",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Sprinkler Protection",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Public protection class",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Basement",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Loss Previously Reported",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Number of years reported",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Number of losses",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Largest individual loss amount",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Total amount of losses incurred",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Average loss amount per year",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Loss comments",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Original insured policy number",
+          "No candidate",
+          null,
+          "No dedicated exact CDR mapping established from this package. Preserve as customer underwriting data until the API mapping session."
+        ],
+        [
+          "Ground Up Premium",
+          "CDR-0430",
+          "Premium - Gross (Number - Currency / Monetary, conditional, Section)",
+          "Ground Up Premium is not automatically the MRC gross premium. Confirm 100%/order/layer, premium type and contractual currency.",
+          "{Premium Rate IS NULL}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 37"
+        ],
+        [
+          "Net annual layer premium",
+          "CDR-0430",
+          "Premium - Gross (Number - Currency / Monetary, conditional, Section)",
+          "Net Annual Layer Premium cannot populate Gross Premium without agreed gross-up and allocation logic.",
+          "{Premium Rate IS NULL}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 37"
+        ],
+        [
+          "Brokerage",
+          "CDR-1860, CDR-1880, CDR-1890, CDR-1870",
+          "Brokerage - Amount (Number - Currency / Monetary, conditional, Section)\nBrokerage - Percentage (Number - Percentage, conditional, Section)\nBrokerage - Basis (Text, conditional, Section)\nBrokerage - Amount - Currency (Text, conditional, Section)",
+          "Resolve brokerage amount vs percentage, basis and currency; preserve multiple payments if needed.",
+          "{Brokerage - Percentage IS NULL}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 92\n{Brokerage - Amount IS NULL}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 94\n{Brokerage - Percentage IS NOT NULL}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 95\n{Brokerage - Amount IS NOT NULL}\nCDR v3.2/Overview of CDR v3.2-1c) Conditional fields.csv, row 93"
+        ]
+      ]
+    }
+  ]
+}

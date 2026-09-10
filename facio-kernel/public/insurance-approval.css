@@ -1,0 +1,132 @@
+.approval-panel {
+  margin: 22px 0;
+  border: 1px solid var(--line, #dce3e5);
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.approval-panel .panel-heading {
+  align-items: flex-start;
+}
+.approval-panel h3,
+.approval-panel h4 {
+  margin: 0 0 8px;
+}
+.approval-summary,
+.approval-item-header,
+.approval-actions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.approval-summary > div {
+  min-width: 0;
+}
+.approval-summary p,
+.approval-item p {
+  margin: 6px 0;
+  overflow-wrap: anywhere;
+}
+.approval-status {
+  display: inline-block;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #eef3f5;
+  color: #465e6a;
+}
+.approval-status[data-status='approved'] {
+  background: #e5f2ed;
+  color: #17675b;
+}
+.approval-status:is([data-status='requested'], [data-status='expired'], [data-status='stale']) {
+  background: #fff4df;
+  color: #78551c;
+}
+.approval-status:is([data-status='declined'], [data-status='revoked']) {
+  background: #fbecee;
+  color: #98484f;
+}
+.approval-cover-list,
+.approval-rule-list {
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.approval-cover-list li,
+.approval-rule-list li {
+  margin: 6px 0;
+  overflow-wrap: anywhere;
+}
+.approval-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0;
+}
+.approval-item {
+  padding: 16px;
+  border: 1px solid #e0e7eb;
+  border-radius: 8px;
+  background: #fafcfc;
+}
+.approval-item h4 {
+  font-size: 14px;
+}
+.approval-form {
+  border-top: 1px solid #e0e7eb;
+  background: #f7faf9;
+  padding: 20px;
+}
+.approval-form fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.approval-form textarea {
+  width: 100%;
+  min-height: 92px;
+  padding: 10px;
+  resize: vertical;
+  font: inherit;
+  line-height: 1.6;
+  border: 1px solid #cfdae2;
+  border-radius: 6px;
+}
+.approval-form .form-field {
+  min-width: 0;
+}
+.approval-form .approval-actions {
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+.approval-panel :is(button, input, textarea):focus-visible {
+  outline: 2px solid #1d807b;
+  outline-offset: 3px;
+}
+.approval-panel :is(button, input, textarea):disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.approval-details dl dd {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 620px) {
+  .approval-form,
+  .approval-item {
+    padding: 14px;
+  }
+  .approval-panel .panel-heading {
+    flex-wrap: wrap;
+  }
+  .approval-actions {
+    justify-content: flex-start;
+  }
+  .approval-form .approval-actions .button {
+    flex: 1 1 auto;
+  }
+}

@@ -1,0 +1,53 @@
+# ABY-367 — isolated STAGING overlay for the abbeygate chart.
+#
+# Applied on top of values.yaml for the `faciomga-staging` namespace:
+#   helm upgrade --install abbeygate-staging ./infrastructure/k8s/helm/abbeygate \
+#     -f infrastructure/k8s/helm/abbeygate/values.yaml \
+#     -f infrastructure/k8s/helm/abbeygate/values-staging.yaml \
+#     --namespace faciomga-staging
+#
+# Environment isolation is enforced by the namespace + its own DB / Redis /
+# storage / secret set (never by hostname alone). This overlay only changes the
+# host list, the Sentry environment, and the footprint; the secret VALUES live
+# in the `abbeygate-runtime-secrets` secret inside the faciomga-staging
+# namespace (OPPWA test keys, CARDCORP_ENV=test).
+
+api:
+  replicaCount: 1
+
+worker:
+  replicaCount: 1
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 3
+
+pdb:
+  api:
+    # A single API replica cannot satisfy minAvailable: 1 during voluntary
+    # disruptions; disable the PDB in the low-footprint staging env.
+    enabled: false
+
+keda:
+  minReplicaCount: 1
+  maxReplicaCount: 3
+
+ingress:
+  # Staging hostnames only. The staging ingress lives in its own namespace and
+  # adds these listeners to the shared App Gateway (host-based routing).
+  host: cy.staging.abbeygate.com
+  additionalHosts:
+    - pt.staging.abbeygate.com
+    - gr.staging.abbeygate.com
+
+# ADR-0049 — the abbeygate.com production ingress is prod-only. Staging serves
+# *.staging.abbeygate.com via the main ingress above (its own wildcard cert).
+abbeygateIngress:
+  enabled: false
+
+runtimeConfig:
+  sentryEnvironment: staging
+
+# Issuance-proof cron is a production guard; keep it off in throwaway staging.
+issuanceProof:
+  enabled: false

@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-08-18T11:58:16.983Z",
+  "validUntil": "2026-08-18T23:58:16.983Z",
+  "mode": "static",
+  "headSha": "9d8f6b398911b9ebc80e0d6d8931cbc55f9ca257",
+  "workspaceFingerprint": "7fcdf9e17d5bb7f2e7e5b6e98d8ca3e010fe2d8e4e02ca7cc1cd4822fb5d619e",
+  "requiredCommand": "npm run gate:agent",
+  "notes": [
+    "Risky push/deploy commands are allowed when HEAD still matches the gated commit.",
+    "If you commit after running the gate, the hook also accepts a commit created from the exact gated workspace snapshot."
+  ]
+}

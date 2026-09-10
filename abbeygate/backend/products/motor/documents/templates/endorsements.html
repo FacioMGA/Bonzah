@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <base href="{{basePath}}">
+    <link rel="stylesheet" href="styles/pdf-theme.css">
+</head>
+
+<body>
+    <div class="doc-page">
+        <div class="doc-topbar avoid-break">
+            <div class="doc-topbar-left">
+                <img class="doc-logo-left" src="assets/abbeygate.svg" alt="Abbeygate" />
+            </div>
+            <div class="doc-topbar-center">
+                <div class="doc-title">Endorsements Schedule</div>
+                <div class="doc-subtitle">Policy <span class="font-mono">{{policy_number}}</span> · Generated {{generatedDate}}</div>
+            </div>
+            <div class="doc-topbar-right">
+                <img class="doc-logo-right" src="assets/lloyds.svg" alt="Lloyd's" />
+            </div>
+        </div>
+
+        <p class="text-muted" style="margin-bottom: 16px;">
+            The following endorsements apply to your policy and form part of your contract of insurance.
+        </p>
+
+        {{#each endorsements}}
+        <div class="endorsement-block">
+            <!-- Header -->
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <h2 style="margin: 0; border: none; padding: 0; font-size: 16px;">
+                    {{templateCode}} — {{title}}
+                </h2>
+                <span class="badge badge-active">APPLIED</span>
+            </div>
+
+            <!-- Document Ref / Version -->
+            <div class="text-xs text-muted mb-4 mt-4">
+                Ref: {{templateVersion}} | Effect: {{effectType}}
+            </div>
+
+            <!-- Parameters Table -->
+            {{#if params}}
+            <div style="background: white; padding: 12px; border: 1px solid #E2E8F0; margin-bottom: 16px; border-radius: var(--radius-lg);">
+                <strong class="text-xs uppercase text-teal">Specific Terms</strong>
+                <table style="margin: 4px 0 0 0; border: none;">
+                    {{#each params}}
+                    <tr style="border: none;">
+                        <td style="width: 30%; border:none; padding: 2px; color: var(--muted); font-size: 12px;">{{@key}}
+                        </td>
+                        <td style="border:none; padding: 2px; font-weight: 600; font-family: monospace;">{{this}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
+            {{/if}}
+
+            <!-- Legal Text (Justified, readable width) -->
+            <div style="font-family: 'Times New Roman', Times, serif; font-size: 13px; line-height: 1.6; color: #1F2937; text-align: justify; max-width: 90%;">
+                {{{../legalText}}}
+                {{{description}}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+</body>
+
+</html>

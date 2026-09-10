@@ -1,0 +1,97 @@
+.decision-coverage {
+  border: 1px solid var(--line, #dce3e5);
+  border-radius: 10px;
+  padding: 18px;
+  margin: 12px 0;
+}
+.decision-coverage h4,
+.decision-result h4 {
+  margin: 0 0 8px;
+}
+.decision-choice {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+}
+.decision-choice input {
+  width: auto;
+}
+.decision-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.decision-grid > div {
+  padding: 14px;
+  background: #f4f7f7;
+  border-radius: 8px;
+  min-width: 0;
+}
+.decision-grid span {
+  display: block;
+  color: #576969;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.decision-grid strong {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.decision-result {
+  border-top: 1px solid var(--line, #dce3e5);
+}
+.decision-result .message li {
+  margin: 6px 0;
+  overflow-wrap: anywhere;
+}
+.decision-result h4 {
+  margin-top: 22px;
+}
+.decision-rule-list {
+  padding-left: 22px;
+  font-size: 13px;
+}
+.decision-rule-list li {
+  padding: 7px 0;
+}
+.decision-rule-list p {
+  margin: 5px 0;
+  overflow-wrap: anywhere;
+}
+.decision-table-scroll {
+  overflow: auto;
+}
+@media (max-width: 700px) {
+  .decision-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .decision-coverage {
+    padding: 12px;
+  }
+  .decision-coverage .insurance-subheading {
+    align-items: start;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.decision-risk-group {
+  border-top: 1px solid var(--border);
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+}
+.decision-risk-row {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-block: 0.8rem;
+}
+.decision-risk-row h4 {
+  overflow-wrap: anywhere;
+  font-size: 0.9rem;
+}
+.decision-service-result {
+  border-top: 1px solid var(--border);
+}

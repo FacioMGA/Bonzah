@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .header { text-align: center; margin-bottom: 20px; }
+  .section { margin-bottom: 15px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+  th { background-color: #f2f2f2; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Policy Schedule</h1>
+  <p>Policy Number: {{policyNumber}}</p>
+</div>
+
+<div class="section">
+  <h3>Insured Details</h3>
+  <p>Name: {{policyHolderName}}</p>
+</div>
+
+<div class="section">
+  <h3>Coverages</h3>
+  <table>
+    <thead><tr><th>Coverage</th><th>Limit</th></tr></thead>
+    <tbody>
+      {{coverageRows}}
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h3>Premium Summary</h3>
+  <p>Total Premium: €{{totalPremium}}</p>
+</div>
+
+</body>
+</html>

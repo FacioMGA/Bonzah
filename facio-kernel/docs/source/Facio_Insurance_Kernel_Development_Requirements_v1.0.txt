@@ -1,0 +1,263 @@
+NORTH-STAR DEVELOPMENT REQUIREMENTS
+Facio Insurance Kernel
+One governed runtime for every MGA, product and operating model.
+Mandate. Abbeygate, Attsure and Altus must migrate to one shared Kernel without functional regression or customer rewrite. VUW.ai, Deefa, PolarisRe, Bonzah and UE must be onboarded as configurations and extension packages—not new application forks.
+Document | Value
+Version | 1.0
+Status | Architecture and development baseline
+Owner | Facio Product & Platform
+Date | 6 September 2026
+Classification | Confidential
+Document purpose
+This specification defines the target product, process, tenancy, migration and platform requirements for the Facio Insurance Kernel. It is implementation-oriented: each requirement is intended to become an architecture decision, backlog item, automated test or migration gate.
+Normative language
+Term | Meaning
+MUST | Required for conformance.
+SHOULD | Expected unless a documented architecture decision approves an exception.
+MAY | Optional capability.
+Configuration | Versioned data or package interpreted by the Kernel; not tenant-specific branching in shared code.
+Extension package | A registered, typed module used only when configuration cannot safely express a product-specific algorithm or integration.
+Source baseline
+Source | Evidence used
+Abbeygate Gen-2 | Product manifests, validation profiles, product adapters, policy lifecycle, Config MCP, product launch drafts, Motor/Home/Travel/Health/Business/Open Market.
+Cooper / Symphony | Product, coverage and questionnaire configuration; Process Builder; agent/customer/billing/claims/integration policies; draft/published runtime separation.
+Attsure | Australian PI, broker distribution, occupation rating, GST/stamp duty/levies, claims, AU reporting and integrations.
+AltusUW | Security Deposit Replacement, portfolios, units, batch operations, certificates, invoices, reconciliation and data import.
+PolarisRe | EAR/CAR engineering insurance, delegated-authority system of record, deterministic finance, document packs and CRS reporting.
+Prospect requirements | VUW.ai, Deefa, Bonzah and UE are configuration targets; product details remain discovery dependencies where not verified in code.
+1. Executive mandate
+North-star definition. The Facio Insurance Kernel compiles approved insurance intent—product, authority, process, regulation, finance and experience—into a signed Tenant Release that executes deterministically and produces complete evidence.
+The Kernel is not a new customer implementation. It is the shared runtime contract under every current and future Facio tenant. Customer differences must be expressed through tenant, product, programme, process, jurisdiction, document, integration and presentation configuration, with registered extension packages only for irreducible algorithms.
+Success outcomes
+One production Kernel release can serve multiple MGA tenants and multiple operating entities per tenant.
+Existing customer journeys continue through compatibility configurations and adapters; no big-bang rewrite is required.
+A product architect can configure, validate, simulate and publish through the UI, MCP or an authorised LLM.
+A published configuration is immutable, effective-dated, replayable and tied to every transaction it governs.
+Data residency and isolation are selected per tenant deployment topology without changing business code.
+A new prospect becomes a tenant release, not a cloned repository.
+Non-goals
+Allowing an LLM to mutate production directly.
+Reducing all insurance logic to untyped JSON.
+Forcing retail, commercial, delegated-authority and reinsurance workflows into one fixed linear journey.
+Rebuilding all customer applications before the Kernel can launch.
+Maintaining permanent customer forks.
+2. Target architecture
+Plane | Responsibility | Must not own
+Control Plane | Tenant onboarding, subscription, regions, environments, configuration lifecycle, releases, keys and governance. | Policy transactions or customer PII.
+Kernel Runtime | Canonical insurance domains, commands, validations, state transitions, ledgers, events and evidence. | Tenant names, product literals or branded UX.
+Configuration Plane | Product, process, authority, jurisdiction, finance, documents, reporting, integrations and presentation definitions. | Alternative runtime truth.
+Experience Plane | Back office, broker/agent, customer/public, embedded/API and conversational surfaces. | Business decisions duplicated from the Kernel.
+Intelligence Plane | AI assistance, portfolio signals, projections, recommendations and organisational memory. | Unreviewed canonical mutations.
+Regional Data Plane | Tenant workloads, databases, queues, object storage, search/vector stores and keys in the selected residency. | Global cross-tenant data access.
+Architectural invariants
+Server-injected tenant, operating-entity, actor, permission and correlation context is mandatory on every command, query, event and job.
+Shared code MUST NOT branch on tenant names or customer identifiers.
+Canonical writes occur only through owning domain services; MCP, UI, API, jobs and imports use the same command paths.
+Drafts are workflow objects. Runtime consumes only immutable published releases.
+Every transaction records the exact Tenant Release, Product Version, Process Version, Rating Version and Authority Version used.
+Product registration is preferred to speculative abstraction; extension packages expose typed contracts and remain replaceable.
+3. Canonical configuration model
+Configuration aggregate | Minimum scope
+Tenant Definition | Identity, brands, domains, subscription, default locale/currency/time zone, deployment tier, residency and retention.
+Operating Entity | Legal entity, licences, regulated roles, accounts, tax registrations, territories and business calendar.
+Party & Distribution | Insureds, brokers, agents, coverholders, carriers, reinsurers, TPAs, suppliers, hierarchies and appointments.
+Product Definition | Risk objects, schemas, questions, covers, limits, deductibles, eligibility, rating, underwriting, documents and claims contract.
+Programme & Binder | Capacity, authority, dates, territory, product permission, limits, commission, referrals and reporting obligations.
+Process Definition | Actors, channels, stages, commands, gates, approvals, tasks, notifications, SLAs, exception paths and automation.
+Jurisdiction Pack | Local questions, wording, taxes, fees, disclosure, eligibility, document and reporting rules.
+Finance Definition | Premium components, taxes, fees, commission, instalments, ledger mappings, invoices, client money and reconciliation.
+Document Pack | Templates, clauses, conditional inclusion, signatures, delivery rules, languages and evidence requirements.
+Integration Profile | Provider adapter, credentials reference, endpoints, mapping, retry, idempotency, circuit breaking and data boundary.
+Reporting Contract | Schema, field lineage, transformations, validation, schedule, recipient, submission and correction rules.
+Experience Profile | Enabled surfaces, navigation, terminology, branding, roles, capability flags and product presentation.
+Tenant Release | Signed, immutable composition of all approved versions plus compatibility adapters and feature flags.
+4. Product definition requirements
+ID | Requirement
+PRD-001 | The platform MUST support multiple products, variants and programmes per tenant without deploying customer-specific code.
+PRD-002 | Every product MUST declare one or more typed risk-object schemas with one/many cardinality and stable field identifiers.
+PRD-003 | Questionnaires MUST support sections, reusable field libraries, conditional visibility, conditional requiredness, repeatable rows, evidence requests, computed fields and multilingual labels.
+PRD-004 | Coverage definitions MUST support scope, inclusion state, limits, deductibles, sublimits, clauses, exclusions, dependencies, effective dates and endorsement eligibility.
+PRD-005 | Validation, eligibility, underwriting/referral and rating MUST remain separate decision contracts with explicit precedence.
+PRD-006 | Rating MUST support tables, formulas, factors, minimum premiums, loadings, discounts, taxes, fees, external engines, human override authority and deterministic snapshots.
+PRD-007 | Products MUST declare quote, bind, issue, endorsement, cancellation, reinstatement, renewal and claims readiness rules.
+PRD-008 | Product versions MUST be immutable after activation and effective-dated for new business, renewal and in-force servicing.
+PRD-009 | The compiler MUST detect unresolved field references, circular dependencies, invalid authority, missing documents, inconsistent finance and unreachable process states.
+PRD-010 | When configuration cannot express a product algorithm, the platform MUST return REQUIRES_ENGINEERING and create a typed extension requirement; it MUST NOT silently persist inert configuration.
+PRD-011 | Product manifests MUST drive shared surface rendering; validation profiles drive allowed/required data; registered adapters own pricing, issuance, documents and other executable algorithms.
+PRD-012 | A product package MUST ship contract tests and golden journey tests before it is eligible for production publication.
+5. Process Builder requirements
+The Cooper Process Builder becomes the seed for the Kernel Process Definition capability. Its published operational snapshot pattern is retained, expanded and separated from product definition.
+ID | Requirement
+PBR-001 | Process Builder MUST maintain one or more editable drafts without changing the active runtime.
+PBR-002 | Publish MUST atomically create an immutable Process Version and include it in a Tenant Release.
+PBR-003 | A process MUST define actors, participation rules, permissions, stages, commands, entry/exit gates, approvals, timers, tasks, communications and exception paths.
+PBR-004 | Configuration MUST cover the existing Cooper dimensions: business context, customer engagement, agents, collection, claims/service, integrations, review and publish.
+PBR-005 | Customer journey presets MUST support no access, secure-link participation, authenticated portal and custom capability composition.
+PBR-006 | Agent/broker configuration MUST support direct agents, parent agencies, sub-agents, multiple participants, signed agreements, allowed actions and commission modes.
+PBR-007 | Collection configuration MUST support provider connection, payment methods, instalments, commission release, invoice rules, accounting review and reconciliation.
+PBR-008 | Claims/service configuration MUST cover FNOL channels, claim forms, certificates, notifications, cancellation/change permissions, adjuster roles and supplier/TPA participation.
+PBR-009 | The process model MUST support retail STP, manual commercial placement, delegated-authority approval and reinsurance leader/follower or share-based flows.
+PBR-010 | The platform MUST expose named, deterministic blockers at every gated command.
+PBR-011 | Process simulation MUST show the path, decisions, actors, documents, financial movements and blockers for supplied scenarios.
+PBR-012 | Historical transactions MUST remain governed by the process version recorded at inception unless an explicit, audited migration is approved.
+6. Runtime domain requirements
+Domain | Required Kernel capability
+Party & relationship | Reusable party roles; broker/agent hierarchies; licences; appointments; legal entities; contacts; consent; account-centric 360 history.
+Submission & quote | Inbound API/email/portal submissions; duplicate detection; enrichment; questionnaire; options; referral; approval; customer/agent collaboration.
+Underwriting | Work queues; risk signals; appetite; authority; referrals; evidence; notes; conditions; subjectivities; manual decisions; four-eyes control.
+Policy lifecycle | Bind, issue, certificates, versions, endorsements, cancellations, reinstatements, renewals, expiry and immutable risk transactions.
+Claims | FNOL, parties, incidents, coverage checks, developments, reserves, suppliers, payments, recoveries, settlement, closure and reopening.
+Finance | Double-entry or balanced subledger, premium movements, taxes, fees, commission, instalments, invoices, refunds, claims money, reconciliation and exports.
+Documents | Templates, clauses, data models, generation, signing, versioning, delivery, incoming classification and evidence lineage.
+Communications | Email, SMS, WhatsApp, portal and print; templates, consent, recipient rules, delivery tracking, threading and inbound capture.
+Reporting | Risk/premium/claims/cash bordereaux, CRS/Lloyd’s and local schemas, field lineage, validation, reconciliation, scheduling and corrections.
+Work management | Tasks, queues, SLA, ownership, escalation, bulk actions, schedules, exceptions and audit.
+Compliance | KYC/AML/sanctions, complaints, disclosures, audit access, retention, legal hold and fail-closed execution gates.
+Portfolio intelligence | Operational KPIs, exposure, accumulation, profitability, behaviour events, anomalies and governed AI recommendations.
+7. Configuration interfaces: UI, API, MCP and LLM
+ID | Requirement
+CFG-001 | The same configuration use cases MUST be callable from the Product Architect UI, REST/API and Config MCP.
+CFG-002 | All MCP tools MUST use strict input/output schemas and a single registry and execution funnel.
+CFG-003 | Tenant, user, roles, permissions and operating entity MUST be server-injected; models MUST NOT supply them.
+CFG-004 | The tool flow MUST support discover, clone/import, draft, inspect, validate, diff, simulate, publish to sandbox, request approval and publish to production.
+CFG-005 | Every mutation MUST return the changed draft version and a human-readable plus machine-readable diff.
+CFG-006 | Production publication MUST require policy-controlled human approval and a signed release; MCP credentials alone MUST NOT bypass it.
+CFG-007 | The LLM provider MUST be replaceable. ChatGPT, Claude and customer-hosted models interact through the same contracts.
+CFG-008 | All calls MUST be authorised, rate-limited, idempotent where applicable, audited and correlated to the resulting release.
+CFG-009 | Configuration provenance MUST record source files, extracted values, human edits, model/tool versions and approvals.
+CFG-010 | The platform SHOULD generate implementation tickets for unsupported requirements with source context and impacted contracts.
+8. Multi-tenancy and data residency
+Topology | Compute | Data | Target use
+Shared SaaS | Pooled | Tenant-isolated rows/schema | Small MGA and self-service.
+Regional pooled | Pooled in selected region | Dedicated database or strong logical isolation | Residency-sensitive standard tenant.
+Dedicated data plane | Shared or dedicated | Dedicated DB, storage, queues and keys | Enterprise MGA/carrier.
+Sovereign deployment | Dedicated regional stack | Country/regulated boundary | Regulatory or contractual requirement.
+Customer-managed runtime | Customer cloud/account | Customer-controlled | Enterprise procurement or control requirement.
+ID | Requirement
+TEN-001 | Every persisted business row, event, audit record, job, cache key, file, search document and vector MUST carry enforced tenant scope.
+TEN-002 | A tenant MAY contain multiple operating entities, brands, jurisdictions, domains, currencies, programmes and products.
+TEN-003 | Control-plane metadata MUST be separated from regional business data and contain no unnecessary policyholder PII.
+TEN-004 | Tenant context MUST propagate through API, workers, scheduled jobs, webhooks, imports, document generation and intelligence pipelines.
+TEN-005 | Database access MUST fail closed when tenant context is absent or inconsistent.
+TEN-006 | Per-tenant encryption keys, retention, backup, DR, logging and subprocessor policy MUST be configurable.
+TEN-007 | A release MUST be promotable across development, sandbox, UAT and production without manual configuration drift.
+TEN-008 | A deployment manifest MUST select region, topology, data stores, secrets, domains, scaling tier, release channel and DR target.
+TEN-009 | Cross-tenant support access MUST be time-bound, purpose-bound, approved and fully audited.
+TEN-010 | Automated isolation tests MUST attempt cross-tenant reads/writes on every data and execution surface.
+9. Current and target tenant compatibility
+The following profiles are acceptance drivers, not separate codebases.
+Tenant | Configuration/profile to preserve | Kernel stress test
+Abbeygate | Motor, Home, Travel, Immigration Medical/Health, Business and Open Market; Cyprus/Portugal/Greece; public quote, BO, claims, CardCorp, sanctions, documents and Lloyd’s BDX. | Multi-product, multi-jurisdiction, STP plus manual placement, branded numbering and legacy migration.
+Attsure | Australian Professional Indemnity; broker/direct distribution; occupation rating; GST, stamp duty and levies; claims; AU reports; Xero/Curium/Martello/Ebix-Sunrise. | Broker hierarchy, Australian finance, API/webhooks and third-party provider substitution.
+Altus | Security Deposit Replacement; portfolios, properties/units, batches, certificates, invoices, claims, reconciliation and imported production data. | Non-traditional insured objects, high-volume batches and portfolio-level operations.
+VUW.ai | Submission, quote and underwriting POC; detailed product configuration pending discovery. | Embedded/API-first underwriting and externally supplied intelligence.
+Deefa | Named tenant target; product and distribution details pending verified discovery. | Proves onboarding does not require a repository fork.
+PolarisRe | EAR/CAR engineering insurance; delegated authority; document packs; endorsements; payments; CRS reporting. | Complex commercial risks and reinsurance/placement semantics.
+Bonzah | Named tenant target; product and distribution details pending verified discovery. | High-volume partner/embedded distribution and product discovery path.
+UE | New programme seeking an end-to-end platform; authoritative product pack pending. | Enterprise onboarding, complete programme setup and US residency/integration requirements.
+Compatibility rule. A customer is considered migrated only when its golden journeys run on the shared Kernel with the same or better observable outcomes. Moving source files into a monorepo or adding tenant branches does not satisfy migration.
+10. Cooper capabilities to absorb
+Cooper capability | Kernel destination
+Product, coverage, clause and questionnaire catalogues | Product Definition and reusable component libraries.
+Process Builder draft and published runtime snapshot | Process Definition plus Tenant Release lifecycle.
+Customer engagement presets and granular capabilities | Experience Profile and process actor/channel policy.
+Agent contracts, hierarchy, permissions and commission modes | Party & Distribution plus Finance Definition.
+Billing provider, methods, commission release and accounting review | Collection Process plus Finance and Integration profiles.
+Claims forms, certificates, notification and cancellation controls | Claims Process, Document Pack and lifecycle permissions.
+Reference data configuration | Versioned tenant/product reference datasets with typed field definitions.
+COI/certificate workflows | Reusable certificate request/issue lifecycle and document evidence.
+Accounting, commissions and reconciliation screens | Finance subledger projections and operational workspaces.
+11. Migration without rewrite
+Migration is a strangler programme around canonical contracts, not a replacement project.
+Phase | Required outcome
+0 — Inventory & freeze | Create per-repository capability, route, model, integration and golden-journey inventory. Ban new tenant literals and duplicate canonical owners.
+1 — Kernel contracts | Extract common context, commands, events, product interfaces, process interfaces, finance movements, documents and tenancy enforcement.
+2 — Compatibility layer | Map each existing database and API shape to canonical commands/queries. Preserve public URLs and external contracts where required.
+3 — Shared runtime adoption | Move Abbeygate, Attsure and Altus domain slices behind Kernel interfaces one bounded context at a time.
+4 — Configuration extraction | Convert customer constants and behaviour into versioned tenant/product/process/jurisdiction/integration configuration.
+5 — Data migration | Backfill tenant IDs and canonical entities; reconcile counts, money, documents and audit; use dual-read/dual-run only with explicit expiry.
+6 — Cutover by journey | Cut over quote, issue, service, claims, finance and reporting independently after golden parity and rollback rehearsal.
+7 — Fork retirement | Delete duplicate implementations only after production evidence, reconciliation and agreed observation periods.
+Mandatory compatibility mechanisms
+API façade and URL compatibility adapters for existing portals and integrations.
+Legacy identifier aliases and configurable number schemes.
+Data mappers with explicit provenance, validation and reconciliation reports.
+Product extension adapters registered behind Kernel contracts.
+Feature flags and tenant release channels with expiry dates.
+Shadow evaluation of rating, validation, documents and reporting before cutover.
+Golden master tests for customer-visible PDFs, emails, calculations, BDX and lifecycle outcomes.
+Rollback to the prior Tenant Release without destructive data reversal.
+12. Non-functional requirements
+Area | Requirement
+Security | Least privilege; RBAC + attribute/authority checks; MFA/SSO; managed secrets; encryption in transit/at rest; auditable support access.
+Reliability | Idempotent commands; transactional outbox; durable queues; retry/DLQ; no-loss worker design; circuit breakers; degraded-mode policy.
+Auditability | Immutable command/decision/release evidence with actor, authority, inputs, outputs, versions, timestamps and correlation.
+Performance | Per-journey SLOs; asynchronous document/report work; tenant-aware capacity and throttling; no noisy-neighbour breach.
+Availability & DR | Topology-specific SLO/RPO/RTO; regional backup and tested restoration; dependency health and runbooks.
+Privacy | Purpose and retention policy; PII minimisation; deletion/legal hold; residency; no raw PII in unnecessary AI payloads.
+Observability | Tenant-safe logs, metrics, traces and audit; release/config dimensions; business journey telemetry and alert ownership.
+Accessibility & localisation | WCAG-oriented surfaces; locale, timezone, currency, language and document variants.
+Testing | Contract, property, isolation, migration, security, golden journey, replay, performance and disaster-recovery tests.
+Operability | Health, readiness, deployment, rollback, replay, reconciliation, support tooling and customer-visible status evidence.
+13. Release, validation and simulation
+Gate | Required evidence
+Schema validation | All typed references resolve; no illegal fields or cross-version references.
+Business validation | Authority, dates, territories, finance, documents and process gates are internally consistent.
+Security validation | Permissions, secrets, provider scopes, residency and tenant boundaries pass.
+Simulation | Happy paths, referrals, declines, integration failure, payment failure, endorsement, cancellation, renewal and claims scenarios.
+Regression | Existing tenant golden journeys and financial/reporting outputs remain within approved tolerances.
+Human approval | Named approvers sign the release diff, exceptions and residual risks.
+Publication | Atomic immutable release, checksum/signature, effective date and rollback pointer.
+Post-release | Telemetry, reconciliation, error budget and tenant-specific smoke tests pass.
+14. Acceptance criteria for Kernel v1
+ID | Acceptance criterion
+AC-001 | A single Kernel build runs at least Abbeygate and one structurally different tenant without tenant-specific branching in shared runtime code.
+AC-002 | Abbeygate Motor, Home and Travel golden quote-to-issue journeys pass using published Tenant Releases.
+AC-003 | One Attsure PI journey preserves broker, Australian tax, commission and document outcomes through compatibility configuration.
+AC-004 | One Altus SDR batch-to-certificate-and-invoice journey runs through canonical commands or approved extension interfaces.
+AC-005 | PolarisRe EAR/CAR can be expressed without adding retail-only assumptions to canonical policy or risk models.
+AC-006 | A new sandbox tenant can be provisioned, configured via Config MCP, simulated and published without cloning a repository.
+AC-007 | An attempted cross-tenant read, write, event, job, cache or document access fails and produces security evidence.
+AC-008 | A production transaction can be replayed to the same decision and finance result from stored inputs and version references.
+AC-009 | Rollback activates the previous Tenant Release while preserving transactions already governed by the superseded release.
+AC-010 | No active runtime reads editable configuration drafts.
+15. Delivery epics
+Epic | Scope | Exit signal
+E1 Kernel boundary | Canonical context, module contracts, command/event funnel and anti-fork CI. | Shared runtime compiles independently of tenant packages.
+E2 Configuration compiler | Typed configuration graph, validation, diff, simulation and signed releases. | Draft-to-sandbox flow covers product + process.
+E3 Tenancy & residency | Control plane, regional manifests, tenant propagation and isolation suite. | Two tenants run safely in one topology; one runs in a separate region/topology.
+E4 Product framework | Manifest/profile/adapter evolution and package registry. | Abbeygate products register without shared-code literals.
+E5 Process framework | Cooper Process Builder model, operational policy and process state execution. | Published process version governs runtime gates.
+E6 Migration framework | Mappers, façades, aliases, dual-run, reconciliation and rollback. | One existing tenant journey cut over without rewrite.
+E7 Finance & reporting | Canonical movements, ledger, reconciliation, schemas and lineage. | Financial and BDX outputs reconcile to legacy truth.
+E8 Customer migrations | Abbeygate, Attsure, Altus, then remaining tenants. | Golden journeys and observation gates passed; forks retired progressively.
+16. Decisions still required
+Decision | Recommended direction
+Repository topology | Kernel packages plus tenant/product configuration repositories or registries; customer applications consume versioned Kernel releases. Avoid a single undifferentiated mega-application.
+Database isolation default | Regional pooled compute with dedicated tenant database for regulated/enterprise customers; row isolation only for approved shared-SaaS tiers.
+Configuration representation | Typed relational canonical model plus signed release document; JSON only for bounded extension payloads and snapshots.
+Workflow execution | Insurance-aware command/state orchestration with declarative gates; do not adopt an unconstrained generic BPM engine as the domain authority.
+Finance model | Canonical balanced insurance subledger with projections into accounting and customer reporting.
+UI composition | Shared workspaces with registered product/process panels and declarative fields; presentation configuration remains separate from domain authority.
+Prospect scope | Complete product/programme discovery for VUW.ai, Deefa, Bonzah and UE before final compatibility acceptance packs are signed.
+Appendix A — Evidence references
+Abbeygate Product Manifest contract: https://github.com/FacioMGA/abbeygate/blob/main/packages/products/src/types.ts
+Abbeygate product catalogue: https://github.com/FacioMGA/abbeygate/blob/main/frontend/src/products/catalog.ts
+Abbeygate Config MCP decision: https://github.com/FacioMGA/abbeygate/blob/main/docs/architecture/decisions/ADR-0036-config-mcp-module-and-tool-surface.md
+Abbeygate Product Launch Draft decision: https://github.com/FacioMGA/abbeygate/blob/main/docs/architecture/decisions/ADR-0037-product-launch-drafts-as-workflow-objects.md
+Abbeygate canonical ownership contract: https://github.com/FacioMGA/abbeygate/blob/main/docs/architecture/contracts/canonical-ownership.md
+Cooper Process Builder runtime decision: https://github.com/FacioMGA/cooper/blob/main/docs/architecture/decisions/ADR-0001-process-builder-operational-runtime.md
+Cooper Process Builder configuration surface: https://github.com/FacioMGA/cooper/blob/main/facio-admin/src/pages/ProcessBuilderPage.tsx
+Cooper Product configuration surface: https://github.com/FacioMGA/cooper/blob/main/facio-admin/src/pages/ProductDetailPage.tsx
+Attsure platform overview: https://github.com/FacioMGA/Attsure/blob/main/README.md
+AltusUW platform overview: https://github.com/FacioMGA/AltusUW/blob/main/README.md
+PolarisRe platform overview: https://github.com/FacioMGA/polarisre/blob/main/README.md
+Appendix B — Definition of done for every migrated capability
+Canonical owner and public contract are documented.
+Tenant, operating-entity and authority scope are enforced.
+UI, API, MCP, job and import paths delegate to the same domain use case.
+Configuration and extension boundaries are explicit.
+Draft, publication, versioning and rollback behaviour are tested.
+Existing customer behaviour has golden evidence and reconciliation.
+No customer literal or parallel source of truth remains in shared code.
+Telemetry, audit, runbook and failure modes are production-ready.

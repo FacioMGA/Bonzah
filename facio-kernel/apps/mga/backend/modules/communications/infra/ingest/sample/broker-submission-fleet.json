@@ -1,0 +1,38 @@
+[
+  {
+    "externalMessageId": "SUB-ABFLEET-2210-001",
+    "conversationId": "SUB-ABFLEET-2210",
+    "subject": "New fleet submission — Larnaca Logistics Ltd",
+    "from": { "name": "Maria Broker", "email": "maria@brokerbros.example" },
+    "to": [{ "name": "Abbeygate Underwriting", "email": "underwriting@abbeygate.example" }],
+    "sentAt": "2026-02-02T09:05:00.000Z",
+    "bodyText": "Hi team, please quote a new commercial motor fleet for Larnaca Logistics Ltd (policy ref ABFLEET-2210). 14 vehicles, mixed vans and two HGVs. Requested sum insured €1,200,000. Effective 1 March. Proposer has 3 years trading. One fault claim in the last 3 years (€8,400). Schedule of vehicles attached.",
+    "attachments": [{ "name": "vehicle_schedule.xlsx", "contentType": "application/vnd.ms-excel" }],
+    "linkHints": { "policyReference": "ABFLEET-2210" }
+  },
+  {
+    "externalMessageId": "SUB-ABFLEET-2210-002",
+    "conversationId": "SUB-ABFLEET-2210",
+    "subject": "RE: New fleet submission — Larnaca Logistics Ltd",
+    "from": { "name": "Abbeygate Underwriting", "email": "underwriting@abbeygate.example" },
+    "to": [{ "name": "Maria Broker", "email": "maria@brokerbros.example" }],
+    "sentAt": "2026-02-03T11:40:00.000Z",
+    "bodyText": "Thanks Maria. Before we can rate we need: (1) full claims experience for the last 5 years (you sent 3), (2) named driver list with dates of birth and licence types, (3) confirmation of any HGV operator licence. Note the two HGVs may take this outside the standard fleet binder authority — likely a referral to the lead underwriter.",
+    "attachments": [],
+    "linkHints": { "policyReference": "ABFLEET-2210" }
+  },
+  {
+    "externalMessageId": "SUB-ABFLEET-2210-003",
+    "conversationId": "SUB-ABFLEET-2210",
+    "subject": "RE: New fleet submission — Larnaca Logistics Ltd",
+    "from": { "name": "Maria Broker", "email": "maria@brokerbros.example" },
+    "to": [{ "name": "Abbeygate Underwriting", "email": "underwriting@abbeygate.example" }],
+    "sentAt": "2026-02-05T15:20:00.000Z",
+    "bodyText": "5-year claims experience attached. Driver list attached. HGV operator licence is being renewed — broker to confirm next week. Client is keen to bind before 1 March.",
+    "attachments": [
+      { "name": "claims_experience_5yr.pdf", "contentType": "application/pdf" },
+      { "name": "driver_list.pdf", "contentType": "application/pdf" }
+    ],
+    "linkHints": { "policyReference": "ABFLEET-2210" }
+  }
+]

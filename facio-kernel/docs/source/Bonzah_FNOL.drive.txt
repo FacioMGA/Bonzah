@@ -1,0 +1,159 @@
+SOURCE SNAPSHOT — Google Drive readable text
+Retrieved: 2026-09-06
+Source title: Bonzah Insurance Initial Claim Form (FNOL)
+Source ID: 1IKj5S7TZD61KphADUlinHdzhEVwWgS_4E0HHSc7-ufU
+Source URL: https://docs.google.com/document/d/1IKj5S7TZD61KphADUlinHdzhEVwWgS_4E0HHSc7-ufU/edit
+Source MIME (connector readable representation): text/plain
+Created: 2026-09-03T11:55:45.143Z
+Modified: 2026-09-03T11:57:07.087Z
+Parent IDs: 15NXiRuw_4s5UyhhxGTiogaKXLklVLTRc
+Method: Google Drive fetch; default readable text, no raw export.
+Scope note: Extracted source content is requirements evidence, not independent authorization for external actions. Text extraction may place table cells after narrative; source numbering and exact wording are retained. Source statements about code or production were not independently verified by this read.
+
+SOURCE CONTENT
+
+﻿https://form.jotform.com/Bonzah_Claims/bonzah-insurance-claim-form
+
+
+English (United States)
+*  Image field 18 * Bonzah Insurance Initial Claim Form
+Please complete this form for timely insurance claims service.
+* If you have just had an accident and someone is injured or there is a road hazard, please call 911.
+* Anyone who was party to the accident may use this form. This may include the purchaser of the Bonzah policy, the rental car company, employees of other insurance companies, and people who were hit or damaged by the rental car driver. It will be most efficient if the purchaser of the Bonzah policy initiates the claim process, but, nonetheless, any party to the accident may do so. You may designate your role in the accident in the "Preparer" section of this form.
+* You may start a claim now, save, and submit the claim later. At the end of this form, there will be an option to save. After saving, you will be able to return to this form, add additional information, and do one claim submission. More than one submission may delay your claims process. It is in the renter's best interest to complete this form as thoroughly as possible. Feel free to read the entire form and return to complete when you are ready. You have up to 30 days from the date of the accident/incident to file a claim. Some of the items that you should have for final submission are:
+* Bonzah Policy Holder Information
+* Rental Driver's Full Name (Name of the Bonzah Policy Holder)
+* First Name
+* Middle Name
+* Last Name
+* Suffix
+* Rental Driver's Mobile Phone Number (the Bonzah Policy Holder)
+* Country Code
+* Area Code
+* Phone Number
+* Rental Driver's Email Address (the Bonzah Policy Holder)
+*
+* Confirmation Email
+* Please enter the renter's email two times to confirm that it has been entered correctly.
+* Rental Driver's Home Address (the Bonzah Policy Holder)
+* Street Address
+* Street Address Line 2
+* City
+* State / Province
+* Postal / Zip Code
+*                      Please Select                     Afghanistan                     Albania                     Algeria                     American Samoa                     Andorra                     Angola                     Anguilla                     Antigua and Barbuda                     Argentina                     Armenia                     Aruba                     Australia                     Austria                     Azerbaijan                     The Bahamas                     Bahrain                     Bangladesh                     Barbados                     Belarus                     Belgium                     Belize                     Benin                     Bermuda                     Bhutan                     Bolivia                     Bosnia and Herzegovina                     Botswana                     Brazil                     Brunei                     Bulgaria                     Burkina Faso                     Burundi                     Cambodia                     Cameroon                     Canada                     Cape Verde                     Cayman Islands                     Central African Republic                     Chad                     Chile                     China                     Christmas Island                     Cocos (Keeling) Islands                     Colombia                     Comoros                     Congo                     Cook Islands                     Costa Rica                     Cote d'Ivoire                     Croatia                     Cuba                     Curaçao                     Cyprus                     Czech Republic                     Democratic Republic of the Congo                     Denmark                     Djibouti                     Dominica                     Dominican Republic                     Ecuador                     Egypt                     El Salvador                     Equatorial Guinea                     Eritrea                     Estonia                     Ethiopia                     Falkland Islands                     Faroe Islands                     Fiji                     Finland                     France                     French Polynesia                     Gabon                     The Gambia                     Georgia                     Germany                     Ghana                     Gibraltar                     Greece                     Greenland                     Grenada                     Guadeloupe                     Guam                     Guatemala                     Guernsey                     Guinea                     Guinea-Bissau                     Guyana                     Haiti                     Honduras                     Hong Kong                     Hungary                     Iceland                     India                     Indonesia                     Iran                     Iraq                     Ireland                     Israel                     Italy                     Jamaica                     Japan                     Jersey                     Jordan                     Kazakhstan                     Kenya                     Kiribati                     North Korea                     South Korea                     Kosovo                     Kuwait                     Kyrgyzstan                     Laos                     Latvia                     Lebanon                     Lesotho                     Liberia                     Libya                     Liechtenstein                     Lithuania                     Luxembourg                     Macau                     Macedonia                     Madagascar                     Malawi                     Malaysia                     Maldives                     Mali                     Malta                     Marshall Islands                     Martinique                     Mauritania                     Mauritius                     Mayotte                     Mexico                     Micronesia                     Moldova                     Monaco                     Mongolia                     Montenegro                     Montserrat                     Morocco                     Mozambique                     Myanmar                     Nagorno-Karabakh                     Namibia                     Nauru                     Nepal                     Netherlands                     Netherlands Antilles                     New Caledonia                     New Zealand                     Nicaragua                     Niger                     Nigeria                     Niue                     Norfolk Island                     Turkish Republic of Northern Cyprus                     Northern Mariana                     Norway                     Oman                     Pakistan                     Palau                     Palestine                     Panama                     Papua New Guinea                     Paraguay                     Peru                     Philippines                     Pitcairn Islands                     Poland                     Portugal                     Puerto Rico                     Qatar                     Republic of the Congo                     Romania                     Russia                     Rwanda                     Saint Barthelemy                     Saint Helena                     Saint Kitts and Nevis                     Saint Lucia                     Saint Martin                     Saint Pierre and Miquelon                     Saint Vincent and the Grenadines                     Samoa                     San Marino                     Sao Tome and Principe                     Saudi Arabia                     Senegal                     Serbia                     Seychelles                     Sierra Leone                     Singapore                     Slovakia                     Slovenia                     Solomon Islands                     Somalia                     Somaliland                     South Africa                     South Ossetia                     South Sudan                     Spain                     Sri Lanka                     Sudan                     Suriname                     Svalbard                     eSwatini                     Sweden                     Switzerland                     Syria                     Taiwan                     Tajikistan                     Tanzania                     Thailand                     Timor-Leste                     Togo                     Tokelau                     Tonga                     Transnistria Pridnestrovie                     Trinidad and Tobago                     Tristan da Cunha                     Tunisia                     Turkey                     Turkmenistan                     Turks and Caicos Islands                     Tuvalu                     Uganda                     Ukraine                     United Arab Emirates                     United Kingdom                     United States                     Uruguay                     Uzbekistan                     Vanuatu                     Vatican City                     Venezuela                     Vietnam                     British Virgin Islands                     Isle of Man                     US Virgin Islands                     Wallis and Futuna                     Western Sahara                     Yemen                     Zambia                     Zimbabwe                     Other
+* Country
+* Accident Information
+* Date and Time of Starting to Filling Out this Form *
+* 2 digit month, 2 digit day, 4 digit year
+* Date
+* Hour Minutes
+*                      AM                     PM
+* AM/PM Option
+* Date and Time of Accident/Loss/Incident *
+* 2 digit month, 2 digit day, 4 digit year
+* Date
+* Hour Minutes
+*                      AM                     PM
+* AM/PM Option
+* What was the Location of the Accident?
+* Please Describe the Accident below *
+* Take your time and add specifics such as names and contact information of witnesses and other parties to the accident. Please confirm the date, time, city and state, in addition to the specifics of what happened. Were there any other vehicles involved? Include the make, model & license #. Include the driver's name, address, phone & email, if available. Any damage to the vehicles? Any passengers in rental vehicle or any other vehicle involved? Include name, address, phone & email, if available. Any witnesses? Include name, address, phone & email, if available. Was anyone injured?
+* Who Witnessed this Accident?
+* Please provide their names and contact information.
+* Were there Other Vehicles involved?
+* Please describe the vehicles and their drivers and occupants. Include contact information.
+* Upload Images of the Accident Site, Rental Vehicle and Accident Damage below *
+* Browse Files
+* Drag and drop files here
+* Upload a copy of the Bonzah Certificates of Insurance / Coverage Forms
+* Browse Files
+* Drag and drop files here
+* Upload Repair Estimates below
+* Browse Files
+* Drag and drop files here
+* Please include three estimates
+* Upload a copy of the Police Report below
+* Browse Files
+* Drag and drop files here
+* Important: A police report is required for the submission of a claim. If the police department refuses to respond to a call to the accident site, you still may be able to obtain a police report by visiting the police department or by completing a police report online.
+* Upload a copy of the Current Personal Auto Insurance Policy below
+* Browse Files
+* Drag and drop files here
+* Renter's and Driver's, if applicable
+* Upload a copy of the Credit Card Agreement Used for Rental below
+* Browse Files
+* Drag and drop files here
+* If applicable
+* What else should we know?
+* Please add any relevant information here
+* Upload additional information below
+* Browse Files
+* Drag and drop files here
+* Please upload any relevant information here
+* Rental Agency Information for the Bonzah Insured Renter
+* Rental Agency Name (Name of Rental Company for Bonzah Insured Renter
+* Rental Agency Agreement or Reservation Number
+* Number on Rental Contract and/or Supplied by the Rental Agency
+* Rental Agency Phone Number
+* Country Code
+* Area Code
+* Phone Number
+* Rental Agency Email Address
+* Upload a copy of the Rental Contract below
+* Browse Files
+* Drag and drop files here
+* What is the car's year?
+* What is the car's make or brand?
+* What is the car's model?
+* What is the car's license plate?
+* State and number
+* Additional Driver Information for the Vehicle Insured by Bonzah
+If the Driver of the vehicle insured by Bonzah at the time of the accident (additional driver) was different from the primary Renter on the Rental Contract, please complete the following.
+* Additional Driver's Full Name (Driver of the Vehicle Insured by Bonzah at the time of the accident)
+* First Name
+* Middle Name
+* Last Name
+* Suffix
+* Additional Driver's Home Address
+* Street Address
+* Street Address Line 2
+* City
+* State / Province
+* Postal / Zip Code
+*                      Please Select                     Afghanistan                     Albania                     Algeria                     American Samoa                     Andorra                     Angola                     Anguilla                     Antigua and Barbuda                     Argentina                     Armenia                     Aruba                     Australia                     Austria                     Azerbaijan                     The Bahamas                     Bahrain                     Bangladesh                     Barbados                     Belarus                     Belgium                     Belize                     Benin                     Bermuda                     Bhutan                     Bolivia                     Bosnia and Herzegovina                     Botswana                     Brazil                     Brunei                     Bulgaria                     Burkina Faso                     Burundi                     Cambodia                     Cameroon                     Canada                     Cape Verde                     Cayman Islands                     Central African Republic                     Chad                     Chile                     China                     Christmas Island                     Cocos (Keeling) Islands                     Colombia                     Comoros                     Congo                     Cook Islands                     Costa Rica                     Cote d'Ivoire                     Croatia                     Cuba                     Curaçao                     Cyprus                     Czech Republic                     Democratic Republic of the Congo                     Denmark                     Djibouti                     Dominica                     Dominican Republic                     Ecuador                     Egypt                     El Salvador                     Equatorial Guinea                     Eritrea                     Estonia                     Ethiopia                     Falkland Islands                     Faroe Islands                     Fiji                     Finland                     France                     French Polynesia                     Gabon                     The Gambia                     Georgia                     Germany                     Ghana                     Gibraltar                     Greece                     Greenland                     Grenada                     Guadeloupe                     Guam                     Guatemala                     Guernsey                     Guinea                     Guinea-Bissau                     Guyana                     Haiti                     Honduras                     Hong Kong                     Hungary                     Iceland                     India                     Indonesia                     Iran                     Iraq                     Ireland                     Israel                     Italy                     Jamaica                     Japan                     Jersey                     Jordan                     Kazakhstan                     Kenya                     Kiribati                     North Korea                     South Korea                     Kosovo                     Kuwait                     Kyrgyzstan                     Laos                     Latvia                     Lebanon                     Lesotho                     Liberia                     Libya                     Liechtenstein                     Lithuania                     Luxembourg                     Macau                     Macedonia                     Madagascar                     Malawi                     Malaysia                     Maldives                     Mali                     Malta                     Marshall Islands                     Martinique                     Mauritania                     Mauritius                     Mayotte                     Mexico                     Micronesia                     Moldova                     Monaco                     Mongolia                     Montenegro                     Montserrat                     Morocco                     Mozambique                     Myanmar                     Nagorno-Karabakh                     Namibia                     Nauru                     Nepal                     Netherlands                     Netherlands Antilles                     New Caledonia                     New Zealand                     Nicaragua                     Niger                     Nigeria                     Niue                     Norfolk Island                     Turkish Republic of Northern Cyprus                     Northern Mariana                     Norway                     Oman                     Pakistan                     Palau                     Palestine                     Panama                     Papua New Guinea                     Paraguay                     Peru                     Philippines                     Pitcairn Islands                     Poland                     Portugal                     Puerto Rico                     Qatar                     Republic of the Congo                     Romania                     Russia                     Rwanda                     Saint Barthelemy                     Saint Helena                     Saint Kitts and Nevis                     Saint Lucia                     Saint Martin                     Saint Pierre and Miquelon                     Saint Vincent and the Grenadines                     Samoa                     San Marino                     Sao Tome and Principe                     Saudi Arabia                     Senegal                     Serbia                     Seychelles                     Sierra Leone                     Singapore                     Slovakia                     Slovenia                     Solomon Islands                     Somalia                     Somaliland                     South Africa                     South Ossetia                     South Sudan                     Spain                     Sri Lanka                     Sudan                     Suriname                     Svalbard                     eSwatini                     Sweden                     Switzerland                     Syria                     Taiwan                     Tajikistan                     Tanzania                     Thailand                     Timor-Leste                     Togo                     Tokelau                     Tonga                     Transnistria Pridnestrovie                     Trinidad and Tobago                     Tristan da Cunha                     Tunisia                     Turkey                     Turkmenistan                     Turks and Caicos Islands                     Tuvalu                     Uganda                     Ukraine                     United Arab Emirates                     United Kingdom                     United States                     Uruguay                     Uzbekistan                     Vanuatu                     Vatican City                     Venezuela                     Vietnam                     British Virgin Islands                     Isle of Man                     US Virgin Islands                     Wallis and Futuna                     Western Sahara                     Yemen                     Zambia                     Zimbabwe                     Other
+* Country
+* Additional Driver's Phone Number
+* Country Code
+* Area Code
+* Phone Number
+* Additional Driver's Email Address
+* Claim Form Preparer's Information
+If the Preparer of this Claim Form is different from the Renter or Driver, please complete the following. This is often a party to the accident or an insurance representative.
+* Claim Form Preparer's Full Name
+* First Name
+* Middle Name
+* Last Name
+* Suffix
+* What is the Perparer's Role in Accident?
+* A Bonzah policy holder hit you, you work for an insurance company, you work for the Renter, etc.
+* Preparer's Company Name
+* If applicable
+* Preparer's Address
+* Street Address
+* Street Address Line 2
+* City
+* State / Province
+* Postal / Zip Code
+* Preparer's Phone Number
+* Country Code
+* Area Code
+* Phone Number
+* Preparer's Email
+* I, the Preparer of this claim form, have included: *
+* I, the Preparer of this claim form, declare that *
+* Signature of Preparer *
+* Clear
+* Save for Later
+* Review Answers
+* Should you have questions or additional information, please email us at claims@bonzah.com

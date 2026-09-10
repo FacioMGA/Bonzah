@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <base href="{{basePath}}">
+    <link rel="stylesheet" href="styles/pdf-theme.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        :root {
+            /* Keep all boxes consistent with the frame radius */
+            --cert-radius: 6px;
+            /* Consistent vertical rhythm between blocks */
+            --cert-gap: 16px;
+            /* Tighter rhythm inside the footer/signature cluster */
+            --cert-gap-tight: 6px;
+        }
+
+        .draft-watermark {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 110px;
+            font-weight: 900;
+            letter-spacing: 0.22em;
+            color: var(--brand-navy);
+            opacity: 0.09;
+            transform: rotate(-22deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body.is-draft .draft-watermark {
+            display: flex;
+        }
+
+        body.is-quote .draft-watermark {
+            color: #60a5fa;
+            opacity: 0.12;
+        }
+
+        .draft-watermark span {
+            padding: 16px 26px;
+            border: 8px solid rgba(14, 53, 83, 0.18);
+            border-radius: 18px;
+        }
+
+        @page {
+            /* Certificate must fit 1 page */
+            margin: 0;
+        }
+
+        .cert-shell {
+            border: 2px solid #0B1220;
+            /* less round (0.3–0.4rem) */
+            border-radius: var(--cert-radius);
+            padding: 10px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: var(--cert-gap);
+            /* allow anchoring fineprint to bottom on 1-page cert */
+            min-height: 100%;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        /* Override doc-topbar for Certificate with tighter grid and spacing */
+        .cert-shell .doc-topbar {
+            grid-template-columns: 200px auto 200px;
+            padding: 10px 16px;
+        }
+
+        /* Reduce {{tenantBrand.displayName}} logo by ~7% for balance */
+        .cert-shell .doc-logo-left {
+            height: 65px;
+        }
+
+        /* Explicit width constraint on Lloyd's logo */
+        .cert-shell .doc-logo-right {
+            width: 140px;
+            max-width: 140px;
+        }
+
+        /* Ensure logo container has padding */
+        .cert-shell .doc-topbar-right {
+            padding-right: 8px;
+        }
+
+        /* Removed custom topbar positioning - using shared .doc-topbar */
+
+        /* Removed custom logo sizing - using shared .doc-logo-left from pdf-theme.css */
+
+        /* Removed custom logo sizing - using shared .doc-logo-right from pdf-theme.css */
+
+        .cert-title {
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: 0.01em;
+            color: #0B1220;
+            margin: 0;
+            line-height: 1.1;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .cert-subtitle {
+            font-size: 11px;
+            font-weight: 800;
+            color: rgba(14, 53, 83, 0.92);
+            margin-top: 5px;
+            white-space: nowrap;
+        }
+
+        .cert-intro {
+            margin: 0;
+            padding: 6px 8px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--cert-radius);
+            font-size: 9px;
+            color: var(--brand-navy-2);
+            line-height: 1.4;
+        }
+
+        .cert-item {
+            margin-top: 0;
+            padding: 8px 10px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--cert-radius);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .cert-item-no {
+            flex: 0 0 auto;
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            background: #F3F4F6;
+            /* lighter silver */
+            color: #374151;
+            /* artistic dark grey */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 13px;
+            line-height: 1;
+            margin-top: 1px;
+        }
+
+        .cert-item-body {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .cert-item-title {
+            /* Match the "facts" keys styling (POLICYHOLDER / VEHICLE / etc) */
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(2, 6, 23, 0.55);
+            margin-bottom: 3px;
+        }
+
+        .cert-item-value {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--ink);
+            line-height: 1.25;
+        }
+
+        .cert-small {
+            font-size: 9.5px;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+
+        /* In this certificate, the "pill" is on a light background */
+        .cert-shell .pill {
+            border: 1px solid rgba(2, 6, 23, 0.14);
+            background: rgba(2, 6, 23, 0.04);
+            color: rgba(2, 6, 23, 0.74);
+        }
+
+        .facts-card {
+            border: 1px solid var(--border);
+            border-radius: var(--cert-radius);
+            background: #ffffff;
+            padding: 10px 12px;
+            margin-bottom: 0;
+        }
+
+        .roadside-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border: 1px dashed rgba(2, 6, 23, 0.14);
+            border-radius: var(--cert-radius);
+            padding: 6px 10px;
+            margin: 0 0 8px 0;
+            background: rgba(2, 6, 23, 0.02);
+        }
+
+        .roadside-row .k {
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(2, 6, 23, 0.55);
+        }
+
+        .roadside-row .v {
+            font-size: 10.5px;
+            font-weight: 900;
+            color: #0B1220;
+            white-space: nowrap;
+        }
+
+        /* Compress the "facts strip" for the certificate */
+        .cert-shell .facts {
+            margin: 0;
+            gap: 8px 12px;
+        }
+
+        .cert-shell .card-mini {
+            border: none;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        .cert-shell .fact-k {
+            font-size: 9px;
+            margin-bottom: 3px;
+        }
+
+        .cert-shell .fact-v {
+            font-size: 12px;
+        }
+
+        .cert-after-advice {
+            /* Take remaining vertical space; center signature within it */
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--cert-gap-tight);
+            min-height: 0;
+        }
+
+        .certificate-signature {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px 0;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .certificate-signature img {
+            height: 34px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .certificate-footer {
+            font-size: 8px;
+            line-height: 1.25;
+            color: var(--muted);
+            text-align: justify;
+            border-top: 1px solid rgba(2, 6, 23, 0.10);
+            padding-top: 6px;
+            margin-top: 2px;
+        }
+
+        .certificate-footer p {
+            margin: 0 0 4px 0;
+        }
+
+        .certificate-footer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .certificate-footer a {
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        .cert-note-box {
+            margin-top: 0;
+            padding: 7px 9px;
+            border: 1px solid rgba(2, 6, 23, 0.10);
+            border-radius: var(--cert-radius);
+            background: rgba(2, 6, 23, 0.02);
+        }
+
+        .cert-note-box p {
+            margin: 0;
+            font-size: 9px;
+            line-height: 1.35;
+            color: rgba(2, 6, 23, 0.75);
+            text-align: justify;
+        }
+
+        .cert-note-box p+p {
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body class="{{#if isDraft}}is-draft{{/if}} {{#if isQuote}}is-quote{{/if}}">
+    <div class="draft-watermark"><span>DRAFT</span></div>
+
+    <div class="cert-shell">
+
+        <div class="doc-topbar">
+            <div class="doc-topbar-left">
+                {{#if tenantBrand.logo}}<img class="doc-logo-left" src="{{tenantBrand.logo}}" alt="{{tenantBrand.displayName}}" />{{else}}<strong>{{tenantBrand.displayName}}</strong>{{/if}}
+            </div>
+            <div class="doc-topbar-center">
+                <div class="cert-title">
+                    {{#if isQuote}}YOUR MOTOR INSURANCE QUOTE{{else}}CERTIFICATE OF MOTOR INSURANCE{{/if}}
+                </div>
+                <div class="cert-subtitle">
+                    {{#if isQuote}}
+                    Quote Number <span class="font-mono">{{policy_number}}</span> · Draft (non-binding)
+                    {{else}}
+                    Certificate number <span class="font-mono">{{certificate_number}}</span> ·
+                    Policy <span class="font-mono">{{policy_number}}</span>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="doc-topbar-right">
+                <span>{{tenantBrand.legalName}}</span>
+            </div>
+        </div>
+
+        <div class="cert-intro">
+            {{#if isQuote}}
+            This quote is provided for indicative purposes only and is not a policy document.
+            {{else}}
+            This certificate is issued for the purpose of the Motor Vehicle (Third Party Liability Insurance) Law of
+            2000, or any Law amending or substituting the same.
+            {{/if}}
+        </div>
+
+        <div class="facts-card avoid-break">
+            <div class="facts">
+                <div class="card-mini">
+                    <div class="fact-k">Policyholder</div>
+                    <div class="fact-v">{{insured.name}}</div>
+                </div>
+                <div class="card-mini">
+                    <div class="fact-k">Vehicle</div>
+                    <div class="fact-v">{{vehicle.reg}}</div>
+                </div>
+                <div class="card-mini">
+                    <div class="fact-k">Valid from</div>
+                    <div class="fact-v">{{period.from_date_only}} 00:01</div>
+                </div>
+                <div class="card-mini">
+                    <div class="fact-k">Valid to</div>
+                    <div class="fact-v">{{period.to_date_only}} noon</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cert-item avoid-break">
+            <div class="cert-item-no">1</div>
+            <div class="cert-item-body">
+                <div class="cert-item-title">Index mark and registration number of the vehicle or its description</div>
+                <div class="cert-item-value">{{vehicle.description_full}}</div>
+            </div>
+        </div>
+
+        <div class="cert-item avoid-break">
+            <div class="cert-item-no">2</div>
+            <div class="cert-item-body">
+                <div class="cert-item-title">Name and surname of policyholder</div>
+                <div class="cert-item-value">{{insured.name}}</div>
+            </div>
+        </div>
+
+        <div class="cert-item avoid-break">
+            <div class="cert-item-no">3</div>
+            <div class="cert-item-body">
+                <div class="cert-item-title">Policy holder's identity card number or in the case of a company its
+                    registration number</div>
+                <div class="cert-item-value">{{insured.identity_card_number}}</div>
+            </div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 0; gap: 10px;">
+            <div class="cert-item avoid-break" style="margin-top: 0;">
+                <div class="cert-item-no">4</div>
+                <div class="cert-item-body">
+                    <div class="cert-item-title">Effective date of the commencement of insurance for the purpose of the
+                        relevant law</div>
+                    <div class="cert-item-value">{{period.from_date_only}} at 00:01</div>
+                </div>
+            </div>
+            <div class="cert-item avoid-break" style="margin-top: 0;">
+                <div class="cert-item-no">5</div>
+                <div class="cert-item-body">
+                    <div class="cert-item-title">Date of expiry of insurance</div>
+                    <div class="cert-item-value">{{period.to_date_only}} at noon</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cert-item avoid-break">
+            <div class="cert-item-no">6</div>
+            <div class="cert-item-body">
+                <div class="cert-item-title">Persons or classes of person entitled to drive</div>
+                <div class="cert-item-value">{{drivers.entitled_classes}}</div>
+                {{#if drivers.named.length}}
+                <div class="cert-small" style="margin-top: 4px;">
+                    {{drivers.named_csv}}
+                </div>
+                {{/if}}
+                <div class="cert-small" style="margin-top: 6px; text-align: justify;">
+                    Provided that the person driving, as described above, holds a licence to drive the vehicle or has
+                    held and is not disqualified from holding or obtaining such a licence. The term “driving licence” is
+                    within the meaning of the Law.
+                </div>
+            </div>
+        </div>
+
+        <div class="cert-item avoid-break">
+            <div class="cert-item-no">7</div>
+            <div class="cert-item-body">
+                <div class="cert-item-title">Limitations as to use</div>
+                <div class="cert-item-value" style="font-weight: 700;">{{limitations.use_text}}</div>
+                <div class="cert-small" style="margin-top: 6px; text-align: justify;">
+                    <strong>Excluding:</strong> {{limitations.excluding_text}}
+                </div>
+            </div>
+        </div>
+
+        <div class="cert-note-box avoid-break">
+            <p>
+                {{#if isQuote}}
+                This quotation is not proof of insurance cover and does not constitute a policy contract.
+                {{else}}
+                It is hereby certified that the policy to which the Certificate relates is issued in accordance with the
+                provisions of the Motor Vehicles (Third Party Liability Insurance) Law of 2000, or any Law amending or
+                substituting the same.
+                {{/if}}
+            </p>
+            <p>
+                Advice to Third Parties: Nothing contained in this Certificate affects your right as a Third Party to
+                make a claim.
+            </p>
+        </div>
+
+        <div class="cert-after-advice">
+            <div class="certificate-signature">
+                {{#if greenCard.signature_asset}}<img src="assets/{{greenCard.signature_asset}}" alt="Configured authorised signature" />{{/if}}
+                <div>{{tenantBrand.legalName}}</div>
+            </div>
+            <div class="fineprint" style="margin: 2px 0 6px 0; text-align: center; font-size: 9px; line-height: 1.25;">
+                <strong>ROADSIDE ASSISTANCE PROVIDER:</strong> {{assistance.provider}}. Tel: {{assistance.tel}}
+            </div>
+
+            <footer class="certificate-footer" role="contentinfo">
+                {{#each tenantBrand.legalLines}}<p>{{this}}</p>{{/each}}
+                <p>{{tenantBrand.legalName}} · {{tenantBrand.address}}</p>
+                <p>{{tenantBrand.contactEmail}} · {{tenantBrand.contactPhone}}</p>
+            </footer>
+        </div>
+    </div>
+
+</body>
+
+</html>

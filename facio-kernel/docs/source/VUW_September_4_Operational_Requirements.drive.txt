@@ -1,0 +1,322 @@
+Source: https://mail.google.com/mail/#all/1a06c9b2915c1a07
+Message subject: Fwd: Facio Requests - Urgent Follow Up
+Nicholas Thurlow forwarded Chris Leglu's September 4 2026 12:44 BST operational requirements to Uriel on September 4 2026 13:28 UTC.
+Acquisition: authenticated Gmail full MIME text; selected complete September 4 substantive customer message below. Contact signatures, MIME headers, attachments and earlier quoted messages omitted. This is source evidence, not runtime implementation or gate acceptance.
+
+Dear Uriel,
+
+Please see below a more detailed operational view of the commercial flow I had described previously. I also include a worked example
+
+Inward Business Model – PAS Configuration Requirements
+1. Business model / placement structure
+The MGA will be receiving inward business through follow subscription placements.
+The anticipated structure is that Swiss Re or Munich Re will provide the lead line, typically 50% of the risk, with Ark participating as a following insurer for approximately 5%–15% per risk.
+The intention is that Ark will participate on a follow basis behind the lead insurer rather than acting as lead on these placements.
+As the business develops, we expect additional Lloyd’s syndicates to join the panel. This is because Ark is unlikely to be able to provide the full 50% follow capacity required on every risk. The PAS therefore needs to support multiple following capacity providers on a single policy/risk, with each provider having its own percentage line.
+The precise panel composition may therefore vary from risk to risk.
+2. Example risk-share structure
+An example placement could be:
+Participant
+Role
+Line
+Swiss Re
+Lead
+50.0%
+Ark
+Follow
+10.0%
+Lloyd’s Syndicate A
+Follow
+10.0%
+Lloyd’s Syndicate B
+Follow
+10.0%
+Other capacity
+Follow
+20.0%
+Total
+
+100.0%
+The actual lines will vary by risk.
+The PAS therefore needs to be able to record the signed/participating line for each capacity provider, rather than simply storing a single insurer for the policy.
+It should also be possible to distinguish between:
+
+  *   the lead insurer / lead line;
+  *   each individual following insurer / syndicate;
+  *   the percentage line written by each participant; and
+  *   the resulting premium and other financial amounts attributable to each participant.
+
+3. MGA commission
+VUW.ai will receive a 7.5% commission in relation to the business.
+VUW.ai does not hold client money permissions and therefore will not receive or hold the underlying client premium.
+The anticipated cash/settlement flow is:
+Client / Broker → Guy Carpenter (GC) → Bureau → Ark / relevant capacity providers
+The commission will be paid to VUW.ai through a commission drop-down arrangement, expected to be made by either Guy Carpenter or the bureau. The precise mechanism is still to be confirmed.
+From a PAS perspective, we therefore need to be able to:
+
+  1.  calculate/record the 7.5% MGA commission;
+  2.  identify the commission recipient as VUW.ai;
+  3.  distinguish the commission from the underlying premium due to capacity providers;
+  4.  record the relevant settlement party; and
+  5.  support reconciliation where the commission is paid separately from the underlying premium.
+
+The PAS should not assume that VUW.ai is receiving the client’s premium directly.
+4. Premium and settlement
+The PAS needs to support the fact that the MGA is arranging/administering the business but is not the holder of client money.
+The system should therefore be capable of recording the different financial interests in the transaction, including:
+
+  *   gross written premium;
+  *   premium attributable to each capacity provider based on their line;
+  *   MGA commission;
+  *   brokerage/other deductions where applicable;
+  *   taxes/charges where applicable;
+  *   return premium where applicable; and
+  *   the resulting net settlement amounts.
+
+The exact settlement/bureau arrangements may vary depending on the final operating model, so we would prefer the PAS configuration to retain flexibility around the settlement party.
+5. Bordereaux
+During the initial implementation phase, the business will use the Bordereaux 5.2 template for reporting/settlement purposes.
+The expectation is that the PAS will initially generate/populate the required information in accordance with this template, with the longer-term objective being to automate the bordereaux process once the platform is fully configured.
+Accordingly, the implementation should ensure that the underlying policy and transaction data captured in the PAS is sufficient to produce the required Bordereaux 5.2 output.
+6. Mid-term adjustments (MTAs)
+The current QuoteBox configuration does not support MTAs, and this functionality is not expected to be available for approximately another six months.
+Consequently, during the interim period, MTA endorsements will be processed manually.
+The PAS therefore needs to accommodate manually processed MTA transactions, including the ability to record the resulting changes to:
+
+  *   policy/risk information;
+  *   premium;
+  *   commission;
+  *   capacity-provider shares;
+  *   effective date of the adjustment; and
+  *   any associated accounting/settlement information.
+
+The MTA should ultimately be reflected against the underlying policy and should not require the creation of an entirely separate unrelated policy record.
+Once QuoteBox MTA functionality becomes available, we expect this process to move towards automation.
+7. Cancellations, return premiums and other policy transactions
+The same principles should apply to other policy transactions, including cancellations, return premiums, reinstatements and other endorsements.
+Where a transaction changes the premium, the PAS should be able to calculate the corresponding impact on each capacity provider’s share and on the 7.5% MGA commission, where applicable.
+For example, if a policy has:
+
+  *   50% Swiss Re lead;
+  *   10% Ark follow; and
+  *   40% other following capacity,
+
+then an MTA generating an additional £10,000 of gross premium should allow the PAS to determine the corresponding premium allocation to each participant based on their written line.
+8. Key PAS requirement
+The key requirement is that the PAS treats the risk/policy as a single placement with multiple capacity participants, while retaining the individual line and financial information for each participant.
+We therefore need the system to support:
+
+  *   one policy/risk;
+  *   one overall placement;
+  *   one lead capacity provider;
+  *   multiple follow capacity providers;
+  *   individual percentage lines for each provider;
+  *   premium allocation by provider;
+  *   commission calculation;
+  *   transaction-level adjustments;
+  *   manual processing during the interim MTA period; and
+  *   reporting/settlement through the Bordereaux 5.2 process.
+
+The panel is expected to evolve over time, so the configuration should not be dependent on Ark being the only following capacity provider.
+
+Worked Example – Inward Follow Subscription Placement
+1. Example policy
+For illustration, assume VUW.ai receives a risk with a 100% insured value / order of £10m.
+The placement is structured as follows:
+Capacity provider
+Role
+Line
+Written amount
+Swiss Re
+Lead
+50.0%
+£5.0m
+Ark
+Follow
+10.0%
+£1.0m
+Lloyd’s Syndicate A
+Follow
+15.0%
+£1.5m
+Lloyd’s Syndicate B
+Follow
+25.0%
+£2.5m
+Total
+
+100.0%
+£10.0m
+This is an illustrative example only. The actual following panel and percentage lines will vary by risk.
+The important point for the PAS is that there is one underlying risk/policy, but multiple capacity providers with individual participation percentages.
+
+2. Example premium
+Assume the gross premium for the 100% placement is £500,000.
+The premium attributable to each capacity provider is therefore:
+Capacity provider
+Line
+Gross premium share
+Swiss Re
+50.0%
+£250,000
+Ark
+10.0%
+£50,000
+Lloyd’s Syndicate A
+15.0%
+£75,000
+Lloyd’s Syndicate B
+25.0%
+£125,000
+Total
+100.0%
+£500,000
+The PAS should be able to calculate these amounts from the overall premium and the individual written lines.
+
+3. MGA commission
+VUW.ai receives a 7.5% commission.
+For this example:
+£500,000 × 7.5% = £37,500 MGA commission
+The £37,500 commission is payable to VUW.ai.
+VUW.ai does not hold client money, so the system should distinguish between:
+
+  *   the gross premium generated by the policy;
+  *   amounts due to the capacity providers;
+  *   the MGA commission due to VUW.ai; and
+  *   the actual party through which each amount is settled.
+
+The precise commission settlement mechanism is still being confirmed. It is anticipated that the commission will be paid to VUW.ai via a commission drop-down from Guy Carpenter or the bureau.
+
+4. Illustrative settlement flow
+The intended operational flow is broadly:
+Client / producing broker
+↓
+Guy Carpenter
+↓
+Bureau
+↓
+Capacity provider(s)
+Separately:
+Guy Carpenter / Bureau
+↓
+7.5% commission drop-down
+↓
+VUW.ai
+VUW.ai therefore should not be treated by the PAS as the party receiving and holding the client’s premium.
+The exact cash movement between Guy Carpenter, the bureau and each capacity provider will be dependent on the final agreed settlement arrangements.
+
+5. How the PAS should represent the policy
+We would envisage the PAS holding a single policy record with, at minimum, the following relationships:
+Policy
+
+  *   Policy number
+  *   Insured
+  *   Broker / producing broker
+  *   Inception date
+  *   Expiry date
+  *   Gross premium
+  *   Currency
+  *   Overall placement information
+
+Capacity / subscription
+
+  *   Lead capacity provider
+  *   Following capacity providers
+  *   Written line for each participant
+  *   Premium attributable to each participant
+  *   Relevant commission/deduction information
+  *   Settlement party
+
+For the example above, the PAS would therefore have one policy but four capacity records:
+
+  1.  Swiss Re – 50%
+  2.  Ark – 10%
+  3.  Lloyd’s Syndicate A – 15%
+  4.  Lloyd’s Syndicate B – 25%
+
+This structure is important because the panel may change between risks and we expect additional Lloyd’s syndicates to join the panel over time.
+
+6. Worked MTA example
+Assume the original policy above is subsequently amended mid-term.
+The original premium is:
+£500,000
+An MTA increases the premium by:
+£100,000
+The revised gross premium is therefore:
+£600,000
+Assuming the capacity lines remain unchanged, the additional premium would be allocated as follows:
+Capacity provider
+Line
+Original premium
+MTA premium
+Revised premium
+Swiss Re
+50%
+£250,000
+£50,000
+£300,000
+Ark
+10%
+£50,000
+£10,000
+£60,000
+Lloyd’s Syndicate A
+15%
+£75,000
+£15,000
+£90,000
+Lloyd’s Syndicate B
+25%
+£125,000
+£25,000
+£150,000
+Total
+100%
+£500,000
+£100,000
+£600,000
+The corresponding additional MGA commission at 7.5% would be:
+£100,000 × 7.5% = £7,500
+The total MGA commission over the policy would therefore become:
+£600,000 × 7.5% = £45,000
+During the interim period, because QuoteBox is not yet configured to support MTAs, this adjustment would be processed manually.
+The PAS should nevertheless record the MTA as a transaction against the original policy, with the resulting premium and commission adjustments allocated to the relevant capacity providers.
+
+7. Example cancellation / return premium
+The same principle would apply in reverse if an endorsement or cancellation generated a return premium.
+For example, if a cancellation resulted in a £100,000 return premium, the capacity allocation would be:
+Capacity provider
+Line
+Return premium
+Swiss Re
+50%
+£50,000
+Ark
+10%
+£10,000
+Lloyd’s Syndicate A
+15%
+£15,000
+Lloyd’s Syndicate B
+25%
+£25,000
+Total
+100%
+£100,000
+The associated MGA commission adjustment would be:
+£100,000 × 7.5% = £7,500
+subject to the actual contractual treatment of commission on cancellations/return premiums.
+
+8. Bordereaux
+Until the platform is fully automated, we expect the relevant policy and transaction information to be reported using the Bordereaux 5.2 template.
+The PAS should therefore retain sufficient transaction-level data to support the production of this bordereaux.
+The long-term objective is for the bordereaux to be generated automatically from the PAS rather than requiring manual manipulation of the underlying policy data.
+
+9. Summary of the PAS behaviour we are looking for
+In simple terms, the PAS needs to support the following model:
+One risk → one policy → multiple capacity providers → individual written lines → premium allocation → commission calculation → transaction-level adjustments → bordereaux / settlement reporting.
+The capacity panel should be configurable at policy/risk level because the following capacity may differ from one risk to another.
+Ark is expected to participate at approximately 5%–15% per risk, with the lead insurer providing approximately 50%, initially Swiss Re or Munich Re. Other Lloyd’s syndicates are expected to participate as additional followers as the panel develops.
+
+
+

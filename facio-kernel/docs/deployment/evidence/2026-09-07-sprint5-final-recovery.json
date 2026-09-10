@@ -1,0 +1,388 @@
+{
+  "passed": true,
+  "checkedAt": "2026-09-07T07:54:56.222075+00:00",
+  "buildSha": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+  "imageId": "sha256:48a31c2e85e40652913fcd4727669f05056a309554e6e2a2719fad2b0f44c134",
+  "releaseArchiveSha256": "962bb364883d676f52b0a73dbdc98c9843e542a6c83fb41dfb95ba3416f11383",
+  "snapshotId": "20260907T074651.855869Z",
+  "manifestSha256": "50e5ca0c392ee9c8da28873382a65027cdcae71155cb4432ab3a7d98765531f4",
+  "replaySourceSha256": "1d4584fa074511a187b6b24eab9d3d4d98e87049aecfb3fe045d55c3099392fe",
+  "databases": [
+    {
+      "file": "kernel.sqlite",
+      "sha256": "92b18e0752d768539b226d2e1c2a4dbc42d1aa82576a90a02b926be1c8dc792b",
+      "schema": 7,
+      "integrity": "ok"
+    },
+    {
+      "file": "auth.sqlite",
+      "sha256": "6a26f5afe092e63a5bc2d23700ff0d9531cfa98d4106ec7981154647a5f1afab",
+      "schema": 1,
+      "integrity": "ok"
+    }
+  ],
+  "replay": {
+    "passed": true,
+    "baselineVerified": true,
+    "businessSchema": 7,
+    "moneyEngine": {
+      "engine": "rust-wasm",
+      "engineVersion": "1.0.0",
+      "abiVersion": 1,
+      "calculationVersion": "exact-money-v1",
+      "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+      "target": "wasm32-unknown-unknown",
+      "sourceSha256": "e4512b0aeb03ce38c813ca490804d7adfa0d302ae8eed9721769c323061f87d8",
+      "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+      "wasmBytes": 16985,
+      "memoryBytes": 131072
+    },
+    "records": [
+      {
+        "id": "cdffc011-94a6-47bd-9e89-3a28b0b31532",
+        "version": 1,
+        "hash": "6853f74f1d3b422566c1e9f9d11c9ce95ecd20d67afe8f17d31c75d8a186c7fd",
+        "historyVersions": 1
+      },
+      {
+        "id": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+        "version": 2,
+        "hash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27",
+        "historyVersions": 2
+      },
+      {
+        "id": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+        "version": 4,
+        "hash": "5a888536ce00459109fac23bf13ab165a4b497c2318f77848cf603b33509f931",
+        "historyVersions": 4
+      },
+      {
+        "id": "6b9d5671-3bb7-4e0e-9746-76ac210947f1",
+        "version": 2,
+        "hash": "2c7856001d4068244dbb99359252f4f75909ce0fb2560baaeba32f458dced074",
+        "historyVersions": 2
+      },
+      {
+        "id": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+        "version": 2,
+        "hash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+        "historyVersions": 2
+      }
+    ],
+    "documents": [
+      {
+        "id": "384c298d-b68b-46aa-b0dc-bd62f8f8092b",
+        "state": "completed",
+        "stateHash": "e45a6641b22574bbb440c648812da8bb8e4b765d7056702b0ed236f64ec806f6",
+        "artifacts": [
+          {
+            "id": "3f61253c-8572-472f-970c-db2ca20857e2",
+            "hash": "8f7fe7963ab7da122e63d785943960e4677029eab5238124d45c950bee5ee8fa"
+          },
+          {
+            "id": "cb8bd394-ad43-4f64-acb4-037cb3a473e3",
+            "hash": "9552720b3d9836f3c5438ee2401c9ef064dd25e6c46ebe85ee6bf8e31aa64b85"
+          },
+          {
+            "id": "f31bddc9-be88-451d-a866-ce126ec3a10e",
+            "hash": "80de60d057ea1046e6e267a656726b11ed7fd5af3fec4d079fd94ffee4d02c6f"
+          },
+          {
+            "id": "22d42b72-8813-4a2f-b752-091ca19e0a0c",
+            "hash": "fe26709f362e99e77998125f6703298cafa6833a2aa2a7f4c5ba4dee1ba09340"
+          }
+        ]
+      },
+      {
+        "id": "d4e3dea2-bbe4-41fa-b3a9-d82a83f83ce8",
+        "state": "completed",
+        "stateHash": "f13699f332043a04d4b1063b9b77fb44e931230c1dfaf55d88e9163f99b57da6",
+        "artifacts": [
+          {
+            "id": "0090c11f-5e5a-45ef-ae28-9cd577cc1edd",
+            "hash": "6d61e38cb54d71c40102ddf408a6d0ae33010e6f66a7dac2a54cde7889dfcf66"
+          },
+          {
+            "id": "671dd55f-17b8-442d-8f07-d2cc233061a0",
+            "hash": "b13cb2392e927061236f3d6b8f3b4b5ecc3ec167c9a35d26ee7b0e77388e4544"
+          },
+          {
+            "id": "322440ca-82d5-41b0-8086-78f40d6294ce",
+            "hash": "a9f3f7b9c6549f739e1f341cbb67c5ec1c782d40d130542f23f7a290a4a10e19"
+          },
+          {
+            "id": "53cd07f7-5290-4f05-99e9-6857ec49758c",
+            "hash": "d92a273971c618cab2fd269399436df33fb6f2cd59efe489d1e568e22b73e4b9"
+          }
+        ]
+      },
+      {
+        "id": "eb3d83b3-30d7-40c7-a733-560dee10a3c5",
+        "state": "completed",
+        "stateHash": "dc9d55220bb6b9e8d7fb087b05ed3d5da48a730c92fcc94f21e01677c252cfc0",
+        "artifacts": [
+          {
+            "id": "4a59f5df-b8e2-4b31-9224-38efdc9225b1",
+            "hash": "a4ecace68486fe9228d24ea02ff248450979cd029290d1570c96e874e7b94003"
+          },
+          {
+            "id": "c5112cb6-b335-4769-ba8a-78f87f57006f",
+            "hash": "0f3a5cfd42e2bcfb00b19d6ded00236dbc7c545dc96736332bb22de2f8ae1b72"
+          },
+          {
+            "id": "92a7ca11-59b2-48aa-909f-836b1bf156a4",
+            "hash": "b4a8c8af18a7c7189f26c2d9d3a5ec0050992b6a3d5f160e08f04038c2488f18"
+          },
+          {
+            "id": "a1ffc056-0b90-40ab-a1ad-bf71e8811548",
+            "hash": "16ab30f6183df74dd0b4cd53085b2b60a1d5b8d459bf031fb64eb7019c5d940b"
+          }
+        ]
+      },
+      {
+        "id": "fcbd5a36-0e00-4b85-8bb3-9f82a659964f",
+        "state": "completed",
+        "stateHash": "c9e53455042a3c6f56cc6eb31a9169a704a3d2074039844626d4dee4694d8498",
+        "artifacts": [
+          {
+            "id": "eedc22eb-a147-48d9-8e8f-15aa7db95caf",
+            "hash": "50958598380a1b6c63e32d7e2ed88edc69e4803ad8689c028ef2926c20292ed0"
+          },
+          {
+            "id": "96a77d42-245a-4e8e-bc75-955f65723f7e",
+            "hash": "1bc9461c1644b28434d3cfabceb90e5c5b052829adddec5bb3001d6aa552f3f4"
+          },
+          {
+            "id": "5e7d9e99-c59f-44ac-8bc1-316d78ddf0fb",
+            "hash": "0040f3d7b00c476f9dc3767446cf37963fadffcc67735e2c9bfaba60af7cb96b"
+          },
+          {
+            "id": "939ff0ee-5e43-4004-a29d-4ec889a03855",
+            "hash": "a8ab3c1c3de2ce54c4b453e5987a76d432530e5d7465cb151007701a7978f9bd"
+          }
+        ]
+      }
+    ],
+    "notices": [
+      {
+        "id": "c6d35c0f-4c8d-4404-9568-ec95613beead",
+        "version": 4,
+        "hash": "0d8784a427692b6c29ff233a870cdbee709e60c7571c83da9814f6b3ae4519f9",
+        "status": "acknowledged"
+      }
+    ],
+    "finance": [
+      {
+        "recordId": "cdffc011-94a6-47bd-9e89-3a28b0b31532",
+        "ledgerHash": "5143d99ae8aa4b2eeaba764d9b92bbc66896587eeea8c35a75bf3bedb4d5adc3",
+        "journals": 0,
+        "applications": 0,
+        "receipts": 0
+      },
+      {
+        "recordId": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+        "ledgerHash": "952bd91c7c703fe3e83292c5eef80bbcbb228b2d3f51edb815b6055a67fbf3b9",
+        "journals": 0,
+        "applications": 0,
+        "receipts": 0
+      },
+      {
+        "recordId": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+        "ledgerHash": "13aba1a6e31bc5941b19cc525cfe2ed4ee117a6fe0ea47269e6033c050416a72",
+        "journals": 4,
+        "applications": 1,
+        "receipts": 1
+      },
+      {
+        "recordId": "6b9d5671-3bb7-4e0e-9746-76ac210947f1",
+        "ledgerHash": "205005855575f8a12f2e3cf5df110dadf36a175f01a2fd480938eb23387692c6",
+        "journals": 0,
+        "applications": 0,
+        "receipts": 1
+      },
+      {
+        "recordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+        "ledgerHash": "af0b9af901222e51fe0911f69b62cb07c2e7d46ed6b447b2a7db797e3131dbe1",
+        "journals": 0,
+        "applications": 0,
+        "receipts": 0
+      }
+    ],
+    "approvals": [
+      {
+        "id": "104a7638-74fd-48d3-91b3-87bb9ccba6aa",
+        "version": 1,
+        "hash": "464a6750aae35e0dc48c70de09492a0c7602bf2f0ab29050e5a37d7a02534870",
+        "status": "requested"
+      }
+    ],
+    "providers": [
+      {
+        "id": "e037c67a-a290-45e0-af38-76b2f0107586",
+        "requestHash": "a3a045c0c5c632fbb5e69479f88ed3b772c6e534bde8d3d3de3855d0659f6ea0",
+        "stateHash": "5d58f84ba47b3097b9745cce826ff8ef196a11ad4cf18cb402c523f0f49d8494",
+        "status": "completed",
+        "receipts": [
+          "566a42aabafc153d517811186ce9a31e4c60c88b88a0a19584a22db3094c36ba"
+        ]
+      }
+    ],
+    "releases": [
+      {
+        "id": "5f2050ef-a2e1-4a23-8f05-16aeda34e2b0",
+        "version": 1,
+        "hash": "5e05a0288530b98932006ff2cc0b761748586561b5050402f43f42e1ddf1b90e"
+      },
+      {
+        "id": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+        "version": 1,
+        "hash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af"
+      },
+      {
+        "id": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+        "version": 1,
+        "hash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f"
+      }
+    ],
+    "tenants": [
+      {
+        "id": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+        "activeReleaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+        "activeReleaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af"
+      },
+      {
+        "id": "ea44847a-bf87-447a-8691-c61856c10aeb",
+        "activeReleaseId": "5f2050ef-a2e1-4a23-8f05-16aeda34e2b0",
+        "activeReleaseHash": "5e05a0288530b98932006ff2cc0b761748586561b5050402f43f42e1ddf1b90e"
+      },
+      {
+        "id": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+        "activeReleaseId": null,
+        "activeReleaseHash": null
+      },
+      {
+        "id": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+        "activeReleaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+        "activeReleaseHash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f"
+      }
+    ],
+    "requirements": [
+      {
+        "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+        "version": 1,
+        "hash": "f1c41cf9fa05d062689fba51d95e0aa3ffdf3cd96c705d21d450c47ac3c6f3b9"
+      },
+      {
+        "tenantId": "ea44847a-bf87-447a-8691-c61856c10aeb",
+        "version": 1,
+        "hash": "56ed86d6ca7678ed4c7bfdd9f88beebff07b065b8cdb5e0c22fa542bf99dcb56"
+      },
+      {
+        "tenantId": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+        "version": 1,
+        "hash": "699c0ae6bd332ea376b486e99962fd8be8d558153bc692f31fbe6f7d3dc35f80"
+      }
+    ],
+    "outbox": [
+      {
+        "id": "633e3a29-e836-44a2-bf77-5222126e3720",
+        "eventId": "47243960-c95f-42a0-b052-e1b07b07f02f",
+        "payloadHash": "f157819d542e6d0450ef7ffe3d81cd56976c1165e00c92a68564865277d8d663"
+      },
+      {
+        "id": "b1bdd52f-9320-4144-920a-d76d6b22c014",
+        "eventId": "cc6b3fdd-84fb-44f6-9c7b-a8613ab6bd3f",
+        "payloadHash": "8e7d8a229f9490e1b7c5c47af24d0c5274c53f9085b5964b844a6be8975ba31a"
+      },
+      {
+        "id": "c73b898b-b0f6-4aac-9831-7ba6c5bc61da",
+        "eventId": "04441cbd-e25c-4fc1-97b8-d66dc353f86b",
+        "payloadHash": "a6d7078ac59391f43259adb6bcdc390345992edb762a0885464bb402c55ec2e8"
+      },
+      {
+        "id": "ad8581e0-1cb7-4331-b8a9-cec8da23f356",
+        "eventId": "6396927d-8e4c-4cd6-bc44-85377444bcaf",
+        "payloadHash": "00b1e86a6a619166693333c53452adb3f7916e026f342adda37a1f6f7e70b4a7"
+      },
+      {
+        "id": "5bd806ad-0449-4271-9796-13c875f54d10",
+        "eventId": "7109321b-8367-4c44-b6df-2fc66b8e0df5",
+        "payloadHash": "8f8f724957b28702eb1a02eb2e23f65523eb46990a369aa283ffc2002074119f"
+      },
+      {
+        "id": "099a820d-65fb-49be-8957-f2442be53cbb",
+        "eventId": "ab1df0f2-8616-4af7-8b70-667bd51cb321",
+        "payloadHash": "30658812f38d17b9bc7f5406ef665a3b28b2313feaca658320cddb6d8bd8a140"
+      },
+      {
+        "id": "017412d1-2f88-4cb8-b020-d1b700361d60",
+        "eventId": "050b2daa-afe9-45f5-b3fa-2c2a657f4667",
+        "payloadHash": "78f74d865b6aa90135685c036e3f491a05d4dcfe5053cd239715394025b51e7b"
+      },
+      {
+        "id": "aa0b5a93-0c11-4918-9d17-9a03d3ac2600",
+        "eventId": "71175685-2ae3-4341-a52d-5b3e3f52b3ad",
+        "payloadHash": "c9d02f07ad4d8e43fd49944f8d04bca9c5d68488c15fd947f1b337cfe355858a"
+      },
+      {
+        "id": "cc3da3fc-a53c-4b31-92e4-a4c1dcf3ef35",
+        "eventId": "b652a9ac-f302-440e-9b02-b280742ce454",
+        "payloadHash": "0882b4d471c682d791f062260dcccf80027a6d27ec7814069eb8156778aaba53"
+      },
+      {
+        "id": "9a2772fb-46ad-40df-9d1d-03127087f033",
+        "eventId": "c5220c33-437f-49fd-b0bb-b9e2dca54ddf",
+        "payloadHash": "ea8f9930c97abaf2f211588feec45a0864a0048de13bb04f3e6121734361b80b"
+      },
+      {
+        "id": "f9638a22-0da0-49f9-a5d4-fbce64c057e7",
+        "eventId": "fdcffd87-d1db-4feb-a34e-f6bcd9db62f3",
+        "payloadHash": "241b453cc4636dd80783d4e295aaaf41ed849a212a3b94294ef6cff8f4d623e1"
+      }
+    ],
+    "authDataRowsMounted": 0,
+    "authSessionValuesRead": false,
+    "externalConnectionsAttempted": false
+  },
+  "restoredHealth": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "moneyEngine": {
+      "engine": "rust-wasm",
+      "engineVersion": "1.0.0",
+      "abiVersion": 1,
+      "calculationVersion": "exact-money-v1",
+      "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+      "target": "wasm32-unknown-unknown",
+      "sourceSha256": "e4512b0aeb03ce38c813ca490804d7adfa0d302ae8eed9721769c323061f87d8",
+      "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7",
+      "wasmBytes": 16985,
+      "memoryBytes": 131072
+    },
+    "productionReady": false
+  },
+  "exactBusinessEvidencePreservedAfterHostedBoot": true,
+  "unauthenticatedSessionStatus": 401,
+  "network": "none",
+  "hostPortsPublished": false,
+  "liveContainerUnchanged": true,
+  "liveDataOverwritten": false,
+  "originalSnapshotBytesPreserved": true,
+  "authSessionValuesRead": false,
+  "canonicalReplayAuthMount": "empty_schema_only",
+  "hostedBootAuthMount": "restored_snapshot",
+  "privateIdentityAndBootstrapMaterialReused": true,
+  "isolatedContainersRemoved": true,
+  "limits": [
+    "Same-VM isolated recovery with existing private identity and bootstrap configuration; full VM/credential-loss recovery is separate.",
+    "Each database snapshot is independently consistent; cross-database atomicity is not claimed.",
+    "Canonical business evidence is compared before/after boot; working SQLite file-byte identity is not claimed.",
+    "Auth snapshot integrity and hosted startup are verified without reading session values or claiming a restored authenticated browser journey.",
+    "Only the pinned snapshot and its retained evidence are proved; later writes and customer acceptance remain separate."
+  ]
+}

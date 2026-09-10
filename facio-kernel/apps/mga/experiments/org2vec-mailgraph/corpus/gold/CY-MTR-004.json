@@ -1,0 +1,21 @@
+{
+  "thread_id": "CY-MTR-004",
+  "claim_ref": "CY-MTR-004",
+  "gold_missing_documents": [
+    "witness_statement",
+    "cctv_footage"
+  ],
+  "gold_authority_flags": [
+    "tp_recovery_required"
+  ],
+  "gold_decision_posture": "reserved",
+  "gold_key_events": [
+    "FNOL",
+    "liability_position",
+    "estimate_received"
+  ],
+  "gold_similar_threads": [
+    "CY-MTR-017"
+  ],
+  "scenario": "liability_reserved_no_witness"
+}

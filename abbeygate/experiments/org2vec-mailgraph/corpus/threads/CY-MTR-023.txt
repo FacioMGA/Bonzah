@@ -1,0 +1,25 @@
+Thread-ID: CY-MTR-023
+Claim-Ref: CY-MTR-023
+Subject: CY-MTR-023 — rear-end, insured reports neck pain
+===
+
+From: Anna Brokerson <anna@cyprusbrokers.example>
+To: claims@abbeygate.example
+Date: 2026-02-25 08:50
+Subject: FNOL CY-MTR-023
+
+Rear-end collision in stationary traffic, Larnaca. Insured Marios K.
+(policy ABMTR-100612, reg GLT-2238) reports neck pain. Has not yet
+seen a doctor. TP insurer Universal CY UC-2026-2210.
+
+---
+From: Handler <claims@abbeygate.example>
+To: anna@cyprusbrokers.example
+Date: 2026-02-25 11:33
+Subject: RE: CY-MTR-023 — BI potential
+
+Anna,
+
+Please obtain a medical report and confirm whether the insured intends
+to pursue a bodily injury claim. Flagging BI potential — reserves
+must reflect indemnity exposure.

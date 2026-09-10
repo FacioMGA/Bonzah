@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/bonzah/quotes/{{quoteId}}/bind"
+method: POST
+headers:
+  Content-Type: application/json
+  Idempotency-Key: bind-rav4-001
+body:
+  type: text
+  content: '{"integrityToken":"{{integrityToken}}","paymentStatus":"SIMULATED_VERIFIED","expectedTotal":{{quoteTotal}},"policyholder":{"firstName":"Alex","lastName":"Morgan","dateOfBirth":"1991-06-15","email":"alex.morgan@example.test","phone":"+15550102040","address":{"line1":"123 Summit Demo Way","city":"Denver","state":"CA","postalCode":"80202","country":"US"},"licence":{"number":"D0000000","state":"CA"}},"rentalAgreement":{"rentalCompany":"Summit Rentals"},"consents":{"electronicDelivery":true,"liabilityNoticeAccepted":true}}'
+scripts:
+  - type: afterResponse
+    code: pm.test('Simulated confirmation only', () => pm.expect(pm.response.json().data.status).to.eql('SIMULATED_CONFIRMED'));
+    language: text/javascript
+order: 7000

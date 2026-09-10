@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{tenantBrand.displayName}} Home Insurance Schedule</title>
+  <link rel="stylesheet" href="styles/pdf-theme.css" />
+  <style>
+    /* The shared theme declares zero print margins; Home reserves its own
+       printable area so wrapped tables cannot enter the generated footer. */
+    @page { size: A4 portrait; margin: 14mm 10mm 20mm; }
+    .brand-topbar, .doc-topbar {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+    .doc-topbar-left, .doc-topbar-center, .doc-topbar-right {
+      min-width: 0; max-width: 100%; overflow: visible;
+      overflow-wrap: anywhere; white-space: normal;
+    }
+    .doc-topbar-left, .doc-topbar-right { font-size: 10px; line-height: 1.4; }
+    .doc-topbar-right { text-align: right; }
+    .doc-topbar-center { justify-self: stretch; }
+    .doc-title { font-size: 14px; line-height: 1.35; }
+    .doc-logo-left { max-width: 100%; height: auto; max-height: 54px; }
+    tr { break-inside: avoid; page-break-inside: avoid; }
+
+    /* ── MGA policy cover (mirrors Motor schedule cover) ─────────── */
+    .draft-watermark {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 120px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      color: var(--brand-navy);
+      opacity: 0.08;
+      transform: rotate(-22deg);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.is-draft .draft-watermark { display: flex; }
+    .draft-watermark span {
+      padding: 18px 28px;
+      border: 8px solid rgba(14, 53, 83, 0.18);
+      border-radius: 18px;
+    }
+
+    .cover-shell {
+      min-height: 100vh;
+      padding: 28px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .lloyds-cover {
+      width: 100%;
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      border-radius: 18px;
+      padding: 34px 34px 26px 34px;
+      background: radial-gradient(1200px 500px at 0% 0%, #FFFFFF 0%, #FFFFFF 45%, #FBFCFE 100%);
+      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100vh - 56px);
+      position: relative;
+      overflow: hidden;
+    }
+    .lloyds-cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.06) 0%, rgba(15, 23, 42, 0.00) 45%);
+    }
+    .lloyds-title {
+      margin-top: 14px;
+      font-size: 44px;
+      font-weight: 900;
+      line-height: 1.06;
+      color: #0b1220;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+    .lloyds-title-sub { display: block; font-size: inherit; }
+    .lloyds-divider { border-top: 2px solid rgba(11, 18, 32, 0.9); margin: 22px 0 18px; }
+    .lloyds-body {
+      font-size: 13px;
+      color: #111827;
+      line-height: 1.55;
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .lloyds-cover-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: 16px;
+    }
+    .lloyds-logo {
+      height: 156px;
+      width: auto;
+      max-width: 420px;
+      object-fit: contain;
+    }
+    .lloyds-issued {
+      font-weight: 900;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.025);
+    }
+    .lloyds-logo-wrap {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      margin-top: 22px;
+    }
+    .lloyds-kicker {
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(2, 6, 23, 0.58);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .lloyds-details {
+      position: relative;
+      z-index: 1;
+      margin-top: 68px;
+      padding: 14px 16px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.02);
+      color: rgba(15, 23, 42, 0.72);
+      font-size: 12px;
+      line-height: 1.45;
+      max-width: 920px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .lloyds-signature-block {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .lloyds-signature-block img { height: 44px; width: auto; opacity: 0.92; }
+    .lloyds-signature-label {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(2, 6, 23, 0.55);
+    }
+
+    /* ── Schedule body (legacy parity) ───────────────────────────────── */
+    /*
+     * NOTE on horizontal padding: previously this class set
+     * `padding: 4px 0 0 0`, which OVERRODE `.doc-page { padding: 18px }`
+     * (defined in `styles/pdf-theme.css`) and caused the `.brand-topbar`
+     * row to render flush with the printable area (the Lloyd's box +
+     * {{tenantBrand.displayName}} logo touched the left/right page edges of the PDF —
+     * see ABY-103 "edges in the documents are cut"). We now let
+     * `.doc-page`'s 18px padding take effect so content sits inside a
+     * comfortable whitespace gutter, matching the Motor schedule layout
+     * (`.main-col.doc-page`) which has never had this issue.
+     */
+    .legacy-schedule { background: #FFFFFF; }
+    .legacy-page-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0E3553;
+      margin: 0 0 4px 0;
+    }
+    .legacy-product-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0E3553;
+      margin: 0 0 10px 0;
+      letter-spacing: 0.03em;
+    }
+    .legacy-meta {
+      font-size: 11px;
+      color: #1F2937;
+      margin-bottom: 8px;
+      line-height: 1.55;
+    }
+    .legacy-meta strong { color: #0B1220; }
+    .legacy-address-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 24px;
+      margin: 10px 0 12px 0;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+    .legacy-address-grid .col h3 {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: #0B1220;
+      margin: 0 0 4px 0;
+      text-transform: none;
+    }
+    .legacy-address-grid .col p { margin: 0; white-space: pre-line; }
+
+    .legacy-period-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+      font-size: 11.5px;
+      margin: 6px 0 6px 0;
+    }
+    .legacy-period-row .pk {
+      color: #475569;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 9.5px;
+    }
+    .legacy-period-row .pv { font-weight: 700; color: #0B1220; }
+
+    .legacy-important {
+      font-size: 10.5px;
+      line-height: 1.5;
+      color: #374151;
+      margin: 10px 0 12px 0;
+      padding: 10px 12px;
+      border: 1px solid rgba(15,23,42,0.10);
+      border-radius: 6px;
+      background: #FAFCFE;
+    }
+    .legacy-important strong { color: #0B1220; }
+
+    .legacy-section-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px 0;
+      font-size: 11px;
+    }
+    .legacy-section-table th, .legacy-section-table td {
+      padding: 6px 8px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(15,23,42,0.08);
+      background: transparent;
+      border-right: none;
+    }
+    .legacy-section-table thead th {
+      background: #0E3553;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      font-weight: 800;
+    }
+    .legacy-section-table .right { text-align: right; }
+    .legacy-section-row .section-code {
+      font-weight: 800;
+      font-size: 11.5px;
+      color: #0E3553;
+      width: 24px;
+    }
+    .legacy-section-row .section-title {
+      font-weight: 700;
+      color: #0B1220;
+    }
+    .legacy-section-row .section-note,
+    .legacy-section-row .section-sub {
+      font-size: 10.5px;
+      color: #475569;
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+    .legacy-section-row .section-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 10.5px;
+      margin-top: 2px;
+      color: #1F2937;
+    }
+    .legacy-section-row .section-line .lbl { color: #1F2937; min-width: 0; }
+    .legacy-section-row .section-line .val { font-weight: 700; color: #0B1220; flex: 0 0 auto; white-space: nowrap; }
+
+    .legacy-premium-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0 12px 0;
+      font-size: 11.5px;
+    }
+    .legacy-premium-table td {
+      padding: 4px 8px;
+      border: none;
+      background: transparent;
+    }
+    .legacy-premium-table .label { color: #1F2937; }
+    .legacy-premium-table .value { text-align: right; font-weight: 700; color: #0B1220; }
+    .legacy-premium-table tr.total td {
+      border-top: 1px solid #0B1220;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .signoff-block {
+      margin-top: 14px;
+      font-size: 11px;
+      line-height: 1.5;
+      color: #1F2937;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 18px;
+      align-items: start;
+    }
+    .signoff-block .signoff-name { font-weight: 800; color: #0B1220; }
+
+    .legacy-fineprint {
+      font-size: 9.5px;
+      color: #64748B;
+      line-height: 1.5;
+      margin-top: 14px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(15,23,42,0.18);
+    }
+
+    /* Static legal pages */
+    .legacy-page-block h2 {
+      font-size: 13px;
+      font-weight: 900;
+      color: #0E3553;
+      margin: 14px 0 8px 0;
+      letter-spacing: 0.04em;
+      border-bottom: none;
+      padding-bottom: 0;
+      text-transform: uppercase;
+    }
+    .legacy-page-block p { font-size: 11px; line-height: 1.55; color: #1F2937; margin: 0 0 8px 0; }
+    .legacy-page-block ol, .legacy-page-block ul { font-size: 11px; line-height: 1.55; padding-left: 18px; margin: 0 0 8px 0; color: #1F2937; }
+    .legacy-page-block li { margin-bottom: 3px; }
+    .legacy-clause {
+      font-size: 11px;
+      line-height: 1.6;
+      color: #1F2937;
+      white-space: pre-line;
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      border-left: 3px solid #0E3553;
+      background: #F8FAFC;
+      border-radius: 0 6px 6px 0;
+    }
+    .legacy-clause-title {
+      font-weight: 800;
+      color: #0E3553;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    .legacy-page-block .legacy-fineprint { margin-top: 16px; }
+
+    .doc-topbar { margin-bottom: 12px; }
+  </style>
+</head>
+<body class="{{#if isDraft}}is-draft{{/if}}">
+  <div class="draft-watermark"><span>DRAFT</span></div>
+
+  <!-- ───────────────────────────── PAGE 1: MGA policy cover ───────────────────────────── -->
+  <div class="cover-shell">
+    <div class="doc-page lloyds-cover avoid-break">
+      <div class="lloyds-cover-top">
+        <div style="text-align:right;">
+          <div class="pill lloyds-issued">Printed {{generatedDate}}</div>
+        </div>
+      </div>
+
+      <div class="lloyds-logo-wrap">
+        {{#if tenantBrand.logo}}<img class="lloyds-logo" src="{{tenantBrand.logo}}" alt="{{tenantBrand.displayName}}" />{{else}}<strong>{{tenantBrand.displayName}}</strong>{{/if}}
+      </div>
+
+      <div class="lloyds-kicker">Policy Schedule · Home Insurance</div>
+
+      <div class="lloyds-title">
+        <span class="lloyds-title-main">{{tenantBrand.displayName}}</span>
+        <span class="lloyds-title-sub">Policy</span>
+      </div>
+
+      <div class="lloyds-divider"></div>
+
+      <div class="lloyds-body">
+        <p>{{tenantBrand.legalName}}</p>
+        <p>If any terms, clauses or conditions are unclear you are advised to contact your insurance intermediary immediately.</p>
+        <p>{{#each tenantBrand.legalLines}}{{this}}<br />{{/each}}</p>
+        <p style="font-weight:800;">{{generatedDate}}</p>
+      </div>
+
+      <div class="lloyds-signature-block" aria-label="Authorised signature">
+        
+        <div class="lloyds-signature-label">Authorised Signatory</div>
+      </div>
+
+      <div class="lloyds-details">
+        {{#each tenantBrand.legalLines}}{{this}}<br />{{/each}}
+        {{tenantBrand.address}}<br />{{tenantBrand.contactEmail}} · {{tenantBrand.contactPhone}}
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ───────────────────────────── PAGE 2: Schedule body ───────────────────────────── -->
+  <div class="legacy-schedule doc-page">
+    <div class="brand-topbar avoid-break">
+      <div class="doc-topbar-left">{{#if tenantBrand.logo}}<img class="doc-logo-left" src="{{tenantBrand.logo}}" alt="{{tenantBrand.displayName}}" />{{else}}<strong>{{tenantBrand.displayName}}</strong>{{/if}}</div>
+      <div class="doc-topbar-center">
+        <div class="doc-title">Policy Certificate / Schedule</div>
+        <div class="doc-subtitle">Home Insurance</div>
+      </div>
+      <div class="doc-topbar-right"><span>{{tenantBrand.legalName}}</span></div>
+    </div>
+
+    <p class="legacy-meta">
+      This Certificate comprises a Certificate Jacket, the Wording, Schedule and all other provisions, conditions and warranties attached and any endorsements issued.
+    </p>
+    <p class="legacy-meta">
+      <strong>Coverholder Appointment Agreement Unique Market Reference (UMR):</strong> {{coverholderUmr}}<br />
+      <strong>Policy Number:</strong> {{policyNumber}}<br />
+      <strong>Policy Wording:</strong> {{policyWording}}
+    </p>
+
+    <div class="legacy-address-grid avoid-break">
+      <div class="col">
+        <h3>Name &amp; Address of the Insured</h3>
+        <p>{{policyHolder.name}}
+{{policyHolder.addressMultiline}}</p>
+        {{#if policyHolder.jointProposers.length}}
+        <h3 style="margin-top: 10px;">Joint proposer(s)</h3>
+        {{#each policyHolder.jointProposers}}
+        <p>{{name}}
+{{addressMultiline}}</p>
+        {{/each}}
+        {{/if}}
+      </div>
+      <div class="col">
+        <h3>Address of insured premises</h3>
+        <p>{{property.addressMultiline}}</p>
+      </div>
+    </div>
+
+    <div class="legacy-period-row avoid-break">
+      <div>
+        <div class="pk">Period of Insurance</div>
+        <div class="pv">From {{period.startNumeric}} to {{period.endNumeric}} at 12:00hrs (GMT)</div>
+      </div>
+      <div>
+        <div class="pk">Property Use</div>
+        <div class="pv">{{usage.propertyUseLabel}}</div>
+      </div>
+      <div>
+        <div class="pk">Property Type</div>
+        <div class="pv">{{property.typeLabel}}</div>
+      </div>
+      <div>
+        <div class="pk">Unoccupancy</div>
+        <div class="pv">{{usage.unoccupancyLabel}}</div>
+      </div>
+      <div>
+        <div class="pk">Bank / Mortgage Interest</div>
+        <div class="pv">
+          {{#if mortgageLenderName}}{{mortgageLenderName}}{{else}}—{{/if}}
+          {{#if mortgageLenderAddress}}<br />{{mortgageLenderAddress}}{{/if}}
+          {{#if bankMortgageReference}}<br />Ref: {{bankMortgageReference}}{{/if}}
+        </div>
+      </div>
+    </div>
+
+    <div class="legacy-important avoid-break">
+      <strong>IMPORTANT:</strong> Please read your {{tenantBrand.displayName}} Home Insurance policy wording carefully to ensure that you fully understand the benefits of the cover provided. You must also check the attached Statement of Facts and inform us immediately if any fact is incorrect or misrepresented, as this may invalidate your insurance.<br /><br />
+      You must comply with the terms and conditions of this policy, otherwise this may effect any claim.<br /><br />
+      {{#each tenantBrand.legalLines}}{{this}}<br />{{/each}}
+    </div>
+
+    <table class="legacy-section-table">
+      <thead>
+        <tr>
+          <th style="width: 65%;">Section</th>
+          <th class="right" style="width: 35%;">Sum Assured</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sections}}
+        <tr class="legacy-section-row avoid-break">
+          <td>
+            <div>
+              <span class="section-code">{{code}}.</span>
+              <span class="section-title">{{title}}</span>
+              {{#if excessLabel}}<span class="section-note"> ({{excessLabel}})</span>{{/if}}
+              {{#if inline}} — {{inline}}{{/if}}
+            </div>
+            {{#if excessNote}}<div class="section-note">({{excessNote}})</div>{{/if}}
+            {{#if coverScope}}<div class="section-note">{{coverScope}}</div>{{/if}}
+            {{#if subLimits}}
+              {{#each subLimits}}<div class="section-sub">{{this}}</div>{{/each}}
+            {{/if}}
+            {{#if extraNotes}}
+              {{#each extraNotes}}<div class="section-sub">{{this}}</div>{{/each}}
+            {{/if}}
+            {{#if lines}}
+              {{#each lines}}
+                <div class="section-line">
+                  <span class="lbl">{{label}}{{#if note}} <span class="section-note">{{note}}</span>{{/if}}</span>
+                  <span class="val">{{value}}</span>
+                </div>
+              {{/each}}
+            {{/if}}
+            {{#if footnote}}
+              <div class="section-note">The most The Insurer will pay with their prior consent is:</div>
+              {{#each footnote}}<div class="section-sub">• {{this}}</div>{{/each}}
+            {{/if}}
+          </td>
+          <td class="right">{{sumAssured}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <table class="legacy-premium-table avoid-break">
+      <tbody>
+        <tr>
+          <td class="label">Total Insured Value</td>
+          <td></td>
+          <td class="value">{{currencySymbol}}{{premiumSummary.totalInsuredValueDisplay}}</td>
+        </tr>
+        <tr><td colspan="3" style="height:8px; line-height:8px; font-size:0;">&nbsp;</td></tr>
+        <tr>
+          <td class="label">Premium</td>
+          <td></td>
+          <td class="value">{{currencySymbol}}{{premiumSummary.netPremiumDisplay}}</td>
+        </tr>
+        <tr>
+          <td class="label">Local Taxes <span style="color:#64748B; font-size:10px;">(Payable by the insured / Payable by the Insurer)</span></td>
+          <td></td>
+          <td class="value">{{currencySymbol}}{{premiumSummary.localTaxesDisplay}}</td>
+        </tr>
+        <tr>
+          <td class="label">Administration Charge</td>
+          <td></td>
+          <td class="value">{{currencySymbol}}{{premiumSummary.adminChargeDisplay}}</td>
+        </tr>
+        {{#if premiumSummary.assistanceFeeDisplay}}
+        <tr>
+          <td class="label">Home Emergency Assistance Fee</td>
+          <td></td>
+          <td class="value">{{currencySymbol}}{{premiumSummary.assistanceFeeDisplay}}</td>
+        </tr>
+        {{/if}}
+        {{#if premiumSummary.bdxAlignmentAmountDisplay}}
+        <tr>
+          <td class="label">Premium Adjustment</td>
+          <td></td>
+          <td class="value">{{premiumSummary.bdxAlignmentAmountDisplay}}</td>
+        </tr>
+        {{/if}}
+        <tr class="total">
+          <td class="label">Total Premium</td>
+          <td></td>
+          <td class="value">{{currencySymbol}}{{premiumSummary.totalPremiumDisplay}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="signoff-block avoid-break">
+      <div class="signoff-name">Dated</div>
+      <div>{{issueDateDisplay}}</div>
+      <div class="signoff-name">{{signatory.authorisedSignerTitle}}</div>
+      <div>{{signatory.authorisedSignerName}}</div>
+    </div>
+
+    <div class="legacy-fineprint">
+      {{#each tenantBrand.legalLines}}<p>{{this}}</p>{{/each}}
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ───────────────────────────── PAGE 3: Maintenance & Checking Conditions ───────────────────────────── -->
+  <div class="legacy-schedule legacy-page-block doc-page">
+    <div class="brand-topbar avoid-break">
+      <div class="doc-topbar-left">{{#if tenantBrand.logo}}<img class="doc-logo-left" src="{{tenantBrand.logo}}" alt="{{tenantBrand.displayName}}" />{{else}}<strong>{{tenantBrand.displayName}}</strong>{{/if}}</div>
+      <div class="doc-topbar-center">
+        <div class="doc-title">Policy Certificate / Schedule</div>
+        <div class="doc-subtitle">Home Insurance</div>
+      </div>
+      <div class="doc-topbar-right"><span>{{tenantBrand.legalName}}</span></div>
+    </div>
+
+    <h2>Significant Importance to Your Policy</h2>
+    <h2 style="margin-top:8px; font-size:12px; color:#0B1220;">Maintenance and Checking Conditions</h2>
+    <p>A well-maintained building should withstand all but the most severe weather conditions.</p>
+    <p>It is important to remember that you are responsible for maintaining your home in a good state of repair. If the buildings have not been maintained in a good state of repair, when assessing a claim, we will take into account the condition of your property and we may refuse to pay the claim or we may reduce the amount of any payment we make for the claim. In some circumstances your policy may not be valid.</p>
+    <p>We will not cover the costs of repairs or replacements, where the costs arise through you failing to regularly maintain the buildings properly.</p>
+    <p>If the property suffers from some form of structural weakness that results in storm damage being greater than expected, insurers are entitled to limit their compensation to the cost of restoring the property only to its weakened state.</p>
+    <p>We will check what the weather was like when the damage happened and may ask for pictures or ask an expert to look at the damage to decide if it was caused by a storm and confirm that a lack of maintenance did not cause or contribute to the damage.</p>
+    <p>A Storm can highlight defects rather than cause them and damage due to lack of maintenance, wear and tear or which happens gradually is not covered.</p>
+    <p>These are the conditions of the insurance that you need to meet as your part of this contract.</p>
+
+    <p style="font-weight:700;">(a) This policy covers the costs of unexpected loss or damage. It does not cover:</p>
+    <ol style="list-style: lower-roman;">
+      <li>Maintenance costs such as refixing loose roof tiles, repointing brickwork or replacing guttering. You must make sure that your Buildings are maintained in a good state of repair.</li>
+    </ol>
+    <p style="font-weight:700;">(b) We take into account the condition of the property at the time of a storm damage is said to have occurred.</p>
+    <p>You must undertake the following checks/repairs to ensure that:</p>
+    <ol style="list-style: lower-roman;">
+      <li>External walls are sealed and any gaps in external walls and foundations are restored with foam or caulk to prevent cold air and water entering the property. You might even want to consider painting the walls with a waterproof coating.</li>
+      <li>Gardens are rid of overhanging, loose or dead branches to help prevent damage in windy weather.</li>
+      <li>Gutters are cleared to avoid a build-up of leaves and other debris. High winds can seriously damage guttering, so regular checks throughout the year are really important. You might also want to invest in heat tape to run around the underside of your guttering to prevent ice from forming.</li>
+      <li>Internal and external pipes are insulated and all external pipes and any internal pipes that are in unheated areas (e.g. in the basement or loft), with foam or rubber tubes. These tubes should then be checked regularly as they can erode over time.</li>
+      <li>Visibly check the roof for any dislodged or damaged tiles which could lead to water ingress.</li>
+    </ol>
+
+    <div class="signoff-block avoid-break">
+      <div class="signoff-name">Dated</div>
+      <div>{{issueDateDisplay}}</div>
+      <div class="signoff-name">{{signatory.authorisedSignerTitle}}</div>
+      <div>{{signatory.authorisedSignerName}}</div>
+    </div>
+
+    <div class="legacy-fineprint">{{#each tenantBrand.legalLines}}{{this}}<br />{{/each}}</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ───────────────────────────── PAGE 4: MGA contacts and jurisdiction ───────────────────────────── -->
+  <div class="legacy-schedule legacy-page-block doc-page">
+    <div class="brand-topbar avoid-break">
+      <div class="doc-topbar-left">{{#if tenantBrand.logo}}<img class="doc-logo-left" src="{{tenantBrand.logo}}" alt="{{tenantBrand.displayName}}" />{{else}}<strong>{{tenantBrand.displayName}}</strong>{{/if}}</div>
+      <div class="doc-topbar-center">
+        <div class="doc-title">Policy Certificate / Schedule</div>
+        <div class="doc-subtitle">Home Insurance</div>
+      </div>
+      <div class="doc-topbar-right"><span>{{tenantBrand.legalName}}</span></div>
+    </div>
+
+    <p><strong>Coverholder:</strong> {{legalContacts.coverholderName}}, {{legalContacts.coverholderAddress}}</p>
+
+    <p style="margin-top:10px;"><strong>Law Applicable to this contract</strong> (being which territory's law will be used to determine a dispute relating to this contract): <strong>{{legalContacts.governingLaw}}</strong></p>
+    <p><strong>Jurisdiction applicable to this contract</strong> (being the territory in which any dispute relating to this contract will be heard): <strong>{{legalContacts.jurisdiction}}</strong></p>
+
+    <p><strong>Service of Suit</strong></p>
+    <p>{{legalContacts.serviceOfSuit}}</p>
+
+    <p style="margin-top:10px;"><strong>In the event that you wish to make a claim under this contract, please notify the following:</strong></p>
+    <p>{{legalContacts.claimNotification}}</p>
+
+    <p><strong>In the event that you wish to make a complaint, please refer to the complaint handling arrangements below:</strong></p>
+    <p>{{legalContacts.complaintHandling}}</p>
+
+    <div class="signoff-block avoid-break">
+      <div class="signoff-name">Dated</div>
+      <div>{{issueDateDisplay}}</div>
+      <div class="signoff-name">{{signatory.authorisedSignerTitle}}</div>
+      <div>{{signatory.authorisedSignerName}}</div>
+    </div>
+
+    <div class="legacy-fineprint">{{#each tenantBrand.legalLines}}{{this}}<br />{{/each}}</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ───────────────────────────── PAGE 5: Endorsements & Specified Items ───────────────────────────── -->
+  <div class="legacy-schedule legacy-page-block doc-page">
+    <div class="brand-topbar avoid-break">
+      <div class="doc-topbar-left">{{#if tenantBrand.logo}}<img class="doc-logo-left" src="{{tenantBrand.logo}}" alt="{{tenantBrand.displayName}}" />{{else}}<strong>{{tenantBrand.displayName}}</strong>{{/if}}</div>
+      <div class="doc-topbar-center">
+        <div class="doc-title">Policy Certificate / Schedule</div>
+        <div class="doc-subtitle">Home Insurance</div>
+      </div>
+      <div class="doc-topbar-right"><span>{{tenantBrand.legalName}}</span></div>
+    </div>
+
+    <h2>Endorsements applicable to your Policy Number: {{policyNumber}}</h2>
+    {{#each endorsements}}
+    <div class="legacy-clause avoid-break">
+      <div class="legacy-clause-title">{{code}} {{title}}</div>
+      <div>{{body}}</div>
+    </div>
+    {{/each}}
+
+    <h2 style="margin-top:14px;">Specified Items on your Policy Number: {{policyNumber}}</h2>
+    {{#if specifiedItems.length}}
+    <table class="legacy-section-table">
+      <thead>
+        <tr>
+          <th style="width: 70%;">Description of item</th>
+          <th class="right" style="width: 30%;">Sum Insured</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each specifiedItems}}
+        <tr>
+          <td>{{description}}</td>
+          <td class="right">{{sumInsuredDisplay}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <p>Specified items covered under your standard policy: <strong>None</strong></p>
+    {{/if}}
+
+    <div class="signoff-block avoid-break">
+      <div class="signoff-name">Dated</div>
+      <div>{{issueDateDisplay}}</div>
+      <div class="signoff-name">{{signatory.authorisedSignerTitle}}</div>
+      <div>{{signatory.authorisedSignerName}}</div>
+    </div>
+
+    <div class="legacy-fineprint">{{#each tenantBrand.legalLines}}{{this}}<br />{{/each}}</div>
+  </div>
+</body>
+</html>

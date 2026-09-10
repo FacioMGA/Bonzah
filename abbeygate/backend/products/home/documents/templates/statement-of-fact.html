@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Abbeygate Home Insurance — Statement of Facts</title>
+  <link rel="stylesheet" href="styles/pdf-theme.css" />
+  <style>
+    .draft-watermark {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 110px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      color: var(--brand-navy);
+      opacity: 0.08;
+      transform: rotate(-22deg);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.is-draft .draft-watermark { display: flex; }
+    .draft-watermark span {
+      padding: 14px 26px;
+      border: 8px solid rgba(14, 53, 83, 0.18);
+      border-radius: 18px;
+    }
+
+    /*
+     * NOTE on horizontal padding: previously `padding: 4px 0 0 0`
+     * overrode `.doc-page { padding: 18px }` and rendered the
+     * `.brand-topbar` (Abbeygate logo + Lloyd's box) flush with the
+     * printable area, causing the visible-edge clipping reported in
+     * ABY-103. We now let `.doc-page`'s 18px padding apply, keeping
+     * content inside a comfortable whitespace gutter on all sides.
+     */
+    .sof-page { background: #FFFFFF; }
+    .sof-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0E3553;
+      margin: 6px 0 4px 0;
+      letter-spacing: 0.04em;
+    }
+    .sof-subtitle {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #0E3553;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .sof-intro {
+      font-size: 10.5px;
+      color: #1F2937;
+      line-height: 1.55;
+      margin: 0 0 12px 0;
+      padding: 10px 12px;
+      border: 1px solid rgba(15,23,42,0.10);
+      background: #FAFCFE;
+      border-radius: 6px;
+    }
+    .sof-block-title {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #0E3553;
+      margin: 14px 0 6px 0;
+      border-bottom: 1px solid rgba(15,23,42,0.12);
+      padding-bottom: 4px;
+    }
+    .sof-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+    .sof-table thead th {
+      background: #0E3553;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      font-size: 9.5px;
+      letter-spacing: 0.06em;
+      padding: 6px 8px;
+      text-align: left;
+      border-right: 1px solid rgba(255,255,255,0.10);
+    }
+    .sof-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid rgba(15,23,42,0.08);
+      border-right: none;
+      vertical-align: top;
+      font-size: 11px;
+      background: #FFFFFF;
+    }
+    .sof-table tr:nth-child(even) td { background: #F8FAFC; }
+    .sof-table .right { text-align: right; }
+    .sof-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 24px;
+      margin: 4px 0 12px 0;
+      font-size: 11px;
+    }
+    .sof-grid h4 {
+      margin: 0 0 4px 0;
+      font-size: 11px;
+      color: #0B1220;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    .sof-fineprint {
+      font-size: 9.5px;
+      color: #64748B;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(15,23,42,0.18);
+      line-height: 1.5;
+    }
+
+    /* NOTICE pages styling */
+    .notice-block { font-size: 10.5px; line-height: 1.6; color: #1F2937; }
+    .notice-block h2 {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #0E3553;
+      margin: 12px 0 6px 0;
+      border-bottom: none;
+    }
+    .notice-block ol, .notice-block ul {
+      padding-left: 20px;
+      margin: 4px 0 8px 0;
+    }
+    .notice-block li { margin-bottom: 3px; }
+  </style>
+</head>
+<body class="{{#if isDraft}}is-draft{{/if}}">
+  <div class="draft-watermark"><span>DRAFT</span></div>
+
+  <!-- ───────────────────────────── PAGE 1 ───────────────────────────── -->
+  <div class="sof-page doc-page">
+    <div class="brand-topbar avoid-break">
+      <div class="doc-topbar-left"><img class="doc-logo-left" src="assets/abbeygate.svg" alt="Abbeygate" /></div>
+      <div class="doc-topbar-center">
+        <div class="doc-title">Abbeygate Home Insurance</div>
+        <div class="doc-subtitle">Statement of Facts</div>
+      </div>
+      <div class="doc-topbar-right"><img class="doc-logo-right" src="assets/lloyds.svg" alt="Lloyd's" /></div>
+    </div>
+
+    <div class="sof-title">STATEMENT OF FACT</div>
+
+    <p class="sof-intro">
+      Please read the following information carefully. It is a record of the statements made and information given by you and/or your insurance adviser when obtaining a quote and constitutes the basis of your contract of insurance. If you are satisfied that, to the best of your knowledge and belief, this is a true statement of the facts, you need take no further action. However if any of the following details appear to be incomplete or incorrect, please contact the Broker whom you purchased the policy from immediately. You will be advised of any changes to your policy, or to the premium payable and will be issued with a replacement Statement of Fact.
+    </p>
+
+    <div class="sof-block-title">Proposer</div>
+    <p style="font-size: 11px;"><strong>Policy Number:</strong> {{policyNumber}}</p>
+
+    <table class="sof-table">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Question</th>
+          <th style="width: 25%;">Proposer</th>
+          <th style="width: 25%;">Joint Proposer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1. First Names</td><td>{{policyHolder.firstName}}</td><td>{{policyHolder.jointProposer.firstName}}</td></tr>
+        <tr><td>2. Surname</td><td>{{policyHolder.surname}}</td><td>{{policyHolder.jointProposer.surname}}</td></tr>
+        <tr>
+          <td>3. Correspondence Address</td>
+          <td style="white-space: pre-line;">{{policyHolder.addressMultiline}}</td>
+          <td style="white-space: pre-line;">{{policyHolder.jointProposer.addressMultiline}}</td>
+        </tr>
+        <tr><td>4. Date of Birth</td><td>{{policyHolder.dateOfBirthDisplay}}</td><td>{{policyHolder.jointProposer.dateOfBirthDisplay}}</td></tr>
+        <tr><td>5. Occupation</td><td>{{policyHolder.occupation}}</td><td>{{policyHolder.jointProposer.occupation}}</td></tr>
+        <tr><td>6. Nationality</td><td>{{policyHolder.nationality}}</td><td>{{policyHolder.jointProposer.nationality}}</td></tr>
+        <tr><td>7. Contact Email / Telephone</td><td>{{policyHolder.email}}<br />{{policyHolder.phone}}</td><td>{{policyHolder.jointProposer.email}}<br />{{policyHolder.jointProposer.phone}}</td></tr>
+        <tr>
+          <td>8. Has any Insurer declined to accept, cancelled, refused or agreed to continue only on special terms, any insurance for you or any other person to whom this insurance would apply?</td>
+          <td>{{risk.previousDeclinedLabel}}</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>9. Have you or any other person likely to reside in the property ever been convicted of arson or any other offence involving dishonesty (e.g. Fraud, Theft or handling stolen goods)?</td>
+          <td>{{risk.arsonDishonestyLabel}}</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>10. Have you or any person whose property is to be insured, sustained any loss or damage during the last five years which would have been covered by this type of insurance had it been in force?</td>
+          <td>{{risk.previousLossLabel}}</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sof-block-title">Property to be insured</div>
+    <table class="sof-table">
+      <tbody>
+        <tr>
+          <td style="width: 60%;">1. Address of Property to be insured</td>
+          <td style="white-space: pre-line;">{{property.addressMultiline}}</td>
+        </tr>
+        <tr>
+          <td>Where are you domiciled?</td>
+          <td>{{policyHolder.domicileCountry}}</td>
+        </tr>
+        <tr><td>2a. Is the property to be insured a Permanent Home?</td><td>{{property.permanentHomeLabel}}</td></tr>
+        <tr><td>2b. Used for any business, trade or professional purpose?</td><td>{{usage.businessUseLabel}}</td></tr>
+        <tr><td>2c. Rented out / sublet?</td><td>{{usage.rentedOutLabel}}</td></tr>
+        <tr><td>3. Type of Property</td><td>{{property.typeLabel}}</td></tr>
+        <tr><td>3a. Is it above a shop / business?</td><td>{{property.aboveShopOrBusinessLabel}}</td></tr>
+        <tr><td>4. Unoccupancy: During the course of any year the property may be left unoccupied for</td><td>{{usage.unoccupancyLabel}}</td></tr>
+        <tr><td>5. Construction: Are the buildings constructed of Brick, Stone or concrete with a Slate, Tiled, concrete Roof?</td><td>{{property.brickStoneConcreteLabel}}</td></tr>
+        <tr><td>6. Are the buildings in a good state of repair, in particular the roof and electrical wiring?</td><td>{{property.goodStateOfRepairLabel}}</td></tr>
+        <tr><td>7. What is the age of the buildings?</td><td>{{property.yearBuilt}}</td></tr>
+        <tr><td>8. Are you aware of a history of adverse storm and flood conditions, or in the area in which the property is situated?</td><td>{{property.stormFloodHistoryLabel}}</td></tr>
+        <tr><td>9. Is the property situated in an area that has experienced floods within the last 10 years?</td><td>{{property.floodPast10YearsLabel}}</td></tr>
+        <tr><td>10. Are there any rivers, streams or tidal waters within 300 metres of your property?</td><td>{{property.waterCoursesNearbyLabel}}</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sof-fineprint">UMR: {{coverholderUmr}} · Generated {{issueDateDisplay}}</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ───────────────────────────── PAGE 2 ───────────────────────────── -->
+  <div class="sof-page doc-page">
+    <div class="brand-topbar avoid-break">
+      <div class="doc-topbar-left"><img class="doc-logo-left" src="assets/abbeygate.svg" alt="Abbeygate" /></div>
+      <div class="doc-topbar-center">
+        <div class="doc-title">Abbeygate Home Insurance</div>
+        <div class="doc-subtitle">Statement of Facts</div>
+      </div>
+      <div class="doc-topbar-right"><img class="doc-logo-right" src="assets/lloyds.svg" alt="Lloyd's" /></div>
+    </div>
+
+    <div class="sof-block-title">Security</div>
+    <p style="font-size: 11px;">Please comment on external doors and windows as follows:</p>
+    <table class="sof-table">
+      <tbody>
+        <tr>
+          <td style="width: 70%;">
+            1. Are all MAIN EXTERNAL DOORS fitted with a five lever mortice dead lock or multi lever dead lock (preferably BS 3621 Standard or local equivalent)? Other external doors excluding sliding patio doors to be fitted with either:
+            <ol style="margin: 4px 0 4px 18px; padding: 0;">
+              <li>a lock to the same standard as above; or</li>
+              <li>key operated security devices top and bottom in addition to the existing locks; or</li>
+              <li>sliding bolts top and bottom.</li>
+            </ol>
+            Sliding patio doors to be fitted with either:
+            <ol style="margin: 4px 0 0 18px; padding: 0;">
+              <li>protections to the standard as above; or</li>
+              <li>any key operated patio door lock mounted internally on the centre rail(s); or</li>
+              <li>sliding bolts top and bottom.</li>
+            </ol>
+          </td>
+          <td style="width: 30%;">{{security.doorsFiveLeverLocksLabel}}</td>
+        </tr>
+        <tr>
+          <td>2. Are all ACCESSIBLE WINDOWS fitted with either: Key operated window locks, Shutters securely locked internally, or Metal grilles embedded into the wall?</td>
+          <td>{{security.windowsSecuredLabel}}</td>
+        </tr>
+        <tr>
+          <td>3. Is your home protected by an alarm system installed and held under an annual maintenance agreement?</td>
+          <td>{{security.alarmMaintainedLabel}}</td>
+        </tr>
+        <tr>
+          <td>4. Is there a safe at the premises?</td>
+          <td>{{security.safeDescription}}</td>
+        </tr>
+        <tr>
+          <td>5. Is there any other security at the premises?</td>
+          <td>{{security.additionalSecurityDescription}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sof-block-title">Subsidence</div>
+    <p style="font-size: 11px;">In respect of subsidence, heave or landslip; is the property to be insured:</p>
+    <table class="sof-table">
+      <tbody>
+        <tr><td style="width: 70%;">1. Showing any signs of damage (such as cracks, inside or outside)?</td><td>{{risk.subsidenceDamageLabel}}</td></tr>
+        <tr><td>2. Showing any signs of movement or been the subject of structural repairs at any time?</td><td>{{risk.subsidenceMovementLabel}}</td></tr>
+        <tr><td>3. The subject of a valuation or survey report, which mentions settlement or movement of buildings or recommends further investigation?</td><td>{{risk.subsidenceSurveyLabel}}</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sof-block-title">Details of any bank or mortgage interest</div>
+    <p style="font-size: 11px; margin-bottom: 4px;">If your property is mortgaged, please provide the following information. We are required to notify your mortgage lender if you take out a building policy with us.</p>
+    <table class="sof-table">
+      <tbody>
+        <tr><td style="width: 70%;">1. Mortgage Lender's Name</td><td>{{#if mortgageLenderName}}{{mortgageLenderName}}{{else}}—{{/if}}</td></tr>
+        <tr><td>Mortgage Lender's Address</td><td>{{#if mortgageLenderAddress}}{{mortgageLenderAddress}}{{else}}—{{/if}}</td></tr>
+        <tr><td>Bank / Mortgage Reference</td><td>{{#if bankMortgageReference}}{{bankMortgageReference}}{{else}}—{{/if}}</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sof-block-title">Cover</div>
+    <table class="sof-table">
+      <tbody>
+        <tr><td style="width: 70%;">1. Effective date</td><td>{{period.startNumeric}}</td></tr>
+        <tr><td>2. Do you wish to extend cover to include Accidental Damage in respect of your Buildings?</td><td>{{coverage.adBuildingsLabel}}</td></tr>
+        <tr><td>3. Do you wish to extend cover to include Accidental Damage in respect of your Contents?</td><td>{{coverage.adContentsLabel}}</td></tr>
+        <tr><td>4. High Risk Items sum insured</td><td>{{currencySymbol}}{{coverage.allRiskJewelleryDisplay}}</td></tr>
+        <tr><td>5. All Risks Unspecified sum insured</td><td>{{currencySymbol}}{{coverage.allRiskOtherDisplay}}</td></tr>
+        <tr><td>6. Solar Panels sum insured</td><td>{{currencySymbol}}{{coverage.solarPanelsDisplay}}</td></tr>
+        <tr><td>7. Europ Assistance Helpline included</td><td>{{coverage.europAssistanceLabel}}</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sof-fineprint">UMR: {{coverholderUmr}} · Generated {{issueDateDisplay}}</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ───────────────────────────── PAGE 3: Specified items ───────────────────────────── -->
+  <div class="sof-page doc-page">
+    <div class="brand-topbar avoid-break">
+      <div class="doc-topbar-left"><img class="doc-logo-left" src="assets/abbeygate.svg" alt="Abbeygate" /></div>
+      <div class="doc-topbar-center">
+        <div class="doc-title">Abbeygate Home Insurance</div>
+        <div class="doc-subtitle">Statement of Facts</div>
+      </div>
+      <div class="doc-topbar-right"><img class="doc-logo-right" src="assets/lloyds.svg" alt="Lloyd's" /></div>
+    </div>
+
+    <div class="sof-block-title">High Risk Items &amp; Personal Effects</div>
+    <p style="font-size: 11px;">
+      This section provides cover for High Risk Items and Personal Effects both in and away from the home. For example, jewellery, watches, cameras, electronic devices etc. The value given here should not be included within the Contents sum insured. Please provide a recent valuation or receipt for all items with an individual value over 3,000 Euros.
+    </p>
+    <table class="sof-table">
+      <thead>
+        <tr>
+          <th style="width: 70%;">Description of item</th>
+          <th class="right" style="width: 30%;">Sum insured</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if specifiedItems.length}}
+          {{#each specifiedItems}}
+          <tr><td>{{description}}</td><td class="right">{{sumInsuredDisplay}}</td></tr>
+          {{/each}}
+        {{else}}
+          <tr><td>—</td><td class="right">—</td></tr>
+          <tr><td>—</td><td class="right">—</td></tr>
+          <tr><td>—</td><td class="right">—</td></tr>
+          <tr><td>—</td><td class="right">—</td></tr>
+          <tr><td>—</td><td class="right">—</td></tr>
+        {{/if}}
+      </tbody>
+    </table>
+
+    <div class="sof-fineprint">UMR: {{coverholderUmr}} · Generated {{issueDateDisplay}}</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ───────────────────────────── PAGE 4: NOTICE ───────────────────────────── -->
+  <div class="sof-page doc-page notice-block">
+    <div class="brand-topbar avoid-break">
+      <div class="doc-topbar-left"><img class="doc-logo-left" src="assets/abbeygate.svg" alt="Abbeygate" /></div>
+      <div class="doc-topbar-center">
+        <div class="doc-title">Abbeygate Home Insurance</div>
+        <div class="doc-subtitle">Statement of Facts — Notice</div>
+      </div>
+      <div class="doc-topbar-right"><img class="doc-logo-right" src="assets/lloyds.svg" alt="Lloyd's" /></div>
+    </div>
+
+    <h2 style="margin-top:6px;">Notice</h2>
+    <p><strong>Data Protection — Information Uses.</strong> For the purposes of the Data Protection Act 1998, the Data Controller in relation to any personal data you supply is Amtrust Europe Limited.</p>
+    <ol>
+      <li>Undertake credit searches and additional fraud searches.</li>
+    </ol>
+    <p>We can supply on request further details of the databases we access or contribute to.</p>
+
+    <h2>Insurance Administration</h2>
+    <p>Information you supply may be used for the purposes of insurance administration by the insurer, its associated companies and agents, by reinsurers and your intermediary. It may be disclosed to regulatory bodies for the purposes of monitoring and/or enforcing the insurer's compliance with any regulatory rules / codes. Your information may also be used for offering renewal, research and statistical purposes and crime prevention.</p>
+    <p>It may be transferred to any country, including countries outside the European Economic Area for any of these purposes and for systems administration.</p>
+    <p>In assessing any claims made, the insurer or its agents may undertake checks against publicly available information (such as electoral roll, county court judgments, bankruptcy orders or repossessions). Information may also be shared with other insurers either directly or via those acting for the insurer (such as loss adjusters or investigators).</p>
+
+    <h2>Claims History</h2>
+    <ol>
+      <li>Under the conditions of your policy you must tell us about any insurance related incidents (such as fire, water damage, theft or an accident) whether or not they give rise to a claim. When you tell us about an incident we will pass information relating to it to a database.</li>
+      <li>We may search these databases when you apply for insurance, in the event of any incident or claim, or at time of renewal to validate your claims history or that of any other person or property likely to be involved in the policy or claim.</li>
+    </ol>
+    <p>You should show these notices to anyone who has an interest in property insured under the policy.</p>
+    <p>With limited exceptions, and on payment of the appropriate Overriding Commission, you have the right to access and if necessary rectify information held about you.</p>
+
+    <h2>Credit Searches and Accounting</h2>
+    <p>In assessing your application, the insurer may search files made available to it by credit reference agencies who may keep a record of that search. The insurer may also pass to credit reference agencies information it holds about you and your payment record. Credit reference agencies share information with other organisations, enabling applications for financial products to be assessed or to assist the tracing of debtors or to prevent fraud. The insurer may ask credit reference agencies to provide a credit scoring computation. Credit scoring uses a number of factors to work out risks involved in any application. A score is given to each factor and a total score obtained. Where automatic credit scoring computations are used by the insurer, acceptance or rejection of your application will not depend only on the results of the credit scoring process.</p>
+
+    <h2>Choice of Law</h2>
+    <p>The law of England and Wales will apply to this contract unless:</p>
+    <ol>
+      <li>You and the Insurer agree otherwise; or</li>
+      <li>At the date of the contract you are a resident of (or, in the case of a business, the registered office or principal place of business is situated in) Scotland, Northern Ireland, Channel Islands, or the Isle of Man, in which case (in the absence of agreement to the contrary) the law of that country will apply.</li>
+    </ol>
+
+    <h2>Underinsurance</h2>
+    <p>You must declare the full value of property or goods insured, failure to do so may invalidate your policy or reduce claims settlements.</p>
+
+    <h2>Fraud Prevention and Detection</h2>
+    <p>In order to prevent and detect fraud we may at any time:</p>
+    <ol>
+      <li>Share information about you with other organisations and public bodies including the Police;</li>
+      <li>Check and/or file your details with fraud prevention agencies and databases, and if you give us false or inaccurate information and we suspect fraud, we will record this. We and other organisations may also search these agencies and databases to:</li>
+      <li>Help make decisions about the provision and administration of insurance, credit and related services for you and members of your household;</li>
+      <li>Trace debtors or beneficiaries, recover debt, prevent fraud and to manage your accounts or insurance policies;</li>
+      <li>Check your identity to prevent money laundering, unless you furnish us with other satisfactory proof of identity.</li>
+    </ol>
+
+    <h2>Sensitive Data</h2>
+    <p>In order to assess the terms of the insurance contract or administer claims which arise, the insurer may need to collect data which the Data Protection Act defines as sensitive (such as medical history or criminal convictions). By proceeding with this application you will signify your consent to such information being processed by the insurer or its agents.</p>
+
+    <h2>Marketing</h2>
+    <p>Abbeygate and its subsidiaries may use your information to keep you informed by post, telephone, e-mail or other means about products and services which may be of interest to you. Your information may also be disclosed and used for these purposes after your policy has lapsed.</p>
+
+    <h2>Important note</h2>
+    <p>Failure to disclose all material information advised (i.e. information likely to influence the assessment of this risk) could invalidate the insurance. This is an important document — please keep it in a safe place. You should keep a record of all information supplied for the purpose of entering into this contract.</p>
+    <p>When you pay the premium requested, unless you notify us of any amendment to the statement as soon as possible and in any event within 30 days of the date of this letter, you are accepting the Insurance offered on the terms contained in the Statement and policy document.</p>
+    <p>We reserve the right to decline any risk or change the premium and terms quoted.</p>
+
+    <div class="sof-fineprint">UMR: {{coverholderUmr}} · Generated {{issueDateDisplay}}</div>
+  </div>
+</body>
+</html>

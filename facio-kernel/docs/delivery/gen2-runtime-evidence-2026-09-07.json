@@ -1,0 +1,100 @@
+{
+  "environment": "local disposable PostgreSQL/Redis/Blob",
+  "sourceCommit": "working candidate; release commit recorded separately",
+  "portfolioEngineHttpProof": [
+    {
+      "id": "fd72d838-8f5b-4bd2-86d0-e794e0b474da",
+      "policies": [
+        {
+          "product": "home",
+          "id": "1eb6a444-56b4-4fd7-abab-f6b6a60d8ad7",
+          "policyNumber": "RUNTIME-3FFE-CY-HOME-Q5000065",
+          "status": "QUOTED",
+          "premium": 293.39,
+          "currency": "EUR",
+          "programId": "77c110ab-fa35-43bf-8164-5854368c77fe"
+        },
+        {
+          "product": "travel",
+          "id": "dd8f470d-f394-4c01-9aee-725214c67a52",
+          "policyNumber": "RUNTIME-3FFE-CY-TRAVEL-Q5000067",
+          "status": "QUOTED",
+          "premium": 26.22,
+          "currency": "EUR",
+          "programId": "a715d2f3-85a0-41f4-8948-f0ec0eb06ad0"
+        },
+        {
+          "product": "health",
+          "id": "156fd004-c36d-4de0-9983-8eb8b7c73e46",
+          "policyNumber": "RUNTIME-3FFE-CY-HEALTH-Q5000069",
+          "status": "QUOTED",
+          "premium": 175,
+          "currency": "EUR",
+          "programId": "815e622d-3c5b-447b-9c84-c5d9ff772098"
+        },
+        {
+          "product": "motor",
+          "id": "1cc8b1d9-852e-44b5-8d74-3df94375d45a",
+          "policyNumber": "RUNTIME-3FFE-CY-MOTOR-Q5000071",
+          "status": "QUOTED",
+          "premium": 710.52,
+          "currency": "EUR",
+          "programId": "541b909b-5f5f-4eba-b8ff-77138ba19f78"
+        }
+      ]
+    },
+    {
+      "id": "f7b97d88-0c19-440d-bbe4-9c6a2bb49f98",
+      "policies": [
+        {
+          "product": "home",
+          "id": "3693c331-9589-47e6-9397-9cab25811ab0",
+          "policyNumber": "RUNTIME-D6E0-CY-HOME-Q5000066",
+          "status": "QUOTED",
+          "premium": 293.39,
+          "currency": "EUR",
+          "programId": "f24d8428-299e-44e7-a10a-510116bade30"
+        },
+        {
+          "product": "travel",
+          "id": "4ed2df34-71f6-453f-8f1e-ce619a2acfa2",
+          "policyNumber": "RUNTIME-D6E0-CY-TRAVEL-Q5000068",
+          "status": "QUOTED",
+          "premium": 26.22,
+          "currency": "EUR",
+          "programId": "daaaff8d-ed68-4689-9527-198e63dbbecd"
+        },
+        {
+          "product": "health",
+          "id": "aabde45c-70a6-40bd-b0e9-dfd2f29fe87e",
+          "policyNumber": "RUNTIME-D6E0-CY-HEALTH-Q5000070",
+          "status": "QUOTED",
+          "premium": 175,
+          "currency": "EUR",
+          "programId": "d56715bf-301b-4681-a8f6-5ae703316f36"
+        },
+        {
+          "product": "motor",
+          "id": "8dd72b48-586b-478f-9788-6a3ee8e4ba2e",
+          "policyNumber": "RUNTIME-D6E0-CY-MOTOR-Q5000072",
+          "status": "QUOTED",
+          "premium": 710.52,
+          "currency": "EUR",
+          "programId": "2168351a-1ee9-46c8-a69e-7fe78116c0f6"
+        }
+      ]
+    }
+  ],
+  "mcpConfigurationRuntimeProof": {
+    "tenantId": "22cb8d02-02b5-4ac8-8a83-f508e241ceed",
+    "programId": "99f780d8-7942-4462-aa29-4ec88326ed96",
+    "definitionId": "20ba59e8-5b2f-4f13-b54f-b036817aa1f7",
+    "version": 2,
+    "peerDefinitionUnchanged": true,
+    "quoted": {
+      "annualPremium": 700,
+      "currency": "EUR"
+    }
+  },
+  "scope": "Synthetic source-template behavior; no customer acceptance, real provider transaction or hosted delivery is implied."
+}

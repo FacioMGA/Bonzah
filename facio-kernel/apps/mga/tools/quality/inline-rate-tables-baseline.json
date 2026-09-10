@@ -1,0 +1,4 @@
+{
+  "_comment": "Files grandfathered by check-no-inline-rate-tables. Each entry is a path that the guard would otherwise flag. Entries here are owed an externalization to backend/products/<product>/pricing/data/<dataset>.{json,schema.ts,loader.ts} per docs/architecture/contracts/canonical-ownership.md. Shrink this list; never grow it.",
+  "files": []
+}

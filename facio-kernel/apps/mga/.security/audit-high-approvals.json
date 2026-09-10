@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "approvals": [
+    {
+      "package": "axios",
+      "advisorySources": [
+        1116365
+      ],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Temporary approval while BDX migration and staging recovery are in flight; axios is only present transitively via SendGrid and will be upgraded separately."
+    },
+    {
+      "package": "@sendgrid/client",
+      "advisorySources": [],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Temporary approval because SendGrid depends on the audited axios range; tracked together with the axios transitive upgrade."
+    },
+    {
+      "package": "@opentelemetry/exporter-prometheus",
+      "advisorySources": [
+        1117943
+      ],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Introduced in 6fdcab9f for AKS observability. Advisory 1117943 (Prometheus exporter process crash via malformed HTTP request) is a DoS-class issue; the exporter is only reachable from inside the cluster (no public ingress to /metrics), so practical risk is low. Track upstream patch and upgrade when published."
+    },
+    {
+      "package": "@opentelemetry/sdk-node",
+      "advisorySources": [
+        1117942,
+        1124011
+      ],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Transitively flagged via the OpenTelemetry core/exporter DoS advisories (1117942, 1124011 — malformed trace/propagation header crashes). Removing them requires a breaking OpenTelemetry major upgrade (npm audit fix --force), tracked separately to avoid destabilising AKS telemetry init. Practical risk is low: propagators/exporters are internal and /metrics has no public ingress."
+    },
+    {
+      "package": "@opentelemetry/propagator-jaeger",
+      "advisorySources": [
+        1124011
+      ],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Advisory 1124011: JaegerPropagator DoS via unhandled exception on a malformed header. Fix is a breaking OpenTelemetry major upgrade (tracked with the sdk-node entry). Low practical risk — trace propagation is internal, no untrusted public trace headers are parsed."
+    },
+    {
+      "package": "fast-uri",
+      "advisorySources": [
+        1124015,
+        1124064,
+        1124231
+      ],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "fast-uri host-confusion advisories (1124015 IDN canonicalization; 1124064 literal backslash authority delimiter GHSA-v2hh-gcrm-f6hx; 1124231 failed IDN canonicalization GHSA-4c8g-83qw-93j6). GitHub re-issued/split the original advisory into the two new IDs; same vulnerability class and same transitive path (fastify/ajv URI parsing, range >=3.0.0 <=3.1.3). The only fix pulls a second fast-uri major that npm dedupe cannot collapse (dependency-duplication regression), so deferred to a batched dependency upgrade. Practical risk is low: URI parsing is not used for security-authority host decisions in our request path."
+    },
+    {
+      "package": "@azure/monitor-opentelemetry",
+      "advisorySources": [],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Transitively flagged via @opentelemetry/sdk-node. Azure Monitor SDK introduced in 6fdcab9f for AKS observability; will be upgraded together with the OpenTelemetry SDK once the upstream fix ships."
+    },
+    {
+      "package": "applicationinsights",
+      "advisorySources": [],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Transitively flagged via @azure/monitor-opentelemetry. Microsoft Application Insights SDK introduced in 6fdcab9f for AKS observability; tracked with the OpenTelemetry approval set."
+    },
+    {
+      "package": "react-router",
+      "advisorySources": [
+        1124282
+      ],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Advisory 1124282 (GHSA-qwww-vcr4-c8h2): React Router RSC-mode CSRF bypass allowing action execution before a 400 response. The vulnerability is reachable only in React Router's RSC (React Server Components) framework mode; the Abbeygate frontend is a client-side Vite SPA using react-router-dom in library mode, so the affected server action pathway does not exist in our request path. No fixed release is published yet — latest 7.18.2 is still inside the affected 7.12.0-8.2.0 range and there is no 8.3.0 — so npm audit fix cannot remediate. Time-boxed; upgrade to the patched release when React Router ships it."
+    },
+    {
+      "package": "react-router-dom",
+      "advisorySources": [],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Transitively flagged because react-router-dom depends on the affected react-router range (advisory 1124282, RSC-mode CSRF). Same rationale as the react-router entry: client-side SPA usage does not exercise RSC mode, and no patched release exists. Tracked together with react-router."
+    },
+    {
+      "package": "extract-zip",
+      "advisorySources": [
+        1139346
+      ],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Advisory 1139346 (GHSA extract-zip unvalidated symlink path traversal). CORRECTION (Codex P2, 2026-08-14): puppeteer IS a production dependency (backend PDF renderers backend/modules/documents/domain/renderers/pdfRenderer.ts and backend/products/motor/documents/pdfRenderer.ts launch Chromium at runtime), so the earlier 'dev/CI-only' claim was wrong. However, extract-zip is only reached by @puppeteer/browsers when it DOWNLOADS and unpacks a Chromium archive. Every production image disables that path: infrastructure/docker/Dockerfile, Dockerfile.api and Dockerfile.worker set PUPPETEER_SKIP_DOWNLOAD=1 and PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 and point PUPPETEER_EXECUTABLE_PATH at the OS-provided /usr/bin/chromium (apt chromium). So extract-zip is never invoked in the deployed runtime and never touches the request path; the only time it runs at all is a developer running a local Chromium install, unpacking Google's own CDN archive (trusted input), which the symlink-traversal class does not affect. Residual production risk is nil. Time-boxed; drop when puppeteer ships a build depending on a patched extract-zip."
+    },
+    {
+      "package": "@puppeteer/browsers",
+      "advisorySources": [],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Transitively flagged via extract-zip (advisory 1139346). @puppeteer/browsers is puppeteer's browser-download helper; puppeteer ships in production but the download path is disabled in every image (PUPPETEER_SKIP_DOWNLOAD=1 + PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1, OS chromium via PUPPETEER_EXECUTABLE_PATH), so this helper never runs in the deployed runtime. Tracked with the extract-zip entry."
+    },
+    {
+      "package": "puppeteer-core",
+      "advisorySources": [],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Transitively flagged via @puppeteer/browsers -> extract-zip (advisory 1139346). puppeteer-core is used by production PDF rendering, but the flagged extract-zip path is browser-archive unpack only, which the images disable (PUPPETEER_SKIP_DOWNLOAD=1 + PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1, OS chromium). Not reached in the deployed runtime. Tracked with the extract-zip entry."
+    },
+    {
+      "package": "puppeteer",
+      "advisorySources": [],
+      "expiresOn": "2026-10-21",
+      "owner": "uriel.aharoni",
+      "reason": "Flagged via @puppeteer/browsers/puppeteer-core -> extract-zip (advisory 1139346). puppeteer is a production dependency (PDF rendering), but the vulnerable extract-zip path is Chromium-archive unpack only and is disabled in every image (PUPPETEER_SKIP_DOWNLOAD=1 + PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1, OS chromium via PUPPETEER_EXECUTABLE_PATH), so it is never invoked in the deployed runtime. Tracked with the extract-zip entry."
+    }
+  ]
+}

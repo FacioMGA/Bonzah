@@ -1,0 +1,10 @@
+[Unit]
+Description=Facio Kernel verified SQLite off-host backup
+RequiresMountsFor=/srv/facio-kernel/data
+ConditionPathIsMountPoint=/srv/facio-kernel/data
+[Service]
+Type=oneshot
+User=root
+EnvironmentFile=/srv/facio-kernel/deploy/storage.env
+UMask=0077
+ExecStart=/usr/bin/python3 /srv/facio-kernel/deploy/backup.py

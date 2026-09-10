@@ -1,0 +1,83 @@
+{
+  "verifiedAt": "2026-09-06T17:32:03.150309+00:00",
+  "expectedMergedSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+  "health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "productionReady": false
+  },
+  "assets": [
+    {
+      "path": "/studio",
+      "sha256": "b8db931d34b75fd8c5221c1b9655080ac25b006ff028b8f8649b3a40f1fd9d0d",
+      "bytes": 9264,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/app.js",
+      "sha256": "791e9d52aa994c20f0d358bed157b244f72e8bde7d601abb556b7aa85ac62edf",
+      "bytes": 140973,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/styles.css",
+      "sha256": "e22400237fe0a701d18fdb5eeb3a393bfe93dda04b1810990c3a48a90a24fdd9",
+      "bytes": 50098,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-config.js",
+      "sha256": "0538332bac8a8c9611aa1144fa071896d3dc3845e38476d20caf2fc81cf55d0f",
+      "bytes": 38277,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-config.css",
+      "sha256": "4bfc8766040c0cd77c55e63d1631dbe40c09dd2c3c42883b09c24f16fd15a619",
+      "bytes": 3734,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-decision.js",
+      "sha256": "f3e4cf5494b52699188c35e12183331322d01cfd0e22ca88cc6ad7410ed9f82d",
+      "bytes": 14057,
+      "matchesMergedFile": true
+    },
+    {
+      "path": "/insurance-decision.css",
+      "sha256": "6e90398af23885e12ef956dcd529d77a2f0bac259cff5848eb8c4e01f23c4c14",
+      "bytes": 1400,
+      "matchesMergedFile": true
+    }
+  ],
+  "anonymousDenials": [
+    {
+      "path": "/api/insurance/catalog",
+      "status": 401
+    },
+    {
+      "path": "/api/insurance/records",
+      "status": 401
+    },
+    {
+      "path": "/api/configuration",
+      "status": 401
+    },
+    {
+      "path": "/mcp",
+      "status": 401
+    }
+  ],
+  "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/22",
+  "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34048525194",
+  "mainVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34048647730",
+  "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34048683296",
+  "limits": [
+    "Public health and static assets only; authenticated rich journey and upgrade recovery have separate evidence."
+  ]
+}

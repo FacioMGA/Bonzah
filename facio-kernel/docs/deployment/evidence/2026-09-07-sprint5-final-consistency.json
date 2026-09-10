@@ -1,0 +1,312 @@
+{
+  "checkedAt": "2026-09-07T08:03:19.869593+00:00",
+  "passed": true,
+  "buildSha": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+  "method": "Read-only local cross-receipt comparison, exact-commit source-byte checks and artifact/download checksum recomputation. No cloud, browser or database commands.",
+  "inputs": {
+    "public": {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+      "sha256": "58b76b9caee43b4574126ab2a5f2bd0e3d6509e845e97158e330b0ad368d46fd"
+    },
+    "preflight": {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-preflight.json",
+      "sha256": "d673a3b29dd2a3fd299763607683945c8c8357f8b717d6f6f364b2a9cf2349dd"
+    },
+    "ci": {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-ci.json",
+      "sha256": "efab00590f5cac481f6a94796801de337587c4cb3dfed61226a5cd4ecbfb3aa5"
+    },
+    "browser": {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+      "sha256": "25d6f6686255f95752d8fa75495d5d75c70fc64abe9e68fdbd29282836cad85c"
+    },
+    "downloads": {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-downloads.json",
+      "sha256": "d88a552c9d5cc1af98ff3d23f7e7621d78aaf9f3f287357cde8dc4ffb2126f35"
+    },
+    "recovery": {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+      "sha256": "a0d1854ca75988fdf35eac9bf43f503395b65c9f46983eb3abdba614391d081d"
+    },
+    "prior": {
+      "path": "docs/deployment/evidence/2026-09-07-sprint5-preflight.json",
+      "sha256": "3457749a01977a988d1e5c654f4f49763c3419c87005a9a832229e3a8abef98f"
+    }
+  },
+  "checkCount": 53,
+  "checks": [
+    {
+      "check": "Authoritative recovery receipt checksum",
+      "passed": true
+    },
+    {
+      "check": "All final build identities agree",
+      "passed": true
+    },
+    {
+      "check": "CI and deployment succeeded",
+      "passed": true
+    },
+    {
+      "check": "CI receipt equals independent artifact verification",
+      "passed": true
+    },
+    {
+      "check": "CI archive digest matches",
+      "passed": true
+    },
+    {
+      "check": "CI counts and zero recorded failures match",
+      "passed": true
+    },
+    {
+      "check": "Public and downloads link exact preflight bytes",
+      "passed": true
+    },
+    {
+      "check": "Preflight and restore image/archive/replay identities equal",
+      "passed": true
+    },
+    {
+      "check": "Replay source matches exact committed release",
+      "passed": true
+    },
+    {
+      "check": "Rust engine equal in CI/preflight/public/restored health",
+      "passed": true
+    },
+    {
+      "check": "Full canonical preflight and restored replay equal",
+      "passed": true
+    },
+    {
+      "check": "Three older record heads/history lengths unchanged",
+      "passed": true
+    },
+    {
+      "check": "Earlier releases unchanged",
+      "passed": true,
+      "details": 2
+    },
+    {
+      "check": "Earlier requirements unchanged",
+      "passed": true,
+      "details": 3
+    },
+    {
+      "check": "Earlier approvals unchanged",
+      "passed": true,
+      "details": 1
+    },
+    {
+      "check": "Earlier providers unchanged",
+      "passed": true,
+      "details": 1
+    },
+    {
+      "check": "Alpha/Gamma/Beta tenant pointers unchanged",
+      "passed": true
+    },
+    {
+      "check": "Only new synthetic lab gained activation",
+      "passed": true
+    },
+    {
+      "check": "Original v4 and distinct renewal v2 exact pins",
+      "passed": true
+    },
+    {
+      "check": "Acknowledged FNOL v4 hash matches downloads/capture",
+      "passed": true
+    },
+    {
+      "check": "Four completed packs and sixteen unique artifacts retained",
+      "passed": true
+    },
+    {
+      "check": "Exact source captures remain byte-identical",
+      "passed": true
+    },
+    {
+      "check": "Three downloaded files match retained checksums and sizes",
+      "passed": true
+    },
+    {
+      "check": "Downloaded PDF equals persisted completed artifact after restore",
+      "passed": true
+    },
+    {
+      "check": "Download ledger original head equals restored v4",
+      "passed": true
+    },
+    {
+      "check": "Final actual browser record/release references agree",
+      "passed": true
+    },
+    {
+      "check": "Final browser native capture checksum",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-fnol.js",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-fnol.css",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-documents.js",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-documents.css",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-report.js",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-finance.js",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-finance.css",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-operations.js",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /studio",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /app.js",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /styles.css",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-config.js",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-config.css",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-decision.js",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-decision.css",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-approval.js",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-approval.css",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-provider.js",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-provider.css",
+      "passed": true
+    },
+    {
+      "check": "Committed static bytes /insurance-workflow.js",
+      "passed": true
+    },
+    {
+      "check": "All twenty-one registered static routes covered",
+      "passed": true
+    },
+    {
+      "check": "Anonymous requests denied publicly and after restore",
+      "passed": true
+    },
+    {
+      "check": "Recovery safeguards succeeded",
+      "passed": true
+    },
+    {
+      "check": "Database schemas business7/auth1",
+      "passed": true
+    },
+    {
+      "check": "Public preflight summary counts agree",
+      "passed": true
+    }
+  ],
+  "counts": {
+    "records": 5,
+    "documents": 4,
+    "notices": 1,
+    "finance": 5,
+    "approvals": 1,
+    "providers": 1,
+    "releases": 3,
+    "tenants": 4,
+    "requirements": 3,
+    "outbox": 11,
+    "recordHistoryRevisions": 11,
+    "documentArtifactHashes": 16,
+    "staticRoutes": 21,
+    "actualBrowserChecks": 7,
+    "downloadedFiles": 3,
+    "nodeTests": 181,
+    "rustTests": 2,
+    "pythonTests": 4,
+    "ciBrowserSuites": 14,
+    "ciBrowserChecks": 86
+  },
+  "identity": {
+    "imageId": "sha256:48a31c2e85e40652913fcd4727669f05056a309554e6e2a2719fad2b0f44c134",
+    "imageArchiveSha256": "962bb364883d676f52b0a73dbdc98c9843e542a6c83fb41dfb95ba3416f11383",
+    "replaySourceSha256": "1d4584fa074511a187b6b24eab9d3d4d98e87049aecfb3fe045d55c3099392fe",
+    "snapshotId": "20260907T074651.855869Z",
+    "manifestSha256": "50e5ca0c392ee9c8da28873382a65027cdcae71155cb4432ab3a7d98765531f4",
+    "wasmSha256": "970064d3640e112cab1fae9acea35c4d2968c9fbcaaec300437236e99e12b7e7"
+  },
+  "limitations": [
+    "This compares captured evidence; no independent live infrastructure, database replay or browser workflow was rerun.",
+    "The original downloads/rendered capture pins preceding 7b92ae6. Its deployed-artifact comparison pins 5287a070 and matches identical bytes retained in the final restored snapshot.",
+    "Thirteen CI browser artifacts retain empty error arrays. OAuth asserts zero console errors before successful output but does not separately instrument pageerror.",
+    "Actual final browser proof covers one existing administrator Google session, not independent intern, second reviewer or actual ChatGPT acceptance.",
+    "Recovery is same-VM isolated restore with existing private bootstrap/identity configuration. Full VM or credential-loss recovery and cross-database snapshot atomicity are not established.",
+    "All four document packs/sixteen hashes are preserved. Only the identified original-v2 PDF and two CSV downloads are independently byte-checked. No customer legal issuance, provider, bank/payment/refund, notice delivery or claims acceptance is implied."
+  ],
+  "guideReview": {
+    "path": "docs/guides/insurance-studio-quickstart.md",
+    "sha256": "d27c9d518c1545b3a0ec155119af35b0d67ea834d93068e19e4d00f1898b4c14",
+    "localLinksChecked": 6,
+    "localLinksExist": true,
+    "boundary": "Read-only source/label/capability/link review; no new browser test or cloud call.",
+    "status": "passed",
+    "verifiedAt": "2026-09-07T08:05:41.051828+00:00",
+    "resolvedFindings": [
+      {
+        "text": "An existing v2 definition is maintained through the configuration JSON editor",
+        "finding": "Existing v2 definitions are editable through the structured Edit product controls. Replace mandatory JSON path with Product definitions \u2192 Insurance products \u2192 Edit product and explicit Upgrade draft to product v2 when intended; save and activate separately. JSON remains an optional expert editor.",
+        "reportedTo": "root and requirements_delivery",
+        "resolution": "Verified structured Edit product path, explicit v1 draft conversion, separate save/review/activation, and optional expert JSON wording."
+      }
+    ],
+    "materialFindings": []
+  },
+  "frozenAt": "2026-09-07T08:05:41.052068+00:00"
+}

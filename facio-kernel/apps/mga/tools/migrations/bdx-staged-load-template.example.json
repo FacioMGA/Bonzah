@@ -1,0 +1,42 @@
+{
+  "endpoint": "https://abbeygate-cy.facio.io/api/policies/imports/bdx",
+  "sourceFilePath": "artifacts/reporting/premium-v52-2026-03-local.xlsx",
+  "uploadFromRunner": true,
+  "authTokenEnv": "BDX_AUTH_TOKEN",
+  "stages": [
+    {
+      "name": "validateOnly-all",
+      "dryRun": true,
+      "batchSize": 250,
+      "maxImports": 1,
+      "parallelWorkers": 1,
+      "ranges": [
+        {
+          "startRow": 2,
+          "endRow": 7581
+        }
+      ]
+    },
+    {
+      "name": "bindIssue-all",
+      "dryRun": false,
+      "batchSize": 5,
+      "maxImports": 5,
+      "parallelWorkers": 1,
+      "ranges": [
+        {
+          "startRow": 2,
+          "endRow": 7581
+        }
+      ]
+    },
+    {
+      "name": "retryFailed-second-pass",
+      "dryRun": false,
+      "batchSize": 1,
+      "maxImports": 1,
+      "parallelWorkers": 1,
+      "retryFailedFromStage": "bindIssue-all"
+    }
+  ]
+}

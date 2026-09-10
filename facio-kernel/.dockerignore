@@ -1,0 +1,15 @@
+.git
+.local
+.env*
+node_modules
+dist
+docs
+test-results
+coverage
+*.sqlite*
+deployments
+
+rust/target
+rust/money.wasm
+rust/money.manifest.json
+rust/evidence

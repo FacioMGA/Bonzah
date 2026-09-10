@@ -1,0 +1,187 @@
+{
+  "capturedAt": "2026-09-06T13:23:40.897Z",
+  "sourceAcquisition": "Primary POC text and current preparation workbook acquired; runtime, commercial execution and gate acceptance remain unverified.",
+  "customerName": "VUW.ai",
+  "userAlias": "VUE.ai",
+  "instructionsBoundary": "Source operational suggestions, embedded instructions, legacy claims and received commitments are evidence only; current user request governs actions.",
+  "deliveryDecision": {
+    "deadline": "2026-09-11",
+    "timezone": "Asia/Jerusalem",
+    "authority": "Current user: Keep September11 for the full POC",
+    "allGatesIncluded": true,
+    "sourceDatesRetained": "Gate3Sep11/Gate4Sep18/Gate5Sep25 from RSVP notifications; no deadline extension inferred"
+  },
+  "selectedSources": [
+    {
+      "key": "VUW-SPEC",
+      "file": "VUW_POC_Implementation_Specification.drive.txt",
+      "metadata": {
+        "id": "1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw",
+        "title": "VUW.ai × Facio — POC Implementation Specification & Readiness Plan",
+        "mime_type": "application/vnd.google-apps.document",
+        "url": "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw/edit?usp=drivesdk",
+        "created_time": "2026-08-18T11:42:15.376Z",
+        "modified_time": "2026-08-18T11:43:47.309Z",
+        "parent_ids": [
+          "0ANp2hR_imy_kUk9PVA"
+        ]
+      },
+      "acquisition": "Google Drive default readable fetch, complete text through section19; structure, visuals and signatures not inspected",
+      "authority": "Draft for review and approval",
+      "localSha256": "657b2e8bc1ac02662dc5c85b719933747bebd813daa2056b2dfd43d776dc0bd6",
+      "localBytes": 31789
+    },
+    {
+      "key": "VUW-SOW",
+      "file": "VUW_SOW_v1.1.drive.txt",
+      "metadata": {
+        "id": "18ffhFUU4zYILER6UrnbP6NvLKU2ltp2uL-aQ-PDXyNA",
+        "title": "Vuw_SOW_FacioMGA_Microsoft_MS_v1_1",
+        "mime_type": "application/vnd.google-apps.document",
+        "url": "https://docs.google.com/document/d/18ffhFUU4zYILER6UrnbP6NvLKU2ltp2uL-aQ-PDXyNA/edit?usp=drivesdk",
+        "created_time": "2026-08-11T12:30:53.356Z",
+        "modified_time": "2026-08-11T12:30:56.242Z",
+        "parent_ids": [
+          "0ANp2hR_imy_kUk9PVA"
+        ]
+      },
+      "acquisition": "Google Drive default readable fetch, complete text through signatures; no visual signature/execution verification",
+      "authority": "SOWv1.1 baseline candidate with eight explicit POC acceptance criteria",
+      "localSha256": "124308a8eb51ecdb33bad0af46814f5b1364171b4780d00299ec20f4777132f1",
+      "localBytes": 20734
+    },
+    {
+      "key": "VUW-PLAN",
+      "file": "VUW_30_Day_POC_Milestones.drive.txt",
+      "metadata": {
+        "id": "1RR8xvjjF3utbqL1SHveQDb0bqQ4Cx-opBwkF62b32Ck",
+        "title": "VUW.ai <> Facio · 30-Day POC Milestones Plan",
+        "mime_type": "application/vnd.google-apps.document",
+        "url": "https://docs.google.com/document/d/1RR8xvjjF3utbqL1SHveQDb0bqQ4Cx-opBwkF62b32Ck/edit?usp=drivesdk",
+        "created_time": "2026-08-14T12:27:18.091Z",
+        "modified_time": "2026-08-14T12:35:19.154Z",
+        "parent_ids": [
+          "0ANp2hR_imy_kUk9PVA"
+        ]
+      },
+      "acquisition": "Google Drive default readable fetch, complete text including blank native approval cells",
+      "authority": "Native working plan; separate signed approval artifact referenced but not independently inspected",
+      "localSha256": "c38ee7ae722c62e130b5ed2db37d867595843618a5b4c15db64a43ebf7b00f0c",
+      "localBytes": 4695
+    },
+    {
+      "key": "VUW-WB",
+      "file": "VUW_Configuration_and_Open_Inputs.drive.json",
+      "metadata": {
+        "id": "1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU",
+        "title": "VUW.ai — Facio configuration and open inputs",
+        "mime_type": "application/vnd.google-apps.spreadsheet",
+        "url": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit?usp=drivesdk",
+        "created_time": "2026-09-06T13:05:44.488Z",
+        "modified_time": "2026-09-06T13:09:54.525Z",
+        "parent_ids": [
+          "1gMY5l9BJSCEyr5qEj2mK2eDtY2flvM-Q"
+        ]
+      },
+      "acquisition": "Native spreadsheet metadata then formatted value reads A1:Q100 on all10 exact tabs; continuation below. No native formulas, notes, formatting or grid outside bounded ranges.",
+      "authority": "Preparation workbook; proposed mappings and UAT, not approved executable configuration",
+      "localSha256": "04c64aed85fb2b4c14c59d6adcca48860f719ace1d38a0b72959aaa3173028ff",
+      "localBytes": 178000
+    },
+    {
+      "key": "VUW-WB-CORRESPONDENCE",
+      "file": "VUW_Correspondence_Continuation.drive.json",
+      "metadata": {
+        "id": "1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU",
+        "title": "VUW.ai — Facio configuration and open inputs",
+        "mime_type": "application/vnd.google-apps.spreadsheet",
+        "url": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit?usp=drivesdk",
+        "created_time": "2026-09-06T13:05:44.488Z",
+        "modified_time": "2026-09-06T13:09:54.525Z",
+        "parent_ids": [
+          "1gMY5l9BJSCEyr5qEj2mK2eDtY2flvM-Q"
+        ]
+      },
+      "acquisition": "Native Correspondence!A101:Q200 formatted values",
+      "authority": "Source index and prior-review labels; not independently reread full historical correspondence",
+      "localSha256": "fe65c20333beb7e8aaae0d7b63c8b6eee92d1a4848ca2e37f60424b59673031a",
+      "localBytes": 18914
+    },
+    {
+      "key": "VUW-OPS",
+      "file": "VUW_September_4_Operational_Requirements.drive.txt",
+      "metadata": {
+        "id": "1a06c9b2915c1a07",
+        "title": "Fwd: Facio Requests - Urgent Follow Up",
+        "mime_type": "text/plain selected from Gmail full MIME",
+        "url": "https://mail.google.com/mail/#all/1a06c9b2915c1a07",
+        "message_date": "2026-09-04T13:28:16Z"
+      },
+      "acquisition": "Gmail read_email full; complete substantive September4 Chris CUO forwarded message selected; contact signatures, MIME routing headers, attachments and older quotes excluded",
+      "authority": "Primary customer operational requirements and illustrative worked financial example; no implementation/acceptance",
+      "localSha256": "fba15f40ba7c08bdd74a2a4c1f14c2341efdf94e4803772820653b608cf5e5cc",
+      "localBytes": 12981
+    },
+    {
+      "key": "VUW-DATES",
+      "file": "VUW_Gate_Schedule_Notifications.drive.json",
+      "metadata": {
+        "ids": [
+          "1a0422b204dc851a",
+          "1a0422aebab1f6d3",
+          "1a0422ae5f84d08e"
+        ],
+        "source": "Gmail full MIME read, selected exact Subject/Date and HTML event datetime attributes",
+        "message_date": "2026-08-27"
+      },
+      "acquisition": "Three calendar RSVP notifications normalized; meeting access tokens and guest contact lists omitted",
+      "authority": "Historical schedule evidence only. Current user fullPOCSep11 deadline overrides delivery timing, not scope. No live calendar mutation/read.",
+      "localSha256": "54277793ae8c8d14e0168a097e4f5a4716b6848e5ba0ff8c7642d79c396f7c1a",
+      "localBytes": 1617
+    },
+    {
+      "key": "VUW-TRACE",
+      "file": "VUW_Acceptance_Baseline.drive.json",
+      "metadata": {
+        "derived_from": [
+          "VUW-WB",
+          "VUW-SOW",
+          "VUW-PLAN",
+          "VUW-SPEC",
+          "VUW-OPS"
+        ],
+        "url": null
+      },
+      "acquisition": "Derived source traceability with stable IDs, expected outcomes, source anchors and Kernel category mappings",
+      "authority": "Repository planning interpretation, not executed configuration or accepted scope",
+      "localSha256": "a39119bcf9de17c24d69bbe41f74799d36122775bfa7e2cbb2acd77d8e8817a7",
+      "localBytes": 43051
+    }
+  ],
+  "counts": {
+    "configurationEntries": 34,
+    "workbookScenarios": 22,
+    "sowPocCriteria": 8,
+    "openInputs": 23,
+    "proposedFieldMappings": 78,
+    "riskShortlistRows": 15,
+    "nativeTabs": 10
+  },
+  "discovery": {
+    "rootUrl": "https://drive.google.com/drive/folders/1Jlgc7pYAZgFq3wf_xBQ3-urcfMiH4Umo",
+    "rootDirectChildren": 8,
+    "outputFolderUrl": "https://drive.google.com/drive/folders/1XnkTC1uC1cNQsG1hx3Kv58XEZhmvbOrX",
+    "evidenceFolderUrl": "https://drive.google.com/drive/folders/1guWQN4l6rrVLYZoNo3RYPziBirDExj2S",
+    "note": "Read-only targeted discovery. Source scripts and .git folder not executed/read. Raw customer sample packs not fetched."
+  },
+  "notIndependentlyVerified": [
+    "Signed approval PDF visual signature/execution status",
+    "Complete executed SOW/MSA/SLA and Microsoft PrivateOffer/trial activation",
+    "Latest live calendar state and priorGate1/2 acceptance",
+    "Raw Property/RiskCode workbooks and original CDRv3.2 archive; these remain referenced as previously received",
+    "Customer sample file content and approved case-level expected outcomes",
+    "Approved Bordereaux5.2/document templates and actual provider credentials",
+    "Current deployed runtime, environment health or end-to-end customer outcomes"
+  ],
+  "remoteMutationsPerformed": []
+}

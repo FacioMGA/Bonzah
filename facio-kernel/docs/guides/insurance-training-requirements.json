@@ -1,0 +1,86 @@
+{
+  "id": "insurance-studio-training",
+  "version": "1.0.0",
+  "title": "Synthetic insurance Studio training",
+  "sources": [
+    {
+      "id": "synthetic-outline",
+      "title": "Inline synthetic training outline",
+      "version": "training-1",
+      "capturedAt": "2026-09-06T10:00:00.000Z",
+      "sha256": "44ee80997d012d0d531a2805b13169b76234312a4b7dd95e72fbd39141ee5076",
+      "location": "fixture://synthetic-outline",
+      "sourceBoundary": "The complete synthetic source text is: Synthetic source: quote and review. The hash covers those UTF-8 bytes without a final newline. No customer document, approved product, provider response or authority evidence is attached. The detailed cases below are authored training instructions."
+    }
+  ],
+  "requirements": [
+    {
+      "id": "TRAIN-01",
+      "title": "Author a synthetic insurance product",
+      "categories": ["tenant", "operatingEntities", "products", "processes"],
+      "expectedOutcome": "Within the learner's authorized tenant, save a GBP training product with a required integer employees question, a required Buildings coverage using single-risk per-occurrence limits and deductible, explicit 1-366 inclusive UTC day terms with no backdating, and an explicit flat whole-term GBP 100 premium. Activate the exact reviewed configuration and operating policy.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        { "sourceId": "synthetic-outline", "locator": "Authored training case TRAIN-01" }
+      ],
+      "dependencies": [
+        "An authorized writable sandbox tenant and its server-assigned operating entity identifier."
+      ],
+      "sourceBoundary": "Entirely fictional training configuration. Importing this profile does not create the product, execute a test or establish insurance approval."
+    },
+    {
+      "id": "TRAIN-02",
+      "title": "Evaluate and retain the eligible training risk",
+      "categories": ["products", "processes"],
+      "expectedOutcome": "With valid current dates, GB territory, 10 employees, Buildings selected, a GBP 100000 limit and GBP 500 deductible, evaluate the activated product. Expect valid inputs, no referral, calculated premium GBP 100 and bind checks passed. Retain the evaluated quote and bind its exact selected version; inspect the original quoted and bound revisions.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        { "sourceId": "synthetic-outline", "locator": "Authored training case TRAIN-02" }
+      ],
+      "dependencies": [
+        "TRAIN-01 and the explicit training authority and operating-policy settings in insurance-studio-quickstart.md."
+      ],
+      "sourceBoundary": "Expected sandbox behavior only. A retained or bound synthetic record is not a customer-approved policy, premium collection or actual insurance contract."
+    },
+    {
+      "id": "TRAIN-03",
+      "title": "Keep the priced referral blocked",
+      "categories": ["products", "processes"],
+      "expectedOutcome": "Change the synthetic risk to 60 employees and evaluate again. The employee-referral rule matches, referral is required, the whole-term premium remains GBP 100, approval is required but unsupported, and binding is blocked. Evaluation alone creates no insurance record.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        { "sourceId": "synthetic-outline", "locator": "Authored training case TRAIN-03" }
+      ],
+      "dependencies": [
+        "An explicit employee-referral rule: employees is greater than 50, outcome refer."
+      ],
+      "sourceBoundary": "This is a fictional referral threshold for learning. It is not customer underwriting appetite, a provider decision or a working underwriter approval workflow."
+    },
+    {
+      "id": "TRAIN-04",
+      "title": "Inspect missing-input validation",
+      "categories": ["products"],
+      "expectedOutcome": "Evaluate with Employees unanswered or the required Buildings coverage unselected. Inspect the field or coverage findings, invalid validation and blocked binding. Correct the inputs and request a fresh evaluation; do not treat missing answers as zero or false.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        { "sourceId": "synthetic-outline", "locator": "Authored training case TRAIN-04" }
+      ],
+      "dependencies": ["TRAIN-01."],
+      "sourceBoundary": "An expected validation exercise. No completed runtime evidence or customer acceptance is supplied by this requirements file."
+    },
+    {
+      "id": "TRAIN-05",
+      "title": "Record the learner's own evidence",
+      "categories": ["products", "tenantRelease"],
+      "expectedOutcome": "Record the tenant, active release, evaluation and insurance record references observed during the exercise. Refresh the application and inspect retained versions. Keep infrastructure status, activated configuration, observed synthetic results and customer acceptance separate.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        { "sourceId": "synthetic-outline", "locator": "Authored training case TRAIN-05" }
+      ],
+      "dependencies": [
+        "The learner has actually executed the preceding steps in their own authorized tenant."
+      ],
+      "sourceBoundary": "The learner must supply actual results. This package contains no reset operation, permission grant, test result or claim that the journey has already passed."
+    }
+  ]
+}

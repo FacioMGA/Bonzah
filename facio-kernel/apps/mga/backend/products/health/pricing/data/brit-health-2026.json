@@ -1,0 +1,32 @@
+{
+  "asset": "brit-immigration-medical-rates",
+  "version": "2026.05.21",
+  "reviewed": "2026-05-21",
+  "ageBands": [
+    { "band": "0-62", "premiumGross": 175, "commissionPercent": 0.30, "excess": "10%" },
+    { "band": "63-65", "premiumGross": 210, "commissionPercent": 0.30, "excess": 200 },
+    { "band": "66-70", "premiumGross": 245, "commissionPercent": 0.30, "excess": 900 },
+    { "band": "71-74", "premiumGross": 270, "commissionPercent": 0.30, "excess": 1400 },
+    { "band": "75-79", "premiumGross": 315, "commissionPercent": 0.30, "excess": 1900 },
+    { "band": "80+",  "premiumGross": 430, "commissionPercent": 0.30, "excess": 2800 }
+  ],
+  "baseCover": {
+    "inpatientPerIllness": 8600,
+    "inpatientPerPeriod": 13700,
+    "dailyRoomRegular": 75,
+    "dailyRoomEmergency": 170,
+    "childbirthLumpSum": 515,
+    "repatriationLimit": 3420,
+    "outpatientPerIllness": 700,
+    "outpatientPerPeriod": 1750,
+    "outpatientExcess": 50,
+    "coinsurancePercent": 90
+  },
+  "ghsExtension": {
+    "doctorVisit": 20,
+    "doctorVisitsPerPeriod": 175,
+    "medications": 180,
+    "deathByAccidentLimit": 0,
+    "repatriationAfterDeathLimit": 0
+  }
+}

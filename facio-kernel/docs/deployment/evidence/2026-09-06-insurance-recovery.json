@@ -1,0 +1,314 @@
+{
+  "startedAt": "2026-09-06T17:44:34.620859+00:00",
+  "action": "restore",
+  "buildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+  "liveBefore": {
+    "id": "ff8b0b544592ee22b7dd74d22d40662ba83f758c87b1b3e99a20b30b85146660",
+    "image": "sha256:bb93c183466acc97349429f7ba86838634c8897c4727ac23eb37f593347aadcd",
+    "startedAt": "2026-09-06T17:31:02.41114544Z",
+    "running": "true"
+  },
+  "liveReadOnly": {
+    "observedAt": "2026-09-06T17:44:34.586Z",
+    "method": "Read-only SQLite plus deployed ControlStorage/schema/canonical modules; no Store constructor on live data",
+    "businessSchema": 5,
+    "authSchema": 1,
+    "businessIntegrity": "ok",
+    "authIntegrity": "ok",
+    "alpha": {
+      "tenantId": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+      "releaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+      "releaseHash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f",
+      "releaseBuildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+      "recordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+      "recordHash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+      "version": 2,
+      "status": "bound",
+      "sourceMode": "manual_external_quote",
+      "currency": "GBP",
+      "premiumMinor": "100000",
+      "commissionMinor": "7000",
+      "history": [
+        {
+          "version": 1,
+          "status": "quoted",
+          "hash": "af10bf4bd3bccdeefb5dc5b1fa4df469efd8b007a0b7c465035f289d0b8e82f9"
+        },
+        {
+          "version": 2,
+          "status": "bound",
+          "hash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce"
+        }
+      ],
+      "eventTypes": ["quote_created", "bound"],
+      "hashChainVerified": true
+    },
+    "gamma": {
+      "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+      "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+      "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af",
+      "releaseBuildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+      "recordId": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+      "recordHash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27",
+      "version": 2,
+      "status": "bound",
+      "sourceMode": "configured_product",
+      "currency": "GBP",
+      "premiumMinor": "10000",
+      "commissionMinor": "700",
+      "history": [
+        {
+          "version": 1,
+          "status": "quoted",
+          "hash": "75a0939a0d550a67aa4bb34725169c0106fed37f4d0bc160f9b5f680a809aa81"
+        },
+        {
+          "version": 2,
+          "status": "bound",
+          "hash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27"
+        }
+      ],
+      "eventTypes": ["quote_created", "bound"],
+      "hashChainVerified": true,
+      "inputHash": "636e0605914cdf838317ec645ed042ccf6183b0958542493ffca796195f71012",
+      "definitionHash": "a2d75c16173719f65bb65fecadcd6af10d6049b4ec3b459ad652f08a29be50b4",
+      "evaluationHash": "91ce983bddba2caf8bd2cb004923dd11fdf45a272ca77951b266a3fe5014efaa",
+      "originalDecisionRecomputed": true,
+      "bindDecisionRecomputed": true
+    },
+    "beta": {
+      "tenantId": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+      "recordCount": 0,
+      "activeReleaseAbsent": true,
+      "crossTenantRecordAccessDenied": true
+    },
+    "authSessionValuesRead": false
+  },
+  "liveHealth": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "productionReady": false
+  },
+  "immediatePreUpgradeBackup": {
+    "snapshotId": "20260906T173100.438840Z",
+    "createdAt": "2026-09-06T17:31:00.438944+00:00",
+    "databases": [
+      {
+        "file": "kernel.sqlite",
+        "sha256": "089b543e48ea688e6ee029e74da2e74340fee1fa3708d3686d50ab697be00e8c",
+        "schema": 4,
+        "integrity": "ok"
+      },
+      {
+        "file": "auth.sqlite",
+        "sha256": "763a07513162d203fcbf9a8dc0f97583d90297e45f961eaa2ba0d5042d6cdbdd",
+        "schema": 1,
+        "integrity": "ok"
+      }
+    ],
+    "offHostDownloadedAndHashesVerified": true
+  },
+  "postUpgradeBackup": {
+    "snapshotId": "20260906T174434.656503Z",
+    "createdAt": "2026-09-06T17:44:34.656610+00:00",
+    "databases": [
+      {
+        "file": "kernel.sqlite",
+        "sha256": "748a922185d7ff9fbd44fbaf029db03604a529adc3f7749fc0bf9874af227ff7",
+        "schema": 5,
+        "integrity": "ok"
+      },
+      {
+        "file": "auth.sqlite",
+        "sha256": "763a07513162d203fcbf9a8dc0f97583d90297e45f961eaa2ba0d5042d6cdbdd",
+        "schema": 1,
+        "integrity": "ok"
+      }
+    ],
+    "offHostDownloadedAndHashesVerified": true
+  },
+  "restoredRuntime": {
+    "health": {
+      "status": "ok",
+      "version": "0.1.0",
+      "mode": "hosted-sandbox",
+      "environment": "sandbox",
+      "buildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+      "region": "westeurope",
+      "storage": "sqlite-single-writer-managed-disk",
+      "productionReady": false
+    },
+    "isolatedLoopbackPort": 4311,
+    "imageId": "sha256:bb93c183466acc97349429f7ba86838634c8897c4727ac23eb37f593347aadcd",
+    "unauthenticatedSessionStatus": 401,
+    "providerCount": 2,
+    "business": {
+      "observedAt": "2026-09-06T17:44:37.421Z",
+      "method": "Compiled Store and retained decision evaluator on isolated restored copy",
+      "businessSchema": 5,
+      "authSchema": 1,
+      "businessIntegrity": "ok",
+      "authIntegrity": "ok",
+      "alpha": {
+        "tenantId": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+        "releaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+        "releaseHash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f",
+        "releaseBuildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+        "recordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+        "recordHash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+        "version": 2,
+        "status": "bound",
+        "sourceMode": "manual_external_quote",
+        "currency": "GBP",
+        "premiumMinor": "100000",
+        "commissionMinor": "7000",
+        "history": [
+          {
+            "version": 1,
+            "status": "quoted",
+            "hash": "af10bf4bd3bccdeefb5dc5b1fa4df469efd8b007a0b7c465035f289d0b8e82f9"
+          },
+          {
+            "version": 2,
+            "status": "bound",
+            "hash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce"
+          }
+        ],
+        "eventTypes": ["quote_created", "bound"],
+        "hashChainVerified": true
+      },
+      "gamma": {
+        "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+        "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+        "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af",
+        "releaseBuildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+        "recordId": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+        "recordHash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27",
+        "version": 2,
+        "status": "bound",
+        "sourceMode": "configured_product",
+        "currency": "GBP",
+        "premiumMinor": "10000",
+        "commissionMinor": "700",
+        "history": [
+          {
+            "version": 1,
+            "status": "quoted",
+            "hash": "75a0939a0d550a67aa4bb34725169c0106fed37f4d0bc160f9b5f680a809aa81"
+          },
+          {
+            "version": 2,
+            "status": "bound",
+            "hash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27"
+          }
+        ],
+        "eventTypes": ["quote_created", "bound"],
+        "hashChainVerified": true,
+        "inputHash": "636e0605914cdf838317ec645ed042ccf6183b0958542493ffca796195f71012",
+        "definitionHash": "a2d75c16173719f65bb65fecadcd6af10d6049b4ec3b459ad652f08a29be50b4",
+        "evaluationHash": "91ce983bddba2caf8bd2cb004923dd11fdf45a272ca77951b266a3fe5014efaa",
+        "originalDecisionRecomputed": true,
+        "bindDecisionRecomputed": true
+      },
+      "beta": {
+        "tenantId": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+        "recordCount": 0,
+        "activeReleaseAbsent": true,
+        "crossTenantRecordAccessDenied": true
+      },
+      "authSessionValuesRead": false
+    }
+  },
+  "isolatedContainerRemoved": true,
+  "recoveryDirectory": "/srv/facio-kernel/recovery/sprint3-20260906T174434.656503Z-58d391d0e238",
+  "liveDataOverwritten": false,
+  "liveContainerUnchanged": true,
+  "liveAfterReadOnly": {
+    "observedAt": "2026-09-06T17:44:38.404Z",
+    "method": "Read-only SQLite plus deployed ControlStorage/schema/canonical modules; no Store constructor on live data",
+    "businessSchema": 5,
+    "authSchema": 1,
+    "businessIntegrity": "ok",
+    "authIntegrity": "ok",
+    "alpha": {
+      "tenantId": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+      "releaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+      "releaseHash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f",
+      "releaseBuildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+      "recordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+      "recordHash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+      "version": 2,
+      "status": "bound",
+      "sourceMode": "manual_external_quote",
+      "currency": "GBP",
+      "premiumMinor": "100000",
+      "commissionMinor": "7000",
+      "history": [
+        {
+          "version": 1,
+          "status": "quoted",
+          "hash": "af10bf4bd3bccdeefb5dc5b1fa4df469efd8b007a0b7c465035f289d0b8e82f9"
+        },
+        {
+          "version": 2,
+          "status": "bound",
+          "hash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce"
+        }
+      ],
+      "eventTypes": ["quote_created", "bound"],
+      "hashChainVerified": true
+    },
+    "gamma": {
+      "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+      "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+      "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af",
+      "releaseBuildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+      "recordId": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+      "recordHash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27",
+      "version": 2,
+      "status": "bound",
+      "sourceMode": "configured_product",
+      "currency": "GBP",
+      "premiumMinor": "10000",
+      "commissionMinor": "700",
+      "history": [
+        {
+          "version": 1,
+          "status": "quoted",
+          "hash": "75a0939a0d550a67aa4bb34725169c0106fed37f4d0bc160f9b5f680a809aa81"
+        },
+        {
+          "version": 2,
+          "status": "bound",
+          "hash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27"
+        }
+      ],
+      "eventTypes": ["quote_created", "bound"],
+      "hashChainVerified": true,
+      "inputHash": "636e0605914cdf838317ec645ed042ccf6183b0958542493ffca796195f71012",
+      "definitionHash": "a2d75c16173719f65bb65fecadcd6af10d6049b4ec3b459ad652f08a29be50b4",
+      "evaluationHash": "91ce983bddba2caf8bd2cb004923dd11fdf45a272ca77951b266a3fe5014efaa",
+      "originalDecisionRecomputed": true,
+      "bindDecisionRecomputed": true
+    },
+    "beta": {
+      "tenantId": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+      "recordCount": 0,
+      "activeReleaseAbsent": true,
+      "crossTenantRecordAccessDenied": true
+    },
+    "authSessionValuesRead": false
+  },
+  "completedAt": "2026-09-06T17:44:38.422845+00:00",
+  "limits": [
+    "No restored browser session or ChatGPT business workflow is claimed.",
+    "Existing private OIDC/bootstrap configuration is reused; full VM-loss/credential recovery is separate.",
+    "The two databases are separately consistent snapshots, not a cross-database atomic transaction."
+  ],
+  "operatorExecutionNote": "An initial attempt passed restore/runtime/business assertions but its immediate cleanup check raced Docker asynchronous --rm removal. A read-only follow-up confirmed removal and unchanged live state; this complete retry includes a bounded removal wait."
+}

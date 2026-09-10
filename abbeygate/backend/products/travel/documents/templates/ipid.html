@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Travel Insurance IPID</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', 'Helvetica', 'Arial', sans-serif; color: #0F172A; margin: 0; padding: 18mm; font-size: 11px; line-height: 1.45; }
+    h1 { color: #0E3553; font-size: 22px; margin: 0 0 4px 0; }
+    .sub { color: #64748B; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; margin-bottom: 16px; }
+    h2 { color: #0E3553; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; border-bottom: 1px solid #E2E8F0; padding-bottom: 4px; margin-top: 16px; }
+    ul { margin: 6px 0 0 16px; padding: 0; }
+    li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Travel Insurance Product Information</h1>
+  <div class="sub">Policy {{policyNumber}} · {{tenant.countryName}} · UMR {{umr}}</div>
+
+  <p>This summary helps you understand the main features of the travel insurance contract. The policy wording and schedule govern the full terms, conditions and exclusions.</p>
+
+  <h2>What Is Insured?</h2>
+  <ul>
+    <li>Emergency medical and repatriation expenses under the selected {{planLabel}} plan.</li>
+    <li>Cancellation, curtailment, baggage, money, personal accident and personal liability benefits as set out in the policy wording.</li>
+    <li>Optional extensions shown in the schedule when selected.</li>
+  </ul>
+
+  <h2>Important Exclusions</h2>
+  <ul>
+    <li>Pre-existing medical conditions are excluded unless accepted in writing by the insurer or screening provider.</li>
+    <li>Travel to excluded destinations or against official advice is not covered.</li>
+    <li>Claims must meet the evidence, notification and policy-condition requirements in the policy wording.</li>
+  </ul>
+
+  <h2>Your Cover</h2>
+  <p>{{tripTypeLabel}} · {{coverTypeLabel}} · {{destinationsDisplay}} · {{period.startDisplay}} to {{period.endDisplay}}</p>
+</body>
+</html>

@@ -1,0 +1,1262 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/FacioMGA/facio-kernel",
+  "baseline": "2026-09-06",
+  "timezone": "Asia/Jerusalem",
+  "forecast": "at_risk_pending_runtime_and_approved_inputs",
+  "milestones": {
+    "S1": {
+      "title": "S1 \u2014 shared insurance runtime",
+      "dueDate": "2026-09-07",
+      "number": 1,
+      "url": "https://github.com/FacioMGA/facio-kernel/milestone/1"
+    },
+    "M3": {
+      "title": "M3 \u2014 configuration visibility",
+      "dueDate": "2026-09-08",
+      "number": 2,
+      "url": "https://github.com/FacioMGA/facio-kernel/milestone/2"
+    },
+    "M1": {
+      "title": "M1 \u2014 Bonzah and UE demos",
+      "dueDate": "2026-09-10",
+      "number": 3,
+      "url": "https://github.com/FacioMGA/facio-kernel/milestone/3"
+    },
+    "M2": {
+      "title": "M2 \u2014 FULL VUW POC",
+      "dueDate": "2026-09-11",
+      "number": 4,
+      "url": "https://github.com/FacioMGA/facio-kernel/milestone/4"
+    },
+    "M4": {
+      "title": "M4 \u2014 self-onboarding specification",
+      "dueDate": "2026-09-12",
+      "number": 5,
+      "url": "https://github.com/FacioMGA/facio-kernel/milestone/5"
+    }
+  },
+  "items": [
+    {
+      "id": "K01",
+      "title": "Establish private Kernel repository and verified integration lane",
+      "milestone": "S1",
+      "targetDate": "2026-09-07",
+      "state": "implemented",
+      "dependsOn": [],
+      "sourceRequirements": [
+        "ARC-001",
+        "SOT-001",
+        "SOT-007",
+        "SOT-012"
+      ],
+      "acceptance": [
+        "Private FacioMGA/facio-kernel contains the existing clean foundation with provenance preserved.",
+        "Main requires a PR and successful verify status; no force-push or deletion.",
+        "Pinned remote CI checks source boundaries, generated contracts, domain/transport behavior and browser flows.",
+        "Repository, sprint dependencies and local versus deployed evidence are documented."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 1,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/1",
+      "evidence": {
+        "implementationCommit": "f49c01e3a85149347cc9d03e4c3d6fb4fe872d59",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/18",
+        "localEvidence": "docs/delivery/sprint-1-evidence.md",
+        "integrationStatus": "See linked PR and exact GitHub Actions results"
+      }
+    },
+    {
+      "id": "K02",
+      "title": "Execute versioned insurance records and exact financial allocations",
+      "milestone": "S1",
+      "targetDate": "2026-09-07",
+      "state": "implemented",
+      "dependsOn": [
+        "K01"
+      ],
+      "sourceRequirements": [
+        "ARC-002",
+        "ARC-003",
+        "DOM-004",
+        "NFR-002",
+        "NFR-003",
+        "UE-R06",
+        "UE-R14",
+        "VUW-UAT-07",
+        "VUW-UAT-09"
+      ],
+      "acceptance": [
+        "Synthetic external quote capture and revision, exact stored-version bind, endorsement, cancellation and reinstatement work through canonical commands and connected UI.",
+        "Strict minor-unit arithmetic conserves gross participant allocations and separately calculates explicit commission without a custody or ledger claim.",
+        "Scoped immutable snapshots/events, current state, audit, command idempotency and pending outbox are atomic and survive restart.",
+        "A durable scoped product/external-reference identity prevents separate records for the same source quote across actors and idempotency keys; new source versions revise the existing record.",
+        "Stale, expired, referred, declined, unauthorized, cross-scope and unsupported-prerequisite operations fail; MCP cannot invoke insurance mutations.",
+        "Local domain/HTTP/MCP/browser checks and remote CI pass. Customer acceptance remains separate."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 2,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/2",
+      "evidence": {
+        "implementationCommit": "f49c01e3a85149347cc9d03e4c3d6fb4fe872d59",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/18",
+        "localEvidence": "docs/delivery/sprint-1-evidence.md",
+        "integrationStatus": "See linked PR and exact GitHub Actions results"
+      }
+    },
+    {
+      "id": "K03",
+      "title": "Implement versioned product decisions and governed runtime gates",
+      "milestone": "M3",
+      "targetDate": "2026-09-08",
+      "state": "in-progress",
+      "dependsOn": [
+        "K02"
+      ],
+      "sourceRequirements": [
+        "ARC-004",
+        "PRD-004",
+        "PRD-005",
+        "PRD-007",
+        "PRD-008",
+        "PBR-002",
+        "REL-003",
+        "REL-006",
+        "REL-007"
+      ],
+      "acceptance": [
+        "Typed product/risk/coverage and authority rules select immutable effective versions; draft edits cannot change active or historical transactions.",
+        "Eligibility, referral, approval, rating and bind prerequisites are separate evidence-backed decisions with explicit precedence.",
+        "Implement the bounded sandbox release/policy path and tested missing-capability blockers; production publication remains unavailable until signed approval controls pass.",
+        "Bonzah coverage dependency and selected-price guard plus UE/VUW authority scenarios are expressible without customer branches."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 3,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/3",
+      "evidence": {
+        "implementationCommit": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/20",
+        "integrationStatus": "merged_to_main; PR verify succeeded",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34042621183",
+        "localEvidence": "docs/delivery/sprint-2-intern-acceptance.md",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34043024683",
+        "deploymentAcceptance": "public_exact_build_and_assets_verified; complete_handover_pending",
+        "customerAcceptance": "not_recorded",
+        "scopeStatus": "Sandbox immutable activation, compatibility checks and retained policy versions are merged. Automatic rating/eligibility/referral/authority decisions and customer coverage rules remain open; this is not completion of K03.",
+        "mainVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34043018388",
+        "deploymentAttempt": 2,
+        "publicUrl": "https://platform.facio.io",
+        "studioPath": "/studio?tenant=<UUID>",
+        "observedRegion": "westeurope",
+        "publicVerifiedAt": "2026-09-06T15:50:00Z",
+        "realIdentityEvidence": "User-confirmed Google sign-in; infrastructure agent observed uriel@facio.io with Admin role in Facio Sandbox workspace",
+        "freshInternAcceptance": "not_recorded",
+        "actualChatGPTConnection": "not_verified",
+        "hostedRecoveryEvidence": "docs/deployment/evidence/2026-09-06-recovery.json",
+        "publicEvidence": "docs/deployment/evidence/2026-09-06-public-release.json",
+        "liveIdentityAndProvisioningEvidence": "docs/deployment/evidence/2026-09-06-live-browser.json",
+        "hostRuntimeEvidence": "docs/deployment/evidence/2026-09-06-host-runtime.json",
+        "hostedJourneyEvidence": "docs/deployment/evidence/2026-09-06-alpha-ui-journey.json",
+        "hostedJourneyStatus": "Google-authenticated administrator configured Alpha through UI, activated release b513a5eb-ae03-4df0-9d72-13414c5d8da1 and bound synthetic GBP1000 record ecda8573-e89f-49df-b90d-ada3f3cb2edf v2; GBP70 commission and v1/v2 history retained",
+        "secondTenantStatus": "Beta intentionally awaiting requirements; no active release or demonstrated journey",
+        "hostedRecoveryStatus": "Snapshot20260906T155716.227959Z: database hashes/integrity, exact-image restored boot and compiled Store release/record/history/hash-chain/isolation reads passed. Ordinary live restart retained exact record/release. Manual backup service passed and hourly timer is enabled; first scheduled firing unobserved.",
+        "hostedRecoveryLimits": "No restored HTTP business/browser/ChatGPT run or full VM-loss/credential reprovisioning; existing provider configuration/bootstrap reused",
+        "evidencePeriod": "Historical S2 release 55e1559; current increment evidence is recorded separately below."
+      },
+      "activeIncrement": {
+        "scope": "Structured insurance product authoring, deterministic active-release evaluation and retained configured quotes with enforced bind gates",
+        "status": "merged_and_deployed; local_90_tests_and_five_browser_suites_plus_remote_CI_passed",
+        "specification": "docs/delivery/insurance-configuration-sprint.md",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Complete approved customer rule/golden cases, approval workflow, risk-aware servicing and governed production publication",
+        "implementationCommit": "58d391d0e2388a80733552835e96c59acb2a23d1",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/22",
+        "liveEvidence": "docs/deployment/evidence/2026-09-06-insurance-ui-journey.json",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34049805361",
+        "hostedRecoveryEvidence": "docs/deployment/evidence/2026-09-06-insurance-recovery.json",
+        "hostedRecoveryStatus": "Fresh off-host schema-5/auth-1 backup restored with exact deployed image; Alpha legacy and Gamma configured bound records, immutable histories, recomputed decisions and Beta isolation verified. Live data/container unchanged.",
+        "servingBuildSha": "fa874bbe7fa2b114698d89f84f9ffae97c28ce35",
+        "mainVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34049793898",
+        "finalPublicEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-public.json",
+        "finalRuntimeEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-runtime.json",
+        "finalRecoveryEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-recovery.json",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-browser.json"
+      },
+      "reviewProviderIncrement": {
+        "status": "merged_deployed_and_verified_synthetic_sandbox; independent_reviewer_and_customer_acceptance_open",
+        "scopeDocument": "docs/delivery/approval-provider-sprint.md",
+        "trainingGuide": "docs/guides/insurance-studio-quickstart.md",
+        "deploymentEvidence": [
+          "docs/deployment/evidence/2026-09-06-review-provider-public.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-browser.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-runtime.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-recovery.json"
+        ],
+        "actualIndependentUserAcceptance": "not_recorded",
+        "customerAcceptance": "not_recorded",
+        "scope": "Exact-pinned independent request/approve/decline/revoke/expiry workflow; creator, current author and requester excluded from review; bind preserves original decision and adds exact review evidence.",
+        "localEvidence": [
+          "scripts/insurance-approval-browser-smoke.ts",
+          "tests/approval.test.ts",
+          "tests/approval-surfaces.test.ts"
+        ],
+        "remaining": "Actual independent-user review, customer-authorized underwriting rules, remaining authority/rating cases, configured quote revision UI and risk-aware servicing remain open. Unsupported gates cannot be overridden.",
+        "servingBuildSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+        "implementationPr": "https://github.com/FacioMGA/facio-kernel/pull/25",
+        "presentationPr": "https://github.com/FacioMGA/facio-kernel/pull/26",
+        "mainCi": "https://github.com/FacioMGA/facio-kernel/actions/runs/34053126098",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34053131692",
+        "observedOperator": "Existing actual Google administrator session; pending independent review and synthetic completed provider receipt; no second actual reviewer",
+        "localTests": 123,
+        "browserSuites": 7
+      },
+      "sprint5Increment": {
+        "state": "in-progress",
+        "implementationStatus": "implemented_bounded",
+        "scopeDocument": "docs/delivery/sprint-5-implementation.md",
+        "workPackages": [
+          "S5-01",
+          "S5-02",
+          "S5-04"
+        ],
+        "scope": "Explicit v2 repeated risk groups, conditional questions, distinct coverage/aggregate/excess semantics, exact rating, quote revision/comparison and configured service/cancellation/renewal decisions.",
+        "localEvidence": [
+          "tests/insurance-v2.test.ts",
+          "tests/configured-service.test.ts",
+          "tests/insurance-renewal.test.ts",
+          "scripts/insurance-v2-browser-smoke.ts",
+          "scripts/insurance-service-browser-smoke.ts",
+          "docs/deployment/evidence/2026-09-07-sprint5-local.json"
+        ],
+        "verificationStatus": "remote_181_node_2_native_4_deployment_tests_and_14_browser_suites_86_checks_passed",
+        "releaseStatus": "bounded_synthetic_deployed_verified_customer_acceptance_pending",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Approved customer rule/rate/authority packages and golden outcomes; actual service-specific provider/payment/review boundaries remain open.",
+        "implementationCommit": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/28",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34092595179",
+        "integrationStatus": "merged_to_main; exact PR verify succeeded, squash tree identical",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+        "deployedCommit": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+        "publicEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+        "browserCheckpoint": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+        "followupPullRequest": "https://github.com/FacioMGA/facio-kernel/pull/29",
+        "finalVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+        "recoveryEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+        "releaseEvidence": "docs/deployment/evidence/2026-09-07-sprint5-release.json"
+      }
+    },
+    {
+      "id": "K04",
+      "title": "Build authenticated provider ingress and recoverable adapter execution",
+      "milestone": "M2",
+      "targetDate": "2026-09-09",
+      "state": "in-progress",
+      "dependsOn": [
+        "K02"
+      ],
+      "sourceRequirements": [
+        "MOD-010",
+        "NFR-002",
+        "VUW-SOW-02",
+        "VUW-UAT-02",
+        "UE-R04",
+        "UE-R05",
+        "Bonzah P0-06"
+      ],
+      "acceptance": [
+        "Freeze typed external quote/rating/payment/screening adapter contracts using actual customer inputs and managed secret references.",
+        "Authenticated inbox deduplicates across actors, records payload provenance/outcomes and rejects forged or reordered updates.",
+        "Outbox worker has atomic claims, bounded retries, failed-message handling and replay evidence; pending intent is never displayed as delivered.",
+        "Exercise actual authorized test providers or explicitly accepted test boundaries, including timeout, rejection, ambiguous screening and unverified payment."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 4,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/4",
+      "activeIncrement": {
+        "scope": "Provider envelope, server-verifier seam, provenance, scoped replay/order receipt and bounded retry conformance",
+        "status": "merged_and_deployed; local_90_tests_and_five_browser_suites_plus_remote_CI_passed",
+        "tests": "tests/provider.test.ts",
+        "remaining": "Actual provider-specific mappings and credentials; durable inbox/outbox dispatcher; payment/screening contracts; provider acceptance",
+        "implementationCommit": "58d391d0e2388a80733552835e96c59acb2a23d1",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/22",
+        "servingBuildSha": "fa874bbe7fa2b114698d89f84f9ffae97c28ce35",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34049805361",
+        "mainVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34049793898",
+        "finalPublicEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-public.json",
+        "finalRuntimeEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-runtime.json",
+        "finalRecoveryEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-recovery.json",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-browser.json"
+      },
+      "reviewProviderIncrement": {
+        "status": "merged_deployed_and_verified_synthetic_sandbox; independent_reviewer_and_customer_acceptance_open",
+        "scopeDocument": "docs/delivery/approval-provider-sprint.md",
+        "trainingGuide": "docs/guides/insurance-studio-quickstart.md",
+        "deploymentEvidence": [
+          "docs/deployment/evidence/2026-09-06-review-provider-public.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-browser.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-runtime.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-recovery.json"
+        ],
+        "actualIndependentUserAcceptance": "not_recorded",
+        "customerAcceptance": "not_recorded",
+        "scope": "Durable quote-evidence requests, atomic worker claims, bounded retry/deadline, ambiguity reconciliation, immutable receipt/audit, generic raw-byte HMAC authentication and replay controls. Synthetic delivery changes no insurance or payment authority.",
+        "localEvidence": [
+          "scripts/insurance-provider-browser-smoke.ts",
+          "tests/provider-execution.test.ts",
+          "tests/provider-routes.test.ts"
+        ],
+        "remaining": "Customer provider mappings, actual authorized connections/managed credentials, payment/screening, finance and customer golden acceptance remain open. Generic registration is not a connected customer adapter.",
+        "servingBuildSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+        "implementationPr": "https://github.com/FacioMGA/facio-kernel/pull/25",
+        "presentationPr": "https://github.com/FacioMGA/facio-kernel/pull/26",
+        "mainCi": "https://github.com/FacioMGA/facio-kernel/actions/runs/34053126098",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34053131692",
+        "observedOperator": "Existing actual Google administrator session; pending independent review and synthetic completed provider receipt; no second actual reviewer",
+        "localTests": 123,
+        "browserSuites": 7
+      },
+      "sprint5Increment": {
+        "state": "in-progress",
+        "implementationStatus": "implemented_bounded",
+        "scopeDocument": "docs/delivery/sprint-5-implementation.md",
+        "workPackages": [
+          "S5-02"
+        ],
+        "scope": "Existing durable authenticated quote-evidence execution remains integrated; selected quote and provider evidence retain separate authority.",
+        "localEvidence": [
+          "tests/provider-execution.test.ts",
+          "scripts/insurance-provider-browser-smoke.ts",
+          "docs/deployment/evidence/2026-09-07-sprint5-local.json"
+        ],
+        "verificationStatus": "remote_181_node_2_native_4_deployment_tests_and_14_browser_suites_86_checks_passed",
+        "releaseStatus": "bounded_synthetic_deployed_verified_customer_acceptance_pending",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Actual customer provider contract, payload mapping, access and accepted insurer/payment/screening integration are pending; no synthetic receipt clears a bind gate.",
+        "implementationCommit": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/28",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34092595179",
+        "integrationStatus": "merged_to_main; exact PR verify succeeded, squash tree identical",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+        "deployedCommit": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+        "publicEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+        "browserCheckpoint": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+        "followupPullRequest": "https://github.com/FacioMGA/facio-kernel/pull/29",
+        "finalVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+        "recoveryEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+        "releaseEvidence": "docs/deployment/evidence/2026-09-07-sprint5-release.json"
+      }
+    },
+    {
+      "id": "K05",
+      "title": "Generate immutable versioned policy and service document packs",
+      "milestone": "M1",
+      "targetDate": "2026-09-09",
+      "state": "in-progress",
+      "dependsOn": [
+        "K02",
+        "K03"
+      ],
+      "sourceRequirements": [
+        "MOD-009",
+        "UE-R07",
+        "UE-R08",
+        "VUW-SOW-03",
+        "VUW-SOW-07",
+        "Bonzah P0-07",
+        "Bonzah P0-08",
+        "Bonzah P0-09"
+      ],
+      "acceptance": [
+        "Resolve approved templates, legal roles, numbering and exact quote/policy version in a typed document adapter.",
+        "Produce policy/coverage certificates and service reissues with immutable original documents and provenance.",
+        "Support VUW broker statement and required RI certificate once the approved document decision is recorded.",
+        "Golden document cases verify fields, money, dates, parties and failure/retry handling."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 5,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/5",
+      "sprint5Increment": {
+        "state": "in-progress",
+        "implementationStatus": "implemented_bounded",
+        "scopeDocument": "docs/delivery/sprint-5-implementation.md",
+        "workPackages": [
+          "S5-03"
+        ],
+        "scope": "Registered synthetic transaction-summary and coverage/financial-schedule HTML/PDF packs retain exact transaction/template references, immutable hashes, attempts/retry and authorized downloads.",
+        "localEvidence": [
+          "tests/documents.test.ts",
+          "scripts/insurance-documents-browser-smoke.ts",
+          "docs/deployment/evidence/2026-09-07-sprint5-local.json"
+        ],
+        "verificationStatus": "remote_181_node_2_native_4_deployment_tests_and_14_browser_suites_86_checks_passed",
+        "releaseStatus": "bounded_synthetic_deployed_verified_customer_acceptance_pending",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Approved customer templates/legal roles/numbering, certificates, broker statement/RI decision and outputs, signature and external delivery remain open.",
+        "implementationCommit": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/28",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34092595179",
+        "integrationStatus": "merged_to_main; exact PR verify succeeded, squash tree identical",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+        "deployedCommit": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+        "publicEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+        "browserCheckpoint": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+        "followupPullRequest": "https://github.com/FacioMGA/facio-kernel/pull/29",
+        "finalVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+        "recoveryEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+        "releaseEvidence": "docs/deployment/evidence/2026-09-07-sprint5-release.json"
+      }
+    },
+    {
+      "id": "K06",
+      "title": "Post balanced finance and reconcile separate commission receivables",
+      "milestone": "M2",
+      "targetDate": "2026-09-10",
+      "state": "in-progress",
+      "dependsOn": [
+        "K02",
+        "K04"
+      ],
+      "sourceRequirements": [
+        "MOD-008",
+        "DOM-006",
+        "UE-R11",
+        "UE-R12",
+        "UE-R13",
+        "VUW-UAT-17",
+        "VUW-UAT-18",
+        "VUW-SOW-06"
+      ],
+      "acceptance": [
+        "Implement balanced versioned postings for approved premium/receivable/commission and service reversal rules, with explicit tax/fee and rounding treatment.",
+        "Preserve external premium custody for VUW; distinguish commission calculated, earned, receivable, payable, paid and reversed.",
+        "Reconcile Revolut-shaped synthetic transactions and authoritative settlement inputs, including partial/unmatched/duplicate receipts and manual exception linking.",
+        "Record approved bases, payer, due events and return-commission examples; control totals reconcile to policy transactions without recomputing history under new rules.",
+        "The UE billing/commission demonstration slice is ready for September 9 rehearsal; full POC bank/settlement reconciliation is due September 10."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 6,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/6",
+      "sprint5Increment": {
+        "state": "in-progress",
+        "implementationStatus": "implemented_bounded",
+        "scopeDocument": "docs/delivery/sprint-5-implementation.md",
+        "workPackages": [
+          "S5-05"
+        ],
+        "scope": "Synthetic external-custody balanced journals, cumulative service postings, commission receivable, partial/unmatched receipts and audited application reversals with cross-record bounds.",
+        "localEvidence": [
+          "tests/finance.test.ts",
+          "scripts/insurance-finance-browser-smoke.ts",
+          "docs/deployment/evidence/2026-09-07-sprint5-local.json"
+        ],
+        "verificationStatus": "remote_181_node_2_native_4_deployment_tests_and_14_browser_suites_86_checks_passed",
+        "releaseStatus": "bounded_synthetic_deployed_verified_customer_acceptance_pending",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Approved bases/payer/earned-due-payable/return examples, tax/fee and invoice rules, real bank/settlement verification and refunds remain open; full VUW reconciliation stays September 10.",
+        "implementationCommit": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/28",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34092595179",
+        "integrationStatus": "merged_to_main; exact PR verify succeeded, squash tree identical",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+        "deployedCommit": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+        "publicEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+        "browserCheckpoint": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+        "followupPullRequest": "https://github.com/FacioMGA/facio-kernel/pull/29",
+        "finalVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+        "recoveryEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+        "releaseEvidence": "docs/deployment/evidence/2026-09-07-sprint5-release.json"
+      }
+    },
+    {
+      "id": "K07",
+      "title": "Produce lineage-backed reports and approved Bordereaux 5.2 exports",
+      "milestone": "M2",
+      "targetDate": "2026-09-10",
+      "state": "in-progress",
+      "dependsOn": [
+        "K02",
+        "K06"
+      ],
+      "sourceRequirements": [
+        "MOD-011",
+        "DOM-009",
+        "UE-R15",
+        "VUW-SOW-01",
+        "VUW-SOW-04",
+        "VUW-UAT-16",
+        "Bonzah P0-11"
+      ],
+      "acceptance": [
+        "Map approved BDX 5.2 template/dictionary, Lloyds risk/CDR codes and reporting definitions to canonical transaction lineage.",
+        "Reconcile per-period/per-currency premium, allocation and commission totals including service corrections and export-to-screen parity.",
+        "Provide authorized aggregate/drilldown and auditor views without cross-tenant disclosure.",
+        "Bonzah controlled sample counts and two-schema no-PII exports require their actual approved evidence; synthetic counts are not acceptance.",
+        "The Bonzah/UE demonstration export slice is ready for September 9 rehearsal; complete VUW BDX 5.2 acceptance output is due September 10."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 7,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/7",
+      "sprint5Increment": {
+        "state": "in-progress",
+        "implementationStatus": "implemented_bounded",
+        "scopeDocument": "docs/delivery/sprint-5-implementation.md",
+        "workPackages": [
+          "S5-06"
+        ],
+        "scope": "Read-only scoped effective/recorded as-of projections, immutable source drilldown, separate currency/capacity totals and matching CSV; explicit bounds fail without truncation.",
+        "localEvidence": [
+          "tests/finance-report.test.ts",
+          "scripts/insurance-finance-browser-smoke.ts",
+          "docs/deployment/evidence/2026-09-07-sprint5-local.json"
+        ],
+        "verificationStatus": "remote_181_node_2_native_4_deployment_tests_and_14_browser_suites_86_checks_passed",
+        "releaseStatus": "bounded_synthetic_deployed_verified_customer_acceptance_pending",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Approved customer report/BDX 5.2 template and dictionary, Lloyds codes, actual Bonzah two-schema source aggregate proof and customer reconciliation remain open; full VUW BDX stays September 10.",
+        "implementationCommit": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/28",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34092595179",
+        "integrationStatus": "merged_to_main; exact PR verify succeeded, squash tree identical",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+        "deployedCommit": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+        "publicEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+        "browserCheckpoint": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+        "followupPullRequest": "https://github.com/FacioMGA/facio-kernel/pull/29",
+        "finalVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+        "recoveryEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+        "releaseEvidence": "docs/deployment/evidence/2026-09-07-sprint5-release.json"
+      }
+    },
+    {
+      "id": "K08",
+      "title": "Add source-linked intake, FNOL and renewal lifecycle slices",
+      "milestone": "M1",
+      "targetDate": "2026-09-09",
+      "state": "in-progress",
+      "dependsOn": [
+        "K02",
+        "K03"
+      ],
+      "sourceRequirements": [
+        "UE-R01",
+        "UE-R02",
+        "UE-R03",
+        "UE-R09",
+        "UE-R10",
+        "Bonzah P0-10",
+        "PRD-007"
+      ],
+      "acceptance": [
+        "Submission intake preserves document/page/cell provenance, conflicting values and authorized discrepancy resolution without silently choosing source totals.",
+        "Party/distribution permissions retain institution, broker, insured and underwriting relationships.",
+        "Scoped FNOL saves evidence, policy version, preparer and acknowledgement with short-lived access and duplicate handling.",
+        "Renewal creates a distinct term linked to expiring history and re-evaluated inputs/decisions; missing/rating-failure cases block release."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 8,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/8",
+      "sprint5Increment": {
+        "state": "in-progress",
+        "implementationStatus": "implemented_bounded",
+        "scopeDocument": "docs/delivery/sprint-5-implementation.md",
+        "workPackages": [
+          "S5-04"
+        ],
+        "scope": "Configured service and separate cancellation/renewal branches plus internal FNOL draft/submission/duplicate review and synthetic queue acknowledgement retain policy/preparer/actor/evidence lineage.",
+        "localEvidence": [
+          "tests/configured-service.test.ts",
+          "tests/insurance-renewal.test.ts",
+          "tests/fnol.test.ts",
+          "scripts/insurance-service-browser-smoke.ts",
+          "scripts/insurance-fnol-browser-smoke.ts",
+          "docs/deployment/evidence/2026-09-07-sprint5-local.json"
+        ],
+        "verificationStatus": "remote_181_node_2_native_4_deployment_tests_and_14_browser_suites_86_checks_passed",
+        "releaseStatus": "bounded_synthetic_deployed_verified_customer_acceptance_pending",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Full source-document discrepancy workflow and customer rules; public expiring FNOL links, legal signature, external handoff, notices, refund execution and claims adjudication remain open.",
+        "implementationCommit": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/28",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34092595179",
+        "integrationStatus": "merged_to_main; exact PR verify succeeded, squash tree identical",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+        "deployedCommit": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+        "publicEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+        "browserCheckpoint": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+        "followupPullRequest": "https://github.com/FacioMGA/facio-kernel/pull/29",
+        "finalVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+        "recoveryEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+        "releaseEvidence": "docs/deployment/evidence/2026-09-07-sprint5-release.json"
+      }
+    },
+    {
+      "id": "K09",
+      "title": "Rehearse and accept the complete Bonzah demo package",
+      "milestone": "M1",
+      "targetDate": "2026-09-10",
+      "state": "planned",
+      "dependsOn": [
+        "K03",
+        "K04",
+        "K05",
+        "K07",
+        "K08",
+        "K13",
+        "K15"
+      ],
+      "sourceRequirements": [
+        "Bonzah P0-01 through Bonzah P0-14",
+        "MS-M1"
+      ],
+      "acceptance": [
+        "Map every Bonzah P0 row from bonzah-scope-matrix.md to the same Kernel build and a separate versioned tenant package.",
+        "Exercise allowed/referral/decline and RCLI/SLI dependency; verified payment and exact selected quote; 4-to-6-day endorsement; certificates/history/FNOL/reports.",
+        "Rehearse September 9 with reset under five minutes and source-compliant fallback IDs; preserve synthetic privacy.",
+        "Record exact build/config/doc versions, approved provider/rule/template boundaries, all 14 outcomes and acceptance before September 10 demo."
+      ],
+      "implementationOwner": "unassigned",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 9,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/9"
+    },
+    {
+      "id": "K10",
+      "title": "Rehearse and accept all 15 United Educators journey modules",
+      "milestone": "M1",
+      "targetDate": "2026-09-10",
+      "state": "planned",
+      "dependsOn": [
+        "K03",
+        "K04",
+        "K05",
+        "K06",
+        "K07",
+        "K08",
+        "K13",
+        "K15"
+      ],
+      "sourceRequirements": [
+        "UE-R01 through UE-R15",
+        "MS-M1"
+      ],
+      "acceptance": [
+        "Implement all 15 ue-scope-matrix.md modules as separate configuration on the same Kernel build.",
+        "Preserve real-source discrepancy/provenance and label separately synthetic quote/policy/finance continuation.",
+        "Exercise quote comparison/selected bind, documents, coherent service branches, billing/commission and reconciled reporting with role controls.",
+        "September 9 rehearsal records observed/prepared/design/unresolved evidence; executable customer acceptance requires each mandatory behavior, approved examples and reviewer results."
+      ],
+      "implementationOwner": "unassigned",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 10,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/10"
+    },
+    {
+      "id": "K11",
+      "title": "Complete full VUW POC acceptance by September 11",
+      "milestone": "M2",
+      "targetDate": "2026-09-11",
+      "state": "planned",
+      "dependsOn": [
+        "K03",
+        "K04",
+        "K05",
+        "K06",
+        "K07",
+        "K13",
+        "K15"
+      ],
+      "sourceRequirements": [
+        "VUW-UAT-01 through VUW-UAT-22",
+        "VUW-SOW-01 through VUW-SOW-08",
+        "MS-M2"
+      ],
+      "acceptance": [
+        "Retain all 22 UAT scenarios, eight separate SOW criteria and 23 input-gap decisions in vuw-scope-matrix.md; September 18/25 source obligations stay within the full September 11 target.",
+        "Demonstrate external quote history, issuance, BOTH MTA and endorsement, variable lead/follow, two Lloyds syndicates AND Caribbean reinsurer, cargo auditor interface, BDX 5.2 and broker statement.",
+        "Demonstrate no-client-money financial flow and separate commission reconciliation, role/scope isolation, restart and repeat-run evidence.",
+        "Run integrated full scope September 10; fix/rerun mandatory defects and obtain recorded full acceptance September 11. Retain agreed POC-conclusion cleanup as a controlled closure obligation."
+      ],
+      "implementationOwner": "unassigned",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 11,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/11"
+    },
+    {
+      "id": "K12",
+      "title": "Accept M3 configuration visibility across browser API and MCP",
+      "milestone": "M3",
+      "targetDate": "2026-09-08",
+      "state": "in-progress",
+      "dependsOn": [
+        "K01"
+      ],
+      "sourceRequirements": [
+        "MS-M3",
+        "SOT-011",
+        "SOT-012",
+        "SOT-013",
+        "SOT-014"
+      ],
+      "acceptance": [
+        "Complete/incomplete tenant fixtures expose all 13 categories, precise support and scoped values/gaps through one canonical service.",
+        "Record actual authenticated screen, valid generated OpenAPI, MCP discovery/read and permission/isolation parity.",
+        "Preserve draft/published distinction and clear unsupported runtime/publication gates; source requirements remain separate from execution.",
+        "Pin contract hashes/build, seed truthful deployment registry and duplicate-source backlog; record M3 reviewer acceptance."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 12,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/12",
+      "evidence": {
+        "implementationCommit": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/20",
+        "integrationStatus": "merged_to_main; PR verify succeeded",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34042621183",
+        "localEvidence": "docs/delivery/sprint-2-intern-acceptance.md",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34043024683",
+        "deploymentAcceptance": "public_exact_build_and_assets_verified; complete_handover_pending",
+        "customerAcceptance": "not_recorded",
+        "scopeStatus": "Configuration UI/API/MCP and hosted contracts are merged and CI verified. Public exact-build/assets and one real administrator sign-in are verified. Real hosted configuration parity, actual ChatGPT and named M3 reviewer acceptance remain open.",
+        "mainVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34043018388",
+        "deploymentAttempt": 2,
+        "publicUrl": "https://platform.facio.io",
+        "studioPath": "/studio?tenant=<UUID>",
+        "observedRegion": "westeurope",
+        "publicVerifiedAt": "2026-09-06T15:50:00Z",
+        "realIdentityEvidence": "User-confirmed Google sign-in; infrastructure agent observed uriel@facio.io with Admin role in Facio Sandbox workspace",
+        "freshInternAcceptance": "not_recorded",
+        "actualChatGPTConnection": "not_verified",
+        "hostedRecoveryEvidence": "docs/deployment/evidence/2026-09-06-recovery.json",
+        "publicEvidence": "docs/deployment/evidence/2026-09-06-public-release.json",
+        "liveIdentityAndProvisioningEvidence": "docs/deployment/evidence/2026-09-06-live-browser.json",
+        "hostRuntimeEvidence": "docs/deployment/evidence/2026-09-06-host-runtime.json",
+        "hostedJourneyEvidence": "docs/deployment/evidence/2026-09-06-alpha-ui-journey.json",
+        "hostedJourneyStatus": "Google-authenticated administrator configured Alpha through UI, activated release b513a5eb-ae03-4df0-9d72-13414c5d8da1 and bound synthetic GBP1000 record ecda8573-e89f-49df-b90d-ada3f3cb2edf v2; GBP70 commission and v1/v2 history retained",
+        "secondTenantStatus": "Beta intentionally awaiting requirements; no active release or demonstrated journey",
+        "hostedRecoveryStatus": "Snapshot20260906T155716.227959Z: database hashes/integrity, exact-image restored boot and compiled Store release/record/history/hash-chain/isolation reads passed. Ordinary live restart retained exact record/release. Manual backup service passed and hourly timer is enabled; first scheduled firing unobserved.",
+        "hostedRecoveryLimits": "No restored HTTP business/browser/ChatGPT run or full VM-loss/credential reprovisioning; existing provider configuration/bootstrap reused",
+        "evidencePeriod": "Historical S2 release 55e1559; current increment evidence is recorded separately below."
+      },
+      "activeIncrement": {
+        "implementationCommit": "58d391d0e2388a80733552835e96c59acb2a23d1",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/22",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34049805361",
+        "publicEvidence": "docs/deployment/evidence/2026-09-06-insurance-public.json",
+        "hostedJourneyEvidence": "docs/deployment/evidence/2026-09-06-insurance-ui-journey.json",
+        "hostedRecoveryEvidence": "docs/deployment/evidence/2026-09-06-insurance-recovery.json",
+        "trainingGuide": "docs/guides/insurance-studio-quickstart.md",
+        "status": "Deployed configuration/evaluation slice; real Google administrator authored synthetic product, tested invalid/referral/eligible cases and bound GBP100. Schema-5 upgrade and exact-image off-host restore preserve legacy/configured records and isolation. First scheduled backup observed.",
+        "remainingAcceptance": "Fresh interns, actual ChatGPT workspace, independent handover, approved sample/reset and full customer scenarios remain unverified.",
+        "servingBuildSha": "fa874bbe7fa2b114698d89f84f9ffae97c28ce35",
+        "mainVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34049793898",
+        "finalPublicEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-public.json",
+        "finalRuntimeEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-runtime.json",
+        "finalRecoveryEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-recovery.json",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-browser.json"
+      },
+      "reviewProviderIncrement": {
+        "status": "merged_deployed_and_verified_synthetic_sandbox; independent_reviewer_and_customer_acceptance_open",
+        "scopeDocument": "docs/delivery/approval-provider-sprint.md",
+        "trainingGuide": "docs/guides/insurance-studio-quickstart.md",
+        "deploymentEvidence": [
+          "docs/deployment/evidence/2026-09-06-review-provider-public.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-browser.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-runtime.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-recovery.json"
+        ],
+        "actualIndependentUserAcceptance": "not_recorded",
+        "customerAcceptance": "not_recorded",
+        "scope": "Integrated Human review and Provider activity in the same authorized Insurance workspace, with immutable evidence and explicit unsupported gates. Existing configuration/API/MCP authority is preserved; insurance, review and provider mutations remain operator-only.",
+        "localEvidence": [
+          "scripts/insurance-approval-browser-smoke.ts",
+          "scripts/insurance-provider-browser-smoke.ts",
+          "docs/delivery/sprint-2-intern-acceptance.md"
+        ],
+        "remaining": "Full M3 reviewer acceptance, fresh independent interns, actual ChatGPT, support ownership, scoped sample/reset and customer handover remain open. Local synthetic actors are not observed stakeholders.",
+        "servingBuildSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+        "implementationPr": "https://github.com/FacioMGA/facio-kernel/pull/25",
+        "presentationPr": "https://github.com/FacioMGA/facio-kernel/pull/26",
+        "mainCi": "https://github.com/FacioMGA/facio-kernel/actions/runs/34053126098",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34053131692",
+        "observedOperator": "Existing actual Google administrator session; pending independent review and synthetic completed provider receipt; no second actual reviewer",
+        "localTests": 123,
+        "browserSuites": 7
+      },
+      "sprint5Increment": {
+        "state": "in-progress",
+        "implementationStatus": "implemented_bounded",
+        "scopeDocument": "docs/delivery/sprint-5-implementation.md",
+        "workPackages": [
+          "S5-07"
+        ],
+        "scope": "Canonical permission/scoping and UI/API/permitted MCP reads extend to bounded v2 transactions, documents, finance/report and internal FNOL.",
+        "localEvidence": [
+          "tests/insurance-v2-surfaces.test.ts",
+          "docs/delivery/sprint-2-intern-acceptance.md",
+          "docs/deployment/evidence/2026-09-07-sprint5-local.json"
+        ],
+        "verificationStatus": "remote_181_node_2_native_4_deployment_tests_and_14_browser_suites_86_checks_passed",
+        "releaseStatus": "bounded_synthetic_deployed_verified_customer_acceptance_pending",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Final M3 evidence, actual stakeholder review and actual ChatGPT remain open; deadline stays September 8.",
+        "implementationCommit": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/28",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34092595179",
+        "integrationStatus": "merged_to_main; exact PR verify succeeded, squash tree identical",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+        "deployedCommit": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+        "publicEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+        "browserCheckpoint": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+        "followupPullRequest": "https://github.com/FacioMGA/facio-kernel/pull/29",
+        "finalVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+        "recoveryEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+        "releaseEvidence": "docs/deployment/evidence/2026-09-07-sprint5-release.json"
+      }
+    },
+    {
+      "id": "K13",
+      "title": "Establish isolated candidate environment and reproducible evidence pack",
+      "milestone": "M1",
+      "targetDate": "2026-09-07",
+      "state": "in-progress",
+      "dependsOn": [
+        "K01",
+        "K02"
+      ],
+      "sourceRequirements": [
+        "NFR-005",
+        "NFR-010",
+        "OPS-001",
+        "OPS-002",
+        "SOT-006",
+        "VUW-UAT-20",
+        "Bonzah P0-14"
+      ],
+      "acceptance": [
+        "Resolve approved non-production hosting/identity/storage and access references; keep development loopback controls explicit until an approved adapter exists.",
+        "Pin runtime/build/config/contracts and verify representative scoped journeys and served hashes in candidate environment.",
+        "Provide isolated synthetic namespace/reset, backup/restore and repeatable rehearsal without production effects.",
+        "Maintain actual owner/access/recovery evidence and distinguish local tests, remote CI and deployed runtime."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 13,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/13",
+      "priorTargetDate": "2026-09-09",
+      "evidence": {
+        "implementationCommit": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/20",
+        "integrationStatus": "merged_to_main; PR verify succeeded",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34042621183",
+        "localEvidence": "docs/delivery/sprint-2-intern-acceptance.md",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34043024683",
+        "deploymentAcceptance": "public_exact_build_and_assets_verified; complete_handover_pending",
+        "customerAcceptance": "not_recorded",
+        "scopeStatus": "Public exact-build/assets, Alpha hosted setup/activation/manual quote/bind/history, representative off-host canonical-record recovery and ordinary restart are verified. Authorized sample/reset, full upgrade/failed-release recovery and independent handover remain open.",
+        "mainVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34043018388",
+        "deploymentAttempt": 2,
+        "publicUrl": "https://platform.facio.io",
+        "studioPath": "/studio?tenant=<UUID>",
+        "observedRegion": "westeurope",
+        "publicVerifiedAt": "2026-09-06T15:50:00Z",
+        "realIdentityEvidence": "User-confirmed Google sign-in; infrastructure agent observed uriel@facio.io with Admin role in Facio Sandbox workspace",
+        "freshInternAcceptance": "not_recorded",
+        "actualChatGPTConnection": "not_verified",
+        "hostedRecoveryEvidence": "docs/deployment/evidence/2026-09-06-recovery.json",
+        "publicEvidence": "docs/deployment/evidence/2026-09-06-public-release.json",
+        "liveIdentityAndProvisioningEvidence": "docs/deployment/evidence/2026-09-06-live-browser.json",
+        "hostRuntimeEvidence": "docs/deployment/evidence/2026-09-06-host-runtime.json",
+        "hostedJourneyEvidence": "docs/deployment/evidence/2026-09-06-alpha-ui-journey.json",
+        "hostedJourneyStatus": "Google-authenticated administrator configured Alpha through UI, activated release b513a5eb-ae03-4df0-9d72-13414c5d8da1 and bound synthetic GBP1000 record ecda8573-e89f-49df-b90d-ada3f3cb2edf v2; GBP70 commission and v1/v2 history retained",
+        "secondTenantStatus": "Beta intentionally awaiting requirements; no active release or demonstrated journey",
+        "hostedRecoveryStatus": "Snapshot20260906T155716.227959Z: database hashes/integrity, exact-image restored boot and compiled Store release/record/history/hash-chain/isolation reads passed. Ordinary live restart retained exact record/release. Manual backup service passed and hourly timer is enabled; first scheduled firing unobserved.",
+        "hostedRecoveryLimits": "No restored HTTP business/browser/ChatGPT run or full VM-loss/credential reprovisioning; existing provider configuration/bootstrap reused",
+        "evidencePeriod": "Historical S2 release 55e1559; current increment evidence is recorded separately below."
+      },
+      "activeIncrement": {
+        "implementationCommit": "58d391d0e2388a80733552835e96c59acb2a23d1",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/22",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34049805361",
+        "publicEvidence": "docs/deployment/evidence/2026-09-06-insurance-public.json",
+        "hostedJourneyEvidence": "docs/deployment/evidence/2026-09-06-insurance-ui-journey.json",
+        "hostedRecoveryEvidence": "docs/deployment/evidence/2026-09-06-insurance-recovery.json",
+        "trainingGuide": "docs/guides/insurance-studio-quickstart.md",
+        "status": "Deployed configuration/evaluation slice; real Google administrator authored synthetic product, tested invalid/referral/eligible cases and bound GBP100. Schema-5 upgrade and exact-image off-host restore preserve legacy/configured records and isolation. First scheduled backup observed.",
+        "remainingAcceptance": "Fresh interns, actual ChatGPT workspace, independent handover, approved sample/reset and full customer scenarios remain unverified.",
+        "servingBuildSha": "fa874bbe7fa2b114698d89f84f9ffae97c28ce35",
+        "mainVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34049793898",
+        "finalPublicEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-public.json",
+        "finalRuntimeEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-runtime.json",
+        "finalRecoveryEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-recovery.json",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-browser.json"
+      },
+      "reviewProviderIncrement": {
+        "status": "merged_deployed_and_verified_synthetic_sandbox; independent_reviewer_and_customer_acceptance_open",
+        "scopeDocument": "docs/delivery/approval-provider-sprint.md",
+        "trainingGuide": "docs/guides/insurance-studio-quickstart.md",
+        "deploymentEvidence": [
+          "docs/deployment/evidence/2026-09-06-review-provider-public.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-browser.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-runtime.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-recovery.json"
+        ],
+        "actualIndependentUserAcceptance": "not_recorded",
+        "customerAcceptance": "not_recorded",
+        "scope": "Disposable HTTPS browser fixtures exercise separate review actors and actual local provider worker/persistence.",
+        "localEvidence": [
+          "scripts/insurance-approval-browser-smoke.ts",
+          "scripts/insurance-provider-browser-smoke.ts"
+        ],
+        "remaining": "Named support/recovery ownership, approved scoped sample/reset, restored browser/ChatGPT handover, failed-deployment exercise and full VM/credential-loss recovery remain open. Exact-image copied-snapshot recovery is a separate bounded proof.",
+        "servingBuildSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+        "implementationPr": "https://github.com/FacioMGA/facio-kernel/pull/25",
+        "presentationPr": "https://github.com/FacioMGA/facio-kernel/pull/26",
+        "mainCi": "https://github.com/FacioMGA/facio-kernel/actions/runs/34053126098",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34053131692",
+        "observedOperator": "Existing actual Google administrator session; pending independent review and synthetic completed provider receipt; no second actual reviewer",
+        "localTests": 123,
+        "browserSuites": 7
+      },
+      "sprint5Increment": {
+        "state": "in-progress",
+        "implementationStatus": "implemented_bounded",
+        "scopeDocument": "docs/delivery/sprint-5-implementation.md",
+        "workPackages": [
+          "S5-08"
+        ],
+        "scope": "Shared sandbox, pinned Rust image and schema-7 application passed exact public/browser verification and isolated off-host snapshot replay through hosted startup; live writer preserved.",
+        "localEvidence": [
+          "rust/evidence/2026-09-07-money-container.json",
+          "docs/delivery/sprint-5-implementation.md",
+          "docs/deployment/evidence/2026-09-07-sprint5-local.json"
+        ],
+        "verificationStatus": "remote_181_node_2_native_4_deployment_tests_and_14_browser_suites_86_checks_passed",
+        "releaseStatus": "bounded_synthetic_deployed_verified_customer_acceptance_pending",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Customer rehearsal and approved exact sample/reset boundary; actual support/recovery ownership, restored authenticated browser/ChatGPT journey, failed-deployment exercise and full VM/credential-loss recovery remain open.",
+        "implementationCommit": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/28",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34092595179",
+        "integrationStatus": "merged_to_main; exact PR verify succeeded, squash tree identical",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+        "deployedCommit": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+        "publicEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+        "browserCheckpoint": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+        "followupPullRequest": "https://github.com/FacioMGA/facio-kernel/pull/29",
+        "finalVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+        "recoveryEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+        "releaseEvidence": "docs/deployment/evidence/2026-09-07-sprint5-release.json"
+      }
+    },
+    {
+      "id": "K14",
+      "title": "Deliver engineering-ready self-onboarding specification",
+      "milestone": "M4",
+      "targetDate": "2026-09-12",
+      "state": "ready",
+      "dependsOn": [],
+      "sourceRequirements": [
+        "MS-M4",
+        "DEP sections 2-3",
+        "MOD-001",
+        "MOD-012"
+      ],
+      "acceptance": [
+        "Refine the existing draft into source-linked journey, annotated screens/actions, role and account/subscription/environment state models.",
+        "Specify identity, CRM, subscription/payment, provisioning, DNS/TLS, configuration/MCP, support and notifications with one system of record per fact.",
+        "Cover Draft/test-to-Live approvals, billing/domain failures, retry/reconciliation and account servicing, mobile and accessibility.",
+        "Review interfaces/screens September 9, failure paths September 10, cross-functional review September 11 and final acceptance September 12. Full onboarding implementation is separate."
+      ],
+      "implementationOwner": "unassigned",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 14,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/14"
+    },
+    {
+      "id": "K15",
+      "title": "Resolve deadline-critical customer inputs and acceptance ownership",
+      "milestone": "S1",
+      "targetDate": "2026-09-07",
+      "state": "input-needed",
+      "dependsOn": [],
+      "sourceRequirements": [
+        "DEP-002",
+        "DEP-003",
+        "DEP-004",
+        "DEP-005",
+        "DEP-006",
+        "DEP-013",
+        "VUW-GAP-01 through VUW-GAP-23"
+      ],
+      "acceptance": [
+        "Use already received source packs to resolve exact missing APIs/golden outcomes, rules/authority, financial bases/returns, templates/BDX and provider test boundaries.",
+        "Preserve full September 11 VUW scope; identify executed document precedence and explicit acceptance reviewers without assigning source-named people by assumption.",
+        "Confirm Bonzah/UE invitation times, September 9 rehearsal access, presenters and ownership/capacity for all work lanes.",
+        "Record each open input with source gap ID, actual decision/evidence, accountable owner when accepted and needed-by date; unresolved inputs keep dependent acceptance open."
+      ],
+      "implementationOwner": "unassigned",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 15,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/15"
+    },
+    {
+      "id": "K16",
+      "title": "Execute exact Rust financial core with canonical parity and measured performance",
+      "milestone": null,
+      "targetDate": "2026-09-09",
+      "state": "in-progress",
+      "dependsOn": [
+        "K02"
+      ],
+      "sourceRequirements": [
+        "NFR-004",
+        "NFR-009",
+        "PRD-006"
+      ],
+      "acceptance": [
+        "Select CPU hot paths from measured workload: exact rating/allocation, batch validation or report transformation.",
+        "Implement the same versioned contract and run identical golden/property cases with zero unexplained monetary discrepancies.",
+        "Measure end-to-end latency, throughput, memory and cost including bridge/serialization/deployment overhead against TypeScript baseline.",
+        "Adopt only after material measured benefit and approved operational behavior; keep customer critical path independent of the rewrite."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 16,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/16",
+      "sprint5Increment": {
+        "state": "in-progress",
+        "implementationStatus": "implemented_bounded",
+        "scopeDocument": "docs/delivery/sprint-5-implementation.md",
+        "workPackages": [],
+        "scope": "Canonical exact-money-v1 allocation/commission now executes required Rust/WASM with pinned compilation, ABI/hash/startup validation, separate health engine metadata and retained TypeScript conformance oracle.",
+        "localEvidence": [
+          "rust/README.md",
+          "tests/rust-money.test.ts",
+          "tests/rust-money-integration.test.ts",
+          "rust/evidence/2026-09-07-money-benchmark.json",
+          "rust/evidence/2026-09-07-money-benchmark-repeat.json",
+          "rust/evidence/2026-09-07-money-container.json",
+          "docs/deployment/evidence/2026-09-07-sprint5-local.json"
+        ],
+        "verificationStatus": "remote_181_node_2_native_4_deployment_tests_and_14_browser_suites_86_checks_passed",
+        "releaseStatus": "bounded_synthetic_deployed_verified_customer_acceptance_pending",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Target-host and whole-service latency/throughput/memory/cost measurements, broader Rust core migration and general production operational acceptance remain open. Allocator CI results do not prove actual cloud-bill savings.",
+        "implementationCommit": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/28",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34092595179",
+        "integrationStatus": "merged_to_main; exact PR verify succeeded, squash tree identical",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+        "deployedCommit": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+        "publicEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+        "browserCheckpoint": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+        "followupPullRequest": "https://github.com/FacioMGA/facio-kernel/pull/29",
+        "finalVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+        "recoveryEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+        "releaseEvidence": "docs/deployment/evidence/2026-09-07-sprint5-release.json"
+      },
+      "priorTitle": "Benchmark exact Rust compute adapters against canonical golden behavior",
+      "priorTargetDate": null,
+      "scheduleDecision": {
+        "date": "2026-09-07",
+        "authority": "Uriel explicitly required Rust core-backend implementation during Sprint 5",
+        "previousPlacement": "after_readiness",
+        "newPlacement": "S5 implementation and rehearsal target",
+        "otherMilestoneDatesChanged": false
+      }
+    },
+    {
+      "id": "K17",
+      "title": "Implement production release storage and migration readiness gates",
+      "milestone": null,
+      "targetDate": null,
+      "state": "planned",
+      "dependsOn": [
+        "K03",
+        "K04",
+        "K13"
+      ],
+      "sourceRequirements": [
+        "TEN",
+        "REL-001 through REL-008",
+        "MIG-001 through MIG-009",
+        "NFR",
+        "OPS-007 through OPS-012"
+      ],
+      "acceptance": [
+        "Implement approved regional relational storage, identity/secret controls, signed human-approved immutable Tenant Releases, queues, telemetry and tested recovery.",
+        "Trace legacy consumer contracts and golden parity before any capability cutover; preserve one writer and historical records.",
+        "Inventory and rehearse exact customer data/files/money/audit reconciliation and rollback that preserves new writes.",
+        "Production deployment and customer migration require their own concrete readiness/authorization; dates are not inferred from September demos."
+      ],
+      "implementationOwner": "unassigned",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 17,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/17"
+    },
+    {
+      "id": "K18",
+      "title": "Enable independent intern tenant setup on one hosted Kernel",
+      "milestone": "M3",
+      "targetDate": "2026-09-07",
+      "state": "in-progress",
+      "dependsOn": [
+        "K03",
+        "K12",
+        "K13"
+      ],
+      "sourceRequirements": [
+        "Intern proposal checks 01-24"
+      ],
+      "sourceCapture": "docs/source/Intern_Shared_Kernel_Proposal_2026-09-06.txt",
+      "sourceCaptureSha256": "31eced0898c7b0b25f58f4a436dec9fa0b5b527f8dae66dedb4c2fa86444865e",
+      "acceptance": [
+        "Two individual interns authenticate with Google Workspace and use separate differently configured tenants on one hosted build.",
+        "Studio, HTTPS API and actual ChatGPT MCP share persisted configuration and fresh membership checks, with explicit target IDs.",
+        "Requirements attach without a shared-code edit; exact immutable sandbox releases drive runtime and preserve original transaction versions.",
+        "Repeatable deployment, durable database, off-host backup and restore evidence preserve intern work.",
+        "All 24 proposal checks are mapped with evidence or explicit remaining gaps; independent handover and customer milestones are not inferred from automated tests."
+      ],
+      "implementationOwner": "current implementation session",
+      "acceptanceOwner": "unassigned",
+      "issueNumber": 19,
+      "issueUrl": "https://github.com/FacioMGA/facio-kernel/issues/19",
+      "evidence": {
+        "implementationCommit": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/20",
+        "integrationStatus": "merged_to_main; PR verify succeeded",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34042621183",
+        "localEvidence": "docs/delivery/sprint-2-intern-acceptance.md",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34043024683",
+        "deploymentAcceptance": "public_exact_build_and_assets_verified; complete_handover_pending",
+        "customerAcceptance": "not_recorded",
+        "scopeStatus": "Platform/Studio is deployed; real Google administrator configured and activated Alpha and executed its synthetic manual quote/bind journey, with bounded backup/restore/restart evidence. Beta awaits requirements. Fresh interns/ChatGPT, independent handover, providers/reset and customer acceptance remain open.",
+        "mainVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34043018388",
+        "deploymentAttempt": 2,
+        "publicUrl": "https://platform.facio.io",
+        "studioPath": "/studio?tenant=<UUID>",
+        "observedRegion": "westeurope",
+        "publicVerifiedAt": "2026-09-06T15:50:00Z",
+        "realIdentityEvidence": "User-confirmed Google sign-in; infrastructure agent observed uriel@facio.io with Admin role in Facio Sandbox workspace",
+        "freshInternAcceptance": "not_recorded",
+        "actualChatGPTConnection": "not_verified",
+        "hostedRecoveryEvidence": "docs/deployment/evidence/2026-09-06-recovery.json",
+        "publicEvidence": "docs/deployment/evidence/2026-09-06-public-release.json",
+        "liveIdentityAndProvisioningEvidence": "docs/deployment/evidence/2026-09-06-live-browser.json",
+        "hostRuntimeEvidence": "docs/deployment/evidence/2026-09-06-host-runtime.json",
+        "hostedJourneyEvidence": "docs/deployment/evidence/2026-09-06-alpha-ui-journey.json",
+        "hostedJourneyStatus": "Google-authenticated administrator configured Alpha through UI, activated release b513a5eb-ae03-4df0-9d72-13414c5d8da1 and bound synthetic GBP1000 record ecda8573-e89f-49df-b90d-ada3f3cb2edf v2; GBP70 commission and v1/v2 history retained",
+        "secondTenantStatus": "Beta intentionally awaiting requirements; no active release or demonstrated journey",
+        "hostedRecoveryStatus": "Snapshot20260906T155716.227959Z: database hashes/integrity, exact-image restored boot and compiled Store release/record/history/hash-chain/isolation reads passed. Ordinary live restart retained exact record/release. Manual backup service passed and hourly timer is enabled; first scheduled firing unobserved.",
+        "hostedRecoveryLimits": "No restored HTTP business/browser/ChatGPT run or full VM-loss/credential reprovisioning; existing provider configuration/bootstrap reused",
+        "evidencePeriod": "Historical S2 release 55e1559; current increment evidence is recorded separately below."
+      },
+      "activeIncrement": {
+        "implementationCommit": "58d391d0e2388a80733552835e96c59acb2a23d1",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/22",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34049805361",
+        "publicEvidence": "docs/deployment/evidence/2026-09-06-insurance-public.json",
+        "hostedJourneyEvidence": "docs/deployment/evidence/2026-09-06-insurance-ui-journey.json",
+        "hostedRecoveryEvidence": "docs/deployment/evidence/2026-09-06-insurance-recovery.json",
+        "trainingGuide": "docs/guides/insurance-studio-quickstart.md",
+        "status": "Deployed configuration/evaluation slice; real Google administrator authored synthetic product, tested invalid/referral/eligible cases and bound GBP100. Schema-5 upgrade and exact-image off-host restore preserve legacy/configured records and isolation. First scheduled backup observed.",
+        "remainingAcceptance": "Fresh interns, actual ChatGPT workspace, independent handover, approved sample/reset and full customer scenarios remain unverified.",
+        "servingBuildSha": "fa874bbe7fa2b114698d89f84f9ffae97c28ce35",
+        "mainVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34049793898",
+        "finalPublicEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-public.json",
+        "finalRuntimeEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-runtime.json",
+        "finalRecoveryEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-recovery.json",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-06-insurance-final-browser.json"
+      },
+      "reviewProviderIncrement": {
+        "status": "merged_deployed_and_verified_synthetic_sandbox; independent_reviewer_and_customer_acceptance_open",
+        "scopeDocument": "docs/delivery/approval-provider-sprint.md",
+        "trainingGuide": "docs/guides/insurance-studio-quickstart.md",
+        "deploymentEvidence": [
+          "docs/deployment/evidence/2026-09-06-review-provider-public.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-browser.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-runtime.json",
+          "docs/deployment/evidence/2026-09-06-review-provider-recovery.json"
+        ],
+        "actualIndependentUserAcceptance": "not_recorded",
+        "customerAcceptance": "not_recorded",
+        "scope": "Integrated Human review and Provider activity in the same authorized Insurance workspace, with immutable evidence and explicit unsupported gates. Existing configuration/API/MCP authority is preserved; insurance, review and provider mutations remain operator-only.",
+        "localEvidence": [
+          "scripts/insurance-approval-browser-smoke.ts",
+          "scripts/insurance-provider-browser-smoke.ts",
+          "docs/delivery/sprint-2-intern-acceptance.md"
+        ],
+        "remaining": "Full M3 reviewer acceptance, fresh independent interns, actual ChatGPT, support ownership, scoped sample/reset and customer handover remain open. Local synthetic actors are not observed stakeholders.",
+        "servingBuildSha": "b5f38d4fa1850f28458babe70b6e0714481a2f3d",
+        "implementationPr": "https://github.com/FacioMGA/facio-kernel/pull/25",
+        "presentationPr": "https://github.com/FacioMGA/facio-kernel/pull/26",
+        "mainCi": "https://github.com/FacioMGA/facio-kernel/actions/runs/34053126098",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34053131692",
+        "observedOperator": "Existing actual Google administrator session; pending independent review and synthetic completed provider receipt; no second actual reviewer",
+        "localTests": 123,
+        "browserSuites": 7
+      },
+      "sprint5Increment": {
+        "state": "in-progress",
+        "implementationStatus": "implemented_bounded",
+        "scopeDocument": "docs/delivery/sprint-5-implementation.md",
+        "workPackages": [
+          "S5-07"
+        ],
+        "scope": "Existing individual organization membership and tenant isolation carry the new bounded workflows; local actors exercise permissions and cross-access denial.",
+        "localEvidence": [
+          "docs/delivery/sprint-2-intern-acceptance.md",
+          "docs/delivery/sprint-5-implementation.md",
+          "docs/deployment/evidence/2026-09-07-sprint5-local.json"
+        ],
+        "verificationStatus": "remote_181_node_2_native_4_deployment_tests_and_14_browser_suites_86_checks_passed",
+        "releaseStatus": "bounded_synthetic_deployed_verified_customer_acceptance_pending",
+        "customerAcceptance": "not_recorded",
+        "remaining": "Two actual independent interns, actual second administrator review, actual ChatGPT and named support/acceptance ownership remain unverified.",
+        "implementationCommit": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+        "pullRequest": "https://github.com/FacioMGA/facio-kernel/pull/28",
+        "verificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34092595179",
+        "integrationStatus": "merged_to_main; exact PR verify succeeded, squash tree identical",
+        "deploymentRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096058703",
+        "deployedCommit": "5287a070713a2ec3bff628fc7d7620813cf4d5b8",
+        "publicEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-public.json",
+        "browserCheckpoint": "docs/deployment/evidence/2026-09-07-sprint5-browser-checkpoint.json",
+        "followupPullRequest": "https://github.com/FacioMGA/facio-kernel/pull/29",
+        "finalVerificationRun": "https://github.com/FacioMGA/facio-kernel/actions/runs/34096030376",
+        "finalBrowserEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-browser.json",
+        "recoveryEvidence": "docs/deployment/evidence/2026-09-07-sprint5-final-recovery.json",
+        "releaseEvidence": "docs/deployment/evidence/2026-09-07-sprint5-release.json"
+      }
+    }
+  ],
+  "updatedAt": "2026-09-07",
+  "currentIncrement": {
+    "id": "S5",
+    "state": "in-progress",
+    "targetDate": "2026-09-09",
+    "implementationStatus": "bounded_implemented_pending_final_release_verification",
+    "scopeProposal": "docs/delivery/sprint-5-scope-proposal.md",
+    "implementationReceipt": "docs/delivery/sprint-5-implementation.md",
+    "customerAcceptance": "not_recorded",
+    "issueClosure": "none_by_this_document_update",
+    "forecast": "at_risk_full_vuw_2026-09-11_unchanged"
+  }
+}

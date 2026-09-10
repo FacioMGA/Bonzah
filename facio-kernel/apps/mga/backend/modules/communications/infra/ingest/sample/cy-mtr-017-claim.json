@@ -1,0 +1,75 @@
+[
+  {
+    "externalMessageId": "CY-MTR-017-001",
+    "conversationId": "CY-MTR-017",
+    "subject": "FNOL CY-MTR-017",
+    "from": { "name": "Demetris Broker", "email": "d@brokerbros.example" },
+    "to": [{ "name": "Abbeygate Claims", "email": "claims@abbeygate.example" }],
+    "sentAt": "2026-01-03T14:20:00.000Z",
+    "bodyText": "Three-vehicle collision, Limassol roundabout. Our insured Sofia M. (policy ABMTR-100417, reg PCM-6604) and one TP. Second TP departed before details exchanged. Insured shaken, no reported injury. Vehicle towed to QuickFix Auto.",
+    "attachments": [],
+    "linkHints": {
+      "claimReference": "CY-MTR-017",
+      "policyReference": "ABMTR-100417",
+      "vehicleRegistration": "PCM-6604"
+    }
+  },
+  {
+    "externalMessageId": "CY-MTR-017-002",
+    "conversationId": "CY-MTR-017",
+    "subject": "RE: CY-MTR-017 — please send",
+    "from": { "name": "Abbeygate Claims", "email": "claims@abbeygate.example" },
+    "to": [{ "name": "Demetris Broker", "email": "d@brokerbros.example" }],
+    "sentAt": "2026-01-04T10:00:00.000Z",
+    "bodyText": "Demetris,\n\nPlease send:\n  1. Completed motor claim form (attached blank).\n  2. Police attendance number or report — Limassol roundabout incidents are typically attended.\n  3. TP insurer details for the identified TP.\n  4. Photos of damage and scene.\n  5. Vehicle registration document.\n  6. Witness statement or confirmation no witness exists.\n  7. Repair estimate from QuickFix Auto.\n\nPending these, we are reserving liability.",
+    "attachments": [{ "name": "motor_claim_form_blank.pdf", "contentType": "application/pdf" }],
+    "linkHints": { "claimReference": "CY-MTR-017" }
+  },
+  {
+    "externalMessageId": "CY-MTR-017-003",
+    "conversationId": "CY-MTR-017",
+    "subject": "RE: CY-MTR-017 — partial",
+    "from": { "name": "Demetris Broker", "email": "d@brokerbros.example" },
+    "to": [{ "name": "Abbeygate Claims", "email": "claims@abbeygate.example" }],
+    "sentAt": "2026-01-07T16:30:00.000Z",
+    "bodyText": "George,\n\nForm attached. Photos attached. TP insurer details still being chased. Insured cannot locate the V5/registration document. Police did not attend (insured did not request). No witnesses known.",
+    "attachments": [
+      { "name": "motor_claim_form_completed.pdf", "contentType": "application/pdf" },
+      { "name": "photos.zip", "contentType": "application/zip" }
+    ],
+    "linkHints": { "claimReference": "CY-MTR-017" }
+  },
+  {
+    "externalMessageId": "CY-MTR-017-004",
+    "conversationId": "CY-MTR-017",
+    "subject": "Repair estimate CY-MTR-017",
+    "from": { "name": "QuickFix Auto", "email": "estimates@quickfix.example" },
+    "to": [{ "name": "Abbeygate Claims", "email": "claims@abbeygate.example" }],
+    "sentAt": "2026-01-09T09:18:00.000Z",
+    "bodyText": "Repair estimate attached. Total €30,000 including parts, paint and labour. Vehicle is currently with us awaiting authorisation.",
+    "attachments": [{ "name": "estimate_quickfix_30000.pdf", "contentType": "application/pdf" }],
+    "linkHints": { "claimReference": "CY-MTR-017" }
+  },
+  {
+    "externalMessageId": "CY-MTR-017-005",
+    "conversationId": "CY-MTR-017",
+    "subject": "Referral — CY-MTR-017 over authority",
+    "from": { "name": "Abbeygate Claims", "email": "claims@abbeygate.example" },
+    "to": [{ "name": "Claims Manager", "email": "manager@abbeygate.example" }],
+    "sentAt": "2026-01-09T14:50:00.000Z",
+    "bodyText": "Estimate €30,000 exceeds my delegated authority (€25,000 under the Cyprus DCA). Referring before any settlement. Repairer is QuickFix Auto — same garage flagged on prior claims for high estimates. Liability remains reserved (no witness, no police report, no V5).",
+    "attachments": [],
+    "linkHints": { "claimReference": "CY-MTR-017" }
+  },
+  {
+    "externalMessageId": "CY-MTR-017-006",
+    "conversationId": "CY-MTR-017",
+    "subject": "Chaser — CY-MTR-017 authorisation",
+    "from": { "name": "Demetris Broker", "email": "d@brokerbros.example" },
+    "to": [{ "name": "Abbeygate Claims", "email": "claims@abbeygate.example" }],
+    "sentAt": "2026-01-12T11:10:00.000Z",
+    "bodyText": "Insured is asking for an update on the estimate authorisation.",
+    "attachments": [],
+    "linkHints": { "claimReference": "CY-MTR-017" }
+  }
+]

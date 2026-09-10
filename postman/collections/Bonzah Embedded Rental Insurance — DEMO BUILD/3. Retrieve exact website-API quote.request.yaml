@@ -1,0 +1,9 @@
+$kind: http-request
+name: 3. Retrieve exact website/API quote
+url: "{{baseUrl}}/api/v1/bonzah/quotes/{{quoteId}}"
+method: GET
+scripts:
+  - type: afterResponse
+    code: pm.test('Rated snapshot matches', () => { const q=pm.response.json().data; pm.expect(q.quoteId).to.eql(pm.environment.get('quoteId')); pm.expect(String(q.total)).to.eql(pm.environment.get('quoteTotal')); });
+    language: text/javascript
+order: 4000

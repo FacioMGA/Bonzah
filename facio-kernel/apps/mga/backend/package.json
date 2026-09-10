@@ -1,0 +1,9 @@
+{
+  "name": "@facio/mga-backend",
+  "version": "1.0.5",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@scalar/express-api-reference": "^0.8.44"
+  }
+}

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{tenantBrand.displayName}} Travel — Statement of Fact</title>
+  <link rel="stylesheet" href="styles/pdf-theme.css" />
+  <style>
+    @page { size: A4; margin: 14mm; }
+    body { font-family: Arial, sans-serif; color: #172033; font-size: 12px; line-height: 1.45; }
+    h1 { margin: 0 0 6px; color: #004a8a; font-size: 22px; }
+    h2 { margin: 18px 0 8px; color: #004a8a; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th, td { border: 1px solid #d9e2ef; padding: 7px 8px; text-align: left; vertical-align: top; }
+    th { width: 34%; background: #f3f7fb; color: #334155; }
+    .muted { color: #64748b; }
+    .notice { margin-top: 18px; padding: 10px 12px; border: 1px solid #d9e2ef; background: #f8fafc; }
+    /* ABY-269: shared `.brand-topbar` rules ship from the canonical
+       `styles/pdf-theme.css` (inlined at render time by the PDF
+       renderer). The travel SoF previously rendered without any
+       brand identification, missing the {{tenantBrand.displayName}} + Lloyd's logos
+       that every other {{tenantBrand.displayName}}-issued document carries. */
+  </style>
+</head>
+<body>
+  <div class="brand-topbar avoid-break">
+    <div class="doc-topbar-left">
+      {{#if tenantBrand.logo}}<img class="doc-logo-left" src="{{tenantBrand.logo}}" alt="{{tenantBrand.displayName}}" />{{else}}<strong>{{tenantBrand.displayName}}</strong>{{/if}}
+    </div>
+    <div class="doc-topbar-center">
+      <div class="doc-title">{{tenantBrand.displayName}} Travel Insurance</div>
+      <div class="doc-subtitle">Statement of Fact</div>
+    </div>
+    <div class="doc-topbar-right">
+      <span>{{tenantBrand.legalName}}</span>
+    </div>
+  </div>
+
+  <h1>Statement of Fact</h1>
+  <p class="muted">Policy number: <strong>{{policyNumber}}</strong></p>
+  <p>
+    This statement records the travel insurance facts used to issue the policy.
+    Please check it carefully and contact {{tenantBrand.displayName}} if anything is incorrect.
+  </p>
+
+  <h2>Policyholder</h2>
+  <table>
+    <tr><th>Name</th><td>{{policyHolder.name}}</td></tr>
+    <tr><th>Address</th><td>{{policyHolder.addressDisplay}}</td></tr>
+    <tr><th>Email</th><td>{{policyHolder.email}}</td></tr>
+    <tr><th>Phone</th><td>{{policyHolder.phone}}</td></tr>
+  </table>
+
+  <h2>Trip</h2>
+  <table>
+    <tr><th>Type of cover</th><td>{{tripTypeLabel}}</td></tr>
+    <tr><th>Area of travel</th><td>{{destinationsDisplay}}</td></tr>
+    <tr><th>Period of insurance</th><td>{{period.startDisplay}} - {{period.endDisplay}}</td></tr>
+    <tr><th>Level of cover</th><td>{{levelOfCoverLabel}}</td></tr>
+    <tr><th>Maximum trip duration</th><td>{{maxTripDurationDisplay}}</td></tr>
+  </table>
+
+  <h2>Declarations</h2>
+  <table>
+    <tr><th>Medical notice accepted</th><td>{{declarations.medicalNoticeLabel}}</td></tr>
+    <tr><th>How to claim / complain / privacy reviewed</th><td>{{declarations.howToClaimReviewLabel}}</td></tr>
+    <tr><th>Personal data consent accepted</th><td>{{declarations.personalDataConsentLabel}}</td></tr>
+    <tr><th>Contract consent accepted</th><td>{{declarations.contractConsentLabel}}</td></tr>
+    <tr><th>Payment portal agreement accepted</th><td>{{declarations.contractAgreementLabel}}</td></tr>
+  </table>
+
+  <h2>Insured Persons</h2>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Date of birth</th><th>Pre-existing medical conditions</th><th>Medical screening ref</th></tr>
+    </thead>
+    <tbody>
+      {{#each travellers.insuredPersons}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{dateOfBirthDisplay}}</td>
+        <td>{{preExistingMedicalLabel}}</td>
+        <td>{{medicalScreeningRef}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <div class="notice">
+    {{medicalNotice}}
+  </div>
+</body>
+</html>

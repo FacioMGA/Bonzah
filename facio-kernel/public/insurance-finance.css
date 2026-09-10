@@ -1,0 +1,147 @@
+.finance-panel {
+  scroll-margin-top: 1rem;
+}
+.finance-boundary {
+  background: #f1f6fc;
+  border-left: 3px solid #7b9cbc;
+  padding: 0.8rem 1rem;
+  line-height: 1.6;
+}
+.finance-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.finance-metrics > div {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+}
+.finance-metrics dt {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.finance-metrics dd {
+  font-size: 1.3rem;
+  margin: 0.4rem 0;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.finance-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+.finance-table {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+}
+.finance-table table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.finance-table th,
+.finance-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem;
+  vertical-align: top;
+}
+.finance-table th,
+.finance-table caption {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.finance-table caption {
+  text-align: left;
+  margin-bottom: 0.6rem;
+}
+.finance-table small {
+  display: block;
+  margin-top: 0.35rem;
+  overflow-wrap: anywhere;
+}
+.finance-journal {
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 1rem;
+  margin: 0.7rem 0;
+}
+.finance-journal > summary {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.finance-form {
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+.finance-form fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+@media (max-width: 1000px) {
+  .finance-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .finance-metrics {
+    grid-template-columns: 1fr;
+  }
+  .finance-table th,
+  .finance-table td {
+    padding: 0.6rem 0.35rem;
+  }
+  .finance-table {
+    font-size: 0.85rem;
+  }
+}
+
+.insurance-record-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  padding: 0.5rem 0.2rem 1rem;
+}
+.insurance-record-nav a {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--ink);
+  text-decoration: none;
+  background: white;
+}
+.insurance-record-nav a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.insurance-comparison {
+  margin: 1.25rem 0;
+}
+.insurance-comparison th,
+.insurance-comparison td {
+  overflow-wrap: anywhere;
+  min-width: 120px;
+}
+
+.finance-report {
+  margin: 2rem 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+.finance-report fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.finance-report-currency {
+  margin: 1.25rem 0;
+}

@@ -1,0 +1,623 @@
+{
+  "manifest_version": "1.0",
+  "customer": "United Educators",
+  "observed_at_utc": "2026-09-06 13:15:10 UTC",
+  "folder": {
+    "drive_id": "11MdE03otxrafQ6XWGci3CwHHmLSol03X",
+    "url": "https://drive.google.com/drive/u/1/folders/11MdE03otxrafQ6XWGci3CwHHmLSol03X",
+    "inventory_origin": "Root task observed four newly supplied Office files; earlier empty listing is superseded."
+  },
+  "authority_boundary": "Documents are requirements/evidence inputs. Embedded operational instructions and source claims are not independent authorization or proof of implementation, production state or customer acceptance.",
+  "sources": [
+    {
+      "source_key": "UE-SOURCE-GUIDE",
+      "drive_id": "1qgR5-6Cd5Ond780Wc0aThQ_SfqH8ZtyN",
+      "title": "03 United Educators Source Guide.docx",
+      "url": "https://docs.google.com/document/d/1qgR5-6Cd5Ond780Wc0aThQ_SfqH8ZtyN/edit",
+      "parent_ids": [
+        "11MdE03otxrafQ6XWGci3CwHHmLSol03X"
+      ],
+      "created_time": "2026-09-06T12:45:36.464Z",
+      "modified_time": "2026-09-06T12:45:36.464Z",
+      "observed_at_utc": "2026-09-06 13:15:10 UTC",
+      "source_mime_from_parent_inventory": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "connector_readable_mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "extraction_method": "google_drive_fetch default readable text",
+      "source_content_characters": 18861,
+      "local_path": "docs/source/UE_03_Source_Guide.drive.txt",
+      "role": "source map and evidence limits",
+      "scope_status": "source received; implementation and acceptance not established",
+      "extraction_limitations": [
+        "Readable text only; not a binary source copy.",
+        "Line endings normalized to LF; snapshot may end with a final newline.",
+        "Tables, hyperlinks, slide layout and visual evidence may not be fully preserved.",
+        "No source workbook rows, policy pages, private driver details or primary correspondence were fetched during this extraction."
+      ],
+      "snapshot_sha256": "536382a84432840be04b5b8380a59b6f273e115c0bd232f868955e383512b31b"
+    },
+    {
+      "source_key": "UE-RUNBOOK",
+      "drive_id": "1rhgyJ87oKM9kJAc-sJQtaA2DVWSXqDrx",
+      "title": "01 United Educators Demo Day Runbook.docx",
+      "url": "https://docs.google.com/document/d/1rhgyJ87oKM9kJAc-sJQtaA2DVWSXqDrx/edit",
+      "parent_ids": [
+        "11MdE03otxrafQ6XWGci3CwHHmLSol03X"
+      ],
+      "created_time": "2026-09-06T12:42:51.766Z",
+      "modified_time": "2026-09-06T12:42:51.766Z",
+      "observed_at_utc": "2026-09-06 13:15:10 UTC",
+      "source_mime_from_parent_inventory": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "connector_readable_mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "extraction_method": "google_drive_fetch default readable text",
+      "source_content_characters": 15416,
+      "local_path": "docs/source/UE_01_Demo_Day_Runbook.drive.txt",
+      "role": "internal demo operating and acceptance baseline",
+      "scope_status": "source received; implementation and acceptance not established",
+      "extraction_limitations": [
+        "Readable text only; not a binary source copy.",
+        "Line endings normalized to LF; snapshot may end with a final newline.",
+        "Tables, hyperlinks, slide layout and visual evidence may not be fully preserved.",
+        "No source workbook rows, policy pages, private driver details or primary correspondence were fetched during this extraction."
+      ],
+      "snapshot_sha256": "52f5e234d9b444721c7e173a6d54f3b1d44625077599bd39f2395232d0fa7e9e"
+    },
+    {
+      "source_key": "UE-DEMO-DECK",
+      "drive_id": "1qgAIBHDdj61st4wX4aM72ilXa1dqG82b",
+      "title": "00 United Educators Property Demo 10 September 2026.pptx",
+      "url": "https://docs.google.com/presentation/d/1qgAIBHDdj61st4wX4aM72ilXa1dqG82b/edit",
+      "parent_ids": [
+        "11MdE03otxrafQ6XWGci3CwHHmLSol03X"
+      ],
+      "created_time": "2026-09-06T12:37:33.795Z",
+      "modified_time": "2026-09-06T12:42:48.067Z",
+      "observed_at_utc": "2026-09-06 13:15:10 UTC",
+      "source_mime_from_parent_inventory": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "connector_readable_mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "extraction_method": "google_drive_fetch default readable text",
+      "source_content_characters": 14922,
+      "local_path": "docs/source/UE_00_Property_Demo_10_September_2026.drive.txt",
+      "role": "narrative and customer-facing scene/claim specification",
+      "scope_status": "source received; implementation and acceptance not established",
+      "extraction_limitations": [
+        "Readable text only; not a binary source copy.",
+        "Line endings normalized to LF; snapshot may end with a final newline.",
+        "Tables, hyperlinks, slide layout and visual evidence may not be fully preserved.",
+        "No source workbook rows, policy pages, private driver details or primary correspondence were fetched during this extraction."
+      ],
+      "snapshot_sha256": "c76030af4671a8c8330d268383006c18293febe86fab371bacb4df263bba51f8"
+    },
+    {
+      "source_key": "UE-PROJECT-PLAN",
+      "drive_id": "1VLY0wXCkxA1pDBr3xqkgo5MbGlHUUpZb",
+      "title": "02 United Educators Project Plan.docx",
+      "url": "https://docs.google.com/document/d/1VLY0wXCkxA1pDBr3xqkgo5MbGlHUUpZb/edit",
+      "parent_ids": [
+        "11MdE03otxrafQ6XWGci3CwHHmLSol03X"
+      ],
+      "created_time": "2026-09-06T12:39:06.059Z",
+      "modified_time": "2026-09-06T12:39:06.059Z",
+      "observed_at_utc": "2026-09-06 13:15:10 UTC",
+      "source_mime_from_parent_inventory": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "connector_readable_mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "extraction_method": "google_drive_fetch default readable text",
+      "source_content_characters": 20977,
+      "local_path": "docs/source/UE_02_Project_Plan.drive.txt",
+      "role": "proposed programme requirements and gated future delivery plan",
+      "scope_status": "source received; implementation and acceptance not established",
+      "extraction_limitations": [
+        "Readable text only; not a binary source copy.",
+        "Line endings normalized to LF; snapshot may end with a final newline.",
+        "Tables, hyperlinks, slide layout and visual evidence may not be fully preserved.",
+        "No source workbook rows, policy pages, private driver details or primary correspondence were fetched during this extraction."
+      ],
+      "snapshot_sha256": "84393aae181bb90ef8ce5165f4bdbd81092edfd578e7e60fb9d75389012bac43"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "UE-R01",
+      "original_source_id": "R01",
+      "title": "Broker Management",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 15,
+        "line_end": 16,
+        "section": "R01 Broker Management"
+      },
+      "source_requirement_text": "Maintain the brokerage, producer, institution relationship, contacts, and responsible underwriter. Demonstrate opening an institution from its broker and showing the same relationship on its submission and policy. Acceptance: a broker user sees authorized institutions only; changing the servicing relationship preserves history. UE must supply the authority, appointment, licensing, and brokerage hierarchy rules that apply to the property program.",
+      "source_acceptance_condition": "a broker user sees authorized institutions only; changing the servicing relationship preserves history.",
+      "expected_behavior": "Broker, institution, producer and responsible underwriter remain linked across submission and policy; authorized institutions only; servicing changes preserve history.",
+      "configuration_categories": [
+        "partyDistribution",
+        "operatingEntities",
+        "processes",
+        "experience"
+      ],
+      "demo_scene_id": "UE-SC02",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R02",
+      "original_source_id": "R02",
+      "title": "Document Intake and Submission Intake and Ingestion",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 17,
+        "line_end": 18,
+        "section": "R02 Document Intake and Submission Intake and Ingestion"
+      },
+      "source_requirement_text": "Accept the supplied PDF and spreadsheet package, retain originals, classify document types, and map institution and location data with source references. Demonstrate a missing item and a discrepancy before review completion. Acceptance: extraction produces reviewable values with document and page or sheet/cell references; repeat intake avoids duplicate business records; conflicting values remain visible. The source corpus includes scanned forms, multi-sheet workbooks, current exposure schedules, and older policy specimens.",
+      "source_acceptance_condition": "extraction produces reviewable values with document and page or sheet/cell references; repeat intake avoids duplicate business records; conflicting values remain visible.",
+      "expected_behavior": "Retain/classify source PDFs and workbooks, expose mapped institution/location facts with page or cell provenance, missing information and conflicting totals; duplicate intake cannot duplicate business records.",
+      "configuration_categories": [
+        "documents",
+        "products",
+        "processes",
+        "integrations"
+      ],
+      "demo_scene_id": "UE-SC02",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R03",
+      "original_source_id": "R03",
+      "title": "Underwriting",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 19,
+        "line_end": 20,
+        "section": "R03 Underwriting"
+      },
+      "source_requirement_text": "Present locations, insured values, construction and protection fields, loss information, missing information, and referrals as one review. Demonstrate an underwriter resolving a discrepancy with an explanation and recording a decision. Acceptance: only an authorized person can approve a referred case, and the application records the previous value, new value, reviewer, time, and reason. The authority matrix and appetite rules remain customer inputs.",
+      "source_acceptance_condition": "only an authorized person can approve a referred case, and the application records the previous value, new value, reviewer, time, and reason.",
+      "expected_behavior": "Review exposures, COPE/losses and referrals together; authorized discrepancy decision retains previous/new values, reviewer, time and reason.",
+      "configuration_categories": [
+        "products",
+        "processes",
+        "programmesBinders"
+      ],
+      "demo_scene_id": "UE-SC03",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R04",
+      "original_source_id": "R04",
+      "title": "External Data Source Enrichment",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 21,
+        "line_end": 22,
+        "section": "R04 External Data Source Enrichment"
+      },
+      "source_requirement_text": "Associate external information with the correct address or institution while retaining provider, query time, match quality, and the original submitted value. Demonstrate a matching result and a provider failure or uncertain match. Acceptance: uncertain or unavailable enrichment does not become an invented value or silently replace submission data. Data providers, permitted uses, credentials, costs, and licensing are discovery items.",
+      "source_acceptance_condition": "uncertain or unavailable enrichment does not become an invented value or silently replace submission data.",
+      "expected_behavior": "Keep provider/source/query time/match quality beside submitted values; demonstrate a matching result and uncertain-match/provider failure without inventing or replacing data.",
+      "configuration_categories": [
+        "integrations",
+        "products"
+      ],
+      "demo_scene_id": "UE-SC03",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R05",
+      "original_source_id": "R05",
+      "title": "Rating",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 23,
+        "line_end": 24,
+        "section": "R05 Rating"
+      },
+      "source_requirement_text": "Send approved exposure and coverage inputs to a versioned rating service or configured calculation and keep its input/output record. The meeting recap discusses API integration for rating; the API contract and engine are unverified. Acceptance: known reference cases reproduce UE-approved premiums and factors; missing required fields or failed rating responses prevent an apparently valid quote. Any illustrative rate used in the demo must be visibly identified as a demo assumption.",
+      "source_acceptance_condition": "known reference cases reproduce UE-approved premiums and factors; missing required fields or failed rating responses prevent an apparently valid quote.",
+      "expected_behavior": "Send reviewed input to versioned rating contract, retain input/output and errors; missing fields or failed engine block valid quote; demo assumptions visibly labeled.",
+      "configuration_categories": [
+        "products",
+        "integrations",
+        "finance"
+      ],
+      "demo_scene_id": "UE-SC03",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R06",
+      "original_source_id": "R06",
+      "title": "Quote Management",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 26,
+        "line_end": 27,
+        "section": "R06 Quote Management"
+      },
+      "source_requirement_text": "Create quote options from a reviewed submission, compare terms, and retain each option’s rating version, limits, deductibles, premium, fees, and validity. Demonstrate selecting one version. Acceptance: subsequent edits create a new version or explicitly controlled change, and the bind action uses the selected approved version. Expired, withdrawn, or superseded options cannot bind through an unnoticed stale state.",
+      "source_acceptance_condition": "subsequent edits create a new version or explicitly controlled change, and the bind action uses the selected approved version. Expired, withdrawn, or superseded options cannot bind through an unnoticed stale state.",
+      "expected_behavior": "Compare two quote options with version/rate/terms/limits/deductibles/fees/validity, select one, and carry that exact approved version to bind; stale states cannot bind unnoticed.",
+      "configuration_categories": [
+        "products",
+        "processes",
+        "documents"
+      ],
+      "demo_scene_id": "UE-SC04",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R07",
+      "original_source_id": "R07",
+      "title": "Binding",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 28,
+        "line_end": 29,
+        "section": "R07 Binding"
+      },
+      "source_requirement_text": "Check authority, required documents, subjectivities, dates, and approved terms before producing a policy record. Demonstrate the complete handoff from accepted quote to policy and the blocked path when a condition is unmet. Acceptance: one accepted quote yields one authorized binding transaction and the correct document pack. Capacity, carrier, jurisdiction, signature, numbering, and issuance rules need UE approval.",
+      "source_acceptance_condition": "one accepted quote yields one authorized binding transaction and the correct document pack.",
+      "expected_behavior": "Check authority, documents, dates, terms and subjectivities, show a blocked condition, and create one authorized binding transaction and correct document pack from one accepted quote.",
+      "configuration_categories": [
+        "products",
+        "processes",
+        "programmesBinders",
+        "documents",
+        "tenantRelease"
+      ],
+      "demo_scene_id": "UE-SC04",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R08",
+      "original_source_id": "R08",
+      "title": "Endorsements",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 30,
+        "line_end": 31,
+        "section": "R08 Endorsements"
+      },
+      "source_requirement_text": "Create an effective-dated change to a policy without overwriting its prior state. Demonstrate a synthetic location or value change and its premium effect, linked to the resulting documents and financial transaction. Acceptance: the prior policy remains reconstructable; the adjusted period, premium, receivable, and commission agree. Out-of-sequence changes and overlapping effective dates require explicit behavior.",
+      "source_acceptance_condition": "the prior policy remains reconstructable; the adjusted period, premium, receivable, and commission agree.",
+      "expected_behavior": "Synthetic effective-dated location/value endorsement retains prior policy and links changed period, delta, new documents, receivable and commission; sequencing behavior explicit.",
+      "configuration_categories": [
+        "products",
+        "processes",
+        "finance",
+        "documents"
+      ],
+      "demo_scene_id": "UE-SC06",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R09",
+      "original_source_id": "R09",
+      "title": "FNOL Intake",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 32,
+        "line_end": 33,
+        "section": "R09 FNOL Intake"
+      },
+      "source_requirement_text": "Capture the insured, loss date and location, event narrative, documents, reporter, and policy reference, then route the report to its owner. Demonstrate a clearly labeled synthetic property incident and a possible duplicate. Acceptance: the report retains its provenance, linked policy version, status, and acknowledgement record. FNOL intake does not imply claims adjudication, settlement, or an automated coverage determination.",
+      "source_acceptance_condition": "the report retains its provenance, linked policy version, status, and acknowledgement record.",
+      "expected_behavior": "Synthetic FNOL retains insured/location/loss/report/evidence and exact policy version; route with acknowledgement and possible-duplicate handling; no adjudication or settlement claim.",
+      "configuration_categories": [
+        "products",
+        "processes",
+        "documents",
+        "integrations"
+      ],
+      "demo_scene_id": "UE-SC06",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R10",
+      "original_source_id": "R10",
+      "title": "Renewals",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 34,
+        "line_end": 35,
+        "section": "R10 Renewals"
+      },
+      "source_requirement_text": "Create a new term with the expiring policy, requested updates, current exposures, loss history, and a changes comparison. Demonstrate an updated schedule and referral before a renewal quote. Acceptance: changes and missing renewal information remain visible; old and new terms are distinct, with decisions and rating versions traceable. Customer-specific notice windows, nonrenewal rules, and referral thresholds remain open.",
+      "source_acceptance_condition": "changes and missing renewal information remain visible; old and new terms are distinct, with decisions and rating versions traceable.",
+      "expected_behavior": "Renewal compares updated schedule/losses/referrals to expiring term, with missing items and new term decisions/rating versions visible.",
+      "configuration_categories": [
+        "products",
+        "processes",
+        "documents"
+      ],
+      "demo_scene_id": "UE-SC06",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R11",
+      "original_source_id": "R11",
+      "title": "Cancellations and Refunds",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 37,
+        "line_end": 38,
+        "section": "R11 Cancellations and Refunds"
+      },
+      "source_requirement_text": "Record the cancellation reason, request and effective dates, applicable rule, notice workflow, earned premium, return premium, and refund state. Demonstrate a synthetic cancellation as a separate branch from the continuing renewal case. Acceptance: approved examples reproduce the correct return premium and related tax, fee, receivable, and commission treatment; issued notices and payment actions require authorized release. Do not assume pro rata cancellation is always applicable.",
+      "source_acceptance_condition": "approved examples reproduce the correct return premium and related tax, fee, receivable, and commission treatment; issued notices and payment actions require authorized release.",
+      "expected_behavior": "Separate synthetic cancellation branch records reason/dates/rule/notice/earned-return premium/refund stages; approved examples reconcile tax, fee, receivable and commission with authorized release.",
+      "configuration_categories": [
+        "products",
+        "processes",
+        "finance",
+        "jurisdictions",
+        "documents"
+      ],
+      "demo_scene_id": "UE-SC06",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R12",
+      "original_source_id": "R12",
+      "title": "Commission Tracking and Broker Commissions",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 39,
+        "line_end": 40,
+        "section": "R12 Commission Tracking and Broker Commissions"
+      },
+      "source_requirement_text": "Apply an approved broker agreement to the correct premium base and transaction, keeping earned, payable, paid, and reversed amounts distinct. Demonstrate a new-business accrual and an endorsement or cancellation adjustment. Acceptance: a transaction does not create duplicate commission; rates and bases remain explainable; reversals reconcile to the original. Agreements, splits, timing, tax treatment, and exception authority need confirmation.",
+      "source_acceptance_condition": "a transaction does not create duplicate commission; rates and bases remain explainable; reversals reconcile to the original.",
+      "expected_behavior": "Explain approved commission base/rate/agreement per transaction; distinguish earned, payable, paid and reversed; new-business and endorsement/cancel adjustment do not duplicate commission.",
+      "configuration_categories": [
+        "partyDistribution",
+        "finance",
+        "programmesBinders"
+      ],
+      "demo_scene_id": "UE-SC05",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R13",
+      "original_source_id": "R13",
+      "title": "Billing and Receivables",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 41,
+        "line_end": 42,
+        "section": "R13 Billing and Receivables"
+      },
+      "source_requirement_text": "Connect policy transactions to invoices, installments, receipts, allocations, credits, refunds, and outstanding balances. Demonstrate an invoice, a partial payment, and an aged balance using synthetic amounts. Acceptance: the balance equals charges less applied receipts and credits; unmatched money remains unapplied; refund status distinguishes calculated, approved, and paid. Confirm direct versus agency bill, payment service, bank or ledger interfaces, currency, and reconciliation cadence.",
+      "source_acceptance_condition": "the balance equals charges less applied receipts and credits; unmatched money remains unapplied; refund status distinguishes calculated, approved, and paid.",
+      "expected_behavior": "Synthetic invoice, partial receipt and aged receivable link to policy; charges minus applied receipts/credits reconcile, unmatched money stays unapplied, and calculated/approved/paid refunds differ.",
+      "configuration_categories": [
+        "finance",
+        "integrations"
+      ],
+      "demo_scene_id": "UE-SC05",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R14",
+      "original_source_id": "R14",
+      "title": "Policy Administration and Management",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 43,
+        "line_end": 44,
+        "section": "R14 Policy Administration and Management"
+      },
+      "source_requirement_text": "Show the institution’s policy timeline, terms, documents, participants, activities, and transaction history. Demonstrate finding a prior version and the documents issued from it. Acceptance: policy identity remains stable while transactions and effective-dated versions are explicit; user permissions govern access and change. Agree the system of record for each object and the migration or coexistence strategy.",
+      "source_acceptance_condition": "policy identity remains stable while transactions and effective-dated versions are explicit; user permissions govern access and change.",
+      "expected_behavior": "Stable policy identity exposes authorized timeline, terms, participants, activity, prior versions and their documents; effective-dated transactions and system ownership explicit.",
+      "configuration_categories": [
+        "products",
+        "processes",
+        "partyDistribution",
+        "documents",
+        "tenantRelease"
+      ],
+      "demo_scene_id": "UE-SC04",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    },
+    {
+      "id": "UE-R15",
+      "original_source_id": "R15",
+      "title": "Reporting",
+      "source_key": "UE-PROJECT-PLAN",
+      "source_anchor": {
+        "path": "docs/source/UE_02_Project_Plan.drive.txt",
+        "line_start": 45,
+        "line_end": 46,
+        "section": "R15 Reporting"
+      },
+      "source_requirement_text": "Provide traceable views of submission progress, referrals, quote outcomes, policy transactions, receivables, and commissions. Demonstrate drilling into one aggregate to its underlying records. Acceptance: as-of date, transaction versus effective date, currency, filters, and calculation definitions are explicit; report totals reconcile to source records and exports. Regulatory, carrier, reinsurance, and management reporting requirements need named owners and approved layouts.",
+      "source_acceptance_condition": "as-of date, transaction versus effective date, currency, filters, and calculation definitions are explicit; report totals reconcile to source records and exports.",
+      "expected_behavior": "Drill from scoped report totals into submission/referral/quote/policy/receivable/commission records with as-of/date/currency/filter definitions and matching export.",
+      "configuration_categories": [
+        "reporting",
+        "finance",
+        "products"
+      ],
+      "demo_scene_id": "UE-SC07",
+      "demo_scope_status": "All 15 modules requested in September 10 connected walkthrough according to supplied source pack.",
+      "acceptance_authority": "Proposed internal project-plan acceptance condition; customer approval not established.",
+      "implementation_status": "unverified for this requirement",
+      "rehearsal_status": "not recorded",
+      "allowed_rehearsal_labels": [
+        "observed_live_behavior",
+        "prepared_example",
+        "design_discussion",
+        "unresolved"
+      ],
+      "evidence_boundary": "Prepared/design/unresolved status is not executable behavior or acceptance; actual M1 runnable boundary still requires agreement and evidence."
+    }
+  ],
+  "demo_schedule": {
+    "date": "2026-09-10",
+    "start": "18:30",
+    "end": "19:15",
+    "timezone": "Asia/Jerusalem",
+    "equivalent_source_time": "11:30–12:15 EDT",
+    "duration_minutes": 45,
+    "authority": "Consistent supplied runbook, project plan and deck; referenced invitation not independently fetched."
+  },
+  "scope_boundaries": {
+    "september_10": "All 15 connected property modules, source-inspection case plus clearly synthetic continuation. Behavior status must be explicit per module.",
+    "future_pilot": "Submission-to-quote first is a proposal, not an accepted scope reduction. All pilot acceptance conditions and phases require customer agreement.",
+    "january": "Jan 1st year, target scope and delivery commitment unconfirmed; January 2027 is only an inference.",
+    "match_day": "Separate September 16–17 event; exact UE slot unverified.",
+    "source_data": "No source customer data in fixtures. Actual-source intake evidence remains distinct from synthetic DEMO-UE lifecycle/financial/FNOL records."
+  }
+}

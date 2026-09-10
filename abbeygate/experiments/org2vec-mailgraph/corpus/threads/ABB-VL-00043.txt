@@ -1,0 +1,42 @@
+Thread-ID: ABB-VL-00043
+Claim-Ref: ABB/VL/00043
+Subject: ABB/VL/00043 — Pedido de informação
+===
+
+From: Algarve Broker Lda <geral@algarvebroker.example>
+To: claims@abbeygate.pt
+Date: 2026-02-10 09:14
+Subject: Pedido de informação — ABB/VL/00043 — 44-PL-07
+Attachments: carta_conducao.pdf, estimativa_oficina_local.pdf
+
+Bom dia,
+
+Em relação à reclamação ABB/VL/00043, viatura matrícula 44-PL-07,
+policy ABLV/PT1003710. A nossa cliente reverteu numa viatura
+estacionada em Faro. Anexo: carta de condução, estimativa de
+reparação no valor de EUR 3,800 (oficina não-aprovada).
+
+Aguardamos as vossas instruções.
+
+Cumprimentos,
+Algarve Broker Lda
+
+---
+From: Claims Handler <claims@abbeygate.pt>
+To: geral@algarvebroker.example
+Date: 2026-02-11 10:30
+Subject: RE: Pedido de informação — ABB/VL/00043
+
+Bom dia,
+
+Por favor, junte os seguintes documentos:
+  1. Declaração Amigável de Acidente
+  2. Documento Único Automóvel
+  3. Fotografias dos danos e do local
+  4. Dados do segurador da contraparte
+  5. Confirmação de ausência de testemunhas
+
+A responsabilidade fica reservada até receção da prova
+independente. Será nomeado perito aprovado.
+
+Cumprimentos.

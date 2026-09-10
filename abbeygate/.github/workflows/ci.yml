@@ -1,0 +1,144 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - release/**
+  merge_group:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  NODE_VERSION: "22.x"
+  NPM_VERSION: "11.10.0"
+  NODE_OPTIONS: "--max-old-space-size=4096"
+  ESLINT_BACKEND_WARNING_BUDGET: "0"
+  ESLINT_FRONTEND_WARNING_BUDGET: "0"
+  CI_TIMINGS_DIR: .metrics/ci-timings
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: password123
+          POSTGRES_DB: abbeygate_uw
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U admin -d abbeygate_uw"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    permissions:
+      contents: read
+    env:
+      DATABASE_URL: postgresql://admin:password123@127.0.0.1:5432/abbeygate_uw
+      REDIS_HOST: 127.0.0.1
+      REDIS_PORT: "6379"
+      REDIS_TLS: "false"
+      REDIS_ENABLE_CLUSTER: "false"
+      QUEUE_MODE: redis
+      LOG_LEVEL: warn
+      JWT_SECRET: ci-jwt-secret
+      OTP_SECRET: ci-otp-secret
+      INBOUND_WEBHOOK_SECRET: ci-inbound-webhook-secret
+      TWILIO_AUTH_TOKEN: ci-twilio-auth-token
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          npm install -g npm@${{ env.NPM_VERSION }}
+          npm ci
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+
+      - name: Run CI quality gate
+        run: npm run gate:ci
+
+      - name: Upload CI evidence artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/quote-bind-issue-smoke.json
+            /tmp/release-blocking-smoke.json
+            /tmp/backup-restore-validation.json
+            /tmp/prelaunch-backup.dump
+            /tmp/go-no-go-evidence-packet.json
+            artifacts/architecture/backend-architecture-conformance.json
+            .metrics/ci-timings
+          if-no-files-found: warn
+          overwrite: true
+
+      - name: Publish quality gate summary
+        if: always()
+        env:
+          QUALITY_RESULT: ${{ job.status }}
+          CI_SUMMARY_ARTIFACTS_DIR: /tmp
+        run: node tools/quality/ci/write-quality-gate-summary.mjs
+
+      - name: Publish timing summary
+        if: always()
+        run: |
+          echo "## CI Stage Timings" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f "${CI_TIMINGS_DIR}/quality-gate.json" ]; then
+            node -e 'const fs=require("node:fs");const rows=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));for (const row of rows) console.log(`- ${row.stage}: ${row.duration_seconds}s (${row.status})`);' "${CI_TIMINGS_DIR}/quality-gate.json" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- No timing data captured." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+          build-mode: none
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: /language:javascript-typescript

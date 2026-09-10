@@ -1,0 +1,15 @@
+{
+  "thread_id": "CY-MTR-021",
+  "claim_ref": "CY-MTR-021",
+  "gold_missing_documents": [],
+  "gold_authority_flags": [
+    "complaint_received"
+  ],
+  "gold_decision_posture": "unknown",
+  "gold_key_events": [
+    "complaint",
+    "escalation"
+  ],
+  "gold_similar_threads": [],
+  "scenario": "complaint_escalation"
+}

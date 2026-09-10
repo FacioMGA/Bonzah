@@ -1,0 +1,31 @@
+{{- if and .Values.api.enabled .Values.abbeygateIngress .Values.abbeygateIngress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "abbeygate.fullname" . }}-api-abbeygate
+  labels:
+    {{- include "abbeygate.labels" . | nindent 4 }}
+    app.kubernetes.io/component: api
+  annotations:
+    appgw.ingress.kubernetes.io/ssl-redirect: {{ (.Values.abbeygateIngress.sslRedirect | default true) | quote }}
+    appgw.ingress.kubernetes.io/request-timeout: {{ (.Values.abbeygateIngress.requestTimeout | default 180) | quote }}
+    {{- if .Values.abbeygateIngress.appgwSslCertificate }}
+    appgw.ingress.kubernetes.io/appgw-ssl-certificate: {{ .Values.abbeygateIngress.appgwSslCertificate | quote }}
+    {{- end }}
+spec:
+  ingressClassName: {{ .Values.abbeygateIngress.className | default .Values.ingress.className | quote }}
+  {{- $root := . }}
+  rules:
+    {{- range $host := .Values.abbeygateIngress.hosts }}
+    - host: {{ $host | quote }}
+      http:
+        paths:
+          - path: {{ $root.Values.abbeygateIngress.path | default "/" }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "abbeygate.fullname" $root }}-api
+                port:
+                  number: {{ $root.Values.api.service.port }}
+    {{- end }}
+{{- end }}

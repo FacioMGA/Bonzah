@@ -1,0 +1,459 @@
+{
+  "observedAt": "2026-09-07T07:23:15.475Z",
+  "buildSha": "7b92ae6c8a856966f89296d13884809c39c5ae25",
+  "source": "Google-authenticated actual rendered Studio UI",
+  "scope": {
+    "environment": "sandbox",
+    "operatingEntityId": "entity_ea44847abf87447a8691c61856c10aeb",
+    "tenantId": "tenant_ea44847abf87447a8691c61856c10aeb",
+    "workspaceId": "facio-sandbox"
+  },
+  "syntheticOnly": true,
+  "customerAcceptance": false,
+  "currentRecord": {
+    "id": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+    "version": 4,
+    "status": "cancelled",
+    "recordHash": "5a888536ce00459109fac23bf13ab165a4b497c2318f77848cf603b33509f931",
+    "quoteHash": "7ecad169b43e1196b949c7beb06ed90c557a6b15b9c68be8956baa52329af341",
+    "premiumMinor": "4800",
+    "runtimeReleaseId": "5f2050ef-a2e1-4a23-8f05-16aeda34e2b0"
+  },
+  "history": [
+    {
+      "version": 1,
+      "status": "quoted",
+      "recordHash": "0541b4b59abd753722609d8b52ea7f905443071d8466aad87fe93fee8ad638be",
+      "quoteHash": "7ecad169b43e1196b949c7beb06ed90c557a6b15b9c68be8956baa52329af341",
+      "premiumMinor": "4800",
+      "lastEffectiveDate": null
+    },
+    {
+      "version": 2,
+      "status": "bound",
+      "recordHash": "e3475328861827c27598dfd7856e138d46cd37d40fb3310bad8cc15b79d15b32",
+      "quoteHash": "7ecad169b43e1196b949c7beb06ed90c557a6b15b9c68be8956baa52329af341",
+      "premiumMinor": "4800",
+      "lastEffectiveDate": "2026-09-07"
+    },
+    {
+      "version": 3,
+      "status": "bound",
+      "recordHash": "36e3544087ead88cf0dff14d5629b275ac9564643aa11db72de59c77a697595c",
+      "quoteHash": "7ecad169b43e1196b949c7beb06ed90c557a6b15b9c68be8956baa52329af341",
+      "premiumMinor": "7200",
+      "lastEffectiveDate": "2026-09-09"
+    },
+    {
+      "version": 4,
+      "status": "cancelled",
+      "recordHash": "5a888536ce00459109fac23bf13ab165a4b497c2318f77848cf603b33509f931",
+      "quoteHash": "7ecad169b43e1196b949c7beb06ed90c557a6b15b9c68be8956baa52329af341",
+      "premiumMinor": "4800",
+      "lastEffectiveDate": "2026-09-11"
+    }
+  ],
+  "originalQuotePremiumMinor": "4800",
+  "service": {
+    "addedPremiumMinor": "4800",
+    "method": "per_day_remaining",
+    "newRemainingDays": 4,
+    "newTermDays": 6,
+    "oldRemainingDays": 2,
+    "oldTermDays": 4,
+    "premiumDeltaMinor": "2400",
+    "removedPremiumMinor": "2400",
+    "resultingPremiumMinor": "7200",
+    "rounding": "half-away-from-zero"
+  },
+  "cancellation": {
+    "calculation": {
+      "method": "per_day_remaining",
+      "premiumDeltaMinor": "-2400",
+      "remainingDays": 2,
+      "resultingPremiumMinor": "4800",
+      "returnPremiumMinor": "2400",
+      "rounding": "half-away-from-zero",
+      "termDays": 6
+    },
+    "definitionHash": "4582c7daf7bd2a626367ce768ca09af515a819ad90a09e5705aec7f79b5865af",
+    "effectiveDate": "2026-09-11",
+    "evaluatedAt": "2026-09-07T07:19:08.338Z",
+    "evaluatedOn": "2026-09-07",
+    "evaluationHash": "d758056b27b18f045d466475107427eaeb682fab7bc929bab87acc495678d548",
+    "evidenceRefs": [
+      "synthetic://sprint5-training/cancellation-001"
+    ],
+    "noticeStatus": "not_issued",
+    "priorRecordHash": "36e3544087ead88cf0dff14d5629b275ac9564643aa11db72de59c77a697595c",
+    "priorSubmissionHash": "d5b4e48a6d7be50dbc4b5ad4b8fe0b2800fb3ce4cd870c369d56106fc1a74937",
+    "priorVersion": 3,
+    "reason": "Synthetic training cessation; no actual cover or refund",
+    "reasons": [],
+    "recordId": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+    "refundStatus": "not_requested",
+    "releaseHash": "5e05a0288530b98932006ff2cc0b761748586561b5050402f43f42e1ddf1b90e",
+    "schemaVersion": "insurance-cancellation-v1",
+    "status": "allowed"
+  },
+  "journals": [
+    {
+      "id": "3658a56e-e948-43de-a71e-17acb8e10eb9",
+      "sequence": 1,
+      "journalHash": "17638a5c4a60e9a28e224a8fa3c8cc8e1d32714765985aaeab2558469b379214",
+      "previousJournalHash": null,
+      "kind": "insurance_transaction",
+      "insuranceVersion": 2,
+      "insuranceHash": "e3475328861827c27598dfd7856e138d46cd37d40fb3310bad8cc15b79d15b32",
+      "currency": "GBP",
+      "effectiveDate": "2026-09-07",
+      "lines": [
+        {
+          "account": "external_premium",
+          "book": "external_premium_control",
+          "creditMinor": "0",
+          "debitMinor": "4800",
+          "partyId": "sprint5-training-settlement-party"
+        },
+        {
+          "account": "external_capacity",
+          "book": "external_premium_control",
+          "creditMinor": "4800",
+          "debitMinor": "0",
+          "partyId": "sprint5-training-lead"
+        },
+        {
+          "account": "commission_receivable",
+          "book": "financial",
+          "creditMinor": "0",
+          "debitMinor": "336",
+          "partyId": "sprint5-training-settlement-party"
+        },
+        {
+          "account": "commission_income",
+          "book": "financial",
+          "creditMinor": "336",
+          "debitMinor": "0",
+          "partyId": "sprint5-training-commission-recipient"
+        }
+      ]
+    },
+    {
+      "id": "65e5fe91-66e9-478f-a9da-3f74c1acbee2",
+      "sequence": 2,
+      "journalHash": "18c75e4cdf09cf62ad82f90fb3648cd01b77a86be1e6cfa9e4fe993feddd391a",
+      "previousJournalHash": "17638a5c4a60e9a28e224a8fa3c8cc8e1d32714765985aaeab2558469b379214",
+      "kind": "receipt_application",
+      "insuranceVersion": 2,
+      "insuranceHash": "e3475328861827c27598dfd7856e138d46cd37d40fb3310bad8cc15b79d15b32",
+      "currency": "GBP",
+      "effectiveDate": "2026-09-07",
+      "lines": [
+        {
+          "account": "recorded_commission_cash",
+          "book": "financial",
+          "creditMinor": "0",
+          "debitMinor": "100",
+          "partyId": "sprint5-training-settlement-party"
+        },
+        {
+          "account": "commission_receivable",
+          "book": "financial",
+          "creditMinor": "100",
+          "debitMinor": "0",
+          "partyId": "sprint5-training-settlement-party"
+        }
+      ]
+    },
+    {
+      "id": "e9d5162d-e307-4b6f-a006-879e13d0d588",
+      "sequence": 3,
+      "journalHash": "6ac2dd63ab3d371afb3bcc48825f957a100b3cdd338a05f00cd37d014ccba536",
+      "previousJournalHash": "18c75e4cdf09cf62ad82f90fb3648cd01b77a86be1e6cfa9e4fe993feddd391a",
+      "kind": "insurance_transaction",
+      "insuranceVersion": 3,
+      "insuranceHash": "36e3544087ead88cf0dff14d5629b275ac9564643aa11db72de59c77a697595c",
+      "currency": "GBP",
+      "effectiveDate": "2026-09-09",
+      "lines": [
+        {
+          "account": "external_premium",
+          "book": "external_premium_control",
+          "creditMinor": "0",
+          "debitMinor": "2400",
+          "partyId": "sprint5-training-settlement-party"
+        },
+        {
+          "account": "external_capacity",
+          "book": "external_premium_control",
+          "creditMinor": "2400",
+          "debitMinor": "0",
+          "partyId": "sprint5-training-lead"
+        },
+        {
+          "account": "commission_receivable",
+          "book": "financial",
+          "creditMinor": "0",
+          "debitMinor": "168",
+          "partyId": "sprint5-training-settlement-party"
+        },
+        {
+          "account": "commission_income",
+          "book": "financial",
+          "creditMinor": "168",
+          "debitMinor": "0",
+          "partyId": "sprint5-training-commission-recipient"
+        }
+      ]
+    },
+    {
+      "id": "75306ec9-9cfe-40c4-b218-f49f6c6d8f00",
+      "sequence": 4,
+      "journalHash": "3a924fba6db79d3483e980b873afedb423f728307866eb5286d113a3cff94000",
+      "previousJournalHash": "6ac2dd63ab3d371afb3bcc48825f957a100b3cdd338a05f00cd37d014ccba536",
+      "kind": "insurance_transaction",
+      "insuranceVersion": 4,
+      "insuranceHash": "5a888536ce00459109fac23bf13ab165a4b497c2318f77848cf603b33509f931",
+      "currency": "GBP",
+      "effectiveDate": "2026-09-11",
+      "lines": [
+        {
+          "account": "external_premium",
+          "book": "external_premium_control",
+          "creditMinor": "2400",
+          "debitMinor": "0",
+          "partyId": "sprint5-training-settlement-party"
+        },
+        {
+          "account": "external_capacity",
+          "book": "external_premium_control",
+          "creditMinor": "0",
+          "debitMinor": "2400",
+          "partyId": "sprint5-training-lead"
+        },
+        {
+          "account": "commission_receivable",
+          "book": "financial",
+          "creditMinor": "168",
+          "debitMinor": "0",
+          "partyId": "sprint5-training-settlement-party"
+        },
+        {
+          "account": "commission_income",
+          "book": "financial",
+          "creditMinor": "0",
+          "debitMinor": "168",
+          "partyId": "sprint5-training-commission-recipient"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "accountingBasis": "synthetic_external_custody_commission_v1",
+    "currencies": [
+      {
+        "capacity": [
+          {
+            "insurancePremiumMinor": "4800",
+            "participantId": "sprint5-training-lead",
+            "postedPremiumMinor": "4800"
+          }
+        ],
+        "commissionAccruedMinor": "336",
+        "commissionOutstandingMinor": "236",
+        "commissionReceivedMinor": "100",
+        "currency": "GBP",
+        "externalPremiumMinor": "4800",
+        "insuranceCommissionMinor": "336",
+        "insurancePremiumMinor": "4800",
+        "recordCount": 1
+      }
+    ],
+    "effectiveAsOf": "2026-09-07",
+    "journals": [
+      {
+        "capacity": [
+          {
+            "participantId": "sprint5-training-lead",
+            "premiumMinor": "4800"
+          }
+        ],
+        "commissionAccruedMinor": "336",
+        "commissionOutstandingMinor": "336",
+        "commissionReceivedMinor": "0",
+        "currency": "GBP",
+        "effectiveDate": "2026-09-07",
+        "externalPremiumMinor": "4800",
+        "insuranceHash": "e3475328861827c27598dfd7856e138d46cd37d40fb3310bad8cc15b79d15b32",
+        "insuranceVersion": 2,
+        "journalHash": "17638a5c4a60e9a28e224a8fa3c8cc8e1d32714765985aaeab2558469b379214",
+        "journalId": "3658a56e-e948-43de-a71e-17acb8e10eb9",
+        "kind": "insurance_transaction",
+        "recordId": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+        "recordedAt": "2026-09-07T07:09:57.100Z"
+      },
+      {
+        "capacity": [],
+        "commissionAccruedMinor": "0",
+        "commissionOutstandingMinor": "-100",
+        "commissionReceivedMinor": "100",
+        "currency": "GBP",
+        "effectiveDate": "2026-09-07",
+        "externalPremiumMinor": "0",
+        "insuranceHash": "e3475328861827c27598dfd7856e138d46cd37d40fb3310bad8cc15b79d15b32",
+        "insuranceVersion": 2,
+        "journalHash": "18c75e4cdf09cf62ad82f90fb3648cd01b77a86be1e6cfa9e4fe993feddd391a",
+        "journalId": "65e5fe91-66e9-478f-a9da-3f74c1acbee2",
+        "kind": "receipt_application",
+        "recordId": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+        "recordedAt": "2026-09-07T07:10:33.854Z"
+      }
+    ],
+    "limitations": [
+      "Synthetic training projection; customer accounting approval, source claims, BDX and regulatory mappings remain unverified.",
+      "Insurance selects the latest retained bound or serviced revision effective by the date and recorded by the UTC instant. Quotes are excluded.",
+      "Posted totals include only immutable journals satisfying both cutoffs. Unposted revisions are explicit; effective dates never replace recording times.",
+      "External premium and capacity are memorandum control amounts, never Facio client cash or premium receivables. Currency totals are separate; no FX conversion is performed.",
+      "Receipt cash means synthetic amounts applied through journals. Unapplied scope receipts are excluded from this record/portfolio projection; inspect the receipt register separately.",
+      "The projection is bounded at 100 records and 1000 journals and fails if those bounds or exact-money totals overflow; it never silently truncates."
+    ],
+    "recordedAsOf": "2026-09-07T07:20:10.209Z",
+    "records": [
+      {
+        "capacity": [
+          {
+            "insurancePremiumMinor": "4800",
+            "participantId": "sprint5-training-lead",
+            "postedPremiumMinor": "4800"
+          }
+        ],
+        "currency": "GBP",
+        "effectiveDate": "2026-09-07",
+        "externalQuoteReference": "sprint5-training-quote-001",
+        "insuranceCommissionMinor": "336",
+        "insurancePremiumMinor": "4800",
+        "posted": {
+          "commissionAccruedMinor": "336",
+          "commissionOutstandingMinor": "236",
+          "commissionReceivedMinor": "100",
+          "externalPremiumMinor": "4800"
+        },
+        "productId": "sprint5-training-multirisk",
+        "recordHash": "e3475328861827c27598dfd7856e138d46cd37d40fb3310bad8cc15b79d15b32",
+        "recordId": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+        "recordVersion": 2,
+        "recordedAt": "2026-09-07T07:08:35.419Z",
+        "sourceMode": "configured_product",
+        "status": "bound",
+        "unpostedVersions": []
+      }
+    ],
+    "reportHash": "e80c4a2a84daacdbae16aa76ee78d167ca7b095df671a39041e7721271385001",
+    "reportVersion": "financial-as-of-v1",
+    "scope": {
+      "environment": "sandbox",
+      "operatingEntityId": "entity_ea44847abf87447a8691c61856c10aeb",
+      "tenantId": "tenant_ea44847abf87447a8691c61856c10aeb",
+      "workspaceId": "facio-sandbox"
+    },
+    "selectedRecordId": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+    "sourceClaims": "unverified"
+  },
+  "fnol": {
+    "id": "c6d35c0f-4c8d-4404-9568-ec95613beead",
+    "version": 4,
+    "noticeHash": "0d8784a427692b6c29ff233a870cdbee709e60c7571c83da9814f6b3ae4519f9",
+    "status": "acknowledged",
+    "policyId": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+    "policyVersion": 2,
+    "policySnapshotHash": "27efddf40b618b471232c02ad20c0841216b0b034037ce3376d8328fccb08072",
+    "destinationHash": "ea417bfad6b4dd02ce842fa8d554e6e73b852ee93d0e511b4ce455ba3bc944cc",
+    "acknowledgement": {
+      "acknowledgedAt": "2026-09-07T07:22:50.036Z",
+      "destinationHash": "ea417bfad6b4dd02ce842fa8d554e6e73b852ee93d0e511b4ce455ba3bc944cc",
+      "externalDelivery": "not_attempted",
+      "id": "62a8f908-fcd7-4eb1-bab1-a41670583704",
+      "kind": "synthetic_internal_queue_receipt",
+      "submittedNoticeHash": "eca25f91e2afb407e4ae2b402c014ebec9a8a15d4eed526821a609dbe5e3cb73"
+    },
+    "history": [
+      {
+        "version": 1,
+        "status": "draft",
+        "noticeHash": "bd7fa96e3e53ceec89e8b77265e6befe117d559e05cfb8982d55772d04462fc8"
+      },
+      {
+        "version": 2,
+        "status": "draft",
+        "noticeHash": "44fe943fb47ed6e51f3b20001b613c7ca17abadd21ea0c72c6e3764960b61e87"
+      },
+      {
+        "version": 3,
+        "status": "submitted",
+        "noticeHash": "eca25f91e2afb407e4ae2b402c014ebec9a8a15d4eed526821a609dbe5e3cb73"
+      },
+      {
+        "version": 4,
+        "status": "acknowledged",
+        "noticeHash": "0d8784a427692b6c29ff233a870cdbee709e60c7571c83da9814f6b3ae4519f9"
+      }
+    ]
+  },
+  "checks": [
+    "Invalid conditional evidence blocked rating/binding; complete referred risk could not bind.",
+    "Original valid quote retained at GBP48, bound at revision2, extended to GBP72 at revision3 and scheduled cancellation returned GBP24 at revision4.",
+    "Original quote/decision and all versions remain available.",
+    "Distinct renewal record 6b9d5671-3bb7-4e0e-9746-76ac210947f1 retained and separately bound at GBP48.",
+    "Three original-policy document packs and one renewal pack were generated; document persistence and exact byte hashes receive independent replay verification.",
+    "Synthetic GBP1 receipt/application leaves GBP2.36 commission outstanding; all original transaction revisions posted.",
+    "As-of September7 report selects bound revision2, with GBP48 posted premium and GBP3.36 posted commission.",
+    "Internal FNOL drafted/resumed/submitted/acknowledged against historical bound revision2; external delivery not attempted."
+  ],
+  "openChecks": [
+    "Conditional-question UI fix verified locally; final deployment and live retest pending.",
+    "Final-image off-host restore and exact document/download comparisons pending.",
+    "Actual interns, independent reviewer, ChatGPT and customer acceptance remain open."
+  ],
+  "renewal": {
+    "id": "6b9d5671-3bb7-4e0e-9746-76ac210947f1",
+    "version": 2,
+    "status": "bound",
+    "recordHash": "2c7856001d4068244dbb99359252f4f75909ce0fb2560baaeba32f458dced074",
+    "quoteHash": "79e0e49f53bc2e495733bb2da301824bbe38c68fe5fc4a8af8c0c2631d3753d1",
+    "premiumMinor": "4800",
+    "renewal": {
+      "actorId": "usr_f207842d1f80cc66fbf3f85698f305053dceb7120b05433ecda87d47",
+      "comparison": {
+        "addedRiskRows": [],
+        "changedRiskRows": [],
+        "changedSections": [
+          "term",
+          "summary",
+          "evidenceRefs"
+        ],
+        "removedRiskRows": []
+      },
+      "requestedAt": "2026-09-07T07:17:39.723Z",
+      "source": {
+        "quoteHash": "7ecad169b43e1196b949c7beb06ed90c557a6b15b9c68be8956baa52329af341",
+        "recordHash": "36e3544087ead88cf0dff14d5629b275ac9564643aa11db72de59c77a697595c",
+        "recordId": "0f50a03f-ea82-43fe-9522-c2c5aeda1619",
+        "runtimeReleaseId": "5f2050ef-a2e1-4a23-8f05-16aeda34e2b0",
+        "submissionHash": "d5b4e48a6d7be50dbc4b5ad4b8fe0b2800fb3ce4cd870c369d56106fc1a74937",
+        "version": 3
+      }
+    },
+    "runtimeReleaseId": "5f2050ef-a2e1-4a23-8f05-16aeda34e2b0"
+  },
+  "documentPacksCompleted": {
+    "originalPolicyVersions": [
+      2,
+      3,
+      4
+    ],
+    "renewalPolicyVersions": [
+      2
+    ],
+    "outputsPerPack": 4
+  }
+}

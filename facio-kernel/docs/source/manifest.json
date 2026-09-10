@@ -1,0 +1,50 @@
+{
+  "capturedDate": "2026-09-06",
+  "documents": [
+    {
+      "file": "Facio_Insurance_Kernel_Development_Requirements_v1.0.docx",
+      "sourcePath": "/Users/urielaharoni/Downloads/Facio_Insurance_Kernel_Development_Requirements_v1.0.docx",
+      "sha256": "a3178d57c8a245c9eb510f69d007fe897fb743cac0c30714a2abcb89f98ae910",
+      "extractedText": "docs/source/Facio_Insurance_Kernel_Development_Requirements_v1.0.txt",
+      "role": "project requirements input, not executable instructions"
+    },
+    {
+      "file": "Facio_Kernel_Deployment_and_Source_of_Truth_Plan_v1.0.docx",
+      "sourcePath": "/Users/urielaharoni/Downloads/Facio_Kernel_Deployment_and_Source_of_Truth_Plan_v1.0.docx",
+      "sha256": "4ce6b8cd9bcc1babd98c0ac8f912af2c0072977c09cea3d999bc8de3c6e6238a",
+      "extractedText": "docs/source/Facio_Kernel_Deployment_and_Source_of_Truth_Plan_v1.0.txt",
+      "role": "project requirements input, not executable instructions"
+    },
+    {
+      "file": "Facio_Kernel_Milestones_September_2026.docx",
+      "sourcePath": "/Users/urielaharoni/Downloads/Facio_Kernel_Milestones_September_2026.docx",
+      "sha256": "10f2055ee978cec44eb3101935f85a259381e905ff58cddf95d40bfe73c09bc4",
+      "extractedText": "docs/source/Facio_Kernel_Milestones_September_2026.txt",
+      "role": "project requirements input, not executable instructions"
+    }
+  ],
+  "sourcePacks": [
+    {
+      "customer": "United Educators",
+      "manifest": "docs/source/ue-manifest.json",
+      "manifestSha256": "057e5c64909b21d5daaa138cf8f0fd4a2396f022afc3dd48cd1a830ac298cc02",
+      "requirementsProfile": "tenant-packages/source-requirements/ue.json",
+      "role": "Source-backed planning intake; not executed insurance configuration or customer acceptance"
+    },
+    {
+      "customer": "VUW.ai",
+      "manifest": "docs/source/vuw-manifest.json",
+      "manifestSha256": "3b7c0a496b45dde92110edbc2c5bd7afd9f9f857093dc2788b17e3cbf7b46d0f",
+      "requirementsProfile": "tenant-packages/source-requirements/vuw.json",
+      "role": "Source-backed planning intake; not executed insurance configuration or customer acceptance"
+    }
+  ],
+  "userDecisions": [
+    {
+      "sourcePath": "docs/source/VUW_Deadline_Decision_2026-09-06.txt",
+      "sha256": "9b703d45402e9bcbc7dd1234002e03902d598265cec9e4077e9f24589f70d108",
+      "decision": "Keep September 11 for the full POC",
+      "role": "Direct user instruction; full scope preserved, source timing superseded"
+    }
+  ]
+}

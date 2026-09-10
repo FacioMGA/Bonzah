@@ -1,0 +1,16 @@
+---
+description: Abbeygate local quality and CI gate expectations
+alwaysApply: true
+---
+
+# Local Quality CI
+
+When the user asks to pass CI, quality controls, gates, lint, build, tests, or local merge-readiness:
+
+- Keep it local unless the user explicitly asks to deploy, push, or commit.
+- Use `.cursor/skills/local-quality-ci/SKILL.md` for the detailed workflow.
+- Run `npm run gate:agent:static` and `npm run test:full` as the default local proof.
+- Run `npm run gate:agent:full` only when Docker is available; it needs local Postgres/Redis via Docker.
+- If Docker is missing, report the full-gate integration portion as environment-blocked, not code-failed.
+- Fix the first failing stage, rerun the narrow failing command, then rerun the static gate and full unit suite.
+- Do not hide failures with broad allowlists. If a ratchet baseline must move, document the observed local floor and why.

@@ -1,0 +1,127 @@
+{
+  "_doc": [
+    "Exception deletion queue for allow-lists, bypasses, compatibility modes, temporary defaults, and architecture-lock carve-outs.",
+    "Every entry must have owner, expiryCondition, and deletionPrTarget. Missing metadata makes the exception P1 cleanup debt by default."
+  ],
+  "exceptions": [
+    {
+      "id": "architecture-lock:issuance-bypass:payments-issuance",
+      "source": "tools/quality/check-architecture-locks.mjs",
+      "owner": "platform-eng",
+      "expiryCondition": "Payment issuance is refactored to persist and re-check a server-side readiness decision token instead of relying on upstream bind gating.",
+      "deletionPrTarget": "PR-issue-readiness-payment-recheck"
+    },
+    {
+      "id": "architecture-lock:issuance-bypass:checkout-awaiting-payment",
+      "source": "tools/quality/check-architecture-locks.mjs",
+      "owner": "platform-eng",
+      "expiryCondition": "Checkout creation no longer writes policy lifecycle directly and delegates status transition to the canonical bind/payment command.",
+      "deletionPrTarget": "PR-checkout-status-transition-consolidation"
+    },
+    {
+      "id": "architecture-lock:issuance-bypass:bo-status-override",
+      "source": "tools/quality/check-architecture-locks.mjs",
+      "owner": "platform-eng",
+      "expiryCondition": "BO admin status override is replaced by explicit audited lifecycle commands with per-transition gates.",
+      "deletionPrTarget": "PR-bo-status-command-gates"
+    },
+    {
+      "id": "architecture-lock:leaf-pricing:recommendations-catalog",
+      "source": "tools/quality/check-architecture-locks.mjs",
+      "owner": "product-eng",
+      "expiryCondition": "A product-adapter marginal-pricing API exists and recommendations no longer import motor leaf pricing directly.",
+      "deletionPrTarget": "PR-recommendations-marginal-pricing-adapter"
+    },
+    {
+      "id": "architecture-lock:legacy-uw-adjustment-shape",
+      "source": "tools/quality/check-architecture-locks.mjs",
+      "owner": "product-eng",
+      "expiryCondition": "Stored motor UW adjustment values are backfilled to the canonical array shape and document view models reject single-object adjustment payloads.",
+      "deletionPrTarget": "PR-motor-uw-adjustment-shape-backfill"
+    },
+    {
+      "id": "architecture-lock:issuance-bypass:cancellation-active-restore",
+      "source": "tools/quality/check-architecture-locks.mjs",
+      "owner": "platform-eng",
+      "expiryCondition": "Cancellation rejection writes an explicit audited cancellation lifecycle command that is exempt from issuance transition matching without a file-level bypass.",
+      "deletionPrTarget": "PR-cancellation-lifecycle-command"
+    },
+    {
+      "id": "product-engine:burn-down:bdx-import-validator",
+      "source": "tools/quality/check-product-engine-contract.mjs",
+      "owner": "data-migration",
+      "expiryCondition": "BDX import validation obtains Motor product facts through product engines or adapter APIs instead of importing Motor internals.",
+      "deletionPrTarget": "PR-bdx-validator-engine-boundary"
+    },
+    {
+      "id": "product-engine:burn-down:underwriting-analysis",
+      "source": "tools/quality/check-product-engine-contract.mjs",
+      "owner": "underwriting-eng",
+      "expiryCondition": "Underwriting analysis obtains Motor facts through product engines or adapter APIs instead of importing Motor internals.",
+      "deletionPrTarget": "PR-underwriting-analysis-engine-boundary"
+    },
+    {
+      "id": "product-engine:burn-down:motor-quotes-service",
+      "source": "tools/quality/check-product-engine-contract.mjs",
+      "owner": "product-eng",
+      "expiryCondition": "Motor public quote service delegates all pricing, UW, and wording internals through the product runtime engine boundary.",
+      "deletionPrTarget": "PR-motor-quotes-engine-boundary"
+    },
+    {
+      "id": "product-engine:burn-down:seed",
+      "source": "tools/quality/check-product-engine-contract.mjs",
+      "owner": "platform-eng",
+      "expiryCondition": "Seed data generation uses product runtime APIs or static fixtures and no longer imports Motor internals.",
+      "deletionPrTarget": "PR-seed-product-engine-boundary"
+    },
+    {
+      "id": "frontend-deep-product-imports:claims-policy-cross-product",
+      "source": "tools/quality/check-no-deep-product-imports.mjs",
+      "owner": "claims-eng",
+      "expiryCondition": "Claims surfaces consume policy communications, documents, and region APIs through public product exports or shared modules.",
+      "deletionPrTarget": "PR-claims-policy-public-api-boundary"
+    },
+    {
+      "id": "frontend-product-literals:program-config-surfaces",
+      "source": "tools/quality/check-no-product-literals-in-shared-bo.mjs",
+      "owner": "product-eng",
+      "expiryCondition": "Program pricing and eligibility surfaces render entirely from product manifests without product string literals.",
+      "deletionPrTarget": "PR-program-config-manifest-rendering"
+    },
+    {
+      "id": "frontend-product-literals:policy-record-model",
+      "source": "tools/quality/check-no-product-literals-in-shared-bo.mjs",
+      "owner": "frontend-platform",
+      "expiryCondition": "PolicyRecord no longer exposes Motor-shaped quoteData in shared BO model types.",
+      "deletionPrTarget": "PR-policy-record-product-agnostic-model"
+    },
+    {
+      "id": "backend-core-business-imports:module-core-burndown",
+      "source": "tools/quality/check-backend-core-business-imports.mjs",
+      "owner": "platform-eng",
+      "expiryCondition": "Allowed modules either move their core dependencies behind module/domain contracts or the old backend/core business zones are deleted.",
+      "deletionPrTarget": "PR-backend-core-business-boundary-burndown"
+    },
+    {
+      "id": "layer-boundary:platform-startup-contracts",
+      "source": "tools/quality/check-layer-boundaries.mjs",
+      "owner": "platform-eng",
+      "expiryCondition": "Platform startup validation and contract types no longer import app/domain layers, or the imports are replaced with generated/static contracts.",
+      "deletionPrTarget": "PR-platform-startup-contract-purity"
+    },
+    {
+      "id": "binder-authority:bdx-import-historical-bypass",
+      "source": "tools/quality/check-policy-product-matches-binder-authority.mjs",
+      "owner": "data-migration",
+      "expiryCondition": "Historical BDX policies have binder-product authority rows backfilled or import path validates authority before write.",
+      "deletionPrTarget": "PR-bdx-authority-backfill-enforcement"
+    },
+    {
+      "id": "tenant-resolution:env-slug-single-tenant-convenience",
+      "source": "backend/http/middleware/resolveTenant.ts",
+      "owner": "platform-eng",
+      "expiryCondition": "All deployed and local entrypoints provide tenant slug via JWT, header, host, or explicit CLI tenant config.",
+      "deletionPrTarget": "PR-remove-http-tenant-slug-env-resolution"
+    }
+  ]
+}

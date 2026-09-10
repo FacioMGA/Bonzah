@@ -1,0 +1,25 @@
+{{- if and .Values.worker.enabled .Values.keda.enabled }}
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: {{ include "abbeygate.fullname" . }}-redis-trigger-auth
+  labels:
+    {{- include "abbeygate.labels" . | nindent 4 }}
+spec:
+  secretTargetRef:
+    {{- if hasKey .Values.runtimeConfig.secretKeys "REDIS_ADDRESS" }}
+    - parameter: address
+      name: {{ .Values.runtimeConfig.secretName }}
+      key: REDIS_ADDRESS
+    {{- else }}
+    - parameter: host
+      name: {{ .Values.runtimeConfig.secretName }}
+      key: REDIS_HOST
+    - parameter: port
+      name: {{ .Values.runtimeConfig.secretName }}
+      key: REDIS_PORT
+    {{- end }}
+    - parameter: password
+      name: {{ .Values.runtimeConfig.secretName }}
+      key: REDIS_PASSWORD
+{{- end }}

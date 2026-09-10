@@ -1,0 +1,62 @@
+export type ActorType = 'USER' | 'SYSTEM' | 'CUSTOMER' | 'UNDERWRITER' | 'OPS';
+export type ClaimBucket = 'INDEMNITY' | 'DEFENCE_COSTS' | 'ADJUSTER_FEES' | 'LEGAL_FEES' | 'OTHER';
+
+export const ALL_BUCKETS: ClaimBucket[] = ['INDEMNITY', 'DEFENCE_COSTS', 'ADJUSTER_FEES', 'LEGAL_FEES', 'OTHER'];
+
+export type ClaimWorksheetCommandInput = {
+  actorType: ActorType;
+  actorId: string;
+  actorName?: string;
+  idempotencyKey?: string;
+  correlationId?: string;
+};
+
+export type ClaimCommandType =
+  | 'OPEN_CLAIM'
+  | 'SUBMIT_FNOL'
+  | 'SUBMIT_FNOL_FINAL'
+  | 'CONFIRM_FNOL'
+  | 'REQUEST_FNOL_CLARIFICATION'
+  | 'FNOL_CLARIFICATION_RECEIVED'
+  | 'AMEND_FNOL'
+  | 'APPROVE_REFERRAL'
+  | 'LINK_POLICY'
+  | 'UPDATE_SUMMARY'
+  | 'SET_RESERVE'
+  | 'ADJUST_RESERVE'
+  | 'ADD_PAYMENT'
+  | 'SET_RECOVERY_EXPECTED'
+  | 'ADD_RECOVERY_RECEIVED'
+  | 'CREATE_APPOINTMENT'
+  | 'SET_REFERRAL'
+  | 'DENY_CLAIM'
+  | 'CLOSE'
+  | 'REOPEN'
+  | 'WITHDRAW'
+  | 'ACKNOWLEDGE_CLAIM'
+  | 'CREATE_DIARY_ITEM'
+  | 'COMPLETE_DIARY_ITEM'
+  | 'INSTRUCT_FIELD_ADJUSTER'
+  | 'RECORD_ADJUSTER_REPORT'
+  | 'RECEIVE_COMPLAINT'
+  | 'RESOLVE_COMPLAINT'
+  | 'ESCALATE_COMPLAINT_TO_LONDON'
+  | 'RECORD_PEER_REVIEW'
+  | 'LOG_COMMUNICATION_SENT'
+  | 'LOG_COMMUNICATION_RECEIVED'
+  | 'REQUEST_CLAIM_INFO'
+  | 'ASSIGN_HANDLER'
+  | 'ADD_CLAIM_NOTE'
+  | 'ADD_CLAIM_EVIDENCE'
+  | 'SEND_FNOL_LINK';
+
+export const FINANCIAL_COMMANDS: ReadonlySet<ClaimCommandType> = new Set([
+  'SET_RESERVE',
+  'ADJUST_RESERVE',
+  'ADD_PAYMENT',
+  'SET_RECOVERY_EXPECTED',
+  'ADD_RECOVERY_RECEIVED',
+  'DENY_CLAIM',
+  'CLOSE',
+]);
+

@@ -1,0 +1,77 @@
+Thread-ID: CY-MTR-017
+Claim-Ref: CY-MTR-017
+Subject: CY-MTR-017 — TP collision, estimate over authority
+===
+
+From: Demetris Broker <d@brokerbros.example>
+To: claims@abbeygate.example
+Date: 2026-01-03 14:20
+Subject: FNOL CY-MTR-017
+
+Three-vehicle collision, Limassol roundabout. Our insured Sofia M.
+(policy ABMTR-100417, reg PCM-6604) and one TP. Second TP departed
+before details exchanged. Insured shaken, no reported injury.
+Vehicle towed to QuickFix Auto.
+
+---
+From: Handler <claims@abbeygate.example>
+To: d@brokerbros.example
+Date: 2026-01-04 10:00
+Subject: RE: CY-MTR-017 — please send
+Attachments: motor_claim_form_blank.pdf
+
+Demetris,
+
+Please send:
+  1. Completed motor claim form (attached blank).
+  2. Police attendance number or report — Limassol roundabout incidents
+     are typically attended.
+  3. TP insurer details for the identified TP.
+  4. Photos of damage and scene.
+  5. Vehicle registration document.
+  6. Witness statement or confirmation no witness exists.
+  7. Repair estimate from QuickFix Auto.
+
+Pending these, we are reserving liability.
+
+---
+From: Demetris Broker <d@brokerbros.example>
+To: claims@abbeygate.example
+Date: 2026-01-07 16:30
+Subject: RE: CY-MTR-017 — partial
+Attachments: motor_claim_form_completed.pdf, photos.zip
+
+George,
+
+Form attached. Photos attached. TP insurer details still being chased.
+Insured cannot locate the V5/registration document. Police did not
+attend (insured did not request). No witnesses known.
+
+---
+From: QuickFix Auto <estimates@quickfix.example>
+To: claims@abbeygate.example
+Date: 2026-01-09 09:18
+Subject: Repair estimate CY-MTR-017
+Attachments: estimate_quickfix_30000.pdf
+
+Repair estimate attached. Total €30,000 including parts, paint and
+labour. Vehicle is currently with us awaiting authorisation.
+
+---
+From: Handler <claims@abbeygate.example>
+To: manager@abbeygate.example
+Date: 2026-01-09 14:50
+Subject: Referral — CY-MTR-017 over authority
+
+Estimate €30,000 exceeds my delegated authority (€25,000 under the
+Cyprus DCA). Referring before any settlement. Repairer is QuickFix
+Auto — same garage flagged on prior claims for high estimates.
+Liability remains reserved (no witness, no police report, no V5).
+
+---
+From: Demetris Broker <d@brokerbros.example>
+To: claims@abbeygate.example
+Date: 2026-01-12 11:10
+Subject: Chaser — CY-MTR-017 authorisation
+
+Insured is asking for an update on the estimate authorisation.

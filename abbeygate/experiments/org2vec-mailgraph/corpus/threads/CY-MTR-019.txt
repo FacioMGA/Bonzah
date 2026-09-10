@@ -1,0 +1,21 @@
+Thread-ID: CY-MTR-019
+Claim-Ref: CY-MTR-019
+Subject: CY-MTR-019 — under authority, routine
+===
+
+From: Anna Brokerson <anna@cyprusbrokers.example>
+To: claims@abbeygate.example
+Date: 2026-02-18 09:01
+Subject: FNOL CY-MTR-019
+Attachments: estimate_panelpro.pdf, tp_letter.pdf
+
+Side collision, Paphos. Insured policy ABMTR-100501, reg AKK-1010.
+Estimate from PanelPro €23,400. TP insurer Allianz Cy AL-2026-118.
+
+---
+From: Handler <claims@abbeygate.example>
+To: anna@cyprusbrokers.example
+Date: 2026-02-18 14:22
+Subject: RE: CY-MTR-019 — authorised
+
+€23,400 within authority. Authorised. TP recovery to commence.

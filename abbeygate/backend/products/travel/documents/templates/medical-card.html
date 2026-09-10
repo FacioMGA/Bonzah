@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Travel Medical Assistance Card</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', 'Helvetica', 'Arial', sans-serif; color: #0F172A; margin: 0; padding: 18mm; font-size: 12px; line-height: 1.45; }
+    .card { border: 1px solid #CBD5E1; border-radius: 14px; padding: 18px; background: #F8FAFC; }
+    h1 { color: #0E3553; font-size: 22px; margin: 0 0 6px 0; }
+    .label { color: #64748B; text-transform: uppercase; letter-spacing: 0.14em; font-size: 10px; margin-top: 12px; }
+    .value { font-weight: 700; font-size: 15px; margin-top: 3px; }
+    .notice { margin-top: 18px; font-size: 10.5px; color: #475569; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Medical Assistance Card</h1>
+    <div class="label">Policy Number</div>
+    <div class="value">{{policyNumber}}</div>
+
+    <div class="label">Insured</div>
+    <div class="value">{{policyHolder.name}}</div>
+
+    <div class="label">Emergency Medical Help Abroad</div>
+    <div class="value">00353 915 60663</div>
+
+    <div class="label">Claims Notification</div>
+    <div class="value">0034 915 816 718</div>
+
+    <div class="label">Cover Period</div>
+    <div class="value">{{period.startDisplay}} - {{period.endDisplay}}</div>
+
+    <p class="notice">
+      Keep this card with your travel documents. Pre-existing medical conditions are excluded unless accepted in writing.
+      Full emergency, claims and evidence requirements are set out in the policy wording.
+    </p>
+  </div>
+</body>
+</html>

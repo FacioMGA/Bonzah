@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "entityType": "POLICY",
+  "entries": [
+    {
+      "match": { "eventType": "POLICY.STATUS_CHANGED", "to": "ISSUED" },
+      "behaviorType": "policy.issued",
+      "template": "Policy {policyShort} issued"
+    },
+    {
+      "match": { "eventType": "POLICY.STATUS_CHANGED", "to": "BOUND" },
+      "behaviorType": "policy.bound",
+      "template": "Policy {policyShort} bound"
+    },
+    {
+      "match": { "eventType": "POLICY.STATUS_CHANGED", "to": "ACTIVE" },
+      "behaviorType": "policy.activated",
+      "template": "Policy {policyShort} activated"
+    },
+    {
+      "match": { "eventType": "POLICY.STATUS_CHANGED", "to": "QUOTED" },
+      "behaviorType": "policy.quoted",
+      "template": "Policy {policyShort} quoted"
+    },
+    {
+      "match": { "eventType": "POLICY.STATUS_CHANGED", "to": "AWAITING_PAYMENT" },
+      "behaviorType": "policy.awaiting_payment",
+      "template": "Policy {policyShort} awaiting payment"
+    },
+    {
+      "match": { "eventType": "POLICY.STATUS_CHANGED", "to": "CANCELLATION_REQUESTED" },
+      "behaviorType": "policy.cancellation_requested",
+      "template": "Cancellation requested for policy {policyShort}"
+    },
+    {
+      "match": { "eventType": "POLICY.STATUS_CHANGED", "to": "CANCELLED" },
+      "behaviorType": "policy.cancelled",
+      "template": "Policy {policyShort} cancelled"
+    },
+    {
+      "match": { "eventType": "POLICY.STATUS_CHANGED", "to": "EXPIRED" },
+      "behaviorType": "policy.expired",
+      "template": "Policy {policyShort} expired"
+    },
+    {
+      "match": { "eventType": "POLICY.STATUS_CHANGED", "to": "DECLINED" },
+      "behaviorType": "policy.declined",
+      "template": "Policy {policyShort} declined"
+    },
+    {
+      "match": { "eventType": "POLICY.STATUS_CHANGED", "to": "INFO_REQUIRED" },
+      "behaviorType": "policy.info_required_state",
+      "template": "Policy {policyShort} marked info-required"
+    },
+    {
+      "match": { "eventType": "PAYMENT.STATUS_CHANGED", "to": "CAPTURED" },
+      "behaviorType": "policy.payment_captured",
+      "template": "Payment captured on policy {policyShort}"
+    },
+    {
+      "match": { "eventType": "PAYMENT.STATUS_CHANGED", "to": "PAID" },
+      "behaviorType": "policy.payment_paid",
+      "template": "Payment confirmed on policy {policyShort}"
+    },
+    {
+      "match": { "eventType": "PAYMENT.STATUS_CHANGED", "to": "AUTHORIZED" },
+      "behaviorType": "policy.payment_authorized",
+      "template": "Payment authorized on policy {policyShort}"
+    },
+    {
+      "match": { "eventType": "PAYMENT.STATUS_CHANGED", "to": "FAILED" },
+      "behaviorType": "policy.payment_failed",
+      "template": "Payment failed on policy {policyShort}"
+    },
+    {
+      "match": { "eventType": "PAYMENT.STATUS_CHANGED", "to": "CANCELLED" },
+      "behaviorType": "policy.payment_cancelled",
+      "template": "Payment cancelled on policy {policyShort}"
+    },
+    {
+      "match": { "eventType": "EMAIL.INFO_REQUIRED" },
+      "behaviorType": "policy.comm_info_required",
+      "template": "Info-required email sent for policy {policyShort}"
+    },
+    {
+      "match": { "eventType": "EMAIL.CANCELLATION_REQUESTED" },
+      "behaviorType": "policy.comm_cancellation_requested",
+      "template": "Cancellation-requested email sent for policy {policyShort}"
+    },
+    {
+      "match": { "eventType": "EMAIL.CANCELLATION_CONFIRMED" },
+      "behaviorType": "policy.comm_cancellation_confirmed",
+      "template": "Cancellation-confirmed email sent for policy {policyShort}"
+    },
+    {
+      "match": { "eventType": "EMAIL.UW_REFERRAL" },
+      "behaviorType": "policy.comm_uw_referral",
+      "template": "UW referral email sent for policy {policyShort}"
+    },
+    {
+      "match": { "eventType": "POLICY.COMPLIANCE.SANCTIONS_DECIDED" },
+      "behaviorType": "policy.compliance_sanctions_decided",
+      "template": "Sanctions decision recorded on policy {policyShort}"
+    }
+  ]
+}

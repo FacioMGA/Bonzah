@@ -1,0 +1,34 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/bonzah/quotes"
+method: POST
+headers:
+  Content-Type: application/json
+  Idempotency-Key: golden-rav4-001
+body:
+  type: text
+  content: |-
+    {
+      "programId": "BONZAH-US-DEMO-2026",
+      "channel": "API",
+      "effectiveDate": "2026-09-03",
+      "risk": {
+        "pickup": {"country": "US", "state": "CO", "location": "Denver International Airport"},
+        "residence": {"country": "US", "state": "CA"},
+        "rentalStart": "2026-09-18T10:00:00-06:00",
+        "rentalEnd": "2026-09-22T10:00:00-06:00",
+        "driver": {"age": 35, "licenceValid": true},
+        "vehicle": {"id": "rav4", "year": 2025, "make": "Toyota", "model": "RAV4", "class": "suv", "declaredValue": 31500, "repairProfile": "standard", "powertrain": "hybrid"}
+      },
+      "coverages": ["CDW", "RCLI", "SLI", "PAI_PEI"]
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Golden quote is canonical', () => pm.response.to.have.status(201));
+      const q = pm.response.json().data;
+      pm.environment.set('quoteId', q.quoteId);
+      pm.environment.set('integrityToken', q.integrityToken);
+      pm.environment.set('quoteTotal', q.total);
+      pm.test('Illustrative rule version returned', () => pm.expect(q.ruleVersion).to.eql('bonzah-rental-demo@1.2.0'));
+    language: text/javascript
+order: 2000

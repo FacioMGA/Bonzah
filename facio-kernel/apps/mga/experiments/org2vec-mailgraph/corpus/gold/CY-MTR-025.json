@@ -1,0 +1,19 @@
+{
+  "thread_id": "CY-MTR-025",
+  "claim_ref": "CY-MTR-025",
+  "gold_missing_documents": [
+    "photos_with_metadata",
+    "police_report"
+  ],
+  "gold_authority_flags": [
+    "fraud_indicator"
+  ],
+  "gold_decision_posture": "denied",
+  "gold_key_events": [
+    "FNOL",
+    "doc_request",
+    "escalation"
+  ],
+  "gold_similar_threads": [],
+  "scenario": "fraud_indicator"
+}

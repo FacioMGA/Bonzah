@@ -1,0 +1,65 @@
+Kernel delivery milestones
+8–12 September 2026 | Development and experience specification
+Version 1.0 • Planning baseline: 6 September 2026 • Confidential
+Delivery mandate. Demonstrate Bonzah and UE on the shared Kernel, complete the full VUW.ai POC, expose configuration through API Documentation, OpenAPI and MCP, and finish the end-to-end self-onboarding experience specification.
+Dates are committed target dates supplied by Uriel. This plan does not assert current implementation completion or team capacity. All dates use Asia/Jerusalem. Except the demo gate, the working assumption is end of day; the exact demo time on 10 September must be recorded before rehearsal.
+Milestone | Deadline | Acceptance outcome
+M1 · Bonzah + UE | Thu 10 Sep, before demo | Both approved demo journeys execute on one Kernel using tenant/product/process configuration, with no customer hardcoding.
+M2 · VUW.ai full POC | Fri 11 Sep | Every item in the agreed POC scope passes acceptance; a demo subset does not qualify.
+M3 · Configuration visibility | Tue 8 Sep | API Documentation screen, OpenAPI and MCP expose system configuration and missing/incomplete configuration inventory.
+M4 · Self-onboarding design | Sat 12 Sep | End-to-end website experience and interfaces are specified, including billing, subscription, domain, live activation and customer account panel.
+Ownership and scope control
+Proposed accountable roles: Platform Engineering for M1/M3; Product + Engineering for M2; Product/UX with Platform and Billing reviewers for M4. Uriel is the proposed product acceptance owner. Named delivery owners and capacity allocation must be confirmed at kickoff; no individual assignment is implied.
+On 7 September, baseline the approved Bonzah/UE demo requirements and the complete VUW.ai POC source. Assign a requirement ID, source, tenant, configuration or reusable capability, owner and acceptance test to every item. Unverified scope remains an explicit blocker; it must not be silently invented or removed.
+M3 · Configuration visibility
+Deadline: Tuesday, 8 September 2026. This is the earliest gate and an enabling dependency for M1, M2 and M4.
+Deliverable | Acceptance requirement
+API Documentation screen | Authenticated users can discover configuration categories, inspect current values and distinguish drafts from published/effective versions, within their tenant and role scope.
+OpenAPI | A retrievable, valid specification documents implemented configuration endpoints, schemas, required/conditional fields, enums, validation errors, authentication and supported operations.
+MCP | Authorised clients can discover configuration tools and inspect the same configuration model and completeness report. Writes delegate to canonical services and respect draft/publication permissions.
+Gap inventory | List missing, incomplete, invalid, inconsistent and unsupported configuration. Each row identifies tenant/product/process, field or capability, applicable requirement, current state, expected state, affected journey, severity and remediation.
+Cross-surface parity | One representative complete tenant and one deliberately incomplete tenant return consistent results in the screen, OpenAPI-backed API and MCP. Secrets are represented as connection status/references, never plaintext.
+Evidence: screen walkthrough, OpenAPI artifact, MCP discovery/read output, completeness report and tenant-isolation checks. A documentation page describing unimplemented endpoints does not meet this gate.
+M1 · Bonzah and UE demo readiness
+Deadline: Thursday, 10 September 2026, before the demo. Internal target: full rehearsal and candidate configuration freeze on Wednesday, 9 September.
+Baseline and trace every approved Bonzah and UE demo requirement to a runnable journey, configuration entry and acceptance test.
+Provision separate demo tenants using the same Kernel build and their own configuration, approved sample data, documents and integration profiles.
+Exercise each agreed journey end to end, including outputs and any configured referral, approval or failure path required by the scenario.
+Demonstrate a material tenant behaviour change through configuration without editing shared runtime code.
+Review changes for tenant-name branches, embedded customer rates/rules, duplicated lifecycle logic and customer-specific database access. A reusable typed extension is acceptable only with an explicit capability contract and configuration-based registration.
+Record build and configuration versions, rehearsal evidence, reset procedure and an issue list. No unresolved issue may block an agreed demo journey.
+If any external provider is simulated, label it explicitly and obtain acceptance of that demo boundary; preserve the real integration contract.
+M2 · VUW.ai full POC acceptance
+Deadline: Friday, 11 September 2026. Internal target: complete integrated POC run on Thursday, 10 September, with Friday reserved for acceptance and fixes.
+Scope boundary. The complete agreed VUW.ai POC is the acceptance baseline. Submission, quote and underwriting are known context, but cannot substitute for the full source scope. The exact POC document and version must be attached to the delivery tracker on 7 September.
+Run VUW.ai as an isolated tenant on the shared Kernel with its approved product, process, authority, document, reporting and integration configuration wherever required by the POC.
+Maintain a scope matrix: source requirement → configured capability → test scenario → expected output → result → evidence → defect.
+Pass every mandatory POC requirement, including interfaces and outputs. Make environment limitations explicit and agree any third-party test boundaries before execution.
+Confirm lifecycle persistence, authorised role behaviour, tenant isolation and repeatable results for the agreed scenarios.
+Deliver the completed scope matrix, walkthrough, build/configuration references and acceptance record. Any failed mandatory item means the full-POC milestone remains incomplete.
+M4 · End-to-end self-onboarding specification
+Deadline: Saturday, 12 September 2026. Deliverable: an experience and interface specification ready for engineering breakdown. This milestone does not require implementing the entire onboarding service.
+Experience area | Required specification
+Website entry and identity | Entry points, sign-up/login, verification, organisation creation, invitations, role selection and resume-on-return.
+Plan, subscription and billing | Plan comparison/selection, entitlements, trial if offered, payment setup, invoices, tax details, renewal, upgrades/downgrades, cancellation and failed-payment recovery.
+Configuration journey | Business/product/process intake through forms or LLM/MCP; source upload, validation, missing-information guidance, progress and saved drafts.
+Environment and domain | Residency selection, provisioning status, default URL, customer domain ownership verification, DNS/TLS states, errors and retry.
+Draft/test → Live | Test data isolation, simulation, readiness checklist, approval and authority, payment/subscription gates, configuration publish, activation status and rollback/recovery.
+Customer account panel | Account/subscription state, profile, organisation/users, billing/invoices/payment methods, environment/domain, service requests, support status and notifications.
+M4 · Interface and design handoff
+For every screen and material button/action, specify actor, preconditions, fields, validation, command/API, resulting state, permissions, loading/empty/error states and recovery. Include mobile behaviour and accessibility requirements.
+For every external interface—identity, Control Plane, Kernel configuration/MCP, payment provider, subscription/entitlements, infrastructure provisioning, domain/DNS/TLS, CRM, support and notifications—document the system of record, payload contract, authentication, webhook/event, idempotency, retry and reconciliation. Specific providers remain decisions until selected.
+Acceptance evidence: linked journey map, annotated screens/wireframes, account/subscription/environment state models, API/event interface catalogue, Draft/test-to-Live gate matrix and an exception catalogue. Product, UX and Engineering must be able to trace the journey from website entry to live operation and subsequent account servicing.
+Daily execution plan
+Date | Required checkpoint
+Sun 6 Sep | Publish milestone baseline; identify scope sources, owners, access needs and capacity conflicts.
+Mon 7 Sep | Freeze demo/POC scope matrices; inventory configuration gaps; select shared build and tenant profiles; outline onboarding journey and interfaces.
+Tue 8 Sep | Accept M3 across screen/OpenAPI/MCP. Triage its gap report against Bonzah, UE and VUW.ai. Resolve launch-blocking configuration first.
+Wed 9 Sep | Rehearse both M1 demos and freeze the candidate release/configuration; run VUW.ai POC scenarios; review onboarding screens and interface ownership.
+Thu 10 Sep | Pass final smoke checks before the Bonzah/UE demo. Complete the integrated VUW.ai run. Review onboarding billing, domain and Live transition failures.
+Fri 11 Sep | Accept all VUW.ai POC scope for M2; resolve mandatory defects. Complete M4 cross-functional review and remaining design gaps.
+Sat 12 Sep | Deliver and accept the final self-onboarding experience/interface specification for M4.
+Dependencies and escalation
+M3 provides shared configuration visibility for M1/M2 and the readiness model for M4. Demo and POC configuration work proceeds concurrently with M3. M4 is a parallel design track. The dates are aggressive and feasibility depends on the verified baseline and available owners; no duration estimate is implied by the deadlines.
+Review daily: milestone status (Not started / In progress / Blocked / Ready for acceptance / Accepted), requirement coverage, blocker, owner, next action and forecast date. Escalate a forecast miss on the day it becomes known, with the missing acceptance condition and recovery options. Preserve the stated scope and dates unless Uriel explicitly approves a change.
+Reference: Facio Insurance Kernel — Development Requirements v1.0. This milestone plan adds dates and gates; it does not reduce that specification or certify completed implementation.

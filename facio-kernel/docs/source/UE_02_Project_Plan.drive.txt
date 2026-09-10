@@ -1,0 +1,168 @@
+United Educators property project plan
+Prepared for Facio project planning. Review date: 6 September 2026.
+Project decision and scope
+The next decision is whether Facio and United Educators should proceed from the property workflow demonstration to a jointly defined pilot. The demonstration should establish how information moves through the insurance lifecycle, reveal configuration and integration gaps, and identify the customer decisions needed for a delivery plan.
+UE explicitly requested a generic property insurance demonstration covering 15 connected modules. The request came from Vineesh Subramaniam on 27 August 2026. The scheduled demonstration is 10 September 2026, 18:30–19:15 Israel time, equivalent to 11:30–12:15 EDT. Yoni Novick organized the meeting with Santosh Bachuwar, Vineesh Subramaniam, Yahav Fruchter, Liav Geffen, and Uriel Aharoni invited. Invitations establish the audience, not confirmed attendance. Scope email and demo invitation.
+The signed mutual NDA supports evaluation of a potential MGA underwriting platform relationship. It does not establish an implementation contract, production launch commitment, or agreed price. The agreement names United Educators Management Company and Facio Labs, Inc. Its effective date is 28 August 2026, and the completed document records signatures by Santosh Bachuwar and Uriel Aharoni. Completion email and attachment.
+Yoni’s earlier email refers to a policy launch on “Jan 1st” without a year. A meeting recap describes a launch around year end. Treat the target year, launch scope, and feasibility as open decisions. Do not convert the reference into a promised January production date. Discovery request.
+Intended business outcome
+Give the broker, underwriter, and operations team a shared record of the institution, source documents, underwriting decisions, quotes, and policy transactions. Preserve the history needed to explain a price, a coverage change, a financial adjustment, or a renewal decision. Measure the pilot against UE-approved examples and a baseline of its current work.
+UE’s public business is education-specific liability insurance and risk management. The property program under discussion needs its own approved product definition. Public liability forms, limits, RMPC credits, and claims processes provide organizational context; they do not establish the new property program’s rules. About UE and UE broker applications.
+Working status
+Demo scope and invitation are evidenced. The supplied submission files and NDA have been reviewed. The implementation approach, module acceptance criteria, staffing assignments, and delivery stages below are proposed for review. No Facio deployment or live module behavior was verified as part of preparing these materials. Every module needs a rehearsal result before the presenter describes it as working in the demonstration environment.
+Requirements for intake and underwriting
+Each requirement below carries forward one of UE’s explicitly requested modules. The demonstration action and acceptance condition are proposed. A rehearsal record should identify the environment, application version, case, result, evidence, and any fallback.
+R01 Broker Management
+Maintain the brokerage, producer, institution relationship, contacts, and responsible underwriter. Demonstrate opening an institution from its broker and showing the same relationship on its submission and policy. Acceptance: a broker user sees authorized institutions only; changing the servicing relationship preserves history. UE must supply the authority, appointment, licensing, and brokerage hierarchy rules that apply to the property program.
+R02 Document Intake and Submission Intake and Ingestion
+Accept the supplied PDF and spreadsheet package, retain originals, classify document types, and map institution and location data with source references. Demonstrate a missing item and a discrepancy before review completion. Acceptance: extraction produces reviewable values with document and page or sheet/cell references; repeat intake avoids duplicate business records; conflicting values remain visible. The source corpus includes scanned forms, multi-sheet workbooks, current exposure schedules, and older policy specimens.
+R03 Underwriting
+Present locations, insured values, construction and protection fields, loss information, missing information, and referrals as one review. Demonstrate an underwriter resolving a discrepancy with an explanation and recording a decision. Acceptance: only an authorized person can approve a referred case, and the application records the previous value, new value, reviewer, time, and reason. The authority matrix and appetite rules remain customer inputs.
+R04 External Data Source Enrichment
+Associate external information with the correct address or institution while retaining provider, query time, match quality, and the original submitted value. Demonstrate a matching result and a provider failure or uncertain match. Acceptance: uncertain or unavailable enrichment does not become an invented value or silently replace submission data. Data providers, permitted uses, credentials, costs, and licensing are discovery items.
+R05 Rating
+Send approved exposure and coverage inputs to a versioned rating service or configured calculation and keep its input/output record. The meeting recap discusses API integration for rating; the API contract and engine are unverified. Acceptance: known reference cases reproduce UE-approved premiums and factors; missing required fields or failed rating responses prevent an apparently valid quote. Any illustrative rate used in the demo must be visibly identified as a demo assumption.
+Requirements for quoting and policy transactions
+R06 Quote Management
+Create quote options from a reviewed submission, compare terms, and retain each option’s rating version, limits, deductibles, premium, fees, and validity. Demonstrate selecting one version. Acceptance: subsequent edits create a new version or explicitly controlled change, and the bind action uses the selected approved version. Expired, withdrawn, or superseded options cannot bind through an unnoticed stale state.
+R07 Binding
+Check authority, required documents, subjectivities, dates, and approved terms before producing a policy record. Demonstrate the complete handoff from accepted quote to policy and the blocked path when a condition is unmet. Acceptance: one accepted quote yields one authorized binding transaction and the correct document pack. Capacity, carrier, jurisdiction, signature, numbering, and issuance rules need UE approval.
+R08 Endorsements
+Create an effective-dated change to a policy without overwriting its prior state. Demonstrate a synthetic location or value change and its premium effect, linked to the resulting documents and financial transaction. Acceptance: the prior policy remains reconstructable; the adjusted period, premium, receivable, and commission agree. Out-of-sequence changes and overlapping effective dates require explicit behavior.
+R09 FNOL Intake
+Capture the insured, loss date and location, event narrative, documents, reporter, and policy reference, then route the report to its owner. Demonstrate a clearly labeled synthetic property incident and a possible duplicate. Acceptance: the report retains its provenance, linked policy version, status, and acknowledgement record. FNOL intake does not imply claims adjudication, settlement, or an automated coverage determination.
+R10 Renewals
+Create a new term with the expiring policy, requested updates, current exposures, loss history, and a changes comparison. Demonstrate an updated schedule and referral before a renewal quote. Acceptance: changes and missing renewal information remain visible; old and new terms are distinct, with decisions and rating versions traceable. Customer-specific notice windows, nonrenewal rules, and referral thresholds remain open.
+Requirements for finance and administration
+R11 Cancellations and Refunds
+Record the cancellation reason, request and effective dates, applicable rule, notice workflow, earned premium, return premium, and refund state. Demonstrate a synthetic cancellation as a separate branch from the continuing renewal case. Acceptance: approved examples reproduce the correct return premium and related tax, fee, receivable, and commission treatment; issued notices and payment actions require authorized release. Do not assume pro rata cancellation is always applicable.
+R12 Commission Tracking and Broker Commissions
+Apply an approved broker agreement to the correct premium base and transaction, keeping earned, payable, paid, and reversed amounts distinct. Demonstrate a new-business accrual and an endorsement or cancellation adjustment. Acceptance: a transaction does not create duplicate commission; rates and bases remain explainable; reversals reconcile to the original. Agreements, splits, timing, tax treatment, and exception authority need confirmation.
+R13 Billing and Receivables
+Connect policy transactions to invoices, installments, receipts, allocations, credits, refunds, and outstanding balances. Demonstrate an invoice, a partial payment, and an aged balance using synthetic amounts. Acceptance: the balance equals charges less applied receipts and credits; unmatched money remains unapplied; refund status distinguishes calculated, approved, and paid. Confirm direct versus agency bill, payment service, bank or ledger interfaces, currency, and reconciliation cadence.
+R14 Policy Administration and Management
+Show the institution’s policy timeline, terms, documents, participants, activities, and transaction history. Demonstrate finding a prior version and the documents issued from it. Acceptance: policy identity remains stable while transactions and effective-dated versions are explicit; user permissions govern access and change. Agree the system of record for each object and the migration or coexistence strategy.
+R15 Reporting
+Provide traceable views of submission progress, referrals, quote outcomes, policy transactions, receivables, and commissions. Demonstrate drilling into one aggregate to its underlying records. Acceptance: as-of date, transaction versus effective date, currency, filters, and calculation definitions are explicit; report totals reconcile to source records and exports. Regulatory, carrier, reinsurance, and management reporting requirements need named owners and approved layouts.
+Requirements beyond the walkthrough
+Production scope must also settle role permissions, identity management, audit retention, document access, encryption and key ownership, integrations, exports, monitoring, support, disaster recovery, and release rollback. These are delivery decisions, not assertions of existing certifications or contractual service levels. Record what Facio already supports with evidence and price any additional work only after the implementation boundary is clear.
+Data and integration design
+Use a shared institution identity across the broker relationship, submission, quote, policy, claim notification, and financial records. Retain location IDs within each institution. Give original documents stable IDs and versions. Associate every extracted fact with the document version, page or sheet/cell, and extraction/review state.
+The proposed business record sequence is submission, underwriting review, rating run, quote version, binding transaction, policy version, and financial postings. Endorsements, renewals, cancellations, and FNOL reference the relevant term and effective date. They should not overwrite the original submission or prior policy history.
+Systems discovery
+UE publicly documents My UE for Members and My UE for Brokers, including renewals, policy information, contacts, and claims. Use this as a starting point for coexistence discovery. No Facio connection to those systems has been verified. UE Knowledge Center.
+Source handling
+The source package is held in the existing Santosh Bachuwar folder. Preserve its organization and originals. The project folder should link to that source package and contain derived preparation materials. Keep evaluation material within its existing authorized sharing boundary. The NDA requires appropriate confidentiality safeguards and limits use to evaluating the proposed relationship; the signed agreement controls the details.
+Exclude unnecessary personal data from presentation views, including data in hidden workbook sheets. Greensboro and other exposure packs include driver or employee information; the property demonstration does not need birth dates, licence numbers, or unrelated payroll detail. Large exposure templates also contain hidden Menta Group material from 2021, which must not become UE requirements. Demonstration changes, quotes, premium examples, incidents, payments, and cancellations must be labeled as synthetic and kept separate from the original submissions.
+The Randolph SOV has a $1,302,750 difference between its row-45 total and displayed grand total, matching the renovation amount. Its appraisal uses a different date and component scope. Mount Mary filenames indicate 26–27 while workbook term fields indicate the prior term; its displayed total also needs reconciliation. These cases are useful pilot tests of source review, period validation, and template exclusion. Detailed cell and page references appear in the source guide.
+Delivery stages and proposed responsibilities
+The stages below are planning proposals. Assign named owners and dates jointly after the demo. A stage completes when its stated evidence exists, rather than when a meeting or development task is marked done.
+Santosh Bachuwar is the confirmed UE IT business applications contact. Vineesh Subramaniam is the confirmed Salesforce developer and administrator contact. Their sponsorship, technical ownership, and approval authority should be agreed rather than inferred from titles. UE still needs to nominate underwriting, finance, claims, compliance, security, and executive decision owners.
+Proposed Facio preparation responsibilities: Yoni Novick coordinates the customer discussion and commercial follow-up; Yahav Fruchter leads the demo-environment rehearsal; Uriel Aharoni owns the executive scope and investment decision; Liav Geffen supports product and business workflow review. These are suggested assignments based on the correspondence and invitation, not accepted workload commitments.
+Demo preparation dates
+Customer messages and calendar changes require separate explicit sending authorization. The task here prepares the content and project plan.
+Pilot success and acceptance
+Agree a baseline before stating a speed or efficiency gain. Measure handling time using equivalent cases, separating elapsed waiting time from active user work. Track extraction accuracy by field type, document type and materiality; include both correct values and correct identification of missing or conflicting data. Report the sample size and exception rate with each result.
+Suggested pilot checks are exact agreement on institution identity, effective dates, selected quote version, and policy reference; reconciled monetary totals to the approved cent or documented rounding rule; traceable source references for every displayed material fact; and explicit review for every unresolved discrepancy. UE and Facio should agree numeric accuracy and turnaround thresholds from the pilot corpus, rather than adopting unsupported marketing percentages.
+Exercise at least these scenarios: clean submission; missing required document; conflicting totals; duplicate upload; scanned input; provider timeout; unauthorized user; underwriting referral; stale quote; bind retry; effective-dated endorsement; renewal changes; cancellation reversal; partial receipt; unmatched receipt; commission reversal; duplicate FNOL; and report drill-through. A failure must identify the affected case and business consequence.
+Decisions and risks
+Decision requested after the demo
+Agree the first property workflow to pilot, nominate UE’s business and technical owners, identify the authoritative product/rating documents, and schedule a scoped discovery session. Record the launch-date assumption explicitly. The resulting pilot statement should contain deliverables, acceptance examples, responsibilities, dependencies, timing, commercial terms, data ownership, and the decision required for production rollout.
+Primary project sources
+The 15-module request and subsequent NDA/data coordination are in the generic demo thread. The Aug 24 meeting recap supplies secondary discovery context, including rating integration and data ownership. Automated notes should be checked with UE before converting them into a contractual requirement. The source folder contains the five institutional packages. Detailed file analysis and web research accompany this plan.
+Area
+Decision needed
+Required evidence
+Existing PAS and Salesforce
+Retain, integrate, or replace each responsibility
+Current workflow, objects, record IDs, interfaces, ownership
+Rating
+Engine owner, call pattern, versioning and failure handling
+API schema, test credentials, example requests and approved outputs
+Broker and member portal
+Entry points, identity and authorized institutions
+Current portal flow, roles, SSO and access model
+Finance
+Direct or agency bill, payment and accounting boundaries
+Invoice samples, commission agreements, ledger mappings, reconciliation examples
+Documents
+Approved policy, quote and notice forms
+Versioned templates, clause rules, signature and issuance requirements
+Claims
+FNOL destination and acknowledgement responsibility
+Required fields, interface, duplicate rules, handoff ownership
+Data export
+Scope, cadence and ownership
+Formats, attachments, IDs, history, extraction and termination requirements
+Stage
+Work and output
+Exit condition
+Demo preparation
+Select cases, prepare 15-module walkthrough, validate data and rehearse
+Every module has an observed rehearsal result or explicit limitation and fallback
+Discovery and pilot definition
+Confirm product, operating model, integrations, source corpus and success measures
+UE and Facio accept a written pilot scope, owners, dependencies, costs and decision gate
+Pilot configuration
+Implement selected workflow and integrations in an agreed evaluation environment
+Representative source cases pass approved acceptance examples with traceable results
+Business validation
+UE users exercise normal, missing-data, exception and reversal cases
+Named business owners accept results; material defects and remaining scope are explicit
+Production readiness
+Complete security, operations, migration, support, monitoring and recovery work
+Authorized release owners accept cutover, reconciliation, rollback and support plans
+Controlled rollout
+Start with agreed users and program boundary, observe performance and reconcile
+Live transactions, documents, data and financial totals meet agreed checks
+Expansion
+Assess additional products, volumes, integrations and automation
+Evidence supports expansion and both parties approve the next scope
+Proposed date
+Deliverable
+Proposed Facio owner
+7 September 2026
+Freeze scenario and field mapping; confirm UE input gaps
+Yahav with Yoni
+8 September 2026
+Rehearse all 15 modules; record working behavior and gaps
+Yahav with Liav
+9 September 2026
+Full 45-minute rehearsal; capture evidence and fallback material
+Demo team
+10 September 2026
+Preflight, demonstration, decision and action capture
+Yoni and demo team
+11 September 2026
+Prepare internal follow-up and scoped pilot proposal
+Yoni with Uriel
+Decision or risk
+Effect
+Proposed owner and next evidence
+Target property product and launch year remain open
+Prevents a credible production schedule
+UE business sponsor: approved program summary and target date
+Incumbent policy specimens differ from target product
+Can create incorrect coverage or rating assumptions
+UE underwriting: approved target forms and rules
+Rating engine and API are unverified
+Blocks production rating acceptance
+UE technical and actuarial owners: contract and reference cases
+Submitted totals or exposure periods disagree
+May materially change quoted exposure
+UE underwriter: documented source reconciliation
+All 15 modules may exceed a short pilot
+Dilutes delivery focus and obscures dependencies
+Joint project owners: choose pilot boundary while retaining the complete roadmap
+Product capability claims lack rehearsal evidence
+Creates demo and expectation risk
+Facio demo owner: observed results and clear fallback for each module
+System ownership, export and migration unresolved
+Can cause duplicate records or trapped history
+UE IT and Facio engineering: object ownership and tested export plan
+Finance and cancellation rules undefined
+Can produce wrong balances or refunds
+UE finance and underwriting: approved financial examples
+Commercial model is unagreed
+Prevents a signed delivery commitment
+Facio and UE commercial owners: written proposal and acceptance

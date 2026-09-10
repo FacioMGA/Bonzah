@@ -1,0 +1,76 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+packages:
+  - docker.io
+  - caddy
+  - python3
+  - sqlite3
+  - jq
+  - unattended-upgrades
+write_files:
+  - path: /etc/systemd/system/docker.service.d/kernel-data.conf
+    permissions: '0644'
+    content: |
+      [Unit]
+      RequiresMountsFor=/srv/facio-kernel/data
+      ConditionPathIsMountPoint=/srv/facio-kernel/data
+  - path: /etc/caddy/Caddyfile
+    permissions: '0644'
+    content: |
+      {
+        log {
+          format filter {
+            wrap json
+            fields {
+              request>uri delete
+              request>headers delete
+            }
+          }
+        }
+      }
+      __KERNEL_HOST__ {
+        header Strict-Transport-Security "max-age=31536000"
+        reverse_proxy 127.0.0.1:4310
+      }
+      __KERNEL_AZURE_HOST__ {
+        header Strict-Transport-Security "max-age=31536000"
+        redir https://__KERNEL_HOST__{uri} permanent
+      }
+  - path: /usr/local/sbin/kernel-data-mount
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      set -euo pipefail
+      device=
+      for attempt in $(seq 1 60); do
+        for candidate in /dev/disk/azure/data/by-lun/0 /dev/disk/azure/scsi1/lun0; do
+          if test -b "$candidate"; then device=$candidate; break; fi
+        done
+        test -n "$device" && break
+        sleep 2
+      done
+      test -b "$device"
+      test "$(readlink -f "$device")" != "$(readlink -f /dev/disk/azure/os)"
+      # This script is used only on this isolated VM's new dedicated LUN0.
+      # An existing filesystem is preserved; an unexpected format fails closed.
+      filesystem=$(blkid -o value -s TYPE "$device" || true)
+      if test -z "$filesystem"; then mkfs.ext4 -L kernel-data "$device"; else test "$filesystem" = ext4; fi
+      install -d -m 0750 /srv/facio-kernel/data
+      uuid=$(blkid -o value -s UUID "$device")
+      if ! findmnt /srv/facio-kernel/data >/dev/null; then
+        if ! grep -Fq "UUID=$uuid " /etc/fstab; then
+          printf 'UUID=%s /srv/facio-kernel/data ext4 defaults,nofail 0 2\n' "$uuid" >> /etc/fstab
+        fi
+        mount /srv/facio-kernel/data
+      fi
+      chown 1000:1000 /srv/facio-kernel/data
+      chmod 0750 /srv/facio-kernel/data
+      install -d -m 0700 /srv/facio-kernel/secrets /srv/facio-kernel/backups
+      install -d -m 0755 /srv/facio-kernel/deploy /srv/facio-kernel/releases
+runcmd:
+  - [bash, /usr/local/sbin/kernel-data-mount]
+  - [systemctl, daemon-reload]
+  - [systemctl, enable, --now, docker]
+  - [systemctl, enable, --now, caddy]
+  - [systemctl, restart, caddy]

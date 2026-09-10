@@ -1,0 +1,17 @@
+title = "Abbeygate-platform gitleaks config"
+
+[allowlist]
+description = "Repo-specific allowlist to reduce false positives"
+
+# Common false-positives in UI schemas (question objects use `key:` fields).
+regexes = [
+  '''\bkey:\s*["'][^"']+["']''',
+  '''JWT_SECRET=<generate-strong-secret>''',
+]
+
+# Never scan local env files (should not be committed).
+paths = [
+  '''\.env(\..+)?$''',
+  '''gitleaks-report\.json$''',
+]
+

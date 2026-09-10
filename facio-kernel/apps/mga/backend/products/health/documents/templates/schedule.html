@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{tenantBrand.displayName}} Immigration Medical — Schedule</title>
+  <link rel="stylesheet" href="styles/pdf-theme.css" />
+  <style>
+    .draft-watermark {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 120px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      color: var(--brand-navy);
+      opacity: 0.08;
+      transform: rotate(-22deg);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.is-draft .draft-watermark { display: flex; }
+    .draft-watermark span {
+      padding: 18px 28px;
+      border: 8px solid rgba(14, 53, 83, 0.18);
+      border-radius: 18px;
+    }
+    .page { padding: 28px 32px; position: relative; }
+    .page-break { page-break-before: always; }
+    h1.lloyds-title { font-size: 34px; line-height: 1.1; text-align: center; margin: 40px 0 18px; color: var(--brand-navy); }
+    .lloyds-body { font-size: 13px; max-width: 760px; margin: 0 auto; color: #111827; line-height: 1.55; }
+    .lloyds-body p { margin: 12px 0; }
+    .lloyds-divider { border-top: 1.5px solid rgba(11, 18, 32, 0.85); margin: 18px 0; }
+    .coverholder-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+    .coverholder-block { font-size: 11px; line-height: 1.4; color: #1f2937; }
+    .schedule-title { background: var(--brand-navy); color: #fff; padding: 6px 12px; font-weight: 800; letter-spacing: 0.05em; font-size: 13px; }
+    .info-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .info-table td { padding: 4px 8px; font-size: 11px; vertical-align: top; border-bottom: 1px solid #e5e7eb; }
+    .info-table td.label { width: 30%; color: #4b5563; font-weight: 600; }
+    .insured-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .insured-table th, .insured-table td { font-size: 10.5px; padding: 5px 7px; border: 1px solid #d1d5db; text-align: left; }
+    .insured-table th { background: var(--surface-2); font-weight: 700; }
+    .premium-block { margin-top: 14px; padding: 10px 12px; background: var(--surface); border-left: 3px solid var(--accent-teal); font-size: 12px; }
+    .premium-block strong { color: var(--brand-navy); }
+    .cover-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 11px; }
+    .cover-table td { padding: 4px 8px; border-bottom: 1px solid #e5e7eb; }
+    .cover-table td.amount { text-align: right; font-weight: 700; color: var(--brand-navy); }
+    .cover-section-title { font-weight: 800; color: var(--brand-navy); margin-top: 14px; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .footer { margin-top: 16px; font-size: 10.5px; color: #4b5563; line-height: 1.5; }
+    .signature-row { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 18px; font-size: 11px; }
+  </style>
+</head>
+<body class="{{#if isDraft}}is-draft{{/if}}">
+  <div class="draft-watermark"><span>DRAFT</span></div>
+
+  <!-- ───────── Page 1: Lloyd's Insurance Company S.A. Policy Jacket ───────── -->
+  <section class="page">
+    <h1 class="lloyds-title">{{tenantBrand.displayName}}<br/>Policy</h1>
+    <div class="lloyds-divider"></div>
+    <div class="lloyds-body">
+      {{#each tenantBrand.legalLines}}<p>{{this}}</p>{{/each}}
+      <p>{{tenantBrand.legalName}} · {{tenantBrand.address}}</p>
+      <p>{{tenantBrand.contactEmail}} · {{tenantBrand.contactPhone}}</p>
+    </div>
+  </section>
+
+  <!-- ───────── Page 2: Schedule ───────── -->
+  <section class="page page-break">
+    <div class="coverholder-header">
+      <div class="coverholder-block">
+        <strong>{{coverholderName}}</strong><br/>
+        {{coverholderAddress}}<br/>
+        Tel: {{coverholderTelephone}}<br/>
+        Fax: {{coverholderFax}}
+      </div>
+    </div>
+    <p style="font-size:11px;color:#4b5563;">This Certificate comprises a Certificate Jacket, the Schedule, Wording and all other provisions, conditions and warranties attached and any endorsements issued.</p>
+    <p style="font-size:11px;color:#4b5563;"><strong>{{coverholderAgreementUmrLine}}</strong></p>
+
+    <div class="schedule-title">SCHEDULE</div>
+    <p style="font-size:11px;margin:8px 0 4px;">Attached and forms part of the Policy</p>
+
+    <table class="info-table">
+      <tr><td class="label">The Company</td><td>{{coverholderName}}</td><td class="label">Policy No.</td><td>{{policyNumber}}</td></tr>
+    </table>
+
+    <div class="cover-section-title">PROPOSER DETAILS</div>
+    <table class="info-table">
+      <tr><td class="label">Name</td><td>{{proposerName}}</td><td class="label">Identity No.</td><td>{{proposerIdentityNumber}}</td></tr>
+      <tr><td class="label">Mailing Address</td><td>{{proposerMailingAddress}}</td><td class="label">Telephone</td><td>{{proposerTelephone}}</td></tr>
+    </table>
+
+    <div class="cover-section-title">INSURED PERSON{{#unless isSingleInsured}}S{{/unless}}' DETAILS</div>
+    <table class="insured-table">
+      <thead>
+        <tr>
+          <th>#</th><th>Full Name</th><th>ID / Passport</th><th>Date of Birth</th><th>Gender</th><th>Occupation</th><th>Age / Band</th><th>Excess</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each insuredPersons}}
+        <tr>
+          <td>{{this.ordinal}}</td>
+          <td>{{this.fullName}}</td>
+          <td>{{this.idNumber}}</td>
+          <td>{{this.dateOfBirthDisplay}}</td>
+          <td>{{this.genderLabel}}</td>
+          <td>{{this.occupationLabel}}</td>
+          <td>{{this.age}} ({{this.ageBand}})</td>
+          <td>{{this.excessDisplay}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <table class="info-table" style="margin-top:10px;">
+      <tr>
+        <td class="label">Period of Insurance (Inception)</td><td>{{inceptionDateDisplay}}</td>
+        <td class="label">Period of Insurance (Expiry)</td><td>{{expiryDateDisplay}}</td>
+      </tr>
+      <tr>
+        <td class="label">Sections Applicable</td><td colspan="3">{{sectionsApplicable}}</td>
+      </tr>
+      <tr>
+        <td class="label">Premium</td><td colspan="3">{{totalPremiumDisplay}}</td>
+      </tr>
+      <tr>
+        <td class="label">Premium Payment Terms</td><td colspan="3">{{paymentTerms}}</td>
+      </tr>
+      <tr>
+        <td class="label">Special Provisions</td><td colspan="3">{{specialProvisions}}</td>
+      </tr>
+    </table>
+
+    <div class="cover-section-title">COVER PROVIDED — BASIC COVER</div>
+    <table class="cover-table">
+      <tr><td>Inpatient care — per Illness or Accident</td><td class="amount">{{baseCover.inpatientPerIllnessDisplay}}</td></tr>
+      <tr><td>Inpatient care — per Period of Insurance and per Person</td><td class="amount">{{baseCover.inpatientPerPeriodDisplay}}</td></tr>
+      <tr><td>Daily Hospitalisation (Regular admission)</td><td class="amount">{{baseCover.dailyRoomRegularDisplay}}</td></tr>
+      <tr><td>Daily Hospitalisation (Emergency Room)</td><td class="amount">{{baseCover.dailyRoomEmergencyDisplay}}</td></tr>
+      <tr><td>Childbirth lump-sum (natural or caesarean)</td><td class="amount">{{baseCover.childbirthLumpSumDisplay}}</td></tr>
+      <tr><td>Transportation of Remains</td><td class="amount">{{baseCover.repatriationLimitDisplay}}</td></tr>
+      <tr><td>Outpatient — per Illness or Accident (Medicine & Surgical Operations)</td><td class="amount">{{baseCover.outpatientPerIllnessDisplay}}</td></tr>
+      <tr><td>Outpatient — per Period of Insurance and per Person</td><td class="amount">{{baseCover.outpatientPerPeriodDisplay}}</td></tr>
+      <tr><td>Outpatient Excess</td><td class="amount">{{baseCover.outpatientExcessDisplay}}</td></tr>
+      <tr><td>Co-insurance</td><td class="amount">{{baseCover.coinsurancePercentDisplay}}</td></tr>
+    </table>
+
+    {{#if isGhsBeneficiary}}
+    <div class="cover-section-title">EXTENDED COVER — GESY BENEFICIARY ONLY</div>
+    <table class="cover-table">
+      <tr><td>Per Doctor's Visit</td><td class="amount">{{ghsExtension.doctorVisitDisplay}}</td></tr>
+      <tr><td>Doctor visits — per Period of Insurance and per Person</td><td class="amount">{{ghsExtension.doctorVisitsPerPeriodDisplay}}</td></tr>
+      <tr><td>Medications</td><td class="amount">{{ghsExtension.medicationsDisplay}}</td></tr>
+      <tr><td>Death by Accident</td><td class="amount">{{ghsExtension.deathByAccidentDisplay}}</td></tr>
+      <tr><td>Transportation of Remains after Death</td><td class="amount">{{ghsExtension.repatriationAfterDeathDisplay}}</td></tr>
+    </table>
+    {{/if}}
+
+    {{#if premiumLines.length}}
+    <div class="cover-section-title">PREMIUM BREAKDOWN</div>
+    <table class="cover-table">
+      {{#each premiumLines}}
+      <tr><td>{{this.label}}</td><td class="amount">{{this.amountDisplay}}</td></tr>
+      {{/each}}
+    </table>
+    {{/if}}
+
+    <div class="cover-section-title">ENDORSEMENTS</div>
+    <table class="cover-table">
+      <tr><td><strong>{{sanctionsClause.headingLine}}</strong><br/>{{sanctionsClause.text}}</td></tr>
+      {{#if isGhsBeneficiary}}
+      <tr><td>
+        <strong>{{gesyClaimsCondition.headingLine}}</strong><br/>
+        {{gesyClaimsCondition.intro}}
+        {{#each gesyClaimsCondition.clauses}}<br/>{{this}}{{/each}}
+        <br/>{{gesyClaimsCondition.closing}}
+      </td></tr>
+      {{/if}}
+    </table>
+
+    <div class="signature-row">
+      <div><strong>Issue Date:</strong> {{issueDateDisplay}}</div>
+      <div>
+        For and on behalf of {{coverholderName}}
+      </div>
+    </div>
+    <div class="footer">
+      <p>Policy Version No: {{policyVersionNo}} · Tax profile: {{taxProfile}} · Risk located in: {{countryOfCover}}</p>
+    </div>
+  </section>
+</body>
+</html>

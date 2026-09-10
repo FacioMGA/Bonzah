@@ -1,0 +1,49 @@
+name: Kernel verification
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.2'
+          cache: npm
+      - name: Install pinned Rust compiler and WASM target
+        run: |
+          rustup toolchain install 1.97.1 --profile minimal --component rustfmt --target wasm32-unknown-unknown
+          rustup default 1.97.1
+      - run: npm ci
+      - run: npm run check
+      - run: npm run benchmark:rust
+      - name: Verify checked-in contract artifacts
+        run: git diff --exit-code -- artifacts/contracts
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - run: npm run test:insurance-browser
+      - run: npm run test:intern-browser
+      - run: npm run test:oauth-browser
+      - run: npm run test:configuration-browser
+      - run: npm run test:approval-browser
+      - run: npm run test:provider-browser
+      - run: npm run test:finance-browser
+      - run: npm run test:documents-browser
+      - run: npm run test:service-browser
+      - run: npm run test:v2-browser
+      - run: npm run test:fnol-browser
+      - run: npm run test:ui-state-browser
+      - run: npm run test:conditional-browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kernel-browser-evidence
+          path: test-results/

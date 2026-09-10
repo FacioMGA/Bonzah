@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#102c3a" />
+    <title>Facio Platform</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/insurance-config.css" />
+    <link rel="stylesheet" href="/insurance-decision.css" />
+    <script src="/insurance-config.js" defer></script>
+    <script src="/insurance-decision.js" defer></script>
+    <script src="/insurance-approval.js" defer></script>
+    <script src="/insurance-provider.js" defer></script>
+    <script src="/insurance-workflow.js" defer></script>
+    <script src="/insurance-documents.js" defer></script>
+    <script src="/insurance-report.js" defer></script>
+    <script src="/insurance-finance.js" defer></script>
+    <script src="/insurance-operations.js" defer></script>
+    <script src="/insurance-fnol.js" defer></script>
+    <link rel="stylesheet" href="/insurance-fnol.css" />
+    <script src="/app.js" defer></script>
+    <link rel="stylesheet" href="/insurance-documents.css" />
+    <link rel="stylesheet" href="/insurance-finance.css" />
+    <link rel="stylesheet" href="/insurance-approval.css" />
+    <link rel="stylesheet" href="/insurance-provider.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <section class="login-screen" id="login-screen" aria-labelledby="login-title">
+      <div class="login-story">
+        <a class="brand brand-light" href="/" aria-label="Facio Platform"
+          ><span class="brand-mark" aria-hidden="true">f</span>facio<span
+            class="brand-separator"
+          ></span
+          ><span class="brand-product">PLATFORM</span></a
+        >
+        <div class="login-copy">
+          <div class="eyebrow light-eyebrow">
+            <span class="status-dot"></span> THE INSURANCE FOUNDATION
+          </div>
+          <h1>One foundation.<br />Every configuration<br />in context.</h1>
+          <p>
+            Inspect your insurance definitions, see what is supported, and turn configuration gaps
+            into a clear next step.
+          </p>
+          <div class="login-capabilities">
+            <span>01 <strong>Inspect definitions</strong></span
+            ><span>02 <strong>Understand gaps</strong></span
+            ><span>03 <strong>Refine your draft</strong></span>
+          </div>
+        </div>
+        <div class="login-note">Configuration foundation · Local development</div>
+      </div>
+      <div class="login-panel">
+        <div class="login-form-wrap">
+          <div class="eyebrow">FACIO CONFIGURATION STUDIO</div>
+          <h2 id="login-title">Your workspace starts here.</h2>
+          <p class="muted login-description">
+            Use the access token provided by your local development server to open your authorized
+            workspace.
+          </p>
+          <p class="field-help" id="auth-status" role="status">Checking workspace sign-in…</p>
+          <div class="message error-message" id="login-error" role="alert" hidden></div>
+          <div id="organization-login" hidden>
+            <a class="button primary login-submit" id="organization-login-link" href="/auth/login"
+              >Sign in with Facio</a
+            >
+            <p class="field-help">
+              Google Workspace and Microsoft identities through your organization login.
+            </p>
+          </div>
+          <button class="button secondary" id="auth-retry" type="button" hidden>
+            Retry connection
+          </button>
+          <form id="login-form" hidden>
+            <label for="access-token">Access token</label>
+            <input
+              id="access-token"
+              type="password"
+              autocomplete="off"
+              spellcheck="false"
+              required
+              placeholder="Enter your local access token"
+              aria-describedby="token-help"
+            />
+            <p class="field-help" id="token-help">
+              Kept in memory for this session. Refreshing the page signs you out.
+            </p>
+            <button class="button primary login-submit" id="login-submit" type="submit">
+              Open workspace <span aria-hidden="true">↗</span>
+            </button>
+          </form>
+          <div class="login-scope-note">
+            <span class="small-icon" aria-hidden="true">◇</span>
+            <p>
+              Configuration and registered synthetic insurance workflows are available by scope.
+              This local workspace cannot create production policies or real payment transactions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="app-shell" id="app-shell" hidden>
+      <aside class="sidebar" id="sidebar" aria-label="Workspace navigation">
+        <a class="brand" href="/" aria-label="Facio Platform"
+          ><span class="brand-mark" aria-hidden="true">f</span>facio<span
+            class="brand-separator"
+          ></span
+          ><span class="brand-product">PLATFORM</span></a
+        >
+        <div class="workspace-card">
+          <span class="workspace-avatar" aria-hidden="true">F</span>
+          <div>
+            <strong id="workspace-name">Workspace</strong
+            ><span id="workspace-environment">Development</span>
+          </div>
+          <span class="scope-lock" aria-hidden="true">◇</span>
+        </div>
+        <nav id="primary-nav" aria-label="Configuration categories"></nav>
+        <div class="sidebar-bottom">
+          <span class="eyebrow">DEVELOPER RESOURCES</span
+          ><button type="button" class="resource-button" data-resource="openapi">
+            API contract <span aria-hidden="true">↗</span></button
+          ><button type="button" class="resource-button" data-resource="mcp">
+            MCP discovery <span aria-hidden="true">↗</span></button
+          ><button type="button" class="resource-button" data-resource="audit" id="audit-button">
+            Audit log <span aria-hidden="true">↗</span>
+          </button>
+          <div class="contract-stamp">
+            Contract <span id="contract-version">—</span><span class="local-dot"></span>
+            <span id="contract-hosting-label">Local</span>
+          </div>
+        </div>
+      </aside>
+      <div class="workspace-main">
+        <header class="topbar">
+          <button
+            class="icon-button mobile-menu"
+            type="button"
+            id="menu-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+            aria-controls="sidebar"
+          >
+            ☰
+          </button>
+          <div class="breadcrumbs">
+            <span id="platform-label">Workspace</span><span aria-hidden="true">/</span
+            ><strong id="workspace-label">Configuration Studio</strong>
+          </div>
+          <div class="topbar-actions">
+            <button type="button" class="text-button" id="switch-sandbox" hidden>Sandboxes</button>
+            <span class="local-badge" id="hosting-badge">Local development</span
+            ><button
+              type="button"
+              class="actor-button"
+              id="scope-button"
+              aria-label="Inspect authorized session scope"
+            >
+              <span class="actor-avatar" aria-hidden="true">U</span
+              ><span id="actor-name">Session</span></button
+            ><button type="button" class="text-button" id="logout-button">Sign out</button>
+          </div>
+        </header>
+        <main id="main-content" tabindex="-1">
+          <div class="scope-strip">
+            <span class="scope-label">AUTHORIZED SCOPE</span><span id="scope-summary"></span>
+          </div>
+          <div class="deployment-context" id="deployment-context" hidden></div>
+          <div class="message" id="notification" role="status" aria-live="polite" hidden></div>
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow" id="workspace-mode">CONFIGURATION FOUNDATION</div>
+              <h1 id="page-title">Configuration overview</h1>
+              <p id="page-description">
+                The definitions you have. The capabilities you need. A clear view of the gaps.
+              </p>
+            </div>
+            <div class="heading-actions">
+              <div class="segmented-control" role="group" aria-label="Configuration view">
+                <button type="button" id="view-draft" data-view="draft" aria-pressed="true">
+                  Draft</button
+                ><button
+                  type="button"
+                  id="view-published"
+                  data-view="published"
+                  aria-pressed="false"
+                >
+                  Published
+                </button>
+              </div>
+              <button type="button" class="button secondary refresh-button" id="refresh-button">
+                <span aria-hidden="true">↻</span> Refresh
+              </button>
+            </div>
+          </div>
+          <div id="loading-state" class="loading-state" role="status" hidden>
+            <span class="spinner" aria-hidden="true"></span> Loading configuration…
+          </div>
+          <div id="workspace-content"></div>
+          <footer class="page-footer">
+            <span>Facio Platform</span
+            ><span id="workspace-footnote">Configuration foundation · Local development</span>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-heading">
+        <div>
+          <div class="eyebrow" id="dialog-eyebrow">DETAILS</div>
+          <h2 id="dialog-title">Details</h2>
+        </div>
+        <button type="button" class="icon-button" id="dialog-close" aria-label="Close dialog">
+          ×
+        </button>
+      </div>
+      <div id="dialog-body"></div>
+    </dialog>
+  </body>
+</html>

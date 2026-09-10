@@ -1,0 +1,29 @@
+Thread-ID: CY-MTR-027
+Claim-Ref: CY-MTR-027
+Subject: CY-MTR-027 — TP insurer non-response
+===
+
+From: Handler <claims@abbeygate.example>
+To: claims@pancyprian.example
+Date: 2026-02-01 09:00
+Subject: Recovery request CY-MTR-027
+
+Recovery request, our claim CY-MTR-027. Our paid amount €4,200.
+Liability accepted on your insured. Please confirm receipt.
+
+---
+From: Handler <claims@abbeygate.example>
+To: claims@pancyprian.example
+Date: 2026-02-15 09:00
+Subject: Chaser — CY-MTR-027 recovery
+
+Chaser. No response to 01/02 recovery request.
+
+---
+From: Handler <claims@abbeygate.example>
+To: claims@pancyprian.example
+Date: 2026-03-01 09:00
+Subject: Second chaser — CY-MTR-027
+
+Second chaser. We will refer to the Cyprus Insurance Association
+if no response within 14 days.

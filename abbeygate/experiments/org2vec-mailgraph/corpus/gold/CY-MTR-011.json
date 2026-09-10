@@ -1,0 +1,17 @@
+{
+  "thread_id": "CY-MTR-011",
+  "claim_ref": "CY-MTR-011",
+  "gold_missing_documents": [],
+  "gold_authority_flags": [],
+  "gold_decision_posture": "accepted",
+  "gold_key_events": [
+    "FNOL",
+    "estimate_received",
+    "payment"
+  ],
+  "gold_similar_threads": [
+    "CY-MTR-017",
+    "CY-MTR-031"
+  ],
+  "scenario": "repairer_recurrence_quickfix"
+}

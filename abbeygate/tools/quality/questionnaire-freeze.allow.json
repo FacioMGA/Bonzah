@@ -1,0 +1,31 @@
+{
+  "$schema": "./questionnaire-freeze.allow.schema.json",
+  "_doc": [
+    "Questionnaire Path Consolidation — DELETION QUEUE (not permission).",
+    "",
+    "Every entry below is an existing offender that the freeze guard must",
+    "tolerate while the consolidation is in flight. Each entry carries a",
+    "deletion phase, an owner, and a Linear ticket placeholder. Entries",
+    "shrink (never grow) as phases land. By the close of Phase 7, both",
+    "lists must be empty and the freeze guard removed from CI.",
+    "",
+    "Adding a new entry requires the consolidation owner's signoff plus a",
+    "stated deletion phase. New entries without those will be rejected at",
+    "review.",
+    "",
+    "Field meaning:",
+    "  - path:           the existing file path being grandfathered.",
+    "  - deletionPhase:  the consolidation phase that removes it.",
+    "  - owner:          the consolidation owner accountable for deletion.",
+    "  - ticket:         the Linear ticket tracking deletion (placeholder OK now).",
+    "",
+    "Phase log:",
+    "  Phase 0:   3 path entries + 13 symbol entries (initial inventory).",
+    "  Phase 1:   path entries unchanged; symbol entries → 13 (no change; gen1 deletes did not touch symbol files).",
+    "  Phase 2:   path entries unchanged; symbol entries → 13 (workspace deletion).",
+    "  Phase 2.5: symbol entries → 0 (canonical data cutover deleted every transitional offender).",
+    "  Phase 5:   path entries → 0. The three generated motor validation contracts collapsed into the single canonical artifact at packages/products/src/motor/generated/motorValidationContract.generated.ts (consumed via @facio/products). Resurrection blocked by tools/quality/check-products-single-source.mjs."
+  ],
+  "allowedExistingPaths": [],
+  "allowedSymbolFiles": []
+}

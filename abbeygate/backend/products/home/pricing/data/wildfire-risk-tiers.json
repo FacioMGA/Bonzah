@@ -1,0 +1,76 @@
+{
+  "source": "Peter Sheppard wildfire underwriting email, 2026-07-13",
+  "tiers": {
+    "PT": {
+      "red": [
+        { "label": "Central interior pine and eucalyptus belt", "names": ["Pedrogao Grande", "Castanheira de Pera", "Figueiro dos Vinhos", "Serta", "Oleiros", "Proenca-a-Nova", "Vila de Rei", "Macao", "Pampilhosa da Serra", "Gois", "Arganil", "Lousa", "Tabua", "Oliveira do Hospital"], "keywords": [] },
+        { "label": "Interior districts and mountain zones", "names": ["Castelo Branco", "Guarda", "Viseu", "Vila Real", "Braganca", "Interior Coimbra", "Interior Leiria"], "keywords": ["serra da estrela", "serra do acor", "peneda-geres", "forested minho interior", "serra de monchique", "serra do caldeirao", "inland algarve hills"] }
+      ],
+      "amber": [
+        { "label": "High-risk interior and forested Portugal", "names": ["Interior Porto", "Interior Braga", "Interior Aveiro", "Interior Viana do Castelo", "Northern Santarem", "Medio Tejo", "Portalegre", "Serra de Sao Mamede", "Sintra", "Mafra", "Arrabida"], "keywords": ["rural northern algarve", "rural eastern algarve", "wooded rural alentejo", "eucalyptus", "pine", "cork oak", "continuous scrub"] }
+      ],
+      "yellow": [
+        { "label": "Moderate Portugal wildfire territory", "names": ["Alentejo", "Lisbon", "Setubal", "Algarve"], "keywords": ["agricultural alentejo", "coastal central portugal", "fragmented vegetation", "algarve coastal hinterland", "separated from mountain", "separated from forest"] }
+      ],
+      "green": [
+        { "label": "Lower Portugal wildfire territory", "names": ["Lisbon", "Porto"], "keywords": ["dense urban", "built-up coastal centre", "built-up coastal center", "open agricultural plain", "little adjoining scrub", "little adjoining woodland", "urban algarve coastal centre", "urban algarve coastal center"] }
+      ]
+    },
+    "ES": {
+      "red": [
+        { "label": "Galicia very high risk", "names": ["Ourense", "Interior Pontevedra", "South Lugo", "East Lugo", "Rural Interior A Coruna"], "keywords": ["galicia"] },
+        { "label": "Castilla y Leon very high risk", "names": ["Zamora", "Leon", "Salamanca", "Avila"], "keywords": ["burgos forest", "palencia mountain", "castilla y leon"] },
+        { "label": "Northern mountain very high risk", "names": ["Asturias", "Cantabria"], "keywords": ["rural mountain"] },
+        { "label": "Extremadura very high risk", "names": ["Caceres", "Sierra de Gata", "Las Hurdes", "Monfrague", "Sierra de San Pedro"], "keywords": ["extremadura"] },
+        { "label": "Valencian and Catalan forest very high risk", "names": ["Interior Valencia", "Interior Alicante", "Tarragona Interior", "Lleida", "Girona Interior"], "keywords": ["castellon mountain", "barcelona forested outer"] },
+        { "label": "Andalucia mountain and scrub very high risk", "names": ["Malaga", "Cadiz", "Sierra Morena", "Huelva", "Sierra de Cazorla", "Granada", "Almeria"], "keywords": ["mountain area", "scrubland area"] },
+        { "label": "Canary Islands pine and forest very high risk", "names": ["Tenerife", "Gran Canaria", "La Palma", "La Gomera", "El Hierro"], "keywords": ["forested", "pine-covered"] },
+        { "label": "Madrid forest interface", "names": ["Sierra de Guadarrama"], "keywords": ["western madrid rural", "northwestern madrid rural"] }
+      ],
+      "amber": [
+        { "label": "High-risk Spain wildfire territory", "names": ["Aragon", "Teruel", "Huesca", "Guadalajara", "Cuenca", "Navarra", "Basque Country", "Murcia", "Serra de Tramuntana", "Ibiza", "Menorca", "Inland Malaga", "Inland Alicante", "Inland Murcia", "Inland Tarragona", "Inland Barcelona"], "keywords": ["pyrenean foothills", "toledo mountain", "ciudad real sierra", "rural interior", "mountain and forest", "wooded", "urbanisation surrounded by pine", "scrub", "steep ravine"] }
+      ],
+      "yellow": [
+        { "label": "Moderate Spain wildfire territory", "names": ["Castilla-La Mancha", "Castilla y Leon", "Ebro Valley", "Guadalquivir Valley"], "keywords": ["open agricultural", "agricultural area", "interior plain", "broken vegetation", "good road access", "developed coastal", "not adjacent to forest", "not adjacent to scrub"] }
+      ],
+      "green": [
+        { "label": "Lower Spain wildfire territory", "names": ["Madrid", "Barcelona", "Valencia", "Seville"], "keywords": ["dense urban", "major city", "intensively developed coastal", "open irrigated agricultural", "substantially separated from combustible vegetation"] }
+      ]
+    },
+    "CY": {
+      "red": [
+        { "label": "Troodos and forest-edge villages", "names": ["Troodos", "Solea Valley", "Marathasa Valley", "Pitsilia"], "keywords": ["forest-edge"] },
+        { "label": "Limassol mountain villages", "names": ["Platres", "Saittas", "Moniatis", "Pera Pedi", "Trimiklini", "Lania", "Agros", "Kyperounta"], "keywords": ["limassol mountain"] },
+        { "label": "Paphos forest and uplands", "names": ["Paphos Forest", "Akamas", "Polis", "Kathikas", "Cedar Valley", "Stavros tis Psokas"], "keywords": ["eastern paphos uplands", "villages adjoining paphos forest", "polis-kathikas rural hinterland"] },
+        { "label": "Larnaca and Maheras mountain areas", "names": ["Vavatsinia", "Odou", "Ora", "Lefkara", "Kato Drys", "Maheras Forest"], "keywords": ["lefkara hinterland", "maheras surrounding villages"] },
+        { "label": "Isolated high vegetation homes", "names": [], "keywords": ["isolated home", "surrounded by pine", "dense scrub", "unmanaged agricultural land"] }
+      ],
+      "amber": [
+        { "label": "High-risk Cyprus rural and foothill territory", "names": ["Rural Paphos", "Limassol Wine Villages", "Western Limassol Countryside", "Nicosia Foothills", "Rural Larnaca Foothills"], "keywords": ["adjoining troodos", "adjoining maheras", "dry scrubland", "steep access road", "narrow access road", "ravine", "slope above continuous vegetation"] }
+      ],
+      "yellow": [
+        { "label": "Moderate Cyprus wildfire territory", "names": ["Mesaoria Plain"], "keywords": ["open agricultural", "low discontinuous vegetation", "outer village", "cleared surrounding land", "good road access", "coastal hinterland", "not adjoining forest", "not adjoining dense scrub"] }
+      ],
+      "green": [
+        { "label": "Lower Cyprus wildfire territory", "names": ["Nicosia", "Limassol", "Larnaca", "Paphos", "Famagusta"], "keywords": ["dense urban", "developed coastal", "resort centre", "resort center", "urbanised coastal strip", "urbanized coastal strip", "open agricultural substantially separated"] }
+      ]
+    },
+    "GR": {
+      "red": [
+        { "label": "Attica wildland-urban interface", "names": ["Penteli", "Dionysos", "Marathon", "Nea Makri", "Rafina", "Mati", "Varnavas", "Grammatikos", "Mount Parnitha", "Saronida", "Anavyssos", "Keratea", "Lavreotiki"], "keywords": ["attica wildland"] },
+        { "label": "Evia and Peloponnese very high risk", "names": ["Evia", "Euboea", "Ilia", "Arcadia", "Laconia", "Corinthia", "Messinia", "Argolis"], "keywords": ["northern evia", "central evia", "peloponnese mountain", "forest and scrub"] },
+        { "label": "Central and northern Greece very high risk", "names": ["Boeotia", "Phocis", "Fthiotida", "Evrytania", "Evros", "Alexandroupolis", "Dadia Forest", "Rhodopi"], "keywords": ["lower forested"] },
+        { "label": "Aegean, Crete, Dodecanese and Ionian very high risk", "names": ["Chios", "Samos", "Lesvos", "Chania", "Rethymno", "Heraklion", "Lasithi", "Rhodes", "Corfu", "Zakynthos", "Kefalonia"], "keywords": ["north aegean forest", "crete rural", "crete mountain", "wooded dodecanese", "heavily vegetated ionian"] }
+      ],
+      "amber": [
+        { "label": "High-risk Greece wildfire territory", "names": ["Halkidiki", "Thessaloniki", "Magnesia", "Pelion", "Sporades", "Epirus", "Achaia", "Aetolia-Acarnania", "Cyclades"], "keywords": ["forested suburban fringe", "rural epirus forest", "rural epirus valley", "coastal settlement backed by pine", "substantial scrub", "pine vegetation", "one access road", "no reliable alternative evacuation"] }
+      ],
+      "yellow": [
+        { "label": "Moderate Greece wildfire territory", "names": ["Thessaly", "Central Macedonia"], "keywords": ["open agricultural", "low-vegetation island settlement", "olive-growing", "maintained ground", "adjoining scrub controlled", "good road access", "substantial separation from forest"] }
+      ],
+      "green": [
+        { "label": "Lower Greece wildfire territory", "names": ["Athens", "Thessaloniki"], "keywords": ["dense central", "urban centre", "urban center", "open irrigated agricultural plain", "built-up coastal centre", "built-up coastal center", "without nearby pine forest", "without nearby scrub", "high alpine", "non-vegetated"] }
+      ]
+    }
+  }
+}

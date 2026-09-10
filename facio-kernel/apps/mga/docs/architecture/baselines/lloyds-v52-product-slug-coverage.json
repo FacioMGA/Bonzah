@@ -1,0 +1,1894 @@
+{
+  "standardId": "lloyds-crs-v5.2-bdx",
+  "rows": [
+    {
+      "productType": "HOME",
+      "slug": "coverage.accidentalDamageBuildings",
+      "label": "Accidental damage (buildings)",
+      "required": false,
+      "source": "manifest.questionnaire.sums-insured",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "coverage.accidentalDamageContents",
+      "label": "Accidental damage (contents)",
+      "required": false,
+      "source": "manifest.questionnaire.sums-insured",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "coverage.allRiskJewellery",
+      "label": "High Risk Items (e.g., jewellery, watches, electronic devices, etc.)",
+      "required": false,
+      "source": "manifest.questionnaire.sums-insured",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "coverage.allRiskOther",
+      "label": "All Risks Unspecified",
+      "required": false,
+      "source": "manifest.questionnaire.sums-insured",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "coverage.buildings",
+      "label": "Buildings sum insured",
+      "required": false,
+      "source": "manifest.questionnaire.sums-insured",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0052"
+      ]
+    },
+    {
+      "productType": "HOME",
+      "slug": "coverage.buildings",
+      "label": "coverage.buildings",
+      "required": false,
+      "source": "manifest.summaryFields.insuredValuePath",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0052"
+      ]
+    },
+    {
+      "productType": "HOME",
+      "slug": "coverage.contents",
+      "label": "Contents sum insured",
+      "required": false,
+      "source": "manifest.questionnaire.sums-insured",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "coverage.solarPanelCover",
+      "label": "Solar panel cover",
+      "required": false,
+      "source": "manifest.questionnaire.sums-insured",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "eligibility.confirmation",
+      "label": "I confirm the information is true and accurate",
+      "required": true,
+      "source": "manifest.questionnaire.acceptance",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "mortgage.hasMortgage",
+      "label": "Bank / mortgage interest",
+      "required": false,
+      "source": "manifest.questionnaire.acceptance",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "mortgage.lenderAddress",
+      "label": "Mortgage lender address",
+      "required": false,
+      "source": "manifest.questionnaire.acceptance",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "mortgage.lenderName",
+      "label": "Mortgage lender name",
+      "required": false,
+      "source": "manifest.questionnaire.acceptance",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "mortgage.lenderReference",
+      "label": "Bank / mortgage reference",
+      "required": false,
+      "source": "manifest.questionnaire.acceptance",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "policy.startDate",
+      "label": "Policy start date",
+      "required": true,
+      "source": "manifest.questionnaire.acceptance",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.address.city",
+      "label": "City",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.address.city",
+      "label": "Property city",
+      "required": false,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.address.country",
+      "label": "Country",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.address.country",
+      "label": "Property country",
+      "required": false,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.address.line1",
+      "label": "Address",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.address.line1",
+      "label": "Property address",
+      "required": false,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.address.line1",
+      "label": "property.address.line1",
+      "required": false,
+      "source": "manifest.summaryFields.titlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.address.postcode",
+      "label": "Postal code",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.address.postcode",
+      "label": "Property postal code",
+      "required": false,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.address.province",
+      "label": "Province/Region",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.alarm",
+      "label": "Alarm installed",
+      "required": true,
+      "source": "manifest.questionnaire.construction-risk",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.bedrooms",
+      "label": "Bedrooms",
+      "required": true,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.bedrooms",
+      "label": "property.bedrooms",
+      "required": false,
+      "source": "manifest.summaryFields.subtitlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.floorAreaSqm",
+      "label": "Covered area (sqm)",
+      "required": true,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.floorAreaSqm",
+      "label": "property.floorAreaSqm",
+      "required": false,
+      "source": "manifest.summaryFields.subtitlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.landAreaSqm",
+      "label": "Area of land (sqm)",
+      "required": false,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.nonCombustibleMaterial",
+      "label": "Built of non-combustible solid material",
+      "required": true,
+      "source": "manifest.questionnaire.construction-risk",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.permanentHome",
+      "label": "Permanent home",
+      "required": true,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.propertyType",
+      "label": "Property type",
+      "required": true,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.propertyType",
+      "label": "property.propertyType",
+      "required": false,
+      "source": "manifest.summaryFields.titlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.sameAsProposer",
+      "label": "Same address as proposer",
+      "required": false,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.urbanArea",
+      "label": "Is the property in an urban area?",
+      "required": true,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.within20MinFireStation",
+      "label": "Is the property within 20 minutes of a fire station?",
+      "required": false,
+      "source": "manifest.questionnaire.property",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.woodenConstruction",
+      "label": "Wooden Constructed House",
+      "required": true,
+      "source": "manifest.questionnaire.construction-risk",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.yearBuilt",
+      "label": "Year built",
+      "required": true,
+      "source": "manifest.questionnaire.construction-risk",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "property.yearBuilt",
+      "label": "property.yearBuilt",
+      "required": false,
+      "source": "manifest.summaryFields.subtitlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.address.city",
+      "label": "City",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.address.country",
+      "label": "Country",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.address.line1",
+      "label": "Address",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.address.postcode",
+      "label": "Postal code",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.dateOfBirth",
+      "label": "Date of birth",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.domicileCountry",
+      "label": "Country of domicile",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.email",
+      "label": "Email",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.firstName",
+      "label": "First name",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.lastName",
+      "label": "Last name",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.marketingConsent",
+      "label": "Marketing consent",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.nationality",
+      "label": "Nationality",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.nif",
+      "label": "NIF / Tax ID",
+      "required": false,
+      "source": "manifest.questionnaire.acceptance",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "proposer.phone",
+      "label": "Phone",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "risk.increasedExcess",
+      "label": "Excess",
+      "required": true,
+      "source": "manifest.questionnaire.construction-risk",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "risk.noClaimsDiscount",
+      "label": "Years claim free (up to a maximum of 4)",
+      "required": true,
+      "source": "manifest.questionnaire.construction-risk",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "risk.previousClaims",
+      "label": "Previous claims",
+      "required": true,
+      "source": "manifest.questionnaire.construction-risk",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "risk.proposerOver45",
+      "label": "Proposer is aged over 45",
+      "required": true,
+      "source": "manifest.questionnaire.construction-risk",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "security.additionalSecurity",
+      "label": "Is there other security at the premises?",
+      "required": true,
+      "source": "manifest.questionnaire.security",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "security.additionalSecurityDescription",
+      "label": "Other security details",
+      "required": false,
+      "source": "manifest.questionnaire.security",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "security.doorsFiveLeverLocks",
+      "label": "Are all external doors fitted with key operated locks (standard or local equivalent)?",
+      "required": true,
+      "source": "manifest.questionnaire.security",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "security.safeDescription",
+      "label": "Safe details",
+      "required": false,
+      "source": "manifest.questionnaire.security",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "security.safeOnPremises",
+      "label": "Is there a safe at the premises?",
+      "required": false,
+      "source": "manifest.questionnaire.security",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "security.windowsSecured",
+      "label": "Are all easily accessible windows and patio doors fitted with interior locks?",
+      "required": true,
+      "source": "manifest.questionnaire.security",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "usage.businessUse",
+      "label": "Used for any business, trade or professional purpose",
+      "required": true,
+      "source": "manifest.questionnaire.use",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "usage.permanentHome",
+      "label": "Permanent Home",
+      "required": true,
+      "source": "manifest.questionnaire.use",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "HOME",
+      "slug": "usage.rentedOut",
+      "label": "Rented out or sub-let",
+      "required": true,
+      "source": "manifest.questionnaire.use",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "additionalDrivers",
+      "label": "Additional driver details",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "claimsCountLast5Years",
+      "label": "Number of claims (last 5 years)",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "claimsDetails",
+      "label": "Claims details",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "claimsTotalCostLast5Years",
+      "label": "Total cost of claims (last 5 years)",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "convictionClass",
+      "label": "Conviction class",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "convictionsDetails",
+      "label": "Convictions details",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "countryOfRegistration",
+      "label": "Country of registration",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0226"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "countryOfRegistration",
+      "label": "Country of registration",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0226"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "coverRequired",
+      "label": "Cover required",
+      "required": true,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0377"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "driverRestriction",
+      "label": "Driver coverage",
+      "required": true,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "electricPowerKw",
+      "label": "Electric motor power (kW)",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "electricPowerKw",
+      "label": "Electric motor power (kW)",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "electricPowerKw",
+      "label": "electricPowerKw",
+      "required": false,
+      "source": "manifest.summaryFields.subtitlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "engineSize",
+      "label": "Engine size (cc)",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "engineSize",
+      "label": "Engine size (cc)",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "engineSize",
+      "label": "engineSize",
+      "required": false,
+      "source": "manifest.summaryFields.subtitlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "fairProcessingAccepted",
+      "label": "Fair processing accepted",
+      "required": true,
+      "source": "manifest.questionnaire.declarations",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "fuelType",
+      "label": "Fuel type",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "fuelType",
+      "label": "Fuel type",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "fuelType",
+      "label": "fuelType",
+      "required": false,
+      "source": "manifest.summaryFields.subtitlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "hasAdditionalDrivers",
+      "label": "Additional drivers",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "hasClaims",
+      "label": "Any claims in last 5 years",
+      "required": true,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "hasConvictions",
+      "label": "Any convictions in last 5 years",
+      "required": true,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "hasMajorConvictionLast5Years",
+      "label": "Major conviction in last 5 years",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "homeInsuranceRenewalDate",
+      "label": "Home insurance renewal date",
+      "required": false,
+      "source": "manifest.questionnaire.declarations",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "infoTrueAndAccurate",
+      "label": "Information true and accurate",
+      "required": true,
+      "source": "manifest.questionnaire.declarations",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "kmsPerYear",
+      "label": "KMs per year",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "licenseIssuedIn",
+      "label": "License issued in",
+      "required": true,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "licenseType",
+      "label": "License type",
+      "required": true,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "licenseYears",
+      "label": "License years",
+      "required": true,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "majorConvictionWithinYears",
+      "label": "Major conviction within",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "make",
+      "label": "Make",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "make",
+      "label": "Make",
+      "required": true,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "make",
+      "label": "make",
+      "required": false,
+      "source": "manifest.summaryFields.titlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "maxFaultClaimCostLast5Years",
+      "label": "Largest at-fault claim (last 5 years)",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "model",
+      "label": "Model",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "model",
+      "label": "Model",
+      "required": true,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "model",
+      "label": "model",
+      "required": false,
+      "source": "manifest.summaryFields.titlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "modificationsDetails",
+      "label": "Modifications details",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "modified",
+      "label": "Vehicle modified?",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "ncb",
+      "label": "No claims discount",
+      "required": true,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "otherDriversClaims",
+      "label": "Other drivers — claims?",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "otherDriversClaimsDetails",
+      "label": "Other drivers — claims details",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "otherDriversConvictions",
+      "label": "Other drivers — convictions?",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "otherDriversConvictionsDetails",
+      "label": "Other drivers — convictions details",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "parking",
+      "label": "Parking",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "parkingOther",
+      "label": "Parking (other)",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.address.city",
+      "label": "City",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.address.country",
+      "label": "Country",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.address.line1",
+      "label": "Address line",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.address.postcode",
+      "label": "Post code",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.address.province",
+      "label": "Province/Region",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.bestTimeToCall",
+      "label": "Best time to call",
+      "required": false,
+      "source": "manifest.questionnaire.declarations",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.dateOfBirth",
+      "label": "Date of birth",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.email",
+      "label": "Email",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.firstName",
+      "label": "First name",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.lastName",
+      "label": "Last name",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.nationality",
+      "label": "Nationality",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.occupation",
+      "label": "Occupation",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.phone",
+      "label": "Telephone",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.privacyPolicyAccepted",
+      "label": "Privacy policy accepted",
+      "required": true,
+      "source": "manifest.questionnaire.declarations",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "proposer.whereDidYouHear",
+      "label": "Where did you hear about us?",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "protectNCB",
+      "label": "Protect NCB",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "registrationNumber",
+      "label": "Registration number",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0033"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "registrationNumber",
+      "label": "Registration number",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0033"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "renewalDate",
+      "label": "Renewal date",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "requiredExcess",
+      "label": "Required excess",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0054"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "vehicleType",
+      "label": "Vehicle type",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR1275"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "vehicleType",
+      "label": "Vehicle type",
+      "required": true,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR1275"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "vehicleUse",
+      "label": "Vehicle use",
+      "required": true,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "vehicleValue",
+      "label": "Vehicle value",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0052"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "vehicleValue",
+      "label": "Vehicle value",
+      "required": true,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0052"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "vehicleValue",
+      "label": "vehicleValue",
+      "required": false,
+      "source": "manifest.summaryFields.insuredValuePath",
+      "classification": "maps_to_cr",
+      "crCodes": [
+        "CR0052"
+      ]
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "vin",
+      "label": "VIN",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "vin",
+      "label": "VIN",
+      "required": false,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "year",
+      "label": "Year",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "year",
+      "label": "Year",
+      "required": true,
+      "source": "manifest.questionnaire.vehicle-cover",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "year",
+      "label": "year",
+      "required": false,
+      "source": "manifest.summaryFields.titlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "MOTOR",
+      "slug": "youngestDriverAge",
+      "label": "Youngest driver age",
+      "required": false,
+      "source": "manifest.questionnaire.driving-history",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "addons.businessCover",
+      "label": "Business cover",
+      "required": false,
+      "source": "manifest.questionnaire.options",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "addons.gadget",
+      "label": "Gadget",
+      "required": false,
+      "source": "manifest.questionnaire.options",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "addons.golfCover",
+      "label": "Golf cover",
+      "required": false,
+      "source": "manifest.questionnaire.options",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "addons.sportsEquipment",
+      "label": "Sports equipment",
+      "required": false,
+      "source": "manifest.questionnaire.options",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "addons.terrorism",
+      "label": "Terrorism",
+      "required": false,
+      "source": "manifest.questionnaire.options",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "addons.wedding",
+      "label": "Wedding",
+      "required": false,
+      "source": "manifest.questionnaire.options",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "addons.winterSports",
+      "label": "Winter sports",
+      "required": false,
+      "source": "manifest.questionnaire.options",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "declarations.contractAgreement",
+      "label": "Payment portal agreement",
+      "required": true,
+      "source": "manifest.questionnaire.declarations",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "declarations.contractConsent",
+      "label": "Contract consent",
+      "required": true,
+      "source": "manifest.questionnaire.declarations",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "declarations.howToClaimReview",
+      "label": "How to Claim / Complain / Privacy reviewed",
+      "required": true,
+      "source": "manifest.questionnaire.declarations",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "declarations.medicalNotice",
+      "label": "Medical notice acknowledgement",
+      "required": true,
+      "source": "manifest.questionnaire.declarations",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "declarations.personalDataConsent",
+      "label": "Personal data consent",
+      "required": true,
+      "source": "manifest.questionnaire.declarations",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "eligibility.countryOfResidence",
+      "label": "What is your current country of residence?",
+      "required": true,
+      "source": "manifest.questionnaire.eligibility",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "eligibility.hasOtherNationality",
+      "label": "Do you hold any other nationality?",
+      "required": true,
+      "source": "manifest.questionnaire.eligibility",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "eligibility.informationAccurate",
+      "label": "I confirm that the information provided is accurate and that any incorrect declaration may affect cover or claims validation.",
+      "required": true,
+      "source": "manifest.questionnaire.eligibility",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "eligibility.legalAgreement",
+      "label": "Lloyd’s residency declaration accepted",
+      "required": true,
+      "source": "manifest.questionnaire.eligibility",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "eligibility.legallyPermittedToReside",
+      "label": "Are you legally permitted to reside in your current country of residence?",
+      "required": true,
+      "source": "manifest.questionnaire.eligibility",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "eligibility.nationality",
+      "label": "What is your nationality?",
+      "required": true,
+      "source": "manifest.questionnaire.eligibility",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "eligibility.otherNationality",
+      "label": "Other nationality",
+      "required": false,
+      "source": "manifest.questionnaire.eligibility",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "eligibility.residenceDuration",
+      "label": "How long have you been living in your current country of residence?",
+      "required": true,
+      "source": "manifest.questionnaire.eligibility",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "eligibility.residencyStatus",
+      "label": "What is your residency status in your current country of residence?",
+      "required": true,
+      "source": "manifest.questionnaire.eligibility",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "eligibility.willRemainResident",
+      "label": "For the duration of your policy, please confirm that you will remain a resident of your current country of residence",
+      "required": true,
+      "source": "manifest.questionnaire.eligibility",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.address.city",
+      "label": "City",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.address.country",
+      "label": "Country",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.address.line1",
+      "label": "Address",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.address.line2",
+      "label": "Address line 2",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.address.postcode",
+      "label": "Post code",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.confirmEmail",
+      "label": "Confirm email",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.dateOfBirth",
+      "label": "Date of birth",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.email",
+      "label": "Email",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.feedbackConsent",
+      "label": "Feedback consent",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.firstName",
+      "label": "First name",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.idNumber",
+      "label": "ID number",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.idType",
+      "label": "ID type",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.lastName",
+      "label": "Last name",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.marketingConsent",
+      "label": "Marketing consent",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.nif",
+      "label": "NIF / Tax ID",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "proposer.phone",
+      "label": "Phone",
+      "required": true,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "quote.basePrice",
+      "label": "quote.basePrice",
+      "required": false,
+      "source": "manifest.summaryFields.insuredValuePath",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "quote.selectedPlan",
+      "label": "Plan",
+      "required": true,
+      "source": "manifest.questionnaire.quote",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "risk.hasPreviousTravelClaim",
+      "label": "Have you previously claimed on a travel insurance policy?",
+      "required": true,
+      "source": "manifest.questionnaire.trip-details",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "risk.previousTravelClaimBand",
+      "label": "How much did you claim in total?",
+      "required": false,
+      "source": "manifest.questionnaire.trip-details",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "travellers.additionalTravellerDOBs",
+      "label": "Additional traveller DOBs",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "travellers.additionalTravellerDOBs",
+      "label": "Additional traveller DOBs",
+      "required": false,
+      "source": "manifest.questionnaire.travellers",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "travellers.additionalTravellers",
+      "label": "Additional traveller details",
+      "required": false,
+      "source": "manifest.questionnaire.policy-holder",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "travellers.coverType",
+      "label": "Cover type",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "travellers.coverType",
+      "label": "Cover type",
+      "required": true,
+      "source": "manifest.questionnaire.travellers",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "travellers.leadTravellerDOB",
+      "label": "Lead traveller DOB",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "travellers.leadTravellerDOB",
+      "label": "Lead traveller DOB",
+      "required": true,
+      "source": "manifest.questionnaire.travellers",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "travellers.travellerCount",
+      "label": "Number of travellers",
+      "required": false,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "travellers.travellerCount",
+      "label": "Number of travellers",
+      "required": false,
+      "source": "manifest.questionnaire.travellers",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.destinations",
+      "label": "Destinations",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.destinations",
+      "label": "Destinations",
+      "required": true,
+      "source": "manifest.questionnaire.trip-details",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.destinations",
+      "label": "trip.destinations",
+      "required": false,
+      "source": "manifest.summaryFields.titlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.endDate",
+      "label": "End date",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.endDate",
+      "label": "End date",
+      "required": true,
+      "source": "manifest.questionnaire.trip-details",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.endDate",
+      "label": "trip.endDate",
+      "required": false,
+      "source": "manifest.summaryFields.subtitlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.planType",
+      "label": "Trip type",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.planType",
+      "label": "Trip type",
+      "required": true,
+      "source": "manifest.questionnaire.trip-details",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.startDate",
+      "label": "Start date",
+      "required": true,
+      "source": "manifest.insuredObject",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.startDate",
+      "label": "Start date",
+      "required": true,
+      "source": "manifest.questionnaire.trip-details",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    },
+    {
+      "productType": "TRAVEL",
+      "slug": "trip.startDate",
+      "label": "trip.startDate",
+      "required": false,
+      "source": "manifest.summaryFields.subtitlePaths",
+      "classification": "not_crs_reportable",
+      "crCodes": []
+    }
+  ]
+}

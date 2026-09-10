@@ -1,0 +1,462 @@
+/* Global Vars */
+:root {
+    --brand-navy: #0E3553;
+    --brand-navy-2: #07263A;
+    --accent-teal: #0FB3A6;
+    --accent-teal-2: #089289;
+    --accent-gold: #B08D57;
+    --muted: #6B7280;
+    --ink: #0D1B2A;
+    --surface: #F7FAFC;
+    --surface-2: #F1F6FA;
+    --border: #E2E8F0;
+    --danger: #E03E3E;
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    /* Unify radii across the pack (certificate standard) */
+    --radius-lg: 6px;
+    --radius-md: 6px;
+    --radius-sm: 6px;
+
+    /* Doc header layout */
+    --doc-header-side: 220px;
+    --doc-logo-left-h: 70px;
+    --doc-logo-right-h: 64px;
+}
+
+/* Page Setup */
+@page {
+    /* Let Puppeteer margins control printable area */
+    margin: 0;
+    size: A4 portrait;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.55;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    /* Premium paper background */
+    background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 38%, #FFFFFF 100%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Robust wrapping (avoid overprints) */
+html, body {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Page helpers */
+.page-break {
+    page-break-before: always;
+    break-before: page;
+}
+
+.avoid-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+/* Typography */
+h1 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #0B1220;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px 0;
+}
+
+h2 {
+    font-size: 14px;
+    font-weight: 900;
+    color: #0B1220;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 26px 0 12px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(2, 6, 23, 0.08);
+}
+
+h3 {
+    font-size: 12px;
+    font-weight: 900;
+    color: #0B1220;
+    margin: 18px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+p {
+    margin: 0 0 12px 0;
+}
+
+/* Grid Layout - User Specified */
+.coverage-and-premium {
+    display: grid;
+    grid-template-columns: 1fr 292px;
+    /* Slightly adjusted to fit A4 width better */
+    gap: 24px;
+}
+
+
+
+/* Premium Box - No Overlap Enforced */
+.premium-summary {
+    border: 1px solid rgba(2, 6, 23, 0.08);
+    background: #ffffff;
+    padding: 18px;
+    border-radius: var(--radius-lg);
+    page-break-inside: avoid;
+    break-inside: avoid;
+    /* User requested light border box, large numeric right aligned */
+    height: fit-content;
+}
+
+.premium-total {
+    font-size: 40px;
+    /* Premium feel */
+    font-weight: 900;
+    color: #0B1220;
+    /* Or Teal if preferred, usually Navy for numbers */
+    text-align: right;
+    line-height: 1;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+    /* Critical */
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    /* Outer border */
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #fff;
+}
+
+thead {
+    display: table-header-group;
+}
+
+tr {
+    break-inside: avoid;
+}
+
+th {
+    background: linear-gradient(180deg, #0E3553 0%, #07263A 100%);
+    color: #fff;
+    font-weight: 800;
+    font-size: 11.5px;
+    text-align: left;
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.16);
+    border-right: 1px solid rgba(255,255,255,0.10);
+    /* Vertical separator */
+    vertical-align: middle;
+}
+
+td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    /* Row separator */
+    border-right: 1px solid var(--border);
+    /* Vertical separator */
+    font-size: 13px;
+    vertical-align: top;
+    /* User requested middle, but top usually better for address blocks */
+    word-break: break-word;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Remove right border from last column */
+th:last-child,
+td:last-child {
+    border-right: none;
+}
+
+/* Striped rows for ease of reading */
+tbody tr:nth-child(even) {
+    background-color: #F8FAFC;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-mono {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.text-muted {
+    color: var(--muted);
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.hr {
+    height: 1px;
+    background: rgba(2, 6, 23, 0.08);
+    margin: 14px 0;
+}
+
+.section-lede {
+    font-size: 11px;
+    color: rgba(2, 6, 23, 0.64);
+    line-height: 1.45;
+}
+
+.text-xs {
+    font-size: 11px;
+}
+
+.text-sm {
+    font-size: 12px;
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-active {
+    background: #DCFCE7;
+    color: #166534;
+}
+
+/* Endorsements */
+.endorsement-block {
+    border-left: 4px solid var(--accent-teal);
+    padding: 12px;
+    padding-left: 16px;
+    /* Extra padding for accent */
+    margin-top: 24px;
+    page-break-inside: avoid;
+    background: #ffffff;
+    border: 1px solid rgba(2, 6, 23, 0.08);
+    border-radius: 14px;
+    /* Subtle bg */
+}
+
+/* Utilities */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 4px;
+    break-inside: avoid;
+}
+
+/* Premium “luxury” components */
+.brand-topbar,
+.doc-topbar {
+    display: grid;
+    grid-template-columns: var(--doc-header-side) auto var(--doc-header-side);
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid rgba(2, 6, 23, 0.10);
+    border-radius: var(--radius-lg);
+    background: #ffffff;
+    margin-bottom: 16px;
+}
+
+.doc-topbar-left,
+.doc-topbar-right,
+.brand-logos {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.doc-topbar-right {
+    justify-content: flex-end;
+}
+
+.doc-topbar-center {
+    text-align: center;
+    justify-self: center;
+    overflow: visible;
+}
+
+.doc-logo-left {
+    display: block;
+    height: var(--doc-logo-left-h);
+    width: auto;
+    max-width: var(--doc-header-side);
+    object-fit: contain;
+}
+
+.doc-logo-right {
+    display: block;
+    height: var(--doc-logo-right-h);
+    width: auto;
+    max-width: var(--doc-header-side);
+    object-fit: contain;
+}
+
+.logo {
+    display: block;
+    height: 28px;
+    width: auto;
+}
+
+.logo.logo-sm {
+    height: 22px;
+}
+
+.doc-title {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.01em;
+    color: #0B1220;
+    margin: 0;
+    line-height: 1.1;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.doc-subtitle {
+    font-size: 11px;
+    font-weight: 800;
+    color: rgba(14, 53, 83, 0.92);
+    margin-top: 5px;
+    white-space: nowrap;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(2, 6, 23, 0.14);
+    background: rgba(2, 6, 23, 0.04);
+    font-size: 11px;
+    color: rgba(2, 6, 23, 0.74);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.card-soft {
+    background: #ffffff;
+    border: 1px solid rgba(2, 6, 23, 0.08);
+    padding: 16px 18px;
+    border-radius: var(--radius-sm);
+}
+
+/* A “page card” wrapper to make documents feel crafted */
+.doc-page {
+    background: #ffffff;
+    border: 1px solid rgba(2, 6, 23, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+}
+
+/* Compact cards for “facts strips” */
+.card-mini {
+    background: #ffffff;
+    border: 1px solid rgba(2, 6, 23, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 12px 14px;
+}
+
+.facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 14px;
+    margin-bottom: 18px;
+}
+
+.fact-k {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(2, 6, 23, 0.55);
+    margin-bottom: 4px;
+}
+
+.fact-v {
+    font-size: 12.5px;
+    font-weight: 900;
+    color: #0B1220;
+    line-height: 1.2;
+}
+
+.kv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+}
+
+.kv .k {
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+}
+
+.kv .v {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+}
+
+.fineprint {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.mb-4 {
+    margin-bottom: 16px;
+}
+
+.mt-4 {
+    margin-top: 16px;
+}

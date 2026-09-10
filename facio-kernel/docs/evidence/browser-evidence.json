@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-09-06T13:27:43.992Z",
+  "mode": "isolated synthetic local fixtures",
+  "checks": [
+    "Invalid credential denied",
+    "Reference scope, all 13 categories, metadata validity and wider gaps rendered",
+    "Source requirements, provenance, explicit pending evidence, category links and mobile layout verified; failed refresh clears stale profile and recovers",
+    "Mismatched snapshot/report revisions trigger a bounded consistency retry",
+    "UI draft edit persisted; published snapshot remained immutable",
+    "Successful save with failed gap refresh shows unavailable validity and recovers without lost data",
+    "Authenticated OpenAPI and MCP discovery dialogs rendered",
+    "Missing scoped source profile is explicit after logout/login and reveals no previous tenant requirements",
+    "Incomplete tenant and missing published version show explicit gaps/errors without prior-tenant leakage",
+    "390px mobile viewport has no document overflow",
+    "Read-only role cannot edit or inspect audit",
+    "Reload clears authentication; no browser storage used"
+  ],
+  "errors": []
+}

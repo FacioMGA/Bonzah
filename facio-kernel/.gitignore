@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.local/
+coverage/
+test-results/
+.env
+*.sqlite*
+.DS_Store
+
+rust/target/
+rust/money.wasm
+rust/money.manifest.json
+
+__pycache__/

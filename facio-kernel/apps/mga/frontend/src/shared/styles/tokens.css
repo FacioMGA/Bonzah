@@ -1,0 +1,39 @@
+/* Token contract (CSS variables).
+   Values are RGB triplets (space-separated) unless noted otherwise. */
+
+:root {
+  /* Semantic surfaces */
+  --ui-canvas: 252 251 247; /* #FCFBF7 */
+  --ui-surface: 255 255 255; /* #FFFFFF */
+  --ui-muted: 243 244 246; /* #F3F4F6 */
+
+  /* Semantic text */
+  --ui-text: 15 23 42; /* #0F172A */
+  --ui-subtext: 71 85 105; /* #475569 */
+
+  /* Semantic affordances */
+  --ui-border: 148 163 184; /* slate-400-ish */
+  --ui-border-alpha: 0.35;
+  --ui-focus: 0 74 138; /* #004A8A */
+
+  /* Status */
+  --ui-danger: 220 38 38; /* #DC2626 */
+  --ui-warning: 217 119 6; /* #D97706 */
+  --ui-success: 22 163 74; /* #16A34A */
+
+  /* Controls (optional; used by component contracts as needed) */
+  --control-radius: 0.875rem; /* 14px */
+  --control-height: 3.25rem; /* 52px */
+  --control-height-sm: 2.75rem; /* 44px */
+
+  /* Control styling (kept separate from surfaces so we can tune forms without changing cards/tables) */
+  --control-bg: 248 250 252; /* slate-50 */
+  --control-bg-alpha: 0.5;
+  --control-border: 226 232 240; /* slate-200 */
+  --control-border-alpha: 0.6;
+  --control-text: 51 65 85; /* slate-700 */
+  --control-placeholder: 148 163 184; /* slate-400 */
+  --control-disabled-text: 100 116 139; /* slate-500 */
+  --control-focus-shadow-alpha: 0.10;
+}
+

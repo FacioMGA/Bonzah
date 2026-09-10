@@ -1,0 +1,1166 @@
+{
+  "id": "vuw-full-poc-source",
+  "version": "1.0.0",
+  "title": "VUW.ai full POC — September 11, 2026",
+  "sources": [
+    {
+      "id": "vuw-workbook",
+      "title": "VUW.ai — Facio configuration and open inputs",
+      "version": null,
+      "capturedAt": "2026-09-06T13:19:31.755Z",
+      "sha256": "04c64aed85fb2b4c14c59d6adcca48860f719ace1d38a0b72959aaa3173028ff",
+      "location": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit",
+      "sourceBoundary": "Hash identifies the captured bounded worksheet values plus metadata. Field mappings and UAT scenarios are preparation proposals; all source UAT results were Not run. Notes, formatting and formulas were not acquired."
+    },
+    {
+      "id": "vuw-sow",
+      "title": "Vuw SOW FacioMGA Microsoft MS v1.1",
+      "version": "1.1",
+      "capturedAt": "2026-09-06T13:25:52Z",
+      "sha256": "124308a8eb51ecdb33bad0af46814f5b1364171b4780d00299ec20f4777132f1",
+      "location": "https://docs.google.com/document/d/18ffhFUU4zYILER6UrnbP6NvLKU2ltp2uL-aQ-PDXyNA/edit",
+      "sourceBoundary": "Hash identifies the captured readable source snapshot, not the original Office binary. Source requirements do not establish implementation or customer acceptance."
+    },
+    {
+      "id": "vuw-poc-spec",
+      "title": "VUW.ai × Facio — POC Implementation Specification & Readiness Plan",
+      "version": null,
+      "capturedAt": "2026-09-06T13:25:52Z",
+      "sha256": "657b2e8bc1ac02662dc5c85b719933747bebd813daa2056b2dfd43d776dc0bd6",
+      "location": "https://docs.google.com/document/d/1u0dfibQYIJnfrHKQ_janvFXZ-_RQsczaHFQH57TMxMw/edit",
+      "sourceBoundary": "Captured draft for review. Its US-first focus does not silently remove cargo, Caribbean or multi-capacity obligations retained from the SOW."
+    },
+    {
+      "id": "vuw-operational",
+      "title": "September 4 customer operational requirements",
+      "version": null,
+      "capturedAt": "2026-09-06T13:25:52Z",
+      "sha256": "fba15f40ba7c08bdd74a2a4c1f14c2341efdf94e4803772820653b608cf5e5cc",
+      "location": "https://mail.google.com/mail/#all/1a06c9b2915c1a07",
+      "sourceBoundary": "Captured complete substantive September 4 customer clarification; signatures and earlier quoted messages omitted. Illustrative participants and amounts are examples, not a fixed production panel. Settlement and return-commission rules remain open."
+    },
+    {
+      "id": "vuw-deadline",
+      "title": "Uriel: September 11 for the full POC",
+      "version": null,
+      "capturedAt": "2026-09-06T13:25:52Z",
+      "sha256": "9b703d45402e9bcbc7dd1234002e03902d598265cec9e4077e9f24589f70d108",
+      "location": "Current Kernel conversation, September 6, 2026",
+      "sourceBoundary": "Direct user instruction: keep September 11 for the full POC. Later source gate dates do not extend this target or reduce scope. This is not execution or acceptance evidence."
+    }
+  ],
+  "requirements": [
+    {
+      "id": "VUW-UAT-01",
+      "title": "Provision and scope",
+      "categories": [
+        "tenant",
+        "tenantRelease",
+        "experience"
+      ],
+      "expectedOutcome": "Correct tenant, staging URL, build/config version, roles, accepted sample-use boundary and activation status recorded",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A7:H7"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-01: Reissue/locate correct offer, capture acceptance/activation state and exact trial start/end; publish POC URL/build/config",
+        "VUW-GAP-12: September 11 full POC is reaffirmed by Uriel; agree complete scope/version; obtain recorded Gate1/2 decisions and exact build/config evidence",
+        "VUW-GAP-17: Record permitted team, systems holding copies, access controls, purge trigger and completion evidence including backups/derived data",
+        "VUW-GAP-18: Select runtime and exact build; map each requirement to supported configuration or engineering work and verify UI/API/MCP parity"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-02",
+      "title": "Submit valid payload",
+      "categories": [
+        "products",
+        "integrations"
+      ],
+      "expectedOutcome": "Single stable record created; accepted payload and field-level schema version retained",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A8:H8"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-02: Supply or locate current QuoteBox/VUW JSON payload and map field presence by submission, quote, bind and adjustment; freeze actual OpenAPI",
+        "VUW-GAP-10: Approve proposed types, requiredness, enums, units, exact selected risk code and per-field CDR/BDX mappings"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-03",
+      "title": "Missing / invalid required data",
+      "categories": [
+        "products",
+        "integrations"
+      ],
+      "expectedOutcome": "Actionable field error; no silent partial record creation",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A9:H9"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-02: Supply or locate current QuoteBox/VUW JSON payload and map field presence by submission, quote, bind and adjustment; freeze actual OpenAPI",
+        "VUW-GAP-10: Approve proposed types, requiredness, enums, units, exact selected risk code and per-field CDR/BDX mappings"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-04",
+      "title": "Retry identical request",
+      "categories": [
+        "integrations",
+        "processes",
+        "finance"
+      ],
+      "expectedOutcome": "Same stable identifiers; no duplicate quote, bind or money entry",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A10:H10"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-02: Supply or locate current QuoteBox/VUW JSON payload and map field presence by submission, quote, bind and adjustment; freeze actual OpenAPI",
+        "VUW-GAP-15: Choose webhook/polling, callback owner, signatures, retry/backoff, ordering, timeout and duplicate handling"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-05",
+      "title": "Quote / referral / decline cases",
+      "categories": [
+        "processes",
+        "integrations",
+        "documents"
+      ],
+      "expectedOutcome": "Each expected outcome recorded with reasons, owner and evidence; no manual rekeying",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A11:H11"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-03: Choose in-scope US POC slice; label quote/referral/decline or authority exception and expected results; request only missing case coverage",
+        "VUW-GAP-09: Confirm account/execution owner, screened parties, match escalation and sandbox access via secret reference"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-06",
+      "title": "Screening and match escalation",
+      "categories": [
+        "integrations",
+        "partyDistribution",
+        "processes"
+      ],
+      "expectedOutcome": "Agreed screened parties/provider result; match referral and resolution preserved",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A12:H12"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-09: Confirm account/execution owner, screened parties, match escalation and sandbox access via secret reference"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-07",
+      "title": "Quote revision and callback",
+      "categories": [
+        "processes",
+        "integrations"
+      ],
+      "expectedOutcome": "Old quote immutable; new version linked; correct status reaches VUW and duplicate callback handled",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A13:H13"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-02: Supply or locate current QuoteBox/VUW JSON payload and map field presence by submission, quote, bind and adjustment; freeze actual OpenAPI",
+        "VUW-GAP-15: Choose webhook/polling, callback owner, signatures, retry/backoff, ordering, timeout and duplicate handling"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-08",
+      "title": "Bind selected quote",
+      "categories": [
+        "processes",
+        "programmesBinders"
+      ],
+      "expectedOutcome": "Exact selected version bound with required carrier approval; stale/unauthorised request refused or referred; evidence retained",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A14:H14"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-04: Confirm approved POC participants, contractual share basis, authority refs/limits, signing down and bind thresholds",
+        "VUW-GAP-23: Confirm current carrier approval requirement and evidence, sanctions/authority timing, overrides, quote release and bind permissions"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-09",
+      "title": "Variable capacity panel",
+      "categories": [
+        "programmesBinders"
+      ],
+      "expectedOutcome": "One policy; one lead; many followers. Test 50/10/15/25 then a different panel without code change",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A15:H15"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-04: Confirm approved POC participants, contractual share basis, authority refs/limits, signing down and bind thresholds"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-10",
+      "title": "Capacity and financial allocation",
+      "categories": [
+        "programmesBinders",
+        "finance"
+      ],
+      "expectedOutcome": "GBP500000 example allocates 250000/50000/75000/125000. MGA commission GBP37500 recorded separately",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A16:H16"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-04: Confirm approved POC participants, contractual share basis, authority refs/limits, signing down and bind thresholds",
+        "VUW-GAP-05: Confirm payer and basis (100% premium vs applicable participation), deductions/overrides and when commission is due",
+        "VUW-GAP-14: Confirm brokerage, tax/charges supplied vs calculated, currency/FX, rounding and allocation residual rules; no unknown value defaults to zero"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-11",
+      "title": "Manual additional-premium MTA",
+      "categories": [
+        "processes",
+        "finance",
+        "programmesBinders"
+      ],
+      "expectedOutcome": "GBP100000 transaction linked to original; allocations 50000/10000/15000/25000, commission +7500, total premium 600000",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A17:H17"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-05: Confirm payer and basis (100% premium vs applicable participation), deductions/overrides and when commission is due",
+        "VUW-GAP-11: Name operators/approvers; approve effective-date behavior, changing capacity lines, documents and immutable historical allocation"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-12",
+      "title": "Capacity-line change on MTA (additional case)",
+      "categories": [
+        "processes",
+        "programmesBinders",
+        "finance"
+      ],
+      "expectedOutcome": "Proposed POC addition: new effective allocation preserved, original bound allocation unchanged, no unrelated policy",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A18:H18"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-04: Confirm approved POC participants, contractual share basis, authority refs/limits, signing down and bind thresholds",
+        "VUW-GAP-11: Name operators/approvers; approve effective-date behavior, changing capacity lines, documents and immutable historical allocation",
+        "VUW-GAP-21: Confirm which additional cases enter POC; reconcile custom UI, migrations and regional reporting with SOW exclusions/change orders"
+      ],
+      "sourceBoundary": "Workbook scope classification: proposed-poc-addition. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations. The underlying servicing need is in the September 4 customer clarification; this exact additional UAT case still needs baseline approval."
+    },
+    {
+      "id": "VUW-UAT-13",
+      "title": "Cancellation / return premium (additional case)",
+      "categories": [
+        "processes",
+        "finance"
+      ],
+      "expectedOutcome": "Proposed POC addition: GBP100000 reversal allocated 50000/10000/15000/25000; commission follows approved contract",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A19:H19"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-06: Confirm commission reversals/clawback on cancellation, return premium and reinstatement; provide approved expected outputs",
+        "VUW-GAP-11: Name operators/approvers; approve effective-date behavior, changing capacity lines, documents and immutable historical allocation",
+        "VUW-GAP-21: Confirm which additional cases enter POC; reconcile custom UI, migrations and regional reporting with SOW exclusions/change orders"
+      ],
+      "sourceBoundary": "Workbook scope classification: proposed-poc-addition. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations. The underlying servicing need is in the September 4 customer clarification; this exact additional UAT case still needs baseline approval."
+    },
+    {
+      "id": "VUW-UAT-14",
+      "title": "Reinstatement (additional case)",
+      "categories": [
+        "processes",
+        "finance"
+      ],
+      "expectedOutcome": "Proposed POC addition: transaction linked with effective version, premium/share/commission and report effects",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A20:H20"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-06: Confirm commission reversals/clawback on cancellation, return premium and reinstatement; provide approved expected outputs",
+        "VUW-GAP-11: Name operators/approvers; approve effective-date behavior, changing capacity lines, documents and immutable historical allocation",
+        "VUW-GAP-21: Confirm which additional cases enter POC; reconcile custom UI, migrations and regional reporting with SOW exclusions/change orders"
+      ],
+      "sourceBoundary": "Workbook scope classification: proposed-poc-addition. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations. The underlying servicing need is in the September 4 customer clarification; this exact additional UAT case still needs baseline approval."
+    },
+    {
+      "id": "VUW-UAT-15",
+      "title": "Document generation",
+      "categories": [
+        "documents",
+        "operatingEntities",
+        "programmesBinders"
+      ],
+      "expectedOutcome": "Approved output matches actual policy/version, legal roles, capacity and template; accessible via UI/API",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A21:H21"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-08: Confirm statement, RI certificate or both; provide approved template/content, branding, legal roles and numbering",
+        "VUW-GAP-16: Confirm legal entity IDs and exact AR/coverholder/cedant/broker presentation against contractual documents"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-16",
+      "title": "Bordereaux 5.2 export",
+      "categories": [
+        "reporting",
+        "finance",
+        "jurisdictions"
+      ],
+      "expectedOutcome": "Approved template columns populated from canonical transactions; original/MTA/return amounts and capacity totals reconcile",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A22:H22"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-07: Locate approved empty 5.2 workbook, dictionary, carrier-specific columns/codes, reporting period and expected output; do not substitute another customer file",
+        "VUW-GAP-10: Approve proposed types, requiredness, enums, units, exact selected risk code and per-field CDR/BDX mappings",
+        "VUW-GAP-14: Confirm brokerage, tax/charges supplied vs calculated, currency/FX, rounding and allocation residual rules; no unknown value defaults to zero"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-17",
+      "title": "Commission settlement and match",
+      "categories": [
+        "finance",
+        "integrations"
+      ],
+      "expectedOutcome": "Synthetic commission receipt matches VUW receivable; client premium is not recorded as VUW-held cash",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A23:H23"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-05: Confirm payer and basis (100% premium vs applicable participation), deductions/overrides and when commission is due",
+        "VUW-GAP-13: Confirm authoritative GC/bureau settlement feed, matching IDs, commission bank account, timing and exception workflow"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-18",
+      "title": "Manual reconciliation exception",
+      "categories": [
+        "finance",
+        "integrations"
+      ],
+      "expectedOutcome": "Unmatched/partial transaction resolved with actor/reason; ledger/risk/report relationships remain traceable",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A24:H24"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-13: Confirm authoritative GC/bureau settlement feed, matching IDs, commission bank account, timing and exception workflow",
+        "VUW-GAP-14: Confirm brokerage, tax/charges supplied vs calculated, currency/FX, rounding and allocation residual rules; no unknown value defaults to zero"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-19",
+      "title": "Auditor and management access",
+      "categories": [
+        "experience",
+        "tenant",
+        "integrations"
+      ],
+      "expectedOutcome": "Authorised read works; unapproved writes and cross-tenant access denied; API/UI/MCP show same scoped record",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A25:H25"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-18: Select runtime and exact build; map each requirement to supported configuration or engineering work and verify UI/API/MCP parity"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-20",
+      "title": "Reset and repeat full run",
+      "categories": [
+        "tenantRelease",
+        "tenant",
+        "documents"
+      ],
+      "expectedOutcome": "Isolated staging reset/new namespace permits rerun; production protected; POC evidence policy applied",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A26:H26"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-19: Agree isolated namespace/reset, evidence retained during POC, deletion at conclusion and production prohibition"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-21",
+      "title": "Full POC acceptance",
+      "categories": [
+        "tenantRelease",
+        "processes"
+      ],
+      "expectedOutcome": "Signed-plan cases plus jointly agreed additions have output evidence, defects, build/config and Kraig/Nicholas decisions; continuation recorded",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A27:H27"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-01: Reissue/locate correct offer, capture acceptance/activation state and exact trial start/end; publish POC URL/build/config",
+        "VUW-GAP-02: Supply or locate current QuoteBox/VUW JSON payload and map field presence by submission, quote, bind and adjustment; freeze actual OpenAPI",
+        "VUW-GAP-03: Choose in-scope US POC slice; label quote/referral/decline or authority exception and expected results; request only missing case coverage",
+        "VUW-GAP-04: Confirm approved POC participants, contractual share basis, authority refs/limits, signing down and bind thresholds",
+        "VUW-GAP-05: Confirm payer and basis (100% premium vs applicable participation), deductions/overrides and when commission is due",
+        "VUW-GAP-06: Confirm commission reversals/clawback on cancellation, return premium and reinstatement; provide approved expected outputs",
+        "VUW-GAP-07: Locate approved empty 5.2 workbook, dictionary, carrier-specific columns/codes, reporting period and expected output; do not substitute another customer file",
+        "VUW-GAP-08: Confirm statement, RI certificate or both; provide approved template/content, branding, legal roles and numbering",
+        "VUW-GAP-09: Confirm account/execution owner, screened parties, match escalation and sandbox access via secret reference",
+        "VUW-GAP-10: Approve proposed types, requiredness, enums, units, exact selected risk code and per-field CDR/BDX mappings",
+        "VUW-GAP-11: Name operators/approvers; approve effective-date behavior, changing capacity lines, documents and immutable historical allocation",
+        "VUW-GAP-12: September 11 full POC is reaffirmed by Uriel; agree complete scope/version; obtain recorded Gate1/2 decisions and exact build/config evidence",
+        "VUW-GAP-21: Confirm which additional cases enter POC; reconcile custom UI, migrations and regional reporting with SOW exclusions/change orders",
+        "VUW-GAP-22: Confirm contract classification, carrier/broker codes, UMR/section, order/participation basis and conditions; no inferred US code default",
+        "VUW-GAP-23: Confirm current carrier approval requirement and evidence, sanctions/authority timing, overrides, quote release and bind permissions"
+      ],
+      "sourceBoundary": "Workbook scope classification: poc-baseline-candidate. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-UAT-22",
+      "title": "Sample data deletion",
+      "categories": [
+        "tenant",
+        "documents",
+        "tenantRelease"
+      ],
+      "expectedOutcome": "Yahav verifies all controlled sample/derived data copies and backups removed at agreed POC/demo conclusion",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=648690000&range=A28:H28"
+        }
+      ],
+      "dependencies": [
+        "VUW-GAP-17: Record permitted team, systems holding copies, access controls, purge trigger and completion evidence including backups/derived data"
+      ],
+      "sourceBoundary": "Workbook scope classification: closure-obligation. Source result Not run; runtime and customer acceptance unverified. Preserve full POC scope for September 11, including later-gate obligations."
+    },
+    {
+      "id": "VUW-SOW-01",
+      "title": "Schema acceptance",
+      "categories": [
+        "products",
+        "reporting",
+        "integrations"
+      ],
+      "expectedOutcome": "Configured schema mapped to agreed Lloyd's CR/risk codes is accepted by VUW engineering.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-sow",
+          "locator": "11 Acceptance criteria, bullet 1"
+        }
+      ],
+      "dependencies": [
+        "VUW-UAT-02,03; exact source code/CDR mapping and technical acceptance absent"
+      ],
+      "sourceBoundary": "Explicit SOW POC criterion retained alongside workbook scenarios; overlap is not a separate passing test. Source precedence and approved expected examples still require reconciliation. Full scope target remains September 11."
+    },
+    {
+      "id": "VUW-SOW-02",
+      "title": "Every quote recorded",
+      "categories": [
+        "products",
+        "processes",
+        "integrations"
+      ],
+      "expectedOutcome": "Every quote from VUW is recorded from API data, including history and auditable identifiers.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-sow",
+          "locator": "11 Acceptance criteria, bullet 2"
+        }
+      ],
+      "dependencies": [
+        "VUW-UAT-02,05,07; customer golden case outcomes absent"
+      ],
+      "sourceBoundary": "Explicit SOW POC criterion retained alongside workbook scenarios; overlap is not a separate passing test. Source precedence and approved expected examples still require reconciliation. Full scope target remains September 11."
+    },
+    {
+      "id": "VUW-SOW-03",
+      "title": "Issuance with MTA AND endorsement",
+      "categories": [
+        "processes",
+        "documents",
+        "finance"
+      ],
+      "expectedOutcome": "Correct issuance plus at least one midterm amendment and one endorsement scenario.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-sow",
+          "locator": "11 Acceptance criteria, bullet 3"
+        }
+      ],
+      "dependencies": [
+        "VUW-UAT-08,11,15; later plan says one endorsement OR MTA, so number/distinction requires joint decision"
+      ],
+      "sourceBoundary": "Explicit SOW POC criterion retained alongside workbook scenarios; overlap is not a separate passing test. Source precedence and approved expected examples still require reconciliation. Full scope target remains September 11."
+    },
+    {
+      "id": "VUW-SOW-04",
+      "title": "Premium bordereau",
+      "categories": [
+        "reporting",
+        "finance"
+      ],
+      "expectedOutcome": "Lloyd's-standard premium bordereau produced from recorded test risks.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-sow",
+          "locator": "11 Acceptance criteria, bullet 4"
+        }
+      ],
+      "dependencies": [
+        "VUW-UAT-16; latest operational requirement specifies Bordereaux5.2; exact approved file absent"
+      ],
+      "sourceBoundary": "Explicit SOW POC criterion retained alongside workbook scenarios; overlap is not a separate passing test. Source precedence and approved expected examples still require reconciliation. Full scope target remains September 11."
+    },
+    {
+      "id": "VUW-SOW-05",
+      "title": "Specified mixed capacity",
+      "categories": [
+        "programmesBinders",
+        "finance",
+        "reporting"
+      ],
+      "expectedOutcome": "Allocation demonstrated across two Lloyd's syndicates AND the Caribbean reinsurer.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-sow",
+          "locator": "11 Acceptance criteria, bullet 5"
+        }
+      ],
+      "dependencies": [
+        "VUW-UAT-09,10 only partially cover; later plan uses representative US panel and later Caribbean roadmap, so explicit scope decision required"
+      ],
+      "sourceBoundary": "Explicit SOW POC criterion retained alongside workbook scenarios; overlap is not a separate passing test. Source precedence and approved expected examples still require reconciliation. Full scope target remains September 11."
+    },
+    {
+      "id": "VUW-SOW-06",
+      "title": "Synthetic Revolut reconciliation",
+      "categories": [
+        "finance",
+        "integrations"
+      ],
+      "expectedOutcome": "Reconcile synthesized transactions using Revolut schema, including manual exception linking.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-sow",
+          "locator": "11 Acceptance criteria, bullet 6"
+        }
+      ],
+      "dependencies": [
+        "VUW-UAT-17,18; no-client-money direction requires separate VUW commission receivable and payment flow"
+      ],
+      "sourceBoundary": "Explicit SOW POC criterion retained alongside workbook scenarios; overlap is not a separate passing test. Source precedence and approved expected examples still require reconciliation. Full scope target remains September 11."
+    },
+    {
+      "id": "VUW-SOW-07",
+      "title": "VUW broker statement",
+      "categories": [
+        "documents",
+        "operatingEntities"
+      ],
+      "expectedOutcome": "Broker statement generated electronically from the VUW template.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-sow",
+          "locator": "11 Acceptance criteria, bullet 7"
+        }
+      ],
+      "dependencies": [
+        "VUW-UAT-15; no approved template or recorded statement-versus-RI decision"
+      ],
+      "sourceBoundary": "Explicit SOW POC criterion retained alongside workbook scenarios; overlap is not a separate passing test. Source precedence and approved expected examples still require reconciliation. Full scope target remains September 11."
+    },
+    {
+      "id": "VUW-SOW-08",
+      "title": "Cargo auditor demonstration",
+      "categories": [
+        "experience",
+        "reporting",
+        "tenant"
+      ],
+      "expectedOutcome": "Auditor interface demonstrated for audited cargo programme.",
+      "priority": "mandatory",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-sow",
+          "locator": "11 Acceptance criteria, bullet 8"
+        }
+      ],
+      "dependencies": [
+        "VUW-UAT-19 only partly covers; later plan's US-only focus/cargo roadmap cannot silently drop this SOW criterion"
+      ],
+      "sourceBoundary": "Explicit SOW POC criterion retained alongside workbook scenarios; overlap is not a separate passing test. Source precedence and approved expected examples still require reconciliation. Full scope target remains September 11."
+    },
+    {
+      "id": "VUW-GAP-01",
+      "title": "Current environment / activation",
+      "categories": [
+        "tenant",
+        "tenantRelease"
+      ],
+      "expectedOutcome": "Reissue/locate correct offer, capture acceptance/activation state and exact trial start/end; publish POC URL/build/config",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A7:I7"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Sep4 recaps request reissued private offer with revised date; old acceptance not evidenced"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-02",
+      "title": "API payload and contract",
+      "categories": [
+        "products",
+        "integrations"
+      ],
+      "expectedOutcome": "Supply or locate current QuoteBox/VUW JSON payload and map field presence by submission, quote, bind and adjustment; freeze actual OpenAPI",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A8:I8"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Draft envelope and 78 source fields available"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-03",
+      "title": "Sample selection / expected outcomes",
+      "categories": [
+        "products",
+        "processes"
+      ],
+      "expectedOutcome": "Choose in-scope US POC slice; label quote/referral/decline or authority exception and expected results; request only missing case coverage",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A9:I9"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Existing ZIP reviewed: 3 packs / 21 files; portfolios extend beyond US-only baseline; no labelled expected-outcome manifest"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-04",
+      "title": "Actual POC panel / authority",
+      "categories": [
+        "programmesBinders",
+        "partyDistribution"
+      ],
+      "expectedOutcome": "Confirm approved POC participants, contractual share basis, authority refs/limits, signing down and bind thresholds",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A10:I10"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Sep4 supplies typical and worked example panel"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-05",
+      "title": "Commission payer and base",
+      "categories": [
+        "finance",
+        "partyDistribution"
+      ],
+      "expectedOutcome": "Confirm payer and basis (100% premium vs applicable participation), deductions/overrides and when commission is due",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A11:I11"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; 7.5% confirmed; GC or bureau payer unresolved"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-06",
+      "title": "Return commission",
+      "categories": [
+        "finance"
+      ],
+      "expectedOutcome": "Confirm commission reversals/clawback on cancellation, return premium and reinstatement; provide approved expected outputs",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A12:I12"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Sep4 example is subject to contractual treatment"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-07",
+      "title": "Bordereaux 5.2 template",
+      "categories": [
+        "reporting"
+      ],
+      "expectedOutcome": "Locate approved empty 5.2 workbook, dictionary, carrier-specific columns/codes, reporting period and expected output; do not substitute another customer file",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A13:I13"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Version 5.2 required by Chris"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-08",
+      "title": "Gate 3 document",
+      "categories": [
+        "documents"
+      ],
+      "expectedOutcome": "Confirm statement, RI certificate or both; provide approved template/content, branding, legal roles and numbering",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A14:I14"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Broker statement in SOW; RI certificate still awaited in Aug thread"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-09",
+      "title": "Screening arrangement",
+      "categories": [
+        "integrations",
+        "processes"
+      ],
+      "expectedOutcome": "Confirm account/execution owner, screened parties, match escalation and sandbox access via secret reference",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A15:I15"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Simplified ID referenced; owner unresolved"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-10",
+      "title": "Field semantics and selected codes",
+      "categories": [
+        "products",
+        "reporting"
+      ],
+      "expectedOutcome": "Approve proposed types, requiredness, enums, units, exact selected risk code and per-field CDR/BDX mappings",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A16:I16"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Property fields, risk-code catalogue and CDR3.2 already received"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-11",
+      "title": "MTA operational approvals",
+      "categories": [
+        "processes",
+        "finance",
+        "programmesBinders"
+      ],
+      "expectedOutcome": "Name operators/approvers; approve effective-date behavior, changing capacity lines, documents and immutable historical allocation",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A17:I17"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Manual changes required while QuoteBox lacks MTA"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-12",
+      "title": "Gate dates and evidence",
+      "categories": [
+        "tenantRelease",
+        "processes"
+      ],
+      "expectedOutcome": "September 11 for the full POC is reaffirmed by Uriel. Agree complete scope/version, obtain recorded Gate 1/2 decisions and exact build/configuration evidence. Preserve later-gate obligations within the full scope.",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A18:I18"
+        },
+        {
+          "sourceId": "vuw-deadline",
+          "locator": "Direct user answer: Keep September 11 for the full POC."
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Customer Friday sequence and internal Sep11 completion differ"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-13",
+      "title": "Settlement and reconciliation evidence",
+      "categories": [
+        "finance",
+        "integrations"
+      ],
+      "expectedOutcome": "Confirm authoritative GC/bureau settlement feed, matching IDs, commission bank account, timing and exception workflow",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A19:I19"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P1; VUW does not hold premiums; commission paid separately"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-14",
+      "title": "Financial rule details",
+      "categories": [
+        "finance",
+        "jurisdictions"
+      ],
+      "expectedOutcome": "Confirm brokerage, tax/charges supplied vs calculated, currency/FX, rounding and allocation residual rules; no unknown value defaults to zero",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A20:I20"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P1; Amounts and allocation classes are identified"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-15",
+      "title": "API callbacks and recovery",
+      "categories": [
+        "integrations"
+      ],
+      "expectedOutcome": "Choose webhook/polling, callback owner, signatures, retry/backoff, ordering, timeout and duplicate handling",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A21:I21"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P1; Draft event list exists"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-16",
+      "title": "Legal party presentation",
+      "categories": [
+        "operatingEntities",
+        "partyDistribution"
+      ],
+      "expectedOutcome": "Confirm legal entity IDs and exact AR/coverholder/cedant/broker presentation against contractual documents",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A22:I22"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P1; ProGlobal arrangement described"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-17",
+      "title": "POC access and cleanup",
+      "categories": [
+        "tenant",
+        "documents"
+      ],
+      "expectedOutcome": "Record permitted team, systems holding copies, access controls, purge trigger and completion evidence including backups/derived data",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A23:I23"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P1; POC-only use and deletion commitment accepted Sep1"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-18",
+      "title": "Actual Facio support",
+      "categories": [
+        "tenantRelease",
+        "experience"
+      ],
+      "expectedOutcome": "Select runtime and exact build; map each requirement to supported configuration or engineering work and verify UI/API/MCP parity",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A24:I24"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P1; Sep4 recap described API progress and UI still pending"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-19",
+      "title": "Staging reset / evidence",
+      "categories": [
+        "tenant",
+        "tenantRelease"
+      ],
+      "expectedOutcome": "Agree isolated namespace/reset, evidence retained during POC, deletion at conclusion and production prohibition",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A25:I25"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P1; Repeatable test reset required"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-20",
+      "title": "Executed commercial versions",
+      "categories": [
+        "tenant"
+      ],
+      "expectedOutcome": "Identify governing executed documents and revised offer/trial dates; retain POC approval separately from subscription acceptance",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A26:I26"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P1; Signed POC approved; SOW/MSA/SLA supplied; subscription not proven"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-21",
+      "title": "Scope additions / exclusions",
+      "categories": [
+        "products",
+        "experience"
+      ],
+      "expectedOutcome": "Confirm which additional cases enter POC; reconcile custom UI, migrations and regional reporting with SOW exclusions/change orders",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A27:I27"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P1; Sep4 adds operational transaction requirements; agenda and SOW differ on paid scope"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-22",
+      "title": "Placement classification / CDR",
+      "categories": [
+        "products",
+        "reporting"
+      ],
+      "expectedOutcome": "Confirm contract classification, carrier/broker codes, UMR/section, order/participation basis and conditions; no inferred US code default",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A28:I28"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; CDR3.2 received; source separates treaty/facultative, proportional/nonproportional and written/signed shares"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    },
+    {
+      "id": "VUW-GAP-23",
+      "title": "Carrier approval and workflow order",
+      "categories": [
+        "programmesBinders",
+        "processes"
+      ],
+      "expectedOutcome": "Confirm current carrier approval requirement and evidence, sanctions/authority timing, overrides, quote release and bind permissions",
+      "priority": "unresolved",
+      "sourceRefs": [
+        {
+          "sourceId": "vuw-workbook",
+          "locator": "https://docs.google.com/spreadsheets/d/1zJGjA3M73GfViOykpY2rm5lnN3V_FVgpoD5rJEyeGZU/edit#gid=1376415954&range=A29:I29"
+        }
+      ],
+      "dependencies": [
+        "Workbook planning priority P0; Aug10 says prior submission initially required even on engine auto-accept; chart and draft differ on sequencing"
+      ],
+      "sourceBoundary": "Open input or decision, not an implemented requirement or an assignment accepted by the named source owner. Workbook P0/P1 is planning judgment and does not remove mandatory POC scope."
+    }
+  ]
+}

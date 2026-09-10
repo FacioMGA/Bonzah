@@ -1,0 +1,103 @@
+{
+  "observedAt": "2026-09-06T17:53:49.632183+00:00",
+  "buildSha": "fa874bbe7fa2b114698d89f84f9ffae97c28ce35",
+  "imageId": "sha256:e11a805cd40769782602e45db3f934ec99f574078031fb8f5f65c0bb54cc1491",
+  "containerId": "17f0969421ec1c9464f74953500570d9dc212b5a607e33f252054d1228412df3",
+  "containerStartedAt": "2026-09-06T17:52:34.890460007Z",
+  "releaseArchiveSha256": "a1f12aea0b676853164ba96ff2bac072bc197c19752985efdc36da7ab2ff8fe2",
+  "publicHealth": {
+    "status": "ok",
+    "version": "0.1.0",
+    "mode": "hosted-sandbox",
+    "environment": "sandbox",
+    "buildSha": "fa874bbe7fa2b114698d89f84f9ffae97c28ce35",
+    "region": "westeurope",
+    "storage": "sqlite-single-writer-managed-disk",
+    "productionReady": false
+  },
+  "businessSchema": 5,
+  "authSchema": 1,
+  "businessIntegrity": "ok",
+  "authIntegrity": "ok",
+  "alpha": {
+    "tenantId": "fb6642d0-c9b1-49ca-b71b-ca28f70d6136",
+    "releaseId": "b513a5eb-ae03-4df0-9d72-13414c5d8da1",
+    "releaseHash": "5f5c1bbec9cf8f19d7faa26c154bbf4cb7ad6d0a1e40a89462558785bc0c3b8f",
+    "releaseBuildSha": "55e155977df60b4d67ef7fa0710869f9d6bf1fe9",
+    "recordId": "ecda8573-e89f-49df-b90d-ada3f3cb2edf",
+    "recordHash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce",
+    "version": 2,
+    "status": "bound",
+    "sourceMode": "manual_external_quote",
+    "currency": "GBP",
+    "premiumMinor": "100000",
+    "commissionMinor": "7000",
+    "history": [
+      {
+        "version": 1,
+        "status": "quoted",
+        "hash": "af10bf4bd3bccdeefb5dc5b1fa4df469efd8b007a0b7c465035f289d0b8e82f9"
+      },
+      {
+        "version": 2,
+        "status": "bound",
+        "hash": "043d816a36a96d7038a44e3706be73833c1d5b88983759a3a306f035a852ebce"
+      }
+    ],
+    "eventTypes": ["quote_created", "bound"],
+    "hashChainVerified": true
+  },
+  "gamma": {
+    "tenantId": "469343e9-3c8e-41f9-8814-488ce8ab1bf5",
+    "releaseId": "65664ec1-f92a-4aca-8ced-269a18e050f4",
+    "releaseHash": "c6c5d13922f6d96c55d68553b81f6bc4df65d6a392dd395abfebc84f971b69af",
+    "releaseBuildSha": "58d391d0e2388a80733552835e96c59acb2a23d1",
+    "recordId": "ed50d028-3e00-4977-a4ed-3c0fdace4c08",
+    "recordHash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27",
+    "version": 2,
+    "status": "bound",
+    "sourceMode": "configured_product",
+    "currency": "GBP",
+    "premiumMinor": "10000",
+    "commissionMinor": "700",
+    "history": [
+      {
+        "version": 1,
+        "status": "quoted",
+        "hash": "75a0939a0d550a67aa4bb34725169c0106fed37f4d0bc160f9b5f680a809aa81"
+      },
+      {
+        "version": 2,
+        "status": "bound",
+        "hash": "9e81957c2f0c9a8a141e487984b975236b8c0111723a594c46951f1ea5b11f27"
+      }
+    ],
+    "eventTypes": ["quote_created", "bound"],
+    "hashChainVerified": true,
+    "inputHash": "636e0605914cdf838317ec645ed042ccf6183b0958542493ffca796195f71012",
+    "definitionHash": "a2d75c16173719f65bb65fecadcd6af10d6049b4ec3b459ad652f08a29be50b4",
+    "evaluationHash": "91ce983bddba2caf8bd2cb004923dd11fdf45a272ca77951b266a3fe5014efaa",
+    "originalDecisionRecomputed": true,
+    "bindDecisionRecomputed": true
+  },
+  "beta": {
+    "tenantId": "f26407ab-7fb0-41b4-819f-87aff1e0c54a",
+    "recordCount": 0,
+    "activeReleaseAbsent": true,
+    "crossTenantRecordAccessDenied": true
+  },
+  "liveContainerUnchangedByVerification": true,
+  "restore": {
+    "receipt": "2026-09-06-insurance-final-recovery.json",
+    "snapshotId": "20260906T174434.656503Z",
+    "exactFinalImageBooted": true,
+    "originalAndBindDecisionsRecomputed": true,
+    "isolatedContainerRemoved": true
+  },
+  "limits": [
+    "No restored browser session or ChatGPT business workflow is claimed.",
+    "Existing private OIDC/bootstrap configuration is reused; full VM-loss/credential recovery is separate.",
+    "The two databases are separately consistent snapshots, not a cross-database atomic transaction.",
+    "The reused 17:44:34 snapshot proves recovery of the named records; later changes beyond that snapshot are not claimed recovered."
+  ]
+}

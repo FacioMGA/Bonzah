@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "allowUmdGlobalAccess": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "types": ["vite/client", "react", "react-dom", "vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@app/*": ["./src/surfaces/app/*"],
+      "@bo/*": ["./src/surfaces/bo/*"],
+      "@client/*": ["./src/surfaces/client/*"],
+      "@public/*": ["./src/surfaces/public/*"],
+      "@surfaces/*": ["./src/surfaces/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@products/*": ["./src/products/*"],
+      "@shared/*": ["./src/shared/*"]
+      // `@facio/validation` and its subpath exports resolve via Node's
+      // package resolution (npm workspace symlink + the package's
+      // `exports` field). We deliberately do NOT add tsconfig `paths`
+      // for them — see `backend/tsconfig.json` for the rationale.
+      // Vite + Vitest still alias these to source for hot-reload during
+      // dev (frontend/vite.config.ts, frontend/vitest.config.ts).
+    }
+  },
+  "include": ["src/**/*", "vite.config.ts", "vitest.config.ts"],
+  "exclude": ["dist", "node_modules"]
+}
